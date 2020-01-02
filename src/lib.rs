@@ -1,6 +1,18 @@
+use std::collections::HashMap;
+
 /** 
  * Basic Data Structure Needed by LifeTime Visualization
  */
+
+// Top level Api that the Timeline object supports
+trait Visualizable {
+    // returns None if the hash does not exist
+    fn get_name_from_hash(&self, hash: &u64) -> Option<String>;
+    // returns None if the hash does not exist
+    fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State>;
+    // add an event to the Visualizable data structure
+    fn add_event(&self, hash: &u64, event: &Event, line_number: &usize, target: &Option<ResourceOwner>);
+}
 
 // A ResourceOwner is either a Variable or a Function that 
 // have ownership to a memory object, during some stage of
@@ -28,7 +40,7 @@ pub enum Event {
     Acquire {
         from: Option<ResourceOwner>
     },
-    // this happens when a variable goes out of scope or its
+    // this happens when a ResourceOwner goes out of scope or its
     // resource will be no longer available after this line.
     // Typically, this happens at one of the following three cases:
     // 
@@ -52,19 +64,66 @@ pub enum Event {
     StaticLend {
         to: Option<ResourceOwner>
     },
+    GoOutOfScope,
 }
+
+// A State is a description of a ResourceOwner at a specific line.
+// We think of this as how we can access the resource from this variable.
+pub enum State {
+    OutOfScope {
+        is_initialized: bool,
+        initialization_line: usize,
+        scope_termination_line: usize
+    },
+    Transfered {
+        to: ResourceOwner,
+        transfer_line: usize
+    },
+    StaticallyBorrowed {
+        by: Vec<ResourceOwner>
+    },
+    Available {
+        before_last_use: bool
+    }
+}
+
 
 // a vector of ownership transfer history of a specific variable, 
 // in a sorted order by line number.
 pub struct Timeline {
+    variable_name: String,
     // line number in usize
     history: Vec<(usize, Event)>,
 }
 
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
+// VisualizationData supplies all the information we need in the frontend, 
+// from rendering a PNG to producing an interactive HTML guide. 
+// The internal data is simple: a map from variable hash to its Timeline.
+pub struct VisualizationData {
+    timelines: HashMap<u64, Timeline>,
+}
+
+// fulfills the promise that we can support all the methods that a 
+// frontend would need. 
+impl Visualizable for VisualizationData {
+    fn get_name_from_hash(&self, hash: &u64) -> Option<String> {
+        match self.timelines.get(hash) {
+            Some(timeline) => Some(timeline.variable_name.to_owned()),
+            _ => None
+        }
+    }
+
+    fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+        match self.timelines.get(hash) {
+            Some(timeline) => {
+                // example return value
+                Some(State::OutOfScope {is_initialized: false, initialization_line: 0, scope_termination_line: 0})
+            },
+            _ => None
+        }
+    }
+
+    fn add_event(&self, hash: &u64, event: &Event, line_number: &usize, target: &Option<ResourceOwner>) {
+
     }
 }

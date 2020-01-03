@@ -30,25 +30,24 @@ pub enum Event {
     // contructor. 
     // 
     // E.g. in the case of
-    //      x = Vec::new();
+    //      let x = Vec::new();
     // x obtained the resource from global resource allocator,
     // the Acquire Event's "from" variable is None. 
     // in the case of 
-    //      y = x;
+    //      let y = x;
     // y obtained its value from x, which means that the Acquire
     // Event's "from" variable is x. 
     Acquire {
         from: Option<ResourceOwner>
     },
-    // this happens when a ResourceOwner goes out of scope or its
-    // resource will be no longer available after this line.
-    // Typically, this happens at one of the following three cases:
+    // this happens when a ResourceOwner releases its resource to
+    // another ResourceOwner, or if it is no longer used after this line.
+    // Typically, this happens at one of the following two cases:
     // 
     // 1. variable is not used after this line. 
     // 2. variable's resource has the move trait, and it transfered
     //    its ownership on this line. This include tranfering its
     //    ownership to a function as well. 
-    // 3. variable is returned on this line. 
     Release {
         to: Option<ResourceOwner>
     },
@@ -64,6 +63,8 @@ pub enum Event {
     StaticLend {
         to: Option<ResourceOwner>
     },
+    // this happens when a variable is returned this line,
+    // or if this variable's scope ends at this line.
     GoOutOfScope,
 }
 

@@ -11,7 +11,7 @@ trait Visualizable {
     // returns None if the hash does not exist
     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State>;
     // add an event to the Visualizable data structure
-    fn add_event(&self, hash: &u64, event: &Event, line_number: &usize, target: &Option<ResourceOwner>);
+    fn append_event(&mut self, hash: &u64, variable_name: &String, event: Event, line_number: &usize);
 }
 
 // A ResourceOwner is either a Variable or a Function that 
@@ -40,24 +40,24 @@ pub enum Event {
     Acquire {
         from: Option<ResourceOwner>
     },
-    // this happens when a ResourceOwner releases its resource to
-    // another ResourceOwner, or if it is no longer used after this line.
+    // this happens when a ResourceOwner transfer the ownership of its resource
+    // to another ResourceOwner, or if it is no longer used after this line.
     // Typically, this happens at one of the following two cases:
     // 
     // 1. variable is not used after this line. 
     // 2. variable's resource has the move trait, and it transfered
-    //    its ownership on this line. This include tranfering its
+    //    its ownership on this line. This includes tranfering its
     //    ownership to a function as well. 
-    Release {
+    Transfer {
         to: Option<ResourceOwner>
-    },
-    MutableBorrow {
-        from: Option<ResourceOwner>
     },
     MutableLend {
         to: Option<ResourceOwner>
     },
-    StaticBorrow {
+    MutableReacquire {
+        from: Option<ResourceOwner>
+    },
+    StaticReacquire {
         from: Option<ResourceOwner>
     },
     StaticLend {
@@ -68,24 +68,25 @@ pub enum Event {
     GoOutOfScope,
 }
 
-// A State is a description of a ResourceOwner at a specific line.
-// We think of this as how we can access the resource from this variable.
+// A State is a description of a ResourceOwner IMMEDIATELY AFTER a specific line.
+// We think of this as what read/write access we have to its resource.
 pub enum State {
+    // The viable is no longer in the scope after this line.
     OutOfScope {
-        is_initialized: bool,
-        initialization_line: usize,
         scope_termination_line: usize
     },
+    // The resource is transferred on this line or before this line,
+    // thus it is impossible to access this variable anymore.
     Transfered {
         to: ResourceOwner,
         transfer_line: usize
     },
-    StaticallyBorrowed {
-        by: Vec<ResourceOwner>
-    },
-    Available {
-        before_last_use: bool
-    }
+    // The resource can be fully accessed right after this line. 
+    ReadableAndWritable,
+    // The resource can be read, but cannot be written to right after this line.
+    // This also means that it is not possible to create a mutable reference
+    // on the next line.
+    ReadableOnly,
 }
 
 
@@ -118,13 +119,34 @@ impl Visualizable for VisualizationData {
         match self.timelines.get(hash) {
             Some(timeline) => {
                 // example return value
-                Some(State::OutOfScope {is_initialized: false, initialization_line: 0, scope_termination_line: 0})
+                Some(State::OutOfScope {scope_termination_line: 0})
             },
             _ => None
         }
     }
 
-    fn add_event(&self, hash: &u64, event: &Event, line_number: &usize, target: &Option<ResourceOwner>) {
+    fn append_event(&mut self, hash: &u64, var_name: &String, event: Event, line_number: &usize) {
+        // if this event belongs to a new ResourceOwner hash,
+        // create a new Timeline first, then bind it to the corresponding hash.
+        match self.timelines.get(hash) {
+            None => {
+                let timeline = Timeline {
+                    variable_name: String::from(var_name),
+                    history: Vec::new(),
+                };
+                self.timelines.insert(*hash, timeline);
+            },
+            _ => {}
+        }
 
+        // append the event to the end of the timeline of the corresponding hash
+        match self.timelines.get_mut(hash) {
+            Some(timeline) => {
+                timeline.history.push((*line_number, event));
+            },
+            _ => {
+                panic!("Timeline disappeared right after creation or when we could index it. This is impossible.");
+            }
+        }
     }
 }

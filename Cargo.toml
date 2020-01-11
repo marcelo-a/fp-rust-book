@@ -1,5 +1,5 @@
 [package]
-name = "rust-resource-timeline"
+name = "rust_resource_timeline"
 version = "0.1.0"
 authors = ["Gabriel Luo <luogm@umich.edu>"]
 edition = "2018"
@@ -11,3 +11,7 @@ path = "src/lib.rs"
 
 [dependencies]
 # rrt_lib = { path = "./" }
+
+[[example]]
+name = "simple"
+path = "src/lib.rs"

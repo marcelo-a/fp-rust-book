@@ -11,16 +11,19 @@ trait Visualizable {
     // returns None if the hash does not exist
     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State>;
     // add an event to the Visualizable data structure
-    fn append_event(&mut self, hash: &u64, variable_name: &String, event: Event, line_number: &usize);
+    fn append_event(&mut self, ro : &ResourceOwner, event: Event, line_number: &usize);
 }
 
 // A ResourceOwner is either a Variable or a Function that 
 // have ownership to a memory object, during some stage of
-// a the program execution. 
+// a the program execution.
+#[derive(Clone)]
  pub struct ResourceOwner {
     hash: u64,
     name: String,
 }
+
+
 // An Event describes the acquisition or release of a 
 // resource ownership by a variable on any given line. 
 // There are six types of them. 
@@ -125,7 +128,9 @@ impl Visualizable for VisualizationData {
         }
     }
 
-    fn append_event(&mut self, hash: &u64, var_name: &String, event: Event, line_number: &usize) {
+    fn append_event(&mut self, ro : &ResourceOwner, event: Event, line_number: &usize) {
+        let hash = &ro.hash;
+        let var_name = &ro.name;
         // if this event belongs to a new ResourceOwner hash,
         // create a new Timeline first, then bind it to the corresponding hash.
         match self.timelines.get(hash) {
@@ -149,4 +154,34 @@ impl Visualizable for VisualizationData {
             }
         }
     }
+}
+
+fn main() {
+    let x = ResourceOwner {
+        hash: 1,
+        name: String::from("x")
+    };
+    let y= ResourceOwner {
+        hash: 2,
+        name: String::from("y")
+    };
+    let z= ResourceOwner {
+        hash: 3,
+        name: String::from("z")
+    };
+    let mut vd = VisualizationData{
+        timelines : HashMap::new(),
+    };
+    // 
+    // hash y : 2
+    //      x : 1
+    //      z : 3
+    // functions: 0
+    vd.append_event(&y, Event::Acquire{from : None}, &(2 as usize));
+    vd.append_event(&z, Event::Acquire{from : None}, &(3 as usize));
+    vd.append_event(&y, Event::Transfer{to : Some(x.clone())}, &(4 as usize));
+    vd.append_event(&x, Event::Acquire{from : Some(y.clone())}, &(4 as usize));
+    vd.append_event(&y, Event::GoOutOfScope, &(9 as usize));
+    vd.append_event(&y, Event::GoOutOfScope, &(9 as usize));
+    
 }

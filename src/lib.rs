@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 /** 
- * Basic Data Structure Needed by LifeTime Visualization
+ * Basic Data Structure Needed by Lifetime Visualization
  */
 
 // Top level Api that the Timeline object supports
@@ -18,8 +18,9 @@ trait Visualizable {
 // have ownership to a memory object, during some stage of
 // a the program execution. 
  pub struct ResourceOwner {
-    hash: u64,
-    name: String,
+    pub hash: u64,
+    pub name: String,
+    pub lifetime_trait: LifetimeTrait,
 }
 // An Event describes the acquisition or release of a 
 // resource ownership by a variable on any given line. 
@@ -66,6 +67,14 @@ pub enum Event {
     // this happens when a variable is returned this line,
     // or if this variable's scope ends at this line.
     GoOutOfScope,
+}
+
+// Trait of a resource owner that might impact the way lifetime visualization
+// behaves
+pub enum LifetimeTrait {
+    Copy,
+    Move,
+    None,
 }
 
 // A State is a description of a ResourceOwner IMMEDIATELY AFTER a specific line.

@@ -16,7 +16,3 @@ path = "example/simple_lifetime/main.rs"
 
 [dependencies]
 # rrt_lib = { path = "./" }
-
-[[example]]
-name = "simple"
-path = "src/lib.rs"

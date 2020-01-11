@@ -5,10 +5,10 @@ use std::collections::HashMap;
  */
 
 // Top level Api that the Timeline object supports
-trait Visualizable {
+pub trait Visualizable {
     // returns None if the hash does not exist
     fn get_name_from_hash(&self, hash: &u64) -> Option<String>;
-    // returns None if the hash does not exist
+    // returns Noneappend_event if the hash does not exist
     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State>;
     // add an event to the Visualizable data structure
     fn append_event(&mut self, ro : &ResourceOwner, event: Event, line_number: &usize);
@@ -18,10 +18,10 @@ trait Visualizable {
 // have ownership to a memory object, during some stage of
 // a the program execution.
 #[derive(Clone)]
- pub struct ResourceOwner {
+pub struct ResourceOwner {
     pub hash: u64,
     pub name: String,
-    pub lifetime_trait: LifetimeTrait,
+    // pub lifetime_trait: LifetimeTrait,
 }
 
 
@@ -74,6 +74,8 @@ pub enum Event {
 
 // Trait of a resource owner that might impact the way lifetime visualization
 // behaves
+
+#[derive(Clone)]
 pub enum LifetimeTrait {
     Copy,
     Move,
@@ -114,7 +116,7 @@ pub struct Timeline {
 // from rendering a PNG to producing an interactive HTML guide. 
 // The internal data is simple: a map from variable hash to its Timeline.
 pub struct VisualizationData {
-    timelines: HashMap<u64, Timeline>,
+    pub timelines: HashMap<u64, Timeline>,
 }
 
 // fulfills the promise that we can support all the methods that a 
@@ -165,32 +167,3 @@ impl Visualizable for VisualizationData {
     }
 }
 
-fn main() {
-    let x = ResourceOwner {
-        hash: 1,
-        name: String::from("x")
-    };
-    let y= ResourceOwner {
-        hash: 2,
-        name: String::from("y")
-    };
-    let z= ResourceOwner {
-        hash: 3,
-        name: String::from("z")
-    };
-    let mut vd = VisualizationData{
-        timelines : HashMap::new(),
-    };
-    // 
-    // hash y : 2
-    //      x : 1
-    //      z : 3
-    // functions: 0
-    vd.append_event(&y, Event::Acquire{from : None}, &(2 as usize));
-    vd.append_event(&z, Event::Acquire{from : None}, &(3 as usize));
-    vd.append_event(&y, Event::Transfer{to : Some(x.clone())}, &(4 as usize));
-    vd.append_event(&x, Event::Acquire{from : Some(y.clone())}, &(4 as usize));
-    vd.append_event(&y, Event::GoOutOfScope, &(9 as usize));
-    vd.append_event(&y, Event::GoOutOfScope, &(9 as usize));
-    
-}

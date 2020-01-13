@@ -5,23 +5,26 @@ use std::collections::HashMap;
  */
 
 // Top level Api that the Timeline object supports
-trait Visualizable {
+pub trait Visualizable {
     // returns None if the hash does not exist
     fn get_name_from_hash(&self, hash: &u64) -> Option<String>;
-    // returns None if the hash does not exist
+    // returns Noneappend_event if the hash does not exist
     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State>;
     // add an event to the Visualizable data structure
-    fn append_event(&mut self, hash: &u64, variable_name: &String, event: Event, line_number: &usize);
+    fn append_event(&mut self, ro : &ResourceOwner, event: Event, line_number: &usize);
 }
 
 // A ResourceOwner is either a Variable or a Function that 
 // have ownership to a memory object, during some stage of
-// a the program execution. 
- pub struct ResourceOwner {
+// a the program execution.
+#[derive(Clone)]
+pub struct ResourceOwner {
     pub hash: u64,
     pub name: String,
-    pub lifetime_trait: LifetimeTrait,
+    // pub lifetime_trait: LifetimeTrait,
 }
+
+
 // An Event describes the acquisition or release of a 
 // resource ownership by a variable on any given line. 
 // There are six types of them. 
@@ -71,6 +74,8 @@ pub enum Event {
 
 // Trait of a resource owner that might impact the way lifetime visualization
 // behaves
+
+#[derive(Clone)]
 pub enum LifetimeTrait {
     Copy,
     Move,
@@ -111,7 +116,7 @@ pub struct Timeline {
 // from rendering a PNG to producing an interactive HTML guide. 
 // The internal data is simple: a map from variable hash to its Timeline.
 pub struct VisualizationData {
-    timelines: HashMap<u64, Timeline>,
+    pub timelines: HashMap<u64, Timeline>,
 }
 
 // fulfills the promise that we can support all the methods that a 
@@ -134,7 +139,9 @@ impl Visualizable for VisualizationData {
         }
     }
 
-    fn append_event(&mut self, hash: &u64, var_name: &String, event: Event, line_number: &usize) {
+    fn append_event(&mut self, ro : &ResourceOwner, event: Event, line_number: &usize) {
+        let hash = &ro.hash;
+        let var_name = &ro.name;
         // if this event belongs to a new ResourceOwner hash,
         // create a new Timeline first, then bind it to the corresponding hash.
         match self.timelines.get(hash) {
@@ -159,3 +166,4 @@ impl Visualizable for VisualizationData {
         }
     }
 }
+

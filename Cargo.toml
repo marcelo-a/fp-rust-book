@@ -1,0 +1,18 @@
+[package]
+name = "rust_resource_timeline"
+version = "0.1.0"
+authors = ["Gabriel Luo <luogm@umich.edu>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "data"
+path = "src/lib.rs"
+
+[[example]]
+name = "simple"
+path = "example/simple_lifetime/main.rs"
+
+[dependencies]
+# rrt_lib = { path = "./" }

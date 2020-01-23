@@ -1,6 +1,7 @@
 use data::{ResourceOwner, VisualizationData, LifetimeTrait, Event, Visualizable};
 
 use std::collections::HashMap;
+// visualization of simple_lifetime/example.rs
 fn main() {
     let x = ResourceOwner {
         hash: 1,
@@ -26,7 +27,8 @@ fn main() {
     vd.append_event(&z, Event::Acquire{from : None}, &(3 as usize));
     vd.append_event(&y, Event::Transfer{to : Some(x.clone())}, &(4 as usize));
     vd.append_event(&x, Event::Acquire{from : Some(y.clone())}, &(4 as usize));
-    vd.append_event(&y, Event::GoOutOfScope, &(9 as usize));
+    vd.append_event(&x, Event::GoOutOfScope, &(9 as usize));
+    vd.append_event(&z, Event::GoOutOfScope, &(9 as usize));
     vd.append_event(&y, Event::GoOutOfScope, &(9 as usize));
     println!("AAA");
 }

@@ -1,0 +1,17 @@
+# var_name.var_hash = [acquire: [var_names],
+#                      trans : var_name, // transfer
+#                      out, // GoOutOfScope
+#                      mLend : var,
+#                      mReac : var,
+#                      sLend : var,
+#                      sReac : var,
+#                      line : lineNo]
+
+# an example config for simple_lifetime/example.rs
+y.2 = [acquire : [], line : 2]
+z.3 = [acquire : [], line : 3]
+y.2 = [trans : x, line : 4]
+x.1 = [acquire : [y], line : 4]
+x.1 = [out : x, line : 9]
+z.1 = [out : z, line : 9]
+y.1 = [out : y, line : 9]

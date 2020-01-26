@@ -44,6 +44,17 @@ pub enum Event {
     Acquire {
         from: Option<ResourceOwner>
     },
+    // this happens when a ResourceOwner implements copy trait or
+    // explicitly calls .clone() function
+    // to another ResourceOwner, or a function.
+    //
+    // e.g.
+    // 1. x: i32 = y + 15;              here y duplicate to + op, and x acquire from + 
+    //                                  at this point, we treat it as y duplicates to None
+    // 2. x: MyStruct = y.clone();      here y duplicates to x.
+    Duplicate {
+        to: Option<ResourceOwner>
+    },
     // this happens when a ResourceOwner transfer the ownership of its resource
     // to another ResourceOwner, or if it is no longer used after this line.
     // Typically, this happens at one of the following two cases:
@@ -58,14 +69,20 @@ pub enum Event {
     MutableLend {
         to: Option<ResourceOwner>
     },
-    MutableReacquire {
-        from: Option<ResourceOwner>
+    MutableBorrow{
+        from: ResourceOwner
     },
-    StaticReacquire {
+    MutableReacquire {
         from: Option<ResourceOwner>
     },
     StaticLend {
         to: Option<ResourceOwner>
+    },
+    StaticBorrow{
+        from: ResourceOwner
+    },
+    StaticReacquire {
+        from: Option<ResourceOwner>
     },
     // this happens when a variable is returned this line,
     // or if this variable's scope ends at this line.

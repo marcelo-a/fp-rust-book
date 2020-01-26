@@ -13,5 +13,5 @@ name = "simple"
 path = "example/simple_lifetime/main.rs"
 
 [dependencies]
-resvg = "0.9.0"
+handlebars = "3.0.1"
 # rrt_lib = { path = "./" }

@@ -7,8 +7,8 @@
     <defs>
     <style type="text/css">
         <![CDATA[
-            $Color1: #3355ff;
-            $Color2: 
+            /* $Color1: #3355ff; */
+            /* $Color2: #cccccc; */
 
             /* general setup */
             svg {

@@ -1,4 +1,4 @@
-use data::{ResourceOwner, VisualizationData, LifetimeTrait, Event, Visualizable};
+use rrt_lib::data::{ResourceOwner, VisualizationData, LifetimeTrait, Event, Visualizable};
 
 use std::collections::HashMap;
 // visualization of simple_lifetime/example.rs

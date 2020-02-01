@@ -1,11 +1,11 @@
 [package]
-name = "rust_resource_timeline"
+name = "rrt"
 version = "0.1.0"
-authors = ["Gabriel Luo <luogm@umich.edu>"]
+authors = ["Gabriel Luo <luogm@umich.edu>", "Ke Du <madoka@umich.edu>", "Yingying Zhu <zyy@umich.edu>"]
 edition = "2018"
 
 [lib]
-name = "data"
+name = "rrt_lib"
 path = "src/lib.rs"
 
 [[example]]

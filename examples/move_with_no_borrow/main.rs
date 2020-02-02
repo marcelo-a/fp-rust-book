@@ -1,5 +1,5 @@
-use rrt_lib::data::{ResourceOwner, VisualizationData, LifetimeTrait, Event, Visualizable};
-
+use rrt_lib::data::{ResourceOwner, VisualizationData, Event, Visualizable};
+use rrt_lib::svg_frontend::svg_generation;
 use std::collections::HashMap;
 // visualization of simple_lifetime/example.rs
 fn main() {
@@ -30,5 +30,6 @@ fn main() {
     vd.append_event(&x, Event::GoOutOfScope, &(9 as usize));
     vd.append_event(&z, Event::GoOutOfScope, &(9 as usize));
     vd.append_event(&y, Event::GoOutOfScope, &(9 as usize));
-    println!("AAA");
+    
+    svg_generation::render_svg(&"examples/move_with_no_borrow".to_owned(), &vd);
 }

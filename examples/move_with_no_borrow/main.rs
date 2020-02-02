@@ -19,8 +19,8 @@ fn main() {
         timelines : HashMap::new(),
     };
     // 
-    // hash y : 2
-    //      x : 1
+    // hash x : 1
+    //      y : 2
     //      z : 3
     // functions: 0
     vd.append_event(&y, Event::Acquire{from : None}, &(2 as usize));

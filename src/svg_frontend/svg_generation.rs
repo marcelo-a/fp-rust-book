@@ -1,3 +1,6 @@
+extern crate handlebars;
+
+use handlebars::Handlebars;
 use crate::data::VisualizationData;
 use crate::svg_frontend::{right_panel, utils};
 

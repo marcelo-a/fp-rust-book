@@ -21,9 +21,38 @@ pub trait Visualizable {
 pub struct ResourceOwner {
     pub hash: u64,
     pub name: String,
+    pub isFun: bool, // if is function
     // pub lifetime_trait: LifetimeTrait,
 }
 
+// translate the event to external event
+// 
+pub enum ExternalEvent{
+    // let binding
+    Acquire{
+        from: Option<ResourceOwner>
+    },
+    // copy / clone
+    Duplicate{
+        from: Option<ResourceOwner>
+    },
+    Move{
+        from: Option<ResourceOwner>,
+        to: Option<ResourceOwner>,
+    },
+    Borrow{
+        isMut: bool,
+        from: Option<ResourceOwner>,
+        to: Option<ResourceOwner>,
+    },
+    Return{
+        // return the resource to "to"
+        isMut: bool,
+        from: Option<ResourceOwner>, 
+        to: Option<ResourceOwner>,
+    },
+    GoOutOfScope
+}
 
 // An Event describes the acquisition or release of a 
 // resource ownership by a variable on any given line. 
@@ -31,7 +60,7 @@ pub struct ResourceOwner {
 pub enum Event {
     // this happens when a variable is initiated, it should obtain
     // its resource from either another variable or from a 
-    // contructor. 
+    // constructor. 
     // 
     // E.g. in the case of
     //      let x = Vec::new();
@@ -75,6 +104,9 @@ pub enum Event {
     MutableReacquire {
         from: Option<ResourceOwner>
     },
+    MutableReturn{
+        from: Option<ResourceOwner>
+    },
     StaticLend {
         to: Option<ResourceOwner>
     },
@@ -83,6 +115,9 @@ pub enum Event {
     },
     StaticReacquire {
         from: Option<ResourceOwner>
+    },
+    StaticReturn{
+        to: Option<ResourceOwner>
     },
     // this happens when a variable is returned this line,
     // or if this variable's scope ends at this line.

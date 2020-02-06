@@ -1,0 +1,14 @@
+        <g id="code">
+                <text class="code" x="0" y="80"> fn fun() { </text>
+                <text class="code" x="0" y="100">     let y = String::from(&quot;y&quot;); </text>
+                <text class="code" x="0" y="120">     let z = String::from(&quot;z&quot;); </text>
+                <text class="code" x="0" y="140">     let &lt;tspan data-hash=&quot;1&quot;&gt;x&lt;/tspan&gt; = y; </text>
+                <text class="code" x="0" y="160">     println!(&quot;{}&quot;, &lt;var data-hash=&quot;1&quot;&gt;x&lt;\var&gt;); // pretend nothing happens inside a macro </text>
+                <text class="code" x="0" y="180">     // println!(&quot;{}&quot;, y);       // Uncomment this line incurs error[E0382]: borrow of moved value: `y` </text>
+                <text class="code" x="0" y="200">     // println!(&quot;{}&quot;, z);       // Uncomment this line incurs error[E0382]: borrow of moved value: `z` </text>
+                <text class="code" x="0" y="220"> } </text>
+                <text class="code" x="0" y="240">  </text>
+                <text class="code" x="0" y="260"> fn main() { </text>
+                <text class="code" x="0" y="280">     fun(); </text>
+                <text class="code" x="0" y="300"> } </text>
+        </g>

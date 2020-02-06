@@ -29,7 +29,7 @@ pub trait Visualizable {
     // returns Noneappend_event if the hash does not exist
     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State>;
     // add an event to the Visualizable data structure
-    fn _append_event(&mut self, ro : &ResourceOwner, event: Event, line_number: &usize);
+    fn append_event(&mut self, ro : &ResourceOwner, event: Event, line_number: &usize);
     // add an ExternalEvent to the Visualizable data structure
     fn append_external_event(&mut self, external_event: ExternalEvent); 
 
@@ -44,7 +44,6 @@ pub trait Visualizable {
     fn svg_dot_info_map(&self) -> HashMap<u64, Vec<SvgLineInfo>>;
     // return svg_arrows := {Move, Borrow, Return}
     fn svg_arrows_info(&self) -> Vec<ExternalEvent>;
-
 }
 
 // A ResourceOwner is either a Variable or a Function that 
@@ -54,7 +53,7 @@ pub trait Visualizable {
 pub struct ResourceOwner {
     pub hash: u64,
     pub name: String,
-    pub is_fun: bool,
+    // pub is_fun: bool,
     // pub lifetime_trait: LifetimeTrait,
 }
 
@@ -234,7 +233,7 @@ impl Visualizable for VisualizationData {
 
 
     // add event using (internal) events
-    fn _append_event(&mut self, ro : &ResourceOwner, event: Event, line_number: &usize) {
+    fn append_event(&mut self, ro : &ResourceOwner, event: Event, line_number: &usize) {
         let hash = &ro.hash;
         let var_name = &ro.name;
         // if this event belongs to a new ResourceOwner hash,
@@ -278,7 +277,7 @@ impl Visualizable for VisualizationData {
             resource_owner : ResourceOwner {
                 hash : 0,
                 name : String::from("x"),
-                is_fun : false,
+                // is_fun : false,
             },
             history : Vec::<(usize, Event)>::new(),
 

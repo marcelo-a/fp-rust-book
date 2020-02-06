@@ -131,6 +131,7 @@
             <line class="solid" data-hash="2" x1="-70" x2="-70" y1="100" y2="140"/>  
             <line id="dashLine" data-hash="1" x1="-100" y1="160" x2="-100" y2="220"/>
             <polyline strokeWidth="3" stroke="beige" points="-70,140 -85,140 " marker-end="url(#arrowHead)"/>
+            <line x1="-40" x2="-40" y1="120" y2="200" data-hash="3" stroke-width="3" stroke-linecap="round" stroke-dasharray="1, 6"/>
         </g>
 
         <g id="dividers">

@@ -2,65 +2,12 @@
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <title>Visualization of Rust Lifetime</title>
-    <desc>move_with_no_borrow</desc>
+    <desc>{{ visualization_name }}</desc>
 
     <defs>
         <style type="text/css">
         <![CDATA[
-        /* general setup */
-svg {
-    background-color: #232323;
-}
-
-text {
-    fill: #cccccc;
-}
-
-#heading {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-#caption {
-    font-size: 12px;
-}
-
-/* code related styling */
-text.code {
-    white-space: pre;
-    font-family: "monospace";
-    dominant-baseline: middle;
-}
-
-/* event related styling */
-#eventDot:hover {
-    transform: scale(1.5);
-}
-
-#eventDot {
-    transition: all 0.3s;
-}
-
-/* timeline/event interaction styling */
-line.solid {
-    stroke-width: 3px;
-}
-
-/* hash based styling */
-[data-hash*="1"] {
-    fill: #3355ff;
-    stroke: #3355ff;
-}
-
-[data-hash*="2"] {
-    fill: #33ff00;
-    stroke: #33ff00;
-}
-
-[data-hash*="3"] {
-    fill: #ff3300;
-    stroke: #ff3300;
-}
+        {{ css }}
         ]]>
         </style>
         <!-- Useful constructs -->
@@ -75,7 +22,7 @@ line.solid {
     </defs>
 
     <g id="title">
-        <text id="heading" x="-300" y="30">Visualization of Rust move_with_no_borrow</text>
+        <text id="heading" x="-300" y="30">Visualization of Rust {{ visualization_name }}</text>
         <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
     </g>
 
@@ -105,19 +52,5 @@ line.solid {
             <line class="solid" stroke="beige" x1="-20" x2="-20" y1="80" y2="400"/>
     </g>
 
-            <g id="code">
-                <text class="code" x="0" y="80"> fn fun() { </text>
-                <text class="code" x="0" y="100">     let <tspan data-hash="2">y</tspan> = String::from("y"); </text>
-                <text class="code" x="0" y="120">     let <tspan data-hash="3">z</tspan> = String::from("z"); </text>
-                <text class="code" x="0" y="140">     let <tspan data-hash="1">x</tspan> = <tspan data-hash="2">y</tspan>; </text>
-                <text class="code" x="0" y="160">     println!("{}", <tspan data-hash="1">x</tspan>); // pretend nothing happens inside a macro </text>
-                <text class="code" x="0" y="180">     // println!("{}", y);       // Uncomment this line incurs error[E0382]: borrow of moved value: `<tspan data-hash="2">y</tspan>` </text>
-                <text class="code" x="0" y="200">     // println!("{}", z);       // Uncomment this line incurs error[E0382]: borrow of moved value: `<tspan data-hash="2">y</tspan>` </text>
-                <text class="code" x="0" y="220"> } </text>
-                <text class="code" x="0" y="240">  </text>
-                <text class="code" x="0" y="260"> fn main() { </text>
-                <text class="code" x="0" y="280">     fun(); </text>
-                <text class="code" x="0" y="300"> } </text>
-        </g>
-
+    {{ code }}
 </svg>

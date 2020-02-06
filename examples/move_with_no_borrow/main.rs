@@ -43,5 +43,5 @@ fn main() {
     vd.append_event(&z, Event::GoOutOfScope, &(9 as usize));
     vd.append_event(&y, Event::GoOutOfScope, &(9 as usize));
 
-    svg_generation::render_svg(&"examples/move_with_no_borrow".to_owned(), &vd);
+    svg_generation::render_svg(&"move_with_no_borrow".to_owned(), &vd);
 }

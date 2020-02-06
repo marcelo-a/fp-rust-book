@@ -8,6 +8,8 @@ use std::io;
 pub fn render_source_code(lines: io::Lines<io::BufReader<File>>) -> String {
     /* Template creation */
     let mut handlebars = Handlebars::new();
+    // We want to preserve the inputs `as is`, and want to make no changes based on html escape.
+    handlebars.register_escape_fn(handlebars::no_escape);
     let line_template =
         "                <text class=\"code\" x=\"{{X_VAL}}\" y=\"{{Y_VAL}}\"> {{LINE}} </text>\n";
     // register the template. The template string will be verified and compiled.

@@ -14,6 +14,17 @@ where
     Ok(io::BufReader::new(file))
 }
 
+pub fn read_file_to_string<P>(file_path: P) -> io::Result<String>
+where
+    P: AsRef<Path>,
+{
+    let mut string = String::new();
+    if let Ok(mut buf) = read_file(file_path) {
+        buf.read_to_string(&mut string)?;
+    }
+    Ok(string.to_owned())
+}
+
 // Returns: a result object that we can match to OK(), and then use .lines() on.
 pub fn read_lines<P>(file_path: P) -> io::Result<io::Lines<io::BufReader<File>>>
 where

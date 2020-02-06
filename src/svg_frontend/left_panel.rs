@@ -1,6 +1,6 @@
 extern crate handlebars;
 
-use crate::data::{VisualizationData, Visualizable};
+use crate::data::{VisualizationData, Visualizable, ExternalEvent, ResourceOwner};
 use handlebars::Handlebars;
 use std::collections::BTreeMap;
 use std::collections::HashMap;
@@ -61,18 +61,18 @@ pub fn render_events(visualization_data : &VisualizationData) -> String {
         .is_ok());
     let external_events = &visualization_data.external_events;
     for (line_number, external_event) in external_events{
-        let mut data = BTreeMap::new();
-        match external_event {
-            Acquire(from, to) => {
-                insert_dot_data(from);
-                insert_dot_data(to);
-                match (from, to) {
-                    Some(roFrom), Some(roTo) => {},
-                    _, _ => {},
-                }
-            }
+        //let mut data = BTreeMap::new();
+        // match  external_event {
+        //     ExternalEvent::Acquire{from, to} => {
+        //         insert_dot_data(external_event);
+        //         insert_dot_data(to);
+        //         match (from, to) {
+        //             (Some(ro_from), Some(ro_to)) => {insert_arrow_data(ro_from, ro_to)},
+        //             (_, _) => {},
+        //         }
+        //     }
                 
-        }
+        // }
     }
    
     // for(line_number, external_event) in arrows_info.iter(){
@@ -81,15 +81,11 @@ pub fn render_events(visualization_data : &VisualizationData) -> String {
 
 
     output
-    
 
-
-
-    
 }
 
-fn insert_dot_data(data : & mut Vec, maybe_ro : Option<ResourceOwner>){
+fn insert_dot_data(data : & mut Vec<BTreeMap<String, String>>, maybe_ro : Option<ResourceOwner>){
     if let Some(ro) = maybe_ro {
-        data.insert("data");
+        //data.insert("data");
     }
 }

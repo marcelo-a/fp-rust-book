@@ -1,4 +1,4 @@
-use rrt_lib::data::{Event, ResourceOwner, Visualizable, VisualizationData};
+use rrt_lib::data::{Event, ExternalEvent, ResourceOwner, Visualizable, VisualizationData};
 use rrt_lib::svg_frontend::svg_generation;
 use std::collections::HashMap;
 // visualization of simple_lifetime/example.rs
@@ -17,7 +17,9 @@ fn main() {
     };
     let mut vd = VisualizationData {
         timelines: HashMap::new(),
+        external_events: Vec::new(),
     };
+    vd.append_external_event(2, ExternalEvent::Acquire{from: None, to: Some(z.clone())});
     //
     // hash x : 1
     //      y : 2

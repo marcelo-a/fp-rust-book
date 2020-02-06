@@ -1,36 +1,95 @@
 extern crate handlebars;
 
+use crate::data::{VisualizationData, Visualizable};
 use handlebars::Handlebars;
 use std::collections::BTreeMap;
+use std::collections::HashMap;
 use std::fs::File;
 use std::io;
 
-pub fn render_source_code(lines: io::Lines<io::BufReader<File>>) -> String {
+pub fn render_events(visualization_data : &VisualizationData) -> String {
     /* Template creation */
     let mut handlebars = Handlebars::new();
     // We want to preserve the inputs `as is`, and want to make no changes based on html escape.
     handlebars.register_escape_fn(handlebars::no_escape);
-    let line_template =
-        "                <text class=\"line\" x=\"{{X_VAL}}\" y=\"{{Y_VAL}}\"> {{LINE}} </text>\n";
+    let resource_owner_template = 
+    "        <text class=\"code\" x=\"{{X_VAL}}\" y=\"80\" data-hash=\"{{HASH}}\" text-anchor=\"middle\">{{NAME}}</text>";
+    
+    //let line_template =
+    //    "              <polyline strokeWidth=\"3\" stroke=\"beige\" points=\"{X1},{Y1} -{X2},{Y2} \" marker-end=\"url(#arrowHead)\"/>";
     // register the template. The template string will be verified and compiled.
     assert!(handlebars
-        .register_template_string("code_line_template", line_template)
+        .register_template_string("resource_owner_template", resource_owner_template)
         .is_ok());
+    
+    // hash -> (resource_owner name, pos)
+    let mut resource_owners_layout = HashMap::new();
 
-    /* Render the code segment of the svg to a String */
-    let x = 0;
-    let mut y = 80;
-    let mut output = String::from("        <g id=\"code\">\n");
-    for line in lines {
-        if let Ok(line_string) = line {
-            let mut data = BTreeMap::new();
-            data.insert("X_VAL".to_string(), x.to_string());
-            data.insert("Y_VAL".to_string(), y.to_string());
-            data.insert("LINE".to_string(), line_string);
-            output.push_str(&handlebars.render("code_line_template", &data).unwrap());
-            y = y + 20;
-        }
+    let mut x = -40;
+    let x_space = 30;
+    for(hash, _) in visualization_data.timelines.iter(){
+        let name = match visualization_data.get_name_from_hash(hash){
+            Some(_name) => _name,
+            None => panic!("no matching resource owner for hash {}", hash),
+        };
+        resource_owners_layout.insert(hash, (name, x));
+        x = x - x_space;
+    }
+
+    // render resource owner
+    let mut output = String::from("        <g id=\"resource_owners\">\n");
+    for(hash, (name, x_val)) in resource_owners_layout.iter(){
+        let mut data = BTreeMap::new();
+        data.insert("X_VAL".to_string(), x_val.to_string());
+        data.insert("HASH".to_string(), hash.to_string());
+        data.insert("NAME".to_string(), name.clone());
+        output.push_str(&handlebars.render("resource_owner_template", &data).unwrap());
+        output.push_str("\n");
     }
     output.push_str("        </g>\n");
+
+    // render events
+    let dot_template =
+        "        <use xlink:href=\"#eventDot\" data-hash=\"{{HASH}}\" x=\"{{DOT_X}}\" y=\"{{DOT_Y}}\"/>";
+    let arrow_template = 
+        "        <polyline strokeWidth=\"3\" stroke=\"beige\" points=\"{{X1}},{{Y1}} {{X2}},{{Y2}} \" marker-end=\"url(#arrowHead)\"/>";
+    assert!(handlebars
+        .register_template_string("dot_template", dot_template)
+        .is_ok());
+    assert!(handlebars
+        .register_template_string("arrow_template", arrow_template)
+        .is_ok());
+    let external_events = &visualization_data.external_events;
+    for (line_number, external_event) in external_events{
+        let mut data = BTreeMap::new();
+        match external_event {
+            Acquire(from, to) => {
+                insert_dot_data(from);
+                insert_dot_data(to);
+                match (from, to) {
+                    Some(roFrom), Some(roTo) => {},
+                    _, _ => {},
+                }
+            }
+                
+        }
+    }
+   
+    // for(line_number, external_event) in arrows_info.iter(){
+        
+    // }
+
+
     output
+    
+
+
+
+    
+}
+
+fn insert_dot_data(data : & mut Vec, maybe_ro : Option<ResourceOwner>){
+    if let Some(ro) = maybe_ro {
+        data.insert("data");
+    }
 }

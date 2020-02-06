@@ -1,7 +1,7 @@
 extern crate handlebars;
 
 use crate::data::VisualizationData;
-use crate::svg_frontend::{right_panel, utils};
+use crate::svg_frontend::{right_panel, left_panel, utils};
 use std::collections::BTreeMap;
 use handlebars::Handlebars;
 
@@ -29,10 +29,16 @@ pub fn render_svg(example_name: &String, visualization_data: &VisualizationData)
         right_panel_string = right_panel::render_source_code(lines);
     }
 
+    
+    // data for right panel
     let mut svg_data = BTreeMap::new();
     svg_data.insert("visualization_name".to_owned(), example_name);
     svg_data.insert("css".to_owned(), &css_string);
     svg_data.insert("code".to_owned(), &right_panel_string);
+    
+    // data for left panel
+    let events_string = left_panel::render_events(visualization_data);
+    svg_data.insert("events".to_owned(), &events_string);
 
     let final_svg_content = handlebars.render("full_svg_template", &svg_data).unwrap();
 

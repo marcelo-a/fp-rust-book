@@ -31,7 +31,7 @@ pub trait Visualizable {
     // add an event to the Visualizable data structure
     fn append_event(&mut self, ro : &ResourceOwner, event: Event, line_number: &usize);
     // add an ExternalEvent to the Visualizable data structure
-    fn append_external_event(&mut self, external_event: ExternalEvent); 
+    fn append_external_event(&mut self, line_number : usize, external_event: ExternalEvent); 
 
     // SVG left panel generation facilities
     // each line represents a state; return all states for a ResourceOwner
@@ -43,7 +43,7 @@ pub trait Visualizable {
     // return all timelines
     fn svg_dot_info_map(&self) -> HashMap<u64, Vec<SvgLineInfo>>;
     // return svg_arrows := {Move, Borrow, Return}
-    fn svg_arrows_info(&self) -> Vec<ExternalEvent>;
+    fn svg_arrows_info(&self) -> &Vec<(usize, ExternalEvent)>;
 }
 
 // A ResourceOwner is either a Variable or a Function that 
@@ -61,35 +61,30 @@ pub struct ResourceOwner {
 pub enum ExternalEvent{
     // let binding
     Acquire{
-        line_number: usize,
-        from: Option<ResourceOwner>
+        from: Option<ResourceOwner>,
+        to: Option<ResourceOwner>,
     },
     // copy / clone
     Duplicate{
-        line_number: usize,
-        from: Option<ResourceOwner>
+        from: Option<ResourceOwner>,
+        to: Option<ResourceOwner>,
     },
     Move{
-        line_number: usize,
         from: Option<ResourceOwner>,
         to: Option<ResourceOwner>,
     },
     Borrow{
-        line_number: usize,
         is_mut: bool,
         from: Option<ResourceOwner>,
         to: Option<ResourceOwner>,
     },
     Return{
         // return the resource to "to"
-        line_number: usize,
         is_mut: bool,
         from: Option<ResourceOwner>, 
         to: Option<ResourceOwner>,
     },
-    GoOutOfScope{
-        line_number: usize,
-    }
+    GoOutOfScope,
 }
 
 // An Event describes the acquisition or release of a 
@@ -198,7 +193,7 @@ pub enum State {
 // a vector of ownership transfer history of a specific variable, 
 // in a sorted order by line number.
 pub struct Timeline {
-    resource_owner: ResourceOwner,
+    resource_owner: ResourceOwner,  
     // line number in usize
     history: Vec<(usize, Event)>,
 }
@@ -208,6 +203,9 @@ pub struct Timeline {
 // The internal data is simple: a map from variable hash to its Timeline.
 pub struct VisualizationData {
     pub timelines: HashMap<u64, Timeline>,
+    // line_number, event
+    // for svg arrows
+    pub external_events: Vec<(usize, ExternalEvent)>,
 }
 
 // fulfills the promise that we can support all the methods that a 
@@ -262,7 +260,8 @@ impl Visualizable for VisualizationData {
     }
 
     // TODO IMPLEMENT
-    fn append_external_event(&mut self, external_event: ExternalEvent){
+    fn append_external_event(&mut self, line_number : usize, external_event: ExternalEvent){
+        self.external_events.push((line_number, external_event));
     } 
     fn svg_line_info(&self, hash : &u64) -> Vec<SvgLineInfo>{
         Vec::<SvgLineInfo>::new()
@@ -284,13 +283,14 @@ impl Visualizable for VisualizationData {
         };
         tl
     }
+
     // return all timelines
     fn svg_dot_info_map(&self) -> HashMap<u64, Vec<SvgLineInfo>>{
         HashMap::new()
     }
+
     // return svg_arrows := {Move, Borrow, Return}
-    fn svg_arrows_info(&self) -> Vec<ExternalEvent>{
-        Vec::<ExternalEvent>::new()
+    fn svg_arrows_info(&self) -> &Vec<(usize, ExternalEvent)> {
+        &self.external_events
     }
 }
-

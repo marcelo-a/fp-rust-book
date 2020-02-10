@@ -193,9 +193,9 @@ pub enum State {
 // a vector of ownership transfer history of a specific variable, 
 // in a sorted order by line number.
 pub struct Timeline {
-    resource_owner: ResourceOwner,  
+    pub resource_owner: ResourceOwner,  
     // line number in usize
-    history: Vec<(usize, Event)>,
+    pub history: Vec<(usize, Event)>,
 }
 
 // VisualizationData supplies all the information we need in the frontend, 

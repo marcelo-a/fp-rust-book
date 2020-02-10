@@ -1,6 +1,6 @@
 extern crate handlebars;
 
-use crate::data::{VisualizationData, Visualizable, ExternalEvent, ResourceOwner};
+use crate::data::{VisualizationData, Visualizable, Event, ExternalEvent, ResourceOwner};
 use handlebars::Handlebars;
 use std::collections::BTreeMap;
 use std::collections::HashMap;
@@ -25,7 +25,8 @@ pub fn render_events(visualization_data : &VisualizationData) -> String {
     // hash -> (resource_owner name, pos)
     let mut resource_owners_layout = HashMap::new();
 
-    let mut x = -40;
+    // let mut x : i64 = -40;
+    let mut x : i64 = -180;
     let x_space = 30;
     for(hash, _) in visualization_data.timelines.iter(){
         let name = match visualization_data.get_name_from_hash(hash){
@@ -37,7 +38,7 @@ pub fn render_events(visualization_data : &VisualizationData) -> String {
     }
 
     // render resource owner
-    let mut output = String::from("        <g id=\"resource_owners\">\n");
+    let mut output = String::from("<g id=\"resource_owners\">\n");
     for(hash, (name, x_val)) in resource_owners_layout.iter(){
         let mut data = BTreeMap::new();
         data.insert("X_VAL".to_string(), x_val.to_string());
@@ -59,29 +60,49 @@ pub fn render_events(visualization_data : &VisualizationData) -> String {
     assert!(handlebars
         .register_template_string("arrow_template", arrow_template)
         .is_ok());
-    let external_events = &visualization_data.external_events;
-    for (line_number, external_event) in external_events{
-        //let mut data = BTreeMap::new();
-        // match  external_event {
-        //     ExternalEvent::Acquire{from, to} => {
-        //         insert_dot_data(external_event);
-        //         insert_dot_data(to);
-        //         match (from, to) {
-        //             (Some(ro_from), Some(ro_to)) => {insert_arrow_data(ro_from, ro_to)},
-        //             (_, _) => {},
-        //         }
-        //     }
-                
-        // }
+    let timelines = &visualization_data.timelines;
+    for (hash, timeline) in timelines{
+        let ro = & timeline.resource_owner;
+        for (line_number, event) in timeline.history.iter(){
+            // dots
+            let mut data = BTreeMap::new();
+            let ro1_x_pos = resource_owners_layout[hash].1;
+            let ro1_y_pos = event_y_pos(line_number);
+            data.insert("HASH".to_string(), *hash as i64);
+            data.insert("DOT_X".to_string(), ro1_x_pos as i64);
+            data.insert("DOT_Y".to_string(), ro1_y_pos);
+            output.push_str(&handlebars.render("dot_template", &data).unwrap());
+            output.push_str("\n");
+
+            // arrows
+            match event{
+                Event::Transfer{to : to_ro2} => {
+                    if let Some(ro2) = to_ro2{
+                        let mut data = BTreeMap::new();
+                        let ro2_hash = & ro2.hash;
+                        let ro2_x_pos = resource_owners_layout[ro2_hash].1;
+                        let ro2_y_pos = event_y_pos(line_number);
+                        data.insert("X2".to_string(), ro2_x_pos as i64);
+                        data.insert("Y2".to_string(), ro2_y_pos);
+                        data.insert("X1".to_string(), ro1_x_pos as i64);
+                        data.insert("Y1".to_string(), ro1_y_pos);
+                        output.push_str(&handlebars.render("arrow_template", &data).unwrap());
+                        output.push_str("\n");
+                    }
+                    
+                },
+                _ => (),
+            };
+            
+
+        } 
     }
-   
-    // for(line_number, external_event) in arrows_info.iter(){
-        
-    // }
-
-
     output
 
+}
+
+fn event_y_pos(line_number : &usize) -> i64{
+    (60 + 20 * line_number) as i64
 }
 
 fn insert_dot_data(data : & mut Vec<BTreeMap<String, String>>, maybe_ro : Option<ResourceOwner>){

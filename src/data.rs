@@ -53,6 +53,8 @@ pub trait Visualizable {
 pub struct ResourceOwner {
     pub hash: u64,
     pub name: String,
+    // whether the variable itself is mutable
+    pub mutable: bool,
     // pub is_fun: bool,
     // pub lifetime_trait: LifetimeTrait,
 }
@@ -102,7 +104,8 @@ pub enum Event {
     // in the case of 
     //      let y = x;
     // y obtained its value from x, which means that the Acquire
-    // Event's "from" variable is x. 
+    // Event's "from" variable is x.
+    // TODO do we need mut/static_acquire for get_state?
     Acquire {
         from: Option<ResourceOwner>
     },
@@ -177,7 +180,7 @@ pub enum State {
     },
     // The resource is transferred on this lResourceOwnerine or before this line,
     // thus it is impossible to access this variable anymore.
-    Transfered {
+    Moved {
         to: ResourceOwner,
         transfer_line: usize
     },
@@ -187,6 +190,10 @@ pub enum State {
     // This also means that it is not possible to create a mutable reference
     // on the next line.
     ReadableOnly,
+    // 
+    Gone,
+    // a state that indicates error; in other words it is not supposed to show up in a correct program
+    Invalid,
 }
 
 
@@ -216,6 +223,30 @@ impl Visualizable for VisualizationData {
             Some(timeline) => Some(timeline.resource_owner.name.to_owned()),
             _ => None
         }
+    }
+
+    fn get_event(prev_event : & Event, event : & Event){
+        match (prev_event, event) {
+            State::Acquire, _ => State::ReadableAndWritable;
+            _ => State::Invalid,
+        }
+    }
+
+    fn get_states(&self, hash: &u64) {
+
+        let mut states = Vec<(usize, usize, State)>::new();
+        let mut start_line_number = usize::MAX;
+        let mut prev_event = None;
+        for (line_number, event) in self.timelines[hash].history {
+            if (start_line_number == usize::MAX) {
+                start_line_number = line_number;
+                prev_event = Some(event);
+            }
+            else {
+                states.push(start_line_number, line_number, get_event(prev_event.unwrap(), event));
+            }
+        }
+        states
     }
 
     // TODO: state solving not complete

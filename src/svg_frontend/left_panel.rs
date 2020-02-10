@@ -93,10 +93,11 @@ pub fn render_events(visualization_data : &VisualizationData) -> String {
                 },
                 _ => (),
             };
-            
-
         } 
     }
+
+    let state_template = "    <line class=\"{{LINE_CLASS}}\" data-hash=\"{{HASH}}\" x1=\"{{X1}}\" x2=\"{{X2}}\" y1=\"{{Y1}}\" y2=\"{{Y2}}\"/>";
+
     output
 
 }

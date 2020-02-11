@@ -4,23 +4,6 @@ use std::vec::Vec;
  * Basic Data Structure Needed by Lifetime Visualization
  */
 
-// state specific for svg rendering
-pub enum OwnershipState{
-          //                                   SVG LINE SPEC (plz change
-    Full, // full ownership, r/w.              BOLD_SOLID_LINE
-    Borrowed, // immutable borrowed, can read. SOLID_LINE
-    MutablyBorrowed, // can not r/w.           DASH_LINE
-    NoOwnership{ // resource transfered
-        can_realloc : bool //         true: SOLID_DOTS  
-                              //        false: HOLLOW_DOTS
-    }
-}
-
-pub struct SvgLineInfo{
-    pub start_line_number : u32,
-    pub end_line_number : u32,
-    pub ownership_state : OwnershipState,
-}
 
 // Top level Api that the Timeline object supports
 pub trait Visualizable {
@@ -33,17 +16,21 @@ pub trait Visualizable {
     // add an ExternalEvent to the Visualizable data structure
     fn append_external_event(&mut self, line_number : usize, external_event: ExternalEvent); 
 
+    // if resource_owner with hash is mutable
+    fn is_mut(&self, hash: &u64 ) -> bool;
+
     // SVG left panel generation facilities
-    // each line represents a state; return all states for a ResourceOwner
-    fn svg_line_info(&self, hash : &u64) -> Vec<SvgLineInfo>;
-    // return all states for all Resource Owner
-    fn svg_line_info_all(&self) -> HashMap<u64, Vec<SvgLineInfo>>;
-    // return a timeline for a single resource owner 
-    fn svg_dot_info(&self, hash : &u64) -> Timeline;
-    // return all timelines
-    fn svg_dot_info_map(&self) -> HashMap<u64, Vec<SvgLineInfo>>;
-    // return svg_arrows := {Move, Borrow, Return}
-    fn svg_arrows_info(&self) -> &Vec<(usize, ExternalEvent)>;
+    // // return a timeline for a single resource owner 
+    // fn svg_dot_info(&self, hash : &u64) -> Timeline;
+    // // return all timelines
+    // fn svg_dot_info_map(&self) -> HashMap<u64, Vec<SvgLineInfo>>;
+    // // return svg_arrows := {Move, Borrow, Return}
+    // fn svg_arrows_info(&self) -> &Vec<(usize, ExternalEvent)>;
+
+    fn calc_state(&self, some_prev_state : & Option<State>, event : & Event, hash: &u64) -> State;
+
+
+    fn get_states(&self, hash: &u64) -> Vec::<(usize, usize, State)>;
 }
 
 // A ResourceOwner is either a Variable or a Function that 
@@ -54,7 +41,7 @@ pub struct ResourceOwner {
     pub hash: u64,
     pub name: String,
     // whether the variable itself is mutable
-    pub mutable: bool,
+    pub is_mut: bool,
     // pub is_fun: bool,
     // pub lifetime_trait: LifetimeTrait,
 }
@@ -129,7 +116,7 @@ pub enum Event {
     // 2. variable's resource has the move trait, and it transfered
     //    its ownership on this line. This includes tranfering its
     //    ownership to a function as well. 
-    Transfer {
+    Move {
         to: Option<ResourceOwner>
     },
     MutableLend {
@@ -171,18 +158,32 @@ pub enum LifetimeTrait {
     None,
 }
 
+// ownership state
+pub enum _State{
+        //                                      SVG LINE SPEC (plz change
+    Full, // full ownership, r/w.               BOLD_SOLID_LINE
+    // consider visualizing all borrows (POPL20 stack borrow) 
+    Borrowed, // immutably borrowed, can read.  SOLID_LINE
+    MutablyBorrowed, // can not r/w.            DASH_LINE
+    NoOwnership, // moved to some other resource
+    Invalid, // correct 
+    
+}
+
+
 // A State is a description of a ResourceOwner IMMEDIATELY AFTER a specific line.
 // We think of this as what read/write access we have to its resource.
+#[derive(Clone)]
 pub enum State {
     // The viable is no longer in the scope after this line.
     OutOfScope {
-        scope_termination_line: usize
+        scope_terminate_at_line: usize
     },
     // The resource is transferred on this lResourceOwnerine or before this line,
     // thus it is impossible to access this variable anymore.
     Moved {
         to: ResourceOwner,
-        transfer_line: usize
+        move_at_line: usize
     },
     // The resource can be fully accessed right after this line. 
     ReadableAndWritable,
@@ -190,9 +191,7 @@ pub enum State {
     // This also means that it is not possible to create a mutable reference
     // on the next line.
     ReadableOnly,
-    // 
-    Gone,
-    // a state that indicates error; in other words it is not supposed to show up in a correct program
+    // should not appear for visualization in a correct program
     Invalid,
 }
 
@@ -206,7 +205,7 @@ pub struct Timeline {
 }
 
 // VisualizationData supplies all the information we need in the frontend, 
-// from rendering a PNG to producing an interactive HTML guide. 
+// from rendering a PNG to px roducing an interactive HTML guide. 
 // The internal data is simple: a map from variable hash to its Timeline.
 pub struct VisualizationData {
     pub timelines: HashMap<u64, Timeline>,
@@ -225,26 +224,42 @@ impl Visualizable for VisualizationData {
         }
     }
 
-    fn get_event(prev_event : & Event, event : & Event){
-        match (prev_event, event) {
-            State::Acquire, _ => State::ReadableAndWritable;
-            _ => State::Invalid,
-        }
+    // if the RO is declared mutable
+    fn is_mut(&self, hash: &u64 ) -> bool {
+        self.timelines[hash].resource_owner.is_mut
     }
 
-    fn get_states(&self, hash: &u64) {
+    fn calc_state(&self, some_prev_state: & Option<State>, event: & Event, hash: &u64) -> State {
+        match some_prev_state {
+            // let binding, no prev_state
+            None => (if (self.is_mut(hash)) {State::ReadableAndWritable} else {State::ReadableOnly{}}),
+            Some(prev_state) =>
+                match (event) {
+                    Event::Acquire{from : _} => 
+                        match prev_state {
+                            State::OutOfScope{scope_terminate_at_line : _} => State::Invalid,
+                            _ => if (self.is_mut(hash)) {State::ReadableAndWritable} else {State::Invalid},
+                        }
+                    _ => State::Invalid,
 
-        let mut states = Vec<(usize, usize, State)>::new();
-        let mut start_line_number = usize::MAX;
-        let mut prev_event = None;
-        for (line_number, event) in self.timelines[hash].history {
-            if (start_line_number == usize::MAX) {
-                start_line_number = line_number;
-                prev_event = Some(event);
+                }
+        }
+        
+        
+    }
+
+
+    fn get_states(&self, hash: &u64) -> Vec::<(usize, usize, State)> {
+
+        let mut states = Vec::<(usize, usize, State)>::new();
+        let mut start_line_number = std::usize::MAX;
+        let mut prev_state = None;
+        for (line_number, event) in self.timelines[hash].history.iter() {
+            if (start_line_number == std::usize::MAX) {
+                start_line_number = *line_number;
             }
-            else {
-                states.push(start_line_number, line_number, get_event(prev_event.unwrap(), event));
-            }
+            prev_state = Some(self.calc_state(&prev_state, &event, hash));
+            states.push((start_line_number, *line_number, prev_state.clone().unwrap()));
         }
         states
     }
@@ -254,7 +269,7 @@ impl Visualizable for VisualizationData {
         match self.timelines.get(hash) {
             Some(timeline) => {
                 // example return value
-                Some(State::OutOfScope {scope_termination_line: 0})
+                Some(State::OutOfScope {scope_terminate_at_line: 0})
             },
             _ => None
         }
@@ -262,7 +277,7 @@ impl Visualizable for VisualizationData {
 
 
     // add event using (internal) events
-    fn append_event(&mut self, ro : &ResourceOwner, event: Event, line_number: &usize) {
+    fn append_event(&mut self, ro: &ResourceOwner, event: Event, line_number: &usize) {
         let hash = &ro.hash;
         let var_name = &ro.name;
         // if this event belongs to a new ResourceOwner hash,
@@ -272,7 +287,6 @@ impl Visualizable for VisualizationData {
                 let timeline = Timeline {
                     resource_owner: ro.clone(),
                     history: Vec::new(),
-
                 };
                 self.timelines.insert(*hash, timeline);
             },
@@ -294,34 +308,33 @@ impl Visualizable for VisualizationData {
     fn append_external_event(&mut self, line_number : usize, external_event: ExternalEvent){
         self.external_events.push((line_number, external_event));
     } 
-    fn svg_line_info(&self, hash : &u64) -> Vec<SvgLineInfo>{
-        Vec::<SvgLineInfo>::new()
-    }
-    // return all states for all Resource Owner
-    fn svg_line_info_all(&self) -> HashMap<u64, Vec<SvgLineInfo>>{
-        HashMap::new()
-    }
-    // return a timeline for a single resource owner 
-    fn svg_dot_info(&self, hash : &u64) -> Timeline{
-        let tl = Timeline{
-            resource_owner : ResourceOwner {
-                hash : 0,
-                name : String::from("x"),
-                // is_fun : false,
-            },
-            history : Vec::<(usize, Event)>::new(),
 
-        };
-        tl
-    }
+    // // return all states for all Resource Owner
+    // fn svg_line_info_all(&self) -> HashMap<u64, Vec<SvgLineInfo>>{
+    //     HashMap::new()
+    // }
+    // // return a timeline for a single resource owner 
+    // fn svg_dot_info(&self, hash : &u64) -> Timeline{
+    //     let tl = Timeline{
+    //         resource_owner : ResourceOwner {
+    //             hash : 0,
+    //             name : String::from("x"),
+    //             is_mut : false,
+    //             // is_fun : false,
+    //         },
+    //         history : Vec::<(usize, Event)>::new(),
 
-    // return all timelines
-    fn svg_dot_info_map(&self) -> HashMap<u64, Vec<SvgLineInfo>>{
-        HashMap::new()
-    }
+    //     };
+    //     tl
+    // }
 
-    // return svg_arrows := {Move, Borrow, Return}
-    fn svg_arrows_info(&self) -> &Vec<(usize, ExternalEvent)> {
-        &self.external_events
-    }
+    // // return all timelines
+    // fn svg_dot_info_map(&self) -> HashMap<u64, Vec<SvgLineInfo>>{
+    //     HashMap::new()
+    // }
+
+    // // return svg_arrows := {Move, Borrow, Return}
+    // fn svg_arrows_info(&self) -> &Vec<(usize, ExternalEvent)> {
+    //     &self.external_events
+    // }
 }

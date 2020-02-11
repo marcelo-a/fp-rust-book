@@ -76,7 +76,7 @@ pub fn render_events(visualization_data : &VisualizationData) -> String {
 
             // arrows
             match event{
-                Event::Transfer{to : to_ro2} => {
+                Event::Move{to : to_ro2} => {
                     if let Some(ro2) = to_ro2{
                         let mut data = BTreeMap::new();
                         let ro2_hash = & ro2.hash;

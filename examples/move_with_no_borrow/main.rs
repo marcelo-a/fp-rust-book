@@ -6,14 +6,17 @@ fn main() {
     let x = ResourceOwner {
         hash: 1,
         name: String::from("x"),
+        is_mut: false,
     };
     let y = ResourceOwner {
         hash: 2,
         name: String::from("y"),
+        is_mut: false,
     };
     let z = ResourceOwner {
         hash: 3,
         name: String::from("z"),
+        is_mut: false,
     };
     let mut vd = VisualizationData {
         timelines: HashMap::new(),
@@ -29,7 +32,7 @@ fn main() {
     vd.append_event(&z, Event::Acquire { from: None }, &(3 as usize));
     vd.append_event(
         &y,
-        Event::Transfer {
+        Event::Move {
             to: Some(x.clone()),
         },
         &(4 as usize),

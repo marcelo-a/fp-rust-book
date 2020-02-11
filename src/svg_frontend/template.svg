@@ -28,16 +28,16 @@
 
     <g id="events">
         <!-- event of x is aligned at x=-100 -->
-        <!-- <text class="code" x="-100" y="80" data-hash="1" text-anchor="middle">x</text> -->
+        <text class="code" x="-100" y="80" data-hash="1" text-anchor="middle">x</text>
         <use xlink:href="#eventDot" data-hash="1" x="-100" y="140"/>
         <use xlink:href="#eventDot" data-hash="1" x="-100" y="160"/>
         <!-- event of y is aligned at x=-70 -->
-        <!-- <text class="code" x="-70" y="80" data-hash="2" text-anchor="middle">y</text> -->
+        <text class="code" x="-70" y="80" data-hash="2" text-anchor="middle">y</text>
         <use xlink:href="#eventDot" data-hash="2" x="-70" y="100"/>
         <use xlink:href="#eventDot" data-hash="2" x="-70" y="140"/>
             <!-- <use xlink:href="#eventDot" data-hash="2" x="-70" y="160"/> -->
         <!-- event of z is aligned at x=-40 -->
-        <!-- <text class="code" x="-40" y="80" data-hash="3" text-anchor="middle">z</text> -->
+        <text class="code" x="-40" y="80" data-hash="3" text-anchor="middle">z</text>
         <use xlink:href="#eventDot" data-hash="3" x="-40" y="120"/>
             <!-- <use xlink:href="#eventDot" data-hash="3" x="-40" y="180"/> -->
     </g>

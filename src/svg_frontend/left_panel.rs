@@ -89,6 +89,9 @@ fn prepare_registry(registry: &mut Handlebars) {
     assert!(
         registry.register_template_string("arrow_template", arrow_template).is_ok()
     );
+    assert!(
+        registry.register_template_string("vertical_line_template", vertical_line_template).is_ok()
+    );
 }
 
 fn compute_column_layout<'a>(visualization_data: &'a VisualizationData) -> HashMap<&'a u64, TimelineColumnData> {

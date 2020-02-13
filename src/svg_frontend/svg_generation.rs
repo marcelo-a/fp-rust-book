@@ -1,9 +1,17 @@
 extern crate handlebars;
 
 use crate::data::VisualizationData;
-use crate::svg_frontend::{right_panel, left_panel, utils};
-use std::collections::BTreeMap;
+use crate::svg_frontend::{left_panel, right_panel, utils};
 use handlebars::Handlebars;
+use serde::Serialize;
+
+#[derive(Serialize)]
+struct SvgData {
+    visualization_name: String,
+    css: String,
+    code: String,
+    diagram: String,
+}
 
 pub fn render_svg(example_name: &String, visualization_data: &VisualizationData) {
     let path = "examples/".to_owned() + example_name;
@@ -25,20 +33,20 @@ pub fn render_svg(example_name: &String, visualization_data: &VisualizationData)
     let css_string = utils::read_file_to_string("src/svg_frontend/svg_style.css")
         .unwrap_or("Reading svg_style.css failed.".to_owned());
 
+    // data for left panel
+    let left_panel_string = left_panel::render_left_panel(visualization_data);
+
+    // data for right panel
     if let Ok(lines) = utils::read_lines(path.to_owned() + "/annotated_source.rs") {
-        right_panel_string = right_panel::render_source_code(lines);
+        right_panel_string = right_panel::render_right_panel(lines);
     }
 
-    
-    // data for right panel
-    let mut svg_data = BTreeMap::new();
-    svg_data.insert("visualization_name".to_owned(), example_name);
-    svg_data.insert("css".to_owned(), &css_string);
-    svg_data.insert("code".to_owned(), &right_panel_string);
-    
-    // data for left panel
-    let events_string = left_panel::render_events(visualization_data);
-    svg_data.insert("events".to_owned(), &events_string);
+    let mut svg_data = SvgData {
+        visualization_name: example_name.to_owned(),
+        css: css_string,
+        code: right_panel_string,
+        diagram: left_panel_string
+    };
 
     let final_svg_content = handlebars.render("full_svg_template", &svg_data).unwrap();
 

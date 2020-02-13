@@ -181,12 +181,26 @@ pub enum State {
     // the priviledge will come back. Most frequently occurs when mutably borrowed
     NoPriviledge {
         to: Option<ResourceOwner>,
-        // borrow_to : HashSet<ResourceOwner>, //TODO why do we need this?
+        borrow_to : HashSet<ResourceOwner>, //TODO why do we need this?
     },
     // should not appear for visualization in a correct program
     Invalid,
     ResourceReturned {
         to : Option<ResourceOwner>,
+    }
+}
+
+impl std::fmt::Display for State {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        match self {
+            State::OutOfScope => write!(f, "OutOfScope"),
+            State::ResourceMoved{move_to: holder1, move_at_line: holder2} => write!(f, "ResourceMoved"),
+            State::FullPriviledge => write!(f, "FullPriviledge"),
+            State::FractionalPriviledge{borrow_to: holder1} => write!(f, "FractionalPriviledge"),
+            State::NoPriviledge{to: holder1, borrow_to: holder2} => write!(f, "NoPriviledge"),
+            State::Invalid => write!(f, "Invalid"),
+            State::ResourceReturned{to : to_ro} => write!(f, "ResourceReturned"),
+        }
     }
 }
 
@@ -227,12 +241,12 @@ impl Visualizable for VisualizationData {
         match (previous_state, event) {
             (State::Invalid, _) => State::Invalid,
 
-            (State::OutOfScope, Event::Acquire{from: from_ro})  => State::FullPriviledge,
+            (State::OutOfScope, Event::Acquire{ from: from_ro })  => State::FullPriviledge,
             (State::OutOfScope, _)  => State::Invalid,
 
             (State::FullPriviledge, Event::Move{to : to_ro}) => State::ResourceMoved{move_to : to_ro.to_owned(), move_at_line: event_line},
-            (State::FullPriviledge, Event::MutableLend{to : to_ro}) => 
-                if (self.is_mut(hash)) {State::FullPriviledge} else {State::Invalid},
+            (State::FullPriviledge, Event::MutableLend{ to : to_ro }) => 
+                if self.is_mut(hash) { State::FullPriviledge } else { State::Invalid },
             (State::FullPriviledge, Event::StaticLend{to : to_ro}) => 
                 State::FractionalPriviledge {borrow_to : [(to_ro.to_owned().unwrap())].iter().cloned().collect()}, // TODO what if to_ro is None?
             (State::FullPriviledge, Event::MutableReturn{to : to_ro}) =>
@@ -245,7 +259,6 @@ impl Visualizable for VisualizationData {
     }
 
     fn get_states(&self, hash: &u64) -> Vec::<(usize, usize, State)> {
-
         let mut states = Vec::<(usize, usize, State)>::new();
         let mut start_line_number = std::usize::MAX;
         let mut prev_state = State::OutOfScope;
@@ -254,7 +267,9 @@ impl Visualizable for VisualizationData {
                 start_line_number = *line_number;
             }
             prev_state = self.calc_state(&prev_state, &event, *line_number, hash);
-            states.push((start_line_number, *line_number, prev_state.clone()));
+            states.push(
+                (start_line_number, *line_number, prev_state.clone())
+            );
         }
         states
     }
@@ -290,7 +305,9 @@ impl Visualizable for VisualizationData {
         // append the event to the end of the timeline of the corresponding hash
         match self.timelines.get_mut(hash) {
             Some(timeline) => {
-                timeline.history.push((*line_number, event));
+                timeline.history.push(
+                    (*line_number, event)
+                );
             },
             _ => {
                 panic!("Timeline disappeared right after creation or when we could index it. This is impossible.");
@@ -300,6 +317,8 @@ impl Visualizable for VisualizationData {
 
     // TODO IMPLEMENT
     fn append_external_event(&mut self, line_number : usize, external_event: ExternalEvent){
-        self.external_events.push((line_number, external_event));
+        self.external_events.push(
+            (line_number, external_event)
+        );
     } 
 }

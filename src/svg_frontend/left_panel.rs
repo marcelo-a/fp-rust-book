@@ -41,12 +41,12 @@ struct ArrowData {
 
 #[derive(Serialize)]
 struct VerticalLineData {
+    line_class: String,
+    hash: u64,
     x1: i64,
     x2: i64,
     y1: i64,
-    y2: i64,
-    hash: String,
-    line_class: String
+    y2: i64
 }
 
 pub fn render_left_panel(visualization_data : &VisualizationData) -> String {
@@ -67,7 +67,7 @@ pub fn render_left_panel(visualization_data : &VisualizationData) -> String {
         labels: labels_string,
         dots: dots_string,
         timelines: timelines_string,
-        vertical_lines: vertical_lines_string,
+        vertical_lines: "".to_string() // vertical_lines_string,
     };
 
     registry.render("left_panel_template", &left_panel_data).unwrap()
@@ -164,8 +164,10 @@ fn render_timelines_string(
     registry: &Handlebars
 ) -> String {
     let timelines = &visualization_data.timelines;
+    
     let mut output = String::new();
     for (hash, timeline) in timelines {
+        let ro = timelines[hash].resource_owner.to_owned();
         for (line_number, event) in timeline.history.iter() {
             let ro1_x_pos = resource_owners_layout[hash].x_val;
             let ro1_y_pos = get_y_axis_pos(line_number);
@@ -187,6 +189,26 @@ fn render_timelines_string(
                 _ => (),
             };
         } 
+
+        // verticle state lines
+        let states = visualization_data.get_states(hash);
+        for (line_start, line_end, state) in states.iter() {
+            println!("{} {} {} {}", resource_owners_layout[hash].name, line_start, line_end, state);
+            match (state, ro.is_mut) {
+                (State::FullPriviledge, true) => {
+                    let data = VerticalLineData {
+                        line_class: String::from("solid"),
+                        hash: *hash,
+                        x1: resource_owners_layout[hash].x_val,
+                        y1: get_y_axis_pos(line_start),
+                        x2: resource_owners_layout[hash].x_val,
+                        y2: get_y_axis_pos(line_end)
+                    };
+                    output.push_str(&registry.render("verticle_line_template", &data).unwrap());
+                },
+                _ => (),
+            }
+        }
     }
     output
 }
@@ -207,7 +229,7 @@ fn render_vertical_lines_string(
                 y1: get_y_axis_pos(start_line),
                 x2: ro_x_pos,
                 y2: get_y_axis_pos(end_line),
-                hash: hash.to_string(),
+                hash: hash.to_owned(),
                 line_class: get_vertical_line_class(state),
                 
             };

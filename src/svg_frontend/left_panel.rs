@@ -1,6 +1,6 @@
 extern crate handlebars;
 
-use crate::data::{VisualizationData, Visualizable, Event, ResourceOwner};
+use crate::data::{VisualizationData, Visualizable, Event, State, ResourceOwner};
 use handlebars::Handlebars;
 use std::collections::{BTreeMap, HashMap};
 use serde::Serialize;
@@ -33,6 +33,16 @@ struct EventDotData {
 
 #[derive(Serialize)]
 struct ArrowData {
+    x1: i64,
+    x2: i64,
+    y1: i64,
+    y2: i64
+}
+
+#[derive(Serialize)]
+struct VerticalLineData {
+    line_class: String,
+    hash: u64,
     x1: i64,
     x2: i64,
     y1: i64,
@@ -88,6 +98,9 @@ fn prepare_registry(registry: &mut Handlebars) {
     );
     assert!(
         registry.register_template_string("arrow_template", arrow_template).is_ok()
+    );
+    assert!(
+        registry.register_template_string("vertical_line_template", vertical_line_template).is_ok()
     );
 }
 
@@ -172,6 +185,26 @@ fn render_timelines_string(
                 _ => (),
             };
         } 
+
+        // verticle state lines
+        let states = visualization_data.get_states(hash);
+        for (line_start, line_end, state) in states.iter() {
+            println!("{} {} {} {}", resource_owners_layout[hash].name, line_start, line_end, state);
+            match (state, ro.is_mut) {
+                (State::FullPriviledge, true) => {
+                    let data = VerticalLineData {
+                        line_class: String::from("solid"),
+                        hash: *hash,
+                        x1: resource_owners_layout[hash].x_val,
+                        y1: event_y_pos(line_start),
+                        x2: resource_owners_layout[hash].x_val,
+                        y2: event_y_pos(line_end)
+                    };
+                    output.push_str(&registry.render("verticle_line_template", &data).unwrap());
+                },
+                _ => (),
+            }
+        }
     }
     output
 }

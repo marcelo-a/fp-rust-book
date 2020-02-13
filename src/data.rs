@@ -167,17 +167,17 @@ pub enum State {
         move_to: Option<ResourceOwner>,
         move_at_line: usize
     },
-    // The resource can be fully accessed right after this line; whether it's mutable is up to its def
+    // This RO is the unique object that holds the ownership to the underlying resource.
     FullPriviledge,
-    // The resource can be read, but cannot be written to right after this line.
-    // This also means that it is not possible to create a mutable reference
+    // More than one RO has access to the underlying resource
+    // This means that it is not possible to create a mutable reference
     // on the next line.
-    FractionalPriviledge {
+    PartialPriviledge {
         borrow_to : HashSet<ResourceOwner>,
     },
     // temporarily no read or write access right to the resource, but eventually 
     // the priviledge will come back. Most frequently occurs when mutably borrowed
-    NoPriviledge {
+    RevokedPriviledge {
         to: Option<ResourceOwner>,
         borrow_to : HashSet<ResourceOwner>,
     },
@@ -191,8 +191,8 @@ impl std::fmt::Display for State {
             State::OutOfScope => write!(f, "OutOfScope"),
             State::ResourceMoved{move_to: holder1, move_at_line: holder2} => write!(f, "ResourceMoved"),
             State::FullPriviledge => write!(f, "FullPriviledge"),
-            State::FractionalPriviledge{borrow_to: holder1} => write!(f, "FractionalPriviledge"),
-            State::NoPriviledge{to: holder1, borrow_to: holder2} => write!(f, "NoPriviledge"),
+            State::PartialPriviledge{borrow_to: holder1} => write!(f, "PartialPriviledge"),
+            State::RevokedPriviledge{to: holder1, borrow_to: holder2} => write!(f, "RevokedPriviledge"),
             State::Invalid => write!(f, "Invalid")
         }
     }
@@ -236,13 +236,16 @@ impl Visualizable for VisualizationData {
             (State::Invalid, _) => State::Invalid,
 
             (State::OutOfScope, Event::Acquire{ from: from_ro })  => State::FullPriviledge,
+
             (State::OutOfScope, _)  => State::Invalid,
 
             (State::FullPriviledge, Event::Move{to : to_ro}) => State::ResourceMoved{move_to : to_ro.to_owned(), move_at_line: event_line},
+            
             (State::FullPriviledge, Event::MutableLend{ to : to_ro }) => 
                 if self.is_mut(hash) { State::FullPriviledge } else { State::Invalid },
+            
             (State::FullPriviledge, Event::StaticLend{to : to_ro}) => 
-                State::FractionalPriviledge {
+                State::PartialPriviledge {
                     borrow_to : [(to_ro.to_owned().unwrap())].iter().cloned().collect()         // TODO what if to_ro is None?
                 },
             (_, _) => State::Invalid,
@@ -251,16 +254,14 @@ impl Visualizable for VisualizationData {
 
     fn get_states(&self, hash: &u64) -> Vec::<(usize, usize, State)> {
         let mut states = Vec::<(usize, usize, State)>::new();
-        let mut start_line_number = std::usize::MAX;
+        let mut previous_line_number: usize = 1;
         let mut prev_state = State::OutOfScope;
         for (line_number, event) in self.timelines[hash].history.iter() {
-            if start_line_number == std::usize::MAX {
-                start_line_number = *line_number;
-            }
-            prev_state = self.calc_state(&prev_state, &event, *line_number, hash);
             states.push(
-                (start_line_number, *line_number, prev_state.clone())
+                (previous_line_number, *line_number, prev_state.clone())
             );
+            prev_state = self.calc_state(&prev_state, &event, *line_number, hash);
+            previous_line_number = *line_number;
         }
         states
     }

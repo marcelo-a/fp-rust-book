@@ -102,9 +102,9 @@ line.solid {
     </g>
 
     <g id="labels">
+        <text class="code" x="-180" y="80" data-hash="3" text-anchor="middle">z</text>
         <text class="code" x="-210" y="80" data-hash="2" text-anchor="middle">y</text>
         <text class="code" x="-240" y="80" data-hash="1" text-anchor="middle">x</text>
-        <text class="code" x="-180" y="80" data-hash="3" text-anchor="middle">z</text>
     </g>
 
     <g id="events">
@@ -118,7 +118,10 @@ line.solid {
     </g>
 
     <g id="timelines">
+        <line class="hollow" data-hash="1" x1="-240" x2="-240" y1="140" y2="240"/>
         <polyline strokeWidth="3" stroke="beige" points="-210,140 -240,140 " marker-end="url(#arrowHead)"/>
+        <line class="hollow" data-hash="2" x1="-210" x2="-210" y1="100" y2="140"/>
+        <line class="hollow" data-hash="3" x1="-180" x2="-180" y1="120" y2="240"/>
     </g>
 
 

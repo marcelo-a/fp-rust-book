@@ -190,18 +190,36 @@ fn render_timelines_string(
         let states = visualization_data.get_states(hash);
         for (line_start, line_end, state) in states.iter() {
             println!("{} {} {} {}", resource_owners_layout[hash].name, line_start, line_end, state);
+            let mut data = VerticalLineData {
+                line_class: String::new(),
+                hash: *hash,
+                x1: resource_owners_layout[hash].x_val,
+                y1: event_y_pos(line_start),
+                x2: resource_owners_layout[hash].x_val,
+                y2: event_y_pos(line_end)
+            };
             match (state, ro.is_mut) {
                 (State::FullPriviledge, true) => {
-                    let data = VerticalLineData {
-                        line_class: String::from("solid"),
-                        hash: *hash,
-                        x1: resource_owners_layout[hash].x_val,
-                        y1: event_y_pos(line_start),
-                        x2: resource_owners_layout[hash].x_val,
-                        y2: event_y_pos(line_end)
-                    };
-                    output.push_str(&registry.render("verticle_line_template", &data).unwrap());
+                    data.line_class = String::from("solid");
+                    output.push_str(&registry.render("vertical_line_template", &data).unwrap());
                 },
+                (State::FullPriviledge, false) => {
+                    data.line_class = String::from("hollow");
+                    output.push_str(&registry.render("vertical_line_template", &data).unwrap());
+                },
+                (State::PartialPriviledge{borrow_to: _}, _) => {
+                    data.line_class = String::from("hollow");
+                    output.push_str(&registry.render("vertical_line_template", &data).unwrap());
+                },
+                (State::RevokedPriviledge{to: _, borrow_to: _}, true) => {
+                    data.line_class = String::from("dotted");
+                    output.push_str(&registry.render("vertical_line_template", &data).unwrap());
+                },
+                (State::ResourceMoved{move_to: _, move_at_line: _}, true) => {
+                    data.line_class = String::from("extend");
+                    output.push_str(&registry.render("vertical_line_template", &data).unwrap());
+                }
+                // do nothing when the case is (RevokedPriviledge, false), (OutofScope, _), (ResouceMoved, false)
                 _ => (),
             }
         }

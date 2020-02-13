@@ -1,6 +1,6 @@
 use rrt_lib::data::{Event, ExternalEvent, ResourceOwner, Visualizable, VisualizationData};
 use rrt_lib::svg_frontend::svg_generation;
-use std::collections::HashMap;
+use std::collections::BTreeMap;
 // visualization of simple_lifetime/example.rs
 fn main() {
     let x = ResourceOwner {
@@ -19,7 +19,7 @@ fn main() {
         is_mut: false,
     };
     let mut vd = VisualizationData {
-        timelines: HashMap::new(),
+        timelines: BTreeMap::new(),
         external_events: Vec::new(),
     };
     vd.append_external_event(2, ExternalEvent::Acquire{from: None, to: Some(z.clone())});

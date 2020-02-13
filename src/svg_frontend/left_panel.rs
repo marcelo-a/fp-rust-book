@@ -2,8 +2,8 @@ extern crate handlebars;
 
 use crate::data::{VisualizationData, Visualizable, Event, ResourceOwner};
 use handlebars::Handlebars;
-use std::collections::BTreeMap;
-use std::collections::HashMap;
+use std::collections::{BTreeMap, HashMap};
+
 
 pub fn render_left_panel(visualization_data : &VisualizationData) -> String {
     /* Template creation */
@@ -23,8 +23,8 @@ pub fn render_left_panel(visualization_data : &VisualizationData) -> String {
 
     let mut x : i64 = -180;
     let x_space = 30;               // for every new ResourceOwner, move 30 px to the left
-    for(hash, _) in visualization_data.timelines.iter(){
-        let name = match visualization_data.get_name_from_hash(hash){
+    for(hash, _) in visualization_data.timelines.iter().rev() {
+        let name = match visualization_data.get_name_from_hash(hash) {
             Some(_name) => _name,
             None => panic!("no matching resource owner for hash {}", hash),
         };
@@ -34,7 +34,7 @@ pub fn render_left_panel(visualization_data : &VisualizationData) -> String {
 
     // render resource owner labels
     let mut output = String::from("<g id=\"resource_owners\">\n");
-    for(hash, (name, x_val)) in resource_owners_layout.iter(){
+    for(hash, (name, x_val)) in resource_owners_layout.iter() {
         let mut data = BTreeMap::new();
         data.insert("X_VAL".to_string(), x_val.to_string());
         data.insert("HASH".to_string(), hash.to_string());
@@ -58,7 +58,7 @@ pub fn render_left_panel(visualization_data : &VisualizationData) -> String {
     let timelines = &visualization_data.timelines;
     for (hash, timeline) in timelines {
         let ro = & timeline.resource_owner;
-        for (line_number, event) in timeline.history.iter(){
+        for (line_number, event) in timeline.history.iter() {
             // dots
             let mut data = BTreeMap::new();
             let ro1_x_pos = resource_owners_layout[hash].1;
@@ -70,7 +70,7 @@ pub fn render_left_panel(visualization_data : &VisualizationData) -> String {
             output.push_str("\n");
 
             // arrows
-            match event{
+            match event {
                 Event::Move { to : to_ro2 } => {
                     if let Some(ro2) = to_ro2 {
                         let mut data = BTreeMap::new();
@@ -95,7 +95,7 @@ pub fn render_left_panel(visualization_data : &VisualizationData) -> String {
     output
 }
 
-fn event_y_pos(line_number : &usize) -> i64{
+fn event_y_pos(line_number : &usize) -> i64 {
     (60 + 20 * line_number) as i64
 }
 

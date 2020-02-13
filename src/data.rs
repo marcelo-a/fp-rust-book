@@ -1,4 +1,4 @@
-use std::collections::{HashMap, HashSet};
+use std::collections::{HashSet, BTreeMap};
 use std::vec::Vec;
 /** 
  * Basic Data Structure Needed by Lifetime Visualization
@@ -226,7 +226,7 @@ pub struct Timeline {
 // from rendering a PNG to px roducing an interactive HTML guide. 
 // The internal data is simple: a map from variable hash to its Timeline.
 pub struct VisualizationData {
-    pub timelines: HashMap<u64, Timeline>,
+    pub timelines: BTreeMap<u64, Timeline>,
     // line_number, event
     // for svg arrows
     pub external_events: Vec<(usize, ExternalEvent)>,

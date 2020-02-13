@@ -12,7 +12,7 @@ pub trait Visualizable {
     // returns Noneappend_event if the hash does not exist
     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State>;
     // add an event to the Visualizable data structure
-    fn append_event(&mut self, ro : &ResourceOwner, event: Event, line_number: &usize);
+    fn append_event(&mut self, resource_owner : &ResourceOwner, event: Event, line_number: &usize);
     // add an ExternalEvent to the Visualizable data structure
     fn append_external_event(&mut self, line_number : usize, external_event: ExternalEvent); 
 
@@ -248,13 +248,13 @@ impl Visualizable for VisualizationData {
     }
 
     fn calc_state(&self, previous_state: & State, event: & Event, event_line : usize, hash: &u64) -> State {
-        match(previous_state) {
+        match previous_state {
             State::Invalid | State::OutOfScope => State::Invalid,      // any event happened on an already OutOfScope RO is invalid
             State::FullPriviledge => {
-                match (event) {
+                match event {
                     // not dealing with duplicate, cuz thats a use
                     Event::Acquire{from : _} => {
-                        if (self.is_mut(hash)) {State::FullPriviledge} else {State::Invalid}
+                        if self.is_mut(hash) { State::FullPriviledge } else { State::Invalid }
                     }
                     _ => State::Invalid,
                 }
@@ -269,7 +269,7 @@ impl Visualizable for VisualizationData {
         let mut start_line_number = std::usize::MAX;
         let mut prev_state = State::OutOfScope;
         for (line_number, event) in self.timelines[hash].history.iter() {
-            if (start_line_number == std::usize::MAX) {
+            if start_line_number == std::usize::MAX {
                 start_line_number = *line_number;
             }
             prev_state = self.calc_state(&prev_state, &event, *line_number, hash);
@@ -291,15 +291,15 @@ impl Visualizable for VisualizationData {
 
 
     // add event using (internal) events
-    fn append_event(&mut self, ro: &ResourceOwner, event: Event, line_number: &usize) {
-        let hash = &ro.hash;
-        let var_name = &ro.name;
+    fn append_event(&mut self, resource_owner: &ResourceOwner, event: Event, line_number: &usize) {
+        let hash = &resource_owner.hash;
+        let var_name = &resource_owner.name;
         // if this event belongs to a new ResourceOwner hash,
         // create a new Timeline first, thenResourceOwner bind it to the corresponding hash.
         match self.timelines.get(hash) {
             None => {
                 let timeline = Timeline {
-                    resource_owner: ro.clone(),
+                    resource_owner: resource_owner.clone(),
                     history: Vec::new(),
                 };
                 self.timelines.insert(*hash, timeline);

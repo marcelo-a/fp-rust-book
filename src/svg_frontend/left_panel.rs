@@ -1,11 +1,9 @@
 extern crate handlebars;
 
-use crate::data::{VisualizationData, Visualizable, Event, ExternalEvent, ResourceOwner};
+use crate::data::{VisualizationData, Visualizable, Event, ResourceOwner};
 use handlebars::Handlebars;
 use std::collections::BTreeMap;
 use std::collections::HashMap;
-use std::fs::File;
-use std::io;
 
 pub fn render_events(visualization_data : &VisualizationData) -> String {
     /* Template creation */
@@ -14,20 +12,17 @@ pub fn render_events(visualization_data : &VisualizationData) -> String {
     handlebars.register_escape_fn(handlebars::no_escape);
     let resource_owner_template = 
     "        <text class=\"code\" x=\"{{X_VAL}}\" y=\"80\" data-hash=\"{{HASH}}\" text-anchor=\"middle\">{{NAME}}</text>";
-    
-    //let line_template =
-    //    "              <polyline strokeWidth=\"3\" stroke=\"beige\" points=\"{X1},{Y1} -{X2},{Y2} \" marker-end=\"url(#arrowHead)\"/>";
+
     // register the template. The template string will be verified and compiled.
-    assert!(handlebars
-        .register_template_string("resource_owner_template", resource_owner_template)
-        .is_ok());
+    assert!(
+        handlebars.register_template_string("resource_owner_template", resource_owner_template).is_ok()
+    );
     
     // hash -> (resource_owner name, pos)
     let mut resource_owners_layout = HashMap::new();
 
-    // let mut x : i64 = -40;
     let mut x : i64 = -180;
-    let x_space = 30;
+    let x_space = 30;               // for every new ResourceOwner, move 30 px to the left
     for(hash, _) in visualization_data.timelines.iter(){
         let name = match visualization_data.get_name_from_hash(hash){
             Some(_name) => _name,
@@ -54,14 +49,14 @@ pub fn render_events(visualization_data : &VisualizationData) -> String {
         "        <use xlink:href=\"#eventDot\" data-hash=\"{{HASH}}\" x=\"{{DOT_X}}\" y=\"{{DOT_Y}}\"/>";
     let arrow_template = 
         "        <polyline strokeWidth=\"3\" stroke=\"beige\" points=\"{{X1}},{{Y1}} {{X2}},{{Y2}} \" marker-end=\"url(#arrowHead)\"/>";
-    assert!(handlebars
-        .register_template_string("dot_template", dot_template)
-        .is_ok());
-    assert!(handlebars
-        .register_template_string("arrow_template", arrow_template)
-        .is_ok());
+    assert!(
+        handlebars.register_template_string("dot_template", dot_template).is_ok()
+    );
+    assert!(
+        handlebars.register_template_string("arrow_template", arrow_template).is_ok()
+    );
     let timelines = &visualization_data.timelines;
-    for (hash, timeline) in timelines{
+    for (hash, timeline) in timelines {
         let ro = & timeline.resource_owner;
         for (line_number, event) in timeline.history.iter(){
             // dots
@@ -76,8 +71,8 @@ pub fn render_events(visualization_data : &VisualizationData) -> String {
 
             // arrows
             match event{
-                Event::Move{to : to_ro2} => {
-                    if let Some(ro2) = to_ro2{
+                Event::Move { to : to_ro2 } => {
+                    if let Some(ro2) = to_ro2 {
                         let mut data = BTreeMap::new();
                         let ro2_hash = & ro2.hash;
                         let ro2_x_pos = resource_owners_layout[ro2_hash].1;

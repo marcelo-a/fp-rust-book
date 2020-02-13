@@ -75,6 +75,9 @@ pub enum ExternalEvent{
     GoOutOfScope,
 }
 
+
+// ASSUMPTION: a reference must return resource before borrow;
+// 
 // An Event describes the acquisition or release of a 
 // resource ownership by a variable on any given line. 
 // There are six types of them. 
@@ -236,7 +239,7 @@ impl Visualizable for VisualizationData {
                 if (self.is_mut(hash)) {State::ResourceReturned{to : to_ro.to_owned()}} else {State::Invalid},
             (State::FullPriviledge, Event::StaticReturn{to : to_ro}) =>
                 if (self.is_mut(hash)) {State::Invalid} else {State::ResourceReturned{to : to_ro.to_owned()}},
-
+        
             (_, _) => State::Invalid,
         }
     }
@@ -299,33 +302,4 @@ impl Visualizable for VisualizationData {
     fn append_external_event(&mut self, line_number : usize, external_event: ExternalEvent){
         self.external_events.push((line_number, external_event));
     } 
-
-    // // return all states for all Resource Owner
-    // fn svg_line_info_all(&self) -> HashMap<u64, Vec<SvgLineInfo>>{
-    //     HashMap::new()
-    // }
-    // // return a timeline for a single resource owner 
-    // fn svg_dot_info(&self, hash : &u64) -> Timeline{
-    //     let tl = Timeline{
-    //         resource_owner : ResourceOwner {
-    //             hash : 0,
-    //             name : String::from("x"),
-    //             is_mut : false,
-    //             // is_fun : false,
-    //         },
-    //         history : Vec::<(usize, Event)>::new(),
-
-    //     };
-    //     tl
-    // }
-
-    // // return all timelines
-    // fn svg_dot_info_map(&self) -> HashMap<u64, Vec<SvgLineInfo>>{
-    //     HashMap::new()
-    // }
-
-    // // return svg_arrows := {Move, Borrow, Return}
-    // fn svg_arrows_info(&self) -> &Vec<(usize, ExternalEvent)> {
-    //     &self.external_events
-    // }
 }

@@ -1,8 +1,8 @@
 extern crate handlebars;
 
-use crate::data::{VisualizationData, Visualizable, Event, ResourceOwner};
+use crate::data::{VisualizationData, Visualizable, Event, State, ResourceOwner};
 use handlebars::Handlebars;
-use std::collections::{BTreeMap, HashMap};
+use std::collections::HashMap;
 use serde::Serialize;
 
 struct TimelineColumnData {
@@ -15,8 +15,8 @@ struct LeftPanelData {
     labels: String,
     dots: String,
     timelines: String,
+    vertical_lines: String,
 }
-
 #[derive(Serialize)]
 struct ResourceOwnerLabelData {
     x_val: i64,
@@ -39,6 +39,16 @@ struct ArrowData {
     y2: i64
 }
 
+#[derive(Serialize)]
+struct VerticalLineData {
+    x1: i64,
+    x2: i64,
+    y1: i64,
+    y2: i64,
+    hash: String,
+    line_class: String
+}
+
 pub fn render_left_panel(visualization_data : &VisualizationData) -> String {
     /* Template creation */
     let mut registry = Handlebars::new();
@@ -51,11 +61,13 @@ pub fn render_left_panel(visualization_data : &VisualizationData) -> String {
     let labels_string = render_labels_string(&resource_owners_layout, &registry);
     let dots_string = render_dots_string(visualization_data, &resource_owners_layout, &registry);
     let timelines_string = render_timelines_string(visualization_data, &resource_owners_layout, &registry);
+    let vertical_lines_string = render_vertical_lines_string(visualization_data, &resource_owners_layout, &registry);
 
     let left_panel_data = LeftPanelData {
         labels: labels_string,
         dots: dots_string,
         timelines: timelines_string,
+        vertical_lines: vertical_lines_string,
     };
 
     registry.render("left_panel_template", &left_panel_data).unwrap()
@@ -68,7 +80,8 @@ fn prepare_registry(registry: &mut Handlebars) {
     let left_panel_template = 
         "    <g id=\"labels\">\n{{ labels }}    </g>\n\n    \
         <g id=\"events\">\n{{ dots }}    </g>\n\n    \
-        <g id=\"timelines\">\n{{ timelines }}    </g>\n\n";
+        <g id=\"timelines\">\n{{ timelines }}    </g>\n\n    \
+        <g id=\"vertical_lines\">\n{{ vertical_lines }}    </g>\n\n";
     let label_template = 
         "        <text class=\"code\" x=\"{{x_val}}\" y=\"80\" data-hash=\"{{hash}}\" text-anchor=\"middle\">{{name}}</text>\n";
     let dot_template =
@@ -88,6 +101,9 @@ fn prepare_registry(registry: &mut Handlebars) {
     );
     assert!(
         registry.register_template_string("arrow_template", arrow_template).is_ok()
+    );
+    assert!(
+        registry.register_template_string("vertical_line_template", vertical_line_template).is_ok()
     );
 }
 
@@ -134,7 +150,7 @@ fn render_dots_string(
             let data = EventDotData {
                 hash: *hash as i64,
                 dot_x: resource_owners_layout[hash].x_val,
-                dot_y: event_y_pos(line_number)
+                dot_y: get_y_axis_pos(line_number)
             };
             output.push_str(&registry.render("dot_template", &data).unwrap());
         }
@@ -152,7 +168,7 @@ fn render_timelines_string(
     for (hash, timeline) in timelines {
         for (line_number, event) in timeline.history.iter() {
             let ro1_x_pos = resource_owners_layout[hash].x_val;
-            let ro1_y_pos = event_y_pos(line_number);
+            let ro1_y_pos = get_y_axis_pos(line_number);
 
             // arrows
             match event {
@@ -162,7 +178,7 @@ fn render_timelines_string(
                             x1: ro1_x_pos,
                             y1: ro1_y_pos,
                             x2: resource_owners_layout[&ro2.hash].x_val,
-                            y2: event_y_pos(line_number)
+                            y2: get_y_axis_pos(line_number)
                         };
                         output.push_str(&registry.render("arrow_template", &data).unwrap());
                     }
@@ -175,6 +191,41 @@ fn render_timelines_string(
     output
 }
 
-fn event_y_pos(line_number : &usize) -> i64 {
+fn render_vertical_lines_string(
+    visualization_data: &VisualizationData,
+    resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+    registry: &Handlebars
+) -> String {
+    let timelines = &visualization_data.timelines;
+    let mut output = String::new();
+    
+    for (hash, timeline) in timelines {
+        let ro_x_pos = resource_owners_layout[hash].x_val;
+        for (start_line, end_line, state) in visualization_data.get_states(hash).iter(){
+            let data = VerticalLineData {
+                x1: ro_x_pos,
+                y1: get_y_axis_pos(start_line),
+                x2: ro_x_pos,
+                y2: get_y_axis_pos(end_line),
+                hash: hash.to_string(),
+                line_class: get_vertical_line_class(state),
+                
+            };
+            output.push_str(&registry.render("vertical_line_template", &data).unwrap());
+        }
+    }
+    output
+}
+
+fn get_y_axis_pos(line_number : &usize) -> i64 {
     (60 + 20 * line_number) as i64
+}
+
+fn get_vertical_line_class(state : &State) -> String {
+    // TODO fix this
+    match state {
+        State::FullPriviledge => "solid".to_string(),
+        State::FractionalPriviledge{borrow_to : _} => "solid".to_string(),
+        _ => "".to_string(),
+    }
 }

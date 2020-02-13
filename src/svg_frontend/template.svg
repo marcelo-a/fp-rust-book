@@ -52,6 +52,6 @@
     <g id="dividers">
             <line class="solid" stroke="beige" x1="-20" x2="-20" y1="80" y2="400"/>
     </g>
-    {{ code }}
+{{ code }}
    
 </svg>

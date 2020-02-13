@@ -118,21 +118,21 @@ line.solid {
     <g id="dividers">
             <line class="solid" stroke="beige" x1="-20" x2="-20" y1="80" y2="400"/>
     </g>
-            <g id="code">
-                <text class="code" x="0" y="80"> fn fun() { </text>
-                <text class="code" x="0" y="100">     let <tspan data-hash="2">y</tspan> = String::from("y"); </text>
-                <text class="code" x="0" y="120">     let <tspan data-hash="3">z</tspan> = String::from("z"); </text>
-                <text class="code" x="0" y="140">     let <tspan data-hash="1">x</tspan> = <tspan data-hash="2">y</tspan>; </text>
-                <text class="code" x="0" y="160">     println!("{}", <tspan data-hash="1">x</tspan>); // pretend nothing happens inside a macro </text>
-                <text class="code" x="0" y="180">     // println!("{}", y);       // Uncomment this line incurs error[E0382]: borrow of moved value: `<tspan data-hash="2">y</tspan>` </text>
-                <text class="code" x="0" y="200">     // println!("{}", z);       // Uncomment this line incurs error[E0382]: borrow of moved value: `<tspan data-hash="2">y</tspan>` </text>
-                <text class="code" x="0" y="220">  </text>
-                <text class="code" x="0" y="240"> } </text>
-                <text class="code" x="0" y="260">  </text>
-                <text class="code" x="0" y="280"> fn main() { </text>
-                <text class="code" x="0" y="300">     fun(); </text>
-                <text class="code" x="0" y="320"> } </text>
-        </g>
+    <g id="code">
+        <text class="code" x="0" y="80"> fn fun() { </text>
+        <text class="code" x="0" y="100">     let <tspan data-hash="2">y</tspan> = String::from("y"); </text>
+        <text class="code" x="0" y="120">     let <tspan data-hash="3">z</tspan> = String::from("z"); </text>
+        <text class="code" x="0" y="140">     let <tspan data-hash="1">x</tspan> = <tspan data-hash="2">y</tspan>; </text>
+        <text class="code" x="0" y="160">     println!("{}", <tspan data-hash="1">x</tspan>); // pretend nothing happens inside a macro </text>
+        <text class="code" x="0" y="180">     // println!("{}", y);       // Uncomment this line incurs error[E0382]: borrow of moved value: `<tspan data-hash="2">y</tspan>` </text>
+        <text class="code" x="0" y="200">     // println!("{}", z);       // Uncomment this line incurs error[E0382]: borrow of moved value: `<tspan data-hash="2">y</tspan>` </text>
+        <text class="code" x="0" y="220">  </text>
+        <text class="code" x="0" y="240"> } </text>
+        <text class="code" x="0" y="260">  </text>
+        <text class="code" x="0" y="280"> fn main() { </text>
+        <text class="code" x="0" y="300">     fun(); </text>
+        <text class="code" x="0" y="320"> } </text>
+    </g>
 
    
 </svg>

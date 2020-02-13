@@ -11,7 +11,7 @@ pub fn render_right_panel(lines: io::Lines<io::BufReader<File>>) -> String {
     // We want to preserve the inputs `as is`, and want to make no changes based on html escape.
     handlebars.register_escape_fn(handlebars::no_escape);
     let line_template =
-        "                <text class=\"code\" x=\"{{X_VAL}}\" y=\"{{Y_VAL}}\"> {{LINE}} </text>\n";
+        "        <text class=\"code\" x=\"{{X_VAL}}\" y=\"{{Y_VAL}}\"> {{LINE}} </text>\n";
     // register the template. The template string will be verified and compiled.
     assert!(handlebars
         .register_template_string("code_line_template", line_template)
@@ -20,7 +20,7 @@ pub fn render_right_panel(lines: io::Lines<io::BufReader<File>>) -> String {
     /* Render the code segment of the svg to a String */
     let x = 0;
     let mut y = 80;
-    let mut output = String::from("        <g id=\"code\">\n");
+    let mut output = String::from("    <g id=\"code\">\n");
     for line in lines {
         if let Ok(line_string) = line {
             let mut data = BTreeMap::new();
@@ -31,6 +31,6 @@ pub fn render_right_panel(lines: io::Lines<io::BufReader<File>>) -> String {
             y = y + 20;
         }
     }
-    output.push_str("        </g>\n");
+    output.push_str("    </g>\n");
     output
 }

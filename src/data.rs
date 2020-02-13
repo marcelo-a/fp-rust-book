@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::vec::Vec;
 /** 
  * Basic Data Structure Needed by Lifetime Visualization
@@ -19,18 +19,18 @@ pub trait Visualizable {
     // if resource_owner with hash is mutable
     fn is_mut(&self, hash: &u64 ) -> bool;
 
-    // SVG left panel generation facilities
+    fn calc_state(&self, previous_state : & State, event : & Event, event_line: usize, hash: &u64) -> State;
+
+    fn get_states(&self, hash: &u64) -> Vec::<(usize, usize, State)>;
+
+    
+    // SVG left panel generation facilities, MIGHT NOT NEED IMPL
     // // return a timeline for a single resource owner 
     // fn svg_dot_info(&self, hash : &u64) -> Timeline;
     // // return all timelines
     // fn svg_dot_info_map(&self) -> HashMap<u64, Vec<SvgLineInfo>>;
     // // return svg_arrows := {Move, Borrow, Return}
     // fn svg_arrows_info(&self) -> &Vec<(usize, ExternalEvent)>;
-
-    fn calc_state(&self, some_prev_state : & Option<State>, event : & Event, hash: &u64) -> State;
-
-
-    fn get_states(&self, hash: &u64) -> Vec::<(usize, usize, State)>;
 }
 
 // A ResourceOwner is either a Variable or a Function that 
@@ -158,23 +158,11 @@ pub enum LifetimeTrait {
     None,
 }
 
-// ownership state
-pub enum _State{
-        //                                      SVG LINE SPEC (plz change
-    Full, // full ownership, r/w.               BOLD_SOLID_LINE
-    // consider visualizing all borrows (POPL20 stack borrow) 
-    Borrowed, // immutably borrowed, can read.  SOLID_LINE
-    MutablyBorrowed, // can not r/w.            DASH_LINE
-    NoOwnership, // moved to some other resource
-    Invalid, // correct 
-    
-}
-
 
 // A State is a description of a ResourceOwner IMMEDIATELY AFTER a specific line.
 // We think of this as what read/write access we have to its resource.
 #[derive(Clone)]
-pub enum State {
+pub enum _State {
     // The viable is no longer in the scope after this line.
     OutOfScope {
         scope_terminate_at_line: usize
@@ -190,11 +178,41 @@ pub enum State {
     // The resource can be read, but cannot be written to right after this line.
     // This also means that it is not possible to create a mutable reference
     // on the next line.
-    ReadableOnly,
+    ReadableOnly {
+        borrowed_to : HashSet<ResourceOwner>,
+    },
+    // when mutably borrowed
+    NotReadable,
     // should not appear for visualization in a correct program
     Invalid,
 }
 
+// A State is a description of a ResourceOwner IMMEDIATELY AFTER a specific line.
+// We think of this as what read/write access we have to its resource.
+#[derive(Clone)]
+pub enum State {
+    // The viable is no longer in the scope after this line.
+    OutOfScope,
+    // The resource is transferred on this lResourceOwnerine or before this line,
+    // thus it is impossible to access this variable anymore.
+    ResourceMoved {
+        to: ResourceOwner,
+        move_at_line: usize
+    },
+    // The resource can be fully accessed right after this line; whether it's mutable is up to its def
+    FullPriviledge,
+    // The resource can be read, but cannot be written to right after this line.
+    // This also means that it is not possible to create a mutable reference
+    // on the next line.
+    FractionalPriviledge {
+        borrowed_to : HashSet<ResourceOwner>,
+    },
+    // temporarily no read or write access right to the resource, but eventually 
+    // the priviledge will come back. Most frequently occurs when mutably borrowed
+    NoPriviledge,
+    // should not appear for visualization in a correct program
+    Invalid,
+}
 
 // a vector of ownership transfer history of a specific variable, 
 // in a sorted order by line number.
@@ -229,37 +247,33 @@ impl Visualizable for VisualizationData {
         self.timelines[hash].resource_owner.is_mut
     }
 
-    fn calc_state(&self, some_prev_state: & Option<State>, event: & Event, hash: &u64) -> State {
-        match some_prev_state {
-            // let binding, no prev_state
-            None => (if (self.is_mut(hash)) {State::ReadableAndWritable} else {State::ReadableOnly{}}),
-            Some(prev_state) =>
+    fn calc_state(&self, previous_state: & State, event: & Event, event_line : usize, hash: &u64) -> State {
+        match(previous_state) {
+            State::Invalid | State::OutOfScope => State::Invalid,      // any event happened on an already OutOfScope RO is invalid
+            State::FullPriviledge => {
                 match (event) {
-                    Event::Acquire{from : _} => 
-                        match prev_state {
-                            State::OutOfScope{scope_terminate_at_line : _} => State::Invalid,
-                            _ => if (self.is_mut(hash)) {State::ReadableAndWritable} else {State::Invalid},
-                        }
+                    // not dealing with duplicate, cuz thats a use
+                    Event::Acquire{from : _} => {
+                        if (self.is_mut(hash)) {State::FullPriviledge} else {State::Invalid}
+                    }
                     _ => State::Invalid,
-
                 }
+            }
+            _ => State::Invalid,
         }
-        
-        
     }
-
 
     fn get_states(&self, hash: &u64) -> Vec::<(usize, usize, State)> {
 
         let mut states = Vec::<(usize, usize, State)>::new();
         let mut start_line_number = std::usize::MAX;
-        let mut prev_state = None;
+        let mut prev_state = State::OutOfScope;
         for (line_number, event) in self.timelines[hash].history.iter() {
             if (start_line_number == std::usize::MAX) {
                 start_line_number = *line_number;
             }
-            prev_state = Some(self.calc_state(&prev_state, &event, hash));
-            states.push((start_line_number, *line_number, prev_state.clone().unwrap()));
+            prev_state = self.calc_state(&prev_state, &event, *line_number, hash);
+            states.push((start_line_number, *line_number, prev_state.clone()));
         }
         states
     }
@@ -269,7 +283,7 @@ impl Visualizable for VisualizationData {
         match self.timelines.get(hash) {
             Some(timeline) => {
                 // example return value
-                Some(State::OutOfScope {scope_terminate_at_line: 0})
+                Some(State::OutOfScope)
             },
             _ => None
         }

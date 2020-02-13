@@ -23,7 +23,6 @@ pub trait Visualizable {
 
     fn get_states(&self, hash: &u64) -> Vec::<(usize, usize, State)>;
 
-    
     // SVG left panel generation facilities, MIGHT NOT NEED IMPL
     // // return a timeline for a single resource owner 
     // fn svg_dot_info(&self, hash : &u64) -> Timeline;
@@ -126,7 +125,7 @@ pub enum Event {
         from: ResourceOwner
     },
     MutableReturn{
-        from: Option<ResourceOwner>
+        to: Option<ResourceOwner>
     },
     MutableReacquire {
         from: Option<ResourceOwner>
@@ -161,7 +160,7 @@ pub enum LifetimeTrait {
 pub enum State {
     // The viable is no longer in the scope after this line.
     OutOfScope,
-    // The resource is transferred on this lResourceOwnerine or before this line,
+    // The resource is transferred on this line or before this line,
     // thus it is impossible to access this variable anymore.
     ResourceMoved {
         move_to: Option<ResourceOwner>,
@@ -179,10 +178,13 @@ pub enum State {
     // the priviledge will come back. Most frequently occurs when mutably borrowed
     NoPriviledge {
         to: Option<ResourceOwner>,
-        borrow_to : HashSet<ResourceOwner>,
+        // borrow_to : HashSet<ResourceOwner>, //TODO why do we need this?
     },
     // should not appear for visualization in a correct program
     Invalid,
+    ResourceReturned {
+        to : Option<ResourceOwner>,
+    }
 }
 
 // a vector of ownership transfer history of a specific variable, 
@@ -230,6 +232,11 @@ impl Visualizable for VisualizationData {
                 if (self.is_mut(hash)) {State::FullPriviledge} else {State::Invalid},
             (State::FullPriviledge, Event::StaticLend{to : to_ro}) => 
                 State::FractionalPriviledge {borrow_to : [(to_ro.to_owned().unwrap())].iter().cloned().collect()}, // TODO what if to_ro is None?
+            (State::FullPriviledge, Event::MutableReturn{to : to_ro}) =>
+                if (self.is_mut(hash)) {State::ResourceReturned{to : to_ro.to_owned()}} else {State::Invalid},
+            (State::FullPriviledge, Event::StaticReturn{to : to_ro}) =>
+                if (self.is_mut(hash)) {State::Invalid} else {State::ResourceReturned{to : to_ro.to_owned()}},
+
             (_, _) => State::Invalid,
         }
     }
@@ -264,7 +271,6 @@ impl Visualizable for VisualizationData {
     // add event using (internal) events
     fn append_event(&mut self, resource_owner: &ResourceOwner, event: Event, line_number: &usize) {
         let hash = &resource_owner.hash;
-        let var_name = &resource_owner.name;
         // if this event belongs to a new ResourceOwner hash,
         // create a new Timeline first, thenResourceOwner bind it to the corresponding hash.
         match self.timelines.get(hash) {

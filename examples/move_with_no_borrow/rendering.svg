@@ -102,9 +102,9 @@ line.solid {
     </g>
 
     <g id="labels">
-        <text class="code" x="-240" y="80" data-hash="1" text-anchor="middle">x</text>
-        <text class="code" x="-210" y="80" data-hash="2" text-anchor="middle">y</text>
         <text class="code" x="-180" y="80" data-hash="3" text-anchor="middle">z</text>
+        <text class="code" x="-210" y="80" data-hash="2" text-anchor="middle">y</text>
+        <text class="code" x="-240" y="80" data-hash="1" text-anchor="middle">x</text>
     </g>
 
     <g id="events">

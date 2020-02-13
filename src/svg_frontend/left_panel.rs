@@ -150,7 +150,6 @@ fn render_timelines_string(
     let timelines = &visualization_data.timelines;
     let mut output = String::new();
     for (hash, timeline) in timelines {
-        let ro = &timeline.resource_owner;
         for (line_number, event) in timeline.history.iter() {
             let ro1_x_pos = resource_owners_layout[hash].x_val;
             let ro1_y_pos = event_y_pos(line_number);
@@ -178,10 +177,4 @@ fn render_timelines_string(
 
 fn event_y_pos(line_number : &usize) -> i64 {
     (60 + 20 * line_number) as i64
-}
-
-fn insert_dot_data(data : & mut Vec<BTreeMap<String, String>>, maybe_ro : Option<ResourceOwner>){
-    if let Some(ro) = maybe_ro {
-        //data.insert("data");
-    }
 }

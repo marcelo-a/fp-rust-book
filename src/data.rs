@@ -185,6 +185,19 @@ pub enum State {
     Invalid,
 }
 
+impl std::fmt::Display for State {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        match self {
+            State::OutOfScope => write!(f, "OutOfScope"),
+            State::ResourceMoved{move_to: holder1, move_at_line: holder2} => write!(f, "ResourceMoved"),
+            State::FullPriviledge => write!(f, "FullPriviledge"),
+            State::FractionalPriviledge{borrow_to: holder1} => write!(f, "FractionalPriviledge"),
+            State::NoPriviledge{to: holder1, borrow_to: holder2} => write!(f, "NoPriviledge"),
+            State::Invalid => write!(f, "Invalid")
+        }
+    }
+}
+
 // a vector of ownership transfer history of a specific variable, 
 // in a sorted order by line number.
 pub struct Timeline {

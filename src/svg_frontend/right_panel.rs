@@ -5,7 +5,7 @@ use std::collections::BTreeMap;
 use std::fs::File;
 use std::io;
 
-pub fn render_source_code(lines: io::Lines<io::BufReader<File>>) -> String {
+pub fn render_right_panel(lines: io::Lines<io::BufReader<File>>) -> String {
     /* Template creation */
     let mut handlebars = Handlebars::new();
     // We want to preserve the inputs `as is`, and want to make no changes based on html escape.

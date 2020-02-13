@@ -5,7 +5,7 @@ use handlebars::Handlebars;
 use std::collections::BTreeMap;
 use std::collections::HashMap;
 
-pub fn render_events(visualization_data : &VisualizationData) -> String {
+pub fn render_left_panel(visualization_data : &VisualizationData) -> String {
     /* Template creation */
     let mut handlebars = Handlebars::new();
     // We want to preserve the inputs `as is`, and want to make no changes based on html escape.
@@ -32,7 +32,7 @@ pub fn render_events(visualization_data : &VisualizationData) -> String {
         x = x - x_space;
     }
 
-    // render resource owner
+    // render resource owner labels
     let mut output = String::from("<g id=\"resource_owners\">\n");
     for(hash, (name, x_val)) in resource_owners_layout.iter(){
         let mut data = BTreeMap::new();
@@ -44,7 +44,7 @@ pub fn render_events(visualization_data : &VisualizationData) -> String {
     }
     output.push_str("        </g>\n");
 
-    // render events
+    // render event dots
     let dot_template =
         "        <use xlink:href=\"#eventDot\" data-hash=\"{{HASH}}\" x=\"{{DOT_X}}\" y=\"{{DOT_Y}}\"/>";
     let arrow_template = 
@@ -64,7 +64,7 @@ pub fn render_events(visualization_data : &VisualizationData) -> String {
             let ro1_x_pos = resource_owners_layout[hash].1;
             let ro1_y_pos = event_y_pos(line_number);
             data.insert("HASH".to_string(), *hash as i64);
-            data.insert("DOT_X".to_string(), ro1_x_pos as i64);
+            data.insert("DOT_X".to_string(), ro1_x_pos);
             data.insert("DOT_Y".to_string(), ro1_y_pos);
             output.push_str(&handlebars.render("dot_template", &data).unwrap());
             output.push_str("\n");
@@ -77,9 +77,9 @@ pub fn render_events(visualization_data : &VisualizationData) -> String {
                         let ro2_hash = & ro2.hash;
                         let ro2_x_pos = resource_owners_layout[ro2_hash].1;
                         let ro2_y_pos = event_y_pos(line_number);
-                        data.insert("X2".to_string(), ro2_x_pos as i64);
+                        data.insert("X2".to_string(), ro2_x_pos);
                         data.insert("Y2".to_string(), ro2_y_pos);
-                        data.insert("X1".to_string(), ro1_x_pos as i64);
+                        data.insert("X1".to_string(), ro1_x_pos);
                         data.insert("Y1".to_string(), ro1_y_pos);
                         output.push_str(&handlebars.render("arrow_template", &data).unwrap());
                         output.push_str("\n");
@@ -90,11 +90,9 @@ pub fn render_events(visualization_data : &VisualizationData) -> String {
             };
         } 
     }
-
-    let state_template = "    <line class=\"{{LINE_CLASS}}\" data-hash=\"{{HASH}}\" x1=\"{{X1}}\" x2=\"{{X2}}\" y1=\"{{Y1}}\" y2=\"{{Y2}}\"/>";
+    let vertical_line_template = "    <line class=\"{{LINE_CLASS}}\" data-hash=\"{{HASH}}\" x1=\"{{X1}}\" x2=\"{{X2}}\" y1=\"{{Y1}}\" y2=\"{{Y2}}\"/>";
 
     output
-
 }
 
 fn event_y_pos(line_number : &usize) -> i64{

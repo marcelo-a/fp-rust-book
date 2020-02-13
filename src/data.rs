@@ -36,7 +36,7 @@ pub trait Visualizable {
 // A ResourceOwner is either a Variable or a Function that 
 // have ownership to a memory object, during some stage of
 // a the program execution.
-#[derive(Clone)]
+#[derive(Clone, Hash, PartialEq, Eq)]
 pub struct ResourceOwner {
     pub hash: u64,
     pub name: String,
@@ -140,9 +140,6 @@ pub enum Event {
     StaticReturn{
         to: Option<ResourceOwner>
     },
-    StaticReacquire {
-        from: Option<ResourceOwner>
-    },
     // this happens when a variable is returned this line,
     // or if this variable's scope ends at this line.
     GoOutOfScope,
@@ -158,35 +155,6 @@ pub enum LifetimeTrait {
     None,
 }
 
-
-// A State is a description of a ResourceOwner IMMEDIATELY AFTER a specific line.
-// We think of this as what read/write access we have to its resource.
-#[derive(Clone)]
-pub enum _State {
-    // The viable is no longer in the scope after this line.
-    OutOfScope {
-        scope_terminate_at_line: usize
-    },
-    // The resource is transferred on this lResourceOwnerine or before this line,
-    // thus it is impossible to access this variable anymore.
-    Moved {
-        to: ResourceOwner,
-        move_at_line: usize
-    },
-    // The resource can be fully accessed right after this line. 
-    ReadableAndWritable,
-    // The resource can be read, but cannot be written to right after this line.
-    // This also means that it is not possible to create a mutable reference
-    // on the next line.
-    ReadableOnly {
-        borrowed_to : HashSet<ResourceOwner>,
-    },
-    // when mutably borrowed
-    NotReadable,
-    // should not appear for visualization in a correct program
-    Invalid,
-}
-
 // A State is a description of a ResourceOwner IMMEDIATELY AFTER a specific line.
 // We think of this as what read/write access we have to its resource.
 #[derive(Clone)]
@@ -196,7 +164,7 @@ pub enum State {
     // The resource is transferred on this lResourceOwnerine or before this line,
     // thus it is impossible to access this variable anymore.
     ResourceMoved {
-        to: ResourceOwner,
+        move_to: Option<ResourceOwner>,
         move_at_line: usize
     },
     // The resource can be fully accessed right after this line; whether it's mutable is up to its def
@@ -205,11 +173,14 @@ pub enum State {
     // This also means that it is not possible to create a mutable reference
     // on the next line.
     FractionalPriviledge {
-        borrowed_to : HashSet<ResourceOwner>,
+        borrow_to : HashSet<ResourceOwner>,
     },
     // temporarily no read or write access right to the resource, but eventually 
     // the priviledge will come back. Most frequently occurs when mutably borrowed
-    NoPriviledge,
+    NoPriviledge {
+        to: Option<ResourceOwner>,
+        borrow_to : HashSet<ResourceOwner>,
+    },
     // should not appear for visualization in a correct program
     Invalid,
 }
@@ -248,18 +219,18 @@ impl Visualizable for VisualizationData {
     }
 
     fn calc_state(&self, previous_state: & State, event: & Event, event_line : usize, hash: &u64) -> State {
-        match(previous_state) {
-            State::Invalid | State::OutOfScope => State::Invalid,      // any event happened on an already OutOfScope RO is invalid
-            State::FullPriviledge => {
-                match (event) {
-                    // not dealing with duplicate, cuz thats a use
-                    Event::Acquire{from : _} => {
-                        if (self.is_mut(hash)) {State::FullPriviledge} else {State::Invalid}
-                    }
-                    _ => State::Invalid,
-                }
-            }
-            _ => State::Invalid,
+        match (previous_state, event) {
+            (State::Invalid, _) => State::Invalid,
+
+            (State::OutOfScope, Event::Acquire{from: from_ro})  => State::FullPriviledge,
+            (State::OutOfScope, _)  => State::Invalid,
+
+            (State::FullPriviledge, Event::Move{to : to_ro}) => State::ResourceMoved{move_to : to_ro.to_owned(), move_at_line: event_line},
+            (State::FullPriviledge, Event::MutableLend{to : to_ro}) => 
+                if (self.is_mut(hash)) {State::FullPriviledge} else {State::Invalid},
+            (State::FullPriviledge, Event::StaticLend{to : to_ro}) => 
+                State::FractionalPriviledge {borrow_to : [(to_ro.to_owned().unwrap())].iter().cloned().collect()}, // TODO what if to_ro is None?
+            (_, _) => State::Invalid,
         }
     }
 

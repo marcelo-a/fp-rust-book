@@ -106,18 +106,18 @@ line.solid {
     </g>
 
     <g id="resource_owners">
-        <text class="code" x="-210" y="80" data-hash="1" text-anchor="middle">x</text>
-        <text class="code" x="-180" y="80" data-hash="3" text-anchor="middle">z</text>
-        <text class="code" x="-240" y="80" data-hash="2" text-anchor="middle">y</text>
+        <text class="code" x="-180" y="80" data-hash="2" text-anchor="middle">y</text>
+        <text class="code" x="-240" y="80" data-hash="1" text-anchor="middle">x</text>
+        <text class="code" x="-210" y="80" data-hash="3" text-anchor="middle">z</text>
         </g>
-        <use xlink:href="#eventDot" data-hash="3" x="-180" y="120"/>
-        <use xlink:href="#eventDot" data-hash="3" x="-180" y="240"/>
-        <use xlink:href="#eventDot" data-hash="1" x="-210" y="140"/>
-        <use xlink:href="#eventDot" data-hash="1" x="-210" y="240"/>
-        <use xlink:href="#eventDot" data-hash="2" x="-240" y="100"/>
-        <use xlink:href="#eventDot" data-hash="2" x="-240" y="140"/>
-        <polyline strokeWidth="3" stroke="beige" points="-240,140 -210,140 " marker-end="url(#arrowHead)"/>
-        <use xlink:href="#eventDot" data-hash="2" x="-240" y="240"/>
+        <use xlink:href="#eventDot" data-hash="2" x="-180" y="100"/>
+        <use xlink:href="#eventDot" data-hash="2" x="-180" y="140"/>
+        <polyline strokeWidth="3" stroke="beige" points="-180,140 -240,140 " marker-end="url(#arrowHead)"/>
+        <use xlink:href="#eventDot" data-hash="2" x="-180" y="240"/>
+        <use xlink:href="#eventDot" data-hash="3" x="-210" y="120"/>
+        <use xlink:href="#eventDot" data-hash="3" x="-210" y="240"/>
+        <use xlink:href="#eventDot" data-hash="1" x="-240" y="140"/>
+        <use xlink:href="#eventDot" data-hash="1" x="-240" y="240"/>
 
             <g id="code">
                 <text class="code" x="0" y="80"> fn fun() { </text>

@@ -124,6 +124,9 @@ line.solid {
         <line class="hollow" data-hash="3" x1="-180" x2="-180" y1="120" y2="240"/>
     </g>
 
+    <g id="vertical_lines">
+    </g>
+
 
     <g id="dividers">
             <line class="solid" stroke="beige" x1="-20" x2="-20" y1="80" y2="400"/>

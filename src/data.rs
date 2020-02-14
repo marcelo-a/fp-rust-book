@@ -23,7 +23,6 @@ pub trait Visualizable {
 
     fn get_states(&self, hash: &u64) -> Vec::<(usize, usize, State)>;
 
-    
     // SVG left panel generation facilities, MIGHT NOT NEED IMPL
     // // return a timeline for a single resource owner 
     // fn svg_dot_info(&self, hash : &u64) -> Timeline;
@@ -76,6 +75,9 @@ pub enum ExternalEvent{
     GoOutOfScope,
 }
 
+
+// ASSUMPTION: a reference must return resource before borrow;
+// 
 // An Event describes the acquisition or release of a 
 // resource ownership by a variable on any given line. 
 // There are six types of them. 
@@ -126,7 +128,7 @@ pub enum Event {
         from: ResourceOwner
     },
     MutableReturn{
-        from: Option<ResourceOwner>
+        to: Option<ResourceOwner>
     },
     MutableReacquire {
         from: Option<ResourceOwner>
@@ -161,7 +163,7 @@ pub enum LifetimeTrait {
 pub enum State {
     // The viable is no longer in the scope after this line.
     OutOfScope,
-    // The resource is transferred on this lResourceOwnerine or before this line,
+    // The resource is transferred on this line or before this line,
     // thus it is impossible to access this variable anymore.
     ResourceMoved {
         move_to: Option<ResourceOwner>,
@@ -179,10 +181,13 @@ pub enum State {
     // the priviledge will come back. Most frequently occurs when mutably borrowed
     RevokedPriviledge {
         to: Option<ResourceOwner>,
-        borrow_to : HashSet<ResourceOwner>,
+        borrow_to : HashSet<ResourceOwner>, //TODO why do we need this?
     },
     // should not appear for visualization in a correct program
     Invalid,
+    ResourceReturned {
+        to : Option<ResourceOwner>,
+    }
 }
 
 impl std::fmt::Display for State {
@@ -281,7 +286,6 @@ impl Visualizable for VisualizationData {
     // add event using (internal) events
     fn append_event(&mut self, resource_owner: &ResourceOwner, event: Event, line_number: &usize) {
         let hash = &resource_owner.hash;
-        let var_name = &resource_owner.name;
         // if this event belongs to a new ResourceOwner hash,
         // create a new Timeline first, thenResourceOwner bind it to the corresponding hash.
         match self.timelines.get(hash) {
@@ -314,33 +318,4 @@ impl Visualizable for VisualizationData {
             (line_number, external_event)
         );
     } 
-
-    // // return all states for all Resource Owner
-    // fn svg_line_info_all(&self) -> HashMap<u64, Vec<SvgLineInfo>>{
-    //     HashMap::new()
-    // }
-    // // return a timeline for a single resource owner 
-    // fn svg_dot_info(&self, hash : &u64) -> Timeline{
-    //     let tl = Timeline{
-    //         resource_owner : ResourceOwner {
-    //             hash : 0,
-    //             name : String::from("x"),
-    //             is_mut : false,
-    //             // is_fun : false,
-    //         },
-    //         history : Vec::<(usize, Event)>::new(),
-
-    //     };
-    //     tl
-    // }
-
-    // // return all timelines
-    // fn svg_dot_info_map(&self) -> HashMap<u64, Vec<SvgLineInfo>>{
-    //     HashMap::new()
-    // }
-
-    // // return svg_arrows := {Move, Borrow, Return}
-    // fn svg_arrows_info(&self) -> &Vec<(usize, ExternalEvent)> {
-    //     &self.external_events
-    // }
 }

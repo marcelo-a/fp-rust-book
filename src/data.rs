@@ -198,7 +198,8 @@ impl std::fmt::Display for State {
             State::FullPriviledge => write!(f, "FullPriviledge"),
             State::PartialPriviledge{borrow_to: holder1} => write!(f, "PartialPriviledge"),
             State::RevokedPriviledge{to: holder1, borrow_to: holder2} => write!(f, "RevokedPriviledge"),
-            State::Invalid => write!(f, "Invalid")
+            State::Invalid => write!(f, "Invalid"),
+            State::ResourceReturned{to : return_to_ro} => write!(f, "Resource Returned"),
         }
     }
 }

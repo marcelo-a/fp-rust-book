@@ -198,9 +198,9 @@ fn render_timelines_string(
                 line_class: String::new(),
                 hash: *hash,
                 x1: resource_owners_layout[hash].x_val,
-                y1: event_y_pos(line_start),
+                y1: get_y_axis_pos(line_start),
                 x2: resource_owners_layout[hash].x_val,
-                y2: event_y_pos(line_end)
+                y2: get_y_axis_pos(line_end)
             };
             match (state, ro.is_mut) {
                 (State::FullPriviledge, true) => {
@@ -265,7 +265,7 @@ fn get_vertical_line_class(state : &State) -> String {
     // TODO fix this
     match state {
         State::FullPriviledge => "solid".to_string(),
-        State::FractionalPriviledge{borrow_to : _} => "solid".to_string(),
+        State::PartialPriviledge{borrow_to : _} => "solid".to_string(),
         _ => "".to_string(),
     }
 }

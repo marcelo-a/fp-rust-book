@@ -9,8 +9,8 @@ name = "rrt_lib"
 path = "src/lib.rs"
 
 [[example]]
-name = "simple"
-path = "example/simple_lifetime/main.rs"
+name = "default"
+path = "examples/move_with_no_borrow/main.rs"
 
 [dependencies]
 handlebars = "3.0.1"

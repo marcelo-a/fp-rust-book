@@ -52,3 +52,8 @@ line.solid {
     fill: #ff3300;
     stroke: #ff3300;
 }
+
+[data-hash*="4"] {
+    fill: #fff300;
+    stroke: #fff300;
+}

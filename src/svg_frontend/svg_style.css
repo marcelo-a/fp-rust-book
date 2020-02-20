@@ -5,6 +5,7 @@ svg {
 
 text {
     fill: #cccccc;
+    vertical-align: baseline;
 }
 
 #heading {
@@ -20,7 +21,6 @@ text {
 text.code {
     white-space: pre;
     font-family: "monospace";
-    dominant-baseline: middle;
 }
 
 /* event related styling */
@@ -33,8 +33,23 @@ text.code {
 }
 
 /* timeline/event interaction styling */
-line.solid {
+.solid {
     stroke-width: 3px;
+}
+
+.hollow {
+    stroke-width: 3px;
+    fill: none;
+}
+
+.dotted {
+    stroke-width: 3px;
+    stroke-dasharray: "2 1";
+}
+
+.extend {
+    stroke-width: 1px;
+    stroke-dasharray: "2 1";
 }
 
 /* hash based styling */

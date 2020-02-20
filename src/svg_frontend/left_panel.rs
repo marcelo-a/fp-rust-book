@@ -176,12 +176,18 @@ fn render_timelines_string(
             match event {
                 Event::Move { to : to_ro2 } => {
                     if let Some(ro2) = to_ro2 {
-                        let data = ArrowData {
+                        let mut data = ArrowData {
                             x1: ro1_x_pos,
                             y1: ro1_y_pos,
                             x2: resource_owners_layout[&ro2.hash].x_val,
-                            y2: get_y_axis_pos(line_number)
+                            y2: ro1_y_pos,
                         };
+                        if data.x2 < data.x1 {
+                            data.x2 = data.x2 + 10;
+                        }
+                        else {
+                            data.x2 = data.x2 - 10;
+                        }
                         output.push_str(&registry.render("arrow_template", &data).unwrap());
                     }
                     

@@ -1,0 +1,59 @@
+/* general setup */
+svg {
+    background-color: #232323;
+}
+
+text {
+    fill: #cccccc;
+}
+
+#heading {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#caption {
+    font-size: 12px;
+}
+
+/* code related styling */
+text.code {
+    white-space: pre;
+    font-family: "monospace";
+    dominant-baseline: middle;
+}
+
+/* event related styling */
+#eventDot:hover {
+    transform: scale(1.5);
+}
+
+#eventDot {
+    transition: all 0.3s;
+}
+
+/* timeline/event interaction styling */
+line.solid {
+    stroke-width: 3px;
+}
+
+/* hash based styling */
+[data-hash*="1"] {
+    fill: #3355ff;
+    stroke: #3355ff;
+}
+
+[data-hash*="2"] {
+    fill: #33ff00;
+    stroke: #33ff00;
+}
+
+[data-hash*="3"] {
+    fill: #ff3300;
+    stroke: #ff3300;
+}
+
+[data-hash*="4"] {
+    fill: #fff300;
+    stroke: #fff300;
+}

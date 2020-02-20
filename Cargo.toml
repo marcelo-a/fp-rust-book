@@ -1,17 +1,22 @@
 [package]
-name = "rust_resource_timeline"
+name = "rrt"
 version = "0.1.0"
-authors = ["Gabriel Luo <luogm@umich.edu>"]
+authors = ["Gabriel Luo <luogm@umich.edu>", "Ke Du <madoka@umich.edu>", "Yingying Zhu <zyy@umich.edu>", "Marcelo Almeida <mgba@umich.edu>"]
 edition = "2018"
 
 [lib]
-name = "data"
+name = "rrt_lib"
 path = "src/lib.rs"
 
 [[example]]
-name = "simple"
-path = "example/simple_lifetime/main.rs"
+name = "static_borrow"  #compile with cargo run --example default
+path = "examples/static_borrow/main.rs" #Relative path to main.rs of example
+
+[[example]]
+name = "move_with_no_borrow"  #compile with cargo run --example default
+path = "examples/move_with_no_borrow/main.rs" #Relative path to main.rs of example
 
 [dependencies]
-resvg = "0.9.0"
+handlebars = "3.0.1"
+serde = { version = "1.0", features = ["derive"] }
 # rrt_lib = { path = "./" }

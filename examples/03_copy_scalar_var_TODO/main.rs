@@ -1,7 +1,9 @@
 use rrt_lib::data::{Event, ExternalEvent, ResourceOwner, Visualizable, VisualizationData};
 use rrt_lib::svg_frontend::svg_generation;
 use std::collections::BTreeMap;
-// visualization of simple_lifetime/example.rs
+// visualization of static_borrow/example.rs
+// taken from The Book chapter 4.2
+// variable oriented: display stats on variable, not the data stored in it
 fn main() {
     let s = ResourceOwner {
         hash: 1,
@@ -33,25 +35,28 @@ fn main() {
     //      x : 2
     //      y : 3
     //      z : 4
-    // functions: 0
+    // functions: 1
+    // Event 1: give s the resource and make it the owner
     vd.append_event(&s, Event::Acquire { from: None }, &(2 as usize));
     // Mark event: "x" borrows immutable reference from "s"
+    // Events 2-3: lend s resource to x and x borrow resource from s
     vd.append_event(&s, Event::StaticLend { to: Some(x.clone()) }, &(4 as usize));
-    vd.append_event(&x, Event::StaticBorrow { from: s.clone()/*Some(s.clone())*/ }, &(4 as usize));
-    // Mark event: "y" borrows immutable reference from "s"
+    vd.append_event(&x, Event::StaticBorrow { from: s.clone() }, &(4 as usize));
+    // Events 4-5: lend s resource to y and y borrow resource from s
     vd.append_event(&s, Event::StaticLend { to: Some(y.clone()) }, &(5 as usize));
-    vd.append_event(&y, Event::StaticBorrow { from: s.clone()/*Some(s.clone())*/ }, &(5 as usize));
-    // "x" and "y" return reference and go out of scope
-    vd.append_event(&x, Event::StaticReturn{ to: Some(s.clone()) }, &(7 as usize));
-    vd.append_event(&y, Event::StaticReturn{ to: Some(s.clone()) }, &(7 as usize));
-    vd.append_event(&s, Event::StaticReacquire{ from: Some(z.clone()) }, &(7 as usize));
-    // Mark event: "z" borrows mutable reference form "s"
-    vd.append_event(&s, Event::MutableLend { to: Some(z.clone()) }, &(10 as usize));
-    vd.append_event(&z, Event::MutableBorrow { from: s.clone()/*Some(s.clone())*/ }, &(10 as usize));
-    // "z" goes out of scope
-    vd.append_event(&z, Event::MutableReturn { to: Some(s.clone()) }, &(11 as usize));
-    vd.append_event(&s, Event::StaticReacquire{ from: Some(z.clone()) }, &(11 as usize));
-    //value of s is returned and goes out of scope
+    vd.append_event(&y, Event::StaticBorrow { from: s.clone() }, &(5 as usize));
+    // Event 6-8: x and y return resource priviledges to s
+    vd.append_event(&x, Event::StaticReturn{ to: Some(s.clone()) }, &(6 as usize));
+    vd.append_event(&y, Event::StaticReturn{ to: Some(s.clone()) }, &(6 as usize));
+    vd.append_event(&s, Event::StaticReacquire{ from: Some(x.clone()) }, &(6 as usize));
+    vd.append_event(&s, Event::StaticReacquire{ from: Some(y.clone()) }, &(6 as usize));
+    // Events 9-10: mutable lend s resource to z and z borrow resource from s
+    vd.append_event(&s, Event::MutableLend { to: Some(z.clone()) }, &(9 as usize));
+    vd.append_event(&z, Event::MutableBorrow { from: s.clone() }, &(9 as usize));
+    // Event 11-12: z return resource priviledges to s
+    vd.append_event(&z, Event::MutableReturn { to: Some(s.clone()) }, &(10 as usize));
+    vd.append_event(&s, Event::MutableReacquire{ from: Some(z.clone()) }, &(10 as usize));
+    //all variables go out of scope at end of function
     vd.append_event(&s, Event::GoOutOfScope, &(12 as usize));
     vd.append_event(&x, Event::GoOutOfScope, &(12 as usize));
     vd.append_event(&y, Event::GoOutOfScope, &(12 as usize));

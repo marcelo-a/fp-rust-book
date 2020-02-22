@@ -12,20 +12,20 @@ pub trait Visualizable {
     // returns Noneappend_event if the hash does not exist
     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State>;
     // add an event to the Visualizable data structure
-    fn append_event(&mut self, resource_owner : &ResourceOwner, event: Event, line_number: &usize);
+    fn append_event(&mut self, resource_owner: &ResourceOwner, event: Event, line_number: &usize);
     // add an ExternalEvent to the Visualizable data structure
-    fn append_external_event(&mut self, line_number : usize, external_event: ExternalEvent); 
+    fn append_external_event(&mut self, line_number: usize, external_event: ExternalEvent); 
 
     // if resource_owner with hash is mutable
     fn is_mut(&self, hash: &u64 ) -> bool;
 
-    fn calc_state(&self, previous_state : & State, event : & Event, event_line: usize, hash: &u64) -> State;
+    fn calc_state(&self, previous_state: & State, event: & Event, event_line: usize, hash: &u64) -> State;
 
     fn get_states(&self, hash: &u64) -> Vec::<(usize, usize, State)>;
 
     // SVG left panel generation facilities, MIGHT NOT NEED IMPL
     // // return a timeline for a single resource owner 
-    // fn svg_dot_info(&self, hash : &u64) -> Timeline;
+    // fn svg_dot_info(&self, hash: &u64) -> Timeline;
     // // return all timelines
     // fn svg_dot_info_map(&self) -> HashMap<u64, Vec<SvgLineInfo>>;
     // // return svg_arrows := {Move, Borrow, Return}
@@ -142,6 +142,9 @@ pub enum Event {
     StaticReturn{
         to: Option<ResourceOwner>
     },
+    StaticReacquire {
+        from: Option<ResourceOwner>
+    },
     // this happens when a variable is returned this line,
     // or if this variable's scope ends at this line.
     GoOutOfScope,
@@ -169,24 +172,32 @@ pub enum State {
         move_to: Option<ResourceOwner>,
         move_at_line: usize
     },
-    // This RO is the unique object that holds the ownership to the underlying resource.
-    FullPriviledge,
-    // More than one RO has access to the underlying resource
+    // This ResourceOwner is the unique object that holds the ownership to the underlying resource.
+    FullPrivilege,
+    // More than one ResourceOwner has access to the underlying resource
     // This means that it is not possible to create a mutable reference
     // on the next line.
-    PartialPriviledge {
-        borrow_to : HashSet<ResourceOwner>,
+    // About borrow_count: this value is at least one at any time.
+    //      When the first static reference of this ResourceOwner is created,
+    //          this value is set to 1;
+    //      When a new static reference is borrowed from this variable, increment by 1;
+    //      When a static reference goes out of scope, decrement this value by 1;
+    //      When a decrement happens while the borrow_count is 1, the state becomes 
+    //          FullPrivilege once again. 
+    PartialPrivilege {
+        borrow_count: u32,
+        borrow_to: HashSet<ResourceOwner>
     },
     // temporarily no read or write access right to the resource, but eventually 
-    // the priviledge will come back. Most frequently occurs when mutably borrowed
-    RevokedPriviledge {
+    // the privilege will come back. Occurs when mutably borrowed
+    RevokedPrivilege {
         to: Option<ResourceOwner>,
-        borrow_to : HashSet<ResourceOwner>, //TODO why do we need this?
+        borrow_to: Option<ResourceOwner>,
     },
     // should not appear for visualization in a correct program
     Invalid,
     ResourceReturned {
-        to : Option<ResourceOwner>,
+        to: Option<ResourceOwner>,
     }
 }
 
@@ -195,11 +206,11 @@ impl std::fmt::Display for State {
         match self {
             State::OutOfScope => write!(f, "OutOfScope"),
             State::ResourceMoved{move_to: holder1, move_at_line: holder2} => write!(f, "ResourceMoved"),
-            State::FullPriviledge => write!(f, "FullPriviledge"),
-            State::PartialPriviledge{borrow_to: holder1} => write!(f, "PartialPriviledge"),
-            State::RevokedPriviledge{to: holder1, borrow_to: holder2} => write!(f, "RevokedPriviledge"),
+            State::FullPrivilege => write!(f, "FullPrivilege"),
+            State::PartialPrivilege{borrow_count: _, borrow_to: holder1} => write!(f, "PartialPrivilege"),
+            State::RevokedPrivilege{to: holder1, borrow_to: holder2} => write!(f, "RevokedPrivilege"),
             State::Invalid => write!(f, "Invalid"),
-            State::ResourceReturned{to : return_to_ro} => write!(f, "Resource Returned"),
+            State::ResourceReturned{to: return_to_ro} => write!(f, "Resource Returned"),
         }
     }
 }
@@ -232,27 +243,28 @@ impl Visualizable for VisualizationData {
         }
     }
 
-    // if the RO is declared mutable
+    // if the ResourceOwner is declared mutable
     fn is_mut(&self, hash: &u64 ) -> bool {
         self.timelines[hash].resource_owner.is_mut
     }
 
-    fn calc_state(&self, previous_state: & State, event: & Event, event_line : usize, hash: &u64) -> State {
+    fn calc_state(&self, previous_state: & State, event: & Event, event_line: usize, hash: &u64) -> State {
         match (previous_state, event) {
             (State::Invalid, _) => State::Invalid,
 
-            (State::OutOfScope, Event::Acquire{ from: from_ro })  => State::FullPriviledge,
+            (State::OutOfScope, Event::Acquire{ from: from_ro })  => State::FullPrivilege,
 
             (State::OutOfScope, _)  => State::Invalid,
 
-            (State::FullPriviledge, Event::Move{to : to_ro}) => State::ResourceMoved{move_to : to_ro.to_owned(), move_at_line: event_line},
+            (State::FullPrivilege, Event::Move{to: to_ro}) => State::ResourceMoved{move_to: to_ro.to_owned(), move_at_line: event_line},
             
-            (State::FullPriviledge, Event::MutableLend{ to : to_ro }) => 
-                if self.is_mut(hash) { State::FullPriviledge } else { State::Invalid },
+            (State::FullPrivilege, Event::MutableLend{ to: to_ro }) => 
+                if self.is_mut(hash) { State::FullPrivilege } else { State::Invalid },
             
-            (State::FullPriviledge, Event::StaticLend{to : to_ro}) => 
-                State::PartialPriviledge {
-                    borrow_to : [(to_ro.to_owned().unwrap())].iter().cloned().collect()         // TODO what if to_ro is None?
+            (State::FullPrivilege, Event::StaticLend{to: to_ro}) => 
+                State::PartialPrivilege {
+                    borrow_count: 1,
+                    borrow_to: [(to_ro.to_owned().unwrap())].iter().cloned().collect()         // TODO what if to_ro is None?
                 },
             (_, _) => State::Invalid,
         }
@@ -314,7 +326,7 @@ impl Visualizable for VisualizationData {
     }
 
     // TODO IMPLEMENT
-    fn append_external_event(&mut self, line_number : usize, external_event: ExternalEvent){
+    fn append_external_event(&mut self, line_number: usize, external_event: ExternalEvent){
         self.external_events.push(
             (line_number, external_event)
         );

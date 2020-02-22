@@ -41,6 +41,7 @@ pub struct ResourceOwner {
     pub name: String,
     // whether the variable itself is mutable
     pub is_mut: bool,
+    pub is_ref: bool,
     // pub is_fun: bool,
     // pub lifetime_trait: LifetimeTrait,
 }
@@ -205,12 +206,12 @@ impl std::fmt::Display for State {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
             State::OutOfScope => write!(f, "OutOfScope"),
-            State::ResourceMoved{move_to: holder1, move_at_line: holder2} => write!(f, "ResourceMoved"),
+            State::ResourceMoved { move_to: _, move_at_line: _ } => write!(f, "ResourceMoved"),
             State::FullPrivilege => write!(f, "FullPrivilege"),
-            State::PartialPrivilege{borrow_count: _, borrow_to: holder1} => write!(f, "PartialPrivilege"),
-            State::RevokedPrivilege{to: holder1, borrow_to: holder2} => write!(f, "RevokedPrivilege"),
+            State::PartialPrivilege { borrow_count: _, borrow_to: _ } => write!(f, "PartialPrivilege"),
+            State::RevokedPrivilege { to: _, borrow_to: _ } => write!(f, "RevokedPrivilege"),
             State::Invalid => write!(f, "Invalid"),
-            State::ResourceReturned{to: return_to_ro} => write!(f, "Resource Returned"),
+            State::ResourceReturned { to: _ } => write!(f, "Resource Returned"),
         }
     }
 }
@@ -252,9 +253,10 @@ impl Visualizable for VisualizationData {
         match (previous_state, event) {
             (State::Invalid, _) => State::Invalid,
 
-            (State::OutOfScope, Event::Acquire{ from: from_ro })  => State::FullPrivilege,
+            (State::OutOfScope, Event::Acquire{ from: _ })  => State::FullPrivilege,
 
-            (State::OutOfScope, _)  => State::Invalid,
+            (State::OutOfScope, Event::StaticBorrow{ from: ro })  => State::PartialPrivilege{  }
+            (State::OutOfScope, Event::StaticBorrow)  => State::Invalid,
 
             (State::FullPrivilege, Event::Move{to: to_ro}) => State::ResourceMoved{move_to: to_ro.to_owned(), move_at_line: event_line},
             

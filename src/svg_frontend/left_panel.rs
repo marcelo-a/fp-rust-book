@@ -1,6 +1,6 @@
 extern crate handlebars;
 
-use crate::data::{VisualizationData, Visualizable, Event, State, ResourceOwner};
+use crate::data::{VisualizationData, Visualizable, Event, State};
 use handlebars::Handlebars;
 use std::collections::HashMap;
 use serde::Serialize;
@@ -210,23 +210,23 @@ fn render_timelines_string(
                 y2: get_y_axis_pos(line_end)
             };
             match (state, ro.is_mut) {
-                (State::FullPriviledge, true) => {
+                (State::FullPrivilege, true) => {
                     data.line_class = String::from("solid");
                     output.push_str(&registry.render("vertical_line_template", &data).unwrap());
                 },
-                (State::FullPriviledge, false) => {
+                (State::FullPrivilege, false) => {
                     data.line_class = String::from("hollow");
                     output.push_str(&registry.render("vertical_line_template", &data).unwrap());
                 },
-                (State::PartialPriviledge{borrow_to: _}, _) => {
+                (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, _) => {
                     data.line_class = String::from("hollow");
                     output.push_str(&registry.render("vertical_line_template", &data).unwrap());
                 },
-                (State::RevokedPriviledge{to: _, borrow_to: _}, true) => {
+                (State::RevokedPrivilege{ to: _, borrow_to: _ }, true) => {
                     data.line_class = String::from("dotted");
                     output.push_str(&registry.render("vertical_line_template", &data).unwrap());
                 },
-                (State::ResourceMoved{move_to: _, move_at_line: _}, true) => {
+                (State::ResourceMoved{ move_to: _, move_at_line: _ }, true) => {
                     data.line_class = String::from("extend");
                     output.push_str(&registry.render("vertical_line_template", &data).unwrap());
                 }
@@ -271,8 +271,8 @@ fn get_y_axis_pos(line_number : &usize) -> i64 {
 fn get_vertical_line_class(state : &State) -> String {
     // TODO fix this
     match state {
-        State::FullPriviledge => "solid".to_string(),
-        State::PartialPriviledge{borrow_to : _} => "solid".to_string(),
+        State::FullPrivilege => "solid".to_string(),
+        State::PartialPrivilege{borrow_count: _, borrow_to: _} => "solid".to_string(),
         _ => "".to_string(),
     }
 }

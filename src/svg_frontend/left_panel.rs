@@ -107,10 +107,11 @@ fn prepare_registry(registry: &mut Handlebars) {
     );
 }
 
+// Returns: a hashmap from the hash of the ResourceOwner to its Column information
 fn compute_column_layout<'a>(visualization_data: &'a VisualizationData) -> HashMap<&'a u64, TimelineColumnData> {
     let mut resource_owners_layout = HashMap::new();
-    let mut x : i64 = -180;
-    let x_space = 30;               // for every new ResourceOwner, move 30 px to the left
+    let mut x : i64 = -180;                  // Right-most Column x-offset.    
+    let x_space = 30;                   // for every new ResourceOwner, move 30 px to the left
     for (hash, _) in visualization_data.timelines.iter().rev() {
         let name = match visualization_data.get_name_from_hash(hash) {
             Some(_name) => _name,

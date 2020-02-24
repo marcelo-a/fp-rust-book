@@ -2,7 +2,7 @@
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <title>Visualization of Rust Lifetime</title>
-    <desc>03_copy_scalar_var_TODO</desc>
+    <desc>book_04_02_08_shared_and_unique_borrow</desc>
 
     <defs>
         <style type="text/css">
@@ -96,7 +96,7 @@ text.code {
     </defs>
 
     <g id="title">
-        <text id="heading" x="-300" y="30">Visualization of Rust 03_copy_scalar_var_TODO</text>
+        <text id="heading" x="-300" y="30">Visualization of Rust book_04_02_08_shared_and_unique_borrow</text>
         <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
     </g>
 
@@ -123,10 +123,10 @@ text.code {
     </g>
 
     <g id="labels">
+        <text class="code" x="-240" y="80" data-hash="2" text-anchor="middle">r1</text>
+        <text class="code" x="-210" y="80" data-hash="3" text-anchor="middle">r2</text>
+        <text class="code" x="-180" y="80" data-hash="4" text-anchor="middle">r3</text>
         <text class="code" x="-270" y="80" data-hash="1" text-anchor="middle">s</text>
-        <text class="code" x="-210" y="80" data-hash="3" text-anchor="middle">y</text>
-        <text class="code" x="-180" y="80" data-hash="4" text-anchor="middle">z</text>
-        <text class="code" x="-240" y="80" data-hash="2" text-anchor="middle">x</text>
     </g>
 
     <g id="events">
@@ -162,22 +162,18 @@ text.code {
             <line class="solid" stroke="beige" x1="-20" x2="-20" y1="80" y2="400"/>
     </g>
     <g id="code">
-        <text class="code" x="0" y="80"> fn fun(){ </text>
+        <text class="code" x="0" y="80"> fn main(){ </text>
         <text class="code" x="0" y="100">     let mut <tspan data-hash="1">s</tspan> = String::from("hello"); </text>
         <text class="code" x="0" y="120">  </text>
-        <text class="code" x="0" y="140">     let <tspan data-hash="2">x</tspan> = <tspan data-hash="1">&amp;s</tspan>; // no problem </text>
-        <text class="code" x="0" y="160">     let <tspan data-hash="3">y</tspan> = <tspan data-hash="1">&amp;s</tspan>; // no problem </text>
-        <text class="code" x="0" y="180">     println!("{} and {}", <tspan data-hash="2">x</tspan>, <tspan data-hash="3">y</tspan>); </text>
-        <text class="code" x="0" y="200">     // x and y are no longer used after this point </text>
+        <text class="code" x="0" y="140">     let <tspan data-hash="2">r1</tspan> = <tspan data-hash="1">&amp;s</tspan>; // no problem </text>
+        <text class="code" x="0" y="160">     let <tspan data-hash="3">r2</tspan> = <tspan data-hash="1">&amp;s</tspan>; // no problem </text>
+        <text class="code" x="0" y="180">     println!("{} and {}", <tspan data-hash="2">r1</tspan>, <tspan data-hash="3">r2</tspan>); </text>
+        <text class="code" x="0" y="200">     // <tspan data-hash="2">r1</tspan> and <tspan data-hash="3">r2</tspan> are no longer used after this point </text>
         <text class="code" x="0" y="220">  </text>
-        <text class="code" x="0" y="240">     let <tspan data-hash="4">z</tspan> = <tspan data-hash="1">&amp;mut s</tspan>; // no problem </text>
-        <text class="code" x="0" y="260">     println!("{}", <tspan data-hash="4">z</tspan>); </text>
+        <text class="code" x="0" y="240">     let <tspan data-hash="4">r3</tspan> = <tspan data-hash="1">&amp;mut s</tspan>; // no problem </text>
+        <text class="code" x="0" y="260">     println!("{}", <tspan data-hash="4">r3</tspan>); </text>
         <text class="code" x="0" y="280">  </text>
         <text class="code" x="0" y="300"> } </text>
-        <text class="code" x="0" y="320">  </text>
-        <text class="code" x="0" y="340"> fn main(){ </text>
-        <text class="code" x="0" y="360">     fun(); </text>
-        <text class="code" x="0" y="380"> } </text>
     </g>
 
    

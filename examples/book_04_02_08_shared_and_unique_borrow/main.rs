@@ -12,23 +12,23 @@ fn main() {
         is_ref: false,
         lifetime_trait: LifetimeTrait::Move,
     };
-    let x = ResourceOwner {
+    let r1 = ResourceOwner {
         hash: 2,
-        name: String::from("x"),
+        name: String::from("r1"),
         is_mut: false,
         is_ref: true,
         lifetime_trait: LifetimeTrait::None,
     };
-    let y = ResourceOwner {
+    let r2 = ResourceOwner {
         hash: 3,
-        name: String::from("y"),
+        name: String::from("r2"),
         is_mut: false,
         is_ref: true,
         lifetime_trait: LifetimeTrait::None,
     };
-    let z = ResourceOwner {
+    let r3 = ResourceOwner {
         hash: 4,
-        name: String::from("z"),
+        name: String::from("r3"),
         is_mut: false,
         is_ref: true,
         lifetime_trait: LifetimeTrait::None,
@@ -40,36 +40,36 @@ fn main() {
 
     //
     // hash s : 1
-    //      x : 2
-    //      y : 3
-    //      z : 4
+    //      r1 : 2
+    //      r2 : 3
+    //      r3 : 4
     // functions: 1
     // Event 1: give s the resource and make it the owner
     vd.append_event(&s, Event::Acquire { from: None }, &(2 as usize));
-    // Mark event: "x" borrows immutable reference from "s"
-    // Events 2-3: lend s resource to x and x borrow resource from s
-    vd.append_event(&s, Event::StaticLend { to: Some(x.clone()) }, &(4 as usize));
-    vd.append_event(&x, Event::StaticBorrow { from: s.clone() }, &(4 as usize));
-    // Events 4-5: lend s resource to y and y borrow resource from s
-    vd.append_event(&s, Event::StaticLend { to: Some(y.clone()) }, &(5 as usize));
-    vd.append_event(&y, Event::StaticBorrow { from: s.clone() }, &(5 as usize));
-    // Event 6-8: x and y return resource priviledges to s
-    vd.append_event(&x, Event::StaticReturn{ to: Some(s.clone()) }, &(6 as usize));
-    vd.append_event(&y, Event::StaticReturn{ to: Some(s.clone()) }, &(6 as usize));
-    vd.append_event(&s, Event::StaticReacquire{ from: Some(x.clone()) }, &(6 as usize));
-    vd.append_event(&s, Event::StaticReacquire{ from: Some(y.clone()) }, &(6 as usize));
-    // Events 9-10: mutable lend s resource to z and z borrow resource from s
-    vd.append_event(&s, Event::MutableLend { to: Some(z.clone()) }, &(9 as usize));
-    vd.append_event(&z, Event::MutableBorrow { from: s.clone() }, &(9 as usize));
-    // Event 11-12: z return resource priviledges to s
-    vd.append_event(&z, Event::MutableReturn { to: Some(s.clone()) }, &(10 as usize));
-    vd.append_event(&s, Event::MutableReacquire{ from: Some(z.clone()) }, &(10 as usize));
+    // Mark event: "r1" borrows immutable reference from "s"
+    // Events 2-3: lend s resource to r1 and r1 borrow resource from s
+    vd.append_event(&s, Event::StaticLend { to: Some(r1.clone()) }, &(4 as usize));
+    vd.append_event(&r1, Event::StaticBorrow { from: s.clone() }, &(4 as usize));
+    // Events 4-5: lend s resource to r2 and r2 borrow resource from s
+    vd.append_event(&s, Event::StaticLend { to: Some(r2.clone()) }, &(5 as usize));
+    vd.append_event(&r2, Event::StaticBorrow { from: s.clone() }, &(5 as usize));
+    // Event 6-8: r1 and r2 return resource priviledges to s
+    vd.append_event(&r1, Event::StaticReturn{ to: Some(s.clone()) }, &(6 as usize));
+    vd.append_event(&r2, Event::StaticReturn{ to: Some(s.clone()) }, &(6 as usize));
+    vd.append_event(&s, Event::StaticReacquire{ from: Some(r1.clone()) }, &(6 as usize));
+    vd.append_event(&s, Event::StaticReacquire{ from: Some(r2.clone()) }, &(6 as usize));
+    // Events 9-10: mutable lend s resource to r3 and r3 borrow resource from s
+    vd.append_event(&s, Event::MutableLend { to: Some(r3.clone()) }, &(9 as usize));
+    vd.append_event(&r3, Event::MutableBorrow { from: s.clone() }, &(9 as usize));
+    // Event 11-12: r3 return resource priviledges to s
+    vd.append_event(&r3, Event::MutableReturn { to: Some(s.clone()) }, &(10 as usize));
+    vd.append_event(&s, Event::MutableReacquire{ from: Some(r3.clone()) }, &(10 as usize));
     //all variables go out of scope at end of function
     vd.append_event(&s, Event::GoOutOfScope, &(12 as usize));
-    vd.append_event(&x, Event::GoOutOfScope, &(12 as usize));
-    vd.append_event(&y, Event::GoOutOfScope, &(12 as usize));
-    vd.append_event(&z, Event::GoOutOfScope, &(12 as usize));
+    vd.append_event(&r1, Event::GoOutOfScope, &(12 as usize));
+    vd.append_event(&r2, Event::GoOutOfScope, &(12 as usize));
+    vd.append_event(&r3, Event::GoOutOfScope, &(12 as usize));
 
     //rendering image
-    svg_generation::render_svg(&"03_copy_scalar_var_TODO".to_owned(), &vd);
+    svg_generation::render_svg(&"book_04_02_08_shared_and_unique_borrow".to_owned(), &vd);
 }

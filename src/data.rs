@@ -41,7 +41,7 @@ pub struct ResourceOwner {
     pub name: String,
     // whether the variable itself is mutable
     pub is_mut: bool,
-    pub is_ref: bool,
+    // pub is_ref: bool,
     // pub is_fun: bool,
     // pub lifetime_trait: LifetimeTrait,
 }
@@ -255,8 +255,8 @@ impl Visualizable for VisualizationData {
 
             (State::OutOfScope, Event::Acquire{ from: _ })  => State::FullPrivilege,
 
-            (State::OutOfScope, Event::StaticBorrow{ from: ro })  => State::PartialPrivilege{  }
-            (State::OutOfScope, Event::StaticBorrow)  => State::Invalid,
+            // (State::OutOfScope, Event::StaticBorrow{ from: ro })  => State::PartialPrivilege{  },
+            (State::OutOfScope, Event::StaticBorrow{ from: _ }) => State::Invalid,
 
             (State::FullPrivilege, Event::Move{to: to_ro}) => State::ResourceMoved{move_to: to_ro.to_owned(), move_at_line: event_line},
             

@@ -39,7 +39,7 @@ struct ArrowData {
     y2: i64
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, Clone)]
 struct VerticalLineData {
     line_class: String,
     hash: u64,
@@ -87,9 +87,11 @@ fn prepare_registry(registry: &mut Handlebars) {
     let dot_template =
         "        <use xlink:href=\"#eventDot\" data-hash=\"{{hash}}\" x=\"{{dot_x}}\" y=\"{{dot_y}}\"/>\n";
     let arrow_template = 
-        "        <polyline strokeWidth=\"3\" stroke=\"beige\" points=\"{{x1}},{{y1}} {{x2}},{{y2}} \" marker-end=\"url(#arrowHead)\"/>\n";
+        "        <polyline strokeWidth=\"2.5\" stroke=\"beige\" points=\"{{x1}},{{y1}} {{x2}},{{y2}} \" marker-end=\"url(#arrowHead)\"/>\n";
     let vertical_line_template =
-        "        <line class=\"{{line_class}}\" data-hash=\"{{hash}}\" x1=\"{{x1}}\" x2=\"{{x2}}\" y1=\"{{y1}}\" y2=\"{{y2}}\"/>\n";
+        "        <line data-hash=\"{{hash}}\" class=\"{{line_class}}\" x1=\"{{x1}}\" x2=\"{{x2}}\" y1=\"{{y1}}\" y2=\"{{y2}}\"/>\n";
+    let hollow_line_internal_template =
+        "        <line stroke=\"#232323\" stroke-width=\"3px\" x1=\"{{x1}}\" x2=\"{{x2}}\" y1=\"{{y1}}\" y2=\"{{y2}}\"/>\n";
     assert!(
         registry.register_template_string("left_panel_template", left_panel_template).is_ok()
     );
@@ -104,6 +106,9 @@ fn prepare_registry(registry: &mut Handlebars) {
     );
     assert!(
         registry.register_template_string("vertical_line_template", vertical_line_template).is_ok()
+    );
+    assert!(
+        registry.register_template_string("hollow_line_internal_template", hollow_line_internal_template).is_ok()
     );
 }
 
@@ -215,12 +220,20 @@ fn render_timelines_string(
                     output.push_str(&registry.render("vertical_line_template", &data).unwrap());
                 },
                 (State::FullPrivilege, false) => {
-                    data.line_class = String::from("hollow");
+                    data.line_class = String::from("solid");
                     output.push_str(&registry.render("vertical_line_template", &data).unwrap());
+                    let mut hollow_internal_line_data = data.clone();
+                    hollow_internal_line_data.y1 += 5;
+                    hollow_internal_line_data.y2 -= 5;
+                    output.push_str(&registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
                 },
                 (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, _) => {
-                    data.line_class = String::from("hollow");
+                    data.line_class = String::from("solid");
                     output.push_str(&registry.render("vertical_line_template", &data).unwrap());
+                    let mut hollow_internal_line_data = data.clone();
+                    hollow_internal_line_data.y1 += 5;
+                    hollow_internal_line_data.y2 -= 5;
+                    output.push_str(&registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
                 },
                 (State::RevokedPrivilege{ to: _, borrow_to: _ }, true) => {
                     data.line_class = String::from("dotted");

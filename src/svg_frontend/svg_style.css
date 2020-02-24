@@ -34,22 +34,27 @@ text.code {
 
 /* timeline/event interaction styling */
 .solid {
-    stroke-width: 3px;
+    stroke-width: 5px;
 }
 
-.hollow {
+.hollow_internal {
     stroke-width: 3px;
-    fill: none;
+    fill: #232323;
 }
 
 .dotted {
-    stroke-width: 3px;
+    stroke-width: 5px;
     stroke-dasharray: "2 1";
 }
 
 .extend {
     stroke-width: 1px;
     stroke-dasharray: "2 1";
+}
+
+.colorless {
+    color: gray;
+    fill: gray;
 }
 
 /* hash based styling */

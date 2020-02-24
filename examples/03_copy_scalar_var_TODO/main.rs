@@ -1,4 +1,4 @@
-use rrt_lib::data::{Event, ExternalEvent, ResourceOwner, Visualizable, VisualizationData};
+use rrt_lib::data::{Event, LifetimeTrait, ResourceOwner, Visualizable, VisualizationData};
 use rrt_lib::svg_frontend::svg_generation;
 use std::collections::BTreeMap;
 // visualization of static_borrow/example.rs
@@ -9,21 +9,29 @@ fn main() {
         hash: 1,
         name: String::from("s"),
         is_mut: true,
+        is_ref: false,
+        lifetime_trait: LifetimeTrait::Move,
     };
     let x = ResourceOwner {
         hash: 2,
         name: String::from("x"),
         is_mut: false,
+        is_ref: true,
+        lifetime_trait: LifetimeTrait::None,
     };
     let y = ResourceOwner {
         hash: 3,
         name: String::from("y"),
         is_mut: false,
+        is_ref: true,
+        lifetime_trait: LifetimeTrait::None,
     };
     let z = ResourceOwner {
         hash: 4,
         name: String::from("z"),
-        is_mut: true,
+        is_mut: false,
+        is_ref: true,
+        lifetime_trait: LifetimeTrait::None,
     };
     let mut vd = VisualizationData {
         timelines: BTreeMap::new(),
@@ -63,5 +71,5 @@ fn main() {
     vd.append_event(&z, Event::GoOutOfScope, &(12 as usize));
 
     //rendering image
-    svg_generation::render_svg(&"static_borrow".to_owned(), &vd);
+    svg_generation::render_svg(&"03_copy_scalar_var_TODO".to_owned(), &vd);
 }

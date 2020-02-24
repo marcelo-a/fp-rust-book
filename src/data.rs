@@ -41,9 +41,9 @@ pub struct ResourceOwner {
     pub name: String,
     // whether the variable itself is mutable
     pub is_mut: bool,
-    // pub is_ref: bool,
+    pub is_ref: bool,
     // pub is_fun: bool,
-    // pub lifetime_trait: LifetimeTrait,
+    pub lifetime_trait: LifetimeTrait,
 }
 
 
@@ -154,7 +154,7 @@ pub enum Event {
 // Trait of a resource owner that might impact the way lifetime visualization
 // behaves
 
-#[derive(Clone)]
+#[derive(Hash, PartialEq, Eq, Clone)]
 pub enum LifetimeTrait {
     Copy,
     Move,

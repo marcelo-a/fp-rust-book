@@ -2,7 +2,7 @@
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <title>Visualization of Rust Lifetime</title>
-    <desc>static_borrow</desc>
+    <desc>03_copy_scalar_var_TODO</desc>
 
     <defs>
         <style type="text/css">
@@ -14,6 +14,7 @@ svg {
 
 text {
     fill: #cccccc;
+    vertical-align: baseline;
 }
 
 #heading {
@@ -29,7 +30,6 @@ text {
 text.code {
     white-space: pre;
     font-family: "monospace";
-    dominant-baseline: middle;
 }
 
 /* event related styling */
@@ -42,8 +42,23 @@ text.code {
 }
 
 /* timeline/event interaction styling */
-line.solid {
+.solid {
     stroke-width: 3px;
+}
+
+.hollow {
+    stroke-width: 3px;
+    fill: none;
+}
+
+.dotted {
+    stroke-width: 3px;
+    stroke-dasharray: "2 1";
+}
+
+.extend {
+    stroke-width: 1px;
+    stroke-dasharray: "2 1";
 }
 
 /* hash based styling */
@@ -81,7 +96,7 @@ line.solid {
     </defs>
 
     <g id="title">
-        <text id="heading" x="-300" y="30">Visualization of Rust static_borrow</text>
+        <text id="heading" x="-300" y="30">Visualization of Rust 03_copy_scalar_var_TODO</text>
         <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
     </g>
 
@@ -108,9 +123,9 @@ line.solid {
     </g>
 
     <g id="labels">
-        <text class="code" x="-180" y="80" data-hash="4" text-anchor="middle">z</text>
-        <text class="code" x="-210" y="80" data-hash="3" text-anchor="middle">y</text>
         <text class="code" x="-270" y="80" data-hash="1" text-anchor="middle">s</text>
+        <text class="code" x="-210" y="80" data-hash="3" text-anchor="middle">y</text>
+        <text class="code" x="-180" y="80" data-hash="4" text-anchor="middle">z</text>
         <text class="code" x="-240" y="80" data-hash="2" text-anchor="middle">x</text>
     </g>
 
@@ -118,18 +133,19 @@ line.solid {
         <use xlink:href="#eventDot" data-hash="1" x="-270" y="100"/>
         <use xlink:href="#eventDot" data-hash="1" x="-270" y="140"/>
         <use xlink:href="#eventDot" data-hash="1" x="-270" y="160"/>
-        <use xlink:href="#eventDot" data-hash="1" x="-270" y="200"/>
+        <use xlink:href="#eventDot" data-hash="1" x="-270" y="180"/>
+        <use xlink:href="#eventDot" data-hash="1" x="-270" y="180"/>
+        <use xlink:href="#eventDot" data-hash="1" x="-270" y="240"/>
         <use xlink:href="#eventDot" data-hash="1" x="-270" y="260"/>
-        <use xlink:href="#eventDot" data-hash="1" x="-270" y="280"/>
         <use xlink:href="#eventDot" data-hash="1" x="-270" y="300"/>
         <use xlink:href="#eventDot" data-hash="2" x="-240" y="140"/>
-        <use xlink:href="#eventDot" data-hash="2" x="-240" y="200"/>
+        <use xlink:href="#eventDot" data-hash="2" x="-240" y="180"/>
         <use xlink:href="#eventDot" data-hash="2" x="-240" y="300"/>
         <use xlink:href="#eventDot" data-hash="3" x="-210" y="160"/>
-        <use xlink:href="#eventDot" data-hash="3" x="-210" y="200"/>
+        <use xlink:href="#eventDot" data-hash="3" x="-210" y="180"/>
         <use xlink:href="#eventDot" data-hash="3" x="-210" y="300"/>
+        <use xlink:href="#eventDot" data-hash="4" x="-180" y="240"/>
         <use xlink:href="#eventDot" data-hash="4" x="-180" y="260"/>
-        <use xlink:href="#eventDot" data-hash="4" x="-180" y="280"/>
         <use xlink:href="#eventDot" data-hash="4" x="-180" y="300"/>
     </g>
 
@@ -149,8 +165,8 @@ line.solid {
         <text class="code" x="0" y="80"> fn fun(){ </text>
         <text class="code" x="0" y="100">     let mut <tspan data-hash="1">s</tspan> = String::from("hello"); </text>
         <text class="code" x="0" y="120">  </text>
-        <text class="code" x="0" y="140">     let <tspan data-hash="2">x</tspan> = <tspan data-hash="1">&amp;s</tspan>; // immutable borrow </text>
-        <text class="code" x="0" y="160">     let <tspan data-hash="3">y</tspan> = <tspan data-hash="1">&amp;s</tspan>; // immutable borrow </text>
+        <text class="code" x="0" y="140">     let <tspan data-hash="2">x</tspan> = <tspan data-hash="1">&amp;s</tspan>; // no problem </text>
+        <text class="code" x="0" y="160">     let <tspan data-hash="3">y</tspan> = <tspan data-hash="1">&amp;s</tspan>; // no problem </text>
         <text class="code" x="0" y="180">     println!("{} and {}", <tspan data-hash="2">x</tspan>, <tspan data-hash="3">y</tspan>); </text>
         <text class="code" x="0" y="200">     // x and y are no longer used after this point </text>
         <text class="code" x="0" y="220">  </text>

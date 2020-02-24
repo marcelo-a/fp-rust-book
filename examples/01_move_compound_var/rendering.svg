@@ -10,12 +10,11 @@
         /* general setup */
 svg {
     background-color: #232323;
-    isolation: isolate;
-    fill: "currentColor";
 }
 
 text {
     fill: #cccccc;
+    vertical-align: baseline;
 }
 
 #heading {
@@ -31,7 +30,6 @@ text {
 text.code {
     white-space: pre;
     font-family: "monospace";
-    dominant-baseline: middle;
 }
 
 /* event related styling */
@@ -125,8 +123,8 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-210" y="80" data-hash="2" text-anchor="middle">y</text>
         <text class="code" x="-240" y="80" data-hash="1" text-anchor="middle">x</text>
+        <text class="code" x="-210" y="80" data-hash="2" text-anchor="middle">y</text>
         <text class="code" x="-180" y="80" data-hash="3" text-anchor="middle">z</text>
     </g>
 

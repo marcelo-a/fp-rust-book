@@ -1,4 +1,4 @@
-use rrt_lib::data::{Event, ExternalEvent, ResourceOwner, Visualizable, VisualizationData};
+use rrt_lib::data::{Event, LifetimeTrait, ResourceOwner, Visualizable, VisualizationData};
 use rrt_lib::svg_frontend::svg_generation;
 use std::collections::BTreeMap;
 // visualization of simple_lifetime/example.rs
@@ -7,7 +7,8 @@ fn main() {
         hash: 1,
         name: String::from("s"),
         is_mut: false,
-        // is_ref: false
+        is_ref: false,
+        lifetime_trait: LifetimeTrait::Copy
     };
     let mut vd = VisualizationData {
         timelines: BTreeMap::new(),
@@ -16,7 +17,6 @@ fn main() {
     //
     // hash s : 1
     //
-    vd.append_external_event(2, ExternalEvent::Acquire{from: None, to: Some(s.clone())});
     vd.append_event(&s, Event::Acquire { from: None }, &(2 as usize));
     vd.append_event(&s, Event::GoOutOfScope, &(3 as usize));
 

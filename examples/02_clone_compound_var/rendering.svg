@@ -39,7 +39,6 @@ text.code {
 
 #eventDot {
     transition: all 0.3s;
-    fill: "currentColor"
 }
 
 /* timeline/event interaction styling */
@@ -126,8 +125,8 @@ text.code {
     <g id="labels">
         <text class="code" x="-210" y="80" data-hash="3" text-anchor="middle">a</text>
         <text class="code" x="-180" y="80" data-hash="4" text-anchor="middle">b</text>
-        <text class="code" x="-270" y="80" data-hash="1" text-anchor="middle">y</text>
         <text class="code" x="-240" y="80" data-hash="2" text-anchor="middle">z</text>
+        <text class="code" x="-270" y="80" data-hash="1" text-anchor="middle">y</text>
     </g>
 
     <g id="events">

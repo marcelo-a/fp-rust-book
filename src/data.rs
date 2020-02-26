@@ -38,6 +38,11 @@ pub struct ResourceOwner {
     pub lifetime_trait: LifetimeTrait,
 }
 
+impl std::string::ToString for ResourceOwner {
+    fn to_string(&self) -> String {
+        self.name.to_owned()
+    }
+}
 
 pub enum ExternalEvent{
     // let binding
@@ -205,6 +210,37 @@ impl std::fmt::Display for State {
             State::Invalid => write!(f, "Invalid"),
             State::ResourceReturned { to: _ } => write!(f, "Resource Returned"),
         }
+    }
+}
+
+
+impl std::fmt::Display for Event {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        let mut from_ro = None;
+        let mut to_ro = None;
+        let mut display = match self {
+            Event::Acquire{ from } => { from_ro = from.to_owned(); "Acquiring resource" },
+            Event::Duplicate{ to } => { to_ro = to.to_owned(); "Copying resource" },
+            Event::Move{ to } => { to_ro = to.to_owned(); "Moving resource" },
+            Event::MutableLend{ to } => { to_ro = to.to_owned(); "Mutable lend" },
+            Event::MutableBorrow{ from } => { from_ro = Some(from.to_owned()); "Fully borrows resource" },
+            Event::MutableReturn{ to } => { to_ro = to.to_owned(); "Fully returns resource"},
+            Event::MutableReacquire{ from } => { from_ro = from.to_owned(); "Fully reacquires resource" },
+            Event::StaticLend{ to } => { to_ro = to.to_owned(); "Partially lends resource" },
+            Event::StaticBorrow{ from } => { from_ro = Some(from.to_owned()); "Partially borrows resource" },
+            Event::StaticReturn{ to } => { to_ro = to.to_owned(); "Partially returns resource"},
+            Event::StaticReacquire{ from } => { from_ro = from.to_owned(); "Partially reacquires resource" },
+            Event::GoOutOfScope => { "Goes out of scope"}
+        }.to_string();
+
+        if let Some(from_ro) = from_ro {
+            display = format!("{} from {}", display, &(from_ro.to_string()));
+        };
+        if let Some(to_ro) = to_ro {
+            display = format!("{} to {}", display, &(to_ro.to_string()));
+        };
+        
+        write!(f, "{}", display)
     }
 }
 

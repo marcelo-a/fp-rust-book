@@ -1,6 +1,6 @@
 extern crate handlebars;
 
-use crate::data::{VisualizationData, Visualizable, Event, State};
+use crate::data::{VisualizationData, Visualizable, Event, State, ResourceOwner};
 use handlebars::Handlebars;
 use std::collections::HashMap;
 use serde::Serialize;
@@ -15,7 +15,7 @@ struct LeftPanelData {
     labels: String,
     dots: String,
     timelines: String,
-    vertical_lines: String,
+    arrows: String,
 }
 #[derive(Serialize)]
 struct ResourceOwnerLabelData {
@@ -61,13 +61,13 @@ pub fn render_left_panel(visualization_data : &VisualizationData) -> String {
     let labels_string = render_labels_string(&resource_owners_layout, &registry);
     let dots_string = render_dots_string(visualization_data, &resource_owners_layout, &registry);
     let timelines_string = render_timelines_string(visualization_data, &resource_owners_layout, &registry);
-    let vertical_lines_string = render_vertical_lines_string(visualization_data, &resource_owners_layout, &registry);
-
+    // let vertical_lines_string = render_vertical_lines_string(visualization_data, &resource_owners_layout, &registry);
+    let arrows_string = render_arrows_string(visualization_data, &resource_owners_layout, &registry);
     let left_panel_data = LeftPanelData {
         labels: labels_string,
         dots: dots_string,
         timelines: timelines_string,
-        vertical_lines: "".to_string() // vertical_lines_string,
+        arrows: arrows_string
     };
 
     registry.render("left_panel_template", &left_panel_data).unwrap()
@@ -81,13 +81,14 @@ fn prepare_registry(registry: &mut Handlebars) {
         "    <g id=\"labels\">\n{{ labels }}    </g>\n\n    \
         <g id=\"events\">\n{{ dots }}    </g>\n\n    \
         <g id=\"timelines\">\n{{ timelines }}    </g>\n\n    \
-        <g id=\"vertical_lines\">\n{{ vertical_lines }}    </g>\n\n";
+        <g id=\"arrows\">\n{{ arrows }}    </g>";
+
     let label_template = 
         "        <text class=\"code\" x=\"{{x_val}}\" y=\"80\" data-hash=\"{{hash}}\" text-anchor=\"middle\">{{name}}</text>\n";
     let dot_template =
         "        <use xlink:href=\"#eventDot\" data-hash=\"{{hash}}\" x=\"{{dot_x}}\" y=\"{{dot_y}}\"/>\n";
     let arrow_template = 
-        "        <polyline strokeWidth=\"2.5\" stroke=\"beige\" points=\"{{x1}},{{y1}} {{x2}},{{y2}} \" marker-end=\"url(#arrowHead)\"/>\n";
+        "        <polyline strokeWidth=\"2.5\" stroke=\"beige\" points=\"{{x2}},{{y2}} {{x1}},{{y1}} \" marker-end=\"url(#arrowHead)\"/>\n";
     let vertical_line_template =
         "        <line data-hash=\"{{hash}}\" class=\"{{line_class}}\" x1=\"{{x1}}\" x2=\"{{x2}}\" y1=\"{{y1}}\" y2=\"{{y2}}\"/>\n";
     let hollow_line_internal_template =
@@ -164,7 +165,9 @@ fn render_dots_string(
     output
 }
 
-fn render_timelines_string(
+// render events involving two RO using an arrow
+
+fn render_arrows_string(
     visualization_data: &VisualizationData,
     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
     registry: &Handlebars
@@ -178,30 +181,47 @@ fn render_timelines_string(
             let ro1_x_pos = resource_owners_layout[hash].x_val;
             let ro1_y_pos = get_y_axis_pos(line_number);
 
-            // arrows
-            match event {
-                Event::Move { to : to_ro2 } => {
-                    if let Some(ro2) = to_ro2 {
-                        let mut data = ArrowData {
-                            x1: ro1_x_pos,
-                            y1: ro1_y_pos,
-                            x2: resource_owners_layout[&ro2.hash].x_val,
-                            y2: ro1_y_pos,
-                        };
-                        if data.x2 < data.x1 {
-                            data.x2 = data.x2 + 10;
-                        }
-                        else {
-                            data.x2 = data.x2 - 10;
-                        }
-                        output.push_str(&registry.render("arrow_template", &data).unwrap());
-                    }
-                    
-                },
-                _ => (),
-            };
-        } 
+            // render arrow only if ro2 give resource to ro1
+            // i.e. ro2 points to ro1
+            let some_ro2 : Option<ResourceOwner> = match event {
+                Event::Acquire { from : from_ro } => from_ro.to_owned(),
+                Event::MutableBorrow { from : from_ro } => Some(from_ro.to_owned()),
+                Event::StaticBorrow { from : from_ro } => Some(from_ro.to_owned()),
+                Event::StaticReacquire { from : from_ro } => from_ro.to_owned(),
+                _ => None,
+                };
+            if let Some(ro2) = some_ro2 {
+                let mut data = ArrowData {
+                    x1: ro1_x_pos,
+                    y1: ro1_y_pos,
+                    x2: resource_owners_layout[&ro2.hash].x_val,
+                    y2: ro1_y_pos,
+                };
+                // adjust arrow head pos
+                if data.x1 < data.x2 {
+                    data.x1 = data.x1 + 10;
+                }
+                else {
+                    data.x1 = data.x1 - 10;
+                }
+                output.push_str(&registry.render("arrow_template", &data).unwrap());
+            }
+        }
+    }
+    output
+}
 
+// render timelines (states) for ROs using vertical lines
+fn render_timelines_string(
+    visualization_data: &VisualizationData,
+    resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+    registry: &Handlebars
+) -> String {
+    let timelines = &visualization_data.timelines;
+    
+    let mut output = String::new();
+    for (hash, _) in timelines{
+        let ro = timelines[hash].resource_owner.to_owned();
         // verticle state lines
         let states = visualization_data.get_states(hash);
         for (line_start, line_end, state) in states.iter() {
@@ -247,45 +267,12 @@ fn render_timelines_string(
                 _ => (),
             }
         }
+    
     }
     output
 }
 
-fn render_vertical_lines_string(
-    visualization_data: &VisualizationData,
-    resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
-    registry: &Handlebars
-) -> String {
-    let timelines = &visualization_data.timelines;
-    let mut output = String::new();
-    
-    for (hash, timeline) in timelines {
-        let ro_x_pos = resource_owners_layout[hash].x_val;
-        for (start_line, end_line, state) in visualization_data.get_states(hash).iter(){
-            let data = VerticalLineData {
-                x1: ro_x_pos,
-                y1: get_y_axis_pos(start_line),
-                x2: ro_x_pos,
-                y2: get_y_axis_pos(end_line),
-                hash: hash.to_owned(),
-                line_class: get_vertical_line_class(state),
-                
-            };
-            output.push_str(&registry.render("vertical_line_template", &data).unwrap());
-        }
-    }
-    output
-}
 
 fn get_y_axis_pos(line_number : &usize) -> i64 {
     (60 + 20 * line_number) as i64
-}
-
-fn get_vertical_line_class(state : &State) -> String {
-    // TODO fix this
-    match state {
-        State::FullPrivilege => "solid".to_string(),
-        State::PartialPrivilege{borrow_count: _, borrow_to: _} => "solid".to_string(),
-        _ => "".to_string(),
-    }
 }

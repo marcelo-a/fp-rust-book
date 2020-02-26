@@ -266,7 +266,7 @@ impl Visualizable for VisualizationData {
             (State::FullPrivilege, Event::StaticLend{to: to_ro}) => 
                 State::PartialPrivilege {
                     borrow_count: 1,
-                    borrow_to: [(to_ro.to_owned().unwrap())].iter().cloned().collect()         // TODO what if to_ro is None?
+                    borrow_to: [(to_ro.to_owned().unwrap())].iter().cloned().collect() // we assume there is no borrow_to:None
                 },
             (_, _) => State::Invalid,
         }

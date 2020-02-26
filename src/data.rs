@@ -22,14 +22,6 @@ pub trait Visualizable {
     fn calc_state(&self, previous_state: & State, event: & Event, event_line: usize, hash: &u64) -> State;
 
     fn get_states(&self, hash: &u64) -> Vec::<(usize, usize, State)>;
-
-    // SVG left panel generation facilities, MIGHT NOT NEED IMPL
-    // // return a timeline for a single resource owner
-    // fn svg_dot_info(&self, hash: &u64) -> Timeline;
-    // // return all timelines
-    // fn svg_dot_info_map(&self) -> HashMap<u64, Vec<SvgLineInfo>>;
-    // // return svg_arrows := {Move, Borrow, Return}
-    // fn svg_arrows_info(&self) -> &Vec<(usize, ExternalEvent)>;
 }
 
 // A ResourceOwner is either a Variable or a Function that
@@ -285,7 +277,7 @@ impl Visualizable for VisualizationData {
             (State::FullPrivilege, Event::StaticLend{ to: to_ro }) =>
                 State::PartialPrivilege {
                     borrow_count: 1,
-                    borrow_to: [(to_ro.to_owned().unwrap())].iter().cloned().collect()         // TODO what if to_ro is None?
+                    borrow_to: [(to_ro.to_owned().unwrap())].iter().cloned().collect() // we assume there is no borrow_to:None
                 },
 
             // (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{to: to_ro}) =>

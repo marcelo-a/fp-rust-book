@@ -1,6 +1,6 @@
 use std::collections::{HashSet, BTreeMap};
 use std::vec::Vec;
-/** 
+/**
  * Basic Data Structure Needed by Lifetime Visualization
  */
 
@@ -14,7 +14,7 @@ pub trait Visualizable {
     // add an event to the Visualizable data structure
     fn append_event(&mut self, resource_owner: &ResourceOwner, event: Event, line_number: &usize);
     // add an ExternalEvent to the Visualizable data structure
-    fn append_external_event(&mut self, line_number: usize, external_event: ExternalEvent); 
+    fn append_external_event(&mut self, line_number: usize, external_event: ExternalEvent);
 
     // if resource_owner with hash is mutable
     fn is_mut(&self, hash: &u64 ) -> bool;
@@ -24,7 +24,7 @@ pub trait Visualizable {
     fn get_states(&self, hash: &u64) -> Vec::<(usize, usize, State)>;
 
     // SVG left panel generation facilities, MIGHT NOT NEED IMPL
-    // // return a timeline for a single resource owner 
+    // // return a timeline for a single resource owner
     // fn svg_dot_info(&self, hash: &u64) -> Timeline;
     // // return all timelines
     // fn svg_dot_info_map(&self) -> HashMap<u64, Vec<SvgLineInfo>>;
@@ -32,7 +32,7 @@ pub trait Visualizable {
     // fn svg_arrows_info(&self) -> &Vec<(usize, ExternalEvent)>;
 }
 
-// A ResourceOwner is either a Variable or a Function that 
+// A ResourceOwner is either a Variable or a Function that
 // have ownership to a memory object, during some stage of
 // a the program execution.
 #[derive(Clone, Hash, PartialEq, Eq)]
@@ -70,7 +70,7 @@ pub enum ExternalEvent{
     Return{
         // return the resource to "to"
         is_mut: bool,
-        from: Option<ResourceOwner>, 
+        from: Option<ResourceOwner>,
         to: Option<ResourceOwner>,
     },
     GoOutOfScope,
@@ -78,20 +78,20 @@ pub enum ExternalEvent{
 
 
 // ASSUMPTION: a reference must return resource before borrow;
-// 
-// An Event describes the acquisition or release of a 
-// resource ownership by a variable on any given line. 
-// There are six types of them. 
+//
+// An Event describes the acquisition or release of a
+// resource ownership by a variable on any given line.
+// There are six types of them.
 pub enum Event {
     // this happens when a variable is initiated, it should obtain
-    // its resource from either another variable or from a 
-    // contructor. 
-    // 
+    // its resource from either another variable or from a
+    // contructor.
+    //
     // E.g. in the case of
     //      let x = Vec::new();
     // x obtained the resource from global resource allocator,
-    // the Acquire Event's "from" variable is None. 
-    // in the case of 
+    // the Acquire Event's "from" variable is None.
+    // in the case of
     //      let y = x;
     // y obtained its value from x, which means that the Acquire
     // Event's "from" variable is x.
@@ -104,7 +104,7 @@ pub enum Event {
     // to another ResourceOwner, or a function.
     //
     // e.g.
-    // 1. x: i32 = y + 15;              here y duplicate to + op, and x acquire from + 
+    // 1. x: i32 = y + 15;              here y duplicate to + op, and x acquire from +
     //                                  at this point, we treat it as y duplicates to None
     // 2. x: MyStruct = y.clone();      here y duplicates to x.
     Duplicate {
@@ -114,11 +114,11 @@ pub enum Event {
     // this happens when a ResourceOwner transfer the ownership of its resource
     // to another ResourceOwner, or if it is no longer used after this line.
     // Typically, this happens at one of the following two cases:
-    // 
-    // 1. variable is not used after this line. 
+    //
+    // 1. variable is not used after this line.
     // 2. variable's resource has the move trait, and it transfered
     //    its ownership on this line. This includes tranfering its
-    //    ownership to a function as well. 
+    //    ownership to a function as well.
     Move {
         to: Option<ResourceOwner>
     },
@@ -183,13 +183,13 @@ pub enum State {
     //          this value is set to 1;
     //      When a new static reference is borrowed from this variable, increment by 1;
     //      When a static reference goes out of scope, decrement this value by 1;
-    //      When a decrement happens while the borrow_count is 1, the state becomes 
-    //          FullPrivilege once again. 
+    //      When a decrement happens while the borrow_count is 1, the state becomes
+    //          FullPrivilege once again.
     PartialPrivilege {
         borrow_count: u32,
         borrow_to: HashSet<ResourceOwner>
     },
-    // temporarily no read or write access right to the resource, but eventually 
+    // temporarily no read or write access right to the resource, but eventually
     // the privilege will come back. Occurs when mutably borrowed
     RevokedPrivilege {
         to: Option<ResourceOwner>,
@@ -216,16 +216,16 @@ impl std::fmt::Display for State {
     }
 }
 
-// a vector of ownership transfer history of a specific variable, 
+// a vector of ownership transfer history of a specific variable,
 // in a sorted order by line number.
 pub struct Timeline {
-    pub resource_owner: ResourceOwner,  
+    pub resource_owner: ResourceOwner,
     // line number in usize
     pub history: Vec<(usize, Event)>,
 }
 
-// VisualizationData supplies all the information we need in the frontend, 
-// from rendering a PNG to px roducing an interactive HTML guide. 
+// VisualizationData supplies all the information we need in the frontend,
+// from rendering a PNG to px roducing an interactive HTML guide.
 // The internal data is simple: a map from variable hash to its Timeline.
 pub struct VisualizationData {
     pub timelines: BTreeMap<u64, Timeline>,
@@ -234,8 +234,8 @@ pub struct VisualizationData {
     pub external_events: Vec<(usize, ExternalEvent)>,
 }
 
-// fulfills the promise that we can support all the methods that a 
-// frontend would need. 
+// fulfills the promise that we can support all the methods that a
+// frontend would need.
 impl Visualizable for VisualizationData {
     fn get_name_from_hash(&self, hash: &u64) -> Option<String> {
         match self.timelines.get(hash) {
@@ -255,19 +255,65 @@ impl Visualizable for VisualizationData {
 
             (State::OutOfScope, Event::Acquire{ from: _ })  => State::FullPrivilege,
 
-            // (State::OutOfScope, Event::StaticBorrow{ from: ro })  => State::PartialPrivilege{  },
+            (State::OutOfScope, Event::StaticBorrow{ from: ro })  =>
+                State::PartialPrivilege {
+                    borrow_count: 1,
+                    borrow_to: [ro.to_owned()].iter().cloned().collect()
+                },
+
+            (State::OutOfScope, Event::MutableBorrow{ from: ro }) => State::FullPrivilege,
+
             (State::OutOfScope, Event::StaticBorrow{ from: _ }) => State::Invalid,
 
-            (State::FullPrivilege, Event::Move{to: to_ro}) => State::ResourceMoved{move_to: to_ro.to_owned(), move_at_line: event_line},
-            
-            (State::FullPrivilege, Event::MutableLend{ to: to_ro }) => 
-                if self.is_mut(hash) { State::FullPrivilege } else { State::Invalid },
-            
-            (State::FullPrivilege, Event::StaticLend{to: to_ro}) => 
+            (State::FullPrivilege, Event::Move{to: to_ro}) => State::ResourceMoved{ move_to: to_ro.to_owned(), move_at_line: event_line },
+
+            (State::FullPrivilege, Event::MutableLend{ to: to_ro }) =>
+                if self.is_mut(hash) { State::RevokedPrivilege{ to: None, borrow_to: to_ro.to_owned() } } else { State::Invalid },
+
+            (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
+                State::RevokedPrivilege {
+                    to: to_ro.to_owned(),
+                    borrow_to: None
+                },
+
+            (State::FullPrivilege, Event::MutableReacquire{ from: ro }) =>
+                State::ResourceReturned { to: ro.to_owned() },
+
+            // (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) =>
+            //         State::ResourceReturned { to: ro.to_owned() },
+
+            (State::FullPrivilege, Event::StaticLend{ to: to_ro }) =>
                 State::PartialPrivilege {
                     borrow_count: 1,
                     borrow_to: [(to_ro.to_owned().unwrap())].iter().cloned().collect()         // TODO what if to_ro is None?
                 },
+
+            // (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{to: to_ro}) =>
+            //     State::RevokedPrivilege {
+            //         to: to_ro.to_owned(),
+            //         borrow_to: None
+            //     },
+
+            (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+
+            (State::PartialPrivilege{ borrow_count: current, borrow_to: _ }, Event::StaticLend{ to: to_ro }) =>
+                State::PartialPrivilege {
+                    borrow_count: current+1,
+                    borrow_to: [(to_ro.to_owned().unwrap())].iter().cloned().collect()
+                },
+
+            (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::RevokedPrivilege {
+                to: None,
+                borrow_to: to_ro.to_owned()
+            },
+
+            (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReacquire{ from: _ }) =>
+                State::FullPrivilege,
+
+            (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::GoOutOfScope) => State::OutOfScope,
+
+            (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: _ }) => State::FullPrivilege,
+
             (_, _) => State::Invalid,
         }
     }
@@ -332,5 +378,5 @@ impl Visualizable for VisualizationData {
         self.external_events.push(
             (line_number, external_event)
         );
-    } 
+    }
 }

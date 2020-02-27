@@ -297,14 +297,18 @@ impl Visualizable for VisualizationData {
             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::RevokedPrivilege {
                 to: None,
                 borrow_to: to_ro.to_owned()
-            },
+                },
 
-            (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReacquire{ from: _ }) =>
-                State::FullPrivilege,
+            (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReacquire{ from: ro }) =>
+                State::ResourceReturned{
+                    to: ro.to_owned()
+                },
 
             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::GoOutOfScope) => State::OutOfScope,
 
-            (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: _ }) => State::FullPrivilege,
+            (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::ResourceReturned{ to: ro.to_owned() },
+
+            (State::ResourceReturned{ to: _ }, _) => State::FullPrivilege,
 
             (_, _) => State::Invalid,
         }

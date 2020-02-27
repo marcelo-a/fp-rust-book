@@ -13,13 +13,8 @@ name = "shared_and_unique_borrow"  #compile with cargo run --example default
 path = "examples/book_04_02_08_shared_and_unique_borrow/main.rs" #Relative path to main.rs of example
 
 [[example]]
-name = "move_with_no_borrow"  #compile with cargo run --example default
-path = "examples/move_with_no_borrow/main.rs" #Relative path to main.rs of example
-
-[[example]]
-name = "sr_borrow"
-path = "examples/book_04_02_08_shared_and_unique_borrow/main.rs"
-
+name = "one_var"  #compile with cargo run --example default
+path = "examples/book_04_02_08_shared_and_unique_borrow/main.rs" #Relative path to main.rs of example
 
 [dependencies]
 handlebars = "3.0.1"

@@ -188,6 +188,7 @@ fn render_arrows_string(
                 Event::MutableBorrow { from : from_ro } => Some(from_ro.to_owned()),
                 Event::StaticBorrow { from : from_ro } => Some(from_ro.to_owned()),
                 Event::StaticReacquire { from : from_ro } => from_ro.to_owned(),
+                Event::MutableReacquire { from: from_ro } => from_ro.to_owned(),
                 _ => None,
                 };
             if let Some(ro2) = some_ro2 {
@@ -255,10 +256,6 @@ fn render_timelines_string(
                     hollow_internal_line_data.y2 -= 5;
                     output.push_str(&registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
                 },
-                (State::RevokedPrivilege{ to: _, borrow_to: _ }, true) => {
-                    data.line_class = String::from("dotted");
-                    output.push_str(&registry.render("vertical_line_template", &data).unwrap());
-                },
                 (State::ResourceReturned{ to: _ }, _) => {
                     data.line_class = String::from("dotted");
                     output.push_str(&registry.render("vertical_line_template", &data).unwrap());
@@ -267,7 +264,7 @@ fn render_timelines_string(
                     data.line_class = String::from("extend");
                     output.push_str(&registry.render("vertical_line_template", &data).unwrap());
                 }
-                // do nothing when the case is (RevokedPriviledge, false), (OutofScope, _), (ResouceMoved, false)
+                // do nothing when the case is (RevokedPrivilege, false), (OutofScope, _), (ResouceMoved, false)
                 _ => (),
             }
         }

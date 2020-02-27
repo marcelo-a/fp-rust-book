@@ -14,7 +14,11 @@ path = "examples/book_04_02_08_shared_and_unique_borrow/main.rs" #Relative path 
 
 [[example]]
 name = "one_var"  #compile with cargo run --example default
-path = "examples/book_04_02_08_shared_and_unique_borrow/main.rs" #Relative path to main.rs of example
+path = "examples/book_04_01_01_one_var/main.rs" #Relative path to main.rs of example
+
+[[example]]
+name = "shadowing"  #compile with cargo run --example default
+path = "examples/03_01_03_shadowing/main.rs" #Relative path to main.rs of example
 
 [dependencies]
 handlebars = "3.0.1"

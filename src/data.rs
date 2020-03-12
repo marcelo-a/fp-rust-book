@@ -34,7 +34,7 @@ pub struct ResourceOwner {
     // whether the variable itself is mutable
     pub is_mut: bool,
     pub is_ref: bool,
-    // pub is_fun: bool,
+    pub is_func: bool,
     pub lifetime_trait: LifetimeTrait,
 }
 
@@ -101,7 +101,6 @@ pub enum Event {
     // 2. x: MyStruct = y.clone();      here y duplicates to x.
     Duplicate {
         to: Option<ResourceOwner>
-
     },
     // this happens when a ResourceOwner transfer the ownership of its resource
     // to another ResourceOwner, or if it is no longer used after this line.
@@ -145,7 +144,6 @@ pub enum Event {
 
 // Trait of a resource owner that might impact the way lifetime visualization
 // behaves
-
 #[derive(Hash, PartialEq, Eq, Clone)]
 pub enum LifetimeTrait {
     Copy,
@@ -280,12 +278,6 @@ impl Visualizable for VisualizationData {
                     borrow_to: [(to_ro.to_owned().unwrap())].iter().cloned().collect() // we assume there is no borrow_to:None
                 },
 
-            // (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{to: to_ro}) =>
-            //     State::RevokedPrivilege {
-            //         to: to_ro.to_owned(),
-            //         borrow_to: None
-            //     },
-
             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
 
             (State::PartialPrivilege{ borrow_count: current, borrow_to: _ }, Event::StaticLend{ to: to_ro }) =>
@@ -309,6 +301,14 @@ impl Visualizable for VisualizationData {
             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::ResourceReturned{ to: ro.to_owned() },
 
             (State::ResourceReturned{ to: _ }, _) => State::FullPrivilege,
+
+            // (State::OutOfScope, Event::Duplicate { to: ro }) =>
+            //     if self.is_mut(hash) { State::FullPrivilege }
+            //     else { State::PartialPrivilege{ borrow_count: 0,
+            //             borrow_to: ro.to_owned() }
+            //     },
+
+             // State::FullPrivilege,
 
             (_, _) => State::Invalid,
         }

@@ -4,6 +4,7 @@ use crate::data::{VisualizationData, Visualizable, Event, State, ResourceOwner};
 use handlebars::Handlebars;
 use std::collections::HashMap;
 use serde::Serialize;
+use std::cmp;
 
 struct TimelineColumnData {
     name: String,
@@ -116,15 +117,16 @@ fn prepare_registry(registry: &mut Handlebars) {
 // Returns: a hashmap from the hash of the ResourceOwner to its Column information
 fn compute_column_layout<'a>(visualization_data: &'a VisualizationData) -> HashMap<&'a u64, TimelineColumnData> {
     let mut resource_owners_layout = HashMap::new();
-    let mut x : i64 = -40;                   // Right-most Column x-offset.
-    let x_space = 30;                   // for every new ResourceOwner, move 30 px to the left
+    let mut x : i64 = -10;                   // Right-most Column x-offset.
+    // let x_space = 30;                   // for every new ResourceOwner, move 30 px to the left
     for (hash, _) in visualization_data.timelines.iter().rev() {
         let name = match visualization_data.get_name_from_hash(hash) {
             Some(_name) => _name,
             None => panic!("no matching resource owner for hash {}", hash),
         };
-        resource_owners_layout.insert(hash, TimelineColumnData{ name, x_val: x });
+        let x_space = cmp::max(30, (&(name.len() as i64)-1)*10);
         x = x - x_space;
+        resource_owners_layout.insert(hash, TimelineColumnData{ name: name.clone(), x_val: x });
     }
     resource_owners_layout
 }
@@ -188,6 +190,7 @@ fn render_arrows_string(
                 Event::MutableBorrow { from : from_ro } => Some(from_ro.to_owned()),
                 Event::StaticBorrow { from : from_ro } => Some(from_ro.to_owned()),
                 Event::StaticReacquire { from : from_ro } => from_ro.to_owned(),
+                Event::MutableReacquire { from: from_ro } => from_ro.to_owned(),
                 _ => None,
                 };
             if let Some(ro2) = some_ro2 {
@@ -255,10 +258,6 @@ fn render_timelines_string(
                     hollow_internal_line_data.y2 -= 5;
                     output.push_str(&registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
                 },
-                (State::RevokedPrivilege{ to: _, borrow_to: _ }, true) => {
-                    data.line_class = String::from("dotted");
-                    output.push_str(&registry.render("vertical_line_template", &data).unwrap());
-                },
                 (State::ResourceReturned{ to: _ }, _) => {
                     data.line_class = String::from("dotted");
                     output.push_str(&registry.render("vertical_line_template", &data).unwrap());
@@ -267,7 +266,7 @@ fn render_timelines_string(
                     data.line_class = String::from("extend");
                     output.push_str(&registry.render("vertical_line_template", &data).unwrap());
                 }
-                // do nothing when the case is (RevokedPriviledge, false), (OutofScope, _), (ResouceMoved, false)
+                // do nothing when the case is (RevokedPrivilege, false), (OutofScope, _), (ResouceMoved, false)
                 _ => (),
             }
         }

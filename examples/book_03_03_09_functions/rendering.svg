@@ -15,6 +15,7 @@ svg {
 text {
     fill: #cccccc;
     vertical-align: baseline;
+    text-anchor: start;
 }
 
 #heading {
@@ -106,9 +107,9 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-130" y="80" data-hash="2" text-anchor="middle">plus_one()</text>
-        <text class="code" x="-160" y="80" data-hash="1" text-anchor="middle">x</text>
-        <text class="code" x="-40" y="80" data-hash="3" text-anchor="middle">x</text>
+        <text class="code" x="-160" y="80" data-hash="1">x</text>
+        <text class="code" x="-40" y="80" data-hash="3">x</text>
+        <text class="code" x="-130" y="80" data-hash="2">plus_one()</text>
     </g>
 
     <g id="events">

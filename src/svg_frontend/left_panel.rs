@@ -85,7 +85,7 @@ fn prepare_registry(registry: &mut Handlebars) {
         <g id=\"arrows\">\n{{ arrows }}    </g>";
 
     let label_template =
-        "        <text class=\"code\" x=\"{{x_val}}\" y=\"80\" data-hash=\"{{hash}}\" text-anchor=\"middle\">{{name}}</text>\n";
+        "        <text class=\"code\" x=\"{{x_val}}\" y=\"80\" data-hash=\"{{hash}}\">{{name}}</text>\n";
     let dot_template =
         "        <use xlink:href=\"#eventDot\" data-hash=\"{{hash}}\" x=\"{{dot_x}}\" y=\"{{dot_y}}\"/>\n";
     let arrow_template =

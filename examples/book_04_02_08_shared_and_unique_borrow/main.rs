@@ -10,6 +10,7 @@ fn main() {
         name: String::from("s"),
         is_mut: true,
         is_ref: false,
+        is_func: false,
         lifetime_trait: LifetimeTrait::Move,
     };
     let r1 = ResourceOwner {
@@ -17,6 +18,7 @@ fn main() {
         name: String::from("r1"),
         is_mut: false,
         is_ref: true,
+        is_func: false,
         lifetime_trait: LifetimeTrait::None,
     };
     let r2 = ResourceOwner {
@@ -24,6 +26,7 @@ fn main() {
         name: String::from("r2"),
         is_mut: false,
         is_ref: true,
+        is_func: false,
         lifetime_trait: LifetimeTrait::None,
     };
     let r3 = ResourceOwner {
@@ -31,6 +34,7 @@ fn main() {
         name: String::from("r3"),
         is_mut: false,
         is_ref: true,
+        is_func: false,
         lifetime_trait: LifetimeTrait::None,
     };
     let mut vd = VisualizationData {

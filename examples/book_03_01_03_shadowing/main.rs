@@ -7,22 +7,25 @@ fn main() {
     let x = ResourceOwner {
         hash: 1,
         name: String::from("x"),
-        is_mut: true,
-        is_ref: true,
+        is_mut: false,
+        is_ref: false,
+        is_func: false,
         lifetime_trait: LifetimeTrait::None,
     };
     let x1 = ResourceOwner {
         hash: 2,
         name: String::from("x"),
         is_mut: false,
-        is_ref: true,
+        is_ref: false,
+        is_func: false,
         lifetime_trait: LifetimeTrait::Copy,
     };
     let x2 = ResourceOwner {
         hash: 3,
         name: String::from("x"),
         is_mut: false,
-        is_ref: true,
+        is_ref: false,
+        is_func: false,
         lifetime_trait: LifetimeTrait::Copy,
     };
     let mut vd = VisualizationData {
@@ -46,5 +49,5 @@ fn main() {
     vd.append_event(&x2, Event::GoOutOfScope, &(9 as usize));
 
     //rendering image
-    svg_generation::render_svg(&"03_01_03_shadowing".to_owned(), &vd);
+    svg_generation::render_svg(&"book_03_01_03_shadowing".to_owned(), &vd);
 }

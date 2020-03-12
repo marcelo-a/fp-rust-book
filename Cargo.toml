@@ -20,6 +20,10 @@ path = "examples/book_04_01_01_one_var/main.rs" #Relative path to main.rs of exa
 name = "shadowing"  #compile with cargo run --example default
 path = "examples/book_03_01_03_shadowing/main.rs" #Relative path to main.rs of example
 
+[[example]]
+name = "functions"  #compile with cargo run --example default
+path = "examples/book_03_03_09_functions/main.rs" #Relative path to main.rs of example
+
 [dependencies]
 handlebars = "3.0.1"
 serde = { version = "1.0", features = ["derive"] }

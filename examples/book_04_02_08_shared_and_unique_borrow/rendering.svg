@@ -92,7 +92,7 @@ text.code {
         <!-- Useful constructs -->
         <circle id="eventDot" cx="0" cy="0" r="5"/>
         <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5"
+            refX="1" refY="5" 
             markerUnits="strokeWidth"
             markerWidth="10" markerHeight="10"
             orient="auto" fill="beige">
@@ -106,10 +106,10 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-40" y="80" data-hash="4" text-anchor="middle">r3</text>
-        <text class="code" x="-130" y="80" data-hash="1" text-anchor="middle">s</text>
         <text class="code" x="-100" y="80" data-hash="2" text-anchor="middle">r1</text>
+        <text class="code" x="-40" y="80" data-hash="4" text-anchor="middle">r3</text>
         <text class="code" x="-70" y="80" data-hash="3" text-anchor="middle">r2</text>
+        <text class="code" x="-130" y="80" data-hash="1" text-anchor="middle">s</text>
     </g>
 
     <g id="events">
@@ -177,5 +177,5 @@ text.code {
         <text class="code" x="0" y="300"> } </text>
     </g>
 
-
+   
 </svg>

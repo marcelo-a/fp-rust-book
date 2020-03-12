@@ -122,10 +122,10 @@ pub enum Event {
     MutableLend {
         to: Option<ResourceOwner>
     },
-    MutableBorrow{
+    MutableBorrow {
         from: ResourceOwner
     },
-    MutableReturn{
+    MutableReturn {
         to: Option<ResourceOwner>
     },
     MutableReacquire {
@@ -134,10 +134,10 @@ pub enum Event {
     StaticLend {
         to: Option<ResourceOwner>
     },
-    StaticBorrow{
+    StaticBorrow {
         from: ResourceOwner
     },
-    StaticReturn{
+    StaticReturn {
         to: Option<ResourceOwner>
     },
     StaticReacquire {
@@ -401,10 +401,19 @@ impl Visualizable for VisualizationData {
         }
     }
 
-    // TODO IMPLEMENT
-    fn append_external_event(&mut self, line_number: usize, external_event: ExternalEvent){
-        self.external_events.push(
-            (line_number, external_event)
-        );
+    // append two events (lend + borrow)
+    fn append_borrow(
+        &mut self, 
+        resource_owner_from: &ResourceOwner, 
+        resource_owner_to: &ResourceOwner,
+        line_number: &usize,
+        is_unique: bool,
+    ) {
+
+        
     }
+
+    // append two events (lend + borrow)
+
+
 }

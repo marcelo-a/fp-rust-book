@@ -4,8 +4,7 @@ use std::collections::BTreeMap;
 // visualization of simple_lifetime/example.rs
 fn main() {
     let s = ResourceOwner {
-        is_func: false,
-        hash: 1,
+        hash: 4,
         name: String::from("s"),
         is_mut: false,
         is_ref: false,
@@ -19,8 +18,8 @@ fn main() {
     //
     // hash s : 1
     //
-    vd.append_event(&s, Event::Acquire { from: None }, &(2 as usize));
-    vd.append_event(&s, Event::GoOutOfScope, &(3 as usize));
+    vd.append_event(&s, Event::Acquire { from: None }, &(3 as usize));
+    vd.append_event(&s, Event::GoOutOfScope, &(6 as usize));
 
-    svg_generation::render_svg(&"book_04_01_01_one_var".to_owned(), &vd);
+    svg_generation::render_svg(&"book_04_01_02".to_owned(), &vd);
 }

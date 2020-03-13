@@ -10,7 +10,7 @@ path = "src/lib.rs"
 
 [[example]]
 name = "shared_and_unique_borrow"  #compile with cargo run --example default
-path = "examples/book_04_02_08_shared_and_unique_borrow/main.rs" #Relative path to main.rs of example
+path = "examples/book_04_02_09_shared_and_unique_borrow/main.rs" #Relative path to main.rs of example
 
 [[example]]
 name = "one_var"  #compile with cargo run --example default

@@ -1,4 +1,4 @@
-use std::collections::{HashSet, BTreeMap};
+ use std::collections::{HashSet, BTreeMap, HashMap};
 use std::vec::Vec;
 /**
  * Basic Data Structure Needed by Lifetime Visualization
@@ -12,10 +12,15 @@ pub trait Visualizable {
     // returns Noneappend_event if the hash does not exist
     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State>;
     // add an event to the Visualizable data structure
-    fn append_event(&mut self, resource_owner: &ResourceOwner, event: Event, line_number: &usize);
-    // add an ExternalEvent to the Visualizable data structure
-    fn append_external_event(&mut self, line_number: usize, external_event: ExternalEvent);
-
+    fn append_event(&mut self, variable: &Variable, event: Event, line_number: &usize);
+    // append a borrow and a lend event
+    fn append_borrow(
+        &mut self, 
+        resource_owner_from: &ResourceOwner, 
+        resource_owner_to: &ResourceOwner,
+        line_number: &usize,
+        is_mut: bool, // if is a mutable borrow
+    );
     // if resource_owner with hash is mutable
     fn is_mut(&self, hash: &u64 ) -> bool;
 
@@ -28,19 +33,42 @@ pub trait Visualizable {
 // have ownership to a memory object, during some stage of
 // a the program execution.
 #[derive(Clone, Hash, PartialEq, Eq)]
-pub struct ResourceOwner {
+pub struct Function {
+    pub hash: u64,
+    pub name: String,
+}
+#[derive(Clone, Hash, PartialEq, Eq)]
+pub struct Variable {
     pub hash: u64,
     pub name: String,
     // whether the variable itself is mutable
     pub is_mut: bool,
     pub is_ref: bool,
-    pub is_func: bool,
     pub lifetime_trait: LifetimeTrait,
 }
+#[derive(Clone, Hash, PartialEq, Eq)]
+pub enum ResourceOwner {
+    Variable(Variable),
+    Function(Function),
+}
 
+
+impl ResourceOwner {
+    pub fn get_hash(&self) -> &u64 {
+        match self {
+            ResourceOwner::Variable(Variable) => &Variable.hash,
+            ResourceOwner::Function(Function) => &Function.hash,
+        }
+    }
+}
+
+// return the name of the ResourceOwner
 impl std::string::ToString for ResourceOwner {
     fn to_string(&self) -> String {
-        self.name.to_owned()
+        match self {
+            ResourceOwner::Variable(Variable) => Variable.name.to_owned(),
+            ResourceOwner::Function(Function) => Function.name.to_owned(),
+        }
     }
 }
 
@@ -94,7 +122,7 @@ pub enum Event {
     // Event's "from" variable is x.
     // TODO do we need mut/static_acquire for get_state?
     Acquire {
-        from: Option<ResourceOwner>
+        from: Option<&ResourceOwner>
     },
     // this happens when a ResourceOwner implements copy trait or
     // explicitly calls .clone() function
@@ -105,7 +133,7 @@ pub enum Event {
     //                                  at this point, we treat it as y duplicates to None
     // 2. x: MyStruct = y.clone();      here y duplicates to x.
     Duplicate {
-        to: Option<ResourceOwner>
+        to: Option<&ResourceOwner>
     },
     // this happens when a ResourceOwner transfer the ownership of its resource
     // to another ResourceOwner, or if it is no longer used after this line.
@@ -116,31 +144,31 @@ pub enum Event {
     //    its ownership on this line. This includes tranfering its
     //    ownership to a function as well.
     Move {
-        to: Option<ResourceOwner>
+        to: Option<&ResourceOwner>
     },
     MutableLend {
-        to: Option<ResourceOwner>
+        to: Option<&ResourceOwner>
     },
     MutableBorrow {
-        from: ResourceOwner
+        from: &ResourceOwner
     },
     MutableReturn {
-        to: Option<ResourceOwner>
+        to: Option<&ResourceOwner>
     },
     MutableReacquire {
-        from: Option<ResourceOwner>
+        from: Option<&ResourceOwner>
     },
     StaticLend {
-        to: Option<ResourceOwner>
+        to: Option<&ResourceOwner>
     },
     StaticBorrow {
-        from: ResourceOwner
+        from: &ResourceOwner
     },
     StaticReturn {
-        to: Option<ResourceOwner>
+        to: Option<&ResourceOwner>
     },
     StaticReacquire {
-        from: Option<ResourceOwner>
+        from: Option<&ResourceOwner>
     },
     // this happens when a variable is returned this line,
     // or if this variable's scope ends at this line.
@@ -165,7 +193,7 @@ pub enum State {
     // The resource is transferred on this line or before this line,
     // thus it is impossible to access this variable anymore.
     ResourceMoved {
-        move_to: Option<ResourceOwner>,
+        move_to: Option<&ResourceOwner>,
         move_at_line: usize
     },
     // This ResourceOwner is the unique object that holds the ownership to the underlying resource.
@@ -182,18 +210,18 @@ pub enum State {
     //          FullPrivilege once again.
     PartialPrivilege {
         borrow_count: u32,
-        borrow_to: HashSet<ResourceOwner>
+        borrow_to: HashSet<&ResourceOwner>
     },
     // temporarily no read or write access right to the resource, but eventually
     // the privilege will come back. Occurs when mutably borrowed
     RevokedPrivilege {
-        to: Option<ResourceOwner>,
-        borrow_to: Option<ResourceOwner>,
+        to: Option<&ResourceOwner>,
+        borrow_to: Option<&ResourceOwner>,
     },
     // should not appear for visualization in a correct program
     Invalid,
     ResourceReturned {
-        to: Option<ResourceOwner>,
+        to: Option<&ResourceOwner>,
     }
 }
 
@@ -245,7 +273,8 @@ impl std::fmt::Display for Event {
 // a vector of ownership transfer history of a specific variable, 
 // in a sorted order by line number.
 pub struct Timeline {
-    pub resource_owner: ResourceOwner,
+    pub variable: &Variable,    // a reference of a Variable or a (TODO) Reference, 
+                                // since Functions don't have a timeline 
     // line number in usize
     pub history: Vec<(usize, Event)>,
 }
@@ -254,10 +283,13 @@ pub struct Timeline {
 // from rendering a PNG to px roducing an interactive HTML guide.
 // The internal data is simple: a map from variable hash to its Timeline.
 pub struct VisualizationData {
+    // resource_owner_map: hash -> (Variable) OR (TODO ref) OR (Function)
+    pub resource_owner_map: HashMap<u64, ResourceOwner>,
+    // When displaying all timelines in the frontend of choice, one should
+    // consider picking a hash function that gives the BTreeMap a sensible order.
+    //      timelines: an orderred map from a Variable's hash to 
+    //      the Variable's Timeline.
     pub timelines: BTreeMap<u64, Timeline>,
-    // line_number, event
-    // for svg arrows
-    pub external_events: Vec<(usize, ExternalEvent)>,
 }
 
 // fulfills the promise that we can support all the methods that a
@@ -265,14 +297,14 @@ pub struct VisualizationData {
 impl Visualizable for VisualizationData {
     fn get_name_from_hash(&self, hash: &u64) -> Option<String> {
         match self.timelines.get(hash) {
-            Some(timeline) => Some(timeline.resource_owner.name.to_owned()),
+            Some(timeline) => Some(timeline.variable.name.to_owned()),
             _ => None
         }
     }
 
     // if the ResourceOwner is declared mutable
     fn is_mut(&self, hash: &u64 ) -> bool {
-        self.timelines[hash].resource_owner.is_mut
+        self.timelines[hash].variable.is_mut
     }
 
     fn calc_state(&self, previous_state: & State, event: & Event, event_line: usize, hash: &u64) -> State {
@@ -376,15 +408,16 @@ impl Visualizable for VisualizationData {
     }
 
 
-    // add event using (internal) events
-    fn append_event(&mut self, resource_owner: &ResourceOwner, event: Event, line_number: &usize) {
-        let hash = &resource_owner.hash;
+    // add event to timeline using (internal) events;
+    // functions do not have timeline
+    fn append_event(&mut self, variable: &Variable, event: Event, line_number: &usize) {
+        let hash = &variable.hash;
         // if this event belongs to a new ResourceOwner hash,
         // create a new Timeline first, thenResourceOwner bind it to the corresponding hash.
         match self.timelines.get(hash) {
             None => {
                 let timeline = Timeline {
-                    resource_owner: resource_owner.clone(),
+                    variable: variable.clone(),
                     history: Vec::new(),
                 };
                 self.timelines.insert(*hash, timeline);
@@ -405,19 +438,37 @@ impl Visualizable for VisualizationData {
         }
     }
 
-    // append two events (lend + borrow)
+    // append two events (lend + borrow) on the same line
     fn append_borrow(
         &mut self, 
         resource_owner_from: &ResourceOwner, 
         resource_owner_to: &ResourceOwner,
         line_number: &usize,
-        is_unique: bool,
+        is_mut: bool, // if is a mutable borrow
     ) {
-
+        // let hash_from = &resource_owner_from.get_hash();
+        // let hash_to = &resource_owner_to.get_hash();
+        // if let ResourceOwner::Variable(Variable) = resource_owner_from {
+        //     let borrow_event = match is_mut {
+        //         true => Event::MutableBorrow { from: resource_owner_from.to_owned() },
+        //         false => Event::StaticBorrow { from: resource_owner_from.to_owned() }
+        //     };
+        //     self.append_event(resource_owner_from, borrow_event, line_number);
+        // };
         
+        // let lend_event = match is_mut {
+        //     true => Event::MutableLend { to: Some(resource_owner_to.to_owned()) },
+        //     false => Event::StaticLend { to: Some(resource_owner_to.to_owned()) }
+        // };
+        // self.append_event(resource_owner_from, lend_event, line_number);       
     }
 
-    // append two events (lend + borrow)
+    // append two events (return + reacquire)
+}
 
-
+impl VisualizationData<'a> {
+    fn create_resource_owner(&mut self, ro: ResourceOwner) -> &'a ResourceOwner {
+        self.resource_owner_map.entry(ro.get_hash()).or_insert(ro);
+        self.resource_owner_map.get(ro.get_hash())
+    }
 }

@@ -178,7 +178,7 @@ fn render_arrows_string(
 
     let mut output = String::new();
     for (hash, timeline) in timelines {
-        let ro = timelines[hash].resource_owner.to_owned();
+        let ro = timelines[hash].variable.to_owned();
         for (line_number, event) in timeline.history.iter() {
             let ro1_x_pos = resource_owners_layout[hash].x_val;
             let ro1_y_pos = get_y_axis_pos(line_number);
@@ -197,7 +197,7 @@ fn render_arrows_string(
                 let mut data = ArrowData {
                     x1: ro1_x_pos,
                     y1: ro1_y_pos,
-                    x2: resource_owners_layout[&ro2.hash].x_val,
+                    x2: resource_owners_layout[&ro2.get_hash()].x_val,
                     y2: ro1_y_pos,
                 };
                 // adjust arrow head pos
@@ -224,7 +224,7 @@ fn render_timelines_string(
 
     let mut output = String::new();
     for (hash, _) in timelines{
-        let ro = timelines[hash].resource_owner.to_owned();
+        let ro = timelines[hash].variable.to_owned();
         // verticle state lines
         let states = visualization_data.get_states(hash);
         for (line_start, line_end, state) in states.iter() {

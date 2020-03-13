@@ -1,0 +1,32 @@
+nav {
+    position: absolute;
+    top:-11px;
+}
+
+ul {
+    position: relative;
+}
+nav li {
+    display:inline;
+}
+nav a {
+    display:inline-block;
+    visibility: hidden;
+    padding-right:5px;
+    text-decoration:none;
+    color: white;
+}
+ul li:hover a {
+    visibility:visible;
+}
+<svg width="511" height="15">
+  <rect fill="#555555" height="15" stroke="#000000" width="510"></rect>
+  <rect class="bar" x="2" y="2" width="434" height="11" fill="#97C115" data-label="Test-Label"></rect>
+</svg>
+<nav>
+  <ul>
+   <li><a href="123">text_one</a></li>
+   <li><a href="456">text_two</a></li>
+   <li><a href="789">text_three</a></li>
+  </ul>
+</nav>

@@ -4,6 +4,7 @@ use std::collections::BTreeMap;
 // visualization of simple_lifetime/example.rs
 fn main() {
     let s = ResourceOwner {
+        is_func: false,
         hash: 1,
         name: String::from("s"),
         is_mut: false,

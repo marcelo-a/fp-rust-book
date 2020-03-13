@@ -14,7 +14,7 @@ pub trait Visualizable {
     // add an event to the Visualizable data structure
     fn append_event(&mut self, resource_owner: &ResourceOwner, event: Event, line_number: &usize);
     // add an ExternalEvent to the Visualizable data structure
-    fn append_external_event(&mut self, line_number: usize, external_event: ExternalEvent);
+    // fn append_external_event(&mut self, line_number: usize, external_event: ExternalEvent);
 
     // if resource_owner with hash is mutable
     fn is_mut(&self, hash: &u64 ) -> bool;
@@ -406,16 +406,16 @@ impl Visualizable for VisualizationData {
     }
 
     // append two events (lend + borrow)
-    fn append_borrow(
-        &mut self, 
-        resource_owner_from: &ResourceOwner, 
-        resource_owner_to: &ResourceOwner,
-        line_number: &usize,
-        is_unique: bool,
-    ) {
+    // fn append_borrow(
+    //     &mut self, 
+    //     resource_owner_from: &ResourceOwner, 
+    //     resource_owner_to: &ResourceOwner,
+    //     line_number: &usize,
+    //     is_unique: bool,
+    // ) {
 
         
-    }
+    // }
 
     // append two events (lend + borrow)
 

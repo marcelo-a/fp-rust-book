@@ -237,12 +237,12 @@ impl std::fmt::Display for Event {
         if let Some(to_ro) = to_ro {
             display = format!("{} to {}", display, &(to_ro.to_string()));
         };
-        
+
         write!(f, "{}", display)
     }
 }
 
-// a vector of ownership transfer history of a specific variable, 
+// a vector of ownership transfer history of a specific variable,
 // in a sorted order by line number.
 pub struct Timeline {
     pub resource_owner: ResourceOwner,
@@ -338,11 +338,8 @@ impl Visualizable for VisualizationData {
 
             (State::ResourceReturned{ to: _ }, _) => State::FullPrivilege,
 
-            // (State::OutOfScope, Event::Duplicate { to: ro }) =>
-            //     if self.is_mut(hash) { State::FullPrivilege }
-            //     else { State::PartialPrivilege{ borrow_count: 0,
-            //             borrow_to: ro.to_owned() }
-            //     },
+            (_, Event::Duplicate { to: ro }) =>
+                (*previous_state).clone(),
 
              // State::FullPrivilege,
 
@@ -407,14 +404,14 @@ impl Visualizable for VisualizationData {
 
     // append two events (lend + borrow)
     // fn append_borrow(
-    //     &mut self, 
-    //     resource_owner_from: &ResourceOwner, 
+    //     &mut self,
+    //     resource_owner_from: &ResourceOwner,
     //     resource_owner_to: &ResourceOwner,
     //     line_number: &usize,
     //     is_unique: bool,
     // ) {
 
-        
+
     // }
 
     // append two events (lend + borrow)

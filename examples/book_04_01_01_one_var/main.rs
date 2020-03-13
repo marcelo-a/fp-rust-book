@@ -4,13 +4,12 @@ use std::collections::BTreeMap;
 // visualization of simple_lifetime/example.rs
 fn main() {
     let s = ResourceOwner {
-        is_func: false,
         hash: 1,
         name: String::from("s"),
         is_mut: false,
         is_ref: false,
         is_func: false,
-        lifetime_trait: LifetimeTrait::Copy
+        lifetime_trait: LifetimeTrait::None
     };
     let mut vd = VisualizationData {
         timelines: BTreeMap::new(),

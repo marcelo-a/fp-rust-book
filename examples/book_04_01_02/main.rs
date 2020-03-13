@@ -9,7 +9,7 @@ fn main() {
         is_mut: false,
         is_ref: false,
         is_func: false,
-        lifetime_trait: LifetimeTrait::Copy
+        lifetime_trait: LifetimeTrait::None
     };
     let mut vd = VisualizationData {
         timelines: BTreeMap::new(),

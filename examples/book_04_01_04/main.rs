@@ -9,7 +9,7 @@ fn main() {
         is_mut: true,
         is_ref: false,
         is_func: false,
-        lifetime_trait: LifetimeTrait::Copy
+        lifetime_trait: LifetimeTrait::None
     };
     let mut vd = VisualizationData {
         timelines: BTreeMap::new(),
@@ -19,7 +19,7 @@ fn main() {
     // hash s : 1
     //
     vd.append_event(&s, Event::Acquire { from: None }, &(2 as usize));
-    vd.append_event(&s, Event::GoOutOfScope, &(6 as usize));
+    vd.append_event(&s, Event::GoOutOfScope, &(7 as usize));
 
     svg_generation::render_svg(&"book_04_01_04".to_owned(), &vd);
 }

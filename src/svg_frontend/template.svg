@@ -14,7 +14,7 @@
         <marker id="arrowHead" viewBox="0 0 10 10"
             refX="1" refY="5" 
             markerUnits="strokeWidth"
-            markerWidth="10" markerHeight="10"
+            markerWidth="3px" markerHeight="3px"
             orient="auto" fill="beige">
             <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
         </marker>

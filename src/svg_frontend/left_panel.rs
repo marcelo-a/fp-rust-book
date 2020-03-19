@@ -83,16 +83,16 @@ fn prepare_registry(registry: &mut Handlebars) {
 
     let left_panel_template =
         "    <g id=\"labels\">\n{{ labels }}    </g>\n\n    \
-        <g id=\"events\">\n{{ dots }}    </g>\n\n    \
         <g id=\"timelines\">\n{{ timelines }}    </g>\n\n    \
-        <g id=\"arrows\">\n{{ arrows }}    </g>";
+        <g id=\"arrows\">\n{{ arrows }}    </g>\n\n    \
+        <g id=\"events\">\n{{ dots }}    </g>";
 
     let label_template =
         "        <text class=\"code\" x=\"{{x_val}}\" y=\"80\" data-hash=\"{{hash}}\" text-anchor=\"middle\">{{name}}</text>\n";
     let dot_template =
         "        <use xlink:href=\"#eventDot\" data-hash=\"{{hash}}\" x=\"{{dot_x}}\" y=\"{{dot_y}}\"><title>{{title}}</title></use>\n";
     let arrow_template =
-        "        <polyline stroke-width=\"3\" stroke=\"beige\" points=\"{{x2}},{{y2}} {{x1}},{{y1}} \" marker-end=\"url(#arrowHead)\"><title>{{title}}</title></polyline>\n";
+        "        <polyline stroke-width=\"2.5\" stroke=\"beige\" points=\"{{x2}},{{y2}} {{x1}},{{y1}} \" marker-end=\"url(#arrowHead)\"><title>{{title}}</title></polyline>\n";
     let vertical_line_template =
         "        <line data-hash=\"{{hash}}\" class=\"{{line_class}}\" x1=\"{{x1}}\" x2=\"{{x2}}\" y1=\"{{y1}}\" y2=\"{{y2}}\"><title>{{title}}</title></line>\n";
     let hollow_line_internal_template =
@@ -215,10 +215,10 @@ fn render_arrows_string(
                 };
                 // adjust arrow head pos
                 if data.x1 < data.x2 {
-                    data.x1 = data.x1 + 5;
+                    data.x1 = data.x1 + 10;
                 }
                 else {
-                    data.x1 = data.x1 - 5;
+                    data.x1 = data.x1 - 10;
                 }
                 output.push_str(&registry.render("arrow_template", &data).unwrap());
             }

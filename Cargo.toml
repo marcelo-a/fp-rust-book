@@ -18,16 +18,24 @@ name = "functions"
 path = "examples/book_03_03_09_functions/main.rs"
 
 [[example]]
+name = "one_var"
+path = "examples/book_04_01_01_one_var/main.rs"
+
+[[example]]
 name = "book_04_01_02"
 path = "examples/book_04_01_02/main.rs"
+
+[[example]]
+name = "book_04_01_04"
+path = "examples/book_04_01_04/main.rs"
 
 [[example]]
 name = "simple_scope"
 path = "examples/book_04_01_05_simple_scope/main.rs"
 
 [[example]]
-name = "one_var"
-path = "examples/book_04_01_01_one_var/main.rs"
+name = "book_04_01_09"
+path = "examples/book_04_01_09/main.rs"
 
 [[example]]
 name = "shared_and_unique_borrow"

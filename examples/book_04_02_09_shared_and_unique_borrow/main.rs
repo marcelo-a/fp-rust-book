@@ -75,5 +75,5 @@ fn main() {
     vd.append_event(&r3, Event::GoOutOfScope, &(12 as usize));
 
     //rendering image
-    svg_generation::render_svg(&"book_04_02_08_shared_and_unique_borrow".to_owned(), &vd);
+    svg_generation::render_svg(&"book_04_02_09_shared_and_unique_borrow".to_owned(), &vd);
 }

@@ -14,7 +14,7 @@ pub trait Visualizable {
     // add an event to the Visualizable data structure
     fn append_event(&mut self, resource_owner: &ResourceOwner, event: Event, line_number: &usize);
     // add an ExternalEvent to the Visualizable data structure
-    fn append_external_event(&mut self, line_number: usize, external_event: ExternalEvent);
+    // fn append_external_event(&mut self, line_number: usize, external_event: ExternalEvent);
 
     // if resource_owner with hash is mutable
     fn is_mut(&self, hash: &u64 ) -> bool;
@@ -38,6 +38,11 @@ pub struct ResourceOwner {
     pub lifetime_trait: LifetimeTrait,
 }
 
+impl std::string::ToString for ResourceOwner {
+    fn to_string(&self) -> String {
+        self.name.to_owned()
+    }
+}
 
 pub enum ExternalEvent{
     // let binding
@@ -116,10 +121,10 @@ pub enum Event {
     MutableLend {
         to: Option<ResourceOwner>
     },
-    MutableBorrow{
+    MutableBorrow {
         from: ResourceOwner
     },
-    MutableReturn{
+    MutableReturn {
         to: Option<ResourceOwner>
     },
     MutableReacquire {
@@ -128,10 +133,10 @@ pub enum Event {
     StaticLend {
         to: Option<ResourceOwner>
     },
-    StaticBorrow{
+    StaticBorrow {
         from: ResourceOwner
     },
-    StaticReturn{
+    StaticReturn {
         to: Option<ResourceOwner>
     },
     StaticReacquire {
@@ -206,7 +211,40 @@ impl std::fmt::Display for State {
     }
 }
 
-// a vector of ownership transfer history of a specific variable,
+
+impl std::fmt::Display for Event {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        let mut from_ro = None;
+        let mut to_ro = None;
+        let mut display = match self {
+            Event::Acquire{ from } => { from_ro = from.to_owned(); "Acquiring resource" },
+            Event::Duplicate{ to } => { to_ro = to.to_owned(); "Copying resource" },
+            Event::Move{ to } => { to_ro = to.to_owned(); "Moving resource" },
+            Event::MutableLend{ to } => { to_ro = to.to_owned(); "Mutable lend" },
+            Event::MutableBorrow{ from } => { from_ro = Some(from.to_owned()); "Fully borrows resource" },
+            Event::MutableReturn{ to } => { to_ro = to.to_owned(); "Fully returns resource"},
+            Event::MutableReacquire{ from } => { from_ro = from.to_owned(); "Fully reacquires resource" },
+            Event::StaticLend{ to } => { to_ro = to.to_owned(); "Partially lends resource" },
+            Event::StaticBorrow{ from } => { from_ro = Some(from.to_owned()); "Partially borrows resource" },
+            Event::StaticReturn{ to } => { to_ro = to.to_owned(); "Partially returns resource"},
+            Event::StaticReacquire{ from } => { from_ro = from.to_owned(); "Partially reacquires resource" },
+            Event::GoOutOfScope => { "Goes out of scope"}
+        }.to_string();
+
+        if let Some(from_ro) = from_ro {
+            display = format!("{} from {}", display, &(from_ro.to_string()));
+        };
+        if let Some(to_ro) = to_ro {
+            display = format!("{} to {}", display, &(to_ro.to_string()));
+        };
+        
+        write!(f, "{}", display)
+    }
+}
+
+
+
+// a vector of ownership transfer history of a specific variable, 
 // in a sorted order by line number.
 pub struct Timeline {
     pub resource_owner: ResourceOwner,
@@ -369,10 +407,19 @@ impl Visualizable for VisualizationData {
         }
     }
 
-    // TODO IMPLEMENT
-    fn append_external_event(&mut self, line_number: usize, external_event: ExternalEvent){
-        self.external_events.push(
-            (line_number, external_event)
-        );
-    }
+    // append two events (lend + borrow)
+    // fn append_borrow(
+    //     &mut self, 
+    //     resource_owner_from: &ResourceOwner, 
+    //     resource_owner_to: &ResourceOwner,
+    //     line_number: &usize,
+    //     is_unique: bool,
+    // ) {
+
+        
+    // }
+
+    // append two events (lend + borrow)
+
+
 }

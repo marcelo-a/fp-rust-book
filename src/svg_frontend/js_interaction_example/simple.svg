@@ -1,9 +1,8 @@
 <svg width="1800px" height="600px" viewBox="-300 0 1500 600"
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
-    <title>Visualization of Rust Lifetime</title>
     <desc>book_04_01_01_one_var</desc>
-
+    
     <defs>
         <style type="text/css">
         <![CDATA[
@@ -100,7 +99,7 @@ text.code {
         </marker>
     </defs>
 
-    <g id="title">
+    <g>
         <text id="heading" x="-300" y="30">Visualization of Rust book_04_01_01_one_var</text>
         <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
     </g>
@@ -110,8 +109,8 @@ text.code {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="-40" y="100"/>
-        <use xlink:href="#eventDot" data-hash="1" x="-40" y="120"/>
+        <use class="eventDot" xlink:href="#eventDot" data-hash="1" x="-40" y="100"><title>Acquire</title></use>
+        <use class="eventDot" xlink:href="#eventDot" data-hash="1" x="-40" y="120"><title>Out of scope</title></use>
     </g>
 
     <g id="timelines">

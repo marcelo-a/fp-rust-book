@@ -34,6 +34,10 @@ name = "simple_scope"
 path = "examples/book_04_01_05_simple_scope/main.rs"
 
 [[example]]
+name = "book_04_01_06"
+path = "examples/book_04_01_06/main.rs"
+
+[[example]]
 name = "book_04_01_09"
 path = "examples/book_04_01_09/main.rs"
 

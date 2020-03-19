@@ -1,33 +1,29 @@
-use rrt_lib::data::{Event, LifetimeTrait, ResourceOwner, Visualizable, VisualizationData};
+use rrt_lib::data::{Event, LifetimeTrait, ResourceOwner, Variable, Function, Visualizable, VisualizationData};
 use rrt_lib::svg_frontend::svg_generation;
 use std::collections::BTreeMap;
 // visualization of shadowing
 // Ch 3.3
 fn main() {
-    let x = ResourceOwner {
+    let x = ResourceOwner::Variable(Variable {
         hash: 1,
         name: String::from("x"),
         is_mut: false,
         is_ref: false,
         is_func: false,
         lifetime_trait: LifetimeTrait::None,
-    };
-    let plus_one = ResourceOwner {
+    });
+    let plus_one = ResourceOwner::Function(Function {
         hash: 2,
         name: String::from("plus_one()"),
-        is_mut: false,
-        is_ref: false,
-        is_func: true,
-        lifetime_trait: LifetimeTrait::Move,
-    };
-    let plus_one_x = ResourceOwner {
+    });
+    let plus_one_x = ResourceOwner::Variable(Variable {
         hash: 3,
         name: String::from("x"),
         is_mut: false,
         is_ref: false,
         is_func: false,
         lifetime_trait: LifetimeTrait::Copy,
-    };
+    });
     let mut vd = VisualizationData {
         timelines: BTreeMap::new(),
         external_events: Vec::new(),

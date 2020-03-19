@@ -119,14 +119,18 @@ fn compute_column_layout<'a>(visualization_data: &'a VisualizationData) -> HashM
     let mut resource_owners_layout = HashMap::new();
     let mut x : i64 = -10;                   // Right-most Column x-offset.
     // let x_space = 30;                   // for every new ResourceOwner, move 30 px to the left
-    for (hash, _) in visualization_data.timelines.iter().rev() {
-        let name = match visualization_data.get_name_from_hash(hash) {
-            Some(_name) => _name,
-            None => panic!("no matching resource owner for hash {}", hash),
-        };
-        let x_space = cmp::max(30, (&(name.len() as i64)-1)*10);
-        x = x - x_space;
-        resource_owners_layout.insert(hash, TimelineColumnData{ name: name.clone(), x_val: x });
+    for (hash, timeline) in visualization_data.timelines.iter().rev() {
+        // only put variable in the column layout
+        if let ResourceOwner::Variable(_) = timeline.resource_owner {
+            let name = match visualization_data.get_name_from_hash(hash) {
+                Some(_name) => _name,
+                None => panic!("no matching resource owner for hash {}", hash),
+            };
+            let x_space = cmp::max(30, (&(name.len() as i64)-1)*10);
+            x = x - x_space;
+            resource_owners_layout.insert(hash, TimelineColumnData{ name: name.clone(), x_val: x });
+        }
+        
     }
     resource_owners_layout
 }
@@ -155,14 +159,16 @@ fn render_dots_string(
     let timelines = &visualization_data.timelines;
     let mut output = String::new();
     for (hash, timeline) in timelines {
-        for (line_number, _) in timeline.history.iter() {
-            let data = EventDotData {
-                hash: *hash as i64,
-                dot_x: resource_owners_layout[hash].x_val,
-                dot_y: get_y_axis_pos(line_number)
-            };
-            output.push_str(&registry.render("dot_template", &data).unwrap());
-        }
+        if let ResourceOwner::Variable(_) = timeline.resource_owner {
+            for (line_number, _) in timeline.history.iter() {
+                let data = EventDotData {
+                    hash: *hash as i64,
+                    dot_x: resource_owners_layout[hash].x_val,
+                    dot_y: get_y_axis_pos(line_number)
+                };
+                output.push_str(&registry.render("dot_template", &data).unwrap());
+            }
+        }   
     }
     output
 }
@@ -178,36 +184,43 @@ fn render_arrows_string(
 
     let mut output = String::new();
     for (hash, timeline) in timelines {
-        let ro = timelines[hash].resource_owner.to_owned();
-        for (line_number, event) in timeline.history.iter() {
-            let ro1_x_pos = resource_owners_layout[hash].x_val;
-            let ro1_y_pos = get_y_axis_pos(line_number);
+        if let ResourceOwner::Variable(_) = timeline.resource_owner {
+            let ro = timeline.resource_owner.to_owned();
+            for (line_number, event) in timeline.history.iter() {
+                let ro1_x_pos = resource_owners_layout[hash].x_val;
+                let ro1_y_pos = get_y_axis_pos(line_number);
 
-            // render arrow only if ro2 give resource to ro1
-            // i.e. ro2 points to ro1
-            let some_ro2 : Option<ResourceOwner> = match event {
-                Event::Acquire { from : from_ro } => from_ro.to_owned(),
-                Event::MutableBorrow { from : from_ro } => Some(from_ro.to_owned()),
-                Event::StaticBorrow { from : from_ro } => Some(from_ro.to_owned()),
-                Event::StaticReacquire { from : from_ro } => from_ro.to_owned(),
-                Event::MutableReacquire { from: from_ro } => from_ro.to_owned(),
-                _ => None,
+                // render arrow only if ro2 give resource to ro1
+                // i.e. ro2 points to ro1
+                // TODO what if ro2 / ro1 is Function
+                let some_ro2 : Option<ResourceOwner> = match event {
+                    Event::Acquire { from : from_ro } => from_ro.to_owned(),
+                    Event::MutableBorrow { from : from_ro } => Some(from_ro.to_owned()),
+                    Event::StaticBorrow { from : from_ro } => Some(from_ro.to_owned()),
+                    Event::StaticReacquire { from : from_ro } => from_ro.to_owned(),
+                    Event::MutableReacquire { from : from_ro } => from_ro.to_owned(),
+                    _ => None,
                 };
-            if let Some(ro2) = some_ro2 {
-                let mut data = ArrowData {
-                    x1: ro1_x_pos,
-                    y1: ro1_y_pos,
-                    x2: resource_owners_layout[&ro2.hash].x_val,
-                    y2: ro1_y_pos,
-                };
-                // adjust arrow head pos
-                if data.x1 < data.x2 {
-                    data.x1 = data.x1 + 10;
+                if let Some(ro2) = some_ro2 {
+                    let x2 = match ro2 {
+                        ResourceOwner::Function(_) => ro1_x_pos + 20, // 20 unit to the right
+                        ResourceOwner::Variable(_) => resource_owners_layout[&ro2.hash()].x_val,
+                    };
+                    let mut data = ArrowData {
+                        x1: ro1_x_pos,
+                        y1: ro1_y_pos,
+                        x2: x2,
+                        y2: ro1_y_pos,
+                    };
+                    // adjust arrow head pos
+                    if data.x1 < data.x2 {
+                        data.x1 = data.x1 + 10;
+                    }
+                    else {
+                        data.x1 = data.x1 - 10;
+                    }
+                    output.push_str(&registry.render("arrow_template", &data).unwrap());
                 }
-                else {
-                    data.x1 = data.x1 - 10;
-                }
-                output.push_str(&registry.render("arrow_template", &data).unwrap());
             }
         }
     }
@@ -223,51 +236,53 @@ fn render_timelines_string(
     let timelines = &visualization_data.timelines;
 
     let mut output = String::new();
-    for (hash, _) in timelines{
-        let ro = timelines[hash].resource_owner.to_owned();
-        // verticle state lines
-        let states = visualization_data.get_states(hash);
-        for (line_start, line_end, state) in states.iter() {
-            println!("{} {} {} {}", resource_owners_layout[hash].name, line_start, line_end, state);
-            let mut data = VerticalLineData {
-                line_class: String::new(),
-                hash: *hash,
-                x1: resource_owners_layout[hash].x_val,
-                y1: get_y_axis_pos(line_start),
-                x2: resource_owners_layout[hash].x_val,
-                y2: get_y_axis_pos(line_end)
-            };
-            match (state, ro.is_mut) {
-                (State::FullPrivilege, true) => {
-                    data.line_class = String::from("solid");
-                    output.push_str(&registry.render("vertical_line_template", &data).unwrap());
-                },
-                (State::FullPrivilege, false) => {
-                    data.line_class = String::from("solid");
-                    output.push_str(&registry.render("vertical_line_template", &data).unwrap());
-                    let mut hollow_internal_line_data = data.clone();
-                    hollow_internal_line_data.y1 += 5;
-                    hollow_internal_line_data.y2 -= 5;
-                    output.push_str(&registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
-                },
-                (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, _) => {
-                    data.line_class = String::from("solid");
-                    output.push_str(&registry.render("vertical_line_template", &data).unwrap());
-                    let mut hollow_internal_line_data = data.clone();
-                    hollow_internal_line_data.y1 += 5;
-                    hollow_internal_line_data.y2 -= 5;
-                    output.push_str(&registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
-                },
-                (State::ResourceReturned{ to: _ }, _) => {
-                    data.line_class = String::from("dotted");
-                    output.push_str(&registry.render("vertical_line_template", &data).unwrap());
-                },
-                (State::ResourceMoved{ move_to: _, move_at_line: _ }, true) => {
-                    data.line_class = String::from("extend");
-                    output.push_str(&registry.render("vertical_line_template", &data).unwrap());
+    for (hash, timeline) in timelines {
+        if let ResourceOwner::Variable(_) = timeline.resource_owner {
+            let ro = timeline.resource_owner.to_owned();
+            // verticle state lines
+            let states = visualization_data.get_states(hash);
+            for (line_start, line_end, state) in states.iter() {
+                println!("{} {} {} {}", resource_owners_layout[hash].name, line_start, line_end, state);
+                let mut data = VerticalLineData {
+                    line_class: String::new(),
+                    hash: *hash,
+                    x1: resource_owners_layout[hash].x_val,
+                    y1: get_y_axis_pos(line_start),
+                    x2: resource_owners_layout[hash].x_val,
+                    y2: get_y_axis_pos(line_end)
+                };
+                match (state, ro.is_mut()) {
+                    (State::FullPrivilege, true) => {
+                        data.line_class = String::from("solid");
+                        output.push_str(&registry.render("vertical_line_template", &data).unwrap());
+                    },
+                    (State::FullPrivilege, false) => {
+                        data.line_class = String::from("solid");
+                        output.push_str(&registry.render("vertical_line_template", &data).unwrap());
+                        let mut hollow_internal_line_data = data.clone();
+                        hollow_internal_line_data.y1 += 5;
+                        hollow_internal_line_data.y2 -= 5;
+                        output.push_str(&registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
+                    },
+                    (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, _) => {
+                        data.line_class = String::from("solid");
+                        output.push_str(&registry.render("vertical_line_template", &data).unwrap());
+                        let mut hollow_internal_line_data = data.clone();
+                        hollow_internal_line_data.y1 += 5;
+                        hollow_internal_line_data.y2 -= 5;
+                        output.push_str(&registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
+                    },
+                    (State::ResourceReturned{ to: _ }, _) => {
+                        data.line_class = String::from("dotted");
+                        output.push_str(&registry.render("vertical_line_template", &data).unwrap());
+                    },
+                    (State::ResourceMoved{ move_to: _, move_at_line: _ }, true) => {
+                        data.line_class = String::from("extend");
+                        output.push_str(&registry.render("vertical_line_template", &data).unwrap());
+                    }
+                    // do nothing when the case is (RevokedPrivilege, false), (OutofScope, _), (ResouceMoved, false)
+                    _ => (),
                 }
-                // do nothing when the case is (RevokedPrivilege, false), (OutofScope, _), (ResouceMoved, false)
-                _ => (),
             }
         }
 

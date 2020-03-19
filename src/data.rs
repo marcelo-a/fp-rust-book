@@ -13,8 +13,6 @@ pub trait Visualizable {
     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State>;
     // add an event to the Visualizable data structure
     fn append_event(&mut self, resource_owner: &ResourceOwner, event: Event, line_number: &usize);
-    // add an ExternalEvent to the Visualizable data structure
-    fn append_external_event(&mut self, line_number: usize, external_event: ExternalEvent);
 
     // if resource_owner with hash is mutable
     fn is_mut(&self, hash: &u64 ) -> bool;
@@ -28,7 +26,7 @@ pub trait Visualizable {
 // have ownership to a memory object, during some stage of
 // a the program execution.
 #[derive(Clone, Hash, PartialEq, Eq)]
-pub struct ResourceOwner {
+pub struct Variable {
     pub hash: u64,
     pub name: String,
     // whether the variable itself is mutable
@@ -38,11 +36,54 @@ pub struct ResourceOwner {
     pub lifetime_trait: LifetimeTrait,
 }
 
-impl std::string::ToString for ResourceOwner {
-    fn to_string(&self) -> String {
-        self.name.to_owned()
-    }
+
+// each function has a unique hash and name, and functions and ResourceOwners does not share a same hash
+// TODO integrate RO and Func into a new Ro  
+#[derive(Clone, Hash, PartialEq, Eq)]
+pub struct Function {
+    pub hash: u64, 
+    pub name: String,
 }
+
+#[derive(Clone, Hash, PartialEq, Eq)]
+pub enum ResourceOwner {
+    Variable(Variable),
+    Function(Function),
+}
+
+impl ResourceOwner {
+    // get the attribute hash
+    pub fn hash(&self) -> &u64 {
+        match self {
+            ResourceOwner::Variable(Variable{hash, ..}) => hash,
+            ResourceOwner::Function(Function{hash, ..}) => hash,
+        }
+    }
+
+    // get the name filed
+    pub fn name(&self) -> &String {
+        match self {
+            ResourceOwner::Variable(Variable{name, ..}) => name,
+            ResourceOwner::Function(Function{name, ..}) => name,
+        }
+    }
+
+    // get the is_mut filed, if any
+    pub fn is_mut(&self) -> bool {
+        match self {
+            ResourceOwner::Variable(Variable{is_mut, ..}) => is_mut.to_owned(),
+            ResourceOwner::Function(_) => false,
+        }
+    }
+
+
+}
+
+// impl std::string::ToString for ResourceOwner {
+//     fn to_string(&self) -> String {
+//         self.name.to_owned()
+//     }
+// }
 
 pub enum ExternalEvent{
     // let binding
@@ -197,6 +238,16 @@ pub enum State {
     }
 }
 
+impl State {
+    // return self if ro is not a Function
+    fn if_not_function(self, ro: &ResourceOwner) -> State {
+        match ro {
+            ResourceOwner::Function(_) => State::Invalid,
+            _ => self,
+        }
+    }
+}
+
 impl std::fmt::Display for State {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
@@ -232,10 +283,10 @@ impl std::fmt::Display for Event {
         }.to_string();
 
         if let Some(from_ro) = from_ro {
-            display = format!("{} from {}", display, &(from_ro.to_string()));
+            display = format!("{} from {}", display, &(from_ro.name()));
         };
         if let Some(to_ro) = to_ro {
-            display = format!("{} to {}", display, &(to_ro.to_string()));
+            display = format!("{} to {}", display, &(to_ro.name()));
         };
         
         write!(f, "{}", display)
@@ -265,17 +316,33 @@ pub struct VisualizationData {
 impl Visualizable for VisualizationData {
     fn get_name_from_hash(&self, hash: &u64) -> Option<String> {
         match self.timelines.get(hash) {
-            Some(timeline) => Some(timeline.resource_owner.name.to_owned()),
+            Some(timeline) => Some(timeline.resource_owner.name().to_owned()),
             _ => None
         }
     }
 
     // if the ResourceOwner is declared mutable
     fn is_mut(&self, hash: &u64 ) -> bool {
-        self.timelines[hash].resource_owner.is_mut
+        self.timelines[hash].resource_owner.is_mut()
     }
 
+
+    
+    // a Function does not have a State, so we assume previous_state is always for Variables
     fn calc_state(&self, previous_state: & State, event: & Event, event_line: usize, hash: &u64) -> State {
+        /* a Variable cannot borrow or return resource from Functions, 
+        but can 'lend' or 'reaquire' to Functions (pass itself by reference and take it back); */
+        fn event_invalid(event: & Event) -> bool {
+            match event {
+                Event::StaticBorrow{ from: ResourceOwner::Function(_) } => true,
+                Event::MutableBorrow{ from: ResourceOwner::Function(_) } => true,
+                Event::StaticReturn{ to: Some(ResourceOwner::Function(_)) } => true,
+                Event::MutableReturn{ to: Some(ResourceOwner::Function(_)) } => true,
+                _ => false,
+            }
+        }
+        if event_invalid(event) { return State::Invalid; }
+
         match (previous_state, event) {
             (State::Invalid, _) => State::Invalid,
 
@@ -287,9 +354,8 @@ impl Visualizable for VisualizationData {
                     borrow_to: [ro.to_owned()].iter().cloned().collect()
                 },
 
-            (State::OutOfScope, Event::MutableBorrow{ from: ro }) => State::FullPrivilege,
-
-            (State::OutOfScope, Event::StaticBorrow{ from: _ }) => State::Invalid,
+            (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+                State::FullPrivilege,
 
             (State::FullPrivilege, Event::Move{to: to_ro}) => State::ResourceMoved{ move_to: to_ro.to_owned(), move_at_line: event_line },
 
@@ -378,7 +444,7 @@ impl Visualizable for VisualizationData {
 
     // add event using (internal) events
     fn append_event(&mut self, resource_owner: &ResourceOwner, event: Event, line_number: &usize) {
-        let hash = &resource_owner.hash;
+        let hash = &resource_owner.hash();
         // if this event belongs to a new ResourceOwner hash,
         // create a new Timeline first, thenResourceOwner bind it to the corresponding hash.
         match self.timelines.get(hash) {
@@ -387,7 +453,7 @@ impl Visualizable for VisualizationData {
                     resource_owner: resource_owner.clone(),
                     history: Vec::new(),
                 };
-                self.timelines.insert(*hash, timeline);
+                self.timelines.insert(**hash, timeline);
             },
             _ => {}
         }
@@ -404,20 +470,4 @@ impl Visualizable for VisualizationData {
             }
         }
     }
-
-    // append two events (lend + borrow)
-    fn append_borrow(
-        &mut self, 
-        resource_owner_from: &ResourceOwner, 
-        resource_owner_to: &ResourceOwner,
-        line_number: &usize,
-        is_unique: bool,
-    ) {
-
-        
-    }
-
-    // append two events (lend + borrow)
-
-
 }

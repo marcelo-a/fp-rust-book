@@ -137,7 +137,7 @@ fn compute_column_layout<'a>(visualization_data: &'a VisualizationData) -> HashM
                 Some(_name) => _name,
                 None => panic!("no matching resource owner for hash {}", hash),
             };
-            let x_space = cmp::max(30, (&(name.len() as i64)-1)*10);
+            let x_space = cmp::max(70, (&(name.len() as i64)-1)*10);
             x = x - x_space;
             resource_owners_layout.insert(hash, TimelineColumnData{ name: name.clone(), x_val: x });
         }
@@ -260,12 +260,12 @@ fn render_arrows_string_external_events_version(
             x2: 0,
             y2: get_y_axis_pos(line_number),
         };
-
+        let arrow_length = 20;
         match (from, to) {
             (Some(ResourceOwner::Function(from_function)), Some(ResourceOwner::Variable(to_variable))) => {
-                // ro2 (from_function) -> ro1 (to_variable)
-                data.x1 = resource_owners_layout[&to_variable.hash].x_val;
-                data.x2 = data.x1 + 15;
+                // ro1 (to_variable) <- ro2 (from_function)
+                data.x1 = resource_owners_layout[&to_variable.hash].x_val + 5;
+                data.x2 = data.x1 + arrow_length;
                 let function_data = FunctionLogoData {
                     x: data.x2 + 3,
                     y: data.y2 + 5,
@@ -273,9 +273,9 @@ fn render_arrows_string_external_events_version(
                 output.push_str(&registry.render("function_logo_template", &function_data).unwrap());
             },
             (Some(ResourceOwner::Variable(from_variable)), Some(ResourceOwner::Function(to_function))) => {
-                // ro2 (from_function) -> ro1 (to_variable)
-                data.x2 = resource_owners_layout[&from_variable.hash].x_val;
-                data.x1 = data.x2 - 15;
+                //  ro1 (to_function) <- ro2 (from_variable)
+                data.x2 = resource_owners_layout[&from_variable.hash].x_val - 5;
+                data.x1 = data.x2 - arrow_length;
                 let function_data = FunctionLogoData {
                     // adjust Function logo pos
                     x: data.x1 - 10,  

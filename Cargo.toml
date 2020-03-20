@@ -30,8 +30,8 @@ name = "book_04_01_04"
 path = "examples/book_04_01_04/main.rs"
 
 [[example]]
-name = "simple_scope"
-path = "examples/book_04_01_05_simple_scope/main.rs"
+name = "book_04_01_05"
+path = "examples/book_04_01_05/main.rs"
 
 [[example]]
 name = "book_04_01_06"

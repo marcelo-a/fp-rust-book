@@ -6,6 +6,7 @@ svg {
 text {
     fill: #cccccc;
     vertical-align: baseline;
+    text-anchor: start;
 }
 
 #heading {

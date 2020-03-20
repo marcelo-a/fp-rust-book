@@ -1,7 +1,6 @@
 <svg width="1800px" height="600px" viewBox="-300 0 1500 600"
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
-    <title>Visualization of Rust Lifetime</title>
     <desc>{{ visualization_name }}</desc>
 
     <defs>
@@ -21,7 +20,7 @@
         </marker>
     </defs>
 
-    <g id="title">
+    <g>
         <text id="heading" x="-300" y="30">Visualization of Rust {{ visualization_name }}</text>
         <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
     </g>

@@ -1,5 +1,5 @@
 fn no_dangle() -> String {
-    let s = String::from("hello");
+    let <tspan data-hash="1">s</tspan> = String::from("hello");
 
-    s
+    <tspan data-hash="1">s</tspan>
 }

@@ -1,6 +1,6 @@
 extern crate handlebars;
 
-use crate::data::{VisualizationData, Visualizable, Event, State, ResourceOwner};
+use crate::data::{VisualizationData, Visualizable, Event, ExternalEvent, State, ResourceOwner};
 use handlebars::Handlebars;
 use std::collections::HashMap;
 use serde::Serialize;
@@ -40,6 +40,12 @@ struct ArrowData {
     y2: i64
 }
 
+#[derive(Serialize)]
+struct FunctionLogoData {
+    x: i64,
+    y: i64,
+}
+
 #[derive(Serialize, Clone)]
 struct VerticalLineData {
     line_class: String,
@@ -63,7 +69,7 @@ pub fn render_left_panel(visualization_data : &VisualizationData) -> String {
     let dots_string = render_dots_string(visualization_data, &resource_owners_layout, &registry);
     let timelines_string = render_timelines_string(visualization_data, &resource_owners_layout, &registry);
     // let vertical_lines_string = render_vertical_lines_string(visualization_data, &resource_owners_layout, &registry);
-    let arrows_string = render_arrows_string(visualization_data, &resource_owners_layout, &registry);
+    let arrows_string = render_arrows_string_external_events_version(visualization_data, &resource_owners_layout, &registry);
     let left_panel_data = LeftPanelData {
         labels: labels_string,
         dots: dots_string,
@@ -94,6 +100,8 @@ fn prepare_registry(registry: &mut Handlebars) {
         "        <line data-hash=\"{{hash}}\" class=\"{{line_class}}\" x1=\"{{x1}}\" x2=\"{{x2}}\" y1=\"{{y1}}\" y2=\"{{y2}}\"/>\n";
     let hollow_line_internal_template =
         "        <line stroke=\"#232323\" stroke-width=\"3px\" x1=\"{{x1}}\" x2=\"{{x2}}\" y1=\"{{y1}}\" y2=\"{{y2}}\"/>\n";
+    let function_logo_template =
+        "        <text x=\"{{x}}\" y=\"{{y}}\" class=\"heavy\">F</text>";
     assert!(
         registry.register_template_string("left_panel_template", left_panel_template).is_ok()
     );
@@ -111,6 +119,9 @@ fn prepare_registry(registry: &mut Handlebars) {
     );
     assert!(
         registry.register_template_string("hollow_line_internal_template", hollow_line_internal_template).is_ok()
+    );
+    assert!(
+        registry.register_template_string("function_logo_template", function_logo_template).is_ok()
     );
 }
 
@@ -174,7 +185,6 @@ fn render_dots_string(
 }
 
 // render events involving two RO using an arrow
-
 fn render_arrows_string(
     visualization_data: &VisualizationData,
     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
@@ -223,6 +233,74 @@ fn render_arrows_string(
                 }
             }
         }
+    }
+    output
+}
+
+fn render_arrows_string_external_events_version(
+    visualization_data: &VisualizationData,
+    resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+    registry: &Handlebars
+) -> String {
+    let mut output = String::new();
+    for (line_number, external_event) in &visualization_data.external_events {
+        let (from, to) = match external_event {
+            ExternalEvent::Duplicate{ from: from_ro, to: to_ro } => (from_ro, to_ro),
+            ExternalEvent::Move{ from: from_ro, to: to_ro } => (from_ro, to_ro),
+            ExternalEvent::StaticBorrow{ from: from_ro, to: to_ro } => (from_ro, to_ro),
+            ExternalEvent::StaticReturn{ from: from_ro, to: to_ro } => (from_ro, to_ro),
+            ExternalEvent::MutableBorrow{ from: from_ro, to: to_ro } => (from_ro, to_ro),
+            ExternalEvent::MutableReturn{ from: from_ro, to: to_ro } => (from_ro, to_ro),
+            _ => (&None, &None),
+        };
+
+        let mut data = ArrowData {
+            x1: 0,
+            y1: get_y_axis_pos(line_number),
+            x2: 0,
+            y2: get_y_axis_pos(line_number),
+        };
+
+        match (from, to) {
+            (Some(ResourceOwner::Function(from_function)), Some(ResourceOwner::Variable(to_variable))) => {
+                // ro2 (from_function) -> ro1 (to_variable)
+                data.x1 = resource_owners_layout[&to_variable.hash].x_val;
+                data.x2 = data.x1 + 15;
+                let function_data = FunctionLogoData {
+                    x: data.x2 + 3,
+                    y: data.y2 + 5,
+                };
+                output.push_str(&registry.render("function_logo_template", &function_data).unwrap());
+            },
+            (Some(ResourceOwner::Variable(from_variable)), Some(ResourceOwner::Function(to_function))) => {
+                // ro2 (from_function) -> ro1 (to_variable)
+                data.x2 = resource_owners_layout[&from_variable.hash].x_val;
+                data.x1 = data.x2 - 15;
+                let function_data = FunctionLogoData {
+                    // adjust Function logo pos
+                    x: data.x1 - 10,  
+                    y: data.y1 + 5,
+                };
+                output.push_str(&registry.render("function_logo_template", &function_data).unwrap());
+            },
+            (Some(ResourceOwner::Variable(from_variable)), Some(ResourceOwner::Variable(to_variable))) => {
+                data.x1 = resource_owners_layout[&to_variable.hash].x_val;
+                data.x2 = resource_owners_layout[&from_variable.hash].x_val;
+            },
+            _ => (), // don't support other cases for now
+        }
+        // draw arrow only if data.x1 is not dafault value
+        if data.x1 != 0 {
+            // adjust arrow head pos
+            if data.x1 < data.x2 {
+                data.x1 = data.x1 + 10;
+            }
+            else {
+                data.x1 = data.x1 - 10;
+            }
+            output.push_str(&registry.render("arrow_template", &data).unwrap()); 
+        }
+           
     }
     output
 }

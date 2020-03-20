@@ -9,11 +9,12 @@ use std::vec::Vec;
 pub trait Visualizable {
     // returns None if the hash does not exist
     fn get_name_from_hash(&self, hash: &u64) -> Option<String>;
-    // returns Noneappend_event if the hash does not exist
+    // returns None if the hash does not exist
     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State>;
     // add an event to the Visualizable data structure
     fn append_event(&mut self, resource_owner: &ResourceOwner, event: Event, line_number: &usize);
-
+    // add an event to the Visualizable data structure
+    fn append_external_event(&mut self, event: ExternalEvent, line_number: &usize) ;
     // if resource_owner with hash is mutable
     fn is_mut(&self, hash: &u64 ) -> bool;
 
@@ -85,33 +86,40 @@ impl ResourceOwner {
 //     }
 // }
 
+/* let binding is either Duplicate (let _ = 1;)
+or move (let a = String::from("");) */
+#[derive(Clone, Hash, PartialEq, Eq)]
 pub enum ExternalEvent{
-    // let binding
-    Acquire{
-        from: Option<ResourceOwner>,
-        to: Option<ResourceOwner>,
-    },
     // copy / clone
-    Duplicate{
+    Duplicate {
         from: Option<ResourceOwner>,
         to: Option<ResourceOwner>,
     },
-    Move{
+    Move {
         from: Option<ResourceOwner>,
         to: Option<ResourceOwner>,
     },
-    Borrow{
-        is_mut: bool,
+    StaticBorrow {
         from: Option<ResourceOwner>,
         to: Option<ResourceOwner>,
     },
-    Return{
+    MutableBorrow {
+        from: Option<ResourceOwner>,
+        to: Option<ResourceOwner>,
+    },
+    StaticReturn {
         // return the resource to "to"
-        is_mut: bool,
         from: Option<ResourceOwner>,
         to: Option<ResourceOwner>,
     },
-    GoOutOfScope,
+    MutableReturn {
+        // return the resource to "to"
+        from: Option<ResourceOwner>,
+        to: Option<ResourceOwner>,
+    },
+    GoOutOfScope {
+        ro: ResourceOwner
+    },
 }
 
 
@@ -468,6 +476,54 @@ impl Visualizable for VisualizationData {
             _ => {
                 panic!("Timeline disappeared right after creation or when we could index it. This is impossible.");
             }
+        }
+    }
+
+    fn append_external_event(&mut self, event: ExternalEvent, line_number: &usize) {
+        self.external_events.push((*line_number, event.clone()));
+        
+        // append_event if resource_owner is not null
+        fn maybe_append_event(vd: &mut VisualizationData, resource_owner: &Option<ResourceOwner>, event: Event, line_number : &usize) {
+            if let Some(ro) = resource_owner {
+                vd.append_event(&ro, event, line_number)
+            };
+        }
+
+        match event {
+            // eg let ro_to = String::from("");
+            ExternalEvent::Move{from: from_ro, to: to_ro} => {
+                maybe_append_event(self, &to_ro, Event::Acquire{from : from_ro.to_owned()}, line_number);
+                maybe_append_event(self, &from_ro, Event::Move{to : to_ro.to_owned()}, line_number);
+            }
+            ExternalEvent::Duplicate{from: from_ro, to: to_ro} => {
+                maybe_append_event(self, &to_ro, Event::Acquire{from : from_ro.to_owned()}, line_number);
+                maybe_append_event(self, &from_ro, Event::Duplicate{to : to_ro.to_owned()}, line_number);
+            }
+            ExternalEvent::StaticBorrow{from: from_ro, to: to_ro} => {
+                maybe_append_event(self, &from_ro, Event::StaticLend{to : to_ro.to_owned()}, line_number);
+                if let Some(some_from_ro) = from_ro {
+                    maybe_append_event(self, &to_ro, Event::StaticBorrow{from : some_from_ro.to_owned()}, line_number);
+                }
+            }
+            ExternalEvent::StaticReturn{from: from_ro, to: to_ro} => {
+                maybe_append_event(self, &to_ro, Event::StaticReacquire{from : from_ro.to_owned()}, line_number);
+                maybe_append_event(self, &from_ro, Event::StaticReturn{to : to_ro.to_owned()}, line_number);
+            }
+            ExternalEvent::MutableBorrow{from: from_ro, to: to_ro} => {
+                maybe_append_event(self, &from_ro, Event::MutableLend{to : to_ro.to_owned()}, line_number);
+                if let Some(some_from_ro) = from_ro {
+                    maybe_append_event(self, &to_ro, Event::MutableBorrow{from : some_from_ro.to_owned()}, line_number);
+                }
+            }
+            ExternalEvent::MutableReturn{from: from_ro, to: to_ro} => {
+                maybe_append_event(self, &to_ro, Event::MutableReacquire{from : from_ro.to_owned()}, line_number);
+                maybe_append_event(self, &from_ro, Event::MutableReturn{to : to_ro.to_owned()}, line_number);
+                
+            }
+            ExternalEvent::GoOutOfScope{ro} => {
+                maybe_append_event(self, &Some(ro), Event::GoOutOfScope, line_number);         
+            }
+                
         }
     }
 }

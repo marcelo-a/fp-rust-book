@@ -90,6 +90,8 @@ fn prepare_registry(registry: &mut Handlebars) {
         "        <use xlink:href=\"#eventDot\" data-hash=\"{{hash}}\" x=\"{{dot_x}}\" y=\"{{dot_y}}\"/>\n";
     let arrow_template =
         "        <polyline strokeWidth=\"2.5\" stroke=\"beige\" points=\"{{x2}},{{y2}} {{x1}},{{y1}} \" marker-end=\"url(#arrowHead)\"/>\n";
+    let function_logo_template =
+        "        f"
     let vertical_line_template =
         "        <line data-hash=\"{{hash}}\" class=\"{{line_class}}\" x1=\"{{x1}}\" x2=\"{{x2}}\" y1=\"{{y1}}\" y2=\"{{y2}}\"/>\n";
     let hollow_line_internal_template =

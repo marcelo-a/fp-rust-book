@@ -72,12 +72,10 @@ impl std::string::ToString for ResourceOwner {
     }
 }
 
+
+// let binding is a move (let a = String::from("");) 
+// or duplicate (let a = 5;)
 pub enum ExternalEvent{
-    // let binding
-    Acquire{
-        from: Option<ResourceOwner>,
-        to: Option<ResourceOwner>,
-    },
     // copy / clone
     Duplicate{
         from: Option<ResourceOwner>,
@@ -265,12 +263,12 @@ impl std::fmt::Display for Event {
         if let Some(to_ro) = to_ro {
             display = format!("{} to {}", display, &(to_ro.to_string()));
         };
-        
+
         write!(f, "{}", display)
     }
 }
 
-// a vector of ownership transfer history of a specific variable, 
+// a vector of ownership transfer history of a specific variable,
 // in a sorted order by line number.
 pub struct Timeline {
     pub variable: &Variable,    // a reference of a Variable or a (TODO) Reference, 
@@ -290,6 +288,8 @@ pub struct VisualizationData {
     //      timelines: an orderred map from a Variable's hash to 
     //      the Variable's Timeline.
     pub timelines: BTreeMap<u64, Timeline>,
+    
+    pub external_event_history: Vec<(usize, ExternalEvent)>,
 }
 
 // fulfills the promise that we can support all the methods that a
@@ -370,11 +370,8 @@ impl Visualizable for VisualizationData {
 
             (State::ResourceReturned{ to: _ }, _) => State::FullPrivilege,
 
-            // (State::OutOfScope, Event::Duplicate { to: ro }) =>
-            //     if self.is_mut(hash) { State::FullPrivilege }
-            //     else { State::PartialPrivilege{ borrow_count: 0,
-            //             borrow_to: ro.to_owned() }
-            //     },
+            (_, Event::Duplicate { to: ro }) =>
+                (*previous_state).clone(),
 
              // State::FullPrivilege,
 
@@ -435,6 +432,26 @@ impl Visualizable for VisualizationData {
             _ => {
                 panic!("Timeline disappeared right after creation or when we could index it. This is impossible.");
             }
+        }
+    }
+
+
+    fn append_external_event(&mut self, event: ExternalEvent, line_number: &usize) {
+        self.external_event_history.push(*line_number, event);
+        // true if ro is not a Function and is not null
+        fn unwrap_if_not_function (ro: Option<ResourceOwner>) -> ResourceOwner {
+            if let ResourceOwner::Variable(_) = ro { return true; }
+            true
+        }
+        match event {
+            // eg let ro_to = String::from("");
+            ExternalEvent::Move{from: from_ro, to: to_ro} => {
+                if let Some(ResourceOwner::Variable(from_var)) = from_ro {
+                    self.append_event(to_ro, Event::Acquire{from : from_var}, line_number);
+                }
+                if let Some(ResourceOwner::Variable(variable_to)) = ro_to {
+                    self.append_event(Variable, Event::Move{})
+                }
         }
     }
 

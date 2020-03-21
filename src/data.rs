@@ -55,14 +55,6 @@ impl ResourceOwner {
         }
     }
 
-    // return the name of the ResourceOwner
-    fn to_string(&self) -> String {
-        match self {
-            ResourceOwner::Variable(Variable) => Variable.name.to_owned(),
-            ResourceOwner::Function(Function) => Function.name.to_owned(),
-        }
-    }
-
     // get the name filed
     pub fn name(&self) -> &String {
         match self {
@@ -253,16 +245,6 @@ pub enum State {
     }
 }
 
-impl State {
-    // return self if ro is not a Function
-    fn if_not_function(self, ro: &ResourceOwner) -> State {
-        match ro {
-            ResourceOwner::Function(_) => State::Invalid,
-            _ => self,
-        }
-    }
-}
-
 impl std::fmt::Display for State {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
@@ -446,7 +428,6 @@ impl Visualizable for VisualizationData {
         states
     }
 
-    // TODO: state solving not complete
     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
         match self.timelines.get(hash) {
             Some(timeline) => {

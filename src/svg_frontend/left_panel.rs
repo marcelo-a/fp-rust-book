@@ -46,6 +46,7 @@ struct ArrowData {
 struct FunctionLogoData {
     x: i64,
     y: i64,
+    title: String
 }
 
 #[derive(Serialize, Clone)]
@@ -98,7 +99,7 @@ fn prepare_registry(registry: &mut Handlebars) {
     let dot_template =
         "        <use xlink:href=\"#eventDot\" data-hash=\"{{hash}}\" x=\"{{dot_x}}\" y=\"{{dot_y}}\"><title>{{title}}</title></use>\n";
     let function_logo_template =
-        "        <text x=\"{{x}}\" y=\"{{y}}\" class=\"heavy\">F</text>";
+        "        <text x=\"{{x}}\" y=\"{{y}}\" class=\"heavy\" ><title>{{title}}</title>F</text>";
     let arrow_template =
         "        <polyline stroke-width=\"2.5\" stroke=\"beige\" points=\"{{x2}},{{y2}} {{x1}},{{y1}} \" marker-end=\"url(#arrowHead)\"><title>{{title}}</title></polyline>\n";
     let vertical_line_template =
@@ -190,6 +191,7 @@ fn render_dots_string(
 }
 
 // render events involving two RO using an arrow
+// NOTE currently using render_arrows_string_external_events_version instead of this one
 fn render_arrows_string(
     visualization_data: &VisualizationData,
     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
@@ -242,15 +244,13 @@ fn render_arrows_string(
                     }
                     output.push_str(&registry.render("arrow_template", &data).unwrap());
                 }
-        }
+            }
         }
     }
     output
 }
 
-// render arrows that support function 
-// TODO add message display
-// TODO separate function logo from current output
+// render arrows that support function
 fn render_arrows_string_external_events_version(
     visualization_data: &VisualizationData,
     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
@@ -258,22 +258,56 @@ fn render_arrows_string_external_events_version(
 ) -> String {
     let mut output = String::new();
     for (line_number, external_event) in &visualization_data.external_events {
+        let mut title = String::from("");
         let (from, to) = match external_event {
-            ExternalEvent::Duplicate{ from: from_ro, to: to_ro } => (from_ro, to_ro),
-            ExternalEvent::Move{ from: from_ro, to: to_ro } => (from_ro, to_ro),
-            ExternalEvent::StaticBorrow{ from: from_ro, to: to_ro } => (from_ro, to_ro),
-            ExternalEvent::StaticReturn{ from: from_ro, to: to_ro } => (from_ro, to_ro),
-            ExternalEvent::MutableBorrow{ from: from_ro, to: to_ro } => (from_ro, to_ro),
-            ExternalEvent::MutableReturn{ from: from_ro, to: to_ro } => (from_ro, to_ro),
+            ExternalEvent::Duplicate{ from: from_ro, to: to_ro } => {
+                title = String::from("duplicate");
+                (from_ro, to_ro)
+            },
+            ExternalEvent::Move{ from: from_ro, to: to_ro } => {
+                title = String::from("move");
+                (from_ro, to_ro)
+            },
+            ExternalEvent::StaticBorrow{ from: from_ro, to: to_ro } => {
+                title = String::from("static borrow");
+                (from_ro, to_ro)
+            },
+            ExternalEvent::StaticReturn{ from: from_ro, to: to_ro } => {
+                title = String::from("return statically borrowed resource");
+                (from_ro, to_ro)
+            },
+            ExternalEvent::MutableBorrow{ from: from_ro, to: to_ro } => {
+                title = String::from("mutable borrow");
+                (from_ro, to_ro)
+            },
+            ExternalEvent::MutableReturn{ from: from_ro, to: to_ro } => {
+                title = String::from("return mutably borrowed resource");
+                (from_ro, to_ro)
+            },
             _ => (&None, &None),
         };
-
+        // complete title
+        if let Some(some_from) = from {
+            let from_string = match some_from {
+                    ResourceOwner::Variable(var) => var.name.to_owned(),
+                    ResourceOwner::Function(func) => "the return value of ".to_owned() + &func.name,
+            };
+            title = format!("{} from {}", title, from_string);
+        };
+        if let Some(some_to) = to {
+            let to_string = match some_to {
+                ResourceOwner::Variable(var) => var.name.to_owned(),
+                ResourceOwner::Function(func) => "the parameter of ".to_owned() + &func.name,
+            };
+            title = format!("{} to {}", title, to_string);
+        };
+        // calc arrow data and function logo data
         let mut data = ArrowData {
             x1: 0,
             y1: get_y_axis_pos(line_number),
             x2: 0,
             y2: get_y_axis_pos(line_number),
-            title: String::from(""), // TODO add msg
+            title: title
         };
         let arrow_length = 20;
         match (from, to) {
@@ -284,6 +318,7 @@ fn render_arrows_string_external_events_version(
                 let function_data = FunctionLogoData {
                     x: data.x2 + 3,
                     y: data.y2 + 5,
+                    title: from_function.name.to_owned(),
                 };
                 output.push_str(&registry.render("function_logo_template", &function_data).unwrap());
             },
@@ -295,6 +330,7 @@ fn render_arrows_string_external_events_version(
                     // adjust Function logo pos
                     x: data.x1 - 10,  
                     y: data.y1 + 5,
+                    title: to_function.name.to_owned(),
                 };
                 output.push_str(&registry.render("function_logo_template", &function_data).unwrap());
             },
@@ -348,7 +384,7 @@ fn render_timelines_string(
             match (state, ro.is_mut()) {
                 (State::FullPrivilege, true) => {
                     data.line_class = String::from("solid");
-                    if(ro.is_ref()){
+                    if ro.is_ref() {
                         data.title = String::from("has read and write privilege to the reference itself")
                     }else{
                         data.title = String::from("has read and write privilege to the real data")
@@ -357,7 +393,7 @@ fn render_timelines_string(
                 },
                 (State::FullPrivilege, false) => {
                     data.line_class = String::from("solid");
-                    if(ro.is_ref()){
+                    if ro.is_ref() {
                         data.title = String::from("has read only privilege to the reference itself")
                     }else{
                         data.title = String::from("has read only privilege to the real data")
@@ -366,7 +402,7 @@ fn render_timelines_string(
                     let mut hollow_internal_line_data = data.clone();
                     hollow_internal_line_data.y1 += 5;
                     hollow_internal_line_data.y2 -= 5;
-                    if(ro.is_ref()){
+                    if ro.is_ref() {
                         hollow_internal_line_data.title = String::from("has read only privilege to the reference itself")
                     }else{
                         hollow_internal_line_data.title = String::from("has read only privilege to the real data")
@@ -375,7 +411,7 @@ fn render_timelines_string(
                 },
                 (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, _) => {
                     data.line_class = String::from("solid");
-                    if(ro.is_ref()){
+                    if ro.is_ref() {
                         data.title = String::from("has read only privilege to the reference itself")
                     }else{
                         data.title = String::from("has read only privilege to the real data")
@@ -384,7 +420,7 @@ fn render_timelines_string(
                     let mut hollow_internal_line_data = data.clone();
                     hollow_internal_line_data.y1 += 5;
                     hollow_internal_line_data.y2 -= 5;
-                    if(ro.is_ref()){
+                    if ro.is_ref() {
                         hollow_internal_line_data.title = String::from("has read only privilege to the reference itself")
                     }else{
                         hollow_internal_line_data.title = String::from("has read only privilege to the real data")
@@ -393,7 +429,7 @@ fn render_timelines_string(
                 },
                 (State::ResourceReturned{ to: _ }, _) => {
                     data.line_class = String::from("dotted");
-                    if(ro.is_ref()){
+                    if ro.is_ref() {
                         data.title = String::from("its value(reference) has been returned")
                     }else{
                         data.title = String::from("its value(data) has been returned")
@@ -402,7 +438,7 @@ fn render_timelines_string(
                 },
                 (State::ResourceMoved{ move_to: _, move_at_line: _ }, true) => {
                     data.line_class = String::from("extend");
-                    if(ro.is_ref()){
+                    if ro.is_ref() {
                         data.title = String::from("its value(reference) has been moved")
                     }else{
                         data.title = String::from("its value(data) has been moved")

@@ -1,4 +1,4 @@
-use rrt_lib::data::{Event, LifetimeTrait, ResourceOwner, Visualizable, VisualizationData};
+use rrt_lib::data::{Event, LifetimeTrait, Function, Variable, ResourceOwner, Visualizable, VisualizationData};
 use rrt_lib::svg_frontend::svg_generation;
 use std::collections::BTreeMap;
 // visualization of static_borrow/example.rs

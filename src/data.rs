@@ -9,18 +9,25 @@ use std::vec::Vec;
 pub trait Visualizable {
     // returns None if the hash does not exist
     fn get_name_from_hash(&self, hash: &u64) -> Option<String>;
+    
     // returns None if the hash does not exist
     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State>;
-    // add an event to the Visualizable data structure
-    fn append_event(&mut self, resource_owner: &ResourceOwner, event: Event, line_number: &usize);
+    
+    // for querying states of a resource owner using its hash
+    //                                         start line, end line, state
+    fn get_states(&self, hash: &u64) -> Vec::<(usize,      usize,    State)>;
+
+    // WARNING do not call this when making visualization!! 
+    // use append_external_event instead
+    fn _append_event(&mut self, resource_owner: &ResourceOwner, event: Event, line_number: &usize);
+    
     // add an event to the Visualizable data structure
     fn append_external_event(&mut self, event: ExternalEvent, line_number: &usize) ;
+    
     // if resource_owner with hash is mutable
     fn is_mut(&self, hash: &u64 ) -> bool;
 
     fn calc_state(&self, previous_state: & State, event: & Event, event_line: usize, hash: &u64) -> State;
-
-    fn get_states(&self, hash: &u64) -> Vec::<(usize, usize, State)>;
 }
 
 // A ResourceOwner is either a Variable or a Function that
@@ -439,8 +446,9 @@ impl Visualizable for VisualizationData {
     }
 
 
-    // add event using (internal) events
-    fn append_event(&mut self, resource_owner: &ResourceOwner, event: Event, line_number: &usize) {
+    // WARNING do not call this when making visualization!! 
+    // use append_external_event instead
+     fn _append_event(&mut self, resource_owner: &ResourceOwner, event: Event, line_number: &usize) {
         let hash = &resource_owner.hash();
         // if this event belongs to a new ResourceOwner hash,
         // create a new Timeline first, thenResourceOwner bind it to the corresponding hash.
@@ -468,13 +476,16 @@ impl Visualizable for VisualizationData {
         }
     }
 
+
+    // store them in external_events, and call append_events
+    // default way to record events
     fn append_external_event(&mut self, event: ExternalEvent, line_number: &usize) {
         self.external_events.push((*line_number, event.clone()));
         
         // append_event if resource_owner is not null
         fn maybe_append_event(vd: &mut VisualizationData, resource_owner: &Option<ResourceOwner>, event: Event, line_number : &usize) {
             if let Some(ro) = resource_owner {
-                vd.append_event(&ro, event, line_number)
+                vd._append_event(&ro, event, line_number)
             };
         }
 
@@ -484,6 +495,7 @@ impl Visualizable for VisualizationData {
                 maybe_append_event(self, &to_ro, Event::Acquire{from : from_ro.to_owned()}, line_number);
                 maybe_append_event(self, &from_ro, Event::Move{to : to_ro.to_owned()}, line_number);
             }
+            // eg let ro_to = 5;
             ExternalEvent::Duplicate{from: from_ro, to: to_ro} => {
                 maybe_append_event(self, &to_ro, Event::Acquire{from : from_ro.to_owned()}, line_number);
                 maybe_append_event(self, &from_ro, Event::Duplicate{to : to_ro.to_owned()}, line_number);

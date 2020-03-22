@@ -33,7 +33,7 @@ fn main() {
         lifetime_trait: LifetimeTrait::Move,
     });
     let a_string = ResourceOwner::Variable(Variable {
-        hash: 3,
+        hash: 7,
         name: String::from("a_string"),
         is_mut: false,
         is_ref: false,
@@ -68,6 +68,7 @@ fn main() {
 
     // a_string gets resource from parameter
     vd.append_external_event(ExternalEvent::Move{from: None, to: Some(a_string.clone())}, &(25 as usize));
+    vd.append_external_event(ExternalEvent::Move{from: Some(a_string.clone()), to: None}, &(28 as usize));
     vd.append_external_event(ExternalEvent::GoOutOfScope{ ro: a_string }, &(29 as usize));
 
 

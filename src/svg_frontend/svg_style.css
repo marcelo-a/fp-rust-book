@@ -88,3 +88,8 @@ text.code {
     fill: #00ffff;
     stroke: #00ffff;
 }
+
+[data-hash*="7"] {
+    fill: #ff9900;
+    stroke: #ff9900;
+}

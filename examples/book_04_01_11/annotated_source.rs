@@ -22,8 +22,8 @@ fn <tspan data-hash="2">gives_ownership</tspan>() -> String {             // giv
 }
 
 // takes_and_gives_back will take a String and return one
-fn <tspan data-hash="6">takes_and_gives_back</tspan>(a_string: String) -> String { // a_string comes into
+fn <tspan data-hash="6">takes_and_gives_back</tspan>(<tspan data-hash="7">a_string</tspan>: String) -> String { // a_string comes into
                                                       // scope
 
-    a_string  // a_string is returned and moves out to the calling function
+    <tspan data-hash="7">a_string</tspan>  // a_string is returned and moves out to the calling function
 }

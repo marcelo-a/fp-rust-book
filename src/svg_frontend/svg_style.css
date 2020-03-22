@@ -78,3 +78,13 @@ text.code {
     fill: #fff300;
     stroke: #fff300;
 }
+
+[data-hash*="5"] {
+    fill: #ff33cc;
+    stroke: #ff33cc;
+}
+
+[data-hash*="6"] {
+    fill: #00ffff;
+    stroke: #00ffff;
+}

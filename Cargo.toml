@@ -42,6 +42,10 @@ name = "book_04_01_09"
 path = "examples/book_04_01_09/main.rs"
 
 [[example]]
+name = "book_04_01_11"
+path = "examples/book_04_01_11/main.rs"
+
+[[example]]
 name = "shared_and_unique_borrow"
 path = "examples/book_04_02_09_shared_and_unique_borrow/main.rs"
 

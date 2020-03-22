@@ -261,27 +261,27 @@ fn render_arrows_string_external_events_version(
         let mut title = String::from("");
         let (from, to) = match external_event {
             ExternalEvent::Duplicate{ from: from_ro, to: to_ro } => {
-                title = String::from("duplicate");
+                title = String::from("Duplicate");
                 (from_ro, to_ro)
             },
             ExternalEvent::Move{ from: from_ro, to: to_ro } => {
-                title = String::from("move");
+                title = String::from("Move");
                 (from_ro, to_ro)
             },
             ExternalEvent::StaticBorrow{ from: from_ro, to: to_ro } => {
-                title = String::from("static borrow");
+                title = String::from("Static borrow");
                 (from_ro, to_ro)
             },
             ExternalEvent::StaticReturn{ from: from_ro, to: to_ro } => {
-                title = String::from("return statically borrowed resource");
+                title = String::from("Return statically borrowed resource");
                 (from_ro, to_ro)
             },
             ExternalEvent::MutableBorrow{ from: from_ro, to: to_ro } => {
-                title = String::from("mutable borrow");
+                title = String::from("Mutable borrow");
                 (from_ro, to_ro)
             },
             ExternalEvent::MutableReturn{ from: from_ro, to: to_ro } => {
-                title = String::from("return mutably borrowed resource");
+                title = String::from("Return mutably borrowed resource");
                 (from_ro, to_ro)
             },
             _ => (&None, &None),

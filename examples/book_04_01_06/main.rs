@@ -1,7 +1,7 @@
 use rrt_lib::data::{Event, LifetimeTrait, ResourceOwner, Visualizable, VisualizationData};
 use rrt_lib::svg_frontend::svg_generation;
 use std::collections::BTreeMap;
-// visualization of simple_lifetime/example.rs
+
 fn main() {
     let x = ResourceOwner {
         hash: 3,

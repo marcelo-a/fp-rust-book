@@ -1,8 +1,7 @@
 use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, Visualizable, VisualizationData};
 use rrt_lib::svg_frontend::svg_generation;
 use std::collections::BTreeMap;
-// visualization of shadowing
-// Ch 3.3
+
 fn main() {
     let s = ResourceOwner::Variable(Variable {
         hash: 1,

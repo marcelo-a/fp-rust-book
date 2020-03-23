@@ -1,16 +1,15 @@
-use rrt_lib::data::{Event, LifetimeTrait, ResourceOwner, Visualizable, VisualizationData};
+use rrt_lib::data::{Event, LifetimeTrait, ResourceOwner, Variable, VisualizationData, Visualizable};
 use rrt_lib::svg_frontend::svg_generation;
 use std::collections::BTreeMap;
 
 fn main() {
-    let s = ResourceOwner {
+    let s = ResourceOwner::Variable(Variable {
         hash: 1,
         name: String::from("s"),
         is_mut: false,
         is_ref: false,
-        is_func: false,
         lifetime_trait: LifetimeTrait::None
-    };
+    });
     let mut vd = VisualizationData {
         timelines: BTreeMap::new(),
         external_events: Vec::new(),

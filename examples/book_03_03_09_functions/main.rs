@@ -49,5 +49,5 @@ fn main() {
     vd.append_external_event(ExternalEvent::StaticReturn{ from: plus.to_owned(),  to: plus_one_x.to_owned() },  &(8 as usize));
     vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : plus_one_x.unwrap().to_owned() },  &(9 as usize));
     //rendering image
-    svg_generation::render_svg(&"book_03_03_09_functions".to_owned(), &vd);
+    svg_generation::render_svg(&"03_03_09".to_owned(), &"functions".to_owned(), &vd);
 }

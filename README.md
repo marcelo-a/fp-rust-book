@@ -9,7 +9,7 @@ Primary examples:
 
 Use: 
 * `cargo run --example <name_of_example>` to build an SVG related to a certain piece of code.
-	* for instance, `cargo run --example move_with_no_borrow` will trigger the running of [examples/move_with_no_borrow/main.rs](examples/move_with_no_borrow/main.rs). This will in-turn call dependencies of its execution: the [main.rs](examples/move_with_no_borrow/main.rs) will take in the [examples/move_with_no_borrow/annotated_source.rs](examples/move_with_no_borrow/annotated_source.rs), and compute the [rendering.svg](examples/move_with_no_borrow/rendering.svg) by calling functions from [src/lib.rs](src/lib.rs)
+	* for instance, `cargo run --example book_04_01_02` will trigger the running of [examples/book_04_01_02/main.rs](examples/book_04_01_02/main.rs). This will in-turn call dependencies of its execution: the [main.rs](examples/book_04_01_02/main.rs) will take in the [examples/book_04_01_02/annotated_source.rs](examples/book_04_01_02/annotated_source.rs), and compute the [rendering.svg](examples/book_04_01_02/rendering.svg) by calling functions from [src/lib.rs](src/lib.rs)
 
 ## Design Philosophy
 I will discuss both current design process and choices in the document here: [docs/design_logic.md](docs/design_logic.md)

@@ -8,13 +8,54 @@ edition = "2018"
 name = "rrt_lib"
 path = "src/lib.rs"
 
+#compile with cargo run --example default
 [[example]]
-name = "static_borrow"  #compile with cargo run --example default
-path = "examples/static_borrow/main.rs" #Relative path to main.rs of example
+name = "shadowing"
+path = "examples/book_03_01_03_shadowing/main.rs"
 
 [[example]]
-name = "move_with_no_borrow"  #compile with cargo run --example default
-path = "examples/move_with_no_borrow/main.rs" #Relative path to main.rs of example
+name = "functions"
+path = "examples/book_03_03_09_functions/main.rs"
+
+[[example]]
+name = "one_var"
+path = "examples/book_04_01_01_one_var/main.rs"
+
+[[example]]
+name = "book_04_01_02"
+path = "examples/book_04_01_02/main.rs"
+
+[[example]]
+name = "book_04_01_04"
+path = "examples/book_04_01_04/main.rs"
+
+[[example]]
+name = "book_04_01_05"
+path = "examples/book_04_01_05/main.rs"
+
+[[example]]
+name = "book_04_01_06"
+path = "examples/book_04_01_06/main.rs"
+
+[[example]]
+name = "book_04_01_09"
+path = "examples/book_04_01_09/main.rs"
+
+[[example]]
+name = "book_04_01_11"
+path = "examples/book_04_01_11/main.rs"
+
+[[example]]
+name = "book_04_02_01"
+path = "examples/book_04_02_01/main.rs"
+
+[[example]]
+name = "shared_and_unique_borrow"
+path = "examples/book_04_02_09_shared_and_unique_borrow/main.rs"
+
+[[example]]
+name = "book_04_02_12"
+path = "examples/book_04_02_12/main.rs"
 
 [dependencies]
 handlebars = "3.0.1"

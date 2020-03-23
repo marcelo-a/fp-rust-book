@@ -1,7 +1,7 @@
 <svg width="1800px" height="600px" viewBox="-300 0 1500 700"
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
-    <desc>book_04_02_01</desc>
+    <desc>pass_reference</desc>
 
     <defs>
         <style type="text/css">
@@ -116,14 +116,14 @@ text.code {
     </defs>
 
     <g>
-        <text id="heading" x="-300" y="30">Visualization of Rust book_04_02_01</text>
+        <text id="heading" x="-300" y="30">Visualization of Rust pass_reference</text>
         <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
     </g>
 
     <g id="labels">
-        <text class="code" x="-220" y="80" data-hash="1">s1</text>
-        <text class="code" x="-80" y="80" data-hash="4">s</text>
         <text class="code" x="-150" y="80" data-hash="2">len</text>
+        <text class="code" x="-80" y="80" data-hash="4">s</text>
+        <text class="code" x="-220" y="80" data-hash="1">s1</text>
     </g>
 
     <g id="timelines">
@@ -144,12 +144,10 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="-194" y="105" class="heavy" ><title>String::from</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-197,100 -207,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from to s1</title></polyline>
-        <text x="-255" y="145" class="heavy" ><title>calculate_length</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-225,140 -235,140 " marker-end="url(#arrowHead)"><title>Static borrow from s1 to the parameter of calculate_length</title></polyline>
-        <text x="-194" y="145" class="heavy" ><title>calculate_length</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-197,140 -207,140 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from the return value of calculate_length to s1</title></polyline>
-        <text x="-124" y="145" class="heavy" ><title>calculate_length</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,140 -137,140 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length to len</title></polyline>
-        <text x="-115" y="265" class="heavy" ><title>len</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-85,260 -95,260 " marker-end="url(#arrowHead)"><title>Static borrow from s to the parameter of len</title></polyline>
-        <text x="-54" y="265" class="heavy" ><title>len</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,260 -67,260 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from the return value of len to s</title></polyline>
+        <text x="-194" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-197,100 -207,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from to s1</title></polyline>
+        <text x="-220" y="140" font-size = "20" font-style = "italic" class="heavy" ><title>calculate_length</title>F</text>        <text x="-124" y="145" font-size = "20" font-style = "italic" class="heavy" ><title>calculate_length</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,140 -137,140 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length to len</title></polyline>
+        <text x="-115" y="265" font-size = "20" font-style = "italic" class="heavy" ><title>len</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-85,260 -95,260 " marker-end="url(#arrowHead)"><title>Static borrow from s to the parameter of len</title></polyline>
+        <text x="-54" y="265" font-size = "20" font-style = "italic" class="heavy" ><title>len</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,260 -67,260 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from the return value of len to s</title></polyline>
     </g>
 
     <g id="events">

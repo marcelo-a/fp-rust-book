@@ -4,33 +4,27 @@ use std::collections::BTreeMap;
 // visualization of shadowing
 // Ch 3.1 "The other difference between mut and shadowing is that because we’re effectively creating a new variable when we use the let keyword again"
 fn main() {
-    let x = vd.create_resource_owner (
-        ResourceOwner(Variable {
+    let x = ResourceOwner(Variable {
             hash: 1,
             name: String::from("x"),
             is_mut: false,
             is_ref: false,
             lifetime_trait: LifetimeTrait::None,
-        })
-    );
-    let x1 = vd.create_resource_owner ( 
-        ResourceOwner(Variable {
+        });
+    let x1 = ResourceOwner(Variable {
             hash: 2,
             name: String::from("x"),
             is_mut: false,
             is_ref: false,
             lifetime_trait: LifetimeTrait::Copy,
-        })
-    );
-    let x2 = vd.create_resource_owner ( 
-        ResourceOwner(Variable {
+        });
+    let x2 = ResourceOwner(Variable {
             hash: 3,
             name: String::from("x"),
             is_mut: false,
             is_ref: false,
             lifetime_trait: LifetimeTrait::Copy,
-        })
-    );  
+        });  
 
     //
     // hash x : 1

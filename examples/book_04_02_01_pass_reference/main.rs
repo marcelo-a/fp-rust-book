@@ -46,9 +46,7 @@ fn main() {
     
     // s1 gets resource from String::from
     vd.append_external_event(ExternalEvent::Move{from: string_ctor.clone(), to: s1.clone()}, &(2 as usize));
-
-    vd.append_external_event(ExternalEvent::StaticBorrow{from: s1.clone(), to: calculate_length.clone()}, &(4 as usize));
-    vd.append_external_event(ExternalEvent::StaticReturn{from: calculate_length.clone(), to: s1.clone()}, &(4 as usize));
+    vd.append_external_event(ExternalEvent::PassByStaticReference{from: s1.clone(), to: calculate_length.clone()}, &(4 as usize));
 
     vd.append_external_event(ExternalEvent::Duplicate{from: calculate_length.clone(), to: len.clone()}, &(4 as usize));
 
@@ -67,5 +65,5 @@ fn main() {
     
     
     //rendering image
-    svg_generation::render_svg(&"book_04_02_01".to_owned(), &vd);
+    svg_generation::render_svg(&"04_02_01".to_owned(), &"pass_reference".to_owned(), &vd);
 }

@@ -1,7 +1,6 @@
-<svg width="1800px" height="600px" viewBox="-300 0 1500 600"
+<svg width="1800px" height="600px" viewBox="-300 0 1500 700"
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
-    <title>Visualization of Rust Lifetime</title>
     <desc>one_var</desc>
 
     <defs>
@@ -15,6 +14,7 @@ svg {
 text {
     fill: #cccccc;
     vertical-align: baseline;
+    text-anchor: start;
 }
 
 #heading {
@@ -87,6 +87,21 @@ text.code {
     stroke: #fff300;
 }
 
+[data-hash*="5"] {
+    fill: #ff33cc;
+    stroke: #ff33cc;
+}
+
+[data-hash*="6"] {
+    fill: #00ffff;
+    stroke: #00ffff;
+}
+
+[data-hash*="7"] {
+    fill: #ff9900;
+    stroke: #ff9900;
+}
+
         ]]>
         </style>
         <!-- Useful constructs -->
@@ -94,32 +109,33 @@ text.code {
         <marker id="arrowHead" viewBox="0 0 10 10"
             refX="1" refY="5" 
             markerUnits="strokeWidth"
-            markerWidth="10" markerHeight="10"
+            markerWidth="3px" markerHeight="3px"
             orient="auto" fill="beige">
             <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
         </marker>
     </defs>
 
-    <g id="title">
+    <g>
         <text id="heading" x="-300" y="30">Visualization of Rust one_var</text>
         <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
     </g>
 
     <g id="labels">
-        <text class="code" x="-40" y="80" data-hash="1" text-anchor="middle">s</text>
-    </g>
-
-    <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="-40" y="100"/>
-        <use xlink:href="#eventDot" data-hash="1" x="-40" y="120"/>
+        <text class="code" x="-80" y="80" data-hash="1">s</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid" x1="-40" x2="-40" y1="100" y2="120"/>
-        <line stroke="#232323" stroke-width="3px" x1="-40" x2="-40" y1="105" y2="115"/>
+        <line data-hash="1" class="solid" x1="-80" x2="-80" y1="100" y2="120"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="105" y2="115"><title>has read only privilege to the real data</title></line>
     </g>
 
     <g id="arrows">
+        <text x="-54" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,100 -67,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
+    </g>
+
+    <g id="events">
+        <use xlink:href="#eventDot" data-hash="1" x="-80" y="100"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-80" y="120"><title>Goes out of scope</title></use>
     </g>
 
     <g id="dividers">

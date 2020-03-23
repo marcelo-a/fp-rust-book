@@ -20,5 +20,5 @@ fn main() {
     vd.append_external_event(ExternalEvent::Move{from: None, to: Some(s.clone())}, &(3 as usize));
     vd.append_external_event(ExternalEvent::GoOutOfScope{ ro: s.clone() }, &(6 as usize));
     // same as 04_01_02
-    svg_generation::render_svg(&"04_01_05".to_owned(), &"scope".to_owned(), &vd);
+    svg_generation::render_svg(&"04_01_05".to_owned(), &"scope2".to_owned(), &vd);
 }

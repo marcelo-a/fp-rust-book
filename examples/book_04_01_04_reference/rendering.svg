@@ -133,8 +133,8 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="-54" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,100 -67,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
-        <text x="-80" y="140" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>F</text>        <text x="-80" y="180" font-size = "20" font-style = "italic" class="heavy" ><title>println!()</title>F</text>    </g>
+        <text x="-54" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,100 -67,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
+        <text x="-80" y="140" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>f</text>        <text x="-80" y="180" font-size = "20" font-style = "italic" class="heavy" ><title>println!()</title>f</text>    </g>
 
     <g id="events">
         <use xlink:href="#eventDot" data-hash="1" x="-80" y="100"><title>Acquiring resource from String::from()</title></use>

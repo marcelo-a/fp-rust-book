@@ -1,7 +1,7 @@
 <svg width="1800px" height="600px" viewBox="-300 0 1500 700"
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
-    <desc>scope</desc>
+    <desc>scope2</desc>
 
     <defs>
         <style type="text/css">
@@ -116,7 +116,7 @@ text.code {
     </defs>
 
     <g>
-        <text id="heading" x="-300" y="30">Visualization of Rust scope</text>
+        <text id="heading" x="-300" y="30">Visualization of Rust scope2</text>
         <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
     </g>
 

@@ -121,11 +121,11 @@ text.code {
     </g>
 
     <g id="labels">
+        <text class="code" x="-80" y="80" data-hash="7">a_string</text>
         <text class="code" x="-220" y="80" data-hash="4">s2</text>
-        <text class="code" x="-150" y="80" data-hash="5">s3</text>
         <text class="code" x="-320" y="80" data-hash="3">some_string</text>
         <text class="code" x="-390" y="80" data-hash="1">s1</text>
-        <text class="code" x="-80" y="80" data-hash="7">a_string</text>
+        <text class="code" x="-150" y="80" data-hash="5">s3</text>
     </g>
 
     <g id="timelines">
@@ -142,9 +142,9 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="-364" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>gives_ownership</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-367,100 -377,100 " marker-end="url(#arrowHead)"><title>Move from the return value of gives_ownership to s1</title></polyline>
-        <text x="-255" y="205" font-size = "20" font-style = "italic" class="heavy" ><title>takes_and_gives_back</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-225,200 -235,200 " marker-end="url(#arrowHead)"><title>Move from s2 to the parameter of takes_and_gives_back</title></polyline>
-        <text x="-124" y="205" font-size = "20" font-style = "italic" class="heavy" ><title>takes_and_gives_back</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,200 -137,200 " marker-end="url(#arrowHead)"><title>Move from the return value of takes_and_gives_back to s3</title></polyline>
+        <text x="-364" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>gives_ownership</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-367,100 -377,100 " marker-end="url(#arrowHead)"><title>Move from the return value of gives_ownership to s1</title></polyline>
+        <text x="-255" y="205" font-size = "20" font-style = "italic" class="heavy" ><title>takes_and_gives_back</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-225,200 -235,200 " marker-end="url(#arrowHead)"><title>Move from s2 to the parameter of takes_and_gives_back</title></polyline>
+        <text x="-124" y="205" font-size = "20" font-style = "italic" class="heavy" ><title>takes_and_gives_back</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,200 -137,200 " marker-end="url(#arrowHead)"><title>Move from the return value of takes_and_gives_back to s3</title></polyline>
     </g>
 
     <g id="events">

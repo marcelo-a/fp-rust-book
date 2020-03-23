@@ -26,6 +26,15 @@ Example interaction include:
 - user click a variable name in the right panel, and the left panel renders to a lifetime of just that one variable (with relavent other variable if necessary). 
 - user hovers over a lifetime `Event` in the left panel, relavent variables will appear highlighted on the right panel.
 
+## Design Overview and Key
+Every variable is listed atop to the left of the solid white bar. 
+Every dot represents an interesting event particular to the variable with corresponding color. An acquisition or borrowing of a resource, or a
+variable going out of scope are possible events and can be further explored by hovering over the dot.
+The lines connected to the dots/events can convey two different properties of the variable: if solid, the variable is mutable; if hollow, the variable
+is immutable.
+Arrows signify a moving, duplication, or borrowing of a resource and extend from the variable from which memory is read to the variable to which memory
+is written.
+Functions are rendered as Fs in the timeline. An arrow pointing to an F signifies the resource is passed to a function as a parameter, which can be further explored by hovering over the element. Conversely, an arrow ponting from an F to a variable signify the resource is acquired from a function's return value.
 
 ## Design note on Jan 13, 2020
 In order to enable this process, I looked for svg generation, and found that the main-stream one like [resvg](https://github.com/RazrFalcon/resvg) has no support on dynamic svg which is core to our visualization plan. So I wish to use a more general templating library written in Rust. We are looking at [handlebars-rust](https://github.com/sunng87/handlebars-rust), [pulldown-cmark](https://github.com/raphlinus/pulldown-cmark), or a more lightweight jinja-like [tera](https://github.com/Keats/tera).

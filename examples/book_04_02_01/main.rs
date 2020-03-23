@@ -47,14 +47,13 @@ fn main() {
     // s1 gets resource from String::from
     vd.append_external_event(ExternalEvent::Move{from: string_ctor.clone(), to: s1.clone()}, &(2 as usize));
 
-    // move out as return value, does not render because to=None
     vd.append_external_event(ExternalEvent::StaticBorrow{from: s1.clone(), to: calculate_length.clone()}, &(4 as usize));
     vd.append_external_event(ExternalEvent::StaticReturn{from: calculate_length.clone(), to: s1.clone()}, &(4 as usize));
 
     vd.append_external_event(ExternalEvent::Duplicate{from: calculate_length.clone(), to: len.clone()}, &(4 as usize));
 
-    vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : s1.clone() },  &(7 as usize));
-    vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : len.clone() },  &(7 as usize));
+    vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : s1.unwrap().clone() },  &(7 as usize));
+    vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : len.unwrap().clone() },  &(7 as usize));
 
     // vd.append_external_event(ExternalEvent::StaticBorrow{from: Some(calculate_length.clone()), to: Some(s.clone())}, &(9 as usize));
     
@@ -63,7 +62,7 @@ fn main() {
     vd.append_external_event(ExternalEvent::Duplicate{ from: None, to: s.clone() }, &(9 as usize));
     vd.append_external_event(ExternalEvent::StaticBorrow{from: s.clone(), to: len_func.clone()}, &(10 as usize));
     vd.append_external_event(ExternalEvent::StaticReturn{from: len_func.clone(), to: s.clone()}, &(10 as usize));
-    vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : s.clone() },  &(11 as usize));
+    vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : s.unwrap().clone() },  &(11 as usize));
 
     
     

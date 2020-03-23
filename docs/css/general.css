@@ -25,7 +25,7 @@ code {
     font-size: 0.875em; /* please adjust the ace font size accordingly in editor.js */
 }
 
-.hidden {
+code.hidden {
     display:none;
 }
 

@@ -54,7 +54,7 @@ name = "shared_and_unique_borrow"
 path = "examples/book_04_02_09_shared_and_unique_borrow/main.rs"
 
 [[example]]
-name = "no_dangle"
+name = "book_04_02_12_no_dangle"
 path = "examples/book_04_02_12_no_dangle/main.rs"
 
 [dependencies]

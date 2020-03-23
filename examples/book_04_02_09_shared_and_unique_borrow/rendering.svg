@@ -121,10 +121,10 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-290" y="80" data-hash="1">s</text>
-        <text class="code" x="-220" y="80" data-hash="2">r1</text>
         <text class="code" x="-80" y="80" data-hash="4">r3</text>
+        <text class="code" x="-220" y="80" data-hash="2">r1</text>
         <text class="code" x="-150" y="80" data-hash="3">r2</text>
+        <text class="code" x="-290" y="80" data-hash="1">s</text>
     </g>
 
     <g id="timelines">
@@ -158,13 +158,13 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="-264" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-267,100 -277,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
+        <text x="-264" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-267,100 -277,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
         <polyline stroke-width="2.5" stroke="beige" points="-290,140 -230,140 " marker-end="url(#arrowHead)"><title>Static borrow from s to r1</title></polyline>
         <polyline stroke-width="2.5" stroke="beige" points="-290,160 -160,160 " marker-end="url(#arrowHead)"><title>Static borrow from s to r2</title></polyline>
-        <text x="-220" y="180" font-size = "20" font-style = "italic" class="heavy" ><title>println!()</title>F</text>        <text x="-150" y="180" font-size = "20" font-style = "italic" class="heavy" ><title>println!()</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-220,180 -280,180 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from r1 to s</title></polyline>
+        <text x="-220" y="180" font-size = "20" font-style = "italic" class="heavy" ><title>println!()</title>f</text>        <text x="-150" y="180" font-size = "20" font-style = "italic" class="heavy" ><title>println!()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-220,180 -280,180 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from r1 to s</title></polyline>
         <polyline stroke-width="2.5" stroke="beige" points="-150,180 -280,180 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from r2 to s</title></polyline>
         <polyline stroke-width="2.5" stroke="beige" points="-290,240 -90,240 " marker-end="url(#arrowHead)"><title>Mutable borrow from s to r3</title></polyline>
-        <text x="-80" y="260" font-size = "20" font-style = "italic" class="heavy" ><title>println!()</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-80,260 -280,260 " marker-end="url(#arrowHead)"><title>Return mutably borrowed resource from r3 to s</title></polyline>
+        <text x="-80" y="260" font-size = "20" font-style = "italic" class="heavy" ><title>println!()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-80,260 -280,260 " marker-end="url(#arrowHead)"><title>Return mutably borrowed resource from r3 to s</title></polyline>
     </g>
 
     <g id="events">

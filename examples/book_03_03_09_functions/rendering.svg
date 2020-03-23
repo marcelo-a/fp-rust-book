@@ -141,11 +141,11 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="-124" y="105" class="heavy" ><title>plus_one()</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,100 -137,100 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of plus_one() to x</title></polyline>
-        <text x="-185" y="145" class="heavy" ><title>println!</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-155,140 -165,140 " marker-end="url(#arrowHead)"><title>Static borrow from x to the parameter of println!</title></polyline>
-        <text x="-124" y="145" class="heavy" ><title>println!</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,140 -137,140 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from the return value of println! to x</title></polyline>
-        <text x="-115" y="225" class="heavy" ><title>+</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-85,220 -95,220 " marker-end="url(#arrowHead)"><title>Static borrow from x to the parameter of +</title></polyline>
-        <text x="-54" y="225" class="heavy" ><title>+</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,220 -67,220 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from the return value of + to x</title></polyline>
+        <text x="-124" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>plus_one()</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,100 -137,100 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of plus_one() to x</title></polyline>
+        <text x="-185" y="145" font-size = "20" font-style = "italic" class="heavy" ><title>println!</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-155,140 -165,140 " marker-end="url(#arrowHead)"><title>Static borrow from x to the parameter of println!</title></polyline>
+        <text x="-124" y="145" font-size = "20" font-style = "italic" class="heavy" ><title>println!</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,140 -137,140 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from the return value of println! to x</title></polyline>
+        <text x="-115" y="225" font-size = "20" font-style = "italic" class="heavy" ><title>+</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-85,220 -95,220 " marker-end="url(#arrowHead)"><title>Static borrow from x to the parameter of +</title></polyline>
+        <text x="-54" y="225" font-size = "20" font-style = "italic" class="heavy" ><title>+</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,220 -67,220 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from the return value of + to x</title></polyline>
     </g>
 
     <g id="events">

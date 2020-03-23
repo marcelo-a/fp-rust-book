@@ -319,17 +319,30 @@ fn render_arrows_string_external_events_version(
         };
         let arrow_length = 20;
         match (from, to, external_event) {
+            
+            // TODO change this to or pattern
             (Some(ResourceOwner::Variable(variable)), 
              Some(ResourceOwner::Function(function)), 
-             ExternalEvent::PassByStaticReference{..} | ExternalEvent::PassByMutableReference{..}) => {
-            // get variable's position
-            let function_data = FunctionLogoData {
+             ExternalEvent::PassByStaticReference{..}) => {
+                // get variable's position
+                let function_data = FunctionLogoData {
                 x: resource_owners_layout[&variable.hash].x_val,
                 y: get_y_axis_pos(line_number),
                 title: function.name.to_owned(),
-            };
-            output.push_str(&registry.render("function_logo_template", &function_data).unwrap());
-            }
+                };
+                output.push_str(&registry.render("function_logo_template", &function_data).unwrap());
+            },
+            (Some(ResourceOwner::Variable(variable)), 
+             Some(ResourceOwner::Function(function)), 
+             ExternalEvent::PassByMutableReference{..}) => {
+                // get variable's position
+                let function_data = FunctionLogoData {
+                x: resource_owners_layout[&variable.hash].x_val,
+                y: get_y_axis_pos(line_number),
+                title: function.name.to_owned(),
+                };
+                output.push_str(&registry.render("function_logo_template", &function_data).unwrap());
+            },
             (Some(ResourceOwner::Function(from_function)), Some(ResourceOwner::Variable(to_variable)), _) => {
                 // ro1 (to_variable) <- ro2 (from_function)
                 data.x1 = resource_owners_layout[&to_variable.hash].x_val + 3; // adjust arrow head pos

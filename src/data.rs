@@ -538,9 +538,9 @@ impl Visualizable for VisualizationData {
             }
             // TODO do we really need to add these events, since pass by ref does not change the state?
             ExternalEvent::PassByStaticReference{from: from_ro, to: to_ro} => {
-                maybe_append_event(self, &from_ro, Event::StaticLend{to : to_ro.to_owned()}, line_number);
-                if let Some(some_from_ro) = from_ro {
-                    maybe_append_event(self, &to_ro, Event::StaticBorrow{from : some_from_ro.to_owned()}, line_number);
+                maybe_append_event(self, &from_ro.to_owned(), Event::StaticLend{to : to_ro.to_owned()}, line_number);
+                if let Some(some_from_ro) = from_ro.to_owned() {
+                    maybe_append_event(self, &to_ro.to_owned(), Event::StaticBorrow{from : some_from_ro.to_owned()}, line_number);
                 } else {
                     panic!("Must pass a function to PassByStaticReference.to!");
                 }
@@ -549,7 +549,7 @@ impl Visualizable for VisualizationData {
             }
             ExternalEvent::PassByMutableReference{from: from_ro, to: to_ro} => {
                 maybe_append_event(self, &from_ro, Event::MutableLend{to : to_ro.to_owned()}, line_number);
-                if let Some(some_from_ro) = from_ro {
+                if let Some(some_from_ro) = from_ro.to_owned() {
                     maybe_append_event(self, &to_ro, Event::MutableBorrow{from : some_from_ro.to_owned()}, line_number);
                 } else {
                     panic!("Must pass a function to PassByMutableReference.to!");

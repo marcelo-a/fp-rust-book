@@ -2,7 +2,7 @@
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <title>Visualization of Rust Lifetime</title>
-    <desc>book_04_01_01_one_var</desc>
+    <desc>one_var</desc>
 
     <defs>
         <style type="text/css">
@@ -101,7 +101,7 @@ text.code {
     </defs>
 
     <g id="title">
-        <text id="heading" x="-300" y="30">Visualization of Rust book_04_01_01_one_var</text>
+        <text id="heading" x="-300" y="30">Visualization of Rust one_var</text>
         <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
     </g>
 

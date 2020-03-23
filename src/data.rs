@@ -398,11 +398,16 @@ impl Visualizable for VisualizationData {
 
             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
 
-            (State::PartialPrivilege{ borrow_count: current, borrow_to: _ }, Event::StaticLend{ to: to_ro }) =>
+            (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+                let mut new_borrow_to = borrow_to.clone();
+                // Assume can not lend to None
+                new_borrow_to.insert(to_ro.to_owned().unwrap());
                 State::PartialPrivilege {
                     borrow_count: current+1,
-                    borrow_to: [(to_ro.to_owned().unwrap())].iter().cloned().collect()
-                },
+                    borrow_to: new_borrow_to,
+                }
+            }
+                
 
             // self statically borrowed resource, and it returns; TODO what about references to self?
             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
@@ -413,10 +418,10 @@ impl Visualizable for VisualizationData {
                 if borrow_count - 1 == 0 {
                         State::FullPrivilege 
                     } else {
-                        let new_borrow_to = borrow_to.clone();
+                        let mut new_borrow_to = borrow_to.clone();
                         // TODO ro.unwrap() should not panic, because Reacquire{from: None} is not possible
                         // TODO change to Reaquire{from: ResourceOwner}
-                        assert_eq!(new_borrow_to.contains(&ro.to_owned().unwrap()), true); // borrow_to must contain ro
+                        assert_eq!(new_borrow_to.remove(&ro.to_owned().unwrap()), true); // borrow_to must contain ro
                         State::PartialPrivilege{
                             borrow_count: new_borrow_count,
                             borrow_to: new_borrow_to,

@@ -1,10 +1,13 @@
 use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, Visualizable, VisualizationData};
 use rrt_lib::svg_frontend::svg_generation;
 use std::collections::BTreeMap;
+
+
 // visualization of static_borrow/example.rs
 // taken from The Book chapter 4.2
 // variable oriented: display stats on variable, not the data stored in it
 fn main() {
+    
     let s = ResourceOwner::Variable(Variable {
         hash: 1,
         name: String::from("s"),
@@ -39,14 +42,13 @@ fn main() {
     }));
 
     let print_func = Some(ResourceOwner::Function(Function {
-        hash: 3,
+        hash: 6,
         name: String::from("println!()"),
     }));
     let mut vd = VisualizationData {
         timelines: BTreeMap::new(),
         external_events: Vec::new(),
     };
-
     //
     // hash s : 1
     //      r1 : 2
@@ -67,8 +69,10 @@ fn main() {
     vd.append_external_event(ExternalEvent::StaticReturn{from: Some(r2.clone()), to: Some(s.clone())}, &(6 as usize));
     // Events 9-10: mutable lend s resource to r3 and r3 borrow resource from s
     vd.append_external_event(ExternalEvent::MutableBorrow{from: Some(s.clone()), to: Some(r3.clone())}, &(9 as usize));
+
+    vd.append_external_event(ExternalEvent::PassByStaticReference{from: Some(r3.clone()), to: print_func.clone()}, &(10 as usize));
     // Event 11-12: r3 return resource priviledges to s
-    vd.append_external_event(ExternalEvent::PassByStaticReference{from: Some(r3.clone()), to: print_func.clone()}, &(6 as usize));
+    vd.append_external_event(ExternalEvent::MutableReturn{from: Some(r3.clone()), to: Some(s.clone())}, &(10 as usize));
     //all variables go out of scope at end of function
     vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : s.clone() },  &(12 as usize));
     vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : r1.clone() },  &(12 as usize));

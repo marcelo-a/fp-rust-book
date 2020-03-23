@@ -54,8 +54,8 @@ name = "shared_and_unique_borrow"
 path = "examples/book_04_02_09_shared_and_unique_borrow/main.rs"
 
 [[example]]
-name = "book_04_02_12"
-path = "examples/book_04_02_12/main.rs"
+name = "no_dangle"
+path = "examples/book_04_02_12_no_dangle/main.rs"
 
 [dependencies]
 handlebars = "3.0.1"

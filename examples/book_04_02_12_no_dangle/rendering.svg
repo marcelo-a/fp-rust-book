@@ -1,7 +1,7 @@
-<svg width="1800px" height="600px" viewBox="-300 0 1500 600"
+<svg width="1800px" height="600px" viewBox="-300 0 1500 700"
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
-    <desc>book_04_02_12</desc>
+    <desc>no_dangle</desc>
 
     <defs>
         <style type="text/css">
@@ -87,6 +87,21 @@ text.code {
     stroke: #fff300;
 }
 
+[data-hash*="5"] {
+    fill: #ff33cc;
+    stroke: #ff33cc;
+}
+
+[data-hash*="6"] {
+    fill: #00ffff;
+    stroke: #00ffff;
+}
+
+[data-hash*="7"] {
+    fill: #ff9900;
+    stroke: #ff9900;
+}
+
         ]]>
         </style>
         <!-- Useful constructs -->
@@ -101,7 +116,7 @@ text.code {
     </defs>
 
     <g>
-        <text id="heading" x="-300" y="30">Visualization of Rust book_04_02_12</text>
+        <text id="heading" x="-300" y="30">Visualization of Rust no_dangle</text>
         <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
     </g>
 
@@ -115,7 +130,7 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="-54" y="105" class="heavy" ><title>String::from</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,100 -67,100 " marker-end="url(#arrowHead)"><title>move from the return value of String::from to s</title></polyline>
+        <text x="-54" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,100 -67,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from to s</title></polyline>
     </g>
 
     <g id="events">

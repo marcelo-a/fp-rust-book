@@ -413,7 +413,7 @@ impl Visualizable for VisualizationData {
                 if borrow_count - 1 == 0 {
                         State::FullPrivilege 
                     } else {
-                        let new_borrow_to = borrow_to.to_owned();
+                        let new_borrow_to = borrow_to.clone();
                         // TODO ro.unwrap() should not panic, because Reacquire{from: None} is not possible
                         // TODO change to Reaquire{from: ResourceOwner}
                         assert_eq!(new_borrow_to.contains(&ro.to_owned().unwrap()), true); // borrow_to must contain ro

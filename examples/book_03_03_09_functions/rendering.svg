@@ -1,4 +1,4 @@
-<svg width="1800px" height="600px" viewBox="-300 0 1500 600"
+<svg width="1800px" height="600px" viewBox="-300 0 1500 700"
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>book_03_03_09_functions</desc>
@@ -87,6 +87,21 @@ text.code {
     stroke: #fff300;
 }
 
+[data-hash*="5"] {
+    fill: #ff33cc;
+    stroke: #ff33cc;
+}
+
+[data-hash*="6"] {
+    fill: #00ffff;
+    stroke: #00ffff;
+}
+
+[data-hash*="7"] {
+    fill: #ff9900;
+    stroke: #ff9900;
+}
+
         ]]>
         </style>
         <!-- Useful constructs -->
@@ -126,11 +141,11 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="-124" y="105" class="heavy" ><title>plus_one()</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,100 -137,100 " marker-end="url(#arrowHead)"><title>duplicate from the return value of plus_one() to x</title></polyline>
-        <text x="-185" y="145" class="heavy" ><title>println!</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-155,140 -165,140 " marker-end="url(#arrowHead)"><title>static borrow from x to the parameter of println!</title></polyline>
-        <text x="-124" y="145" class="heavy" ><title>println!</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,140 -137,140 " marker-end="url(#arrowHead)"><title>return statically borrowed resource from the return value of println! to x</title></polyline>
-        <text x="-115" y="225" class="heavy" ><title>+</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-85,220 -95,220 " marker-end="url(#arrowHead)"><title>static borrow from x to the parameter of +</title></polyline>
-        <text x="-54" y="225" class="heavy" ><title>+</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,220 -67,220 " marker-end="url(#arrowHead)"><title>return statically borrowed resource from the return value of + to x</title></polyline>
+        <text x="-124" y="105" class="heavy" ><title>plus_one()</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,100 -137,100 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of plus_one() to x</title></polyline>
+        <text x="-185" y="145" class="heavy" ><title>println!</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-155,140 -165,140 " marker-end="url(#arrowHead)"><title>Static borrow from x to the parameter of println!</title></polyline>
+        <text x="-124" y="145" class="heavy" ><title>println!</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,140 -137,140 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from the return value of println! to x</title></polyline>
+        <text x="-115" y="225" class="heavy" ><title>+</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-85,220 -95,220 " marker-end="url(#arrowHead)"><title>Static borrow from x to the parameter of +</title></polyline>
+        <text x="-54" y="225" class="heavy" ><title>+</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,220 -67,220 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from the return value of + to x</title></polyline>
     </g>
 
     <g id="events">

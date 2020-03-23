@@ -121,9 +121,9 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-150" y="80" data-hash="2">len</text>
         <text class="code" x="-80" y="80" data-hash="4">s</text>
         <text class="code" x="-220" y="80" data-hash="1">s1</text>
+        <text class="code" x="-150" y="80" data-hash="2">len</text>
     </g>
 
     <g id="timelines">
@@ -131,18 +131,25 @@ text.code {
         <line stroke="#232323" stroke-width="3px" x1="-220" x2="-220" y1="105" y2="135"><title>has read only privilege to the real data</title></line>
         <line data-hash="1" class="solid" x1="-220" x2="-220" y1="140" y2="140"><title>has read only privilege to the real data</title></line>
         <line stroke="#232323" stroke-width="3px" x1="-220" x2="-220" y1="145" y2="135"><title>has read only privilege to the real data</title></line>
-        <line data-hash="1" class="dotted" x1="-220" x2="-220" y1="140" y2="200"><title>its value(data) has been returned</title></line>
+        <line data-hash="1" class="solid" x1="-220" x2="-220" y1="140" y2="200"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-220" x2="-220" y1="145" y2="195"><title>has read only privilege to the real data</title></line>
         <line data-hash="2" class="solid" x1="-150" x2="-150" y1="140" y2="200"><title>has read only privilege to the real data</title></line>
         <line stroke="#232323" stroke-width="3px" x1="-150" x2="-150" y1="145" y2="195"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="240" y2="260"><title>has read only privilege to the reference itself</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="245" y2="255"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="260" y2="260"><title>has read only privilege to the reference itself</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="265" y2="255"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="260" y2="280"><title>has read only privilege to the reference itself</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="265" y2="275"><title>has read only privilege to the reference itself</title></line>
     </g>
 
     <g id="arrows">
         <text x="-194" y="105" class="heavy" ><title>String::from</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-197,100 -207,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from to s1</title></polyline>
         <text x="-255" y="145" class="heavy" ><title>calculate_length</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-225,140 -235,140 " marker-end="url(#arrowHead)"><title>Static borrow from s1 to the parameter of calculate_length</title></polyline>
         <text x="-194" y="145" class="heavy" ><title>calculate_length</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-197,140 -207,140 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from the return value of calculate_length to s1</title></polyline>
-        <text x="-54" y="245" class="heavy" ><title>calculate_length</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,240 -67,240 " marker-end="url(#arrowHead)"><title>Static borrow from the return value of calculate_length to s</title></polyline>
-        <text x="-115" y="285" class="heavy" ><title>calculate_length</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-85,280 -95,280 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from s to the parameter of calculate_length</title></polyline>
         <text x="-124" y="145" class="heavy" ><title>calculate_length</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,140 -137,140 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length to len</title></polyline>
+        <text x="-115" y="265" class="heavy" ><title>len</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-85,260 -95,260 " marker-end="url(#arrowHead)"><title>Static borrow from s to the parameter of len</title></polyline>
+        <text x="-54" y="265" class="heavy" ><title>len</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,260 -67,260 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from the return value of len to s</title></polyline>
     </g>
 
     <g id="events">
@@ -152,9 +159,9 @@ text.code {
         <use xlink:href="#eventDot" data-hash="1" x="-220" y="200"><title>Goes out of scope</title></use>
         <use xlink:href="#eventDot" data-hash="2" x="-150" y="140"><title>Acquiring resource from calculate_length</title></use>
         <use xlink:href="#eventDot" data-hash="2" x="-150" y="200"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="240"><title>Partially borrows resource from calculate_length</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="260"><title>Copying resource</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="280"><title>Partially returns resource to calculate_length</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="240"><title>Acquiring resource</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="260"><title>Partially lends resource to len</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="260"><title>Partially reacquires resource from len</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="-80" y="280"><title>Goes out of scope</title></use>
     </g>
 

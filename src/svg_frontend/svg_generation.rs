@@ -13,8 +13,10 @@ struct SvgData {
     diagram: String,
 }
 
-pub fn render_svg(example_name: &String, visualization_data: &VisualizationData) {
-    let path = "examples/".to_owned() + example_name;
+pub fn render_svg(listing_id: &String, description: &String, visualization_data: &VisualizationData) {
+    let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+    let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+    
     let mut right_panel_string = String::new();
     // let mut left_panel_string = String::new();
 
@@ -37,12 +39,12 @@ pub fn render_svg(example_name: &String, visualization_data: &VisualizationData)
     let left_panel_string = left_panel::render_left_panel(visualization_data);
 
     // data for right panel
-    if let Ok(lines) = utils::read_lines(path.to_owned() + "/annotated_source.rs") {
+    if let Ok(lines) = utils::read_lines(exampleDirPath.to_owned() + "annotated_source.rs") {
         right_panel_string = right_panel::render_right_panel(lines);
     }
 
     let mut svg_data = SvgData {
-        visualization_name: example_name.to_owned(),
+        visualization_name: description.to_owned(),
         css: css_string,
         code: right_panel_string,
         diagram: left_panel_string
@@ -51,5 +53,6 @@ pub fn render_svg(example_name: &String, visualization_data: &VisualizationData)
     let final_svg_content = handlebars.render("full_svg_template", &svg_data).unwrap();
 
     println!("{}", final_svg_content);
-    utils::create_and_write_to_file(final_svg_content, path.to_owned() + "/rendering.svg");
+    utils::create_and_write_to_file(&final_svg_content, exampleDirPath + "rendering.svg");
+    utils::create_and_write_to_file(&final_svg_content, bookImageFilePath);
 }

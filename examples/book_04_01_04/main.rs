@@ -21,5 +21,5 @@ fn main() {
     vd.append_event(&s, Event::Acquire { from: None }, &(2 as usize));
     vd.append_event(&s, Event::GoOutOfScope, &(7 as usize));
 
-    svg_generation::render_svg(&"book_04_01_04".to_owned(), &vd);
+    svg_generation::render_svg(&"04_01_04".to_owned(), &"".to_owned(), &vd);
 }

@@ -11,9 +11,12 @@ value:
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust
+```rust hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-07-reference/src/main.rs:all}}
 ```
+<object type="image/svg+xml" class="logo" data="img/vis_04_02_01.svg" style="width: auto;" >
+!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
+</object>
 
 First, notice that all the tuple code in the variable declaration and the
 function return value is gone. Second, note that we pass `&s1` into
@@ -35,9 +38,12 @@ s1`</span>
 
 Let’s take a closer look at the function call here:
 
-```rust
+```rust hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-07-reference/src/main.rs:here}}
 ```
+<object type="image/svg+xml" class="logo" data="img/vis_04_02_02.svg" style="width: auto;" >
+!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
+</object>
 
 The `&s1` syntax lets us create a reference that *refers* to the value of `s1`
 but does not own it. Because it does not own it, the value it points to will
@@ -46,9 +52,12 @@ not be dropped when the reference goes out of scope.
 Likewise, the signature of the function uses `&` to indicate that the type of
 the parameter `s` is a reference. Let’s add some explanatory annotations:
 
-```rust
+```rust hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-08-reference-with-annotations/src/main.rs:here}}
 ```
+<object type="image/svg+xml" class="logo" data="img/vis_04_02_03.svg" style="width: auto;" >
+!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
+</object>
 
 The scope in which the variable `s` is valid is the same as any function
 parameter’s scope, but we don’t drop what the reference points to when it goes
@@ -86,9 +95,12 @@ We can fix the error in the code from Listing 4-6 with just a small tweak:
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust
+```rust hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-09-fixes-listing-04-06/src/main.rs}}
 ```
+<object type="image/svg+xml" class="logo" data="img/vis_04_02_05.svg" style="width: auto;" >
+!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
+</object>
 
 First, we had to change `s` to be `mut`. Then we had to create a mutable
 reference with `&mut s` and accept a mutable reference with `some_string: &mut
@@ -129,9 +141,12 @@ from happening because it won’t even compile code with data races!
 As always, we can use curly brackets to create a new scope, allowing for
 multiple mutable references, just not *simultaneous* ones:
 
-```rust
+```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-11-muts-in-separate-scopes/src/main.rs:here}}
 ```
+<object type="image/svg+xml" class="logo" data="img/vis_04_02_07.svg" style="width: auto;" >
+!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
+</object>
 
 A similar rule exists for combining mutable and immutable references. This code
 results in an error:
@@ -157,9 +172,12 @@ through the last time that reference is used. For instance, this code will
 compile because the last usage of the immutable references occurs before the
 mutable reference is introduced:
 
-```rust,edition2018
+```rust,edition2018,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-13-reference-scope-ends/src/main.rs:here}}
 ```
+<object type="image/svg+xml" class="logo" data="img/vis_04_02_09.svg" style="width: auto;" >
+!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
+</object>
 
 The scopes of the immutable references `r1` and `r2` end after the `println!`
 where they are last used, which is before the mutable reference `r3` is
@@ -220,9 +238,12 @@ won’t let us do this.
 
 The solution here is to return the `String` directly:
 
-```rust
+```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-16-no-dangle/src/main.rs:here}}
 ```
+<object type="image/svg+xml" class="logo" data="img/vis_04_02_12.svg" style="width: auto;" >
+!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
+</object>
 
 This works without any problems. Ownership is moved out, and nothing is
 deallocated.

@@ -1,7 +1,7 @@
-<svg width="1800px" height="600px" viewBox="-300 0 1500 600"
+<svg width="1800px" height="600px" viewBox="-300 0 1500 700"
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
-    <desc>book_04_01_02</desc>
+    <desc>scope</desc>
 
     <defs>
         <style type="text/css">
@@ -87,6 +87,21 @@ text.code {
     stroke: #fff300;
 }
 
+[data-hash*="5"] {
+    fill: #ff33cc;
+    stroke: #ff33cc;
+}
+
+[data-hash*="6"] {
+    fill: #00ffff;
+    stroke: #00ffff;
+}
+
+[data-hash*="7"] {
+    fill: #ff9900;
+    stroke: #ff9900;
+}
+
         ]]>
         </style>
         <!-- Useful constructs -->
@@ -101,25 +116,25 @@ text.code {
     </defs>
 
     <g>
-        <text id="heading" x="-300" y="30">Visualization of Rust book_04_01_02</text>
+        <text id="heading" x="-300" y="30">Visualization of Rust scope</text>
         <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
     </g>
 
     <g id="labels">
-        <text class="code" x="-40" y="80" data-hash="4">s</text>
+        <text class="code" x="-80" y="80" data-hash="4">s</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="4" class="solid" x1="-40" x2="-40" y1="120" y2="180"><title>has read only privilege to the real data</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-40" x2="-40" y1="125" y2="175"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="120" y2="180"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="125" y2="175"><title>has read only privilege to the real data</title></line>
     </g>
 
     <g id="arrows">
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="4" x="-40" y="120"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-40" y="180"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="120"><title>Acquiring resource</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="180"><title>Goes out of scope</title></use>
     </g>
 
     <g id="dividers">

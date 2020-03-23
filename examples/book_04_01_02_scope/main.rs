@@ -10,10 +10,6 @@ fn main() {
         is_ref: false,
         lifetime_trait: LifetimeTrait::None
     });
-    let from_func = ResourceOwner::Function(Function {
-        hash: 2,
-        name: String::from("String::from()"),
-    });
     let mut vd = VisualizationData {
         timelines: BTreeMap::new(),
         external_events: Vec::new(),
@@ -21,8 +17,7 @@ fn main() {
     //
     // hash s : 1
     //
-    vd.append_external_event(ExternalEvent::Move{from: Some(from_func), to: Some(s.clone())}, &(2 as usize));
-    vd.append_external_event(ExternalEvent::GoOutOfScope{ ro: s.clone() }, &(3 as usize));
-
-    svg_generation::render_svg(&"04_01_01".to_owned(), &"one_var".to_owned(), &vd);
+    vd.append_external_event(ExternalEvent::Move{from: None, to: Some(s.clone())}, &(3 as usize));
+    vd.append_external_event(ExternalEvent::GoOutOfScope{ ro: s.clone() }, &(6 as usize));
+    svg_generation::render_svg(&"04_01_02".to_owned(), &"scope".to_owned(), &vd);
 }

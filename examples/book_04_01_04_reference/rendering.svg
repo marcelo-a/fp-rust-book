@@ -1,7 +1,7 @@
 <svg width="1800px" height="600px" viewBox="-300 0 1500 700"
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
-    <desc>one_var</desc>
+    <desc>reference</desc>
 
     <defs>
         <style type="text/css">
@@ -116,26 +116,33 @@ text.code {
     </defs>
 
     <g>
-        <text id="heading" x="-300" y="30">Visualization of Rust one_var</text>
+        <text id="heading" x="-300" y="30">Visualization of Rust reference</text>
         <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
     </g>
 
     <g id="labels">
-        <text class="code" x="-80" y="80" data-hash="4">s</text>
+        <text class="code" x="-80" y="80" data-hash="1">s</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="100" y2="120"><title>has read only privilege to the real data</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="105" y2="115"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="-80" x2="-80" y1="100" y2="140"><title>has read and write privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="-80" x2="-80" y1="140" y2="180"><title>has read and write privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="-80" x2="-80" y1="180" y2="180"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="185" y2="175"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="-80" x2="-80" y1="180" y2="200"><title>has read and write privilege to the real data</title></line>
     </g>
 
     <g id="arrows">
         <text x="-54" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,100 -67,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
-    </g>
+        <text x="-80" y="140" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>f</text>        <text x="-80" y="180" font-size = "20" font-style = "italic" class="heavy" ><title>println!()</title>f</text>    </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="100"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="120"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-80" y="100"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-80" y="140"><title>Mutable lend to String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-80" y="140"><title>Fully reacquires resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-80" y="180"><title>Partially lends resource to println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-80" y="180"><title>Partially reacquires resource from println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-80" y="200"><title>Goes out of scope</title></use>
     </g>
 
     <g id="dividers">
@@ -144,8 +151,12 @@ text.code {
 
     <g id="code">
         <text class="code" x="0" y="80"> fn main() { </text>
-        <text class="code" x="0" y="100">     let <tspan data-hash="1">s</tspan> = String::from("hello"); </text>
-        <text class="code" x="0" y="120"> } </text>
+        <text class="code" x="0" y="100">     let mut <tspan data-hash="4">s</tspan> = String::from("hello"); </text>
+        <text class="code" x="0" y="120">  </text>
+        <text class="code" x="0" y="140">     <tspan data-hash="4">s</tspan>.push_str(", world!"); // push_str() appends a literal to a String </text>
+        <text class="code" x="0" y="160">  </text>
+        <text class="code" x="0" y="180">     println!("{}", <tspan data-hash="4">s</tspan>); // This will print `hello, world!` </text>
+        <text class="code" x="0" y="200"> } </text>
     </g>
 
    

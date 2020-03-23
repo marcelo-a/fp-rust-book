@@ -22,40 +22,44 @@ name = "one_var"
 path = "examples/book_04_01_01_one_var/main.rs"
 
 [[example]]
-name = "book_04_01_02"
-path = "examples/book_04_01_02/main.rs"
+name = "scope"
+path = "examples/book_04_01_02_scope/main.rs"
 
 [[example]]
-name = "book_04_01_04"
-path = "examples/book_04_01_04/main.rs"
+name = "reference"
+path = "examples/book_04_01_04_reference/main.rs"
 
 [[example]]
-name = "book_04_01_05"
-path = "examples/book_04_01_05/main.rs"
+name = "scope2"
+path = "examples/book_04_01_05_scope2/main.rs"
 
 [[example]]
-name = "book_04_01_06"
-path = "examples/book_04_01_06/main.rs"
+name = "move"
+path = "examples/book_04_01_06_move/main.rs"
 
 [[example]]
-name = "book_04_01_09"
-path = "examples/book_04_01_09/main.rs"
+name = "copy"
+path = "examples/book_04_01_09_copy/main.rs"
 
 [[example]]
-name = "book_04_01_11"
-path = "examples/book_04_01_11/main.rs"
+name = "return_values"
+path = "examples/book_04_01_11_return_values/main.rs"
 
 [[example]]
-name = "book_04_02_01"
-path = "examples/book_04_02_01/main.rs"
+name = "pass_reference"
+path = "examples/book_04_02_01_pass_reference/main.rs"
+
+[[example]]
+name = "acquire_from_function"
+path = "examples/book_04_02_02_acquire_from_function/main.rs"
 
 [[example]]
 name = "shared_and_unique_borrow"
 path = "examples/book_04_02_09_shared_and_unique_borrow/main.rs"
 
 [[example]]
-name = "book_04_02_12"
-path = "examples/book_04_02_12/main.rs"
+name = "no_dangle"
+path = "examples/book_04_02_12_no_dangle/main.rs"
 
 [dependencies]
 handlebars = "3.0.1"

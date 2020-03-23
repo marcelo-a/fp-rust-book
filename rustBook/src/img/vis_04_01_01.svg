@@ -121,21 +121,21 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-80" y="80" data-hash="1">s</text>
+        <text class="code" x="-80" y="80" data-hash="4">s</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid" x1="-80" x2="-80" y1="100" y2="120"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="100" y2="120"><title>has read only privilege to the real data</title></line>
         <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="105" y2="115"><title>has read only privilege to the real data</title></line>
     </g>
 
     <g id="arrows">
-        <text x="-54" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,100 -67,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
+        <text x="-54" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,100 -67,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="-80" y="100"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="-80" y="120"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="100"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="120"><title>Goes out of scope</title></use>
     </g>
 
     <g id="dividers">

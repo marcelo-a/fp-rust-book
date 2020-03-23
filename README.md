@@ -8,6 +8,8 @@ Update: we are starting to support some build.
 Primary examples:
 
 Use: 
+* Please use `cargo install --git https://github.com/gab-umich/mdBook.git mdbook` to install a specifically fine tuned version of the mdbook command before proceeding.
+* you can 
 * `cargo run --example <name_of_example>` to build an SVG related to a certain piece of code.
 	* for instance, `cargo run --example book_04_01_02` will trigger the running of [examples/book_04_01_02/main.rs](examples/book_04_01_02/main.rs). This will in-turn call dependencies of its execution: the [main.rs](examples/book_04_01_02/main.rs) will take in the [examples/book_04_01_02/annotated_source.rs](examples/book_04_01_02/annotated_source.rs), and compute the [rendering.svg](examples/book_04_01_02/rendering.svg) by calling functions from [src/lib.rs](src/lib.rs)
 

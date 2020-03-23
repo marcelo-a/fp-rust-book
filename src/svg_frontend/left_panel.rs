@@ -99,7 +99,7 @@ fn prepare_registry(registry: &mut Handlebars) {
     let dot_template =
         "        <use xlink:href=\"#eventDot\" data-hash=\"{{hash}}\" x=\"{{dot_x}}\" y=\"{{dot_y}}\"><title>{{title}}</title></use>\n";
     let function_logo_template =
-        "        <text x=\"{{x}}\" y=\"{{y}}\" class=\"heavy\" ><title>{{title}}</title>F</text>";
+        "        <text x=\"{{x}}\" y=\"{{y}}\" font-size = \"20\" font-style = \"italic\" class=\"heavy\" ><title>{{title}}</title>F</text>";
     let arrow_template =
         "        <polyline stroke-width=\"2.5\" stroke=\"beige\" points=\"{{x2}},{{y2}} {{x1}},{{y1}} \" marker-end=\"url(#arrowHead)\"><title>{{title}}</title></polyline>\n";
     let vertical_line_template =
@@ -284,6 +284,14 @@ fn render_arrows_string_external_events_version(
                 title = String::from("Return mutably borrowed resource");
                 (from_ro, to_ro)
             },
+            ExternalEvent::PassByMutableReference{ from: from_ro, to: to_ro } => {
+                title = String::from("Pass by mutable reference");
+                (from_ro, to_ro)
+            }
+            ExternalEvent::PassByStaticReference{ from: from_ro, to: to_ro } => {
+                title = String::from("Pass by static reference");
+                (from_ro, to_ro)
+            }
             _ => (&None, &None),
         };
         // complete title
@@ -310,8 +318,19 @@ fn render_arrows_string_external_events_version(
             title: title
         };
         let arrow_length = 20;
-        match (from, to) {
-            (Some(ResourceOwner::Function(from_function)), Some(ResourceOwner::Variable(to_variable))) => {
+        match (from, to, external_event) {
+            (Some(ResourceOwner::Variable(variable)), 
+             Some(ResourceOwner::Function(function)), 
+             ExternalEvent::PassByStaticReference{..} | ExternalEvent::PassByMutableReference{..}) => {
+            // get variable's position
+            let function_data = FunctionLogoData {
+                x: resource_owners_layout[&variable.hash].x_val,
+                y: get_y_axis_pos(line_number),
+                title: function.name.to_owned(),
+            };
+            output.push_str(&registry.render("function_logo_template", &function_data).unwrap());
+            }
+            (Some(ResourceOwner::Function(from_function)), Some(ResourceOwner::Variable(to_variable)), _) => {
                 // ro1 (to_variable) <- ro2 (from_function)
                 data.x1 = resource_owners_layout[&to_variable.hash].x_val + 3; // adjust arrow head pos
                 data.x2 = data.x1 + arrow_length;
@@ -322,7 +341,7 @@ fn render_arrows_string_external_events_version(
                 };
                 output.push_str(&registry.render("function_logo_template", &function_data).unwrap());
             },
-            (Some(ResourceOwner::Variable(from_variable)), Some(ResourceOwner::Function(to_function))) => {
+            (Some(ResourceOwner::Variable(from_variable)), Some(ResourceOwner::Function(to_function)), _) => {
                 //  ro1 (to_function) <- ro2 (from_variable)
                 data.x2 = resource_owners_layout[&from_variable.hash].x_val - 5;
                 data.x1 = data.x2 - arrow_length;
@@ -334,7 +353,7 @@ fn render_arrows_string_external_events_version(
                 };
                 output.push_str(&registry.render("function_logo_template", &function_data).unwrap());
             },
-            (Some(ResourceOwner::Variable(from_variable)), Some(ResourceOwner::Variable(to_variable))) => {
+            (Some(ResourceOwner::Variable(from_variable)), Some(ResourceOwner::Variable(to_variable)), _) => {
                 data.x1 = resource_owners_layout[&to_variable.hash].x_val;
                 data.x2 = resource_owners_layout[&from_variable.hash].x_val;
             },

@@ -123,6 +123,17 @@ pub enum ExternalEvent{
         from: Option<ResourceOwner>,
         to: Option<ResourceOwner>,
     },
+    // a use of the variable, happens when var pass by reference
+    // its really borrow and return but happens on the same line,
+    // use this event instead of borrow and return for more concise visualization 
+    PassByStaticReference {
+        from: Option<ResourceOwner>,
+        to: Option<ResourceOwner>, // must be a function
+    },
+    PassByMutableReference {
+        from: Option<ResourceOwner>,
+        to: Option<ResourceOwner>, // must be a function
+    },
     GoOutOfScope {
         ro: ResourceOwner
     },
@@ -524,12 +535,31 @@ impl Visualizable for VisualizationData {
             ExternalEvent::MutableReturn{from: from_ro, to: to_ro} => {
                 maybe_append_event(self, &to_ro, Event::MutableReacquire{from : from_ro.to_owned()}, line_number);
                 maybe_append_event(self, &from_ro, Event::MutableReturn{to : to_ro.to_owned()}, line_number);
-                
+            }
+            // TODO do we really need to add these events, since pass by ref does not change the state?
+            ExternalEvent::PassByStaticReference{from: from_ro, to: to_ro} => {
+                maybe_append_event(self, &from_ro, Event::StaticLend{to : to_ro.to_owned()}, line_number);
+                if let Some(some_from_ro) = from_ro {
+                    maybe_append_event(self, &to_ro, Event::StaticBorrow{from : some_from_ro.to_owned()}, line_number);
+                } else {
+                    panic!("Must pass a function to PassByStaticReference.to!");
+                }
+                maybe_append_event(self, &from_ro, Event::StaticReacquire{from : to_ro.to_owned()}, line_number);
+                maybe_append_event(self, &to_ro, Event::StaticReturn{to : from_ro.to_owned()}, line_number);
+            }
+            ExternalEvent::PassByMutableReference{from: from_ro, to: to_ro} => {
+                maybe_append_event(self, &from_ro, Event::MutableLend{to : to_ro.to_owned()}, line_number);
+                if let Some(some_from_ro) = from_ro {
+                    maybe_append_event(self, &to_ro, Event::MutableBorrow{from : some_from_ro.to_owned()}, line_number);
+                } else {
+                    panic!("Must pass a function to PassByMutableReference.to!");
+                }
+                maybe_append_event(self, &from_ro, Event::MutableReacquire{from : to_ro.to_owned()}, line_number);
+                maybe_append_event(self, &to_ro, Event::MutableReturn{to : from_ro.to_owned()}, line_number);
             }
             ExternalEvent::GoOutOfScope{ro} => {
                 maybe_append_event(self, &Some(ro), Event::GoOutOfScope, line_number);         
             }
-                
         }
     }
 }

@@ -427,15 +427,6 @@ fn render_timelines_string(
                     }
                     output.push_str(&registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
                 },
-                (State::ResourceReturned{ to: _ }, _) => {
-                    data.line_class = String::from("dotted");
-                    if ro.is_ref() {
-                        data.title = String::from("its value(reference) has been returned")
-                    }else{
-                        data.title = String::from("its value(data) has been returned")
-                    }
-                    output.push_str(&registry.render("vertical_line_template", &data).unwrap());
-                },
                 (State::ResourceMoved{ move_to: _, move_at_line: _ }, true) => {
                     data.line_class = String::from("extend");
                     if ro.is_ref() {

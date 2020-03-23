@@ -247,9 +247,6 @@ pub enum State {
     },
     // should not appear for visualization in a correct program
     Invalid,
-    ResourceReturned {
-        to: Option<ResourceOwner>,
-    }
 }
 
 impl std::fmt::Display for State {
@@ -261,7 +258,6 @@ impl std::fmt::Display for State {
             State::PartialPrivilege { borrow_count: _, borrow_to: _ } => write!(f, "PartialPrivilege"),
             State::RevokedPrivilege { to: _, borrow_to: _ } => write!(f, "RevokedPrivilege"),
             State::Invalid => write!(f, "Invalid"),
-            State::ResourceReturned { to: _ } => write!(f, "Resource Returned"),
         }
     }
 }
@@ -375,9 +371,10 @@ impl Visualizable for VisualizationData {
                     to: to_ro.to_owned(),
                     borrow_to: None
                 },
-
-            (State::FullPrivilege, Event::MutableReacquire{ from: ro }) =>
-                State::ResourceReturned { to: ro.to_owned() },
+        
+            // this looks impossible?
+            // (State::FullPrivilege, Event::MutableReacquire{ from: ro }) =>
+            //     State::ResourceReturned { to: ro.to_owned() },
 
             // (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) =>
             //         State::ResourceReturned { to: ro.to_owned() },
@@ -396,21 +393,29 @@ impl Visualizable for VisualizationData {
                     borrow_to: [(to_ro.to_owned().unwrap())].iter().cloned().collect()
                 },
 
-            (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::RevokedPrivilege {
-                to: None,
-                borrow_to: to_ro.to_owned()
-                },
+            // self statically borrowed resource, and it returns; TODO what about references to self?
+            (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
 
-            (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReacquire{ from: ro }) =>
-                State::ResourceReturned{
-                    to: ro.to_owned()
-                },
+            (State::PartialPrivilege{ borrow_count, borrow_to }, Event::StaticReacquire{ from: ro }) => {
+                let new_borrow_count = borrow_count - 1;
+                // check if it resumes to full privilege    
+                if borrow_count - 1 == 0 {
+                        State::FullPrivilege 
+                    } else {
+                        let new_borrow_to = borrow_to.to_owned();
+                        // TODO ro.unwrap() should not panic, because Reacquire{from: None} is not possible
+                        // TODO change to Reaquire{from: ResourceOwner}
+                        assert_eq!(new_borrow_to.contains(&ro.to_owned().unwrap()), true); // borrow_to must contain ro
+                        State::PartialPrivilege{
+                            borrow_count: new_borrow_count,
+                            borrow_to: new_borrow_to,
+                        }
+                    }
+                }
 
             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::GoOutOfScope) => State::OutOfScope,
 
-            (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::ResourceReturned{ to: ro.to_owned() },
-
-            (State::ResourceReturned{ to: _ }, _) => State::FullPrivilege,
+            (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
 
             (_, Event::Duplicate { to: ro }) =>
                 (*previous_state).clone(),

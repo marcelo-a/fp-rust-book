@@ -121,26 +121,24 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-80" y="80" data-hash="4">y</text>
         <text class="code" x="-150" y="80" data-hash="3">x</text>
+        <text class="code" x="-80" y="80" data-hash="4">y</text>
     </g>
 
     <g id="timelines">
         <line data-hash="3" class="solid" x1="-150" x2="-150" y1="100" y2="120"><title>has read only privilege to the real data</title></line>
         <line stroke="#232323" stroke-width="3px" x1="-150" x2="-150" y1="105" y2="115"><title>has read only privilege to the real data</title></line>
-        <line data-hash="3" class="solid" x1="-150" x2="-150" y1="120" y2="140"><title>has read only privilege to the real data</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-150" x2="-150" y1="125" y2="135"><title>has read only privilege to the real data</title></line>
         <line data-hash="4" class="solid" x1="-80" x2="-80" y1="120" y2="140"><title>has read only privilege to the real data</title></line>
         <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="125" y2="135"><title>has read only privilege to the real data</title></line>
     </g>
 
     <g id="arrows">
-        <polyline stroke-width="2.5" stroke="beige" points="-150,120 -90,120 " marker-end="url(#arrowHead)"><title>Duplicate from x to y</title></polyline>
+        <polyline stroke-width="2.5" stroke="beige" points="-150,120 -90,120 " marker-end="url(#arrowHead)"><title>Move from x to y</title></polyline>
     </g>
 
     <g id="events">
         <use xlink:href="#eventDot" data-hash="3" x="-150" y="100"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="-150" y="120"><title>Copying resource to y</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="-150" y="120"><title>Moving resource to y</title></use>
         <use xlink:href="#eventDot" data-hash="3" x="-150" y="140"><title>Goes out of scope</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="-80" y="120"><title>Acquiring resource from x</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="-80" y="140"><title>Goes out of scope</title></use>

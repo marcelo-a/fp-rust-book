@@ -133,15 +133,15 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="-124" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,100 -137,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from to s1</title></polyline>
-        <text x="-150" y="140" font-size = "20" font-style = "italic" class="heavy" ><title>calculate_length</title>F</text>        <text x="-54" y="145" font-size = "20" font-style = "italic" class="heavy" ><title>calculate_length</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,140 -67,140 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length to len</title></polyline>
+        <text x="-124" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,100 -137,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s1</title></polyline>
+        <text x="-150" y="140" font-size = "20" font-style = "italic" class="heavy" ><title>calculate_length()</title>f</text>        <text x="-54" y="145" font-size = "20" font-style = "italic" class="heavy" ><title>calculate_length()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,140 -67,140 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length() to len</title></polyline>
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="-150" y="100"><title>Acquiring resource from String::from</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="-150" y="140"><title>Partially lends resource to calculate_length</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="-150" y="140"><title>Partially reacquires resource from calculate_length</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="-80" y="140"><title>Acquiring resource from calculate_length</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-150" y="100"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-150" y="140"><title>Partially lends resource to calculate_length()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-150" y="140"><title>Partially reacquires resource from calculate_length()</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="-80" y="140"><title>Acquiring resource from calculate_length()</title></use>
     </g>
 
     <g id="dividers">
@@ -152,7 +152,7 @@ text.code {
         <text class="code" x="0" y="80">  </text>
         <text class="code" x="0" y="100"> let <tspan data-hash="1">s1</tspan> = String::from("hello"); </text>
         <text class="code" x="0" y="120">  </text>
-        <text class="code" x="0" y="140"> let <tspan data-hash="1">len</tspan> = calculate_length(&<tspan data-hash="1">s1</tspan>); </text>
+        <text class="code" x="0" y="140"> let <tspan data-hash="1">len</tspan> = calculate_length(&amp;<tspan data-hash="1">s1</tspan>); </text>
     </g>
 
    

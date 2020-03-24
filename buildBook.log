@@ -1,5 +1,120 @@
 Running the following examples: 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.15s
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+   Compiling rrt v0.1.0 (/home/madoka/code/rust-resource-timeline)
+warning: unused variable: `s`
+  --> examples/book_04_02_02_acquire_from_function/main.rs:21:9
+   |
+21 |     let s = Some(ResourceOwner::Variable(Variable {
+   |         ^ help: consider prefixing with an underscore: `_s`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `len_func`
+  --> examples/book_04_02_02_acquire_from_function/main.rs:37:9
+   |
+37 |     let len_func = Some(ResourceOwner::Function(Function {
+   |         ^^^^^^^^ help: consider prefixing with an underscore: `_len_func`
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.83s
      Running `target/debug/examples/acquire_from_function`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -128,8 +243,8 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-80" y="80" data-hash="2">len</text>
-        <text class="code" x="-150" y="80" data-hash="1">s1</text>
+        <text class="code" x="-150" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text class="code" x="-80" y="80" data-hash="2"><title>len, immutable</title>len</text>
     </g>
 
     <g id="timelines">
@@ -166,7 +281,116 @@ text.code {
 </svg>
 successfully wrote to examples/book_04_02_02_acquire_from_function/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_02.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.06s
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+   Compiling rrt v0.1.0 (/home/madoka/code/rust-resource-timeline)
+warning: unused import: `Function`
+ --> examples/book_04_01_09_copy/main.rs:1:76
+  |
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, VisualizationData, Visualizable};
+  |                                                                            ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.87s
      Running `target/debug/examples/copy`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -296,8 +520,8 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-80" y="80" data-hash="4">y</text>
-        <text class="code" x="-150" y="80" data-hash="3">x</text>
+        <text class="code" x="-150" y="80" data-hash="3"><title>x, immutable</title>x</text>
+        <text class="code" x="-80" y="80" data-hash="4"><title>y, immutable</title>y</text>
     </g>
 
     <g id="timelines">
@@ -338,7 +562,116 @@ text.code {
 </svg>
 successfully wrote to examples/book_04_01_09_copy/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_09.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.05s
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+   Compiling rrt v0.1.0 (/home/madoka/code/rust-resource-timeline)
+warning: unused import: `Function`
+ --> examples/book_04_01_06_move/main.rs:1:76
+  |
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, VisualizationData, Visualizable};
+  |                                                                            ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.80s
      Running `target/debug/examples/move`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -468,8 +801,8 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-80" y="80" data-hash="4">y</text>
-        <text class="code" x="-150" y="80" data-hash="3">x</text>
+        <text class="code" x="-150" y="80" data-hash="3"><title>x, immutable</title>x</text>
+        <text class="code" x="-80" y="80" data-hash="4"><title>y, immutable</title>y</text>
     </g>
 
     <g id="timelines">
@@ -506,7 +839,108 @@ text.code {
 </svg>
 successfully wrote to examples/book_04_01_06_move/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_06.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.04s
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+   Compiling rrt v0.1.0 (/home/madoka/code/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.78s
      Running `target/debug/examples/no_dangle`
 s 1 2 OutOfScope
 s 2 5 FullPrivilege
@@ -633,7 +1067,7 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-80" y="80" data-hash="1">s</text>
+        <text class="code" x="-80" y="80" data-hash="1"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
@@ -666,7 +1100,108 @@ text.code {
 </svg>
 successfully wrote to examples/book_04_02_12_no_dangle/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_12.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.06s
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+   Compiling rrt v0.1.0 (/home/madoka/code/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.76s
      Running `target/debug/examples/one_var`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
@@ -793,7 +1328,7 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-80" y="80" data-hash="4">s</text>
+        <text class="code" x="-80" y="80" data-hash="4"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
@@ -824,7 +1359,108 @@ text.code {
 </svg>
 successfully wrote to examples/book_04_01_01_one_var/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_01.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.05s
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+   Compiling rrt v0.1.0 (/home/madoka/code/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.73s
      Running `target/debug/examples/pass_reference`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -959,9 +1595,9 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-150" y="80" data-hash="2">len</text>
-        <text class="code" x="-220" y="80" data-hash="1">s1</text>
-        <text class="code" x="-80" y="80" data-hash="4">s</text>
+        <text class="code" x="-150" y="80" data-hash="2"><title>len, immutable</title>len</text>
+        <text class="code" x="-80" y="80" data-hash="4"><title>s, immutable</title>s</text>
+        <text class="code" x="-220" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -1021,7 +1657,108 @@ text.code {
 </svg>
 successfully wrote to examples/book_04_02_01_pass_reference/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_01.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.05s
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+   Compiling rrt v0.1.0 (/home/madoka/code/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.80s
      Running `target/debug/examples/reference`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -1152,7 +1889,7 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-80" y="80" data-hash="1">s</text>
+        <text class="code" x="-80" y="80" data-hash="1"><title>s, mutable</title>s</text>
     </g>
 
     <g id="timelines">
@@ -1194,7 +1931,108 @@ text.code {
 </svg>
 successfully wrote to examples/book_04_01_04_reference/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_04.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.06s
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+   Compiling rrt v0.1.0 (/home/madoka/code/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.76s
      Running `target/debug/examples/return_values`
 s1 1 2 OutOfScope
 s1 2 10 FullPrivilege
@@ -1332,11 +2170,11 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-320" y="80" data-hash="3">some_string</text>
-        <text class="code" x="-390" y="80" data-hash="1">s1</text>
-        <text class="code" x="-150" y="80" data-hash="5">s3</text>
-        <text class="code" x="-80" y="80" data-hash="7">a_string</text>
-        <text class="code" x="-220" y="80" data-hash="4">s2</text>
+        <text class="code" x="-390" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text class="code" x="-150" y="80" data-hash="5"><title>s3, immutable</title>s3</text>
+        <text class="code" x="-80" y="80" data-hash="7"><title>a_string, immutable</title>a_string</text>
+        <text class="code" x="-220" y="80" data-hash="4"><title>s2, immutable</title>s2</text>
+        <text class="code" x="-320" y="80" data-hash="3"><title>some_string, immutable</title>some_string</text>
     </g>
 
     <g id="timelines">
@@ -1414,7 +2252,116 @@ text.code {
 </svg>
 successfully wrote to examples/book_04_01_11_return_values/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_11.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.06s
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+   Compiling rrt v0.1.0 (/home/madoka/code/rust-resource-timeline)
+warning: unused import: `Function`
+ --> examples/book_04_01_02_scope/main.rs:1:76
+  |
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, VisualizationData, Visualizable};
+  |                                                                            ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.81s
      Running `target/debug/examples/scope`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
@@ -1541,7 +2488,7 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-80" y="80" data-hash="4">s</text>
+        <text class="code" x="-80" y="80" data-hash="4"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
@@ -1575,7 +2522,116 @@ text.code {
 </svg>
 successfully wrote to examples/book_04_01_02_scope/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_02.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.05s
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+   Compiling rrt v0.1.0 (/home/madoka/code/rust-resource-timeline)
+warning: unused import: `Function`
+ --> examples/book_04_01_05_scope2/main.rs:1:76
+  |
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, VisualizationData, Visualizable};
+  |                                                                            ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.84s
      Running `target/debug/examples/scope2`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
@@ -1702,7 +2758,7 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-80" y="80" data-hash="4">s</text>
+        <text class="code" x="-80" y="80" data-hash="4"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
@@ -1737,7 +2793,107 @@ text.code {
 </svg>
 successfully wrote to examples/book_04_01_05_scope2/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_05.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.04s
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/shared_and_unique_borrow`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -1885,10 +3041,10 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-150" y="80" data-hash="3">r2</text>
-        <text class="code" x="-80" y="80" data-hash="4">r3</text>
-        <text class="code" x="-290" y="80" data-hash="1">s</text>
-        <text class="code" x="-220" y="80" data-hash="2">r1</text>
+        <text class="code" x="-220" y="80" data-hash="2"><title>r1, immutable</title>r1</text>
+        <text class="code" x="-290" y="80" data-hash="1"><title>s, mutable</title>s</text>
+        <text class="code" x="-80" y="80" data-hash="4"><title>r3, immutable</title>r3</text>
+        <text class="code" x="-150" y="80" data-hash="3"><title>r2, immutable</title>r2</text>
     </g>
 
     <g id="timelines">

@@ -121,7 +121,7 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-80" y="80" data-hash="1">s</text>
+        <text class="code" x="-80" y="80" data-hash="1"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">

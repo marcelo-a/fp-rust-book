@@ -15,8 +15,8 @@ fn main() {
         name: String::from("no_dangle"),
     });
     let string_ctor = ResourceOwner::Function(Function {
-        hash: 2,
-        name: String::from("String::from"),
+        hash: 3,
+        name: String::from("String::from()"),
     });
     let mut vd = VisualizationData {
         timelines: BTreeMap::new(),

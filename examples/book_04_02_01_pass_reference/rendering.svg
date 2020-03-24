@@ -122,8 +122,8 @@ text.code {
 
     <g id="labels">
         <text class="code" x="-150" y="80" data-hash="2"><title>len, immutable</title>len</text>
-        <text class="code" x="-80" y="80" data-hash="4"><title>s, immutable</title>s</text>
         <text class="code" x="-220" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text class="code" x="-80" y="80" data-hash="4"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
@@ -144,20 +144,20 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="-194" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-197,100 -207,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from to s1</title></polyline>
-        <text x="-220" y="140" font-size = "20" font-style = "italic" class="heavy" ><title>calculate_length</title>f</text>        <text x="-124" y="145" font-size = "20" font-style = "italic" class="heavy" ><title>calculate_length</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,140 -137,140 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length to len</title></polyline>
-        <text x="-80" y="260" font-size = "20" font-style = "italic" class="heavy" ><title>len</title>f</text>    </g>
+        <text x="-194" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-197,100 -207,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s1</title></polyline>
+        <text x="-220" y="140" font-size = "20" font-style = "italic" class="heavy" ><title>calculate_length()</title>f</text>        <text x="-124" y="145" font-size = "20" font-style = "italic" class="heavy" ><title>calculate_length()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,140 -137,140 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length() to len</title></polyline>
+        <text x="-80" y="260" font-size = "20" font-style = "italic" class="heavy" ><title>len()</title>f</text>    </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="-220" y="100"><title>Acquiring resource from String::from</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="-220" y="140"><title>Partially lends resource to calculate_length</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="-220" y="140"><title>Partially reacquires resource from calculate_length</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-220" y="100"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-220" y="140"><title>Partially lends resource to calculate_length()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-220" y="140"><title>Partially reacquires resource from calculate_length()</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="-220" y="200"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="-150" y="140"><title>Acquiring resource from calculate_length</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="-150" y="140"><title>Acquiring resource from calculate_length()</title></use>
         <use xlink:href="#eventDot" data-hash="2" x="-150" y="200"><title>Goes out of scope</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="-80" y="240"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="260"><title>Partially lends resource to len</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="260"><title>Partially reacquires resource from len</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="260"><title>Partially lends resource to len()</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="260"><title>Partially reacquires resource from len()</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="-80" y="280"><title>Goes out of scope</title></use>
     </g>
 

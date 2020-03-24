@@ -28,15 +28,15 @@ fn main() {
     // Functions
     let calculate_length = Some(ResourceOwner::Function(Function {
         hash: 3,
-        name: String::from("calculate_length"),
+        name: String::from("calculate_length()"),
     }));
     let string_ctor = Some(ResourceOwner::Function(Function {
         hash: 5,
-        name: String::from("String::from"),
+        name: String::from("String::from()"),
     }));
     let len_func = Some(ResourceOwner::Function(Function {
         hash: 6,
-        name: String::from("len"),
+        name: String::from("len()"),
     }));
     // Data
     let mut vd = VisualizationData {

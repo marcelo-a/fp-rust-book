@@ -121,11 +121,11 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-390" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
         <text class="code" x="-150" y="80" data-hash="5"><title>s3, immutable</title>s3</text>
         <text class="code" x="-80" y="80" data-hash="7"><title>a_string, immutable</title>a_string</text>
         <text class="code" x="-220" y="80" data-hash="4"><title>s2, immutable</title>s2</text>
         <text class="code" x="-320" y="80" data-hash="3"><title>some_string, immutable</title>some_string</text>
+        <text class="code" x="-390" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -142,21 +142,21 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="-364" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>gives_ownership</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-367,100 -377,100 " marker-end="url(#arrowHead)"><title>Move from the return value of gives_ownership to s1</title></polyline>
-        <text x="-255" y="205" font-size = "20" font-style = "italic" class="heavy" ><title>takes_and_gives_back</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-225,200 -235,200 " marker-end="url(#arrowHead)"><title>Move from s2 to the parameter of takes_and_gives_back</title></polyline>
-        <text x="-124" y="205" font-size = "20" font-style = "italic" class="heavy" ><title>takes_and_gives_back</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,200 -137,200 " marker-end="url(#arrowHead)"><title>Move from the return value of takes_and_gives_back to s3</title></polyline>
+        <text x="-364" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>gives_ownership()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-367,100 -377,100 " marker-end="url(#arrowHead)"><title>Move from the return value of gives_ownership() to s1</title></polyline>
+        <text x="-255" y="205" font-size = "20" font-style = "italic" class="heavy" ><title>takes_and_gives_back()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-225,200 -235,200 " marker-end="url(#arrowHead)"><title>Move from s2 to the parameter of takes_and_gives_back()</title></polyline>
+        <text x="-124" y="205" font-size = "20" font-style = "italic" class="heavy" ><title>takes_and_gives_back()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,200 -137,200 " marker-end="url(#arrowHead)"><title>Move from the return value of takes_and_gives_back() to s3</title></polyline>
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="-390" y="100"><title>Acquiring resource from gives_ownership</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-390" y="100"><title>Acquiring resource from gives_ownership()</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="-390" y="260"><title>Goes out of scope</title></use>
         <use xlink:href="#eventDot" data-hash="3" x="-320" y="400"><title>Acquiring resource</title></use>
         <use xlink:href="#eventDot" data-hash="3" x="-320" y="440"><title>Moving resource</title></use>
         <use xlink:href="#eventDot" data-hash="3" x="-320" y="500"><title>Goes out of scope</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="-220" y="160"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-220" y="200"><title>Moving resource to takes_and_gives_back</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-220" y="200"><title>Moving resource to takes_and_gives_back()</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="-220" y="260"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="5" x="-150" y="200"><title>Acquiring resource from takes_and_gives_back</title></use>
+        <use xlink:href="#eventDot" data-hash="5" x="-150" y="200"><title>Acquiring resource from takes_and_gives_back()</title></use>
         <use xlink:href="#eventDot" data-hash="5" x="-150" y="260"><title>Goes out of scope</title></use>
         <use xlink:href="#eventDot" data-hash="7" x="-80" y="560"><title>Acquiring resource</title></use>
         <use xlink:href="#eventDot" data-hash="7" x="-80" y="620"><title>Moving resource</title></use>

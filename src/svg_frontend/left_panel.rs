@@ -8,7 +8,8 @@ use std::cmp;
 
 struct TimelineColumnData {
     name: String,
-    x_val: i64
+    x_val: i64,
+    title: String,
 }
 
 #[derive(Serialize)]
@@ -22,7 +23,8 @@ struct LeftPanelData {
 struct ResourceOwnerLabelData {
     x_val: i64,
     hash: String,
-    name: String
+    name: String,
+    title: String,
 }
 
 #[derive(Serialize)]
@@ -95,7 +97,7 @@ fn prepare_registry(registry: &mut Handlebars) {
         <g id=\"events\">\n{{ dots }}    </g>";
 
     let label_template =
-        "        <text class=\"code\" x=\"{{x_val}}\" y=\"80\" data-hash=\"{{hash}}\">{{name}}</text>\n";
+        "        <text class=\"code\" x=\"{{x_val}}\" y=\"80\" data-hash=\"{{hash}}\"><title>{{title}}</title>{{name}}</text>\n";
     let dot_template =
         "        <use xlink:href=\"#eventDot\" data-hash=\"{{hash}}\" x=\"{{dot_x}}\" y=\"{{dot_y}}\"><title>{{title}}</title></use>\n";
     let function_logo_template =
@@ -144,7 +146,16 @@ fn compute_column_layout<'a>(visualization_data: &'a VisualizationData) -> HashM
             };
             let x_space = cmp::max(70, (&(name.len() as i64)-1)*10);
             x = x - x_space;
-            resource_owners_layout.insert(hash, TimelineColumnData{ name: name.clone(), x_val: x });
+            let title = match visualization_data.is_mut(hash) {
+                true => String::from("mutable"),
+                false => String::from("immutable"),
+            };
+            resource_owners_layout.insert(hash, TimelineColumnData
+                { 
+                    name: name.clone(), 
+                    x_val: x, 
+                    title: name.clone() + ", " + &title,
+                });
         }
         
     }
@@ -160,7 +171,8 @@ fn render_labels_string(
         let data = ResourceOwnerLabelData {
             x_val: column_data.x_val,
             hash: hash.to_string(),
-            name: column_data.name.clone()
+            name: column_data.name.clone(),
+            title: column_data.title.clone(),
         };
         output.push_str(&registry.render("label_template", &data).unwrap());
     }

@@ -54,6 +54,14 @@ name = "acquire_from_function"
 path = "examples/book_04_02_02_acquire_from_function/main.rs"
 
 [[example]]
+name = "safely_out_of_scope"
+path = "examples/book_04_02_03_safely_out_of_scope/main.rs"
+
+[[example]]
+name = "mut_ref"
+path = "examples/book_04_02_05_mut_ref/main.rs"
+
+[[example]]
 name = "shared_and_unique_borrow"
 path = "examples/book_04_02_09_shared_and_unique_borrow/main.rs"
 

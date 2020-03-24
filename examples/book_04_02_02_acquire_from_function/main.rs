@@ -36,7 +36,7 @@ fn main() {
     }));
     let len_func = Some(ResourceOwner::Function(Function {
         hash: 6,
-        name: String::from("len"),
+        name: String::from("len()"),
     }));
     // Data
     let mut vd = VisualizationData {

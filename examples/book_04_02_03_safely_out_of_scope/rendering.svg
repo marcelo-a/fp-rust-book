@@ -1,7 +1,7 @@
 <svg width="1800px" height="600px" viewBox="-300 0 1500 700"
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
-    <desc>copy</desc>
+    <desc>safely_out_of_scope</desc>
 
     <defs>
         <style type="text/css">
@@ -116,33 +116,30 @@ text.code {
     </defs>
 
     <g>
-        <text id="heading" x="-300" y="30">Visualization of Rust copy</text>
+        <text id="heading" x="-300" y="30">Visualization of Rust safely_out_of_scope</text>
         <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
     </g>
 
     <g id="labels">
-        <text class="code" x="-150" y="80" data-hash="3"><title>x, immutable</title>x</text>
-        <text class="code" x="-80" y="80" data-hash="4"><title>y, immutable</title>y</text>
+        <text class="code" x="-80" y="80" data-hash="4"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="3" class="solid" x1="-150" x2="-150" y1="100" y2="120"><title>has read only privilege to the real data</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-150" x2="-150" y1="105" y2="115"><title>has read only privilege to the real data</title></line>
-        <line data-hash="3" class="solid" x1="-150" x2="-150" y1="120" y2="140"><title>has read only privilege to the real data</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-150" x2="-150" y1="125" y2="135"><title>has read only privilege to the real data</title></line>
-        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="120" y2="140"><title>has read only privilege to the real data</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="125" y2="135"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="100" y2="120"><title>has read only privilege to the reference itself</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="105" y2="115"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="120" y2="120"><title>has read only privilege to the reference itself</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="125" y2="115"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="120" y2="140"><title>has read only privilege to the reference itself</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="125" y2="135"><title>has read only privilege to the reference itself</title></line>
     </g>
 
     <g id="arrows">
-        <polyline stroke-width="2.5" stroke="beige" points="-150,120 -90,120 " marker-end="url(#arrowHead)"><title>Duplicate from x to y</title></polyline>
-    </g>
+        <text x="-80" y="120" font-size = "20" font-style = "italic" class="heavy" ><title>len()</title>f</text>    </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="3" x="-150" y="100"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="-150" y="120"><title>Copying resource to y</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="-150" y="140"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="120"><title>Acquiring resource from x</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="100"><title>Acquiring resource</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="120"><title>Partially lends resource to len()</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="120"><title>Partially reacquires resource from len()</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="-80" y="140"><title>Goes out of scope</title></use>
     </g>
 
@@ -151,12 +148,11 @@ text.code {
     </g>
 
     <g id="code">
-        <text class="code" x="0" y="80"> fn main() { </text>
-        <text class="code" x="0" y="100">     let <tspan data-hash="3">x</tspan> = 5; </text>
-        <text class="code" x="0" y="120">     let <tspan data-hash="4">y</tspan> = <tspan data-hash="3">x</tspan>; </text>
-        <text class="code" x="0" y="140">  </text>
-        <text class="code" x="0" y="160">     println!("x = {}, y = {}", <tspan data-hash="3">x</tspan>, <tspan data-hash="4">y</tspan>); </text>
-        <text class="code" x="0" y="180"> } </text>
+        <text class="code" x="0" y="80">  </text>
+        <text class="code" x="0" y="100"> fn <tspan data-hash="3">calculate_length</tspan>(<tspan data-hash="4">s</tspan>: &amp;String) -> usize { </text>
+        <text class="code" x="0" y="120">     <tspan data-hash="4">s</tspan>.len() </text>
+        <text class="code" x="0" y="140"> } // Here, s goes out of scope. But because it does not have ownership of what </text>
+        <text class="code" x="0" y="160">   // it refers to, nothing happens. </text>
     </g>
 
    

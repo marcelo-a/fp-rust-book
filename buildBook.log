@@ -1,672 +1,105 @@
 Running the following examples: 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.15s
-     Running `target/debug/examples/acquire_from_function`
-s1 1 2 OutOfScope
-s1 2 4 FullPrivilege
-s1 4 4 PartialPrivilege
-len 1 4 OutOfScope
-<svg width="1800px" height="600px" viewBox="-300 0 1500 700"
-        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-
-    <desc>acquire_from_function</desc>
-
-    <defs>
-        <style type="text/css">
-        <![CDATA[
-        /* general setup */
-svg {
-    background-color: #232323;
-}
-
-text {
-    fill: #cccccc;
-    vertical-align: baseline;
-    text-anchor: start;
-}
-
-#heading {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-#caption {
-    font-size: 12px;
-}
-
-/* code related styling */
-text.code {
-    white-space: pre;
-    font-family: "monospace";
-}
-
-/* event related styling */
-#eventDot:hover {
-    transform: scale(1.5);
-}
-
-#eventDot {
-    transition: all 0.3s;
-}
-
-/* timeline/event interaction styling */
-.solid {
-    stroke-width: 5px;
-}
-
-.hollow_internal {
-    stroke-width: 3px;
-    fill: #232323;
-}
-
-.dotted {
-    stroke-width: 5px;
-    stroke-dasharray: "2 1";
-}
-
-.extend {
-    stroke-width: 1px;
-    stroke-dasharray: "2 1";
-}
-
-.colorless {
-    color: gray;
-    fill: gray;
-}
-
-/* hash based styling */
-[data-hash*="1"] {
-    fill: #3355ff;
-    stroke: #3355ff;
-}
-
-[data-hash*="2"] {
-    fill: #33ff00;
-    stroke: #33ff00;
-}
-
-[data-hash*="3"] {
-    fill: #ff3300;
-    stroke: #ff3300;
-}
-
-[data-hash*="4"] {
-    fill: #fff300;
-    stroke: #fff300;
-}
-
-[data-hash*="5"] {
-    fill: #ff33cc;
-    stroke: #ff33cc;
-}
-
-[data-hash*="6"] {
-    fill: #00ffff;
-    stroke: #00ffff;
-}
-
-[data-hash*="7"] {
-    fill: #ff9900;
-    stroke: #ff9900;
-}
-
-        ]]>
-        </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
-        <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
-            markerUnits="strokeWidth"
-            markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="beige">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
-        </marker>
-    </defs>
-
-    <g>
-        <text id="heading" x="-300" y="30">Visualization of Rust acquire_from_function</text>
-        <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
-    </g>
-
-    <g id="labels">
-        <text class="code" x="-80" y="80" data-hash="2">len</text>
-        <text class="code" x="-150" y="80" data-hash="1">s1</text>
-    </g>
-
-    <g id="timelines">
-        <line data-hash="1" class="solid" x1="-150" x2="-150" y1="100" y2="140"><title>has read only privilege to the real data</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-150" x2="-150" y1="105" y2="135"><title>has read only privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="-150" x2="-150" y1="140" y2="140"><title>has read only privilege to the real data</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-150" x2="-150" y1="145" y2="135"><title>has read only privilege to the real data</title></line>
-    </g>
-
-    <g id="arrows">
-        <text x="-124" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,100 -137,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s1</title></polyline>
-        <text x="-150" y="140" font-size = "20" font-style = "italic" class="heavy" ><title>calculate_length()</title>f</text>        <text x="-54" y="145" font-size = "20" font-style = "italic" class="heavy" ><title>calculate_length()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,140 -67,140 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length() to len</title></polyline>
-    </g>
-
-    <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="-150" y="100"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="-150" y="140"><title>Partially lends resource to calculate_length()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="-150" y="140"><title>Partially reacquires resource from calculate_length()</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="-80" y="140"><title>Acquiring resource from calculate_length()</title></use>
-    </g>
-
-    <g id="dividers">
-            <line class="solid" stroke="beige" x1="-20" x2="-20" y1="80" y2="400"/>
-    </g>
-
-    <g id="code">
-        <text class="code" x="0" y="80">  </text>
-        <text class="code" x="0" y="100"> let <tspan data-hash="1">s1</tspan> = String::from("hello"); </text>
-        <text class="code" x="0" y="120">  </text>
-        <text class="code" x="0" y="140"> let <tspan data-hash="1">len</tspan> = calculate_length(&amp;<tspan data-hash="1">s1</tspan>); </text>
-    </g>
-
-   
-</svg>
-successfully wrote to examples/book_04_02_02_acquire_from_function/rendering.svg
-successfully wrote to rustBook/src/img/vis_04_02_02.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.06s
-     Running `target/debug/examples/copy`
-x 1 2 OutOfScope
-x 2 3 FullPrivilege
-x 3 4 FullPrivilege
-y 1 3 OutOfScope
-y 3 4 FullPrivilege
-<svg width="1800px" height="600px" viewBox="-300 0 1500 700"
-        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-
-    <desc>copy</desc>
-
-    <defs>
-        <style type="text/css">
-        <![CDATA[
-        /* general setup */
-svg {
-    background-color: #232323;
-}
-
-text {
-    fill: #cccccc;
-    vertical-align: baseline;
-    text-anchor: start;
-}
-
-#heading {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-#caption {
-    font-size: 12px;
-}
-
-/* code related styling */
-text.code {
-    white-space: pre;
-    font-family: "monospace";
-}
-
-/* event related styling */
-#eventDot:hover {
-    transform: scale(1.5);
-}
-
-#eventDot {
-    transition: all 0.3s;
-}
-
-/* timeline/event interaction styling */
-.solid {
-    stroke-width: 5px;
-}
-
-.hollow_internal {
-    stroke-width: 3px;
-    fill: #232323;
-}
-
-.dotted {
-    stroke-width: 5px;
-    stroke-dasharray: "2 1";
-}
-
-.extend {
-    stroke-width: 1px;
-    stroke-dasharray: "2 1";
-}
-
-.colorless {
-    color: gray;
-    fill: gray;
-}
-
-/* hash based styling */
-[data-hash*="1"] {
-    fill: #3355ff;
-    stroke: #3355ff;
-}
-
-[data-hash*="2"] {
-    fill: #33ff00;
-    stroke: #33ff00;
-}
-
-[data-hash*="3"] {
-    fill: #ff3300;
-    stroke: #ff3300;
-}
-
-[data-hash*="4"] {
-    fill: #fff300;
-    stroke: #fff300;
-}
-
-[data-hash*="5"] {
-    fill: #ff33cc;
-    stroke: #ff33cc;
-}
-
-[data-hash*="6"] {
-    fill: #00ffff;
-    stroke: #00ffff;
-}
-
-[data-hash*="7"] {
-    fill: #ff9900;
-    stroke: #ff9900;
-}
-
-        ]]>
-        </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
-        <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
-            markerUnits="strokeWidth"
-            markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="beige">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
-        </marker>
-    </defs>
-
-    <g>
-        <text id="heading" x="-300" y="30">Visualization of Rust copy</text>
-        <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
-    </g>
-
-    <g id="labels">
-        <text class="code" x="-80" y="80" data-hash="4">y</text>
-        <text class="code" x="-150" y="80" data-hash="3">x</text>
-    </g>
-
-    <g id="timelines">
-        <line data-hash="3" class="solid" x1="-150" x2="-150" y1="100" y2="120"><title>has read only privilege to the real data</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-150" x2="-150" y1="105" y2="115"><title>has read only privilege to the real data</title></line>
-        <line data-hash="3" class="solid" x1="-150" x2="-150" y1="120" y2="140"><title>has read only privilege to the real data</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-150" x2="-150" y1="125" y2="135"><title>has read only privilege to the real data</title></line>
-        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="120" y2="140"><title>has read only privilege to the real data</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="125" y2="135"><title>has read only privilege to the real data</title></line>
-    </g>
-
-    <g id="arrows">
-        <polyline stroke-width="2.5" stroke="beige" points="-150,120 -90,120 " marker-end="url(#arrowHead)"><title>Duplicate from x to y</title></polyline>
-    </g>
-
-    <g id="events">
-        <use xlink:href="#eventDot" data-hash="3" x="-150" y="100"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="-150" y="120"><title>Copying resource to y</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="-150" y="140"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="120"><title>Acquiring resource from x</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="140"><title>Goes out of scope</title></use>
-    </g>
-
-    <g id="dividers">
-            <line class="solid" stroke="beige" x1="-20" x2="-20" y1="80" y2="400"/>
-    </g>
-
-    <g id="code">
-        <text class="code" x="0" y="80"> fn main() { </text>
-        <text class="code" x="0" y="100">     let <tspan data-hash="3">x</tspan> = 5; </text>
-        <text class="code" x="0" y="120">     let <tspan data-hash="4">y</tspan> = <tspan data-hash="3">x</tspan>; </text>
-        <text class="code" x="0" y="140">  </text>
-        <text class="code" x="0" y="160">     println!("x = {}, y = {}", <tspan data-hash="3">x</tspan>, <tspan data-hash="4">y</tspan>); </text>
-        <text class="code" x="0" y="180"> } </text>
-    </g>
-
-   
-</svg>
-successfully wrote to examples/book_04_01_09_copy/rendering.svg
-successfully wrote to rustBook/src/img/vis_04_01_09.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.05s
-     Running `target/debug/examples/move`
-x 1 2 OutOfScope
-x 2 3 FullPrivilege
-x 3 4 ResourceMoved
-y 1 3 OutOfScope
-y 3 4 FullPrivilege
-<svg width="1800px" height="600px" viewBox="-300 0 1500 700"
-        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-
-    <desc>move</desc>
-
-    <defs>
-        <style type="text/css">
-        <![CDATA[
-        /* general setup */
-svg {
-    background-color: #232323;
-}
-
-text {
-    fill: #cccccc;
-    vertical-align: baseline;
-    text-anchor: start;
-}
-
-#heading {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-#caption {
-    font-size: 12px;
-}
-
-/* code related styling */
-text.code {
-    white-space: pre;
-    font-family: "monospace";
-}
-
-/* event related styling */
-#eventDot:hover {
-    transform: scale(1.5);
-}
-
-#eventDot {
-    transition: all 0.3s;
-}
-
-/* timeline/event interaction styling */
-.solid {
-    stroke-width: 5px;
-}
-
-.hollow_internal {
-    stroke-width: 3px;
-    fill: #232323;
-}
-
-.dotted {
-    stroke-width: 5px;
-    stroke-dasharray: "2 1";
-}
-
-.extend {
-    stroke-width: 1px;
-    stroke-dasharray: "2 1";
-}
-
-.colorless {
-    color: gray;
-    fill: gray;
-}
-
-/* hash based styling */
-[data-hash*="1"] {
-    fill: #3355ff;
-    stroke: #3355ff;
-}
-
-[data-hash*="2"] {
-    fill: #33ff00;
-    stroke: #33ff00;
-}
-
-[data-hash*="3"] {
-    fill: #ff3300;
-    stroke: #ff3300;
-}
-
-[data-hash*="4"] {
-    fill: #fff300;
-    stroke: #fff300;
-}
-
-[data-hash*="5"] {
-    fill: #ff33cc;
-    stroke: #ff33cc;
-}
-
-[data-hash*="6"] {
-    fill: #00ffff;
-    stroke: #00ffff;
-}
-
-[data-hash*="7"] {
-    fill: #ff9900;
-    stroke: #ff9900;
-}
-
-        ]]>
-        </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
-        <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
-            markerUnits="strokeWidth"
-            markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="beige">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
-        </marker>
-    </defs>
-
-    <g>
-        <text id="heading" x="-300" y="30">Visualization of Rust move</text>
-        <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
-    </g>
-
-    <g id="labels">
-        <text class="code" x="-80" y="80" data-hash="4">y</text>
-        <text class="code" x="-150" y="80" data-hash="3">x</text>
-    </g>
-
-    <g id="timelines">
-        <line data-hash="3" class="solid" x1="-150" x2="-150" y1="100" y2="120"><title>has read only privilege to the real data</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-150" x2="-150" y1="105" y2="115"><title>has read only privilege to the real data</title></line>
-        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="120" y2="140"><title>has read only privilege to the real data</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="125" y2="135"><title>has read only privilege to the real data</title></line>
-    </g>
-
-    <g id="arrows">
-        <polyline stroke-width="2.5" stroke="beige" points="-150,120 -90,120 " marker-end="url(#arrowHead)"><title>Move from x to y</title></polyline>
-    </g>
-
-    <g id="events">
-        <use xlink:href="#eventDot" data-hash="3" x="-150" y="100"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="-150" y="120"><title>Moving resource to y</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="-150" y="140"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="120"><title>Acquiring resource from x</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="140"><title>Goes out of scope</title></use>
-    </g>
-
-    <g id="dividers">
-            <line class="solid" stroke="beige" x1="-20" x2="-20" y1="80" y2="400"/>
-    </g>
-
-    <g id="code">
-        <text class="code" x="0" y="80"> fn main() { </text>
-        <text class="code" x="0" y="100">     let <tspan data-hash="3">x</tspan> = 5; </text>
-        <text class="code" x="0" y="120">     let <tspan data-hash="4">y</tspan> = x; </text>
-        <text class="code" x="0" y="140"> } </text>
-    </g>
-
-   
-</svg>
-successfully wrote to examples/book_04_01_06_move/rendering.svg
-successfully wrote to rustBook/src/img/vis_04_01_06.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.04s
-     Running `target/debug/examples/no_dangle`
-s 1 2 OutOfScope
-s 2 5 FullPrivilege
-<svg width="1800px" height="600px" viewBox="-300 0 1500 700"
-        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-
-    <desc>no_dangle</desc>
-
-    <defs>
-        <style type="text/css">
-        <![CDATA[
-        /* general setup */
-svg {
-    background-color: #232323;
-}
-
-text {
-    fill: #cccccc;
-    vertical-align: baseline;
-    text-anchor: start;
-}
-
-#heading {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-#caption {
-    font-size: 12px;
-}
-
-/* code related styling */
-text.code {
-    white-space: pre;
-    font-family: "monospace";
-}
-
-/* event related styling */
-#eventDot:hover {
-    transform: scale(1.5);
-}
-
-#eventDot {
-    transition: all 0.3s;
-}
-
-/* timeline/event interaction styling */
-.solid {
-    stroke-width: 5px;
-}
-
-.hollow_internal {
-    stroke-width: 3px;
-    fill: #232323;
-}
-
-.dotted {
-    stroke-width: 5px;
-    stroke-dasharray: "2 1";
-}
-
-.extend {
-    stroke-width: 1px;
-    stroke-dasharray: "2 1";
-}
-
-.colorless {
-    color: gray;
-    fill: gray;
-}
-
-/* hash based styling */
-[data-hash*="1"] {
-    fill: #3355ff;
-    stroke: #3355ff;
-}
-
-[data-hash*="2"] {
-    fill: #33ff00;
-    stroke: #33ff00;
-}
-
-[data-hash*="3"] {
-    fill: #ff3300;
-    stroke: #ff3300;
-}
-
-[data-hash*="4"] {
-    fill: #fff300;
-    stroke: #fff300;
-}
-
-[data-hash*="5"] {
-    fill: #ff33cc;
-    stroke: #ff33cc;
-}
-
-[data-hash*="6"] {
-    fill: #00ffff;
-    stroke: #00ffff;
-}
-
-[data-hash*="7"] {
-    fill: #ff9900;
-    stroke: #ff9900;
-}
-
-        ]]>
-        </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
-        <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
-            markerUnits="strokeWidth"
-            markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="beige">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
-        </marker>
-    </defs>
-
-    <g>
-        <text id="heading" x="-300" y="30">Visualization of Rust no_dangle</text>
-        <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
-    </g>
-
-    <g id="labels">
-        <text class="code" x="-80" y="80" data-hash="1">s</text>
-    </g>
-
-    <g id="timelines">
-        <line data-hash="1" class="solid" x1="-80" x2="-80" y1="100" y2="160"><title>has read only privilege to the real data</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="105" y2="155"><title>has read only privilege to the real data</title></line>
-    </g>
-
-    <g id="arrows">
-        <text x="-54" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,100 -67,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from to s</title></polyline>
-    </g>
-
-    <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="-80" y="100"><title>Acquiring resource from String::from</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="-80" y="160"><title>Moving resource</title></use>
-    </g>
-
-    <g id="dividers">
-            <line class="solid" stroke="beige" x1="-20" x2="-20" y1="80" y2="400"/>
-    </g>
-
-    <g id="code">
-        <text class="code" x="0" y="80"> fn no_dangle() -> String { </text>
-        <text class="code" x="0" y="100">     let <tspan data-hash="1">s</tspan> = String::from("hello"); </text>
-        <text class="code" x="0" y="120">  </text>
-        <text class="code" x="0" y="140">     <tspan data-hash="1">s</tspan> </text>
-        <text class="code" x="0" y="160"> } </text>
-    </g>
-
-   
-</svg>
-successfully wrote to examples/book_04_02_12_no_dangle/rendering.svg
-successfully wrote to rustBook/src/img/vis_04_02_12.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.06s
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/one_var`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
@@ -793,7 +226,7 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-80" y="80" data-hash="4">s</text>
+        <text class="code" x="-80" y="80" data-hash="4"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
@@ -824,22 +257,122 @@ text.code {
 </svg>
 successfully wrote to examples/book_04_01_01_one_var/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_01.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.05s
-     Running `target/debug/examples/pass_reference`
-s1 1 2 OutOfScope
-s1 2 4 FullPrivilege
-s1 4 4 PartialPrivilege
-s1 4 7 FullPrivilege
-len 1 4 OutOfScope
-len 4 7 FullPrivilege
-s 1 9 OutOfScope
-s 9 10 FullPrivilege
-s 10 10 PartialPrivilege
-s 10 11 FullPrivilege
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+warning: unused import: `Function`
+ --> examples/book_04_01_02_scope/main.rs:1:76
+  |
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, VisualizationData, Visualizable};
+  |                                                                            ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target/debug/examples/scope`
+s 1 3 OutOfScope
+s 3 6 FullPrivilege
 <svg width="1800px" height="600px" viewBox="-300 0 1500 700"
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
-    <desc>pass_reference</desc>
+    <desc>scope</desc>
 
     <defs>
         <style type="text/css">
@@ -954,49 +487,25 @@ text.code {
     </defs>
 
     <g>
-        <text id="heading" x="-300" y="30">Visualization of Rust pass_reference</text>
+        <text id="heading" x="-300" y="30">Visualization of Rust scope</text>
         <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
     </g>
 
     <g id="labels">
-        <text class="code" x="-150" y="80" data-hash="2">len</text>
-        <text class="code" x="-220" y="80" data-hash="1">s1</text>
-        <text class="code" x="-80" y="80" data-hash="4">s</text>
+        <text class="code" x="-80" y="80" data-hash="4"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid" x1="-220" x2="-220" y1="100" y2="140"><title>has read only privilege to the real data</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-220" x2="-220" y1="105" y2="135"><title>has read only privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="-220" x2="-220" y1="140" y2="140"><title>has read only privilege to the real data</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-220" x2="-220" y1="145" y2="135"><title>has read only privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="-220" x2="-220" y1="140" y2="200"><title>has read only privilege to the real data</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-220" x2="-220" y1="145" y2="195"><title>has read only privilege to the real data</title></line>
-        <line data-hash="2" class="solid" x1="-150" x2="-150" y1="140" y2="200"><title>has read only privilege to the real data</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-150" x2="-150" y1="145" y2="195"><title>has read only privilege to the real data</title></line>
-        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="240" y2="260"><title>has read only privilege to the reference itself</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="245" y2="255"><title>has read only privilege to the reference itself</title></line>
-        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="260" y2="260"><title>has read only privilege to the reference itself</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="265" y2="255"><title>has read only privilege to the reference itself</title></line>
-        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="260" y2="280"><title>has read only privilege to the reference itself</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="265" y2="275"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="120" y2="180"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="125" y2="175"><title>has read only privilege to the real data</title></line>
     </g>
 
     <g id="arrows">
-        <text x="-194" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-197,100 -207,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from to s1</title></polyline>
-        <text x="-220" y="140" font-size = "20" font-style = "italic" class="heavy" ><title>calculate_length</title>f</text>        <text x="-124" y="145" font-size = "20" font-style = "italic" class="heavy" ><title>calculate_length</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,140 -137,140 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length to len</title></polyline>
-        <text x="-80" y="260" font-size = "20" font-style = "italic" class="heavy" ><title>len</title>f</text>    </g>
+    </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="-220" y="100"><title>Acquiring resource from String::from</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="-220" y="140"><title>Partially lends resource to calculate_length</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="-220" y="140"><title>Partially reacquires resource from calculate_length</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="-220" y="200"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="-150" y="140"><title>Acquiring resource from calculate_length</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="-150" y="200"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="240"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="260"><title>Partially lends resource to len</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="260"><title>Partially reacquires resource from len</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="280"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="120"><title>Acquiring resource</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="180"><title>Goes out of scope</title></use>
     </g>
 
     <g id="dividers">
@@ -1005,23 +514,119 @@ text.code {
 
     <g id="code">
         <text class="code" x="0" y="80"> fn main() { </text>
-        <text class="code" x="0" y="100">     let <tspan data-hash="1">s1</tspan> = <tspan data-hash="5">String::from</tspan>("hello"); </text>
-        <text class="code" x="0" y="120">  </text>
-        <text class="code" x="0" y="140">     let <tspan data-hash="2">len</tspan> = <tspan data-hash="3">calculate_length</tspan>(<tspan data-hash="1">&amp;s1</tspan>); </text>
-        <text class="code" x="0" y="160">  </text>
-        <text class="code" x="0" y="180">     println!("The length of '{}' is {}.", <tspan data-hash="1">s1</tspan>, <tspan data-hash="2">len</tspan>); </text>
+        <text class="code" x="0" y="100">     {                      // s is not valid here, it’s not yet declared </text>
+        <text class="code" x="0" y="120">         let <tspan data-hash="4">s</tspan> = "hello";   // s is valid from this point forward </text>
+        <text class="code" x="0" y="140">  </text>
+        <text class="code" x="0" y="160">         // do stuff with s </text>
+        <text class="code" x="0" y="180">     }                      // this scope is now over, and s is no longer valid </text>
         <text class="code" x="0" y="200"> } </text>
-        <text class="code" x="0" y="220">  </text>
-        <text class="code" x="0" y="240"> fn <tspan data-hash="3">calculate_length</tspan>(<tspan data-hash="4">s</tspan>: &amp;String) -> usize { </text>
-        <text class="code" x="0" y="260">     <tspan data-hash="4">s</tspan>.len() </text>
-        <text class="code" x="0" y="280"> } </text>
     </g>
 
    
 </svg>
-successfully wrote to examples/book_04_02_01_pass_reference/rendering.svg
-successfully wrote to rustBook/src/img/vis_04_02_01.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.05s
+successfully wrote to examples/book_04_01_02_scope/rendering.svg
+successfully wrote to rustBook/src/img/vis_04_01_02.svg
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/reference`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -1152,7 +757,7 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-80" y="80" data-hash="1">s</text>
+        <text class="code" x="-80" y="80" data-hash="1"><title>s, mutable</title>s</text>
     </g>
 
     <g id="timelines">
@@ -1194,7 +799,933 @@ text.code {
 </svg>
 successfully wrote to examples/book_04_01_04_reference/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_04.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.06s
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+warning: unused import: `Function`
+ --> examples/book_04_01_05_scope2/main.rs:1:76
+  |
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, VisualizationData, Visualizable};
+  |                                                                            ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+     Running `target/debug/examples/scope2`
+s 1 3 OutOfScope
+s 3 6 FullPrivilege
+<svg width="1800px" height="600px" viewBox="-300 0 1500 700"
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <desc>scope2</desc>
+
+    <defs>
+        <style type="text/css">
+        <![CDATA[
+        /* general setup */
+svg {
+    background-color: #232323;
+}
+
+text {
+    fill: #cccccc;
+    vertical-align: baseline;
+    text-anchor: start;
+}
+
+#heading {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#caption {
+    font-size: 12px;
+}
+
+/* code related styling */
+text.code {
+    white-space: pre;
+    font-family: "monospace";
+}
+
+/* event related styling */
+#eventDot:hover {
+    transform: scale(1.5);
+}
+
+#eventDot {
+    transition: all 0.3s;
+}
+
+/* timeline/event interaction styling */
+.solid {
+    stroke-width: 5px;
+}
+
+.hollow_internal {
+    stroke-width: 3px;
+    fill: #232323;
+}
+
+.dotted {
+    stroke-width: 5px;
+    stroke-dasharray: "2 1";
+}
+
+.extend {
+    stroke-width: 1px;
+    stroke-dasharray: "2 1";
+}
+
+.colorless {
+    color: gray;
+    fill: gray;
+}
+
+/* hash based styling */
+[data-hash*="1"] {
+    fill: #3355ff;
+    stroke: #3355ff;
+}
+
+[data-hash*="2"] {
+    fill: #33ff00;
+    stroke: #33ff00;
+}
+
+[data-hash*="3"] {
+    fill: #ff3300;
+    stroke: #ff3300;
+}
+
+[data-hash*="4"] {
+    fill: #fff300;
+    stroke: #fff300;
+}
+
+[data-hash*="5"] {
+    fill: #ff33cc;
+    stroke: #ff33cc;
+}
+
+[data-hash*="6"] {
+    fill: #00ffff;
+    stroke: #00ffff;
+}
+
+[data-hash*="7"] {
+    fill: #ff9900;
+    stroke: #ff9900;
+}
+
+        ]]>
+        </style>
+        <!-- Useful constructs -->
+        <circle id="eventDot" cx="0" cy="0" r="5"/>
+        <marker id="arrowHead" viewBox="0 0 10 10"
+            refX="1" refY="5" 
+            markerUnits="strokeWidth"
+            markerWidth="3px" markerHeight="3px"
+            orient="auto" fill="beige">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
+        </marker>
+    </defs>
+
+    <g>
+        <text id="heading" x="-300" y="30">Visualization of Rust scope2</text>
+        <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
+    </g>
+
+    <g id="labels">
+        <text class="code" x="-80" y="80" data-hash="4"><title>s, immutable</title>s</text>
+    </g>
+
+    <g id="timelines">
+        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="120" y2="180"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="125" y2="175"><title>has read only privilege to the real data</title></line>
+    </g>
+
+    <g id="arrows">
+    </g>
+
+    <g id="events">
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="120"><title>Acquiring resource</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="180"><title>Goes out of scope</title></use>
+    </g>
+
+    <g id="dividers">
+            <line class="solid" stroke="beige" x1="-20" x2="-20" y1="80" y2="400"/>
+    </g>
+
+    <g id="code">
+        <text class="code" x="0" y="80"> fn main() { </text>
+        <text class="code" x="0" y="100">     { </text>
+        <text class="code" x="0" y="120">         let <tspan data-hash="4">s</tspan> = String::from("hello"); // s is valid from this point forward </text>
+        <text class="code" x="0" y="140">      </text>
+        <text class="code" x="0" y="160">         // do stuff with s </text>
+        <text class="code" x="0" y="180">     }                                  // this scope is now over, and s is no </text>
+        <text class="code" x="0" y="200">                                        // longer valid </text>
+        <text class="code" x="0" y="220"> } </text>
+    </g>
+
+   
+</svg>
+successfully wrote to examples/book_04_01_05_scope2/rendering.svg
+successfully wrote to rustBook/src/img/vis_04_01_05.svg
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+warning: unused import: `Function`
+ --> examples/book_04_01_06_move/main.rs:1:76
+  |
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, VisualizationData, Visualizable};
+  |                                                                            ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+     Running `target/debug/examples/move`
+x 1 2 OutOfScope
+x 2 3 FullPrivilege
+x 3 4 ResourceMoved
+y 1 3 OutOfScope
+y 3 4 FullPrivilege
+<svg width="1800px" height="600px" viewBox="-300 0 1500 700"
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <desc>move</desc>
+
+    <defs>
+        <style type="text/css">
+        <![CDATA[
+        /* general setup */
+svg {
+    background-color: #232323;
+}
+
+text {
+    fill: #cccccc;
+    vertical-align: baseline;
+    text-anchor: start;
+}
+
+#heading {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#caption {
+    font-size: 12px;
+}
+
+/* code related styling */
+text.code {
+    white-space: pre;
+    font-family: "monospace";
+}
+
+/* event related styling */
+#eventDot:hover {
+    transform: scale(1.5);
+}
+
+#eventDot {
+    transition: all 0.3s;
+}
+
+/* timeline/event interaction styling */
+.solid {
+    stroke-width: 5px;
+}
+
+.hollow_internal {
+    stroke-width: 3px;
+    fill: #232323;
+}
+
+.dotted {
+    stroke-width: 5px;
+    stroke-dasharray: "2 1";
+}
+
+.extend {
+    stroke-width: 1px;
+    stroke-dasharray: "2 1";
+}
+
+.colorless {
+    color: gray;
+    fill: gray;
+}
+
+/* hash based styling */
+[data-hash*="1"] {
+    fill: #3355ff;
+    stroke: #3355ff;
+}
+
+[data-hash*="2"] {
+    fill: #33ff00;
+    stroke: #33ff00;
+}
+
+[data-hash*="3"] {
+    fill: #ff3300;
+    stroke: #ff3300;
+}
+
+[data-hash*="4"] {
+    fill: #fff300;
+    stroke: #fff300;
+}
+
+[data-hash*="5"] {
+    fill: #ff33cc;
+    stroke: #ff33cc;
+}
+
+[data-hash*="6"] {
+    fill: #00ffff;
+    stroke: #00ffff;
+}
+
+[data-hash*="7"] {
+    fill: #ff9900;
+    stroke: #ff9900;
+}
+
+        ]]>
+        </style>
+        <!-- Useful constructs -->
+        <circle id="eventDot" cx="0" cy="0" r="5"/>
+        <marker id="arrowHead" viewBox="0 0 10 10"
+            refX="1" refY="5" 
+            markerUnits="strokeWidth"
+            markerWidth="3px" markerHeight="3px"
+            orient="auto" fill="beige">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
+        </marker>
+    </defs>
+
+    <g>
+        <text id="heading" x="-300" y="30">Visualization of Rust move</text>
+        <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
+    </g>
+
+    <g id="labels">
+        <text class="code" x="-80" y="80" data-hash="4"><title>y, immutable</title>y</text>
+        <text class="code" x="-150" y="80" data-hash="3"><title>x, immutable</title>x</text>
+    </g>
+
+    <g id="timelines">
+        <line data-hash="3" class="solid" x1="-150" x2="-150" y1="100" y2="120"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-150" x2="-150" y1="105" y2="115"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="120" y2="140"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="125" y2="135"><title>has read only privilege to the real data</title></line>
+    </g>
+
+    <g id="arrows">
+        <polyline stroke-width="2.5" stroke="beige" points="-150,120 -90,120 " marker-end="url(#arrowHead)"><title>Move from x to y</title></polyline>
+    </g>
+
+    <g id="events">
+        <use xlink:href="#eventDot" data-hash="3" x="-150" y="100"><title>Acquiring resource</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="-150" y="120"><title>Moving resource to y</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="-150" y="140"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="120"><title>Acquiring resource from x</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="140"><title>Goes out of scope</title></use>
+    </g>
+
+    <g id="dividers">
+            <line class="solid" stroke="beige" x1="-20" x2="-20" y1="80" y2="400"/>
+    </g>
+
+    <g id="code">
+        <text class="code" x="0" y="80"> fn main() { </text>
+        <text class="code" x="0" y="100">     let <tspan data-hash="3">x</tspan> = 5; </text>
+        <text class="code" x="0" y="120">     let <tspan data-hash="4">y</tspan> = x; </text>
+        <text class="code" x="0" y="140"> } </text>
+    </g>
+
+   
+</svg>
+successfully wrote to examples/book_04_01_06_move/rendering.svg
+successfully wrote to rustBook/src/img/vis_04_01_06.svg
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+warning: unused import: `Function`
+ --> examples/book_04_01_09_copy/main.rs:1:76
+  |
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, VisualizationData, Visualizable};
+  |                                                                            ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+     Running `target/debug/examples/copy`
+x 1 2 OutOfScope
+x 2 3 FullPrivilege
+x 3 4 FullPrivilege
+y 1 3 OutOfScope
+y 3 4 FullPrivilege
+<svg width="1800px" height="600px" viewBox="-300 0 1500 700"
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <desc>copy</desc>
+
+    <defs>
+        <style type="text/css">
+        <![CDATA[
+        /* general setup */
+svg {
+    background-color: #232323;
+}
+
+text {
+    fill: #cccccc;
+    vertical-align: baseline;
+    text-anchor: start;
+}
+
+#heading {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#caption {
+    font-size: 12px;
+}
+
+/* code related styling */
+text.code {
+    white-space: pre;
+    font-family: "monospace";
+}
+
+/* event related styling */
+#eventDot:hover {
+    transform: scale(1.5);
+}
+
+#eventDot {
+    transition: all 0.3s;
+}
+
+/* timeline/event interaction styling */
+.solid {
+    stroke-width: 5px;
+}
+
+.hollow_internal {
+    stroke-width: 3px;
+    fill: #232323;
+}
+
+.dotted {
+    stroke-width: 5px;
+    stroke-dasharray: "2 1";
+}
+
+.extend {
+    stroke-width: 1px;
+    stroke-dasharray: "2 1";
+}
+
+.colorless {
+    color: gray;
+    fill: gray;
+}
+
+/* hash based styling */
+[data-hash*="1"] {
+    fill: #3355ff;
+    stroke: #3355ff;
+}
+
+[data-hash*="2"] {
+    fill: #33ff00;
+    stroke: #33ff00;
+}
+
+[data-hash*="3"] {
+    fill: #ff3300;
+    stroke: #ff3300;
+}
+
+[data-hash*="4"] {
+    fill: #fff300;
+    stroke: #fff300;
+}
+
+[data-hash*="5"] {
+    fill: #ff33cc;
+    stroke: #ff33cc;
+}
+
+[data-hash*="6"] {
+    fill: #00ffff;
+    stroke: #00ffff;
+}
+
+[data-hash*="7"] {
+    fill: #ff9900;
+    stroke: #ff9900;
+}
+
+        ]]>
+        </style>
+        <!-- Useful constructs -->
+        <circle id="eventDot" cx="0" cy="0" r="5"/>
+        <marker id="arrowHead" viewBox="0 0 10 10"
+            refX="1" refY="5" 
+            markerUnits="strokeWidth"
+            markerWidth="3px" markerHeight="3px"
+            orient="auto" fill="beige">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
+        </marker>
+    </defs>
+
+    <g>
+        <text id="heading" x="-300" y="30">Visualization of Rust copy</text>
+        <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
+    </g>
+
+    <g id="labels">
+        <text class="code" x="-150" y="80" data-hash="3"><title>x, immutable</title>x</text>
+        <text class="code" x="-80" y="80" data-hash="4"><title>y, immutable</title>y</text>
+    </g>
+
+    <g id="timelines">
+        <line data-hash="3" class="solid" x1="-150" x2="-150" y1="100" y2="120"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-150" x2="-150" y1="105" y2="115"><title>has read only privilege to the real data</title></line>
+        <line data-hash="3" class="solid" x1="-150" x2="-150" y1="120" y2="140"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-150" x2="-150" y1="125" y2="135"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="120" y2="140"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="125" y2="135"><title>has read only privilege to the real data</title></line>
+    </g>
+
+    <g id="arrows">
+        <polyline stroke-width="2.5" stroke="beige" points="-150,120 -90,120 " marker-end="url(#arrowHead)"><title>Duplicate from x to y</title></polyline>
+    </g>
+
+    <g id="events">
+        <use xlink:href="#eventDot" data-hash="3" x="-150" y="100"><title>Acquiring resource</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="-150" y="120"><title>Copying resource to y</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="-150" y="140"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="120"><title>Acquiring resource from x</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="140"><title>Goes out of scope</title></use>
+    </g>
+
+    <g id="dividers">
+            <line class="solid" stroke="beige" x1="-20" x2="-20" y1="80" y2="400"/>
+    </g>
+
+    <g id="code">
+        <text class="code" x="0" y="80"> fn main() { </text>
+        <text class="code" x="0" y="100">     let <tspan data-hash="3">x</tspan> = 5; </text>
+        <text class="code" x="0" y="120">     let <tspan data-hash="4">y</tspan> = <tspan data-hash="3">x</tspan>; </text>
+        <text class="code" x="0" y="140">  </text>
+        <text class="code" x="0" y="160">     println!("x = {}, y = {}", <tspan data-hash="3">x</tspan>, <tspan data-hash="4">y</tspan>); </text>
+        <text class="code" x="0" y="180"> } </text>
+    </g>
+
+   
+</svg>
+successfully wrote to examples/book_04_01_09_copy/rendering.svg
+successfully wrote to rustBook/src/img/vis_04_01_09.svg
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
      Running `target/debug/examples/return_values`
 s1 1 2 OutOfScope
 s1 2 10 FullPrivilege
@@ -1332,11 +1863,11 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-320" y="80" data-hash="3">some_string</text>
-        <text class="code" x="-390" y="80" data-hash="1">s1</text>
-        <text class="code" x="-150" y="80" data-hash="5">s3</text>
-        <text class="code" x="-80" y="80" data-hash="7">a_string</text>
-        <text class="code" x="-220" y="80" data-hash="4">s2</text>
+        <text class="code" x="-320" y="80" data-hash="3"><title>some_string, immutable</title>some_string</text>
+        <text class="code" x="-150" y="80" data-hash="5"><title>s3, immutable</title>s3</text>
+        <text class="code" x="-220" y="80" data-hash="4"><title>s2, immutable</title>s2</text>
+        <text class="code" x="-80" y="80" data-hash="7"><title>a_string, immutable</title>a_string</text>
+        <text class="code" x="-390" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -1353,21 +1884,21 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="-364" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>gives_ownership</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-367,100 -377,100 " marker-end="url(#arrowHead)"><title>Move from the return value of gives_ownership to s1</title></polyline>
-        <text x="-255" y="205" font-size = "20" font-style = "italic" class="heavy" ><title>takes_and_gives_back</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-225,200 -235,200 " marker-end="url(#arrowHead)"><title>Move from s2 to the parameter of takes_and_gives_back</title></polyline>
-        <text x="-124" y="205" font-size = "20" font-style = "italic" class="heavy" ><title>takes_and_gives_back</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,200 -137,200 " marker-end="url(#arrowHead)"><title>Move from the return value of takes_and_gives_back to s3</title></polyline>
+        <text x="-364" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>gives_ownership()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-367,100 -377,100 " marker-end="url(#arrowHead)"><title>Move from the return value of gives_ownership() to s1</title></polyline>
+        <text x="-255" y="205" font-size = "20" font-style = "italic" class="heavy" ><title>takes_and_gives_back()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-225,200 -235,200 " marker-end="url(#arrowHead)"><title>Move from s2 to the parameter of takes_and_gives_back()</title></polyline>
+        <text x="-124" y="205" font-size = "20" font-style = "italic" class="heavy" ><title>takes_and_gives_back()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,200 -137,200 " marker-end="url(#arrowHead)"><title>Move from the return value of takes_and_gives_back() to s3</title></polyline>
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="-390" y="100"><title>Acquiring resource from gives_ownership</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-390" y="100"><title>Acquiring resource from gives_ownership()</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="-390" y="260"><title>Goes out of scope</title></use>
         <use xlink:href="#eventDot" data-hash="3" x="-320" y="400"><title>Acquiring resource</title></use>
         <use xlink:href="#eventDot" data-hash="3" x="-320" y="440"><title>Moving resource</title></use>
         <use xlink:href="#eventDot" data-hash="3" x="-320" y="500"><title>Goes out of scope</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="-220" y="160"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-220" y="200"><title>Moving resource to takes_and_gives_back</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-220" y="200"><title>Moving resource to takes_and_gives_back()</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="-220" y="260"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="5" x="-150" y="200"><title>Acquiring resource from takes_and_gives_back</title></use>
+        <use xlink:href="#eventDot" data-hash="5" x="-150" y="200"><title>Acquiring resource from takes_and_gives_back()</title></use>
         <use xlink:href="#eventDot" data-hash="5" x="-150" y="260"><title>Goes out of scope</title></use>
         <use xlink:href="#eventDot" data-hash="7" x="-80" y="560"><title>Acquiring resource</title></use>
         <use xlink:href="#eventDot" data-hash="7" x="-80" y="620"><title>Moving resource</title></use>
@@ -1414,14 +1945,122 @@ text.code {
 </svg>
 successfully wrote to examples/book_04_01_11_return_values/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_11.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.06s
-     Running `target/debug/examples/scope`
-s 1 3 OutOfScope
-s 3 6 FullPrivilege
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+     Running `target/debug/examples/pass_reference`
+s1 1 2 OutOfScope
+s1 2 4 FullPrivilege
+s1 4 4 PartialPrivilege
+s1 4 7 FullPrivilege
+len 1 4 OutOfScope
+len 4 7 FullPrivilege
+s 1 9 OutOfScope
+s 9 10 FullPrivilege
+s 10 10 PartialPrivilege
+s 10 11 FullPrivilege
 <svg width="1800px" height="600px" viewBox="-300 0 1500 700"
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
-    <desc>scope</desc>
+    <desc>pass_reference</desc>
 
     <defs>
         <style type="text/css">
@@ -1536,25 +2175,49 @@ text.code {
     </defs>
 
     <g>
-        <text id="heading" x="-300" y="30">Visualization of Rust scope</text>
+        <text id="heading" x="-300" y="30">Visualization of Rust pass_reference</text>
         <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
     </g>
 
     <g id="labels">
-        <text class="code" x="-80" y="80" data-hash="4">s</text>
+        <text class="code" x="-150" y="80" data-hash="2"><title>len, immutable</title>len</text>
+        <text class="code" x="-220" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text class="code" x="-80" y="80" data-hash="4"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="120" y2="180"><title>has read only privilege to the real data</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="125" y2="175"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="-220" x2="-220" y1="100" y2="140"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-220" x2="-220" y1="105" y2="135"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="-220" x2="-220" y1="140" y2="140"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-220" x2="-220" y1="145" y2="135"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="-220" x2="-220" y1="140" y2="200"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-220" x2="-220" y1="145" y2="195"><title>has read only privilege to the real data</title></line>
+        <line data-hash="2" class="solid" x1="-150" x2="-150" y1="140" y2="200"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-150" x2="-150" y1="145" y2="195"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="240" y2="260"><title>has read only privilege to the reference itself</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="245" y2="255"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="260" y2="260"><title>has read only privilege to the reference itself</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="265" y2="255"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="260" y2="280"><title>has read only privilege to the reference itself</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="265" y2="275"><title>has read only privilege to the reference itself</title></line>
     </g>
 
     <g id="arrows">
-    </g>
+        <text x="-194" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-197,100 -207,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s1</title></polyline>
+        <text x="-220" y="140" font-size = "20" font-style = "italic" class="heavy" ><title>calculate_length()</title>f</text>        <text x="-124" y="145" font-size = "20" font-style = "italic" class="heavy" ><title>calculate_length()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,140 -137,140 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length() to len</title></polyline>
+        <text x="-80" y="260" font-size = "20" font-style = "italic" class="heavy" ><title>len()</title>f</text>    </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="120"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="180"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-220" y="100"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-220" y="140"><title>Partially lends resource to calculate_length()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-220" y="140"><title>Partially reacquires resource from calculate_length()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-220" y="200"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="-150" y="140"><title>Acquiring resource from calculate_length()</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="-150" y="200"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="240"><title>Acquiring resource</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="260"><title>Partially lends resource to len()</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="260"><title>Partially reacquires resource from len()</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="280"><title>Goes out of scope</title></use>
     </g>
 
     <g id="dividers">
@@ -1563,26 +2226,146 @@ text.code {
 
     <g id="code">
         <text class="code" x="0" y="80"> fn main() { </text>
-        <text class="code" x="0" y="100">     {                      // s is not valid here, it’s not yet declared </text>
-        <text class="code" x="0" y="120">         let <tspan data-hash="4">s</tspan> = "hello";   // s is valid from this point forward </text>
-        <text class="code" x="0" y="140">  </text>
-        <text class="code" x="0" y="160">         // do stuff with s </text>
-        <text class="code" x="0" y="180">     }                      // this scope is now over, and s is no longer valid </text>
+        <text class="code" x="0" y="100">     let <tspan data-hash="1">s1</tspan> = <tspan data-hash="5">String::from</tspan>("hello"); </text>
+        <text class="code" x="0" y="120">  </text>
+        <text class="code" x="0" y="140">     let <tspan data-hash="2">len</tspan> = <tspan data-hash="3">calculate_length</tspan>(<tspan data-hash="1">&amp;s1</tspan>); </text>
+        <text class="code" x="0" y="160">  </text>
+        <text class="code" x="0" y="180">     println!("The length of '{}' is {}.", <tspan data-hash="1">s1</tspan>, <tspan data-hash="2">len</tspan>); </text>
         <text class="code" x="0" y="200"> } </text>
+        <text class="code" x="0" y="220">  </text>
+        <text class="code" x="0" y="240"> fn <tspan data-hash="3">calculate_length</tspan>(<tspan data-hash="4">s</tspan>: &amp;String) -> usize { </text>
+        <text class="code" x="0" y="260">     <tspan data-hash="4">s</tspan>.len() </text>
+        <text class="code" x="0" y="280"> } </text>
     </g>
 
    
 </svg>
-successfully wrote to examples/book_04_01_02_scope/rendering.svg
-successfully wrote to rustBook/src/img/vis_04_01_02.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.05s
-     Running `target/debug/examples/scope2`
-s 1 3 OutOfScope
-s 3 6 FullPrivilege
+successfully wrote to examples/book_04_02_01_pass_reference/rendering.svg
+successfully wrote to rustBook/src/img/vis_04_02_01.svg
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+warning: unused variable: `s`
+  --> examples/book_04_02_02_acquire_from_function/main.rs:21:9
+   |
+21 |     let s = Some(ResourceOwner::Variable(Variable {
+   |         ^ help: consider prefixing with an underscore: `_s`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `len_func`
+  --> examples/book_04_02_02_acquire_from_function/main.rs:37:9
+   |
+37 |     let len_func = Some(ResourceOwner::Function(Function {
+   |         ^^^^^^^^ help: consider prefixing with an underscore: `_len_func`
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target/debug/examples/acquire_from_function`
+s1 1 2 OutOfScope
+s1 2 4 FullPrivilege
+s1 4 4 PartialPrivilege
+len 1 4 OutOfScope
 <svg width="1800px" height="600px" viewBox="-300 0 1500 700"
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
-    <desc>scope2</desc>
+    <desc>acquire_from_function</desc>
 
     <defs>
         <style type="text/css">
@@ -1697,25 +2480,577 @@ text.code {
     </defs>
 
     <g>
-        <text id="heading" x="-300" y="30">Visualization of Rust scope2</text>
+        <text id="heading" x="-300" y="30">Visualization of Rust acquire_from_function</text>
         <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
     </g>
 
     <g id="labels">
-        <text class="code" x="-80" y="80" data-hash="4">s</text>
+        <text class="code" x="-150" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text class="code" x="-80" y="80" data-hash="2"><title>len, immutable</title>len</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="120" y2="180"><title>has read only privilege to the real data</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="125" y2="175"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="-150" x2="-150" y1="100" y2="140"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-150" x2="-150" y1="105" y2="135"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="-150" x2="-150" y1="140" y2="140"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-150" x2="-150" y1="145" y2="135"><title>has read only privilege to the real data</title></line>
     </g>
 
     <g id="arrows">
+        <text x="-124" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,100 -137,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s1</title></polyline>
+        <text x="-150" y="140" font-size = "20" font-style = "italic" class="heavy" ><title>calculate_length()</title>f</text>        <text x="-54" y="145" font-size = "20" font-style = "italic" class="heavy" ><title>calculate_length()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,140 -67,140 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length() to len</title></polyline>
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="120"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="180"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-150" y="100"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-150" y="140"><title>Partially lends resource to calculate_length()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-150" y="140"><title>Partially reacquires resource from calculate_length()</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="-80" y="140"><title>Acquiring resource from calculate_length()</title></use>
+    </g>
+
+    <g id="dividers">
+            <line class="solid" stroke="beige" x1="-20" x2="-20" y1="80" y2="400"/>
+    </g>
+
+    <g id="code">
+        <text class="code" x="0" y="80">  </text>
+        <text class="code" x="0" y="100"> let <tspan data-hash="1">s1</tspan> = String::from("hello"); </text>
+        <text class="code" x="0" y="120">  </text>
+        <text class="code" x="0" y="140"> let <tspan data-hash="1">len</tspan> = calculate_length(&amp;<tspan data-hash="1">s1</tspan>); </text>
+    </g>
+
+   
+</svg>
+successfully wrote to examples/book_04_02_02_acquire_from_function/rendering.svg
+successfully wrote to rustBook/src/img/vis_04_02_02.svg
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.04s
+     Running `target/debug/examples/safely_out_of_scope`
+s 1 2 OutOfScope
+s 2 3 FullPrivilege
+s 3 3 PartialPrivilege
+s 3 4 FullPrivilege
+<svg width="1800px" height="600px" viewBox="-300 0 1500 700"
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <desc>safely_out_of_scope</desc>
+
+    <defs>
+        <style type="text/css">
+        <![CDATA[
+        /* general setup */
+svg {
+    background-color: #232323;
+}
+
+text {
+    fill: #cccccc;
+    vertical-align: baseline;
+    text-anchor: start;
+}
+
+#heading {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#caption {
+    font-size: 12px;
+}
+
+/* code related styling */
+text.code {
+    white-space: pre;
+    font-family: "monospace";
+}
+
+/* event related styling */
+#eventDot:hover {
+    transform: scale(1.5);
+}
+
+#eventDot {
+    transition: all 0.3s;
+}
+
+/* timeline/event interaction styling */
+.solid {
+    stroke-width: 5px;
+}
+
+.hollow_internal {
+    stroke-width: 3px;
+    fill: #232323;
+}
+
+.dotted {
+    stroke-width: 5px;
+    stroke-dasharray: "2 1";
+}
+
+.extend {
+    stroke-width: 1px;
+    stroke-dasharray: "2 1";
+}
+
+.colorless {
+    color: gray;
+    fill: gray;
+}
+
+/* hash based styling */
+[data-hash*="1"] {
+    fill: #3355ff;
+    stroke: #3355ff;
+}
+
+[data-hash*="2"] {
+    fill: #33ff00;
+    stroke: #33ff00;
+}
+
+[data-hash*="3"] {
+    fill: #ff3300;
+    stroke: #ff3300;
+}
+
+[data-hash*="4"] {
+    fill: #fff300;
+    stroke: #fff300;
+}
+
+[data-hash*="5"] {
+    fill: #ff33cc;
+    stroke: #ff33cc;
+}
+
+[data-hash*="6"] {
+    fill: #00ffff;
+    stroke: #00ffff;
+}
+
+[data-hash*="7"] {
+    fill: #ff9900;
+    stroke: #ff9900;
+}
+
+        ]]>
+        </style>
+        <!-- Useful constructs -->
+        <circle id="eventDot" cx="0" cy="0" r="5"/>
+        <marker id="arrowHead" viewBox="0 0 10 10"
+            refX="1" refY="5" 
+            markerUnits="strokeWidth"
+            markerWidth="3px" markerHeight="3px"
+            orient="auto" fill="beige">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
+        </marker>
+    </defs>
+
+    <g>
+        <text id="heading" x="-300" y="30">Visualization of Rust safely_out_of_scope</text>
+        <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
+    </g>
+
+    <g id="labels">
+        <text class="code" x="-80" y="80" data-hash="4"><title>s, immutable</title>s</text>
+    </g>
+
+    <g id="timelines">
+        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="100" y2="120"><title>has read only privilege to the reference itself</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="105" y2="115"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="120" y2="120"><title>has read only privilege to the reference itself</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="125" y2="115"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="120" y2="140"><title>has read only privilege to the reference itself</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="125" y2="135"><title>has read only privilege to the reference itself</title></line>
+    </g>
+
+    <g id="arrows">
+        <text x="-80" y="120" font-size = "20" font-style = "italic" class="heavy" ><title>len()</title>f</text>    </g>
+
+    <g id="events">
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="100"><title>Acquiring resource</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="120"><title>Partially lends resource to len()</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="120"><title>Partially reacquires resource from len()</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-80" y="140"><title>Goes out of scope</title></use>
+    </g>
+
+    <g id="dividers">
+            <line class="solid" stroke="beige" x1="-20" x2="-20" y1="80" y2="400"/>
+    </g>
+
+    <g id="code">
+        <text class="code" x="0" y="80">  </text>
+        <text class="code" x="0" y="100"> fn <tspan data-hash="3">calculate_length</tspan>(<tspan data-hash="4">s</tspan>: &amp;String) -> usize { </text>
+        <text class="code" x="0" y="120">     <tspan data-hash="4">s</tspan>.len() </text>
+        <text class="code" x="0" y="140"> } // Here, s goes out of scope. But because it does not have ownership of what </text>
+        <text class="code" x="0" y="160">   // it refers to, nothing happens. </text>
+    </g>
+
+   
+</svg>
+successfully wrote to examples/book_04_02_03_safely_out_of_scope/rendering.svg
+successfully wrote to rustBook/src/img/vis_04_02_03.svg
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+     Running `target/debug/examples/mut_ref`
+s 1 2 OutOfScope
+s 2 4 FullPrivilege
+s 4 4 PartialPrivilege
+s 4 5 FullPrivilege
+some_string 1 7 OutOfScope
+some_string 7 8 FullPrivilege
+some_string 8 8 PartialPrivilege
+some_string 8 9 FullPrivilege
+<svg width="1800px" height="600px" viewBox="-300 0 1500 700"
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <desc>mut_ref</desc>
+
+    <defs>
+        <style type="text/css">
+        <![CDATA[
+        /* general setup */
+svg {
+    background-color: #232323;
+}
+
+text {
+    fill: #cccccc;
+    vertical-align: baseline;
+    text-anchor: start;
+}
+
+#heading {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#caption {
+    font-size: 12px;
+}
+
+/* code related styling */
+text.code {
+    white-space: pre;
+    font-family: "monospace";
+}
+
+/* event related styling */
+#eventDot:hover {
+    transform: scale(1.5);
+}
+
+#eventDot {
+    transition: all 0.3s;
+}
+
+/* timeline/event interaction styling */
+.solid {
+    stroke-width: 5px;
+}
+
+.hollow_internal {
+    stroke-width: 3px;
+    fill: #232323;
+}
+
+.dotted {
+    stroke-width: 5px;
+    stroke-dasharray: "2 1";
+}
+
+.extend {
+    stroke-width: 1px;
+    stroke-dasharray: "2 1";
+}
+
+.colorless {
+    color: gray;
+    fill: gray;
+}
+
+/* hash based styling */
+[data-hash*="1"] {
+    fill: #3355ff;
+    stroke: #3355ff;
+}
+
+[data-hash*="2"] {
+    fill: #33ff00;
+    stroke: #33ff00;
+}
+
+[data-hash*="3"] {
+    fill: #ff3300;
+    stroke: #ff3300;
+}
+
+[data-hash*="4"] {
+    fill: #fff300;
+    stroke: #fff300;
+}
+
+[data-hash*="5"] {
+    fill: #ff33cc;
+    stroke: #ff33cc;
+}
+
+[data-hash*="6"] {
+    fill: #00ffff;
+    stroke: #00ffff;
+}
+
+[data-hash*="7"] {
+    fill: #ff9900;
+    stroke: #ff9900;
+}
+
+        ]]>
+        </style>
+        <!-- Useful constructs -->
+        <circle id="eventDot" cx="0" cy="0" r="5"/>
+        <marker id="arrowHead" viewBox="0 0 10 10"
+            refX="1" refY="5" 
+            markerUnits="strokeWidth"
+            markerWidth="3px" markerHeight="3px"
+            orient="auto" fill="beige">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
+        </marker>
+    </defs>
+
+    <g>
+        <text id="heading" x="-300" y="30">Visualization of Rust mut_ref</text>
+        <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
+    </g>
+
+    <g id="labels">
+        <text class="code" x="-110" y="80" data-hash="4"><title>some_string, mutable</title>some_string</text>
+        <text class="code" x="-180" y="80" data-hash="1"><title>s, mutable</title>s</text>
+    </g>
+
+    <g id="timelines">
+        <line data-hash="1" class="solid" x1="-180" x2="-180" y1="100" y2="140"><title>has read and write privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="-180" x2="-180" y1="140" y2="140"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-180" x2="-180" y1="145" y2="135"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="-180" x2="-180" y1="140" y2="160"><title>has read and write privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="-110" x2="-110" y1="200" y2="220"><title>has read and write privilege to the reference itself</title></line>
+        <line data-hash="4" class="solid" x1="-110" x2="-110" y1="220" y2="220"><title>has read only privilege to the reference itself</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-110" x2="-110" y1="225" y2="215"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="4" class="solid" x1="-110" x2="-110" y1="220" y2="240"><title>has read and write privilege to the reference itself</title></line>
+    </g>
+
+    <g id="arrows">
+        <text x="-154" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-157,100 -167,100 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of String::from() to s</title></polyline>
+        <text x="-180" y="140" font-size = "20" font-style = "italic" class="heavy" ><title>change()</title>f</text>        <text x="-110" y="220" font-size = "20" font-style = "italic" class="heavy" ><title>push_str()</title>f</text>    </g>
+
+    <g id="events">
+        <use xlink:href="#eventDot" data-hash="1" x="-180" y="100"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-180" y="140"><title>Partially lends resource to change()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-180" y="140"><title>Partially reacquires resource from change()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-180" y="160"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-110" y="200"><title>Acquiring resource</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-110" y="220"><title>Partially lends resource to push_str()</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-110" y="220"><title>Partially reacquires resource from push_str()</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-110" y="240"><title>Goes out of scope</title></use>
     </g>
 
     <g id="dividers">
@@ -1724,20 +3059,121 @@ text.code {
 
     <g id="code">
         <text class="code" x="0" y="80"> fn main() { </text>
-        <text class="code" x="0" y="100">     { </text>
-        <text class="code" x="0" y="120">         let <tspan data-hash="4">s</tspan> = String::from("hello"); // s is valid from this point forward </text>
-        <text class="code" x="0" y="140">      </text>
-        <text class="code" x="0" y="160">         // do stuff with s </text>
-        <text class="code" x="0" y="180">     }                                  // this scope is now over, and s is no </text>
-        <text class="code" x="0" y="200">                                        // longer valid </text>
-        <text class="code" x="0" y="220"> } </text>
+        <text class="code" x="0" y="100">     let mut <tspan data-hash="1">s</tspan> = <tspan data-hash="2">String::from</tspan>("hello"); </text>
+        <text class="code" x="0" y="120">  </text>
+        <text class="code" x="0" y="140">     <tspan data-hash="3">change</tspan>(&amp;mut <tspan data-hash="1">s</tspan>); </text>
+        <text class="code" x="0" y="160"> } </text>
+        <text class="code" x="0" y="180">  </text>
+        <text class="code" x="0" y="200"> fn change(<tspan data-hash="4">some_string</tspan>: &amp;mut String) { </text>
+        <text class="code" x="0" y="220">     <tspan data-hash="4">some_string</tspan>.<tspan data-hash="5">push_str</tspan>(", world"); </text>
+        <text class="code" x="0" y="240"> } </text>
     </g>
 
    
 </svg>
-successfully wrote to examples/book_04_01_05_scope2/rendering.svg
-successfully wrote to rustBook/src/img/vis_04_01_05.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.04s
+successfully wrote to examples/book_04_02_05_mut_ref/rendering.svg
+successfully wrote to rustBook/src/img/vis_04_02_05.svg
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
      Running `target/debug/examples/shared_and_unique_borrow`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -1885,10 +3321,10 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-150" y="80" data-hash="3">r2</text>
-        <text class="code" x="-80" y="80" data-hash="4">r3</text>
-        <text class="code" x="-290" y="80" data-hash="1">s</text>
-        <text class="code" x="-220" y="80" data-hash="2">r1</text>
+        <text class="code" x="-80" y="80" data-hash="4"><title>r3, immutable</title>r3</text>
+        <text class="code" x="-220" y="80" data-hash="2"><title>r1, immutable</title>r1</text>
+        <text class="code" x="-150" y="80" data-hash="3"><title>r2, immutable</title>r2</text>
+        <text class="code" x="-290" y="80" data-hash="1"><title>s, mutable</title>s</text>
     </g>
 
     <g id="timelines">
@@ -1980,3 +3416,263 @@ text.code {
 </svg>
 successfully wrote to examples/book_04_02_09_shared_and_unique_borrow/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_09.svg
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:207:1
+    |
+207 | / fn render_arrows_string(
+208 | |     visualization_data: &VisualizationData,
+209 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+210 | |     registry: &Handlebars
+...   |
+262 | |     output
+263 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+     Running `target/debug/examples/no_dangle`
+s 1 2 OutOfScope
+s 2 5 FullPrivilege
+<svg width="1800px" height="600px" viewBox="-300 0 1500 700"
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <desc>no_dangle</desc>
+
+    <defs>
+        <style type="text/css">
+        <![CDATA[
+        /* general setup */
+svg {
+    background-color: #232323;
+}
+
+text {
+    fill: #cccccc;
+    vertical-align: baseline;
+    text-anchor: start;
+}
+
+#heading {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#caption {
+    font-size: 12px;
+}
+
+/* code related styling */
+text.code {
+    white-space: pre;
+    font-family: "monospace";
+}
+
+/* event related styling */
+#eventDot:hover {
+    transform: scale(1.5);
+}
+
+#eventDot {
+    transition: all 0.3s;
+}
+
+/* timeline/event interaction styling */
+.solid {
+    stroke-width: 5px;
+}
+
+.hollow_internal {
+    stroke-width: 3px;
+    fill: #232323;
+}
+
+.dotted {
+    stroke-width: 5px;
+    stroke-dasharray: "2 1";
+}
+
+.extend {
+    stroke-width: 1px;
+    stroke-dasharray: "2 1";
+}
+
+.colorless {
+    color: gray;
+    fill: gray;
+}
+
+/* hash based styling */
+[data-hash*="1"] {
+    fill: #3355ff;
+    stroke: #3355ff;
+}
+
+[data-hash*="2"] {
+    fill: #33ff00;
+    stroke: #33ff00;
+}
+
+[data-hash*="3"] {
+    fill: #ff3300;
+    stroke: #ff3300;
+}
+
+[data-hash*="4"] {
+    fill: #fff300;
+    stroke: #fff300;
+}
+
+[data-hash*="5"] {
+    fill: #ff33cc;
+    stroke: #ff33cc;
+}
+
+[data-hash*="6"] {
+    fill: #00ffff;
+    stroke: #00ffff;
+}
+
+[data-hash*="7"] {
+    fill: #ff9900;
+    stroke: #ff9900;
+}
+
+        ]]>
+        </style>
+        <!-- Useful constructs -->
+        <circle id="eventDot" cx="0" cy="0" r="5"/>
+        <marker id="arrowHead" viewBox="0 0 10 10"
+            refX="1" refY="5" 
+            markerUnits="strokeWidth"
+            markerWidth="3px" markerHeight="3px"
+            orient="auto" fill="beige">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
+        </marker>
+    </defs>
+
+    <g>
+        <text id="heading" x="-300" y="30">Visualization of Rust no_dangle</text>
+        <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
+    </g>
+
+    <g id="labels">
+        <text class="code" x="-80" y="80" data-hash="1"><title>s, immutable</title>s</text>
+    </g>
+
+    <g id="timelines">
+        <line data-hash="1" class="solid" x1="-80" x2="-80" y1="100" y2="160"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="105" y2="155"><title>has read only privilege to the real data</title></line>
+    </g>
+
+    <g id="arrows">
+        <text x="-54" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,100 -67,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
+    </g>
+
+    <g id="events">
+        <use xlink:href="#eventDot" data-hash="1" x="-80" y="100"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-80" y="160"><title>Moving resource</title></use>
+    </g>
+
+    <g id="dividers">
+            <line class="solid" stroke="beige" x1="-20" x2="-20" y1="80" y2="400"/>
+    </g>
+
+    <g id="code">
+        <text class="code" x="0" y="80"> fn no_dangle() -> String { </text>
+        <text class="code" x="0" y="100">     let <tspan data-hash="1">s</tspan> = String::from("hello"); </text>
+        <text class="code" x="0" y="120">  </text>
+        <text class="code" x="0" y="140">     <tspan data-hash="1">s</tspan> </text>
+        <text class="code" x="0" y="160"> } </text>
+    </g>
+
+   
+</svg>
+successfully wrote to examples/book_04_02_12_no_dangle/rendering.svg
+successfully wrote to rustBook/src/img/vis_04_02_12.svg

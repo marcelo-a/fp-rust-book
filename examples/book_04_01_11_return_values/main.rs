@@ -42,11 +42,11 @@ fn main() {
     // Functions
     let gives_ownership = ResourceOwner::Function(Function {
         hash: 2,
-        name: String::from("gives_ownership"),
+        name: String::from("gives_ownership()"),
     });
     let takes_and_gives_back = ResourceOwner::Function(Function {
         hash: 6,
-        name: String::from("takes_and_gives_back"),
+        name: String::from("takes_and_gives_back()"),
     });
     let mut vd = VisualizationData {
         timelines: BTreeMap::new(),

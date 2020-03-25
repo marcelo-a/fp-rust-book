@@ -1,4 +1,4 @@
-<svg width="1800px" height="600px" viewBox="-300 0 1500 700"
+<svg width="1300px" height="700px" viewBox="-300 0 1000 700"
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>acquire_from_function</desc>
@@ -136,8 +136,8 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-150" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
         <text class="code" x="-80" y="80" data-hash="2"><title>len, immutable</title>len</text>
+        <text class="code" x="-150" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">

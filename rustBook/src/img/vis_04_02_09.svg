@@ -134,7 +134,15 @@ text.functionIcon {
     fill: #ff9900;
     stroke: #ff9900;
 }
+[data-hash*="8"] {
+    fill: #00d6fc;
+    stroke: #00d6fc;
+}
 
+[data-hash*="9"] {
+    fill: #9aeb58;
+    stroke: #9aeb58;
+}
         ]]>
         </style>
         <!-- Useful constructs -->
@@ -159,10 +167,10 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="3"><title>r2, immutable</title>r2</text>
+        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="4"><title>r3, immutable</title>r3</text>
         <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="2"><title>r1, immutable</title>r1</text>
         <text style="text-anchor:middle" class="code" x="-290" y="80" data-hash="1"><title>s, mutable</title>s</text>
-        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="4"><title>r3, immutable</title>r3</text>
+        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="3"><title>r2, immutable</title>r2</text>
     </g>
 
     <g id="timelines">

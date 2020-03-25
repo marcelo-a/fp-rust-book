@@ -134,7 +134,15 @@ text.functionIcon {
     fill: #ff9900;
     stroke: #ff9900;
 }
+[data-hash*="8"] {
+    fill: #00d6fc;
+    stroke: #00d6fc;
+}
 
+[data-hash*="9"] {
+    fill: #9aeb58;
+    stroke: #9aeb58;
+}
         ]]>
         </style>
         <!-- Useful constructs -->
@@ -174,11 +182,12 @@ text.functionIcon {
     </g>
 
     <g id="dividers">
-            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="100"/>
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="120"/>
     </g>
 
     <g id="code">
-        <text class="code" x="0" y="80"> let <tspan data-hash="1">s</tspan> = String::from("hello"); </text>
+        <text class="code" x="0" y="80">  </text>
+        <text class="code" x="0" y="100"> let <tspan data-hash="1">s</tspan> = String::from("hello"); </text>
     </g>
 
    

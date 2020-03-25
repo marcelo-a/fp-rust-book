@@ -134,7 +134,15 @@ text.functionIcon {
     fill: #ff9900;
     stroke: #ff9900;
 }
+[data-hash*="8"] {
+    fill: #00d6fc;
+    stroke: #00d6fc;
+}
 
+[data-hash*="9"] {
+    fill: #9aeb58;
+    stroke: #9aeb58;
+}
         ]]>
         </style>
         <!-- Useful constructs -->

@@ -134,7 +134,15 @@ text.functionIcon {
     fill: #ff9900;
     stroke: #ff9900;
 }
+[data-hash*="8"] {
+    fill: #00d6fc;
+    stroke: #00d6fc;
+}
 
+[data-hash*="9"] {
+    fill: #9aeb58;
+    stroke: #9aeb58;
+}
         ]]>
         </style>
         <!-- Useful constructs -->
@@ -159,10 +167,10 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="-360" y="80" data-hash="1"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="-290" y="80" data-hash="4"><title>x, immutable</title>x</text>
-        <text style="text-anchor:middle" class="code" x="-120" y="80" data-hash="7"><title>some_integer, immutable</title>some_integer</text>
         <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="6"><title>some_string, immutable</title>some_string</text>
+        <text style="text-anchor:middle" class="code" x="-360" y="80" data-hash="1"><title>s, immutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="-120" y="80" data-hash="7"><title>some_integer, immutable</title>some_integer</text>
     </g>
 
     <g id="timelines">
@@ -178,12 +186,12 @@ text.functionIcon {
         <line class="colorless" stroke-width="8px" x1="-220" x2="-220" y1="405" y2="395"><title>has read only privilege to the real data</title></line>
         <line data-hash="6" class="solid" x1="-220" x2="-220" y1="400" y2="420"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="-220" x2="-220" y1="405" y2="415"><title>has read only privilege to the real data</title></line>
-        <line data-hash="7" class="solid" x1="-120" x2="-120" y1="380" y2="400"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="-120" x2="-120" y1="385" y2="395"><title>has read only privilege to the real data</title></line>
-        <line data-hash="7" class="solid" x1="-120" x2="-120" y1="400" y2="400"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="-120" x2="-120" y1="405" y2="395"><title>has read only privilege to the real data</title></line>
-        <line data-hash="7" class="solid" x1="-120" x2="-120" y1="400" y2="420"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="-120" x2="-120" y1="405" y2="415"><title>has read only privilege to the real data</title></line>
+        <line data-hash="7" class="solid" x1="-120" x2="-120" y1="480" y2="500"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-120" x2="-120" y1="485" y2="495"><title>has read only privilege to the real data</title></line>
+        <line data-hash="7" class="solid" x1="-120" x2="-120" y1="500" y2="500"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-120" x2="-120" y1="505" y2="495"><title>has read only privilege to the real data</title></line>
+        <line data-hash="7" class="solid" x1="-120" x2="-120" y1="500" y2="520"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-120" x2="-120" y1="505" y2="515"><title>has read only privilege to the real data</title></line>
     </g>
 
     <g id="events">
@@ -197,10 +205,10 @@ text.functionIcon {
         <use xlink:href="#eventDot" data-hash="6" x="-220" y="400"><title>Partially lends resource to println!()</title></use>
         <use xlink:href="#eventDot" data-hash="6" x="-220" y="400"><title>Partially reacquires resource from println!()</title></use>
         <use xlink:href="#eventDot" data-hash="6" x="-220" y="420"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="7" x="-120" y="380"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="7" x="-120" y="400"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="7" x="-120" y="400"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="7" x="-120" y="420"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="-120" y="480"><title>Acquiring resource</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="-120" y="500"><title>Partially lends resource to println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="-120" y="500"><title>Partially reacquires resource from println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="-120" y="520"><title>Goes out of scope</title></use>
     </g>
 
     <g id="arrows">
@@ -208,7 +216,7 @@ text.functionIcon {
         <text x="-395" y="145" font-size = "20" font-style="italic" class="heavy" ><title>takes_ownership()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-365,140 -375,140 " marker-end="url(#arrowHead)"><title>Move from s to the parameter of takes_ownership()</title></polyline>
         <text x="-325" y="245" font-size = "20" font-style="italic" class="heavy" ><title>makes_copy()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-295,240 -305,240 " marker-end="url(#arrowHead)"><title>Duplicate from x to the parameter of makes_copy()</title></polyline>
         <use xlink:href="#functionDot" data-hash="6" x="-220" y="400"><title>println!() reads from some_string</title></use>
-        <use xlink:href="#functionDot" data-hash="7" x="-120" y="400"><title>println!() reads from some_integer</title></use>
+        <use xlink:href="#functionDot" data-hash="7" x="-120" y="500"><title>println!() reads from some_integer</title></use>
     </g>
 
     <g id="dividers">

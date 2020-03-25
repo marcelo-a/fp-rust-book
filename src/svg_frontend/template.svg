@@ -27,13 +27,13 @@
 
     <g>
         <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
 {{ diagram }}
 
     <g id="dividers">
-            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="{{divider_y_endpoint}}"/>
     </g>
 
 {{ code }}

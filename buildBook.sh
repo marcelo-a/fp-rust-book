@@ -6,6 +6,7 @@ printf "Running the following examples: \n" > buildBook.log
 declare -a targetExamples=(
     "one_var" # book_04_01_01_one_var
     "scope" # book_04_01_02_scope
+    "string_from" # book_04_01_03_scope
     "reference" # book_04_01_04_reference
     "scope2" # book_04_01_05_scope2
     "int_copy" # book_04_01_06_int_copy

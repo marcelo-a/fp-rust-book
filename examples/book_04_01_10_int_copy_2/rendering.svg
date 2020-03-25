@@ -155,12 +155,12 @@ text.functionIcon {
 
     <g>
         <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="3"><title>x, immutable</title>x</text>
         <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="4"><title>y, immutable</title>y</text>
+        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="3"><title>x, immutable</title>x</text>
     </g>
 
     <g id="timelines">
@@ -194,12 +194,12 @@ text.functionIcon {
 
     <g id="arrows">
         <polyline stroke-width="5" stroke="black" points="-150,120 -90,120 " marker-end="url(#arrowHead)"><title>Duplicate from x to y</title></polyline>
-        <use xlink:href="#functionDot" data-hash="3" x="-150" y="160"><title>Pass to println!() by static reference</title></use>
-        <use xlink:href="#functionDot" data-hash="4" x="-80" y="160"><title>Pass to println!() by static reference</title></use>
+        <use xlink:href="#functionDot" data-hash="3" x="-150" y="160"><title>println!() reads from x</title></use>
+        <use xlink:href="#functionDot" data-hash="4" x="-80" y="160"><title>println!() reads from y</title></use>
     </g>
 
     <g id="dividers">
-            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="200"/>
     </g>
 
     <g id="code">

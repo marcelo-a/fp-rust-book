@@ -155,7 +155,7 @@ text.functionIcon {
 
     <g>
         <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
@@ -181,12 +181,12 @@ text.functionIcon {
 
     <g id="arrows">
         <text x="-54" y="105" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-57,100 -67,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
-        <use xlink:href="#functionDot" data-hash="1" x="-80" y="140"><title>Pass to String::from() by mutable reference</title></use>
-        <use xlink:href="#functionDot" data-hash="1" x="-80" y="180"><title>Pass to println!() by static reference</title></use>
+        <use xlink:href="#functionDot" data-hash="1" x="-80" y="140"><title>String::from() reads from/writes to s</title></use>
+        <use xlink:href="#functionDot" data-hash="1" x="-80" y="180"><title>println!() reads from s</title></use>
     </g>
 
     <g id="dividers">
-            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="220"/>
     </g>
 
     <g id="code">

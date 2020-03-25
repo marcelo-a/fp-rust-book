@@ -1,106 +1,5 @@
 Running the following examples: 
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-warning: unused import: `HashMap`
- --> src/data.rs:1:44
-  |
-1 |  use std::collections::{HashSet, BTreeMap, HashMap};
-  |                                            ^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
- --> src/data.rs:372:61
-  |
-37|             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-  |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-  |
-  = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:399:96
-    |
-399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:413:97
-    |
-413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:434:93
-    |
-434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:436:40
-    |
-436 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:461:18
-    |
-461 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:459:37
-    |
-459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: variable does not need to be mutable
- --> src/svg_frontend/svg_generation.rs:46:9
-  |
-46|     let mut svg_data = SvgData {
-  |         ----^^^^^^^^
-  |         |
-  |         help: remove this `mut`
-  |
-  = note: `#[warn(unused_mut)]` on by default
-
-warning: function is never used: `render_arrows_string`
- --> src/svg_frontend/left_panel.rs:220:1
-  |
-22| / fn render_arrows_string(
-22| |     visualization_data: &VisualizationData,
-22| |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
-22| |     registry: &Handlebars
-... |
-27| |     output
-27| | }
-  | |_^
-  |
-  = note: `#[warn(dead_code)]` on by default
-
-warning: the `borrow_to:` in this pattern is redundant
- --> src/data.rs:401:62
-  |
-40|             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-  |                                                              ----------^^^^^^^^^^
-  |                                                              |
-  |                                                              help: remove this
-  |
-  = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-warning: variable `exampleDirPath` should have a snake case name
- --> src/svg_frontend/svg_generation.rs:17:9
-  |
-17|     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
-  |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
-  |
-  = note: `#[warn(non_snake_case)]` on by default
-
-warning: variable `bookImageFilePath` should have a snake case name
-  --> src/svg_frontend/svg_generation.rs:18:9
-   |
-18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
-   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
-
-    Finished dev [unoptimized + debuginfo] target(s) in 1.72s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
      Running `target/debug/examples/one_var`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
@@ -261,7 +160,7 @@ text.functionIcon {
 
     <g>
         <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
@@ -283,7 +182,7 @@ text.functionIcon {
     </g>
 
     <g id="dividers">
-            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="140"/>
     </g>
 
     <g id="code">
@@ -296,16 +195,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_01_one_var/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_01.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-warning: unused import: `Function`
- --> examples/book_04_01_02_scope/main.rs:1:76
-  |
-1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, VisualizationData, Visualizable};
-  |                                                                            ^^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.66s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/scope`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
@@ -466,7 +356,7 @@ text.functionIcon {
 
     <g>
         <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
@@ -487,7 +377,7 @@ text.functionIcon {
     </g>
 
     <g id="dividers">
-            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="220"/>
     </g>
 
     <g id="code">
@@ -504,8 +394,197 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_02_scope/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_02.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.60s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+     Running `target/debug/examples/string_from`
+s 1 2 OutOfScope
+<svg width="1800px" height="600px" viewBox="-180 0 1620 700"
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <desc>string_from</desc>
+
+    <defs>
+        <style type="text/css">
+        <![CDATA[
+        /* general setup */
+:root {
+    --bg-color:#f1f1f1;
+    --text-color: #6e6b5e;
+}
+
+svg {
+    background-color: var(--bg-color);
+}
+
+text {
+    fill: var(--text-color);
+    vertical-align: baseline;
+    text-anchor: start;
+}
+
+#heading {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#caption {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* code related styling */
+text.code {
+    white-space: pre;
+    font-family: "monospace";
+}
+
+/* event related styling */
+#eventDot:hover {
+    transform: scale(1.5);
+}
+
+#eventDot {
+    transition: all 0.3s;
+}
+
+/* text.functionIcon:hover {
+    transform: scale(1.5);
+}
+
+text.functionIcon {
+    transition: all 0.3s;
+} */
+
+#functionDot:hover {
+    transform: scale(1.5);
+}
+
+#functionDot {
+    transition: all 0.3s;
+}
+
+/* timeline/event interaction styling */
+.solid {
+    stroke-width: 5px;
+}
+
+.hollow_internal {
+    stroke-width: 3px;
+    fill: var(--bg-color);
+}
+
+.dotted {
+    stroke-width: 5px;
+    stroke-dasharray: "2 1";
+}
+
+.extend {
+    stroke-width: 1px;
+    stroke-dasharray: "2 1";
+}
+
+.colorless {
+    color: var(--bg-color);
+    fill: var(--bg-color);
+}
+
+.functionIcon {
+    stroke: gray;
+    fill: white;
+    stroke-width: 1px;
+    font-size: 30px;
+    font-family: times;
+    font-weight: lighter;
+    dominant-baseline: central;
+    text-anchor: start;
+    font-style: italic;
+}
+/* hash based styling */
+[data-hash*="1"] {
+    fill: #3355ff;
+    stroke: #3355ff;
+}
+
+[data-hash*="2"] {
+    fill: #33cc33;
+    stroke: #33cc33;
+}
+
+[data-hash*="3"] {
+    fill: #ff3300;
+    stroke: #ff3300;
+}
+
+[data-hash*="4"] {
+    fill: #6600ff;
+    stroke: #6600ff;
+}
+
+[data-hash*="5"] {
+    fill: #ff33cc;
+    stroke: #ff33cc;
+}
+
+[data-hash*="6"] {
+    fill: #663300;
+    stroke: #663300;
+}
+
+[data-hash*="7"] {
+    fill: #ff9900;
+    stroke: #ff9900;
+}
+
+        ]]>
+        </style>
+        <!-- Useful constructs -->
+        <circle id="eventDot" cx="0" cy="0" r="5"/>
+        <!-- used when pass to function by ref -->
+        <g id="functionDot">
+             <circle id="eventDot" cx="0" cy="0" r="8"/>
+             <text class="functionIcon" dx="-6" dy="2">f</text>
+        </g>
+        <marker id="arrowHead" viewBox="0 0 10 10"
+            refX="1" refY="5" 
+            markerUnits="strokeWidth"
+            markerWidth="3px" markerHeight="3px"
+            orient="auto" fill="black">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
+        </marker>
+    </defs>
+
+    <g>
+        <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
+    </g>
+
+    <g id="labels">
+        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="1"><title>s, immutable</title>s</text>
+    </g>
+
+    <g id="timelines">
+    </g>
+
+    <g id="events">
+        <use xlink:href="#eventDot" data-hash="1" x="-80" y="100"><title>Acquiring resource from String::from()</title></use>
+    </g>
+
+    <g id="arrows">
+        <text x="-54" y="105" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-57,100 -67,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
+    </g>
+
+    <g id="dividers">
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="100"/>
+    </g>
+
+    <g id="code">
+        <text class="code" x="0" y="80"> let <tspan data-hash="1">s</tspan> = String::from("hello"); </text>
+    </g>
+
+   
+</svg>
+successfully wrote to examples/book_04_01_03_string_from/rendering.svg
+successfully wrote to rustBook/src/img/vis_04_01_03.svg
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/reference`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -670,7 +749,7 @@ text.functionIcon {
 
     <g>
         <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
@@ -696,12 +775,12 @@ text.functionIcon {
 
     <g id="arrows">
         <text x="-54" y="105" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-57,100 -67,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
-        <use xlink:href="#functionDot" data-hash="1" x="-80" y="140"><title>Pass to String::from() by mutable reference</title></use>
-        <use xlink:href="#functionDot" data-hash="1" x="-80" y="180"><title>Pass to println!() by static reference</title></use>
+        <use xlink:href="#functionDot" data-hash="1" x="-80" y="140"><title>String::from() reads from/writes to s</title></use>
+        <use xlink:href="#functionDot" data-hash="1" x="-80" y="180"><title>println!() reads from s</title></use>
     </g>
 
     <g id="dividers">
-            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="220"/>
     </g>
 
     <g id="code">
@@ -718,16 +797,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_04_reference/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_04.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-warning: unused import: `Function`
- --> examples/book_04_01_05_scope2/main.rs:1:76
-  |
-1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, VisualizationData, Visualizable};
-  |                                                                            ^^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.64s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
      Running `target/debug/examples/scope2`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
@@ -888,7 +958,7 @@ text.functionIcon {
 
     <g>
         <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
@@ -909,7 +979,7 @@ text.functionIcon {
     </g>
 
     <g id="dividers">
-            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="240"/>
     </g>
 
     <g id="code">
@@ -927,16 +997,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_05_scope2/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_05.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-warning: unused import: `Function`
- --> examples/book_04_01_06_int_copy/main.rs:1:76
-  |
-1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, VisualizationData, Visualizable};
-  |                                                                            ^^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.75s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/int_copy`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -1100,7 +1161,7 @@ text.functionIcon {
 
     <g>
         <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
@@ -1130,7 +1191,7 @@ text.functionIcon {
     </g>
 
     <g id="dividers">
-            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="160"/>
     </g>
 
     <g id="code">
@@ -1144,8 +1205,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_06_int_copy/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_06.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.76s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/string_move`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -1307,7 +1367,7 @@ text.functionIcon {
 
     <g>
         <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
@@ -1332,7 +1392,7 @@ text.functionIcon {
     </g>
 
     <g id="dividers">
-            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="140"/>
     </g>
 
     <g id="code">
@@ -1345,8 +1405,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_07_string_move/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_07.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.69s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/string_clone`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -1513,12 +1572,12 @@ text.functionIcon {
 
     <g>
         <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="3"><title>s2, immutable</title>s2</text>
         <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="3"><title>s2, immutable</title>s2</text>
     </g>
 
     <g id="timelines">
@@ -1550,13 +1609,13 @@ text.functionIcon {
     <g id="arrows">
         <text x="-124" y="105" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-127,100 -137,100 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of String::from() to s1</title></polyline>
         <text x="-54" y="125" font-size = "20" font-style="italic" class="heavy" ><title>clone()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-57,120 -67,120 " marker-end="url(#arrowHead)"><title>Move from the return value of clone() to s2</title></polyline>
-        <use xlink:href="#functionDot" data-hash="1" x="-150" y="120"><title>Pass to clone() by static reference</title></use>
-        <use xlink:href="#functionDot" data-hash="1" x="-150" y="160"><title>Pass to println!() by static reference</title></use>
-        <use xlink:href="#functionDot" data-hash="3" x="-80" y="160"><title>Pass to println!() by static reference</title></use>
+        <use xlink:href="#functionDot" data-hash="1" x="-150" y="120"><title>clone() reads from s1</title></use>
+        <use xlink:href="#functionDot" data-hash="1" x="-150" y="160"><title>println!() reads from s1</title></use>
+        <use xlink:href="#functionDot" data-hash="3" x="-80" y="160"><title>println!() reads from s2</title></use>
     </g>
 
     <g id="dividers">
-            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="180"/>
     </g>
 
     <g id="code">
@@ -1571,8 +1630,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_09_string_clone/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_09.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.76s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
      Running `target/debug/examples/int_copy_2`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -1740,12 +1798,12 @@ text.functionIcon {
 
     <g>
         <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="3"><title>x, immutable</title>x</text>
         <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="4"><title>y, immutable</title>y</text>
+        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="3"><title>x, immutable</title>x</text>
     </g>
 
     <g id="timelines">
@@ -1779,12 +1837,12 @@ text.functionIcon {
 
     <g id="arrows">
         <polyline stroke-width="5" stroke="black" points="-150,120 -90,120 " marker-end="url(#arrowHead)"><title>Duplicate from x to y</title></polyline>
-        <use xlink:href="#functionDot" data-hash="3" x="-150" y="160"><title>Pass to println!() by static reference</title></use>
-        <use xlink:href="#functionDot" data-hash="4" x="-80" y="160"><title>Pass to println!() by static reference</title></use>
+        <use xlink:href="#functionDot" data-hash="3" x="-150" y="160"><title>println!() reads from x</title></use>
+        <use xlink:href="#functionDot" data-hash="4" x="-80" y="160"><title>println!() reads from y</title></use>
     </g>
 
     <g id="dividers">
-            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="200"/>
     </g>
 
     <g id="code">
@@ -1800,8 +1858,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_10_int_copy_2/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_10.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.71s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.04s
      Running `target/debug/examples/ownership_function`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -1974,13 +2031,13 @@ text.functionIcon {
 
     <g>
         <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="-120" y="80" data-hash="7"><title>some_integer, immutable</title>some_integer</text>
         <text style="text-anchor:middle" class="code" x="-360" y="80" data-hash="1"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="-290" y="80" data-hash="4"><title>x, immutable</title>x</text>
+        <text style="text-anchor:middle" class="code" x="-120" y="80" data-hash="7"><title>some_integer, immutable</title>some_integer</text>
         <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="6"><title>some_string, immutable</title>some_string</text>
     </g>
 
@@ -2026,12 +2083,12 @@ text.functionIcon {
         <text x="-334" y="105" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-337,100 -347,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
         <text x="-395" y="145" font-size = "20" font-style="italic" class="heavy" ><title>takes_ownership()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-365,140 -375,140 " marker-end="url(#arrowHead)"><title>Move from s to the parameter of takes_ownership()</title></polyline>
         <text x="-325" y="245" font-size = "20" font-style="italic" class="heavy" ><title>makes_copy()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-295,240 -305,240 " marker-end="url(#arrowHead)"><title>Duplicate from x to the parameter of makes_copy()</title></polyline>
-        <use xlink:href="#functionDot" data-hash="6" x="-220" y="400"><title>Pass to println!() by static reference</title></use>
-        <use xlink:href="#functionDot" data-hash="7" x="-120" y="400"><title>Pass to println!() by static reference</title></use>
+        <use xlink:href="#functionDot" data-hash="6" x="-220" y="400"><title>println!() reads from some_string</title></use>
+        <use xlink:href="#functionDot" data-hash="7" x="-120" y="400"><title>println!() reads from some_integer</title></use>
     </g>
 
     <g id="dividers">
-            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="540"/>
     </g>
 
     <g id="code">
@@ -2064,8 +2121,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_11_ownership_function/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_11.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.70s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
      Running `target/debug/examples/return_values`
 s1 1 2 OutOfScope
 s1 2 10 FullPrivilege
@@ -2237,15 +2293,15 @@ text.functionIcon {
 
     <g>
         <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="-320" y="80" data-hash="3"><title>some_string, immutable</title>some_string</text>
         <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="5"><title>s3, immutable</title>s3</text>
         <text style="text-anchor:middle" class="code" x="-390" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
-        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="7"><title>a_string, immutable</title>a_string</text>
         <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="4"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="7"><title>a_string, immutable</title>a_string</text>
     </g>
 
     <g id="timelines">
@@ -2284,7 +2340,7 @@ text.functionIcon {
     </g>
 
     <g id="dividers">
-            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="660"/>
     </g>
 
     <g id="code">
@@ -2323,16 +2379,274 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_12_return_values/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_12.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-error: couldn't read examples/book_04_01_13_return_tuple/main.rs: No such file or directory (os error 2)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
+     Running `target/debug/examples/return_tuple`
+s1 1 2 OutOfScope
+s1 2 4 FullPrivilege
+s1 4 4 PartialPrivilege
+s1 4 7 FullPrivilege
+len 1 4 OutOfScope
+len 4 6 FullPrivilege
+len 6 6 PartialPrivilege
+len 6 7 FullPrivilege
+s 1 9 OutOfScope
+s 9 10 FullPrivilege
+s 10 10 PartialPrivilege
+s 10 13 FullPrivilege
+s 13 13 Invalid
+s2 1 4 OutOfScope
+s2 4 6 FullPrivilege
+s2 6 6 PartialPrivilege
+length 1 10 OutOfScope
+<svg width="1800px" height="600px" viewBox="-180 0 1620 700"
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
-error: aborting due to previous error
+    <desc>return_tuple</desc>
 
-error: could not compile `rrt`.
+    <defs>
+        <style type="text/css">
+        <![CDATA[
+        /* general setup */
+:root {
+    --bg-color:#f1f1f1;
+    --text-color: #6e6b5e;
+}
 
-To learn more, run the command again with --verbose.
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.69s
+svg {
+    background-color: var(--bg-color);
+}
+
+text {
+    fill: var(--text-color);
+    vertical-align: baseline;
+    text-anchor: start;
+}
+
+#heading {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#caption {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* code related styling */
+text.code {
+    white-space: pre;
+    font-family: "monospace";
+}
+
+/* event related styling */
+#eventDot:hover {
+    transform: scale(1.5);
+}
+
+#eventDot {
+    transition: all 0.3s;
+}
+
+/* text.functionIcon:hover {
+    transform: scale(1.5);
+}
+
+text.functionIcon {
+    transition: all 0.3s;
+} */
+
+#functionDot:hover {
+    transform: scale(1.5);
+}
+
+#functionDot {
+    transition: all 0.3s;
+}
+
+/* timeline/event interaction styling */
+.solid {
+    stroke-width: 5px;
+}
+
+.hollow_internal {
+    stroke-width: 3px;
+    fill: var(--bg-color);
+}
+
+.dotted {
+    stroke-width: 5px;
+    stroke-dasharray: "2 1";
+}
+
+.extend {
+    stroke-width: 1px;
+    stroke-dasharray: "2 1";
+}
+
+.colorless {
+    color: var(--bg-color);
+    fill: var(--bg-color);
+}
+
+.functionIcon {
+    stroke: gray;
+    fill: white;
+    stroke-width: 1px;
+    font-size: 30px;
+    font-family: times;
+    font-weight: lighter;
+    dominant-baseline: central;
+    text-anchor: start;
+    font-style: italic;
+}
+/* hash based styling */
+[data-hash*="1"] {
+    fill: #3355ff;
+    stroke: #3355ff;
+}
+
+[data-hash*="2"] {
+    fill: #33cc33;
+    stroke: #33cc33;
+}
+
+[data-hash*="3"] {
+    fill: #ff3300;
+    stroke: #ff3300;
+}
+
+[data-hash*="4"] {
+    fill: #6600ff;
+    stroke: #6600ff;
+}
+
+[data-hash*="5"] {
+    fill: #ff33cc;
+    stroke: #ff33cc;
+}
+
+[data-hash*="6"] {
+    fill: #663300;
+    stroke: #663300;
+}
+
+[data-hash*="7"] {
+    fill: #ff9900;
+    stroke: #ff9900;
+}
+
+        ]]>
+        </style>
+        <!-- Useful constructs -->
+        <circle id="eventDot" cx="0" cy="0" r="5"/>
+        <!-- used when pass to function by ref -->
+        <g id="functionDot">
+             <circle id="eventDot" cx="0" cy="0" r="8"/>
+             <text class="functionIcon" dx="-6" dy="2">f</text>
+        </g>
+        <marker id="arrowHead" viewBox="0 0 10 10"
+            refX="1" refY="5" 
+            markerUnits="strokeWidth"
+            markerWidth="3px" markerHeight="3px"
+            orient="auto" fill="black">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
+        </marker>
+    </defs>
+
+    <g>
+        <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
+    </g>
+
+    <g id="labels">
+        <text style="text-anchor:middle" class="code" x="-290" y="80" data-hash="2"><title>len, immutable</title>len</text>
+        <text style="text-anchor:middle" class="code" x="-360" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="8"><title>length, immutable</title>length</text>
+        <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="4"><title>s, immutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="6"><title>s2, immutable</title>s2</text>
+    </g>
+
+    <g id="timelines">
+        <line data-hash="1" class="solid" x1="-360" x2="-360" y1="100" y2="140"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-360" x2="-360" y1="105" y2="135"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="-360" x2="-360" y1="140" y2="140"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-360" x2="-360" y1="145" y2="135"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="-360" x2="-360" y1="140" y2="200"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-360" x2="-360" y1="145" y2="195"><title>has read only privilege to the real data</title></line>
+        <line data-hash="2" class="solid" x1="-290" x2="-290" y1="140" y2="180"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-290" x2="-290" y1="145" y2="175"><title>has read only privilege to the real data</title></line>
+        <line data-hash="2" class="solid" x1="-290" x2="-290" y1="180" y2="180"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-290" x2="-290" y1="185" y2="175"><title>has read only privilege to the real data</title></line>
+        <line data-hash="2" class="solid" x1="-290" x2="-290" y1="180" y2="200"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-290" x2="-290" y1="185" y2="195"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="-220" x2="-220" y1="240" y2="260"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-220" x2="-220" y1="245" y2="255"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="-220" x2="-220" y1="260" y2="260"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-220" x2="-220" y1="265" y2="255"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="-220" x2="-220" y1="260" y2="320"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-220" x2="-220" y1="265" y2="315"><title>has read only privilege to the real data</title></line>
+        <line data-hash="6" class="solid" x1="-150" x2="-150" y1="140" y2="180"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-150" x2="-150" y1="145" y2="175"><title>has read only privilege to the real data</title></line>
+        <line data-hash="6" class="solid" x1="-150" x2="-150" y1="180" y2="180"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-150" x2="-150" y1="185" y2="175"><title>has read only privilege to the real data</title></line>
+    </g>
+
+    <g id="events">
+        <use xlink:href="#eventDot" data-hash="1" x="-360" y="100"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-360" y="140"><title>Partially lends resource to calculate_length()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-360" y="140"><title>Partially reacquires resource from calculate_length()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-360" y="200"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="-290" y="140"><title>Acquiring resource from calculate_length()</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="-290" y="180"><title>Partially lends resource to len()</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="-290" y="180"><title>Partially reacquires resource from len()</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="-290" y="200"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-220" y="240"><title>Acquiring resource</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-220" y="260"><title>Partially lends resource to len()</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-220" y="260"><title>Partially reacquires resource from len()</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-220" y="320"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-220" y="320"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="-150" y="140"><title>Acquiring resource from calculate_length()</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="-150" y="180"><title>Partially lends resource to len()</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="-150" y="180"><title>Partially reacquires resource from len()</title></use>
+        <use xlink:href="#eventDot" data-hash="8" x="-80" y="260"><title>Acquiring resource from len()</title></use>
+    </g>
+
+    <g id="arrows">
+        <text x="-334" y="105" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-337,100 -347,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s1</title></polyline>
+        <use xlink:href="#functionDot" data-hash="1" x="-360" y="140"><title>calculate_length() reads from s1</title></use>
+        <text x="-124" y="145" font-size = "20" font-style="italic" class="heavy" ><title>calculate_length()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-127,140 -137,140 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length() to s2</title></polyline>
+        <text x="-264" y="145" font-size = "20" font-style="italic" class="heavy" ><title>calculate_length()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-267,140 -277,140 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length() to len</title></polyline>
+        <use xlink:href="#functionDot" data-hash="6" x="-150" y="180"><title>len() reads from s2</title></use>
+        <use xlink:href="#functionDot" data-hash="2" x="-290" y="180"><title>len() reads from len</title></use>
+        <use xlink:href="#functionDot" data-hash="4" x="-220" y="260"><title>len() reads from s</title></use>
+        <text x="-54" y="265" font-size = "20" font-style="italic" class="heavy" ><title>len()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-57,260 -67,260 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of len() to length</title></polyline>
+    </g>
+
+    <g id="dividers">
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="340"/>
+    </g>
+
+    <g id="code">
+        <text class="code" x="0" y="80"> fn main() { </text>
+        <text class="code" x="0" y="100">     let <tspan data-hash="1">s1</tspan> = <tspan data-hash="5">String::from</tspan>("hello"); </text>
+        <text class="code" x="0" y="120">  </text>
+        <text class="code" x="0" y="140">     let (<tspan data-hash="6">s2</tspan>, <tspan data-hash="2">len</tspan>) = <tspan data-hash="3">calculate_length</tspan>(<tspan data-hash="1">&amp;s1</tspan>);; </text>
+        <text class="code" x="0" y="160">      </text>
+        <text class="code" x="0" y="180">     <tspan data-hash="9">println!</tspan>("The length of '{}' is {}.", <tspan data-hash="6">s2</tspan>, <tspan data-hash="2">len</tspan>); </text>
+        <text class="code" x="0" y="200"> } </text>
+        <text class="code" x="0" y="220">  </text>
+        <text class="code" x="0" y="240"> fn <tspan data-hash="3">calculate_length</tspan>(<tspan data-hash="4">s</tspan>: String) -> (String, usize) { </text>
+        <text class="code" x="0" y="260">     let <tspan data-hash="8">length</tspan> = <tspan data-hash="4">s</tspan>.<tspan data-hash="7">len</tspan>(); // len() returns the length of a String </text>
+        <text class="code" x="0" y="280">  </text>
+        <text class="code" x="0" y="300">     (<tspan data-hash="4">s</tspan>, <tspan data-hash="8">length</tspan>) </text>
+        <text class="code" x="0" y="320"> } </text>
+    </g>
+
+   
+</svg>
+successfully wrote to examples/book_04_01_13_return_tuple/rendering.svg
+successfully wrote to rustBook/src/img/vis_04_01_13.svg
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
      Running `target/debug/examples/pass_reference`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -2501,13 +2815,13 @@ text.functionIcon {
 
     <g>
         <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="4"><title>s, immutable</title>s</text>
-        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="2"><title>len, immutable</title>len</text>
         <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="2"><title>len, immutable</title>len</text>
     </g>
 
     <g id="timelines">
@@ -2542,13 +2856,13 @@ text.functionIcon {
 
     <g id="arrows">
         <text x="-194" y="105" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-197,100 -207,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s1</title></polyline>
-        <use xlink:href="#functionDot" data-hash="1" x="-220" y="140"><title>Pass to calculate_length() by static reference</title></use>
+        <use xlink:href="#functionDot" data-hash="1" x="-220" y="140"><title>calculate_length() reads from s1</title></use>
         <text x="-124" y="145" font-size = "20" font-style="italic" class="heavy" ><title>calculate_length()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-127,140 -137,140 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length() to len</title></polyline>
-        <use xlink:href="#functionDot" data-hash="4" x="-80" y="260"><title>Pass to len() by static reference</title></use>
+        <use xlink:href="#functionDot" data-hash="4" x="-80" y="260"><title>len() reads from s</title></use>
     </g>
 
     <g id="dividers">
-            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="300"/>
     </g>
 
     <g id="code">
@@ -2569,22 +2883,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_02_01_pass_reference/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_01.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-warning: unused variable: `s`
- --> examples/book_04_02_02_acquire_from_function/main.rs:21:9
-  |
-21|     let s = Some(ResourceOwner::Variable(Variable {
-  |         ^ help: consider prefixing with an underscore: `_s`
-  |
-  = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `len_func`
-  --> examples/book_04_02_02_acquire_from_function/main.rs:37:9
-   |
-37 |     let len_func = Some(ResourceOwner::Function(Function {
-   |         ^^^^^^^^ help: consider prefixing with an underscore: `_len_func`
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.59s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/acquire_from_function`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -2747,7 +3046,7 @@ text.functionIcon {
 
     <g>
         <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
@@ -2771,12 +3070,12 @@ text.functionIcon {
 
     <g id="arrows">
         <text x="-124" y="105" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-127,100 -137,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s1</title></polyline>
-        <use xlink:href="#functionDot" data-hash="1" x="-150" y="140"><title>Pass to calculate_length() by static reference</title></use>
+        <use xlink:href="#functionDot" data-hash="1" x="-150" y="140"><title>calculate_length() reads from s1</title></use>
         <text x="-54" y="145" font-size = "20" font-style="italic" class="heavy" ><title>calculate_length()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-57,140 -67,140 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length() to len</title></polyline>
     </g>
 
     <g id="dividers">
-            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="160"/>
     </g>
 
     <g id="code">
@@ -2790,8 +3089,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_02_02_acquire_from_function/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_02.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.64s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/safely_out_of_scope`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
@@ -2954,7 +3252,7 @@ text.functionIcon {
 
     <g>
         <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
@@ -2978,11 +3276,11 @@ text.functionIcon {
     </g>
 
     <g id="arrows">
-        <use xlink:href="#functionDot" data-hash="4" x="-80" y="120"><title>Pass to len() by static reference</title></use>
+        <use xlink:href="#functionDot" data-hash="4" x="-80" y="120"><title>len() reads from s</title></use>
     </g>
 
     <g id="dividers">
-            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="180"/>
     </g>
 
     <g id="code">
@@ -2997,8 +3295,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_02_03_safely_out_of_scope/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_03.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.68s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
      Running `target/debug/examples/mut_ref`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -3165,7 +3462,7 @@ text.functionIcon {
 
     <g>
         <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
@@ -3197,12 +3494,12 @@ text.functionIcon {
 
     <g id="arrows">
         <text x="-154" y="105" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-157,100 -167,100 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of String::from() to s</title></polyline>
-        <use xlink:href="#functionDot" data-hash="1" x="-180" y="140"><title>Pass to change() by static reference</title></use>
-        <use xlink:href="#functionDot" data-hash="4" x="-110" y="220"><title>Pass to push_str() by static reference</title></use>
+        <use xlink:href="#functionDot" data-hash="1" x="-180" y="140"><title>change() reads from s</title></use>
+        <use xlink:href="#functionDot" data-hash="4" x="-110" y="220"><title>push_str() reads from some_string</title></use>
     </g>
 
     <g id="dividers">
-            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="260"/>
     </g>
 
     <g id="code">
@@ -3221,16 +3518,228 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_02_05_mut_ref/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_05.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-error: couldn't read examples/book_04_02_07_scope_reference/main.rs: No such file or directory (os error 2)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+     Running `target/debug/examples/scope_reference`
+s 1 2 OutOfScope
+s 2 5 FullPrivilege
+s 5 6 RevokedPrivilege
+s 6 9 FullPrivilege
+r1 1 5 OutOfScope
+r1 5 6 FullPrivilege
+r1 6 6 RevokedPrivilege
+r2 1 9 OutOfScope
+<svg width="1800px" height="600px" viewBox="-180 0 1620 700"
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
-error: aborting due to previous error
+    <desc>scope_reference</desc>
 
-error: could not compile `rrt`.
+    <defs>
+        <style type="text/css">
+        <![CDATA[
+        /* general setup */
+:root {
+    --bg-color:#f1f1f1;
+    --text-color: #6e6b5e;
+}
 
-To learn more, run the command again with --verbose.
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.60s
+svg {
+    background-color: var(--bg-color);
+}
+
+text {
+    fill: var(--text-color);
+    vertical-align: baseline;
+    text-anchor: start;
+}
+
+#heading {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#caption {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* code related styling */
+text.code {
+    white-space: pre;
+    font-family: "monospace";
+}
+
+/* event related styling */
+#eventDot:hover {
+    transform: scale(1.5);
+}
+
+#eventDot {
+    transition: all 0.3s;
+}
+
+/* text.functionIcon:hover {
+    transform: scale(1.5);
+}
+
+text.functionIcon {
+    transition: all 0.3s;
+} */
+
+#functionDot:hover {
+    transform: scale(1.5);
+}
+
+#functionDot {
+    transition: all 0.3s;
+}
+
+/* timeline/event interaction styling */
+.solid {
+    stroke-width: 5px;
+}
+
+.hollow_internal {
+    stroke-width: 3px;
+    fill: var(--bg-color);
+}
+
+.dotted {
+    stroke-width: 5px;
+    stroke-dasharray: "2 1";
+}
+
+.extend {
+    stroke-width: 1px;
+    stroke-dasharray: "2 1";
+}
+
+.colorless {
+    color: var(--bg-color);
+    fill: var(--bg-color);
+}
+
+.functionIcon {
+    stroke: gray;
+    fill: white;
+    stroke-width: 1px;
+    font-size: 30px;
+    font-family: times;
+    font-weight: lighter;
+    dominant-baseline: central;
+    text-anchor: start;
+    font-style: italic;
+}
+/* hash based styling */
+[data-hash*="1"] {
+    fill: #3355ff;
+    stroke: #3355ff;
+}
+
+[data-hash*="2"] {
+    fill: #33cc33;
+    stroke: #33cc33;
+}
+
+[data-hash*="3"] {
+    fill: #ff3300;
+    stroke: #ff3300;
+}
+
+[data-hash*="4"] {
+    fill: #6600ff;
+    stroke: #6600ff;
+}
+
+[data-hash*="5"] {
+    fill: #ff33cc;
+    stroke: #ff33cc;
+}
+
+[data-hash*="6"] {
+    fill: #663300;
+    stroke: #663300;
+}
+
+[data-hash*="7"] {
+    fill: #ff9900;
+    stroke: #ff9900;
+}
+
+        ]]>
+        </style>
+        <!-- Useful constructs -->
+        <circle id="eventDot" cx="0" cy="0" r="5"/>
+        <!-- used when pass to function by ref -->
+        <g id="functionDot">
+             <circle id="eventDot" cx="0" cy="0" r="8"/>
+             <text class="functionIcon" dx="-6" dy="2">f</text>
+        </g>
+        <marker id="arrowHead" viewBox="0 0 10 10"
+            refX="1" refY="5" 
+            markerUnits="strokeWidth"
+            markerWidth="3px" markerHeight="3px"
+            orient="auto" fill="black">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
+        </marker>
+    </defs>
+
+    <g>
+        <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
+    </g>
+
+    <g id="labels">
+        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="2"><title>r1, immutable</title>r1</text>
+        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="3"><title>r2, immutable</title>r2</text>
+        <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="1"><title>s, mutable</title>s</text>
+    </g>
+
+    <g id="timelines">
+        <line data-hash="1" class="solid" x1="-220" x2="-220" y1="100" y2="160"><title>has read and write privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="-220" x2="-220" y1="180" y2="240"><title>has read and write privilege to the real data</title></line>
+        <line data-hash="2" class="solid" x1="-150" x2="-150" y1="160" y2="180"><title>has read only privilege to the reference itself</title></line>
+        <line class="colorless" stroke-width="8px" x1="-150" x2="-150" y1="165" y2="175"><title>has read only privilege to the reference itself</title></line>
+    </g>
+
+    <g id="events">
+        <use xlink:href="#eventDot" data-hash="1" x="-220" y="100"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-220" y="160"><title>Mutable lend to r1</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-220" y="180"><title>Fully reacquires resource from r1</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-220" y="240"><title>Mutable lend to r2</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="-150" y="160"><title>Fully borrows resource from s</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="-150" y="180"><title>Fully returns resource to s</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="-150" y="180"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="-80" y="240"><title>Fully borrows resource from s</title></use>
+    </g>
+
+    <g id="arrows">
+        <text x="-194" y="105" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-197,100 -207,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
+        <polyline stroke-width="5" stroke="black" points="-220,160 -160,160 " marker-end="url(#arrowHead)"><title>Mutable borrow from s to r1</title></polyline>
+        <polyline stroke-width="5" stroke="black" points="-150,180 -210,180 " marker-end="url(#arrowHead)"><title>Return mutably borrowed resource from r1 to s</title></polyline>
+        <polyline stroke-width="5" stroke="black" points="-220,240 -90,240 " marker-end="url(#arrowHead)"><title>Mutable borrow from s to r2</title></polyline>
+    </g>
+
+    <g id="dividers">
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="260"/>
+    </g>
+
+    <g id="code">
+        <text class="code" x="0" y="80">  </text>
+        <text class="code" x="0" y="100"> let mut <tspan data-hash="1">s</tspan> = String::from("hello"); </text>
+        <text class="code" x="0" y="120">  </text>
+        <text class="code" x="0" y="140"> { </text>
+        <text class="code" x="0" y="160">     let <tspan data-hash="2">r1</tspan> = <tspan data-hash="1">&amp;mut s</tspan>; </text>
+        <text class="code" x="0" y="180">  </text>
+        <text class="code" x="0" y="200"> } // r1 goes out of scope here, so we can make a new reference with no problems. </text>
+        <text class="code" x="0" y="220">  </text>
+        <text class="code" x="0" y="240"> let <tspan data-hash="3">r2</tspan> = <tspan data-hash="1">&amp;mut s</tspan>; </text>
+    </g>
+
+   
+</svg>
+successfully wrote to examples/book_04_02_07_scope_reference/rendering.svg
+successfully wrote to rustBook/src/img/vis_04_02_07.svg
+    Finished dev [unoptimized + debuginfo] target(s) in 0.04s
      Running `target/debug/examples/shared_and_unique_borrow`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -3412,14 +3921,14 @@ text.functionIcon {
 
     <g>
         <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
+        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="3"><title>r2, immutable</title>r2</text>
         <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="2"><title>r1, immutable</title>r1</text>
         <text style="text-anchor:middle" class="code" x="-290" y="80" data-hash="1"><title>s, mutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="4"><title>r3, immutable</title>r3</text>
-        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="3"><title>r2, immutable</title>r2</text>
     </g>
 
     <g id="timelines">
@@ -3482,17 +3991,17 @@ text.functionIcon {
         <text x="-264" y="105" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-267,100 -277,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
         <polyline stroke-width="5" stroke="black" points="-290,140 -230,140 " marker-end="url(#arrowHead)"><title>Static borrow from s to r1</title></polyline>
         <polyline stroke-width="5" stroke="black" points="-290,160 -160,160 " marker-end="url(#arrowHead)"><title>Static borrow from s to r2</title></polyline>
-        <use xlink:href="#functionDot" data-hash="2" x="-220" y="180"><title>Pass to println!() by static reference</title></use>
-        <use xlink:href="#functionDot" data-hash="3" x="-150" y="180"><title>Pass to println!() by static reference</title></use>
+        <use xlink:href="#functionDot" data-hash="2" x="-220" y="180"><title>println!() reads from r1</title></use>
+        <use xlink:href="#functionDot" data-hash="3" x="-150" y="180"><title>println!() reads from r2</title></use>
         <polyline stroke-width="5" stroke="black" points="-220,180 -280,180 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from r1 to s</title></polyline>
         <polyline stroke-width="5" stroke="black" points="-150,180 -280,180 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from r2 to s</title></polyline>
         <polyline stroke-width="5" stroke="black" points="-290,240 -90,240 " marker-end="url(#arrowHead)"><title>Mutable borrow from s to r3</title></polyline>
-        <use xlink:href="#functionDot" data-hash="4" x="-80" y="260"><title>Pass to println!() by static reference</title></use>
+        <use xlink:href="#functionDot" data-hash="4" x="-80" y="260"><title>println!() reads from r3</title></use>
         <polyline stroke-width="5" stroke="black" points="-80,260 -280,260 " marker-end="url(#arrowHead)"><title>Return mutably borrowed resource from r3 to s</title></polyline>
     </g>
 
     <g id="dividers">
-            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="320"/>
     </g>
 
     <g id="code">
@@ -3514,8 +4023,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_02_09_shared_and_unique_borrow/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_09.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.67s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/no_dangle`
 s 1 2 OutOfScope
 s 2 5 FullPrivilege
@@ -3676,7 +4184,7 @@ text.functionIcon {
 
     <g>
         <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
@@ -3698,7 +4206,7 @@ text.functionIcon {
     </g>
 
     <g id="dividers">
-            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="180"/>
     </g>
 
     <g id="code">

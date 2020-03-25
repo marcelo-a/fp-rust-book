@@ -23,5 +23,5 @@ fn main() {
     //
     vd.append_external_event(ExternalEvent::Move{from: Some(from_func.to_owned()), to: Some(s.clone())}, &(2 as usize));
 
-    svg_generation::render_svg(&"04_01_04".to_owned(), &"reference".to_owned(), &vd);
+    svg_generation::render_svg(&"04_01_03".to_owned(), &"string_from".to_owned(), &vd);
 }

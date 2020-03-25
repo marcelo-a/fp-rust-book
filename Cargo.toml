@@ -26,6 +26,10 @@ name = "scope"
 path = "examples/book_04_01_02_scope/main.rs"
 
 [[example]]
+name = "string_from"
+path = "examples/book_04_01_03_string_from/main.rs"
+
+[[example]]
 name = "reference"
 path = "examples/book_04_01_04_reference/main.rs"
 

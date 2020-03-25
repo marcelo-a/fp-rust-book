@@ -352,7 +352,7 @@ fn render_arrows_string_external_events_version(
                 let function_dot_data = FunctionDotData {
                 x: resource_owners_layout[&variable.hash].x_val,
                 y: get_y_axis_pos(line_number),
-                title: "Pass to ".to_owned() + &function.name.to_owned() + " by static reference",
+                title: function.name.to_owned() + " reads from " + &variable.name,
                 hash: variable.hash.to_owned() as i64,
                 };
                 output.push_str(&registry.render("function_dot_template", &function_dot_data).unwrap());
@@ -364,7 +364,7 @@ fn render_arrows_string_external_events_version(
                 let function_dot_data = FunctionDotData {
                 x: resource_owners_layout[&variable.hash].x_val,
                 y: get_y_axis_pos(line_number),
-                title: "Pass to ".to_owned() + &function.name.to_owned() + " by mutable reference",
+                title: function.name.to_owned() + " reads from/writes to " + &variable.name,
                 hash: variable.hash.to_owned() as i64,
                 };
                 output.push_str(&registry.render("function_dot_template", &function_dot_data).unwrap());

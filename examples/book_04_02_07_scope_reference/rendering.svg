@@ -1,0 +1,209 @@
+<svg width="1800px" height="600px" viewBox="-180 0 1620 700"
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <desc>scope_reference</desc>
+
+    <defs>
+        <style type="text/css">
+        <![CDATA[
+        /* general setup */
+:root {
+    --bg-color:#f1f1f1;
+    --text-color: #6e6b5e;
+}
+
+svg {
+    background-color: var(--bg-color);
+}
+
+text {
+    fill: var(--text-color);
+    vertical-align: baseline;
+    text-anchor: start;
+}
+
+#heading {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#caption {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* code related styling */
+text.code {
+    white-space: pre;
+    font-family: "monospace";
+}
+
+/* event related styling */
+#eventDot:hover {
+    transform: scale(1.5);
+}
+
+#eventDot {
+    transition: all 0.3s;
+}
+
+/* text.functionIcon:hover {
+    transform: scale(1.5);
+}
+
+text.functionIcon {
+    transition: all 0.3s;
+} */
+
+#functionDot:hover {
+    transform: scale(1.5);
+}
+
+#functionDot {
+    transition: all 0.3s;
+}
+
+/* timeline/event interaction styling */
+.solid {
+    stroke-width: 5px;
+}
+
+.hollow_internal {
+    stroke-width: 3px;
+    fill: var(--bg-color);
+}
+
+.dotted {
+    stroke-width: 5px;
+    stroke-dasharray: "2 1";
+}
+
+.extend {
+    stroke-width: 1px;
+    stroke-dasharray: "2 1";
+}
+
+.colorless {
+    color: var(--bg-color);
+    fill: var(--bg-color);
+}
+
+.functionIcon {
+    stroke: gray;
+    fill: white;
+    stroke-width: 1px;
+    font-size: 30px;
+    font-family: times;
+    font-weight: lighter;
+    dominant-baseline: central;
+    text-anchor: start;
+    font-style: italic;
+}
+/* hash based styling */
+[data-hash*="1"] {
+    fill: #3355ff;
+    stroke: #3355ff;
+}
+
+[data-hash*="2"] {
+    fill: #33cc33;
+    stroke: #33cc33;
+}
+
+[data-hash*="3"] {
+    fill: #ff3300;
+    stroke: #ff3300;
+}
+
+[data-hash*="4"] {
+    fill: #6600ff;
+    stroke: #6600ff;
+}
+
+[data-hash*="5"] {
+    fill: #ff33cc;
+    stroke: #ff33cc;
+}
+
+[data-hash*="6"] {
+    fill: #663300;
+    stroke: #663300;
+}
+
+[data-hash*="7"] {
+    fill: #ff9900;
+    stroke: #ff9900;
+}
+
+        ]]>
+        </style>
+        <!-- Useful constructs -->
+        <circle id="eventDot" cx="0" cy="0" r="5"/>
+        <!-- used when pass to function by ref -->
+        <g id="functionDot">
+             <circle id="eventDot" cx="0" cy="0" r="8"/>
+             <text class="functionIcon" dx="-6" dy="2">f</text>
+        </g>
+        <marker id="arrowHead" viewBox="0 0 10 10"
+            refX="1" refY="5" 
+            markerUnits="strokeWidth"
+            markerWidth="3px" markerHeight="3px"
+            orient="auto" fill="black">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
+        </marker>
+    </defs>
+
+    <g>
+        <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
+    </g>
+
+    <g id="labels">
+        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="2"><title>r1, immutable</title>r1</text>
+        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="3"><title>r2, immutable</title>r2</text>
+        <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="1"><title>s, mutable</title>s</text>
+    </g>
+
+    <g id="timelines">
+        <line data-hash="1" class="solid" x1="-220" x2="-220" y1="100" y2="160"><title>has read and write privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="-220" x2="-220" y1="180" y2="240"><title>has read and write privilege to the real data</title></line>
+        <line data-hash="2" class="solid" x1="-150" x2="-150" y1="160" y2="180"><title>has read only privilege to the reference itself</title></line>
+        <line class="colorless" stroke-width="8px" x1="-150" x2="-150" y1="165" y2="175"><title>has read only privilege to the reference itself</title></line>
+    </g>
+
+    <g id="events">
+        <use xlink:href="#eventDot" data-hash="1" x="-220" y="100"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-220" y="160"><title>Mutable lend to r1</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-220" y="180"><title>Fully reacquires resource from r1</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-220" y="240"><title>Mutable lend to r2</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="-150" y="160"><title>Fully borrows resource from s</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="-150" y="180"><title>Fully returns resource to s</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="-150" y="180"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="-80" y="240"><title>Fully borrows resource from s</title></use>
+    </g>
+
+    <g id="arrows">
+        <text x="-194" y="105" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-197,100 -207,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
+        <polyline stroke-width="5" stroke="black" points="-220,160 -160,160 " marker-end="url(#arrowHead)"><title>Mutable borrow from s to r1</title></polyline>
+        <polyline stroke-width="5" stroke="black" points="-150,180 -210,180 " marker-end="url(#arrowHead)"><title>Return mutably borrowed resource from r1 to s</title></polyline>
+        <polyline stroke-width="5" stroke="black" points="-220,240 -90,240 " marker-end="url(#arrowHead)"><title>Mutable borrow from s to r2</title></polyline>
+    </g>
+
+    <g id="dividers">
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="260"/>
+    </g>
+
+    <g id="code">
+        <text class="code" x="0" y="80">  </text>
+        <text class="code" x="0" y="100"> let mut <tspan data-hash="1">s</tspan> = String::from("hello"); </text>
+        <text class="code" x="0" y="120">  </text>
+        <text class="code" x="0" y="140"> { </text>
+        <text class="code" x="0" y="160">     let <tspan data-hash="2">r1</tspan> = <tspan data-hash="1">&amp;mut s</tspan>; </text>
+        <text class="code" x="0" y="180">  </text>
+        <text class="code" x="0" y="200"> } // r1 goes out of scope here, so we can make a new reference with no problems. </text>
+        <text class="code" x="0" y="220">  </text>
+        <text class="code" x="0" y="240"> let <tspan data-hash="3">r2</tspan> = <tspan data-hash="1">&amp;mut s</tspan>; </text>
+    </g>
+
+   
+</svg>

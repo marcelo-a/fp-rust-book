@@ -155,13 +155,13 @@ text.functionIcon {
 
     <g>
         <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="-120" y="80" data-hash="7"><title>some_integer, immutable</title>some_integer</text>
         <text style="text-anchor:middle" class="code" x="-360" y="80" data-hash="1"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="-290" y="80" data-hash="4"><title>x, immutable</title>x</text>
+        <text style="text-anchor:middle" class="code" x="-120" y="80" data-hash="7"><title>some_integer, immutable</title>some_integer</text>
         <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="6"><title>some_string, immutable</title>some_string</text>
     </g>
 
@@ -207,12 +207,12 @@ text.functionIcon {
         <text x="-334" y="105" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-337,100 -347,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
         <text x="-395" y="145" font-size = "20" font-style="italic" class="heavy" ><title>takes_ownership()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-365,140 -375,140 " marker-end="url(#arrowHead)"><title>Move from s to the parameter of takes_ownership()</title></polyline>
         <text x="-325" y="245" font-size = "20" font-style="italic" class="heavy" ><title>makes_copy()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-295,240 -305,240 " marker-end="url(#arrowHead)"><title>Duplicate from x to the parameter of makes_copy()</title></polyline>
-        <use xlink:href="#functionDot" data-hash="6" x="-220" y="400"><title>Pass to println!() by static reference</title></use>
-        <use xlink:href="#functionDot" data-hash="7" x="-120" y="400"><title>Pass to println!() by static reference</title></use>
+        <use xlink:href="#functionDot" data-hash="6" x="-220" y="400"><title>println!() reads from some_string</title></use>
+        <use xlink:href="#functionDot" data-hash="7" x="-120" y="400"><title>println!() reads from some_integer</title></use>
     </g>
 
     <g id="dividers">
-            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="540"/>
     </g>
 
     <g id="code">

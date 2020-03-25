@@ -155,13 +155,13 @@ text.functionIcon {
 
     <g>
         <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
+        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="4"><title>r3, immutable</title>r3</text>
         <text style="text-anchor:middle" class="code" x="-290" y="80" data-hash="1"><title>s, mutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="3"><title>r2, immutable</title>r2</text>
-        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="4"><title>r3, immutable</title>r3</text>
         <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="2"><title>r1, immutable</title>r1</text>
     </g>
 
@@ -225,12 +225,12 @@ text.functionIcon {
         <text x="-264" y="105" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-267,100 -277,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
         <polyline stroke-width="5" stroke="black" points="-290,140 -230,140 " marker-end="url(#arrowHead)"><title>Static borrow from s to r1</title></polyline>
         <polyline stroke-width="5" stroke="black" points="-290,160 -160,160 " marker-end="url(#arrowHead)"><title>Static borrow from s to r2</title></polyline>
-        <use xlink:href="#functionDot" data-hash="2" x="-220" y="180"><title>Pass to println!() by static reference</title></use>
-        <use xlink:href="#functionDot" data-hash="3" x="-150" y="180"><title>Pass to println!() by static reference</title></use>
+        <use xlink:href="#functionDot" data-hash="2" x="-220" y="180"><title>println!() reads from r1</title></use>
+        <use xlink:href="#functionDot" data-hash="3" x="-150" y="180"><title>println!() reads from r2</title></use>
         <polyline stroke-width="5" stroke="black" points="-220,180 -280,180 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from r1 to s</title></polyline>
         <polyline stroke-width="5" stroke="black" points="-150,180 -280,180 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from r2 to s</title></polyline>
         <polyline stroke-width="5" stroke="black" points="-290,240 -90,240 " marker-end="url(#arrowHead)"><title>Mutable borrow from s to r3</title></polyline>
-        <use xlink:href="#functionDot" data-hash="4" x="-80" y="260"><title>Pass to println!() by static reference</title></use>
+        <use xlink:href="#functionDot" data-hash="4" x="-80" y="260"><title>println!() reads from r3</title></use>
         <polyline stroke-width="5" stroke="black" points="-80,260 -280,260 " marker-end="url(#arrowHead)"><title>Return mutably borrowed resource from r3 to s</title></polyline>
     </g>
 

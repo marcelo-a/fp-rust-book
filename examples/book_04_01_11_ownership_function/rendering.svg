@@ -1,0 +1,222 @@
+<svg width="1300px" height="700px" viewBox="-300 0 1000 700"
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <desc>ownership_function</desc>
+
+    <defs>
+        <style type="text/css">
+        <![CDATA[
+        /* general setup */
+svg {
+    background-color: #232323;
+}
+
+text {
+    fill: #cccccc;
+    vertical-align: baseline;
+    text-anchor: start;
+}
+
+#heading {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#caption {
+    font-size: 12px;
+}
+
+/* code related styling */
+text.code {
+    white-space: pre;
+    font-family: "monospace";
+}
+
+/* event related styling */
+#eventDot:hover {
+    transform: scale(1.5);
+}
+
+#eventDot {
+    transition: all 0.3s;
+}
+
+/* function related styling */
+#functionDot:hover {
+    transform: scale(1.5);
+}
+
+#functionDot {
+    transition: all 0.3s;
+}
+/* timeline/event interaction styling */
+.solid {
+    stroke-width: 5px;
+}
+
+.hollow_internal {
+    stroke-width: 3px;
+    fill: #232323;
+}
+
+.dotted {
+    stroke-width: 5px;
+    stroke-dasharray: "2 1";
+}
+
+.extend {
+    stroke-width: 1px;
+    stroke-dasharray: "2 1";
+}
+
+.colorless {
+    color: gray;
+    fill: gray;
+}
+
+/* hash based styling */
+[data-hash*="1"] {
+    fill: #3355ff;
+    stroke: #3355ff;
+}
+
+[data-hash*="2"] {
+    fill: #33ff00;
+    stroke: #33ff00;
+}
+
+[data-hash*="3"] {
+    fill: #ff3300;
+    stroke: #ff3300;
+}
+
+[data-hash*="4"] {
+    fill: #fff300;
+    stroke: #fff300;
+}
+
+[data-hash*="5"] {
+    fill: #ff33cc;
+    stroke: #ff33cc;
+}
+
+[data-hash*="6"] {
+    fill: #00ffff;
+    stroke: #00ffff;
+}
+
+[data-hash*="7"] {
+    fill: #ff9900;
+    stroke: #ff9900;
+}
+
+        ]]>
+        </style>
+        <!-- Useful constructs -->
+        <circle id="eventDot" cx="0" cy="0" r="5"/>
+        <!-- used when pass to function by ref -->
+        <g id="functionDot">
+             <circle id="eventDot" cx="0" cy="0" r="8"/>
+             <text dx="-6" dy="2"  font-size="16"  font-style="italic"
+              dominant-baseline="middle" text-anchor="middle" 
+              color="white" stroke="white" fill="white">f</text>
+        </g>
+        <marker id="arrowHead" viewBox="0 0 10 10"
+            refX="1" refY="5" 
+            markerUnits="strokeWidth"
+            markerWidth="3px" markerHeight="3px"
+            orient="auto" fill="beige">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
+        </marker>
+    </defs>
+
+    <g>
+        <text id="heading" x="-300" y="30">Visualization of Rust ownership_function</text>
+        <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
+    </g>
+
+    <g id="labels">
+        <text x="-220" y="80"></text><text dominant-baseline="middle" text-anchor="middle" class="code" x="-220" y="80" data-hash="6"><title>some_string, immutable</title>some_string</text>
+        <text x="-120" y="80"></text><text dominant-baseline="middle" text-anchor="middle" class="code" x="-120" y="80" data-hash="7"><title>some_integer, immutable</title>some_integer</text>
+        <text x="-290" y="80"></text><text dominant-baseline="middle" text-anchor="middle" class="code" x="-290" y="80" data-hash="4"><title>x, immutable</title>x</text>
+        <text x="-360" y="80"></text><text dominant-baseline="middle" text-anchor="middle" class="code" x="-360" y="80" data-hash="1"><title>s, immutable</title>s</text>
+    </g>
+
+    <g id="timelines">
+        <line data-hash="1" class="solid" x1="-360" x2="-360" y1="100" y2="140"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-360" x2="-360" y1="105" y2="135"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="-290" x2="-290" y1="200" y2="240"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-290" x2="-290" y1="205" y2="235"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="-290" x2="-290" y1="240" y2="320"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-290" x2="-290" y1="245" y2="315"><title>has read only privilege to the real data</title></line>
+        <line data-hash="6" class="solid" x1="-220" x2="-220" y1="380" y2="400"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-220" x2="-220" y1="385" y2="395"><title>has read only privilege to the real data</title></line>
+        <line data-hash="6" class="solid" x1="-220" x2="-220" y1="400" y2="400"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-220" x2="-220" y1="405" y2="395"><title>has read only privilege to the real data</title></line>
+        <line data-hash="6" class="solid" x1="-220" x2="-220" y1="400" y2="420"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-220" x2="-220" y1="405" y2="415"><title>has read only privilege to the real data</title></line>
+        <line data-hash="7" class="solid" x1="-120" x2="-120" y1="380" y2="400"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-120" x2="-120" y1="385" y2="395"><title>has read only privilege to the real data</title></line>
+        <line data-hash="7" class="solid" x1="-120" x2="-120" y1="400" y2="400"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-120" x2="-120" y1="405" y2="395"><title>has read only privilege to the real data</title></line>
+        <line data-hash="7" class="solid" x1="-120" x2="-120" y1="400" y2="420"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-120" x2="-120" y1="405" y2="415"><title>has read only privilege to the real data</title></line>
+    </g>
+
+    <g id="events">
+        <use xlink:href="#eventDot" data-hash="1" x="-360" y="100"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-360" y="140"><title>Moving resource to takes_ownership()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-360" y="320"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-290" y="200"><title>Acquiring resource</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-290" y="240"><title>Copying resource to makes_copy()</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-290" y="320"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="-220" y="380"><title>Acquiring resource</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="-220" y="400"><title>Partially lends resource to println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="-220" y="400"><title>Partially reacquires resource from println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="-220" y="420"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="-120" y="380"><title>Acquiring resource</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="-120" y="400"><title>Partially lends resource to println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="-120" y="400"><title>Partially reacquires resource from println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="-120" y="420"><title>Goes out of scope</title></use>
+    </g>
+
+    <g id="arrows">
+        <text x="-334" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-337,100 -347,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
+        <text x="-395" y="145" font-size = "20" font-style = "italic" class="heavy" ><title>takes_ownership()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-365,140 -375,140 " marker-end="url(#arrowHead)"><title>Move from s to the parameter of takes_ownership()</title></polyline>
+        <text x="-325" y="245" font-size = "20" font-style = "italic" class="heavy" ><title>makes_copy()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-295,240 -305,240 " marker-end="url(#arrowHead)"><title>Duplicate from x to the parameter of makes_copy()</title></polyline>
+        <use xlink:href="#functionDot" data-hash="6" x="-220" y="400"><title>Pass to println!() by static reference</title></use>
+        <use xlink:href="#functionDot" data-hash="7" x="-120" y="400"><title>Pass to println!() by static reference</title></use>
+    </g>
+
+    <g id="dividers">
+            <line class="solid" stroke="beige" x1="-20" x2="-20" y1="80" y2="400"/>
+    </g>
+
+    <g id="code">
+        <text class="code" x="0" y="80"> fn main() { </text>
+        <text class="code" x="0" y="100">     let <tspan data-hash="1">s</tspan> = <tspan data-hash="2">String::from</tspan>("hello");  // s comes into scope </text>
+        <text class="code" x="0" y="120">  </text>
+        <text class="code" x="0" y="140">     <tspan data-hash="3">takes_ownership</tspan>(<tspan data-hash="1">s</tspan>);             // s's value moves into the function... </text>
+        <text class="code" x="0" y="160">                                     // ... and so is no longer valid here </text>
+        <text class="code" x="0" y="180">  </text>
+        <text class="code" x="0" y="200">     let <tspan data-hash="4">x</tspan> = 5;                      // x comes into scope </text>
+        <text class="code" x="0" y="220">  </text>
+        <text class="code" x="0" y="240">     <tspan data-hash="5">makes_copy</tspan>(<tspan data-hash="4">x</tspan>);                  // x would move into the function, </text>
+        <text class="code" x="0" y="260">                                     // but i32 is Copy, so it’s okay to still </text>
+        <text class="code" x="0" y="280">                                     // use x afterward </text>
+        <text class="code" x="0" y="300">  </text>
+        <text class="code" x="0" y="320"> } // Here, x goes out of scope, then s. But because s's value was moved, nothing </text>
+        <text class="code" x="0" y="340">   // special happens. </text>
+        <text class="code" x="0" y="360">  </text>
+        <text class="code" x="0" y="380"> fn <tspan data-hash="3">takes_ownership</tspan>(<tspan data-hash="6">some_string</tspan>: String) { // some_string comes into scope </text>
+        <text class="code" x="0" y="400">     <tspan data-hash="8">println!</tspan>("{}", <tspan data-hash="6">some_string</tspan>); </text>
+        <text class="code" x="0" y="420"> } // Here, some_string goes out of scope and `drop` is called. The backing </text>
+        <text class="code" x="0" y="440">   // memory is freed. </text>
+        <text class="code" x="0" y="460">  </text>
+        <text class="code" x="0" y="480"> fn <tspan data-hash="5">makes_copy</tspan>(<tspan data-hash="7">some_integer</tspan>: i32) { // some_integer comes into scope </text>
+        <text class="code" x="0" y="500">     <tspan data-hash="8">println!</tspan>("{}", <tspan data-hash="7">some_integer</tspan>); </text>
+        <text class="code" x="0" y="520"> } // Here, some_integer goes out of scope. Nothing special happens. </text>
+    </g>
+
+   
+</svg>

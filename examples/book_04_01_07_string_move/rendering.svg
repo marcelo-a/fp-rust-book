@@ -1,0 +1,170 @@
+<svg width="1300px" height="700px" viewBox="-300 0 1000 700"
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <desc>string_move</desc>
+
+    <defs>
+        <style type="text/css">
+        <![CDATA[
+        /* general setup */
+svg {
+    background-color: #232323;
+}
+
+text {
+    fill: #cccccc;
+    vertical-align: baseline;
+    text-anchor: start;
+}
+
+#heading {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#caption {
+    font-size: 12px;
+}
+
+/* code related styling */
+text.code {
+    white-space: pre;
+    font-family: "monospace";
+}
+
+/* event related styling */
+#eventDot:hover {
+    transform: scale(1.5);
+}
+
+#eventDot {
+    transition: all 0.3s;
+}
+
+/* function related styling */
+#functionDot:hover {
+    transform: scale(1.5);
+}
+
+#functionDot {
+    transition: all 0.3s;
+}
+/* timeline/event interaction styling */
+.solid {
+    stroke-width: 5px;
+}
+
+.hollow_internal {
+    stroke-width: 3px;
+    fill: #232323;
+}
+
+.dotted {
+    stroke-width: 5px;
+    stroke-dasharray: "2 1";
+}
+
+.extend {
+    stroke-width: 1px;
+    stroke-dasharray: "2 1";
+}
+
+.colorless {
+    color: gray;
+    fill: gray;
+}
+
+/* hash based styling */
+[data-hash*="1"] {
+    fill: #3355ff;
+    stroke: #3355ff;
+}
+
+[data-hash*="2"] {
+    fill: #33ff00;
+    stroke: #33ff00;
+}
+
+[data-hash*="3"] {
+    fill: #ff3300;
+    stroke: #ff3300;
+}
+
+[data-hash*="4"] {
+    fill: #fff300;
+    stroke: #fff300;
+}
+
+[data-hash*="5"] {
+    fill: #ff33cc;
+    stroke: #ff33cc;
+}
+
+[data-hash*="6"] {
+    fill: #00ffff;
+    stroke: #00ffff;
+}
+
+[data-hash*="7"] {
+    fill: #ff9900;
+    stroke: #ff9900;
+}
+
+        ]]>
+        </style>
+        <!-- Useful constructs -->
+        <circle id="eventDot" cx="0" cy="0" r="5"/>
+        <!-- used when pass to function by ref -->
+        <g id="functionDot">
+             <circle id="eventDot" cx="0" cy="0" r="8"/>
+             <text dx="-6" dy="2"  font-size="16"  font-style="italic"
+              dominant-baseline="middle" text-anchor="middle" 
+              color="white" stroke="white" fill="white">f</text>
+        </g>
+        <marker id="arrowHead" viewBox="0 0 10 10"
+            refX="1" refY="5" 
+            markerUnits="strokeWidth"
+            markerWidth="3px" markerHeight="3px"
+            orient="auto" fill="beige">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
+        </marker>
+    </defs>
+
+    <g>
+        <text id="heading" x="-300" y="30">Visualization of Rust string_move</text>
+        <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
+    </g>
+
+    <g id="labels">
+        <text x="-150" y="80"></text><text dominant-baseline="middle" text-anchor="middle" class="code" x="-150" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text x="-80" y="80"></text><text dominant-baseline="middle" text-anchor="middle" class="code" x="-80" y="80" data-hash="3"><title>s2, immutable</title>s2</text>
+    </g>
+
+    <g id="timelines">
+        <line data-hash="1" class="solid" x1="-150" x2="-150" y1="100" y2="120"><title>has read only privilege to the real data</title></line>
+        <line stroke="#232323" stroke-width="3px" x1="-150" x2="-150" y1="105" y2="115"><title>has read only privilege to the real data</title></line>
+    </g>
+
+    <g id="events">
+        <use xlink:href="#eventDot" data-hash="1" x="-150" y="100"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-150" y="120"><title>Moving resource to s2</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="-80" y="120"><title>Acquiring resource from s1</title></use>
+    </g>
+
+    <g id="arrows">
+        <text x="-124" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,100 -137,100 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of String::from() to s1</title></polyline>
+        <polyline stroke-width="2.5" stroke="beige" points="-150,120 -90,120 " marker-end="url(#arrowHead)"><title>Move from s1 to s2</title></polyline>
+    </g>
+
+    <g id="dividers">
+            <line class="solid" stroke="beige" x1="-20" x2="-20" y1="80" y2="400"/>
+    </g>
+
+    <g id="code">
+        <text class="code" x="0" y="80">  </text>
+        <text class="code" x="0" y="100"> let <tspan data-hash="1">s1</tspan> = <tspan data-hash="2">String::from</tspan>("hello"); </text>
+        <text class="code" x="0" y="120"> let <tspan data-hash="3">s2</tspan> = <tspan data-hash="1">s1</tspan>; </text>
+    </g>
+
+   
+</svg>

@@ -1,0 +1,246 @@
+<svg width="1800px" height="600px" viewBox="-180 0 1620 700"
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <desc>return_tuple</desc>
+
+    <defs>
+        <style type="text/css">
+        <![CDATA[
+        /* general setup */
+:root {
+    --bg-color:#f1f1f1;
+    --text-color: #6e6b5e;
+}
+
+svg {
+    background-color: var(--bg-color);
+}
+
+text {
+    fill: var(--text-color);
+    vertical-align: baseline;
+    text-anchor: start;
+}
+
+#heading {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#caption {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* code related styling */
+text.code {
+    white-space: pre;
+    font-family: "monospace";
+}
+
+/* event related styling */
+#eventDot:hover {
+    transform: scale(1.5);
+}
+
+#eventDot {
+    transition: all 0.3s;
+}
+
+/* text.functionIcon:hover {
+    transform: scale(1.5);
+}
+
+text.functionIcon {
+    transition: all 0.3s;
+} */
+
+#functionDot:hover {
+    transform: scale(1.5);
+}
+
+#functionDot {
+    transition: all 0.3s;
+}
+
+/* timeline/event interaction styling */
+.solid {
+    stroke-width: 5px;
+}
+
+.hollow_internal {
+    stroke-width: 3px;
+    fill: var(--bg-color);
+}
+
+.dotted {
+    stroke-width: 5px;
+    stroke-dasharray: "2 1";
+}
+
+.extend {
+    stroke-width: 1px;
+    stroke-dasharray: "2 1";
+}
+
+.colorless {
+    color: var(--bg-color);
+    fill: var(--bg-color);
+}
+
+.functionIcon {
+    stroke: gray;
+    fill: white;
+    stroke-width: 1px;
+    font-size: 30px;
+    font-family: times;
+    font-weight: lighter;
+    dominant-baseline: central;
+    text-anchor: start;
+    font-style: italic;
+}
+/* hash based styling */
+[data-hash*="1"] {
+    fill: #3355ff;
+    stroke: #3355ff;
+}
+
+[data-hash*="2"] {
+    fill: #33cc33;
+    stroke: #33cc33;
+}
+
+[data-hash*="3"] {
+    fill: #ff3300;
+    stroke: #ff3300;
+}
+
+[data-hash*="4"] {
+    fill: #6600ff;
+    stroke: #6600ff;
+}
+
+[data-hash*="5"] {
+    fill: #ff33cc;
+    stroke: #ff33cc;
+}
+
+[data-hash*="6"] {
+    fill: #663300;
+    stroke: #663300;
+}
+
+[data-hash*="7"] {
+    fill: #ff9900;
+    stroke: #ff9900;
+}
+
+        ]]>
+        </style>
+        <!-- Useful constructs -->
+        <circle id="eventDot" cx="0" cy="0" r="5"/>
+        <!-- used when pass to function by ref -->
+        <g id="functionDot">
+             <circle id="eventDot" cx="0" cy="0" r="8"/>
+             <text class="functionIcon" dx="-6" dy="2">f</text>
+        </g>
+        <marker id="arrowHead" viewBox="0 0 10 10"
+            refX="1" refY="5" 
+            markerUnits="strokeWidth"
+            markerWidth="3px" markerHeight="3px"
+            orient="auto" fill="black">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
+        </marker>
+    </defs>
+
+    <g>
+        <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+    </g>
+
+    <g id="labels">
+        <text style="text-anchor:middle" class="code" x="-290" y="80" data-hash="2"><title>len, immutable</title>len</text>
+        <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="4"><title>s, immutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="-360" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="6"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="8"><title>length, immutable</title>length</text>
+    </g>
+
+    <g id="timelines">
+        <line data-hash="1" class="solid" x1="-360" x2="-360" y1="100" y2="140"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-360" x2="-360" y1="105" y2="135"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="-360" x2="-360" y1="140" y2="140"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-360" x2="-360" y1="145" y2="135"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="-360" x2="-360" y1="140" y2="200"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-360" x2="-360" y1="145" y2="195"><title>has read only privilege to the real data</title></line>
+        <line data-hash="2" class="solid" x1="-290" x2="-290" y1="140" y2="180"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-290" x2="-290" y1="145" y2="175"><title>has read only privilege to the real data</title></line>
+        <line data-hash="2" class="solid" x1="-290" x2="-290" y1="180" y2="180"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-290" x2="-290" y1="185" y2="175"><title>has read only privilege to the real data</title></line>
+        <line data-hash="2" class="solid" x1="-290" x2="-290" y1="180" y2="200"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-290" x2="-290" y1="185" y2="195"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="-220" x2="-220" y1="240" y2="260"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-220" x2="-220" y1="245" y2="255"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="-220" x2="-220" y1="260" y2="260"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-220" x2="-220" y1="265" y2="255"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="-220" x2="-220" y1="260" y2="320"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-220" x2="-220" y1="265" y2="315"><title>has read only privilege to the real data</title></line>
+        <line data-hash="6" class="solid" x1="-150" x2="-150" y1="140" y2="180"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-150" x2="-150" y1="145" y2="175"><title>has read only privilege to the real data</title></line>
+        <line data-hash="6" class="solid" x1="-150" x2="-150" y1="180" y2="180"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-150" x2="-150" y1="185" y2="175"><title>has read only privilege to the real data</title></line>
+    </g>
+
+    <g id="events">
+        <use xlink:href="#eventDot" data-hash="1" x="-360" y="100"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-360" y="140"><title>Partially lends resource to calculate_length()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-360" y="140"><title>Partially reacquires resource from calculate_length()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="-360" y="200"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="-290" y="140"><title>Acquiring resource from calculate_length()</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="-290" y="180"><title>Partially lends resource to len()</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="-290" y="180"><title>Partially reacquires resource from len()</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="-290" y="200"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-220" y="240"><title>Acquiring resource</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-220" y="260"><title>Partially lends resource to len()</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-220" y="260"><title>Partially reacquires resource from len()</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-220" y="320"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="-220" y="320"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="-150" y="140"><title>Acquiring resource from calculate_length()</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="-150" y="180"><title>Partially lends resource to len()</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="-150" y="180"><title>Partially reacquires resource from len()</title></use>
+        <use xlink:href="#eventDot" data-hash="8" x="-80" y="260"><title>Acquiring resource from len()</title></use>
+    </g>
+
+    <g id="arrows">
+        <text x="-334" y="105" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-337,100 -347,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s1</title></polyline>
+        <use xlink:href="#functionDot" data-hash="1" x="-360" y="140"><title>Pass to calculate_length() by static reference</title></use>
+        <text x="-124" y="145" font-size = "20" font-style="italic" class="heavy" ><title>calculate_length()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-127,140 -137,140 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length() to s2</title></polyline>
+        <text x="-264" y="145" font-size = "20" font-style="italic" class="heavy" ><title>calculate_length()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-267,140 -277,140 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length() to len</title></polyline>
+        <use xlink:href="#functionDot" data-hash="6" x="-150" y="180"><title>Pass to len() by static reference</title></use>
+        <use xlink:href="#functionDot" data-hash="2" x="-290" y="180"><title>Pass to len() by static reference</title></use>
+        <use xlink:href="#functionDot" data-hash="4" x="-220" y="260"><title>Pass to len() by static reference</title></use>
+        <text x="-54" y="265" font-size = "20" font-style="italic" class="heavy" ><title>len()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-57,260 -67,260 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of len() to length</title></polyline>
+    </g>
+
+    <g id="dividers">
+            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
+    </g>
+
+    <g id="code">
+        <text class="code" x="0" y="80"> fn main() { </text>
+        <text class="code" x="0" y="100">     let <tspan data-hash="1">s1</tspan> = <tspan data-hash="5">String::from</tspan>("hello"); </text>
+        <text class="code" x="0" y="120">  </text>
+        <text class="code" x="0" y="140">     let (<tspan data-hash="6">s2</tspan>, <tspan data-hash="2">len</tspan>) = <tspan data-hash="3">calculate_length</tspan>(<tspan data-hash="1">&amp;s1</tspan>);; </text>
+        <text class="code" x="0" y="160">      </text>
+        <text class="code" x="0" y="180">     <tspan data-hash="9">println!</tspan>("The length of '{}' is {}.", <tspan data-hash="6">s2</tspan>, <tspan data-hash="2">len</tspan>); </text>
+        <text class="code" x="0" y="200"> } </text>
+        <text class="code" x="0" y="220">  </text>
+        <text class="code" x="0" y="240"> fn <tspan data-hash="3">calculate_length</tspan>(<tspan data-hash="4">s</tspan>: String) -> (String, usize) { </text>
+        <text class="code" x="0" y="260">     let <tspan data-hash="8">length</tspan> = <tspan data-hash="4">s</tspan>.<tspan data-hash="7">len</tspan>(); // len() returns the length of a String </text>
+        <text class="code" x="0" y="280">  </text>
+        <text class="code" x="0" y="300">     (<tspan data-hash="4">s</tspan>, <tspan data-hash="8">length</tspan>) </text>
+        <text class="code" x="0" y="320"> } </text>
+    </g>
+
+   
+</svg>

@@ -33,7 +33,7 @@
 {{ diagram }}
 
     <g id="dividers">
-            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
+            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="{{divider_y_endpoint}}"/>
     </g>
 
 {{ code }}

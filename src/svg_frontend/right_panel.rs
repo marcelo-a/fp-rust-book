@@ -5,7 +5,7 @@ use std::collections::BTreeMap;
 use std::fs::File;
 use std::io;
 
-pub fn render_right_panel(lines: io::Lines<io::BufReader<File>>) -> String {
+pub fn render_right_panel(lines: io::Lines<io::BufReader<File>>) -> (String, i32) {
     /* Template creation */
     let mut handlebars = Handlebars::new();
     // We want to preserve the inputs `as is`, and want to make no changes based on html escape.
@@ -21,6 +21,7 @@ pub fn render_right_panel(lines: io::Lines<io::BufReader<File>>) -> String {
     let x = 0;
     let mut y = 80;
     let mut output = String::from("    <g id=\"code\">\n");
+    let mut line_of_code = 0;
     for line in lines {
         if let Ok(line_string) = line {
             let mut data = BTreeMap::new();
@@ -30,7 +31,8 @@ pub fn render_right_panel(lines: io::Lines<io::BufReader<File>>) -> String {
             output.push_str(&handlebars.render("code_line_template", &data).unwrap());
             y = y + 20;
         }
+        line_of_code = line_of_code + 1;
     }
     output.push_str("    </g>\n");
-    output
+    (output, line_of_code)
 }

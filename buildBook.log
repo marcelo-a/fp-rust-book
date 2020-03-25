@@ -99,7 +99,7 @@ warning: variable `bookImageFilePath` should have a snake case name
 18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
    |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
      Running `target/debug/examples/one_var`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
@@ -1805,8 +1805,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="3"><title>s2, immutable</title>s2</text>
         <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="3"><title>s2, immutable</title>s2</text>
     </g>
 
     <g id="timelines">
@@ -1939,7 +1939,7 @@ warning: variable `bookImageFilePath` should have a snake case name
 18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
    |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/string_clone`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -2110,8 +2110,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="3"><title>s2, immutable</title>s2</text>
         <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="3"><title>s2, immutable</title>s2</text>
     </g>
 
     <g id="timelines">
@@ -2264,7 +2264,7 @@ warning: variable `bookImageFilePath` should have a snake case name
 18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
    |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/int_copy_2`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -2769,9 +2769,9 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="-120" y="80" data-hash="7"><title>some_integer, immutable</title>some_integer</text>
         <text style="text-anchor:middle" class="code" x="-290" y="80" data-hash="4"><title>x, immutable</title>x</text>
         <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="6"><title>some_string, immutable</title>some_string</text>
+        <text style="text-anchor:middle" class="code" x="-120" y="80" data-hash="7"><title>some_integer, immutable</title>some_integer</text>
         <text style="text-anchor:middle" class="code" x="-360" y="80" data-hash="1"><title>s, immutable</title>s</text>
     </g>
 
@@ -2955,7 +2955,7 @@ warning: variable `bookImageFilePath` should have a snake case name
 18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
    |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
      Running `target/debug/examples/return_values`
 s1 1 2 OutOfScope
 s1 2 10 FullPrivilege
@@ -3131,11 +3131,11 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="-320" y="80" data-hash="3"><title>some_string, immutable</title>some_string</text>
-        <text style="text-anchor:middle" class="code" x="-390" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
-        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="5"><title>s3, immutable</title>s3</text>
-        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="7"><title>a_string, immutable</title>a_string</text>
         <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="4"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="7"><title>a_string, immutable</title>a_string</text>
+        <text style="text-anchor:middle" class="code" x="-320" y="80" data-hash="3"><title>some_string, immutable</title>some_string</text>
+        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="5"><title>s3, immutable</title>s3</text>
+        <text style="text-anchor:middle" class="code" x="-390" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -3321,7 +3321,7 @@ warning: unused variable: `println_func`
    |
    = note: `#[warn(unused_variables)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/return_tuple`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -3501,11 +3501,11 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="-290" y="80" data-hash="2"><title>len, immutable</title>len</text>
-        <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="4"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="-360" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="6"><title>s2, immutable</title>s2</text>
         <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="8"><title>length, immutable</title>length</text>
+        <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="4"><title>s, immutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="-290" y="80" data-hash="2"><title>len, immutable</title>len</text>
     </g>
 
     <g id="timelines">
@@ -3688,7 +3688,7 @@ warning: variable `bookImageFilePath` should have a snake case name
 18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
    |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
      Running `target/debug/examples/pass_reference`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -3861,9 +3861,9 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="2"><title>len, immutable</title>len</text>
         <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="4"><title>s, immutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="2"><title>len, immutable</title>len</text>
     </g>
 
     <g id="timelines">
@@ -4039,7 +4039,7 @@ warning: unused variable: `len_func`
 37 |     let len_func = Some(ResourceOwner::Function(Function {
    |         ^^^^^^^^ help: consider prefixing with an underscore: `_len_func`
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/acquire_from_function`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -4345,7 +4345,7 @@ warning: variable `bookImageFilePath` should have a snake case name
 18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
    |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/safely_out_of_scope`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
@@ -4651,7 +4651,7 @@ warning: variable `bookImageFilePath` should have a snake case name
 18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
    |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/mut_ref`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -4822,8 +4822,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="-180" y="80" data-hash="1"><title>s, mutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="-110" y="80" data-hash="4"><title>some_string, mutable</title>some_string</text>
+        <text style="text-anchor:middle" class="code" x="-180" y="80" data-hash="1"><title>s, mutable</title>s</text>
     </g>
 
     <g id="timelines">
@@ -4974,7 +4974,7 @@ warning: variable `bookImageFilePath` should have a snake case name
 18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
    |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.04s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/scope_reference`
 s 1 2 OutOfScope
 s 2 5 FullPrivilege
@@ -5295,7 +5295,7 @@ warning: variable `bookImageFilePath` should have a snake case name
 18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
    |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/shared_and_unique_borrow`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -5481,10 +5481,10 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="-290" y="80" data-hash="1"><title>s, mutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="3"><title>r2, immutable</title>r2</text>
         <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="2"><title>r1, immutable</title>r1</text>
         <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="4"><title>r3, immutable</title>r3</text>
-        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="3"><title>r2, immutable</title>r2</text>
+        <text style="text-anchor:middle" class="code" x="-290" y="80" data-hash="1"><title>s, mutable</title>s</text>
     </g>
 
     <g id="timelines">

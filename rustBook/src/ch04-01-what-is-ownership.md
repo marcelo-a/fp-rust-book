@@ -372,7 +372,7 @@ Here’s an example of the `clone` method in action:
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-05-clone/src/main.rs:here}}
 ```
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_08.svg" style="width: auto;" >
+<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_09.svg" style="width: auto;" >
 !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
 </object></div>
 
@@ -391,7 +391,7 @@ part of which was shown in Listing 4-2, works and is valid:
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-06-copy/src/main.rs:here}}
 ```
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_09.svg" style="width: auto;" >
+<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_10.svg" style="width: auto;" >
 !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
 </object></div>
 
@@ -439,7 +439,7 @@ showing where variables go into and out of scope.
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-03/src/main.rs}}
 ```
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_10.svg" style="width: auto;" >
+<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_11.svg" style="width: auto;" >
 !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
 </object></div>
 
@@ -461,7 +461,7 @@ similar annotations to those in Listing 4-3.
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-04/src/main.rs}}
 ```
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_11.svg" style="width: auto;" >
+<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_12.svg" style="width: auto;" >
 !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
 </object></div>
 
@@ -486,7 +486,7 @@ It’s possible to return multiple values using a tuple, as shown in Listing 4-5
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-05/src/main.rs}}
 ```
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_12.svg" style="width: auto;" >
+<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_13.svg" style="width: auto;" >
 !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
 </object></div>
 

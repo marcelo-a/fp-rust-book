@@ -159,8 +159,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="-180" y="80" data-hash="1"><title>s, mutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="-110" y="80" data-hash="4"><title>some_string, mutable</title>some_string</text>
+        <text style="text-anchor:middle" class="code" x="-180" y="80" data-hash="1"><title>s, mutable</title>s</text>
     </g>
 
     <g id="timelines">

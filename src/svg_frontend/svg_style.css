@@ -68,18 +68,18 @@ text.code {
 
 /* hash based styling */
 [data-hash*="1"] {
-    fill: #3355ff;
-    stroke: #3355ff;
+    fill: #5b76fc;
+    stroke: #5b76fc;
 }
 
 [data-hash*="2"] {
-    fill: #33ff00;
-    stroke: #33ff00;
+    fill: #2aad09;
+    stroke: #2aad09;
 }
 
 [data-hash*="3"] {
-    fill: #ff3300;
-    stroke: #ff3300;
+    fill: #df5f3f;
+    stroke: #df5f3f;
 }
 
 [data-hash*="4"] {
@@ -100,4 +100,14 @@ text.code {
 [data-hash*="7"] {
     fill: #ff9900;
     stroke: #ff9900;
+}
+
+[data-hash*="8"] {
+    fill: #00d6fc;
+    stroke: #00d6fc;
+}
+
+[data-hash*="9"] {
+    fill: #9aeb58;
+    stroke: #9aeb58;
 }

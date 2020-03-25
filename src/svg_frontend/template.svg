@@ -11,6 +11,13 @@
         </style>
         <!-- Useful constructs -->
         <circle id="eventDot" cx="0" cy="0" r="5"/>
+        <!-- used when pass to function by ref -->
+        <g id="functionDot">
+             <circle id="eventDot" cx="0" cy="0" r="8"/>
+             <text dx="-6" dy="2"  font-size="16"  font-style="italic"
+              dominant-baseline="middle" text-anchor="middle" 
+              color="white" stroke="white" fill="white">f</text>
+        </g>
         <marker id="arrowHead" viewBox="0 0 10 10"
             refX="1" refY="5" 
             markerUnits="strokeWidth"

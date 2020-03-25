@@ -41,6 +41,14 @@ text.code {
     transition: all 0.3s;
 }
 
+/* function related styling */
+#functionDot:hover {
+    transform: scale(1.5);
+}
+
+#functionDot {
+    transition: all 0.3s;
+}
 /* timeline/event interaction styling */
 .solid {
     stroke-width: 5px;
@@ -106,6 +114,13 @@ text.code {
         </style>
         <!-- Useful constructs -->
         <circle id="eventDot" cx="0" cy="0" r="5"/>
+        <!-- used when pass to function by ref -->
+        <g id="functionDot">
+             <circle id="eventDot" cx="0" cy="0" r="8"/>
+             <text dx="-6" dy="2"  font-size="16"  font-style="italic"
+              dominant-baseline="middle" text-anchor="middle" 
+              color="white" stroke="white" fill="white">f</text>
+        </g>
         <marker id="arrowHead" viewBox="0 0 10 10"
             refX="1" refY="5" 
             markerUnits="strokeWidth"
@@ -129,12 +144,12 @@ text.code {
         <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="125" y2="175"><title>has read only privilege to the real data</title></line>
     </g>
 
-    <g id="arrows">
-    </g>
-
     <g id="events">
         <use xlink:href="#eventDot" data-hash="4" x="-80" y="120"><title>Acquiring resource</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="-80" y="180"><title>Goes out of scope</title></use>
+    </g>
+
+    <g id="arrows">
     </g>
 
     <g id="dividers">

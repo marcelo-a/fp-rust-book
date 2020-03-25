@@ -33,6 +33,14 @@ text.code {
     transition: all 0.3s;
 }
 
+/* function related styling */
+#functionDot:hover {
+    transform: scale(1.5);
+}
+
+#functionDot {
+    transition: all 0.3s;
+}
 /* timeline/event interaction styling */
 .solid {
     stroke-width: 5px;

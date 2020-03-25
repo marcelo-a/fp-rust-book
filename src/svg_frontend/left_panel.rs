@@ -36,6 +36,14 @@ struct EventDotData {
 }
 
 #[derive(Serialize)]
+struct FunctionDotData {
+    hash: i64,
+    x: i64,
+    y: i64,
+    title: String
+}
+
+#[derive(Serialize)]
 struct ArrowData {
     x1: i64,
     x2: i64,
@@ -93,13 +101,15 @@ fn prepare_registry(registry: &mut Handlebars) {
     let left_panel_template =
         "    <g id=\"labels\">\n{{ labels }}    </g>\n\n    \
         <g id=\"timelines\">\n{{ timelines }}    </g>\n\n    \
-        <g id=\"arrows\">\n{{ arrows }}    </g>\n\n    \
-        <g id=\"events\">\n{{ dots }}    </g>";
+        <g id=\"events\">\n{{ dots }}    </g>\n\n    \
+        <g id=\"arrows\">\n{{ arrows }}    </g>";
 
     let label_template =
         "        <text class=\"code\" x=\"{{x_val}}\" y=\"80\" data-hash=\"{{hash}}\"><title>{{title}}</title>{{name}}</text>\n";
     let dot_template =
         "        <use xlink:href=\"#eventDot\" data-hash=\"{{hash}}\" x=\"{{dot_x}}\" y=\"{{dot_y}}\"><title>{{title}}</title></use>\n";
+    let function_dot_template =    
+        "        <use xlink:href=\"#functionDot\" data-hash=\"{{hash}}\" x=\"{{x}}\" y=\"{{y}}\"><title>{{title}}</title></use>\n";
     let function_logo_template =
         "        <text x=\"{{x}}\" y=\"{{y}}\" font-size = \"20\" font-style = \"italic\" class=\"heavy\" ><title>{{title}}</title>f</text>";
     let arrow_template =
@@ -126,6 +136,9 @@ fn prepare_registry(registry: &mut Handlebars) {
     );
     assert!(
         registry.register_template_string("hollow_line_internal_template", hollow_line_internal_template).is_ok()
+    );
+    assert!(
+        registry.register_template_string("function_dot_template", function_dot_template).is_ok()
     );
     assert!(
         registry.register_template_string("function_logo_template", function_logo_template).is_ok()
@@ -331,29 +344,30 @@ fn render_arrows_string_external_events_version(
         };
         let arrow_length = 20;
         match (from, to, external_event) {
-            
             // TODO change this to or pattern
             (Some(ResourceOwner::Variable(variable)), 
              Some(ResourceOwner::Function(function)), 
              ExternalEvent::PassByStaticReference{..}) => {
                 // get variable's position
-                let function_data = FunctionLogoData {
+                let function_dot_data = FunctionDotData {
                 x: resource_owners_layout[&variable.hash].x_val,
                 y: get_y_axis_pos(line_number),
-                title: function.name.to_owned(),
+                title: "Pass to ".to_owned() + &function.name.to_owned() + " by static reference",
+                hash: variable.hash.to_owned() as i64,
                 };
-                output.push_str(&registry.render("function_logo_template", &function_data).unwrap());
+                output.push_str(&registry.render("function_dot_template", &function_dot_data).unwrap());
             },
             (Some(ResourceOwner::Variable(variable)), 
              Some(ResourceOwner::Function(function)), 
              ExternalEvent::PassByMutableReference{..}) => {
                 // get variable's position
-                let function_data = FunctionLogoData {
+                let function_dot_data = FunctionDotData {
                 x: resource_owners_layout[&variable.hash].x_val,
                 y: get_y_axis_pos(line_number),
-                title: function.name.to_owned(),
+                title: "Pass to ".to_owned() + &function.name.to_owned() + " by mutable reference",
+                hash: variable.hash.to_owned() as i64,
                 };
-                output.push_str(&registry.render("function_logo_template", &function_data).unwrap());
+                output.push_str(&registry.render("function_dot_template", &function_dot_data).unwrap());
             },
             (Some(ResourceOwner::Function(from_function)), Some(ResourceOwner::Variable(to_variable)), _) => {
                 // ro1 (to_variable) <- ro2 (from_function)

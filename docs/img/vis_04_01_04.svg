@@ -41,6 +41,14 @@ text.code {
     transition: all 0.3s;
 }
 
+/* function related styling */
+#functionDot:hover {
+    transform: scale(1.5);
+}
+
+#functionDot {
+    transition: all 0.3s;
+}
 /* timeline/event interaction styling */
 .solid {
     stroke-width: 5px;
@@ -106,6 +114,13 @@ text.code {
         </style>
         <!-- Useful constructs -->
         <circle id="eventDot" cx="0" cy="0" r="5"/>
+        <!-- used when pass to function by ref -->
+        <g id="functionDot">
+             <circle id="eventDot" cx="0" cy="0" r="8"/>
+             <text dx="-6" dy="2"  font-size="16"  font-style="italic"
+              dominant-baseline="middle" text-anchor="middle" 
+              color="white" stroke="white" fill="white">f</text>
+        </g>
         <marker id="arrowHead" viewBox="0 0 10 10"
             refX="1" refY="5" 
             markerUnits="strokeWidth"
@@ -132,10 +147,6 @@ text.code {
         <line data-hash="1" class="solid" x1="-80" x2="-80" y1="180" y2="200"><title>has read and write privilege to the real data</title></line>
     </g>
 
-    <g id="arrows">
-        <text x="-54" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,100 -67,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
-        <text x="-80" y="140" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>f</text>        <text x="-80" y="180" font-size = "20" font-style = "italic" class="heavy" ><title>println!()</title>f</text>    </g>
-
     <g id="events">
         <use xlink:href="#eventDot" data-hash="1" x="-80" y="100"><title>Acquiring resource from String::from()</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="-80" y="140"><title>Mutable lend to String::from()</title></use>
@@ -143,6 +154,12 @@ text.code {
         <use xlink:href="#eventDot" data-hash="1" x="-80" y="180"><title>Partially lends resource to println!()</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="-80" y="180"><title>Partially reacquires resource from println!()</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="-80" y="200"><title>Goes out of scope</title></use>
+    </g>
+
+    <g id="arrows">
+        <text x="-54" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,100 -67,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
+        <use xlink:href="#functionDot" data-hash="1" x="-80" y="140"><title>Pass to String::from() by mutable reference</title></use>
+        <use xlink:href="#functionDot" data-hash="1" x="-80" y="180"><title>Pass to println!() by static reference</title></use>
     </g>
 
     <g id="dividers">

@@ -41,6 +41,14 @@ text.code {
     transition: all 0.3s;
 }
 
+/* function related styling */
+#functionDot:hover {
+    transform: scale(1.5);
+}
+
+#functionDot {
+    transition: all 0.3s;
+}
 /* timeline/event interaction styling */
 .solid {
     stroke-width: 5px;
@@ -106,6 +114,13 @@ text.code {
         </style>
         <!-- Useful constructs -->
         <circle id="eventDot" cx="0" cy="0" r="5"/>
+        <!-- used when pass to function by ref -->
+        <g id="functionDot">
+             <circle id="eventDot" cx="0" cy="0" r="8"/>
+             <text dx="-6" dy="2"  font-size="16"  font-style="italic"
+              dominant-baseline="middle" text-anchor="middle" 
+              color="white" stroke="white" fill="white">f</text>
+        </g>
         <marker id="arrowHead" viewBox="0 0 10 10"
             refX="1" refY="5" 
             markerUnits="strokeWidth"
@@ -121,8 +136,8 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-80" y="80" data-hash="2"><title>len, immutable</title>len</text>
         <text class="code" x="-150" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text class="code" x="-80" y="80" data-hash="2"><title>len, immutable</title>len</text>
     </g>
 
     <g id="timelines">
@@ -132,16 +147,17 @@ text.code {
         <line stroke="#232323" stroke-width="3px" x1="-150" x2="-150" y1="145" y2="135"><title>has read only privilege to the real data</title></line>
     </g>
 
-    <g id="arrows">
-        <text x="-124" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,100 -137,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s1</title></polyline>
-        <text x="-150" y="140" font-size = "20" font-style = "italic" class="heavy" ><title>calculate_length()</title>f</text>        <text x="-54" y="145" font-size = "20" font-style = "italic" class="heavy" ><title>calculate_length()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,140 -67,140 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length() to len</title></polyline>
-    </g>
-
     <g id="events">
         <use xlink:href="#eventDot" data-hash="1" x="-150" y="100"><title>Acquiring resource from String::from()</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="-150" y="140"><title>Partially lends resource to calculate_length()</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="-150" y="140"><title>Partially reacquires resource from calculate_length()</title></use>
         <use xlink:href="#eventDot" data-hash="2" x="-80" y="140"><title>Acquiring resource from calculate_length()</title></use>
+    </g>
+
+    <g id="arrows">
+        <text x="-124" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,100 -137,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s1</title></polyline>
+        <use xlink:href="#functionDot" data-hash="1" x="-150" y="140"><title>Pass to calculate_length() by static reference</title></use>
+        <text x="-54" y="145" font-size = "20" font-style = "italic" class="heavy" ><title>calculate_length()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,140 -67,140 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length() to len</title></polyline>
     </g>
 
     <g id="dividers">

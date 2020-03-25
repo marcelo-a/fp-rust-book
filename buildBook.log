@@ -702,7 +702,298 @@ warning: variable `bookImageFilePath` should have a snake case name
 18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
    |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+   Compiling rrt v0.1.0 (/home/madoka/code/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.81s
+     Running `target/debug/examples/string_from`
+s 1 2 OutOfScope
+<svg width="1800px" height="600px" viewBox="-180 0 1620 700"
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <desc>string_from</desc>
+
+    <defs>
+        <style type="text/css">
+        <![CDATA[
+        /* general setup */
+:root {
+    --bg-color:#f1f1f1;
+    --text-color: #6e6b5e;
+}
+
+svg {
+    background-color: var(--bg-color);
+}
+
+text {
+    fill: var(--text-color);
+    vertical-align: baseline;
+    text-anchor: start;
+}
+
+#heading {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#caption {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* code related styling */
+text.code {
+    white-space: pre;
+    font-family: "monospace";
+}
+
+/* event related styling */
+#eventDot:hover {
+    transform: scale(1.5);
+}
+
+#eventDot {
+    transition: all 0.3s;
+}
+
+/* text.functionIcon:hover {
+    transform: scale(1.5);
+}
+
+text.functionIcon {
+    transition: all 0.3s;
+} */
+
+#functionDot:hover {
+    transform: scale(1.5);
+}
+
+#functionDot {
+    transition: all 0.3s;
+}
+
+/* timeline/event interaction styling */
+.solid {
+    stroke-width: 5px;
+}
+
+.hollow_internal {
+    stroke-width: 3px;
+    fill: var(--bg-color);
+}
+
+.dotted {
+    stroke-width: 5px;
+    stroke-dasharray: "2 1";
+}
+
+.extend {
+    stroke-width: 1px;
+    stroke-dasharray: "2 1";
+}
+
+.colorless {
+    color: var(--bg-color);
+    fill: var(--bg-color);
+}
+
+.functionIcon {
+    stroke: gray;
+    fill: white;
+    stroke-width: 1px;
+    font-size: 30px;
+    font-family: times;
+    font-weight: lighter;
+    dominant-baseline: central;
+    text-anchor: start;
+    font-style: italic;
+}
+/* hash based styling */
+[data-hash*="1"] {
+    fill: #3355ff;
+    stroke: #3355ff;
+}
+
+[data-hash*="2"] {
+    fill: #33cc33;
+    stroke: #33cc33;
+}
+
+[data-hash*="3"] {
+    fill: #ff3300;
+    stroke: #ff3300;
+}
+
+[data-hash*="4"] {
+    fill: #6600ff;
+    stroke: #6600ff;
+}
+
+[data-hash*="5"] {
+    fill: #ff33cc;
+    stroke: #ff33cc;
+}
+
+[data-hash*="6"] {
+    fill: #663300;
+    stroke: #663300;
+}
+
+[data-hash*="7"] {
+    fill: #ff9900;
+    stroke: #ff9900;
+}
+
+        ]]>
+        </style>
+        <!-- Useful constructs -->
+        <circle id="eventDot" cx="0" cy="0" r="5"/>
+        <!-- used when pass to function by ref -->
+        <g id="functionDot">
+             <circle id="eventDot" cx="0" cy="0" r="8"/>
+             <text class="functionIcon" dx="-6" dy="2">f</text>
+        </g>
+        <marker id="arrowHead" viewBox="0 0 10 10"
+            refX="1" refY="5" 
+            markerUnits="strokeWidth"
+            markerWidth="3px" markerHeight="3px"
+            orient="auto" fill="black">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
+        </marker>
+    </defs>
+
+    <g>
+        <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+    </g>
+
+    <g id="labels">
+        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="1"><title>s, immutable</title>s</text>
+    </g>
+
+    <g id="timelines">
+    </g>
+
+    <g id="events">
+        <use xlink:href="#eventDot" data-hash="1" x="-80" y="100"><title>Acquiring resource from String::from()</title></use>
+    </g>
+
+    <g id="arrows">
+        <text x="-54" y="105" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-57,100 -67,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
+    </g>
+
+    <g id="dividers">
+            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
+    </g>
+
+    <g id="code">
+        <text class="code" x="0" y="80"> let <tspan data-hash="1">s</tspan> = String::from("hello"); </text>
+    </g>
+
+   
+</svg>
+successfully wrote to examples/book_04_01_03_string_from/rendering.svg
+successfully wrote to rustBook/src/img/vis_04_01_03.svg
+warning: unused import: `HashMap`
+ --> src/data.rs:1:44
+  |
+1 |  use std::collections::{HashSet, BTreeMap, HashMap};
+  |                                            ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `ro`
+   --> src/data.rs:372:61
+    |
+372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:399:96
+    |
+399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:413:97
+    |
+413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:434:93
+    |
+434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:436:40
+    |
+436 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:461:18
+    |
+461 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:459:37
+    |
+459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: variable does not need to be mutable
+  --> src/svg_frontend/svg_generation.rs:46:9
+   |
+46 |     let mut svg_data = SvgData {
+   |         ----^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/left_panel.rs:220:1
+    |
+220 | / fn render_arrows_string(
+221 | |     visualization_data: &VisualizationData,
+222 | |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+223 | |     registry: &Handlebars
+...   |
+275 | |     output
+276 | | }
+    | |_^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+   --> src/data.rs:401:62
+    |
+401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+    |                                                              ----------^^^^^^^^^^
+    |                                                              |
+    |                                                              help: remove this
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: variable `exampleDirPath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:17:9
+   |
+17 |     let exampleDirPath = format!("examples/book_{}_{}/", listing_id, description);
+   |         ^^^^^^^^^^^^^^ help: convert the identifier to snake case: `example_dir_path`
+   |
+   = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `bookImageFilePath` should have a snake case name
+  --> src/svg_frontend/svg_generation.rs:18:9
+   |
+18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
+   |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
      Running `target/debug/examples/reference`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -1805,8 +2096,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="3"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -1939,7 +2230,7 @@ warning: variable `bookImageFilePath` should have a snake case name
 18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
    |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
      Running `target/debug/examples/string_clone`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -2436,8 +2727,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="4"><title>y, immutable</title>y</text>
         <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="3"><title>x, immutable</title>x</text>
+        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="4"><title>y, immutable</title>y</text>
     </g>
 
     <g id="timelines">
@@ -2769,10 +3060,10 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="-290" y="80" data-hash="4"><title>x, immutable</title>x</text>
         <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="6"><title>some_string, immutable</title>some_string</text>
-        <text style="text-anchor:middle" class="code" x="-120" y="80" data-hash="7"><title>some_integer, immutable</title>some_integer</text>
         <text style="text-anchor:middle" class="code" x="-360" y="80" data-hash="1"><title>s, immutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="-120" y="80" data-hash="7"><title>some_integer, immutable</title>some_integer</text>
+        <text style="text-anchor:middle" class="code" x="-290" y="80" data-hash="4"><title>x, immutable</title>x</text>
     </g>
 
     <g id="timelines">
@@ -2955,7 +3246,7 @@ warning: variable `bookImageFilePath` should have a snake case name
 18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
    |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/return_values`
 s1 1 2 OutOfScope
 s1 2 10 FullPrivilege
@@ -3132,9 +3423,9 @@ text.functionIcon {
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="4"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="5"><title>s3, immutable</title>s3</text>
         <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="7"><title>a_string, immutable</title>a_string</text>
         <text style="text-anchor:middle" class="code" x="-320" y="80" data-hash="3"><title>some_string, immutable</title>some_string</text>
-        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="5"><title>s3, immutable</title>s3</text>
         <text style="text-anchor:middle" class="code" x="-390" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
@@ -3501,11 +3792,11 @@ text.functionIcon {
     </g>
 
     <g id="labels">
+        <text style="text-anchor:middle" class="code" x="-290" y="80" data-hash="2"><title>len, immutable</title>len</text>
         <text style="text-anchor:middle" class="code" x="-360" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
-        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="6"><title>s2, immutable</title>s2</text>
         <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="8"><title>length, immutable</title>length</text>
         <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="4"><title>s, immutable</title>s</text>
-        <text style="text-anchor:middle" class="code" x="-290" y="80" data-hash="2"><title>len, immutable</title>len</text>
+        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="6"><title>s2, immutable</title>s2</text>
     </g>
 
     <g id="timelines">
@@ -3688,7 +3979,7 @@ warning: variable `bookImageFilePath` should have a snake case name
 18 |     let bookImageFilePath = format!("rustBook/src/img/vis_{}.svg", listing_id);
    |         ^^^^^^^^^^^^^^^^^ help: convert the identifier to snake case: `book_image_file_path`
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/pass_reference`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -4206,8 +4497,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="2"><title>len, immutable</title>len</text>
         <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="2"><title>len, immutable</title>len</text>
     </g>
 
     <g id="timelines">
@@ -5146,8 +5437,8 @@ text.functionIcon {
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="1"><title>s, mutable</title>s</text>
-        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="3"><title>r2, immutable</title>r2</text>
         <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="2"><title>r1, immutable</title>r1</text>
+        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="3"><title>r2, immutable</title>r2</text>
     </g>
 
     <g id="timelines">
@@ -5481,10 +5772,10 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="3"><title>r2, immutable</title>r2</text>
-        <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="2"><title>r1, immutable</title>r1</text>
-        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="4"><title>r3, immutable</title>r3</text>
         <text style="text-anchor:middle" class="code" x="-290" y="80" data-hash="1"><title>s, mutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="3"><title>r2, immutable</title>r2</text>
+        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="4"><title>r3, immutable</title>r3</text>
+        <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="2"><title>r1, immutable</title>r1</text>
     </g>
 
     <g id="timelines">

@@ -136,8 +136,8 @@ text.code {
     </g>
 
     <g id="labels">
-        <text class="code" x="-110" y="80" data-hash="4"><title>some_string, mutable</title>some_string</text>
-        <text class="code" x="-180" y="80" data-hash="1"><title>s, mutable</title>s</text>
+        <text x="-110" y="80"></text><text dominant-baseline="middle" text-anchor="middle" class="code" x="-110" y="80" data-hash="4"><title>some_string, mutable</title>some_string</text>
+        <text x="-180" y="80"></text><text dominant-baseline="middle" text-anchor="middle" class="code" x="-180" y="80" data-hash="1"><title>s, mutable</title>s</text>
     </g>
 
     <g id="timelines">

@@ -1,4 +1,4 @@
-<svg width="1300px" height="700px" viewBox="-300 0 1000 700"
+<svg width="1800px" height="600px" viewBox="-180 0 1620 700"
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>{{ visualization_name }}</desc>
@@ -14,9 +14,7 @@
         <!-- used when pass to function by ref -->
         <g id="functionDot">
              <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text dx="-6" dy="2"  font-size="16"  font-style="italic"
-              dominant-baseline="middle" text-anchor="middle" 
-              stroke="black" fill="white" stroke-size="2">f</text>
+             <text class="functionIcon" dx="-6" dy="2">f</text>
         </g>
         <marker id="arrowHead" viewBox="0 0 10 10"
             refX="1" refY="5" 
@@ -28,8 +26,8 @@
     </defs>
 
     <g>
-        <text id="caption" x="-300" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-300" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
     </g>
 
 {{ diagram }}

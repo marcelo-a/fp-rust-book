@@ -105,13 +105,13 @@ fn prepare_registry(registry: &mut Handlebars) {
         <g id=\"arrows\">\n{{ arrows }}    </g>";
 
     let label_template =
-        "        <text x=\"{{x_val}}\" y=\"80\"></text><text dominant-baseline=\"middle\" text-anchor=\"middle\" class=\"code\" x=\"{{x_val}}\" y=\"80\" data-hash=\"{{hash}}\"><title>{{title}}</title>{{name}}</text>\n";
+        "        <text style=\"text-anchor:middle\" class=\"code\" x=\"{{x_val}}\" y=\"80\" data-hash=\"{{hash}}\"><title>{{title}}</title>{{name}}</text>\n";
     let dot_template =
         "        <use xlink:href=\"#eventDot\" data-hash=\"{{hash}}\" x=\"{{dot_x}}\" y=\"{{dot_y}}\"><title>{{title}}</title></use>\n";
     let function_dot_template =    
         "        <use xlink:href=\"#functionDot\" data-hash=\"{{hash}}\" x=\"{{x}}\" y=\"{{y}}\"><title>{{title}}</title></use>\n";
     let function_logo_template =
-        "        <text x=\"{{x}}\" y=\"{{y}}\" font-size = \"20\" font-style = \"italic\" class=\"heavy\" ><title>{{title}}</title>f</text>";
+        "        <text x=\"{{x}}\" y=\"{{y}}\" font-size = \"20\" font-style=\"italic\" class=\"heavy\" ><title>{{title}}</title>f</text>";
     let arrow_template =
         "        <polyline stroke-width=\"5\" stroke=\"black\" points=\"{{x2}},{{y2}} {{x1}},{{y1}} \" marker-end=\"url(#arrowHead)\"><title>{{title}}</title></polyline>\n";
     let vertical_line_template =

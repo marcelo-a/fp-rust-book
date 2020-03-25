@@ -1,4 +1,8 @@
+<<<<<<< 209a504e295eea33a84fc41249c35d41cae77d41:examples/book_04_01_03_string_from/rendering.svg
 <svg width="1300px" height="700px" viewBox="-300 0 1000 700"
+=======
+<svg width="1800px" height="600px" viewBox="-180 0 1620 700"
+>>>>>>> Major Style change:examples/book_04_01_09_copy/rendering.svg
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>reference</desc>
@@ -7,12 +11,17 @@
         <style type="text/css">
         <![CDATA[
         /* general setup */
+:root {
+    --bg-color:#f1f1f1;
+    --text-color: #6e6b5e;
+}
+
 svg {
-    background-color: #232323;
+    background-color: var(--bg-color);
 }
 
 text {
-    fill: #cccccc;
+    fill: var(--text-color);
     vertical-align: baseline;
     text-anchor: start;
 }
@@ -23,7 +32,8 @@ text {
 }
 
 #caption {
-    font-size: 12px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* code related styling */
@@ -41,7 +51,14 @@ text.code {
     transition: all 0.3s;
 }
 
-/* function related styling */
+/* text.functionIcon:hover {
+    transform: scale(1.5);
+}
+
+text.functionIcon {
+    transition: all 0.3s;
+} */
+
 #functionDot:hover {
     transform: scale(1.5);
 }
@@ -49,6 +66,7 @@ text.code {
 #functionDot {
     transition: all 0.3s;
 }
+
 /* timeline/event interaction styling */
 .solid {
     stroke-width: 5px;
@@ -56,7 +74,7 @@ text.code {
 
 .hollow_internal {
     stroke-width: 3px;
-    fill: #232323;
+    fill: var(--bg-color);
 }
 
 .dotted {
@@ -70,10 +88,21 @@ text.code {
 }
 
 .colorless {
-    color: gray;
-    fill: gray;
+    color: var(--bg-color);
+    fill: var(--bg-color);
 }
 
+.functionIcon {
+    stroke: gray;
+    fill: white;
+    stroke-width: 1px;
+    font-size: 30px;
+    font-family: times;
+    font-weight: lighter;
+    dominant-baseline: central;
+    text-anchor: start;
+    font-style: italic;
+}
 /* hash based styling */
 [data-hash*="1"] {
     fill: #3355ff;
@@ -81,8 +110,8 @@ text.code {
 }
 
 [data-hash*="2"] {
-    fill: #33ff00;
-    stroke: #33ff00;
+    fill: #33cc33;
+    stroke: #33cc33;
 }
 
 [data-hash*="3"] {
@@ -91,8 +120,8 @@ text.code {
 }
 
 [data-hash*="4"] {
-    fill: #fff300;
-    stroke: #fff300;
+    fill: #6600ff;
+    stroke: #6600ff;
 }
 
 [data-hash*="5"] {
@@ -101,8 +130,8 @@ text.code {
 }
 
 [data-hash*="6"] {
-    fill: #00ffff;
-    stroke: #00ffff;
+    fill: #663300;
+    stroke: #663300;
 }
 
 [data-hash*="7"] {
@@ -117,20 +146,19 @@ text.code {
         <!-- used when pass to function by ref -->
         <g id="functionDot">
              <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text dx="-6" dy="2"  font-size="16"  font-style="italic"
-              dominant-baseline="middle" text-anchor="middle" 
-              color="white" stroke="white" fill="white">f</text>
+             <text class="functionIcon" dx="-6" dy="2">f</text>
         </g>
         <marker id="arrowHead" viewBox="0 0 10 10"
             refX="1" refY="5" 
             markerUnits="strokeWidth"
             markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="beige">
+            orient="auto" fill="black">
             <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
         </marker>
     </defs>
 
     <g>
+<<<<<<< 209a504e295eea33a84fc41249c35d41cae77d41:examples/book_04_01_03_string_from/rendering.svg
         <text id="heading" x="-300" y="30">Visualization of Rust reference</text>
         <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
     </g>
@@ -145,6 +173,24 @@ text.code {
         <line data-hash="1" class="solid" x1="-80" x2="-80" y1="180" y2="180"><title>has read only privilege to the real data</title></line>
         <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="185" y2="175"><title>has read only privilege to the real data</title></line>
         <line data-hash="1" class="solid" x1="-80" x2="-80" y1="180" y2="200"><title>has read and write privilege to the real data</title></line>
+=======
+        <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
+    </g>
+
+    <g id="labels">
+        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="4"><title>y, immutable</title>y</text>
+        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="3"><title>x, immutable</title>x</text>
+    </g>
+
+    <g id="timelines">
+        <line data-hash="3" class="solid" x1="-150" x2="-150" y1="100" y2="120"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-150" x2="-150" y1="105" y2="115"><title>has read only privilege to the real data</title></line>
+        <line data-hash="3" class="solid" x1="-150" x2="-150" y1="120" y2="140"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-150" x2="-150" y1="125" y2="135"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="120" y2="140"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-80" x2="-80" y1="125" y2="135"><title>has read only privilege to the real data</title></line>
+>>>>>>> Major Style change:examples/book_04_01_09_copy/rendering.svg
     </g>
 
     <g id="events">
@@ -157,13 +203,17 @@ text.code {
     </g>
 
     <g id="arrows">
+<<<<<<< 209a504e295eea33a84fc41249c35d41cae77d41:examples/book_04_01_03_string_from/rendering.svg
         <text x="-54" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,100 -67,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
         <use xlink:href="#functionDot" data-hash="1" x="-80" y="140"><title>Pass to String::from() by mutable reference</title></use>
         <use xlink:href="#functionDot" data-hash="1" x="-80" y="180"><title>Pass to println!() by static reference</title></use>
+=======
+        <polyline stroke-width="5" stroke="black" points="-150,120 -90,120 " marker-end="url(#arrowHead)"><title>Duplicate from x to y</title></polyline>
+>>>>>>> Major Style change:examples/book_04_01_09_copy/rendering.svg
     </g>
 
     <g id="dividers">
-            <line class="solid" stroke="beige" x1="-20" x2="-20" y1="80" y2="400"/>
+            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
     </g>
 
     <g id="code">

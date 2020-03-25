@@ -20,15 +20,14 @@ text {
 }
 
 #caption {
-    font-size: 12px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* code related styling */
 text.code {
     white-space: pre;
     font-family: "monospace";
-    dominant-baseline: "middle";
-    text-anchor: "middle";
 }
 
 /* event related styling */
@@ -37,6 +36,22 @@ text.code {
 }
 
 #eventDot {
+    transition: all 0.3s;
+}
+
+/* text.functionIcon:hover {
+    transform: scale(1.5);
+}
+
+text.functionIcon {
+    transition: all 0.3s;
+} */
+
+#functionDot:hover {
+    transform: scale(1.5);
+}
+
+#functionDot {
     transition: all 0.3s;
 }
 
@@ -65,6 +80,17 @@ text.code {
     fill: var(--bg-color);
 }
 
+.functionIcon {
+    stroke: gray;
+    fill: white;
+    stroke-width: 1px;
+    font-size: 30px;
+    font-family: times;
+    font-weight: lighter;
+    dominant-baseline: central;
+    text-anchor: start;
+    font-style: italic;
+}
 /* hash based styling */
 [data-hash*="1"] {
     fill: #3355ff;

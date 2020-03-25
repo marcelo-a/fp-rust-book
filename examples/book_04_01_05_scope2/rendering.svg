@@ -1,4 +1,4 @@
-<svg width="1300px" height="700px" viewBox="-300 0 1000 700"
+<svg width="1800px" height="600px" viewBox="-180 0 1620 700"
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>scope2</desc>
@@ -7,12 +7,17 @@
         <style type="text/css">
         <![CDATA[
         /* general setup */
+:root {
+    --bg-color:#f1f1f1;
+    --text-color: #6e6b5e;
+}
+
 svg {
-    background-color: #232323;
+    background-color: var(--bg-color);
 }
 
 text {
-    fill: #cccccc;
+    fill: var(--text-color);
     vertical-align: baseline;
     text-anchor: start;
 }
@@ -23,7 +28,8 @@ text {
 }
 
 #caption {
-    font-size: 12px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* code related styling */
@@ -41,7 +47,14 @@ text.code {
     transition: all 0.3s;
 }
 
-/* function related styling */
+/* text.functionIcon:hover {
+    transform: scale(1.5);
+}
+
+text.functionIcon {
+    transition: all 0.3s;
+} */
+
 #functionDot:hover {
     transform: scale(1.5);
 }
@@ -49,6 +62,7 @@ text.code {
 #functionDot {
     transition: all 0.3s;
 }
+
 /* timeline/event interaction styling */
 .solid {
     stroke-width: 5px;
@@ -56,7 +70,7 @@ text.code {
 
 .hollow_internal {
     stroke-width: 3px;
-    fill: #232323;
+    fill: var(--bg-color);
 }
 
 .dotted {
@@ -70,29 +84,40 @@ text.code {
 }
 
 .colorless {
-    color: gray;
-    fill: gray;
+    color: var(--bg-color);
+    fill: var(--bg-color);
 }
 
+.functionIcon {
+    stroke: gray;
+    fill: white;
+    stroke-width: 1px;
+    font-size: 30px;
+    font-family: times;
+    font-weight: lighter;
+    dominant-baseline: central;
+    text-anchor: start;
+    font-style: italic;
+}
 /* hash based styling */
 [data-hash*="1"] {
-    fill: #5b76fc;
-    stroke: #5b76fc;
+    fill: #3355ff;
+    stroke: #3355ff;
 }
 
 [data-hash*="2"] {
-    fill: #2aad09;
-    stroke: #2aad09;
+    fill: #33cc33;
+    stroke: #33cc33;
 }
 
 [data-hash*="3"] {
-    fill: #df5f3f;
-    stroke: #df5f3f;
+    fill: #ff3300;
+    stroke: #ff3300;
 }
 
 [data-hash*="4"] {
-    fill: #fff300;
-    stroke: #fff300;
+    fill: #6600ff;
+    stroke: #6600ff;
 }
 
 [data-hash*="5"] {
@@ -101,23 +126,13 @@ text.code {
 }
 
 [data-hash*="6"] {
-    fill: #00ffff;
-    stroke: #00ffff;
+    fill: #663300;
+    stroke: #663300;
 }
 
 [data-hash*="7"] {
     fill: #ff9900;
     stroke: #ff9900;
-}
-
-[data-hash*="8"] {
-    fill: #00d6fc;
-    stroke: #00d6fc;
-}
-
-[data-hash*="9"] {
-    fill: #9aeb58;
-    stroke: #9aeb58;
 }
 
         ]]>
@@ -127,31 +142,29 @@ text.code {
         <!-- used when pass to function by ref -->
         <g id="functionDot">
              <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text dx="-6" dy="2"  font-size="16"  font-style="italic"
-              dominant-baseline="middle" text-anchor="middle" 
-              color="white" stroke="white" fill="white">f</text>
+             <text class="functionIcon" dx="-6" dy="2">f</text>
         </g>
         <marker id="arrowHead" viewBox="0 0 10 10"
             refX="1" refY="5" 
             markerUnits="strokeWidth"
             markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="beige">
+            orient="auto" fill="black">
             <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
         </marker>
     </defs>
 
     <g>
-        <text id="heading" x="-300" y="30">Visualization of Rust scope2</text>
-        <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
+        <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="-390" y="50">states (virtical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
-        <text x="-80" y="80"></text><text dominant-baseline="middle" text-anchor="middle" class="code" x="-80" y="80" data-hash="4"><title>s, immutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="4"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
         <line data-hash="4" class="solid" x1="-80" x2="-80" y1="120" y2="180"><title>has read only privilege to the real data</title></line>
-        <line stroke="#232323" stroke-width="3px" x1="-80" x2="-80" y1="125" y2="175"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="-80" x2="-80" y1="125" y2="175"><title>has read only privilege to the real data</title></line>
     </g>
 
     <g id="events">
@@ -163,7 +176,7 @@ text.code {
     </g>
 
     <g id="dividers">
-            <line class="solid" stroke="beige" x1="-20" x2="-20" y1="80" y2="400"/>
+            <line class="solid" stroke="black" x1="-20" x2="-20" y1="80" y2="400"/>
     </g>
 
     <g id="code">

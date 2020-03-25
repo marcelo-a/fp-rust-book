@@ -172,9 +172,9 @@ fn calculate_length(s: &amp;String) -&gt; usize {
     s.len()
 }
 </code></pre></pre>
-<object type="image/svg+xml" class="logo" data="img/vis_04_02_01.svg" style="width: auto;" >
+<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_01.svg" style="width: auto;" >
 !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object>
+</object></div>
 <p>First, notice that all the tuple code in the variable declaration and the
 function return value is gone. Second, note that we pass <code>&amp;s1</code> into
 <code>calculate_length</code> and, in its definition, we take <code>&amp;String</code> rather than
@@ -202,9 +202,9 @@ Chapter 15.</p>
 </span><span class="boring">    s.len()
 </span><span class="boring">}
 </span></code></pre></pre>
-<object type="image/svg+xml" class="logo" data="img/vis_04_02_02.svg" style="width: auto;" >
+<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_02.svg" style="width: auto;" >
 !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object>
+</object></div>
 <p>The <code>&amp;s1</code> syntax lets us create a reference that <em>refers</em> to the value of <code>s1</code>
 but does not own it. Because it does not own it, the value it points to will
 not be dropped when the reference goes out of scope.</p>
@@ -223,9 +223,9 @@ the parameter <code>s</code> is a reference. Let’s add some explanatory annota
 } // Here, s goes out of scope. But because it does not have ownership of what
   // it refers to, nothing happens.
 </code></pre></pre>
-<object type="image/svg+xml" class="logo" data="img/vis_04_02_03.svg" style="width: auto;" >
+<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_03.svg" style="width: auto;" >
 !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object>
+</object></div>
 <p>The scope in which the variable <code>s</code> is valid is the same as any function
 parameter’s scope, but we don’t drop what the reference points to when it goes
 out of scope because we don’t have ownership. When functions have references as
@@ -281,9 +281,9 @@ fn change(some_string: &amp;mut String) {
     some_string.push_str(&quot;, world&quot;);
 }
 </code></pre></pre>
-<object type="image/svg+xml" class="logo" data="img/vis_04_02_05.svg" style="width: auto;" >
+<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_05.svg" style="width: auto;" >
 !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object>
+</object></div>
 <p>First, we had to change <code>s</code> to be <code>mut</code>. Then we had to create a mutable
 reference with <code>&amp;mut s</code> and accept a mutable reference with <code>some_string: &amp;mut String</code>.</p>
 <p>But mutable references have one big restriction: you can have only one mutable
@@ -346,9 +346,9 @@ multiple mutable references, just not <em>simultaneous</em> ones:</p>
     let r2 = &amp;mut s;
 <span class="boring">}
 </span></code></pre></pre>
-<object type="image/svg+xml" class="logo" data="img/vis_04_02_07.svg" style="width: auto;" >
+<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_07.svg" style="width: auto;" >
 !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object>
+</object></div>
 <p>A similar rule exists for combining mutable and immutable references. This code
 results in an error:</p>
 <pre><code class="language-rust ignore does_not_compile"><span class="boring">fn main() {
@@ -404,9 +404,9 @@ mutable reference is introduced:</p>
     println!(&quot;{}&quot;, r3);
 <span class="boring">}
 </span></code></pre></pre>
-<object type="image/svg+xml" class="logo" data="img/vis_04_02_09.svg" style="width: auto;" >
+<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_09.svg" style="width: auto;" >
 !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object>
+</object></div>
 <p>The scopes of the immutable references <code>r1</code> and <code>r2</code> end after the <code>println!</code>
 where they are last used, which is before the mutable reference <code>r3</code> is
 created. These scopes don’t overlap, so this code is allowed.</p>
@@ -489,9 +489,9 @@ won’t let us do this.</p>
     s
 }
 </code></pre></pre>
-<object type="image/svg+xml" class="logo" data="img/vis_04_02_12.svg" style="width: auto;" >
+<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_12.svg" style="width: auto;" >
 !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object>
+</object></div>
 <p>This works without any problems. Ownership is moved out, and nothing is
 deallocated.</p>
 <h3><a class="header" href="#the-rules-of-references" id="the-rules-of-references">The Rules of References</a></h3>

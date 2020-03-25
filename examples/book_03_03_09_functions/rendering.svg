@@ -1,7 +1,7 @@
 <svg width="1800px" height="600px" viewBox="-300 0 1500 700"
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
-    <desc>book_03_03_09_functions</desc>
+    <desc>functions</desc>
 
     <defs>
         <style type="text/css">
@@ -106,6 +106,10 @@ text.code {
         </style>
         <!-- Useful constructs -->
         <circle id="eventDot" cx="0" cy="0" r="5"/>
+        <g id="functionDot">
+             <circle id="eventDot" cx="0" cy="0" r="5"/>
+             <text dx="0" dy="0" font-size="20" font-style="italic" class="heavy" >f</text>
+        </g>
         <marker id="arrowHead" viewBox="0 0 10 10"
             refX="1" refY="5" 
             markerUnits="strokeWidth"
@@ -116,13 +120,13 @@ text.code {
     </defs>
 
     <g>
-        <text id="heading" x="-300" y="30">Visualization of Rust book_03_03_09_functions</text>
+        <text id="heading" x="-300" y="30">Visualization of Rust functions</text>
         <text id="caption" x="-300" y="50">Hover over timeline event to get more information; click on variables to see its timeline.</text>
     </g>
 
     <g id="labels">
-        <text class="code" x="-80" y="80" data-hash="3">x</text>
-        <text class="code" x="-150" y="80" data-hash="1">x</text>
+        <text class="code" x="-80" y="80" data-hash="3"><title>x, immutable</title>x</text>
+        <text class="code" x="-150" y="80" data-hash="1"><title>x, immutable</title>x</text>
     </g>
 
     <g id="timelines">
@@ -141,11 +145,16 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="-124" y="105" font-size = "20" font-style = "italic" class="heavy" ><title>plus_one()</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,100 -137,100 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of plus_one() to x</title></polyline>
-        <text x="-185" y="145" font-size = "20" font-style = "italic" class="heavy" ><title>println!</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-155,140 -165,140 " marker-end="url(#arrowHead)"><title>Static borrow from x to the parameter of println!</title></polyline>
-        <text x="-124" y="145" font-size = "20" font-style = "italic" class="heavy" ><title>println!</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-127,140 -137,140 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from the return value of println! to x</title></polyline>
-        <text x="-115" y="225" font-size = "20" font-style = "italic" class="heavy" ><title>+</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-85,220 -95,220 " marker-end="url(#arrowHead)"><title>Static borrow from x to the parameter of +</title></polyline>
-        <text x="-54" y="225" font-size = "20" font-style = "italic" class="heavy" ><title>+</title>F</text>        <polyline stroke-width="2.5" stroke="beige" points="-57,220 -67,220 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from the return value of + to x</title></polyline>
+        <use xlink:href="#functionDot"  x="-124" y="105"><title>plus_one()</title></use>
+        <polyline stroke-width="2.5" stroke="beige" points="-127,100 -137,100 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of plus_one() to x</title></polyline>
+        <use xlink:href="#functionDot"  x="-185" y="145"><title>println!</title></use>
+        <polyline stroke-width="2.5" stroke="beige" points="-155,140 -165,140 " marker-end="url(#arrowHead)"><title>Static borrow from x to the parameter of println!</title></polyline>
+        <use xlink:href="#functionDot"  x="-124" y="145"><title>println!</title></use>
+        <polyline stroke-width="2.5" stroke="beige" points="-127,140 -137,140 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from the return value of println! to x</title></polyline>
+        <use xlink:href="#functionDot"  x="-115" y="225"><title>+</title></use>
+        <polyline stroke-width="2.5" stroke="beige" points="-85,220 -95,220 " marker-end="url(#arrowHead)"><title>Static borrow from x to the parameter of +</title></polyline>
+        <use xlink:href="#functionDot"  x="-54" y="225"><title>+</title></use>
+        <polyline stroke-width="2.5" stroke="beige" points="-57,220 -67,220 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from the return value of + to x</title></polyline>
     </g>
 
     <g id="events">

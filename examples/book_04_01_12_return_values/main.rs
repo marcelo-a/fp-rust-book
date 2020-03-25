@@ -81,5 +81,5 @@ fn main() {
     vd.append_external_event(ExternalEvent::GoOutOfScope{ ro: s3 }, &(10 as usize));
 
     //rendering image
-    svg_generation::render_svg(&"04_01_11".to_owned(), &"return_values".to_owned(), &vd);
+    svg_generation::render_svg(&"04_01_12".to_owned(), &"return_values".to_owned(), &vd);
 }

@@ -27,9 +27,9 @@ fn main() {
     //
 
     vd.append_external_event(ExternalEvent::Duplicate{from: None, to: Some(x.clone())}, &(2 as usize));
-    vd.append_external_event(ExternalEvent::Move{from: Some(x.clone()), to: Some(y.clone())}, &(3 as usize));
+    vd.append_external_event(ExternalEvent::Duplicate{from: Some(x.clone()), to: Some(y.clone())}, &(3 as usize));
     vd.append_external_event(ExternalEvent::GoOutOfScope{ ro: y.clone() }, &(4 as usize));
     vd.append_external_event(ExternalEvent::GoOutOfScope{ ro: x.clone() }, &(4 as usize));
 
-    svg_generation::render_svg(&"04_01_06".to_owned(), &"move".to_owned(), &vd);
+    svg_generation::render_svg(&"04_01_06".to_owned(), &"int_copy".to_owned(), &vd);
 }

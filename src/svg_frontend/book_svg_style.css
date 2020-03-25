@@ -1,10 +1,15 @@
 /* general setup */
+:root {
+    --bg-color:#f1f1f1;
+    --text-color: #6e6b5e;
+}
+
 svg {
-    background-color: #232323;
+    background-color: var(--bg-color);
 }
 
 text {
-    fill: #cccccc;
+    fill: var(--text-color);
     vertical-align: baseline;
     text-anchor: start;
 }
@@ -15,7 +20,8 @@ text {
 }
 
 #caption {
-    font-size: 12px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* code related styling */
@@ -33,6 +39,22 @@ text.code {
     transition: all 0.3s;
 }
 
+/* text.functionIcon:hover {
+    transform: scale(1.5);
+}
+
+text.functionIcon {
+    transition: all 0.3s;
+} */
+
+#functionDot:hover {
+    transform: scale(1.5);
+}
+
+#functionDot {
+    transition: all 0.3s;
+}
+
 /* timeline/event interaction styling */
 .solid {
     stroke-width: 5px;
@@ -40,7 +62,7 @@ text.code {
 
 .hollow_internal {
     stroke-width: 3px;
-    fill: #232323;
+    fill: var(--bg-color);
 }
 
 .dotted {
@@ -54,10 +76,21 @@ text.code {
 }
 
 .colorless {
-    color: gray;
-    fill: gray;
+    color: var(--bg-color);
+    fill: var(--bg-color);
 }
 
+.functionIcon {
+    stroke: gray;
+    fill: white;
+    stroke-width: 1px;
+    font-size: 30px;
+    font-family: times;
+    font-weight: lighter;
+    dominant-baseline: central;
+    text-anchor: start;
+    font-style: italic;
+}
 /* hash based styling */
 [data-hash*="1"] {
     fill: #3355ff;
@@ -65,8 +98,8 @@ text.code {
 }
 
 [data-hash*="2"] {
-    fill: #33ff00;
-    stroke: #33ff00;
+    fill: #33cc33;
+    stroke: #33cc33;
 }
 
 [data-hash*="3"] {
@@ -75,8 +108,8 @@ text.code {
 }
 
 [data-hash*="4"] {
-    fill: #fff300;
-    stroke: #fff300;
+    fill: #6600ff;
+    stroke: #6600ff;
 }
 
 [data-hash*="5"] {
@@ -85,8 +118,8 @@ text.code {
 }
 
 [data-hash*="6"] {
-    fill: #00ffff;
-    stroke: #00ffff;
+    fill: #663300;
+    stroke: #663300;
 }
 
 [data-hash*="7"] {

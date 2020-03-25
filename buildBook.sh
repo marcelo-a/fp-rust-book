@@ -8,13 +8,18 @@ declare -a targetExamples=(
     "scope" # book_04_01_02_scope
     "reference" # book_04_01_04_reference
     "scope2" # book_04_01_05_scope2
-    "move" # book_04_01_06_move
-    "copy" # book_04_01_09_copy
-    "return_values" # book_04_01_11_return_values
+    "int_copy" # book_04_01_06_int_copy
+    "string_move" # book_04_01_07_string_move
+    "string_clone" # book_04_01_09_string_clone
+    "int_copy_2" # book_04_01_10_int_copy_2
+    "ownership_function" # book_04_01_11_ownership_function
+    "return_values" # book_04_01_12_return_values
+    "return_tuple" # book_04_01_13_return_tuple
     "pass_reference" # book_04_02_01_pass_reference
     "acquire_from_function" # book_04_02_02_acquire_from_function
     "safely_out_of_scope" # book_04_02_03_safely_out_of_scope
     "mut_ref" # book_04_02_05_mut_ref
+    "scope_reference" # book_04_02_07_scope_reference
     "shared_and_unique_borrow" # book_04_02_09_shared_and_unique_borrow
     "no_dangle" # book_04_02_12_no_dangle
     )

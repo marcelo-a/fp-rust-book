@@ -32,8 +32,8 @@ pub fn render_svg(listing_id: &String, description: &String, visualization_data:
         .register_template_string("full_svg_template", full_svg_template)
         .is_ok());
 
-    let css_string = utils::read_file_to_string("src/svg_frontend/svg_style.css")
-        .unwrap_or("Reading svg_style.css failed.".to_owned());
+    let css_string = utils::read_file_to_string("src/svg_frontend/book_svg_style.css")
+        .unwrap_or("Reading book_svg_style.css failed.".to_owned());
 
     // data for left panel
     let left_panel_string = left_panel::render_left_panel(visualization_data);

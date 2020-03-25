@@ -1,10 +1,15 @@
 /* general setup */
+:root {
+    --bg-color:#f1f1f1;
+    --text-color: #6e6b5e;
+}
+
 svg {
-    background-color: #232323;
+    background-color: var(--bg-color);
 }
 
 text {
-    fill: #cccccc;
+    fill: var(--text-color);
     vertical-align: baseline;
     text-anchor: start;
 }
@@ -22,6 +27,8 @@ text {
 text.code {
     white-space: pre;
     font-family: "monospace";
+    dominant-baseline: "middle";
+    text-anchor: "middle";
 }
 
 /* event related styling */
@@ -40,7 +47,7 @@ text.code {
 
 .hollow_internal {
     stroke-width: 3px;
-    fill: #232323;
+    fill: var(--bg-color);
 }
 
 .dotted {
@@ -54,8 +61,8 @@ text.code {
 }
 
 .colorless {
-    color: gray;
-    fill: gray;
+    color: var(--bg-color);
+    fill: var(--bg-color);
 }
 
 /* hash based styling */
@@ -65,8 +72,8 @@ text.code {
 }
 
 [data-hash*="2"] {
-    fill: #33ff00;
-    stroke: #33ff00;
+    fill: #33cc33;
+    stroke: #33cc33;
 }
 
 [data-hash*="3"] {
@@ -75,8 +82,8 @@ text.code {
 }
 
 [data-hash*="4"] {
-    fill: #fff300;
-    stroke: #fff300;
+    fill: #6600ff;
+    stroke: #6600ff;
 }
 
 [data-hash*="5"] {
@@ -85,8 +92,8 @@ text.code {
 }
 
 [data-hash*="6"] {
-    fill: #00ffff;
-    stroke: #00ffff;
+    fill: #663300;
+    stroke: #663300;
 }
 
 [data-hash*="7"] {

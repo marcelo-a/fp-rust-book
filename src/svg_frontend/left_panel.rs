@@ -113,7 +113,7 @@ fn prepare_registry(registry: &mut Handlebars) {
     let function_logo_template =
         "        <text x=\"{{x}}\" y=\"{{y}}\" font-size = \"20\" font-style=\"italic\" class=\"heavy\" ><title>{{title}}</title>f</text>";
     let arrow_template =
-        "        <polyline stroke-width=\"5\" stroke=\"black\" points=\"{{x2}},{{y2}} {{x1}},{{y1}} \" marker-end=\"url(#arrowHead)\"><title>{{title}}</title></polyline>\n";
+        "        <polyline stroke-width=\"5\" stroke=\"gray\" points=\"{{x2}},{{y2}} {{x1}},{{y1}} \" marker-end=\"url(#arrowHead)\"><title>{{title}}</title></polyline>\n";
     let vertical_line_template =
         "        <line data-hash=\"{{hash}}\" class=\"{{line_class}}\" x1=\"{{x1}}\" x2=\"{{x2}}\" y1=\"{{y1}}\" y2=\"{{y2}}\"><title>{{title}}</title></line>\n";
     

@@ -182,6 +182,11 @@ text.functionIcon {
         <line data-hash="4" class="solid" x1="-110" x2="-110" y1="220" y2="240"><title>has read and write privilege to the reference itself</title></line>
     </g>
 
+    <g id="resource_accessibility">
+        <line data-hash="4" class="solid" x1="-100" x2="-100" y1="200" y2="220"><title>can mutate the resource it refers to</title></line>
+        <line data-hash="4" class="solid" x1="-100" x2="-100" y1="220" y2="240"><title>can mutate the resource it refers to</title></line>
+    </g>
+
     <g id="events">
         <use xlink:href="#eventDot" data-hash="1" x="-180" y="100"><title>Acquiring resource from String::from()</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="-180" y="140"><title>Partially lends resource to change()</title></use>

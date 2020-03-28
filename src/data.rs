@@ -1,4 +1,4 @@
- use std::collections::{HashSet, BTreeMap, HashMap};
+use std::collections::{HashSet, BTreeMap, HashMap};
 use std::vec::Vec;
 /**
  * Basic Data Structure Needed by Lifetime Visualization
@@ -38,15 +38,26 @@ pub struct Function {
     pub hash: u64,
     pub name: String,
 }
+
+
+#[derive(Clone, Hash, PartialEq, Eq)]
+pub enum RefKind {
+    MutRef, // a mutable reference, eg let a = &mut b
+    StaticRef, // a static reference, eg let a = & b
+    NotRef // not a reference
+}
+
 #[derive(Clone, Hash, PartialEq, Eq)]
 pub struct Variable {
     pub hash: u64,
     pub name: String,
     // whether the variable itself is mutable
     pub is_mut: bool,
-    pub is_ref: bool,
+    // Some(hash_of_original) or None, if it's not a reference; NOTE that this is different from is_mut
+    pub ref_kind: RefKind,
     pub lifetime_trait: LifetimeTrait,
 }
+
 #[derive(Clone, Hash, PartialEq, Eq)]
 pub enum ResourceOwner {
     Variable(Variable),
@@ -62,7 +73,7 @@ impl ResourceOwner {
         }
     }
 
-    // get the name filed
+    // get the name field
     pub fn name(&self) -> &String {
         match self {
             ResourceOwner::Variable(Variable{name, ..}) => name,
@@ -70,7 +81,7 @@ impl ResourceOwner {
         }
     }
 
-    // get the is_mut filed, if any
+    // get the is_mut field, if any
     pub fn is_mut(&self) -> bool {
         match self {
             ResourceOwner::Variable(Variable{is_mut, ..}) => is_mut.to_owned(),
@@ -80,8 +91,16 @@ impl ResourceOwner {
 
     pub fn is_ref(&self) -> bool {
         match self {
-            ResourceOwner::Variable(Variable{is_ref, ..}) => is_ref.to_owned(),
-            ResourceOwner::Function(_) => false,
+            ResourceOwner::Variable(Variable{ref_kind: RefKind::MutRef, ..}) => true,
+            ResourceOwner::Variable(Variable{ref_kind: RefKind::StaticRef, ..}) => true,
+            _ => false,
+        }
+    }
+
+    pub fn ref_kind(&self) -> Option<RefKind> {
+        match self {
+            ResourceOwner::Variable(Variable{ref_kind: rk, ..}) => Some(rk.to_owned()),
+            _ => None,
         }
     }
 }

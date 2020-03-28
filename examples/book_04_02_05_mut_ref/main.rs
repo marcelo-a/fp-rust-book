@@ -1,4 +1,7 @@
-use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, Visualizable, VisualizationData};
+use rrt_lib::data::{
+    ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, Visualizable, 
+    VisualizationData, RefKind::{MutRef, StaticRef, NotRef}
+};
 use rrt_lib::svg_frontend::svg_generation;
 use std::collections::BTreeMap;
 
@@ -8,7 +11,7 @@ fn main() {
         hash: 1,
         name: String::from("s"),
         is_mut: true,
-        is_ref: false,
+        ref_kind: NotRef,
         lifetime_trait: LifetimeTrait::Move,
     }));
     let string_from = Some(ResourceOwner::Function(Function {
@@ -23,7 +26,7 @@ fn main() {
         hash: 4,
         name: String::from("some_string"),
         is_mut: true,
-        is_ref: true,
+        ref_kind: MutRef,
         lifetime_trait: LifetimeTrait::Move,
     }));
     let push_str = Some(ResourceOwner::Function(Function {

@@ -1,6 +1,6 @@
 extern crate handlebars;
 
-use crate::data::{VisualizationData, Visualizable, Event, ExternalEvent, State, ResourceOwner};
+use crate::data::{VisualizationData, Visualizable, Event, ExternalEvent, State, ResourceOwner, RefKind};
 use handlebars::Handlebars;
 use std::collections::HashMap;
 use serde::Serialize;
@@ -17,6 +17,7 @@ struct LeftPanelData {
     labels: String,
     dots: String,
     timelines: String,
+    resource_accessibility: String,
     arrows: String,
 }
 #[derive(Serialize)]
@@ -82,12 +83,13 @@ pub fn render_left_panel(visualization_data : &VisualizationData) -> String {
     let labels_string = render_labels_string(&resource_owners_layout, &registry);
     let dots_string = render_dots_string(visualization_data, &resource_owners_layout, &registry);
     let timelines_string = render_timelines_string(visualization_data, &resource_owners_layout, &registry);
-    // let vertical_lines_string = render_vertical_lines_string(visualization_data, &resource_owners_layout, &registry);
+    let resource_accessibility_string = render_resource_accessibility_string(visualization_data, &resource_owners_layout, &registry);
     let arrows_string = render_arrows_string_external_events_version(visualization_data, &resource_owners_layout, &registry);
     let left_panel_data = LeftPanelData {
         labels: labels_string,
         dots: dots_string,
         timelines: timelines_string,
+        resource_accessibility: resource_accessibility_string,
         arrows: arrows_string
     };
 
@@ -101,6 +103,7 @@ fn prepare_registry(registry: &mut Handlebars) {
     let left_panel_template =
         "    <g id=\"labels\">\n{{ labels }}    </g>\n\n    \
         <g id=\"timelines\">\n{{ timelines }}    </g>\n\n    \
+        <g id=\"resource_accessibility\">\n{{ resource_accessibility }}    </g>\n\n    \
         <g id=\"events\">\n{{ dots }}    </g>\n\n    \
         <g id=\"arrows\">\n{{ arrows }}    </g>";
 
@@ -344,7 +347,6 @@ fn render_arrows_string_external_events_version(
         };
         let arrow_length = 20;
         match (from, to, external_event) {
-            // TODO change this to or pattern
             (Some(ResourceOwner::Variable(variable)), 
              Some(ResourceOwner::Function(function)), 
              ExternalEvent::PassByStaticReference{..}) => {
@@ -503,6 +505,48 @@ fn render_timelines_string(
     output
 }
 
+// vertical lines indicating whether a reference can mutable its resource(deref as many times)
+// (iff it's a MutRef && it has FullPriviledge)
+fn render_resource_accessibility_string(
+    visualization_data: &VisualizationData,
+    resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+    registry: &Handlebars
+) -> String {
+    let timelines = &visualization_data.timelines;
+
+    let mut output = String::new();
+    for (hash, timeline) in timelines{
+        if let ResourceOwner::Variable(_) = timeline.resource_owner {
+            let ro = timeline.resource_owner.to_owned();
+            // verticle state lines
+            let states = visualization_data.get_states(hash);
+            for (line_start, line_end, state) in states.iter() {
+               
+                // add a horizontal offset to the line
+                let offset = 10;
+                let mut data = VerticalLineData {
+                    line_class: String::new(),
+                    hash: *hash,
+                    x1: resource_owners_layout[hash].x_val + offset,
+                    y1: get_y_axis_pos(line_start),
+                    x2: resource_owners_layout[hash].x_val + offset,
+                    y2: get_y_axis_pos(line_end),
+                    title: String::new()
+                };
+                match (state, ro.ref_kind()) {
+                    (State::FullPrivilege, Some(RefKind::MutRef)) => {
+                        println!("ACCESIBILITY {} {} {} {}", resource_owners_layout[hash].name, line_start, line_end, state);
+                        data.title = String::from("can mutate the resource it refers to");
+                        data.line_class = String::from("solid");
+                        output.push_str(&registry.render("vertical_line_template", &data).unwrap());
+                    },
+                    _ => (),
+                }
+            }
+        }
+    }
+    output
+}
 
 fn get_y_axis_pos(line_number : &usize) -> i64 {
     (60 + 20 * line_number) as i64

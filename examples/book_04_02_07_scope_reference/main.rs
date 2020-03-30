@@ -30,7 +30,7 @@ fn main() {
         lifetime_trait: LifetimeTrait::None,
     });
     let string_ctor = Some(ResourceOwner::Function(Function {
-        hash: 5,
+        hash: 4,
         name: String::from("String::from()"),
     }));
     let mut vd = VisualizationData {

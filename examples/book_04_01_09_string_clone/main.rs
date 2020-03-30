@@ -11,14 +11,14 @@ fn main() {
         lifetime_trait: LifetimeTrait::Move
     });
     let s2 = ResourceOwner::Variable(Variable {
-        hash: 3,
+        hash: 2,
         name: String::from("s2"),
         is_mut: false,
         is_ref: false,
         lifetime_trait: LifetimeTrait::Move
     });
     let from_func = ResourceOwner::Function(Function {
-        hash: 2,
+        hash: 3,
         name: String::from("String::from()"),
     });
     let clone_func = ResourceOwner::Function(Function {

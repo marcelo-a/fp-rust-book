@@ -11,20 +11,20 @@ fn main() {
         is_ref: false,
         lifetime_trait: LifetimeTrait::Move,
     }));
-    let string_from = Some(ResourceOwner::Function(Function {
+    let some_string = Some(ResourceOwner::Variable(Variable {
         hash: 2,
-        name: String::from("String::from()"),
+        name: String::from("some_string"),
+        is_mut: true,
+        is_ref: true,
+        lifetime_trait: LifetimeTrait::Move,
     }));
     let change = Some(ResourceOwner::Function(Function {
         hash: 3,
         name: String::from("change()"),
     }));
-    let some_string = Some(ResourceOwner::Variable(Variable {
+    let string_from = Some(ResourceOwner::Function(Function {
         hash: 4,
-        name: String::from("some_string"),
-        is_mut: true,
-        is_ref: true,
-        lifetime_trait: LifetimeTrait::Move,
+        name: String::from("String::from()"),
     }));
     let push_str = Some(ResourceOwner::Function(Function {
         hash: 5,

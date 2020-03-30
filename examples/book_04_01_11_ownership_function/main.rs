@@ -12,21 +12,21 @@ fn main() {
         lifetime_trait: LifetimeTrait::Move,
     });
     let x = ResourceOwner::Variable(Variable {
-        hash: 4,
+        hash: 2,
         name: String::from("x"),
         is_mut: false,
         is_ref: false,
         lifetime_trait: LifetimeTrait::Copy,
     });
     let some_string = ResourceOwner::Variable(Variable {
-        hash: 6,
+        hash: 3,
         name: String::from("some_string"),
         is_mut: false,
         is_ref: false,
         lifetime_trait: LifetimeTrait::Move,
     });
     let some_integer = ResourceOwner::Variable(Variable {
-        hash: 7,
+        hash: 4,
         name: String::from("some_integer"),
         is_mut: false,
         is_ref: false,
@@ -34,15 +34,15 @@ fn main() {
     });
     // Functions
     let from_func = ResourceOwner::Function(Function {
-        hash: 2,
+        hash: 5,
         name: String::from("String::from()"),
     });
     let takes_ownership = ResourceOwner::Function(Function {
-        hash: 3,
+        hash: 6,
         name: String::from("takes_ownership()"),
     });
     let makes_copy = ResourceOwner::Function(Function {
-        hash: 5,
+        hash: 7,
         name: String::from("makes_copy()"),
     });
     let println_func = ResourceOwner::Function(Function {

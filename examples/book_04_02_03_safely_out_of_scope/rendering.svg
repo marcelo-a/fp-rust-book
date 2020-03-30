@@ -168,27 +168,27 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="880" y="90" data-hash="4"><title>s, immutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="880" y="90" data-hash="1"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="4" class="solid" x1="880" x2="880" y1="105" y2="125"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="1" class="solid" x1="880" x2="880" y1="105" y2="125"><title>has read only privilege to the reference itself</title></line>
         <line class="colorless" stroke-width="8px" x1="880" x2="880" y1="110" y2="120"><title>has read only privilege to the reference itself</title></line>
-        <line data-hash="4" class="solid" x1="880" x2="880" y1="125" y2="125"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="1" class="solid" x1="880" x2="880" y1="125" y2="125"><title>has read only privilege to the reference itself</title></line>
         <line class="colorless" stroke-width="8px" x1="880" x2="880" y1="130" y2="120"><title>has read only privilege to the reference itself</title></line>
-        <line data-hash="4" class="solid" x1="880" x2="880" y1="125" y2="145"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="1" class="solid" x1="880" x2="880" y1="125" y2="145"><title>has read only privilege to the reference itself</title></line>
         <line class="colorless" stroke-width="8px" x1="880" x2="880" y1="130" y2="140"><title>has read only privilege to the reference itself</title></line>
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="4" x="880" y="105"><title>obtains data from another value (s's lifetime begins from here)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="880" y="125"><title>statically lends its data to len() (s becomes read-only)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="880" y="125"><title>len() no longer borrows from s</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="880" y="145"><title>s goes out of scope. The data is not dropped because s is not the owner.</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="880" y="105"><title>obtains data from another value (s's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="880" y="125"><title>statically lends its data to len() (s becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="880" y="125"><title>len() no longer borrows from s</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="880" y="145"><title>s goes out of scope. The data is not dropped because s is not the owner.</title></use>
     </g>
 
     <g id="arrows">
-        <use xlink:href="#functionDot" data-hash="4" x="880" y="125"><title>len() reads from s</title></use>
+        <use xlink:href="#functionDot" data-hash="1" x="880" y="125"><title>len() reads from s</title></use>
     </g>
 
     <g id="dividers">
@@ -197,8 +197,8 @@ text.functionIcon {
 
     <g id="code">
         <text class="code" x="20" y="90">  </text>
-        <text class="code" x="20" y="110"> fn <tspan data-hash="3">calculate_length</tspan>(<tspan data-hash="4">s</tspan>: &amp;String) -> usize { </text>
-        <text class="code" x="20" y="130">     <tspan data-hash="4">s</tspan>.len() </text>
+        <text class="code" x="20" y="110"> fn <tspan data-hash="3">calculate_length</tspan>(<tspan data-hash="1">s</tspan>: &amp;String) -> usize { </text>
+        <text class="code" x="20" y="130">     <tspan data-hash="1">s</tspan>.<tspan data-hash="2">len</tspan>() </text>
         <text class="code" x="20" y="150"> } // Here, s goes out of scope. But because it does not have ownership of what </text>
         <text class="code" x="20" y="170">   // it refers to, nothing happens. </text>
     </g>

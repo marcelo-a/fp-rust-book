@@ -1,5 +1,5 @@
 
-let mut <tspan data-hash="1">s</tspan> = String::from("hello");
+let mut <tspan data-hash="1">s</tspan> = <tspan data-hash="4">String::from</tspan>("hello");
 
 {
     let <tspan data-hash="2">r1</tspan> = <tspan data-hash="1">&amp;mut s</tspan>;

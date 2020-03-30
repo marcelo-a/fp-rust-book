@@ -190,8 +190,8 @@ text.functionIcon {
     </g>
 
     <g id="code">
-        <text class="code" x="20" y="90"> fn no_dangle() -> String { </text>
-        <text class="code" x="20" y="110">     let <tspan data-hash="1">s</tspan> = String::from("hello"); </text>
+        <text class="code" x="20" y="90"> fn <tspan data-hash="2">no_dangle</tspan>() -> String { </text>
+        <text class="code" x="20" y="110">     let <tspan data-hash="1">s</tspan> = <tspan data-hash="3">String::from</tspan>("hello"); </text>
         <text class="code" x="20" y="130">  </text>
         <text class="code" x="20" y="150">     <tspan data-hash="1">s</tspan> </text>
         <text class="code" x="20" y="170"> } </text>

@@ -168,8 +168,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="580" y="90" data-hash="4"><title>some_string, mutable</title>some_string</text>
         <text style="text-anchor:middle" class="code" x="480" y="90" data-hash="1"><title>s, mutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="580" y="90" data-hash="2"><title>some_string, mutable</title>some_string</text>
     </g>
 
     <g id="timelines">
@@ -177,10 +177,10 @@ text.functionIcon {
         <line data-hash="1" class="solid" x1="480" x2="480" y1="145" y2="145"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="480" x2="480" y1="150" y2="140"><title>has read only privilege to the real data</title></line>
         <line data-hash="1" class="solid" x1="480" x2="480" y1="145" y2="165"><title>has read and write privilege to the real data</title></line>
-        <line data-hash="4" class="solid" x1="580" x2="580" y1="205" y2="225"><title>has read and write privilege to the reference itself</title></line>
-        <line data-hash="4" class="solid" x1="580" x2="580" y1="225" y2="225"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="2" class="solid" x1="580" x2="580" y1="205" y2="225"><title>has read and write privilege to the reference itself</title></line>
+        <line data-hash="2" class="solid" x1="580" x2="580" y1="225" y2="225"><title>has read only privilege to the reference itself</title></line>
         <line class="colorless" stroke-width="8px" x1="580" x2="580" y1="230" y2="220"><title>has read only privilege to the reference itself</title></line>
-        <line data-hash="4" class="solid" x1="580" x2="580" y1="225" y2="245"><title>has read and write privilege to the reference itself</title></line>
+        <line data-hash="2" class="solid" x1="580" x2="580" y1="225" y2="245"><title>has read and write privilege to the reference itself</title></line>
     </g>
 
     <g id="events">
@@ -188,16 +188,16 @@ text.functionIcon {
         <use xlink:href="#eventDot" data-hash="1" x="480" y="145"><title>statically lends its data to change() (s becomes read-only)</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="480" y="145"><title>change() no longer borrows from s</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="480" y="165"><title>s goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="580" y="205"><title>obtains data from another value (some_string's lifetime begins from here)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="580" y="225"><title>statically lends its data to push_str() (some_string becomes read-only)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="580" y="225"><title>push_str() no longer borrows from some_string</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="580" y="245"><title>some_string goes out of scope. The data is not dropped because some_string is not the owner.</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="580" y="205"><title>obtains data from another value (some_string's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="580" y="225"><title>statically lends its data to push_str() (some_string becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="580" y="225"><title>push_str() no longer borrows from some_string</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="580" y="245"><title>some_string goes out of scope. The data is not dropped because some_string is not the owner.</title></use>
     </g>
 
     <g id="arrows">
         <text x="506" y="110" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="503,105 493,105 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of String::from() to s</title></polyline>
         <use xlink:href="#functionDot" data-hash="1" x="480" y="145"><title>change() reads from s</title></use>
-        <use xlink:href="#functionDot" data-hash="4" x="580" y="225"><title>push_str() reads from some_string</title></use>
+        <use xlink:href="#functionDot" data-hash="2" x="580" y="225"><title>push_str() reads from some_string</title></use>
     </g>
 
     <g id="dividers">
@@ -206,13 +206,13 @@ text.functionIcon {
 
     <g id="code">
         <text class="code" x="20" y="90"> fn main() { </text>
-        <text class="code" x="20" y="110">     let mut <tspan data-hash="1">s</tspan> = <tspan data-hash="2">String::from</tspan>("hello"); </text>
+        <text class="code" x="20" y="110">     let mut <tspan data-hash="1">s</tspan> = <tspan data-hash="4">String::from</tspan>("hello"); </text>
         <text class="code" x="20" y="130">  </text>
         <text class="code" x="20" y="150">     <tspan data-hash="3">change</tspan>(&amp;mut <tspan data-hash="1">s</tspan>); </text>
         <text class="code" x="20" y="170"> } </text>
         <text class="code" x="20" y="190">  </text>
-        <text class="code" x="20" y="210"> fn change(<tspan data-hash="4">some_string</tspan>: &amp;mut String) { </text>
-        <text class="code" x="20" y="230">     <tspan data-hash="4">some_string</tspan>.<tspan data-hash="5">push_str</tspan>(", world"); </text>
+        <text class="code" x="20" y="210"> fn change(<tspan data-hash="2">some_string</tspan>: &amp;mut String) { </text>
+        <text class="code" x="20" y="230">     <tspan data-hash="2">some_string</tspan>.<tspan data-hash="5">push_str</tspan>(", world"); </text>
         <text class="code" x="20" y="250"> } </text>
     </g>
 

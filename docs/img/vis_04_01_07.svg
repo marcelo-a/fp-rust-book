@@ -168,8 +168,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="480" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
         <text style="text-anchor:middle" class="code" x="410" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="480" y="90" data-hash="2"><title>s2, immutable</title>s2</text>
     </g>
 
     <g id="timelines">
@@ -180,7 +180,7 @@ text.functionIcon {
     <g id="events">
         <use xlink:href="#eventDot" data-hash="1" x="410" y="105"><title>obtains data from String::from() (s1's lifetime begins from here)</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="410" y="125"><title>moves it's value to s2 (s1 lost ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="480" y="125"><title>obtains data from s1 (s2's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="480" y="125"><title>obtains data from s1 (s2's lifetime begins from here)</title></use>
     </g>
 
     <g id="arrows">
@@ -194,8 +194,8 @@ text.functionIcon {
 
     <g id="code">
         <text class="code" x="20" y="90">  </text>
-        <text class="code" x="20" y="110"> let <tspan data-hash="1">s1</tspan> = <tspan data-hash="2">String::from</tspan>("hello"); </text>
-        <text class="code" x="20" y="130"> let <tspan data-hash="3">s2</tspan> = <tspan data-hash="1">s1</tspan>; </text>
+        <text class="code" x="20" y="110"> let <tspan data-hash="1">s1</tspan> = <tspan data-hash="3">String::from</tspan>("hello"); </text>
+        <text class="code" x="20" y="130"> let <tspan data-hash="2">s2</tspan> = <tspan data-hash="1">s1</tspan>; </text>
     </g>
 
    

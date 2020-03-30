@@ -200,11 +200,11 @@ text.functionIcon {
 
     <g id="code">
         <text class="code" x="20" y="90"> fn main() { </text>
-        <text class="code" x="20" y="110">     let mut <tspan data-hash="4">s</tspan> = String::from("hello"); </text>
+        <text class="code" x="20" y="110">     let mut <tspan data-hash="1">s</tspan> = String::from("hello"); </text>
         <text class="code" x="20" y="130">  </text>
-        <text class="code" x="20" y="150">     <tspan data-hash="4">s</tspan>.push_str(", world!"); // push_str() appends a literal to a String </text>
+        <text class="code" x="20" y="150">     <tspan data-hash="1">s</tspan>.push_str(", world!"); // push_str() appends a literal to a String </text>
         <text class="code" x="20" y="170">  </text>
-        <text class="code" x="20" y="190">     println!("{}", <tspan data-hash="4">s</tspan>); // This will print `hello, world!` </text>
+        <text class="code" x="20" y="190">     println!("{}", <tspan data-hash="1">s</tspan>); // This will print `hello, world!` </text>
         <text class="code" x="20" y="210"> } </text>
     </g>
 

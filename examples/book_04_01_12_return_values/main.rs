@@ -12,28 +12,28 @@ fn main() {
         lifetime_trait: LifetimeTrait::Move,
     });
     let s2 = ResourceOwner::Variable(Variable {
-        hash: 4,
+        hash: 2,
         name: String::from("s2"),
         is_mut: false,
         is_ref: false,
         lifetime_trait: LifetimeTrait::Move,
     });
     let s3 = ResourceOwner::Variable(Variable {
-        hash: 5,
+        hash: 3,
         name: String::from("s3"),
         is_mut: false,
         is_ref: false,
         lifetime_trait: LifetimeTrait::Move,
     });
     let some_string = ResourceOwner::Variable(Variable {
-        hash: 3,
+        hash: 4,
         name: String::from("some_string"),
         is_mut: false,
         is_ref: false,
         lifetime_trait: LifetimeTrait::Move,
     });
     let a_string = ResourceOwner::Variable(Variable {
-        hash: 7,
+        hash: 5,
         name: String::from("a_string"),
         is_mut: false,
         is_ref: false,
@@ -41,11 +41,11 @@ fn main() {
     });
     // Functions
     let gives_ownership = ResourceOwner::Function(Function {
-        hash: 2,
+        hash: 6,
         name: String::from("gives_ownership()"),
     });
     let takes_and_gives_back = ResourceOwner::Function(Function {
-        hash: 6,
+        hash: 7,
         name: String::from("takes_and_gives_back()"),
     });
     let mut vd = VisualizationData {

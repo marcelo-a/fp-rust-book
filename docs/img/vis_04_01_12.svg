@@ -168,44 +168,24 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="880" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
-<<<<<<< refs/remotes/fplab/dev
         <text style="text-anchor:middle" class="code" x="950" y="90" data-hash="2"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="880" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="1190" y="90" data-hash="5"><title>a_string, immutable</title>a_string</text>
         <text style="text-anchor:middle" class="code" x="1120" y="90" data-hash="4"><title>some_string, immutable</title>some_string</text>
         <text style="text-anchor:middle" class="code" x="1020" y="90" data-hash="3"><title>s3, immutable</title>s3</text>
-        <text style="text-anchor:middle" class="code" x="1190" y="90" data-hash="5"><title>a_string, immutable</title>a_string</text>
-    </g>
-
-    <g id="timelines">
-        <line data-hash="1" class="solid" x1="880" x2="880" y1="105" y2="265"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="880" x2="880" y1="110" y2="260"><title>has read only privilege to the real data</title></line>
-        <line data-hash="2" class="solid" x1="950" x2="950" y1="165" y2="205"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="950" x2="950" y1="170" y2="200"><title>has read only privilege to the real data</title></line>
-        <line data-hash="3" class="solid" x1="1020" x2="1020" y1="205" y2="265"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="1020" x2="1020" y1="210" y2="260"><title>has read only privilege to the real data</title></line>
-        <line data-hash="4" class="solid" x1="1120" x2="1120" y1="405" y2="445"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="1120" x2="1120" y1="410" y2="440"><title>has read only privilege to the real data</title></line>
-        <line data-hash="5" class="solid" x1="1190" x2="1190" y1="565" y2="625"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="1190" x2="1190" y1="570" y2="620"><title>has read only privilege to the real data</title></line>
-=======
-        <text style="text-anchor:middle" class="code" x="1050" y="90" data-hash="4"><title>s2, immutable</title>s2</text>
-        <text style="text-anchor:middle" class="code" x="1190" y="90" data-hash="7"><title>a_string, immutable</title>a_string</text>
-        <text style="text-anchor:middle" class="code" x="980" y="90" data-hash="3"><title>some_string, immutable</title>some_string</text>
-        <text style="text-anchor:middle" class="code" x="1120" y="90" data-hash="5"><title>s3, immutable</title>s3</text>
     </g>
 
     <g id="timelines">
         <line data-hash="1" class="solid" x1="880" x2="880" y1="105" y2="265"><title>s1 is the unique value that can access the data in memory; can only read data</title></line>
         <line class="colorless" stroke-width="8px" x1="880" x2="880" y1="110" y2="260"><title>s1 is the unique value that can access the data in memory; can only read data</title></line>
-        <line data-hash="3" class="solid" x1="980" x2="980" y1="405" y2="445"><title>some_string is the unique value that can access the data in memory; can only read data</title></line>
-        <line class="colorless" stroke-width="8px" x1="980" x2="980" y1="410" y2="440"><title>some_string is the unique value that can access the data in memory; can only read data</title></line>
-        <line data-hash="4" class="solid" x1="1050" x2="1050" y1="165" y2="205"><title>s2 is the unique value that can access the data in memory; can only read data</title></line>
-        <line class="colorless" stroke-width="8px" x1="1050" x2="1050" y1="170" y2="200"><title>s2 is the unique value that can access the data in memory; can only read data</title></line>
-        <line data-hash="5" class="solid" x1="1120" x2="1120" y1="205" y2="265"><title>s3 is the unique value that can access the data in memory; can only read data</title></line>
-        <line class="colorless" stroke-width="8px" x1="1120" x2="1120" y1="210" y2="260"><title>s3 is the unique value that can access the data in memory; can only read data</title></line>
-        <line data-hash="7" class="solid" x1="1190" x2="1190" y1="565" y2="625"><title>a_string is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="2" class="solid" x1="950" x2="950" y1="165" y2="205"><title>s2 is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="950" x2="950" y1="170" y2="200"><title>s2 is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="3" class="solid" x1="1020" x2="1020" y1="205" y2="265"><title>s3 is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="1020" x2="1020" y1="210" y2="260"><title>s3 is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="4" class="solid" x1="1120" x2="1120" y1="405" y2="445"><title>some_string is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="1120" x2="1120" y1="410" y2="440"><title>some_string is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="5" class="solid" x1="1190" x2="1190" y1="565" y2="625"><title>a_string is the unique value that can access the data in memory; can only read data</title></line>
         <line class="colorless" stroke-width="8px" x1="1190" x2="1190" y1="570" y2="620"><title>a_string is the unique value that can access the data in memory; can only read data</title></line>
->>>>>>> State Message (Vertical lines) now uses the hover_message.rs
     </g>
 
     <g id="events">

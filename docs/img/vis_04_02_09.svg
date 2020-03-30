@@ -168,14 +168,10 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-<<<<<<< refs/remotes/fplab/dev
-=======
-        <text style="text-anchor:middle" class="code" x="690" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
->>>>>>> State Message (Vertical lines) now uses the hover_message.rs
-        <text style="text-anchor:middle" class="code" x="620" y="90" data-hash="1"><title>s, mutable</title>s</text>
-        <text style="text-anchor:middle" class="code" x="690" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
-        <text style="text-anchor:middle" class="code" x="760" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
         <text style="text-anchor:middle" class="code" x="830" y="90" data-hash="4"><title>r3, immutable</title>r3</text>
+        <text style="text-anchor:middle" class="code" x="620" y="90" data-hash="1"><title>s, mutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="760" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
+        <text style="text-anchor:middle" class="code" x="690" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
     </g>
 
     <g id="timelines">

@@ -168,11 +168,11 @@ text.functionIcon {
     </g>
 
     <g id="labels">
+        <text style="text-anchor:middle" class="code" x="545" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="615" y="90" data-hash="2"><title>len, immutable</title>len</text>
         <text style="text-anchor:middle" class="code" x="825" y="90" data-hash="8"><title>length, immutable</title>length</text>
         <text style="text-anchor:middle" class="code" x="755" y="90" data-hash="6"><title>s2, immutable</title>s2</text>
         <text style="text-anchor:middle" class="code" x="685" y="90" data-hash="4"><title>s, immutable</title>s</text>
-        <text style="text-anchor:middle" class="code" x="545" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -241,7 +241,7 @@ text.functionIcon {
         <text class="code" x="20" y="90"> fn main() { </text>
         <text class="code" x="20" y="110">     let <tspan data-hash="1">s1</tspan> = <tspan data-hash="5">String::from</tspan>("hello"); </text>
         <text class="code" x="20" y="130">  </text>
-        <text class="code" x="20" y="150">     let (<tspan data-hash="6">s2</tspan>, <tspan data-hash="2">len</tspan>) = <tspan data-hash="3">calculate_length</tspan>(<tspan data-hash="1">&amp;s1</tspan>);; </text>
+        <text class="code" x="20" y="150">     let (<tspan data-hash="6">s2</tspan>, <tspan data-hash="2">len</tspan>) = <tspan data-hash="3">calculate_length</tspan>(<tspan data-hash="1">&amp;s1</tspan>); </text>
         <text class="code" x="20" y="170">      </text>
         <text class="code" x="20" y="190">     <tspan data-hash="9">println!</tspan>("The length of '{}' is {}.", <tspan data-hash="6">s2</tspan>, <tspan data-hash="2">len</tspan>); </text>
         <text class="code" x="20" y="210"> } </text>

@@ -169,8 +169,8 @@ text.functionIcon {
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="447" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
-        <text style="text-anchor:middle" class="code" x="587" y="90" data-hash="4"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="517" y="90" data-hash="2"><title>len, immutable</title>len</text>
+        <text style="text-anchor:middle" class="code" x="587" y="90" data-hash="4"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">

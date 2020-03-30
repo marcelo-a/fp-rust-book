@@ -169,10 +169,10 @@ text.functionIcon {
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="806" y="90" data-hash="4"><title>s2, immutable</title>s2</text>
-        <text style="text-anchor:middle" class="code" x="736" y="90" data-hash="3"><title>some_string, immutable</title>some_string</text>
         <text style="text-anchor:middle" class="code" x="946" y="90" data-hash="7"><title>a_string, immutable</title>a_string</text>
-        <text style="text-anchor:middle" class="code" x="636" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="736" y="90" data-hash="3"><title>some_string, immutable</title>some_string</text>
         <text style="text-anchor:middle" class="code" x="876" y="90" data-hash="5"><title>s3, immutable</title>s3</text>
+        <text style="text-anchor:middle" class="code" x="636" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">

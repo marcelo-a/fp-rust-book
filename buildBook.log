@@ -111,7 +111,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.42s
      Running `target/debug/examples/one_var`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
@@ -436,7 +436,7 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.16s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/scope`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
@@ -756,7 +756,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.18s
      Running `target/debug/examples/string_from`
 s 1 2 OutOfScope
 <svg width="750" height="170px" 
@@ -1068,7 +1068,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.17s
      Running `target/debug/examples/reference`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -1410,7 +1410,7 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
      Running `target/debug/examples/scope2`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
@@ -1739,7 +1739,7 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.17s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.29s
      Running `target/debug/examples/int_copy`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -2068,7 +2068,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.26s
      Running `target/debug/examples/string_move`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -2389,7 +2389,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.23s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/string_clone`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -2569,8 +2569,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="349" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="419" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="349" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -2916,8 +2916,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="349" y="90" data-hash="3"><title>x, immutable</title>x</text>
         <text style="text-anchor:middle" class="code" x="419" y="90" data-hash="4"><title>y, immutable</title>y</text>
+        <text style="text-anchor:middle" class="code" x="349" y="90" data-hash="3"><title>x, immutable</title>x</text>
     </g>
 
     <g id="timelines">
@@ -3084,7 +3084,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.17s
      Running `target/debug/examples/ownership_function`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -3270,10 +3270,10 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="930" y="90" data-hash="7"><title>some_integer, immutable</title>some_integer</text>
         <text style="text-anchor:middle" class="code" x="650" y="90" data-hash="1"><title>s, immutable</title>s</text>
-        <text style="text-anchor:middle" class="code" x="720" y="90" data-hash="4"><title>x, immutable</title>x</text>
         <text style="text-anchor:middle" class="code" x="820" y="90" data-hash="6"><title>some_string, immutable</title>some_string</text>
+        <text style="text-anchor:middle" class="code" x="930" y="90" data-hash="7"><title>some_integer, immutable</title>some_integer</text>
+        <text style="text-anchor:middle" class="code" x="720" y="90" data-hash="4"><title>x, immutable</title>x</text>
     </g>
 
     <g id="timelines">
@@ -3468,7 +3468,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.14s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.23s
      Running `target/debug/examples/return_values`
 s1 1 2 OutOfScope
 s1 2 10 FullPrivilege
@@ -3654,10 +3654,10 @@ text.functionIcon {
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="806" y="90" data-hash="4"><title>s2, immutable</title>s2</text>
-        <text style="text-anchor:middle" class="code" x="736" y="90" data-hash="3"><title>some_string, immutable</title>some_string</text>
         <text style="text-anchor:middle" class="code" x="946" y="90" data-hash="7"><title>a_string, immutable</title>a_string</text>
-        <text style="text-anchor:middle" class="code" x="636" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="736" y="90" data-hash="3"><title>some_string, immutable</title>some_string</text>
         <text style="text-anchor:middle" class="code" x="876" y="90" data-hash="5"><title>s3, immutable</title>s3</text>
+        <text style="text-anchor:middle" class="code" x="636" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -4044,11 +4044,11 @@ text.functionIcon {
     </g>
 
     <g id="labels">
+        <text style="text-anchor:middle" class="code" x="545" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="615" y="90" data-hash="2"><title>len, immutable</title>len</text>
         <text style="text-anchor:middle" class="code" x="825" y="90" data-hash="8"><title>length, immutable</title>length</text>
         <text style="text-anchor:middle" class="code" x="755" y="90" data-hash="6"><title>s2, immutable</title>s2</text>
         <text style="text-anchor:middle" class="code" x="685" y="90" data-hash="4"><title>s, immutable</title>s</text>
-        <text style="text-anchor:middle" class="code" x="545" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -4117,7 +4117,7 @@ text.functionIcon {
         <text class="code" x="20" y="90"> fn main() { </text>
         <text class="code" x="20" y="110">     let <tspan data-hash="1">s1</tspan> = <tspan data-hash="5">String::from</tspan>("hello"); </text>
         <text class="code" x="20" y="130">  </text>
-        <text class="code" x="20" y="150">     let (<tspan data-hash="6">s2</tspan>, <tspan data-hash="2">len</tspan>) = <tspan data-hash="3">calculate_length</tspan>(<tspan data-hash="1">&amp;s1</tspan>);; </text>
+        <text class="code" x="20" y="150">     let (<tspan data-hash="6">s2</tspan>, <tspan data-hash="2">len</tspan>) = <tspan data-hash="3">calculate_length</tspan>(<tspan data-hash="1">&amp;s1</tspan>); </text>
         <text class="code" x="20" y="170">      </text>
         <text class="code" x="20" y="190">     <tspan data-hash="9">println!</tspan>("The length of '{}' is {}.", <tspan data-hash="6">s2</tspan>, <tspan data-hash="2">len</tspan>); </text>
         <text class="code" x="20" y="210"> } </text>
@@ -4245,7 +4245,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.18s
      Running `target/debug/examples/pass_reference`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -4428,8 +4428,8 @@ text.functionIcon {
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="447" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
-        <text style="text-anchor:middle" class="code" x="587" y="90" data-hash="4"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="517" y="90" data-hash="2"><title>len, immutable</title>len</text>
+        <text style="text-anchor:middle" class="code" x="587" y="90" data-hash="4"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
@@ -4617,7 +4617,7 @@ warning: unused variable: `len_func`
 37 |     let len_func = Some(ResourceOwner::Function(Function {
    |         ^^^^^^^^ help: consider prefixing with an underscore: `_len_func`
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
      Running `target/debug/examples/acquire_from_function`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -4944,7 +4944,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.18s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
      Running `target/debug/examples/safely_out_of_scope`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
@@ -5271,7 +5271,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.18s
      Running `target/debug/examples/mut_ref`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -5795,9 +5795,9 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="650" y="90" data-hash="1"><title>s, mutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="720" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
         <text style="text-anchor:middle" class="code" x="790" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
+        <text style="text-anchor:middle" class="code" x="650" y="90" data-hash="1"><title>s, mutable</title>s</text>
     </g>
 
     <g id="timelines">
@@ -5957,7 +5957,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.18s
      Running `target/debug/examples/shared_and_unique_borrow`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -6152,10 +6152,10 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="524" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
+        <text style="text-anchor:middle" class="code" x="664" y="90" data-hash="4"><title>r3, immutable</title>r3</text>
         <text style="text-anchor:middle" class="code" x="454" y="90" data-hash="1"><title>s, mutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="594" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
-        <text style="text-anchor:middle" class="code" x="664" y="90" data-hash="4"><title>r3, immutable</title>r3</text>
+        <text style="text-anchor:middle" class="code" x="524" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
     </g>
 
     <g id="timelines">
@@ -6362,7 +6362,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.18s
      Running `target/debug/examples/no_dangle`
 s 1 2 OutOfScope
 s 2 5 FullPrivilege

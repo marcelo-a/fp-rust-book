@@ -3,8 +3,12 @@ use rrt_lib::svg_frontend::svg_generation;
 use std::collections::BTreeMap;
 
 fn main() {
+    let from_func = ResourceOwner::Function(Function {
+        hash: 2,
+        name: String::from("String::from()"),
+    });
     let s = ResourceOwner::Variable(Variable {
-        hash: 4,
+        hash: 1,
         name: String::from("s"),
         is_mut: false,
         is_ref: false,
@@ -17,7 +21,7 @@ fn main() {
     //
     // hash s : 1
     //
-    vd.append_external_event(ExternalEvent::Move{from: None, to: Some(s.clone())}, &(3 as usize));
+    vd.append_external_event(ExternalEvent::Move{from: Some(from_func.to_owned()), to: Some(s.clone())}, &(3 as usize));
     vd.append_external_event(ExternalEvent::GoOutOfScope{ ro: s.clone() }, &(6 as usize));
     // same as 04_01_02
     svg_generation::render_svg(&"04_01_05".to_owned(), &"scope2".to_owned(), &vd);

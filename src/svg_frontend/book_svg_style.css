@@ -20,8 +20,9 @@ text {
 }
 
 #caption {
-    font-size: 20px;
+    font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
 }
 
 /* code related styling */
@@ -125,4 +126,13 @@ text.functionIcon {
 [data-hash*="7"] {
     fill: #ff9900;
     stroke: #ff9900;
+}
+[data-hash*="8"] {
+    fill: #00d6fc;
+    stroke: #00d6fc;
+}
+
+[data-hash*="9"] {
+    fill: #9aeb58;
+    stroke: #9aeb58;
 }

@@ -65,9 +65,9 @@ fn main() {
     vd.append_external_event(ExternalEvent::PassByStaticReference{from: Some(some_string.clone()), to: Some(println_func.clone()) }, &(17 as usize));
     vd.append_external_event(ExternalEvent::GoOutOfScope{ ro: some_string }, &(18 as usize));
 
-    vd.append_external_event(ExternalEvent::Duplicate{from: None, to: Some(some_integer.clone()) }, &(16 as usize));
-    vd.append_external_event(ExternalEvent::PassByStaticReference{from: Some(some_integer.clone()), to: Some(println_func.clone()) }, &(17 as usize));
-    vd.append_external_event(ExternalEvent::GoOutOfScope{ ro: some_integer }, &(18 as usize));
+    vd.append_external_event(ExternalEvent::Duplicate{from: None, to: Some(some_integer.clone()) }, &(21 as usize));
+    vd.append_external_event(ExternalEvent::PassByStaticReference{from: Some(some_integer.clone()), to: Some(println_func.clone()) }, &(22 as usize));
+    vd.append_external_event(ExternalEvent::GoOutOfScope{ ro: some_integer }, &(23 as usize));
 
     //rendering image
     svg_generation::render_svg(&"04_01_11".to_owned(), &"ownership_function".to_owned(), &vd);

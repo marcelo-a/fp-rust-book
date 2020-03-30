@@ -83,8 +83,8 @@ fn main() {
     vd.append_external_event(ExternalEvent::PassByStaticReference{from: s.clone(), to: len_func.clone()}, &(10 as usize));
     vd.append_external_event(ExternalEvent::Duplicate{from: len_func.clone(), to: length.clone()}, &(10 as usize));
     
-    vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : s.clone().unwrap() },  &(13 as usize));
-    vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : s.clone().unwrap() },  &(13 as usize));
+    vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : s.clone().unwrap() },  &(12 as usize));
+    vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : length.clone().unwrap() },  &(12 as usize));
 
     //rendering image
     svg_generation::render_svg(&"04_01_13".to_owned(), &"return_tuple".to_owned(), &vd);

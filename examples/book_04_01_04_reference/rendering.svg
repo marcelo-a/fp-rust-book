@@ -172,11 +172,11 @@ text.functionIcon {
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid" x1="810" x2="810" y1="105" y2="145"><title>has read and write privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="810" x2="810" y1="145" y2="185"><title>has read and write privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="810" x2="810" y1="185" y2="185"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="810" x2="810" y1="190" y2="180"><title>has read only privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="810" x2="810" y1="185" y2="205"><title>has read and write privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="810" x2="810" y1="105" y2="145"><title>s is the unique value that can access the data in memory; can read and write data</title></line>
+        <line data-hash="1" class="solid" x1="810" x2="810" y1="145" y2="185"><title>s is the unique value that can access the data in memory; can read and write data</title></line>
+        <line data-hash="1" class="solid" x1="810" x2="810" y1="185" y2="185"><title>some values are statically referencing to s; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="810" x2="810" y1="190" y2="180"><title>some values are statically referencing to s; can only read data</title></line>
+        <line data-hash="1" class="solid" x1="810" x2="810" y1="185" y2="205"><title>s is the unique value that can access the data in memory; can read and write data</title></line>
     </g>
 
     <g id="events">
@@ -200,11 +200,11 @@ text.functionIcon {
 
     <g id="code">
         <text class="code" x="20" y="90"> fn main() { </text>
-        <text class="code" x="20" y="110">     let mut <tspan data-hash="4">s</tspan> = String::from("hello"); </text>
+        <text class="code" x="20" y="110">     let mut <tspan data-hash="1">s</tspan> = String::from("hello"); </text>
         <text class="code" x="20" y="130">  </text>
-        <text class="code" x="20" y="150">     <tspan data-hash="4">s</tspan>.push_str(", world!"); // push_str() appends a literal to a String </text>
+        <text class="code" x="20" y="150">     <tspan data-hash="1">s</tspan>.push_str(", world!"); // push_str() appends a literal to a String </text>
         <text class="code" x="20" y="170">  </text>
-        <text class="code" x="20" y="190">     println!("{}", <tspan data-hash="4">s</tspan>); // This will print `hello, world!` </text>
+        <text class="code" x="20" y="190">     println!("{}", <tspan data-hash="1">s</tspan>); // This will print `hello, world!` </text>
         <text class="code" x="20" y="210"> } </text>
     </g>
 

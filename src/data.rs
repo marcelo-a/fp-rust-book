@@ -281,6 +281,46 @@ impl std::fmt::Display for State {
 }
 
 
+fn safe_message(
+    message_functor: fn(&String, &String) -> String,
+    my_name: &String,
+    some_target: &Option<ResourceOwner>
+) -> String {
+    if let Some(target) = some_target {
+        message_functor(my_name, target.name())
+    }
+    else {
+        message_functor(my_name, &"another value".to_owned())
+    }
+}
+
+
+impl State {
+    pub fn print_message_with_name(&self, my_name: &String) -> String {
+        match self {
+            State::OutOfScope => {
+                hover_messages::state_out_of_scope(my_name)
+            }
+            State::ResourceMoved{ move_to , move_at_line: _ } => {
+                safe_message(hover_messages::state_resource_moved, my_name, move_to)
+            }
+            State::FullPrivilege => {
+                hover_messages::state_full_priviledge(my_name)
+            }
+            State::PartialPrivilege { borrow_count: _, borrow_to: _ } => {
+                hover_messages::state_partial_priviledge(my_name)
+            }
+            State::RevokedPrivilege { to: _, borrow_to } => {
+                safe_message(hover_messages::state_resource_revoked, my_name, borrow_to)
+            }
+            State::Invalid => {
+                hover_messages::state_invalid(my_name)
+            }
+        }
+    }
+}
+
+
 // provide string output for usages like format!("{}", eventA)
 impl Display for Event {
     fn fmt(&self, f: &mut Formatter) -> Result {       
@@ -312,18 +352,6 @@ impl Display for Event {
     }
 }
 
-fn safe_message(
-    message_functor: fn(&String, &String) -> String,
-    my_name: &String,
-    some_target: &Option<ResourceOwner>
-) -> String {
-    if let Some(target) = some_target {
-        message_functor(my_name, target.name())
-    }
-    else {
-        message_functor(my_name, &"another value".to_owned())
-    }
-}
 
 impl Event {
     pub fn print_message_with_name(&self, my_name: &String) -> String {
@@ -335,6 +363,7 @@ impl Event {
             RefGoOutOfScope => {
                 hover_messages::event_dot_ref_go_out_out_scope(my_name)
             }
+            // arrow going out
             Duplicate{ to } => {
                 safe_message(hover_messages::event_dot_copy_to, my_name, to)
             }
@@ -353,6 +382,7 @@ impl Event {
             MutableReturn{ to } => {
                 safe_message(hover_messages::event_dot_mut_return, my_name, to)
             }
+            // arrow going in
             Acquire{ from } => {
                 safe_message(hover_messages::event_dot_acquire, my_name, from)
             }
@@ -444,12 +474,10 @@ impl Visualizable for VisualizationData {
 
             (State::FullPrivilege, Event::MutableLend{ to: to_ro }) =>
                 if self.is_mut(hash) { State::RevokedPrivilege{ to: None, borrow_to: to_ro.to_owned() } } else { State::Invalid },
-
+            
+            // happends when a mutable reference returns, invalid otherwise
             (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
-                State::RevokedPrivilege {
-                    to: to_ro.to_owned(),
-                    borrow_to: None
-                },
+                State::OutOfScope,
         
             // this looks impossible?
             // (State::FullPrivilege, Event::MutableReacquire{ from: ro }) =>

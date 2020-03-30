@@ -19,7 +19,7 @@ fn main() {
         lifetime_trait: LifetimeTrait::Copy,
     }));
     let s2 = Some(ResourceOwner::Variable(Variable {
-        hash: 6,
+        hash: 3,
         name: String::from("s2"),
         is_mut: false,
         is_ref: false,
@@ -33,7 +33,7 @@ fn main() {
         lifetime_trait: LifetimeTrait::Move,
     }));
     let length = Some(ResourceOwner::Variable(Variable {
-        hash: 8,
+        hash: 5,
         name: String::from("length"),
         is_mut: false,
         is_ref: false,
@@ -41,15 +41,15 @@ fn main() {
     }));
     // Functions
     let calculate_length = Some(ResourceOwner::Function(Function {
-        hash: 3,
+        hash: 6,
         name: String::from("calculate_length()"),
     }));
     let string_ctor = Some(ResourceOwner::Function(Function {
-        hash: 5,
+        hash: 7,
         name: String::from("String::from()"),
     }));
     let len_func = Some(ResourceOwner::Function(Function {
-        hash: 7,
+        hash: 8,
         name: String::from("len()"),
     }));
     let println_func = ResourceOwner::Function(Function {
@@ -69,8 +69,8 @@ fn main() {
     vd.append_external_event(ExternalEvent::Duplicate{from: calculate_length.clone(), to: s2.clone()}, &(4 as usize));
     vd.append_external_event(ExternalEvent::Duplicate{from: calculate_length.clone(), to: len.clone()}, &(4 as usize));
 
-    vd.append_external_event(ExternalEvent::PassByStaticReference{from: s2.clone(), to: len_func.clone()}, &(6 as usize));
-    vd.append_external_event(ExternalEvent::PassByStaticReference{from: len.clone(), to: len_func.clone()}, &(6 as usize));
+    vd.append_external_event(ExternalEvent::PassByStaticReference{from: s2.clone(), to: Some(println_func.clone())}, &(6 as usize));
+    vd.append_external_event(ExternalEvent::PassByStaticReference{from: len.clone(), to: Some(println_func.clone())}, &(6 as usize));
     
     vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : s1.unwrap().clone() },  &(7 as usize));
     vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : len.unwrap().clone() },  &(7 as usize));

@@ -5,7 +5,7 @@ use std::collections::BTreeMap;
 fn main() {
     // Variables
     let s = Some(ResourceOwner::Variable(Variable {
-        hash: 4,
+        hash: 1,
         name: String::from("s"),
         is_mut: false,
         is_ref: true,
@@ -13,9 +13,10 @@ fn main() {
     }));
     // Functions
     let len_func = Some(ResourceOwner::Function(Function {
-        hash: 6,
+        hash: 2,
         name: String::from("len()"),
     }));
+
     // Data
     let mut vd = VisualizationData {
         timelines: BTreeMap::new(),

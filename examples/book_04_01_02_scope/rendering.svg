@@ -168,17 +168,22 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="880" y="90" data-hash="4"><title>s, immutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="880" y="90" data-hash="1"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="4" class="solid" x1="880" x2="880" y1="125" y2="185"><title>has read only privilege to the real data</title></line>
+<<<<<<< refs/remotes/fplab/dev
+        <line data-hash="1" class="solid" x1="880" x2="880" y1="125" y2="185"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="880" x2="880" y1="130" y2="180"><title>has read only privilege to the real data</title></line>
+=======
+        <line data-hash="4" class="solid" x1="880" x2="880" y1="125" y2="185"><title>s is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="880" x2="880" y1="130" y2="180"><title>s is the unique value that can access the data in memory; can only read data</title></line>
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="4" x="880" y="125"><title>obtains data from another value (s's lifetime begins from here)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="880" y="185"><title>s goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="880" y="125"><title>obtains data from another value (s's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="880" y="185"><title>s goes out of scope. The data is dropped.</title></use>
     </g>
 
     <g id="arrows">
@@ -191,7 +196,7 @@ text.functionIcon {
     <g id="code">
         <text class="code" x="20" y="90"> fn main() { </text>
         <text class="code" x="20" y="110">     {                      // s is not valid here, it’s not yet declared </text>
-        <text class="code" x="20" y="130">         let <tspan data-hash="4">s</tspan> = "hello";   // s is valid from this point forward </text>
+        <text class="code" x="20" y="130">         let <tspan data-hash="1">s</tspan> = "hello";   // s is valid from this point forward </text>
         <text class="code" x="20" y="150">  </text>
         <text class="code" x="20" y="170">         // do stuff with s </text>
         <text class="code" x="20" y="190">     }                      // this scope is now over, and s is no longer valid </text>

@@ -4,14 +4,14 @@ use std::collections::BTreeMap;
 
 fn main() {
     let x = ResourceOwner::Variable(Variable {
-        hash: 3,
+        hash: 1,
         name: String::from("x"),
         is_mut: false,
         is_ref: false,
         lifetime_trait: LifetimeTrait::Copy
     });
     let y = ResourceOwner::Variable(Variable {
-        hash: 4,
+        hash: 2,
         name: String::from("y"),
         is_mut: false,
         is_ref: false,

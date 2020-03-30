@@ -181,8 +181,8 @@ text.functionIcon {
 
     <g id="events">
         <use xlink:href="#eventDot" data-hash="1" x="587" y="105"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="587" y="145"><title>Mutable lend to String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="587" y="145"><title>Fully reacquires resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="587" y="145"><title>Mutable lend to push_str()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="587" y="145"><title>Fully reacquires resource from push_str()</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="587" y="185"><title>Partially lends resource to println!()</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="587" y="185"><title>Partially reacquires resource from println!()</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="587" y="205"><title>Goes out of scope</title></use>
@@ -190,7 +190,7 @@ text.functionIcon {
 
     <g id="arrows">
         <text x="613" y="110" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="610,105 600,105 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
-        <use xlink:href="#functionDot" data-hash="1" x="587" y="145"><title>String::from() reads from/writes to s</title></use>
+        <use xlink:href="#functionDot" data-hash="1" x="587" y="145"><title>push_str() reads from/writes to s</title></use>
         <use xlink:href="#functionDot" data-hash="1" x="587" y="185"><title>println!() reads from s</title></use>
     </g>
 

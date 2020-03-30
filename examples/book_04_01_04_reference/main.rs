@@ -14,8 +14,12 @@ fn main() {
         hash: 2,
         name: String::from("String::from()"),
     });
-    let println_func = ResourceOwner::Function(Function {
+    let push_str = ResourceOwner::Function(Function {
         hash: 3,
+        name: String::from("push_str()"),
+    });
+    let println_func = ResourceOwner::Function(Function {
+        hash: 4,
         name: String::from("println!()"),
     });
     let mut vd = VisualizationData {
@@ -26,7 +30,7 @@ fn main() {
     // hash s : 1
     //
     vd.append_external_event(ExternalEvent::Move{from: Some(from_func.to_owned()), to: Some(s.clone())}, &(2 as usize));
-    vd.append_external_event(ExternalEvent::PassByMutableReference{from: Some(s.clone()), to: Some(from_func.to_owned())}, &(4 as usize));
+    vd.append_external_event(ExternalEvent::PassByMutableReference{from: Some(s.clone()), to: Some(push_str.to_owned())}, &(4 as usize));
     vd.append_external_event(ExternalEvent::PassByStaticReference{from: Some(s.clone()), to: Some(println_func.to_owned())}, &(6 as usize));
     vd.append_external_event(ExternalEvent::GoOutOfScope{ ro: s.clone() }, &(7 as usize));
 

@@ -7,12 +7,12 @@ use std::io;
 use std::cmp;
 
 pub fn set_divider_pos(lines: io::Lines<io::BufReader<File>>) -> i64 {
-    let x = 20;
+    let x = 30;
     let mut x_space = 100;
     for line in lines {
         if let Ok(line_string) = line {
             // read max line length
-            x_space = cmp::max(x_space, x+(line_string.clone().to_string().len() as i64)*7);
+            x_space = cmp::max(x_space, x+(line_string.clone().to_string().len() as i64)*10);
         }
     }
     x_space

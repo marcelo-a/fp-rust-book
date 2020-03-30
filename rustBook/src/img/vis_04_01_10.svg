@@ -168,47 +168,47 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="349" y="90" data-hash="3"><title>x, immutable</title>x</text>
-        <text style="text-anchor:middle" class="code" x="419" y="90" data-hash="4"><title>y, immutable</title>y</text>
+        <text style="text-anchor:middle" class="code" x="540" y="90" data-hash="4"><title>y, immutable</title>y</text>
+        <text style="text-anchor:middle" class="code" x="470" y="90" data-hash="3"><title>x, immutable</title>x</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="3" class="solid" x1="349" x2="349" y1="105" y2="125"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="349" x2="349" y1="110" y2="120"><title>has read only privilege to the real data</title></line>
-        <line data-hash="3" class="solid" x1="349" x2="349" y1="125" y2="165"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="349" x2="349" y1="130" y2="160"><title>has read only privilege to the real data</title></line>
-        <line data-hash="3" class="solid" x1="349" x2="349" y1="165" y2="165"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="349" x2="349" y1="170" y2="160"><title>has read only privilege to the real data</title></line>
-        <line data-hash="3" class="solid" x1="349" x2="349" y1="165" y2="185"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="349" x2="349" y1="170" y2="180"><title>has read only privilege to the real data</title></line>
-        <line data-hash="4" class="solid" x1="419" x2="419" y1="125" y2="165"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="419" x2="419" y1="130" y2="160"><title>has read only privilege to the real data</title></line>
-        <line data-hash="4" class="solid" x1="419" x2="419" y1="165" y2="165"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="419" x2="419" y1="170" y2="160"><title>has read only privilege to the real data</title></line>
-        <line data-hash="4" class="solid" x1="419" x2="419" y1="165" y2="185"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="419" x2="419" y1="170" y2="180"><title>has read only privilege to the real data</title></line>
+        <line data-hash="3" class="solid" x1="470" x2="470" y1="105" y2="125"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="470" x2="470" y1="110" y2="120"><title>has read only privilege to the real data</title></line>
+        <line data-hash="3" class="solid" x1="470" x2="470" y1="125" y2="165"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="470" x2="470" y1="130" y2="160"><title>has read only privilege to the real data</title></line>
+        <line data-hash="3" class="solid" x1="470" x2="470" y1="165" y2="165"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="470" x2="470" y1="170" y2="160"><title>has read only privilege to the real data</title></line>
+        <line data-hash="3" class="solid" x1="470" x2="470" y1="165" y2="185"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="470" x2="470" y1="170" y2="180"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="540" x2="540" y1="125" y2="165"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="540" x2="540" y1="130" y2="160"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="540" x2="540" y1="165" y2="165"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="540" x2="540" y1="170" y2="160"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="540" x2="540" y1="165" y2="185"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="540" x2="540" y1="170" y2="180"><title>has read only privilege to the real data</title></line>
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="3" x="349" y="105"><title>copies it's value to another value (x keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="349" y="125"><title>copies it's value to y (x keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="349" y="165"><title>copies it's value to println!() (x keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="349" y="165"><title>copies it's value to println!() (x keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="349" y="185"><title>x goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="419" y="125"><title>copies it's value to x (y keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="419" y="165"><title>copies it's value to println!() (y keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="419" y="165"><title>copies it's value to println!() (y keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="419" y="185"><title>y goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="470" y="105"><title>copies it's value to another value (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="470" y="125"><title>copies it's value to y (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="470" y="165"><title>copies it's value to println!() (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="470" y="165"><title>copies it's value to println!() (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="470" y="185"><title>x goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="540" y="125"><title>copies it's value to x (y keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="540" y="165"><title>copies it's value to println!() (y keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="540" y="165"><title>copies it's value to println!() (y keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="540" y="185"><title>y goes out of scope. The data is dropped.</title></use>
     </g>
 
     <g id="arrows">
-        <polyline stroke-width="5" stroke="gray" points="349,125 409,125 " marker-end="url(#arrowHead)"><title>Duplicate from x to y</title></polyline>
-        <use xlink:href="#functionDot" data-hash="3" x="349" y="165"><title>println!() reads from x</title></use>
-        <use xlink:href="#functionDot" data-hash="4" x="419" y="165"><title>println!() reads from y</title></use>
+        <polyline stroke-width="5" stroke="gray" points="470,125 530,125 " marker-end="url(#arrowHead)"><title>Duplicate from x to y</title></polyline>
+        <use xlink:href="#functionDot" data-hash="3" x="470" y="165"><title>println!() reads from x</title></use>
+        <use xlink:href="#functionDot" data-hash="4" x="540" y="165"><title>println!() reads from y</title></use>
     </g>
 
     <g id="dividers">
-            <line stroke="gray" stroke-width="2" x1="279" x2="279" y1="70" y2="200"/>
+            <line stroke="gray" stroke-width="2" x1="400" x2="400" y1="70" y2="200"/>
     </g>
 
     <g id="code">

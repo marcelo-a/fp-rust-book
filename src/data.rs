@@ -444,12 +444,10 @@ impl Visualizable for VisualizationData {
 
             (State::FullPrivilege, Event::MutableLend{ to: to_ro }) =>
                 if self.is_mut(hash) { State::RevokedPrivilege{ to: None, borrow_to: to_ro.to_owned() } } else { State::Invalid },
-
+            
+            // happends when a mutable reference returns, invalid otherwise
             (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
-                State::RevokedPrivilege {
-                    to: to_ro.to_owned(),
-                    borrow_to: None
-                },
+                State::OutOfScope,
         
             // this looks impossible?
             // (State::FullPrivilege, Event::MutableReacquire{ from: ro }) =>

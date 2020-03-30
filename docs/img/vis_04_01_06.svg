@@ -168,29 +168,29 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="174" y="90" data-hash="4"><title>y, immutable</title>y</text>
-        <text style="text-anchor:middle" class="code" x="244" y="90" data-hash="3"><title>x, immutable</title>x</text>
+        <text style="text-anchor:middle" class="code" x="174" y="90" data-hash="3"><title>x, immutable</title>x</text>
+        <text style="text-anchor:middle" class="code" x="244" y="90" data-hash="4"><title>y, immutable</title>y</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="3" class="solid" x1="244" x2="244" y1="105" y2="125"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="244" x2="244" y1="110" y2="120"><title>has read only privilege to the real data</title></line>
-        <line data-hash="3" class="solid" x1="244" x2="244" y1="125" y2="145"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="244" x2="244" y1="130" y2="140"><title>has read only privilege to the real data</title></line>
-        <line data-hash="4" class="solid" x1="174" x2="174" y1="125" y2="145"><title>has read only privilege to the real data</title></line>
+        <line data-hash="3" class="solid" x1="174" x2="174" y1="105" y2="125"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="174" x2="174" y1="110" y2="120"><title>has read only privilege to the real data</title></line>
+        <line data-hash="3" class="solid" x1="174" x2="174" y1="125" y2="145"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="174" x2="174" y1="130" y2="140"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="244" x2="244" y1="125" y2="145"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="244" x2="244" y1="130" y2="140"><title>has read only privilege to the real data</title></line>
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="3" x="244" y="105"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="244" y="125"><title>Copying resource to y</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="244" y="145"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="174" y="125"><title>Acquiring resource from x</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="174" y="145"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="174" y="105"><title>Acquiring resource</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="174" y="125"><title>Copying resource to y</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="174" y="145"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="244" y="125"><title>Acquiring resource from x</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="244" y="145"><title>Goes out of scope</title></use>
     </g>
 
     <g id="arrows">
-        <polyline stroke-width="5" stroke="gray" points="244,125 184,125 " marker-end="url(#arrowHead)"><title>Duplicate from x to y</title></polyline>
+        <polyline stroke-width="5" stroke="gray" points="174,125 234,125 " marker-end="url(#arrowHead)"><title>Duplicate from x to y</title></polyline>
     </g>
 
     <g id="dividers">

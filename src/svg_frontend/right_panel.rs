@@ -149,8 +149,7 @@ fn prepare_registry(registry: &mut Handlebars) {
 fn compute_column_layout<'a>(visualization_data: &'a VisualizationData, divider_x_pos: i64) -> (HashMap<&'a u64, TimelineColumnData>, i32) {
     let mut resource_owners_layout = HashMap::new();
     let mut x = divider_x_pos;                   // Right-most Column x-offset.
-    // let x_end = 0;
-    for (hash, timeline) in visualization_data.timelines.iter().rev() {
+    for (hash, timeline) in visualization_data.timelines.iter() {
         // only put variable in the column layout
         if let ResourceOwner::Variable(_) = timeline.resource_owner {
             let name = match visualization_data.get_name_from_hash(hash) {
@@ -159,7 +158,6 @@ fn compute_column_layout<'a>(visualization_data: &'a VisualizationData, divider_
             };
             let x_space = cmp::max(70, (&(name.len() as i64)-1)*10);
             x = x + x_space;
-            // x_end = cmp::max(x_end, x),
             let title = match visualization_data.is_mut(hash) {
                 true => String::from("mutable"),
                 false => String::from("immutable"),

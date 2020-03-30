@@ -168,69 +168,69 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="760" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
-        <text style="text-anchor:middle" class="code" x="550" y="90" data-hash="6"><title>s2, immutable</title>s2</text>
         <text style="text-anchor:middle" class="code" x="620" y="90" data-hash="4"><title>s, immutable</title>s</text>
-        <text style="text-anchor:middle" class="code" x="690" y="90" data-hash="2"><title>len, immutable</title>len</text>
-        <text style="text-anchor:middle" class="code" x="480" y="90" data-hash="8"><title>length, immutable</title>length</text>
+        <text style="text-anchor:middle" class="code" x="480" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="760" y="90" data-hash="8"><title>length, immutable</title>length</text>
+        <text style="text-anchor:middle" class="code" x="690" y="90" data-hash="6"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="550" y="90" data-hash="2"><title>len, immutable</title>len</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid" x1="760" x2="760" y1="105" y2="145"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="760" x2="760" y1="110" y2="140"><title>has read only privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="760" x2="760" y1="145" y2="145"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="760" x2="760" y1="150" y2="140"><title>has read only privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="760" x2="760" y1="145" y2="205"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="760" x2="760" y1="150" y2="200"><title>has read only privilege to the real data</title></line>
-        <line data-hash="2" class="solid" x1="690" x2="690" y1="145" y2="185"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="690" x2="690" y1="150" y2="180"><title>has read only privilege to the real data</title></line>
-        <line data-hash="2" class="solid" x1="690" x2="690" y1="185" y2="185"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="690" x2="690" y1="190" y2="180"><title>has read only privilege to the real data</title></line>
-        <line data-hash="2" class="solid" x1="690" x2="690" y1="185" y2="205"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="690" x2="690" y1="190" y2="200"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="480" x2="480" y1="105" y2="145"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="480" x2="480" y1="110" y2="140"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="480" x2="480" y1="145" y2="145"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="480" x2="480" y1="150" y2="140"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="480" x2="480" y1="145" y2="205"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="480" x2="480" y1="150" y2="200"><title>has read only privilege to the real data</title></line>
+        <line data-hash="2" class="solid" x1="550" x2="550" y1="145" y2="185"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="550" x2="550" y1="150" y2="180"><title>has read only privilege to the real data</title></line>
+        <line data-hash="2" class="solid" x1="550" x2="550" y1="185" y2="185"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="550" x2="550" y1="190" y2="180"><title>has read only privilege to the real data</title></line>
+        <line data-hash="2" class="solid" x1="550" x2="550" y1="185" y2="205"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="550" x2="550" y1="190" y2="200"><title>has read only privilege to the real data</title></line>
         <line data-hash="4" class="solid" x1="620" x2="620" y1="245" y2="265"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="620" x2="620" y1="250" y2="260"><title>has read only privilege to the real data</title></line>
         <line data-hash="4" class="solid" x1="620" x2="620" y1="265" y2="265"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="620" x2="620" y1="270" y2="260"><title>has read only privilege to the real data</title></line>
         <line data-hash="4" class="solid" x1="620" x2="620" y1="265" y2="305"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="620" x2="620" y1="270" y2="300"><title>has read only privilege to the real data</title></line>
-        <line data-hash="6" class="solid" x1="550" x2="550" y1="145" y2="185"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="550" x2="550" y1="150" y2="180"><title>has read only privilege to the real data</title></line>
-        <line data-hash="6" class="solid" x1="550" x2="550" y1="185" y2="185"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="550" x2="550" y1="190" y2="180"><title>has read only privilege to the real data</title></line>
-        <line data-hash="8" class="solid" x1="480" x2="480" y1="265" y2="305"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="480" x2="480" y1="270" y2="300"><title>has read only privilege to the real data</title></line>
+        <line data-hash="6" class="solid" x1="690" x2="690" y1="145" y2="185"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="690" x2="690" y1="150" y2="180"><title>has read only privilege to the real data</title></line>
+        <line data-hash="6" class="solid" x1="690" x2="690" y1="185" y2="185"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="690" x2="690" y1="190" y2="180"><title>has read only privilege to the real data</title></line>
+        <line data-hash="8" class="solid" x1="760" x2="760" y1="265" y2="305"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="760" x2="760" y1="270" y2="300"><title>has read only privilege to the real data</title></line>
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="760" y="105"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="760" y="145"><title>Partially lends resource to calculate_length()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="760" y="145"><title>Partially reacquires resource from calculate_length()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="760" y="205"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="690" y="145"><title>Acquiring resource from calculate_length()</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="690" y="185"><title>Partially lends resource to len()</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="690" y="185"><title>Partially reacquires resource from len()</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="690" y="205"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="480" y="105"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="480" y="145"><title>Partially lends resource to calculate_length()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="480" y="145"><title>Partially reacquires resource from calculate_length()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="480" y="205"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="550" y="145"><title>Acquiring resource from calculate_length()</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="550" y="185"><title>Partially lends resource to len()</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="550" y="185"><title>Partially reacquires resource from len()</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="550" y="205"><title>Goes out of scope</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="620" y="245"><title>Acquiring resource</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="620" y="265"><title>Partially lends resource to len()</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="620" y="265"><title>Partially reacquires resource from len()</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="620" y="305"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="6" x="550" y="145"><title>Acquiring resource from calculate_length()</title></use>
-        <use xlink:href="#eventDot" data-hash="6" x="550" y="185"><title>Partially lends resource to len()</title></use>
-        <use xlink:href="#eventDot" data-hash="6" x="550" y="185"><title>Partially reacquires resource from len()</title></use>
-        <use xlink:href="#eventDot" data-hash="8" x="480" y="265"><title>Acquiring resource from len()</title></use>
-        <use xlink:href="#eventDot" data-hash="8" x="480" y="305"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="690" y="145"><title>Acquiring resource from calculate_length()</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="690" y="185"><title>Partially lends resource to len()</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="690" y="185"><title>Partially reacquires resource from len()</title></use>
+        <use xlink:href="#eventDot" data-hash="8" x="760" y="265"><title>Acquiring resource from len()</title></use>
+        <use xlink:href="#eventDot" data-hash="8" x="760" y="305"><title>Goes out of scope</title></use>
     </g>
 
     <g id="arrows">
-        <text x="786" y="110" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="783,105 773,105 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s1</title></polyline>
-        <use xlink:href="#functionDot" data-hash="1" x="760" y="145"><title>calculate_length() reads from s1</title></use>
-        <text x="576" y="150" font-size = "20" font-style="italic" class="heavy" ><title>calculate_length()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="573,145 563,145 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length() to s2</title></polyline>
-        <text x="716" y="150" font-size = "20" font-style="italic" class="heavy" ><title>calculate_length()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="713,145 703,145 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length() to len</title></polyline>
-        <use xlink:href="#functionDot" data-hash="6" x="550" y="185"><title>len() reads from s2</title></use>
-        <use xlink:href="#functionDot" data-hash="2" x="690" y="185"><title>len() reads from len</title></use>
+        <text x="506" y="110" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="503,105 493,105 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s1</title></polyline>
+        <use xlink:href="#functionDot" data-hash="1" x="480" y="145"><title>calculate_length() reads from s1</title></use>
+        <text x="716" y="150" font-size = "20" font-style="italic" class="heavy" ><title>calculate_length()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="713,145 703,145 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length() to s2</title></polyline>
+        <text x="576" y="150" font-size = "20" font-style="italic" class="heavy" ><title>calculate_length()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="573,145 563,145 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length() to len</title></polyline>
+        <use xlink:href="#functionDot" data-hash="6" x="690" y="185"><title>len() reads from s2</title></use>
+        <use xlink:href="#functionDot" data-hash="2" x="550" y="185"><title>len() reads from len</title></use>
         <use xlink:href="#functionDot" data-hash="4" x="620" y="265"><title>len() reads from s</title></use>
-        <text x="506" y="270" font-size = "20" font-style="italic" class="heavy" ><title>len()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="503,265 493,265 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of len() to length</title></polyline>
+        <text x="786" y="270" font-size = "20" font-style="italic" class="heavy" ><title>len()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="783,265 773,265 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of len() to length</title></polyline>
     </g>
 
     <g id="dividers">

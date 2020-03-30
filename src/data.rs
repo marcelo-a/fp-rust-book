@@ -318,10 +318,10 @@ fn safe_message(
     some_target: &Option<ResourceOwner>
 ) -> String {
     if let Some(target) = some_target {
-        hover_messages::event_dot_copy_to(my_name, target.name())
+        message_functor(my_name, target.name())
     }
     else {
-        hover_messages::event_dot_copy_to(my_name, &"another value".to_owned())
+        message_functor(my_name, &"another value".to_owned())
     }
 }
 

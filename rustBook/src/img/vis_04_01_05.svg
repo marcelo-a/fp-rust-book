@@ -168,20 +168,21 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="870" y="90" data-hash="4"><title>s, immutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="870" y="90" data-hash="1"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="4" class="solid" x1="870" x2="870" y1="125" y2="185"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="870" x2="870" y1="125" y2="185"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="870" x2="870" y1="130" y2="180"><title>has read only privilege to the real data</title></line>
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="4" x="870" y="125"><title>copies it's value to another value (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="870" y="185"><title>s goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="870" y="125"><title>obtains data from String::from() (s's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="870" y="185"><title>s goes out of scope. The data is dropped.</title></use>
     </g>
 
     <g id="arrows">
+        <text x="896" y="130" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="893,125 883,125 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
     </g>
 
     <g id="dividers">

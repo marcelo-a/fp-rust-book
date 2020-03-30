@@ -168,8 +168,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="410" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="480" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="410" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -178,9 +178,9 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="410" y="105"><title>copies it's value to String::from() (s1 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="410" y="125"><title>copies it's value to s2 (s1 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="480" y="125"><title>copies it's value to s1 (s2 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="410" y="105"><title>obtains data from String::from() (s1's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="410" y="125"><title>moves it's value to s2 (s1 lost ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="480" y="125"><title>obtains data from s1 (s2's lifetime begins from here)</title></use>
     </g>
 
     <g id="arrows">

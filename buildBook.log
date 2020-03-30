@@ -1,88 +1,5 @@
 Running the following examples: 
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-warning: unused imports: `Formatter`, `Result`
- --> src/hover_messages.rs:1:16
-  |
-1 | use std::fmt::{Formatter, Result};
-  |                ^^^^^^^^^  ^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `message_functor`
- --> src/data.rs:316:5
-  |
-31|     message_functor: fn(&String, &String) -> String,
-  |     ^^^^^^^^^^^^^^^ help: consider prefixing with an underscore: `_message_functor`
-  |
-  = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:440:61
-    |
-440 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:467:96
-    |
-467 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:481:97
-    |
-481 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:504:93
-    |
-504 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:506:40
-    |
-506 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:531:18
-    |
-531 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:529:37
-    |
-529 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
- --> src/svg_frontend/right_panel.rs:222:1
-  |
-22| / fn render_arrows_string(
-22| |     visualization_data: &VisualizationData,
-22| |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
-22| |     registry: &Handlebars
-... |
-27| |     output
-27| | }
-  | |_^
-  |
-  = note: `#[warn(dead_code)]` on by default
-
-warning: the `borrow_to:` in this pattern is redundant
- --> src/data.rs:469:62
-  |
-46|             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-  |                                                              ----------^^^^^^^^^^
-  |                                                              |
-  |                                                              help: remove this
-  |
-  = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 1.03s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.04s
      Running `target/debug/examples/one_var`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
@@ -265,7 +182,7 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="4" x="440" y="105"><title>copies it's value to String::from() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="440" y="105"><title>obtains data from String::from() (s's lifetime begins from here)</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="440" y="125"><title>s goes out of scope. The data is dropped.</title></use>
     </g>
 
@@ -287,16 +204,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_01_one_var/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_01.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-warning: unused import: `Function`
- --> examples/book_04_01_02_scope/main.rs:1:76
-  |
-1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, VisualizationData, Visualizable};
-  |                                                                            ^^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.68s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.05s
      Running `target/debug/examples/scope`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
@@ -479,7 +387,7 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="4" x="880" y="125"><title>copies it's value to another value (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="880" y="125"><title>obtains data from another value (s's lifetime begins from here)</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="880" y="185"><title>s goes out of scope. The data is dropped.</title></use>
     </g>
 
@@ -504,8 +412,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_02_scope/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_02.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.70s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.08s
      Running `target/debug/examples/string_from`
 s 1 2 OutOfScope
 <svg width="750" height="170px" 
@@ -685,7 +592,7 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="400" y="105"><title>copies it's value to String::from() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="400" y="105"><title>obtains data from String::from() (s's lifetime begins from here)</title></use>
     </g>
 
     <g id="arrows">
@@ -705,8 +612,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_03_string_from/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_03.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.72s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/reference`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -896,11 +802,11 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="810" y="105"><title>copies it's value to String::from() (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="810" y="145"><title>copies it's value to push_str() (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="810" y="145"><title>copies it's value to push_str() (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="810" y="185"><title>copies it's value to println!() (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="810" y="185"><title>copies it's value to println!() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="810" y="105"><title>obtains data from String::from() (s's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="810" y="145"><title>mutably lends its data to push_str() (s becomes un-readable until the end of push_str()'s lifetime)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="810" y="145"><title>push_str() is no longer a mutable referece of s, so we may read and write the data</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="810" y="185"><title>statically lends its data to println!() (s becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="810" y="185"><title>println!() no longer borrows from s</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="810" y="205"><title>s goes out of scope. The data is dropped.</title></use>
     </g>
 
@@ -929,15 +835,7 @@ text.functionIcon {
 successfully wrote to examples/book_04_01_04_reference/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_04.svg
    Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-warning: unused import: `Function`
- --> examples/book_04_01_05_scope2/main.rs:1:76
-  |
-1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, VisualizationData, Visualizable};
-  |                                                                            ^^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.96s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.66s
      Running `target/debug/examples/scope2`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
@@ -1111,20 +1009,21 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="870" y="90" data-hash="4"><title>s, immutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="870" y="90" data-hash="1"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="4" class="solid" x1="870" x2="870" y1="125" y2="185"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="870" x2="870" y1="125" y2="185"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="870" x2="870" y1="130" y2="180"><title>has read only privilege to the real data</title></line>
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="4" x="870" y="125"><title>copies it's value to another value (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="870" y="185"><title>s goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="870" y="125"><title>obtains data from String::from() (s's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="870" y="185"><title>s goes out of scope. The data is dropped.</title></use>
     </g>
 
     <g id="arrows">
+        <text x="896" y="130" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="893,125 883,125 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
     </g>
 
     <g id="dividers">
@@ -1146,16 +1045,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_05_scope2/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_05.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-warning: unused import: `Function`
- --> examples/book_04_01_06_int_copy/main.rs:1:76
-  |
-1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, VisualizationData, Visualizable};
-  |                                                                            ^^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.84s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/int_copy`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -1346,10 +1236,10 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="3" x="240" y="105"><title>copies it's value to another value (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="240" y="105"><title>obtains data from another value (x's lifetime begins from here)</title></use>
         <use xlink:href="#eventDot" data-hash="3" x="240" y="125"><title>copies it's value to y (x keeps ownership)</title></use>
         <use xlink:href="#eventDot" data-hash="3" x="240" y="145"><title>x goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="310" y="125"><title>copies it's value to x (y keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="310" y="125"><title>obtains data from x (y's lifetime begins from here)</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="310" y="145"><title>y goes out of scope. The data is dropped.</title></use>
     </g>
 
@@ -1372,8 +1262,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_06_int_copy/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_06.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 1.23s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
      Running `target/debug/examples/string_move`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -1548,8 +1437,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="410" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="480" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="410" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -1558,9 +1447,9 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="410" y="105"><title>copies it's value to String::from() (s1 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="410" y="125"><title>copies it's value to s2 (s1 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="480" y="125"><title>copies it's value to s1 (s2 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="410" y="105"><title>obtains data from String::from() (s1's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="410" y="125"><title>moves it's value to s2 (s1 lost ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="480" y="125"><title>obtains data from s1 (s2's lifetime begins from here)</title></use>
     </g>
 
     <g id="arrows">
@@ -1582,8 +1471,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_07_string_move/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_07.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.63s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/string_clone`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -1783,14 +1671,14 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="470" y="105"><title>copies it's value to String::from() (s1 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="470" y="125"><title>copies it's value to clone() (s1 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="470" y="125"><title>copies it's value to clone() (s1 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="470" y="165"><title>copies it's value to println!() (s1 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="470" y="165"><title>copies it's value to println!() (s1 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="540" y="125"><title>copies it's value to clone() (s2 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="540" y="165"><title>copies it's value to println!() (s2 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="540" y="165"><title>copies it's value to println!() (s2 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="470" y="105"><title>obtains data from String::from() (s1's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="470" y="125"><title>statically lends its data to clone() (s1 becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="470" y="125"><title>clone() no longer borrows from s1</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="470" y="165"><title>statically lends its data to println!() (s1 becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="470" y="165"><title>println!() no longer borrows from s1</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="540" y="125"><title>obtains data from clone() (s2's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="540" y="165"><title>statically lends its data to println!() (s2 becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="540" y="165"><title>println!() no longer borrows from s2</title></use>
     </g>
 
     <g id="arrows">
@@ -1817,8 +1705,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_09_string_clone/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_09.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.75s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/int_copy_2`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -1999,8 +1886,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="540" y="90" data-hash="4"><title>y, immutable</title>y</text>
         <text style="text-anchor:middle" class="code" x="470" y="90" data-hash="3"><title>x, immutable</title>x</text>
+        <text style="text-anchor:middle" class="code" x="540" y="90" data-hash="4"><title>y, immutable</title>y</text>
     </g>
 
     <g id="timelines">
@@ -2021,14 +1908,14 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="3" x="470" y="105"><title>copies it's value to another value (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="470" y="105"><title>obtains data from another value (x's lifetime begins from here)</title></use>
         <use xlink:href="#eventDot" data-hash="3" x="470" y="125"><title>copies it's value to y (x keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="470" y="165"><title>copies it's value to println!() (x keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="470" y="165"><title>copies it's value to println!() (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="470" y="165"><title>statically lends its data to println!() (x becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="470" y="165"><title>println!() no longer borrows from x</title></use>
         <use xlink:href="#eventDot" data-hash="3" x="470" y="185"><title>x goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="540" y="125"><title>copies it's value to x (y keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="540" y="165"><title>copies it's value to println!() (y keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="540" y="165"><title>copies it's value to println!() (y keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="540" y="125"><title>obtains data from x (y's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="540" y="165"><title>statically lends its data to println!() (y becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="540" y="165"><title>println!() no longer borrows from y</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="540" y="185"><title>y goes out of scope. The data is dropped.</title></use>
     </g>
 
@@ -2055,8 +1942,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_10_int_copy_2/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_10.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.61s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
      Running `target/debug/examples/ownership_function`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -2242,10 +2128,10 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="970" y="90" data-hash="4"><title>x, immutable</title>x</text>
-        <text style="text-anchor:middle" class="code" x="900" y="90" data-hash="1"><title>s, immutable</title>s</text>
-        <text style="text-anchor:middle" class="code" x="1070" y="90" data-hash="6"><title>some_string, immutable</title>some_string</text>
         <text style="text-anchor:middle" class="code" x="1180" y="90" data-hash="7"><title>some_integer, immutable</title>some_integer</text>
+        <text style="text-anchor:middle" class="code" x="900" y="90" data-hash="1"><title>s, immutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="970" y="90" data-hash="4"><title>x, immutable</title>x</text>
+        <text style="text-anchor:middle" class="code" x="1070" y="90" data-hash="6"><title>some_string, immutable</title>some_string</text>
     </g>
 
     <g id="timelines">
@@ -2270,19 +2156,19 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="900" y="105"><title>copies it's value to String::from() (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="900" y="145"><title>copies it's value to takes_ownership() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="900" y="105"><title>obtains data from String::from() (s's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="900" y="145"><title>moves it's value to takes_ownership() (s lost ownership)</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="900" y="325"><title>s goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="970" y="205"><title>copies it's value to another value (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="970" y="205"><title>obtains data from another value (x's lifetime begins from here)</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="970" y="245"><title>copies it's value to makes_copy() (x keeps ownership)</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="970" y="325"><title>x goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="6" x="1070" y="385"><title>copies it's value to another value (some_string keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="6" x="1070" y="405"><title>copies it's value to println!() (some_string keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="6" x="1070" y="405"><title>copies it's value to println!() (some_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="1070" y="385"><title>obtains data from another value (some_string's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="1070" y="405"><title>statically lends its data to println!() (some_string becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="1070" y="405"><title>println!() no longer borrows from some_string</title></use>
         <use xlink:href="#eventDot" data-hash="6" x="1070" y="425"><title>some_string goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="7" x="1180" y="485"><title>copies it's value to another value (some_integer keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="7" x="1180" y="505"><title>copies it's value to println!() (some_integer keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="7" x="1180" y="505"><title>copies it's value to println!() (some_integer keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="1180" y="485"><title>obtains data from another value (some_integer's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="1180" y="505"><title>statically lends its data to println!() (some_integer becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="1180" y="505"><title>println!() no longer borrows from some_integer</title></use>
         <use xlink:href="#eventDot" data-hash="7" x="1180" y="525"><title>some_integer goes out of scope. The data is dropped.</title></use>
     </g>
 
@@ -2328,8 +2214,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_11_ownership_function/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_11.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.68s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
      Running `target/debug/examples/return_values`
 s1 1 2 OutOfScope
 s1 2 10 FullPrivilege
@@ -2514,9 +2399,9 @@ text.functionIcon {
     </g>
 
     <g id="labels">
+        <text style="text-anchor:middle" class="code" x="1120" y="90" data-hash="5"><title>s3, immutable</title>s3</text>
         <text style="text-anchor:middle" class="code" x="880" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="1050" y="90" data-hash="4"><title>s2, immutable</title>s2</text>
-        <text style="text-anchor:middle" class="code" x="1120" y="90" data-hash="5"><title>s3, immutable</title>s3</text>
         <text style="text-anchor:middle" class="code" x="980" y="90" data-hash="3"><title>some_string, immutable</title>some_string</text>
         <text style="text-anchor:middle" class="code" x="1190" y="90" data-hash="7"><title>a_string, immutable</title>a_string</text>
     </g>
@@ -2535,18 +2420,18 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="880" y="105"><title>copies it's value to gives_ownership() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="880" y="105"><title>obtains data from gives_ownership() (s1's lifetime begins from here)</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="880" y="265"><title>s1 goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="980" y="405"><title>copies it's value to another value (some_string keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="980" y="445"><title>copies it's value to another value (some_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="980" y="405"><title>obtains data from another value (some_string's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="980" y="445"><title>moves it's value to another value (some_string lost ownership)</title></use>
         <use xlink:href="#eventDot" data-hash="3" x="980" y="505"><title>some_string goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="1050" y="165"><title>copies it's value to another value (s2 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="1050" y="205"><title>copies it's value to takes_and_gives_back() (s2 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="1050" y="165"><title>obtains data from another value (s2's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="1050" y="205"><title>moves it's value to takes_and_gives_back() (s2 lost ownership)</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="1050" y="265"><title>s2 goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="5" x="1120" y="205"><title>copies it's value to takes_and_gives_back() (s3 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="5" x="1120" y="205"><title>obtains data from takes_and_gives_back() (s3's lifetime begins from here)</title></use>
         <use xlink:href="#eventDot" data-hash="5" x="1120" y="265"><title>s3 goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="7" x="1190" y="565"><title>copies it's value to another value (a_string keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="7" x="1190" y="625"><title>copies it's value to another value (a_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="1190" y="565"><title>obtains data from another value (a_string's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="1190" y="625"><title>moves it's value to another value (a_string lost ownership)</title></use>
         <use xlink:href="#eventDot" data-hash="7" x="1190" y="645"><title>a_string goes out of scope. The data is dropped.</title></use>
     </g>
 
@@ -2596,16 +2481,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_12_return_values/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_12.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-warning: unused variable: `println_func`
- --> examples/book_04_01_13_return_tuple/main.rs:55:9
-  |
-55|     let println_func = ResourceOwner::Function(Function {
-  |         ^^^^^^^^^^^^ help: consider prefixing with an underscore: `_println_func`
-  |
-  = note: `#[warn(unused_variables)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 1.90s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.05s
      Running `target/debug/examples/return_tuple`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -2794,11 +2670,11 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="750" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="960" y="90" data-hash="6"><title>s2, immutable</title>s2</text>
-        <text style="text-anchor:middle" class="code" x="890" y="90" data-hash="4"><title>s, immutable</title>s</text>
-        <text style="text-anchor:middle" class="code" x="820" y="90" data-hash="2"><title>len, immutable</title>len</text>
         <text style="text-anchor:middle" class="code" x="1030" y="90" data-hash="8"><title>length, immutable</title>length</text>
+        <text style="text-anchor:middle" class="code" x="750" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="820" y="90" data-hash="2"><title>len, immutable</title>len</text>
+        <text style="text-anchor:middle" class="code" x="890" y="90" data-hash="4"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
@@ -2829,22 +2705,22 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="750" y="105"><title>copies it's value to String::from() (s1 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="750" y="145"><title>copies it's value to calculate_length() (s1 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="750" y="145"><title>copies it's value to calculate_length() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="750" y="105"><title>obtains data from String::from() (s1's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="750" y="145"><title>statically lends its data to calculate_length() (s1 becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="750" y="145"><title>calculate_length() no longer borrows from s1</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="750" y="205"><title>s1 goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="820" y="145"><title>copies it's value to calculate_length() (len keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="820" y="185"><title>copies it's value to len() (len keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="820" y="185"><title>copies it's value to len() (len keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="820" y="145"><title>obtains data from calculate_length() (len's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="820" y="185"><title>statically lends its data to len() (len becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="820" y="185"><title>len() no longer borrows from len</title></use>
         <use xlink:href="#eventDot" data-hash="2" x="820" y="205"><title>len goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="890" y="245"><title>copies it's value to another value (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="890" y="265"><title>copies it's value to len() (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="890" y="265"><title>copies it's value to len() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="890" y="245"><title>obtains data from another value (s's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="890" y="265"><title>statically lends its data to len() (s becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="890" y="265"><title>len() no longer borrows from s</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="890" y="305"><title>s goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="6" x="960" y="145"><title>copies it's value to calculate_length() (s2 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="6" x="960" y="185"><title>copies it's value to len() (s2 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="6" x="960" y="185"><title>copies it's value to len() (s2 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="8" x="1030" y="265"><title>copies it's value to len() (length keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="960" y="145"><title>obtains data from calculate_length() (s2's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="960" y="185"><title>statically lends its data to len() (s2 becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="960" y="185"><title>len() no longer borrows from s2</title></use>
+        <use xlink:href="#eventDot" data-hash="8" x="1030" y="265"><title>obtains data from len() (length's lifetime begins from here)</title></use>
         <use xlink:href="#eventDot" data-hash="8" x="1030" y="305"><title>length goes out of scope. The data is dropped.</title></use>
     </g>
 
@@ -2883,8 +2759,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_13_return_tuple/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_13.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 1.56s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
      Running `target/debug/examples/pass_reference`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -3089,15 +2964,15 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="610" y="105"><title>copies it's value to String::from() (s1 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="610" y="145"><title>copies it's value to calculate_length() (s1 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="610" y="145"><title>copies it's value to calculate_length() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="610" y="105"><title>obtains data from String::from() (s1's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="610" y="145"><title>statically lends its data to calculate_length() (s1 becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="610" y="145"><title>calculate_length() no longer borrows from s1</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="610" y="205"><title>s1 goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="680" y="145"><title>copies it's value to calculate_length() (len keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="680" y="145"><title>obtains data from calculate_length() (len's lifetime begins from here)</title></use>
         <use xlink:href="#eventDot" data-hash="2" x="680" y="205"><title>len goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="750" y="245"><title>copies it's value to another value (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="750" y="265"><title>copies it's value to len() (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="750" y="265"><title>copies it's value to len() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="750" y="245"><title>obtains data from another value (s's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="750" y="265"><title>statically lends its data to len() (s becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="750" y="265"><title>len() no longer borrows from s</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="750" y="285"><title>s goes out of scope. The data is not dropped because s is not the owner.</title></use>
     </g>
 
@@ -3130,22 +3005,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_02_01_pass_reference/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_01.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-warning: unused variable: `s`
- --> examples/book_04_02_02_acquire_from_function/main.rs:21:9
-  |
-21|     let s = Some(ResourceOwner::Variable(Variable {
-  |         ^ help: consider prefixing with an underscore: `_s`
-  |
-  = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `len_func`
-  --> examples/book_04_02_02_acquire_from_function/main.rs:37:9
-   |
-37 |     let len_func = Some(ResourceOwner::Function(Function {
-   |         ^^^^^^^^ help: consider prefixing with an underscore: `_len_func`
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.85s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
      Running `target/debug/examples/acquire_from_function`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -3333,10 +3193,10 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="420" y="105"><title>copies it's value to String::from() (s1 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="420" y="145"><title>copies it's value to calculate_length() (s1 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="420" y="145"><title>copies it's value to calculate_length() (s1 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="490" y="145"><title>copies it's value to calculate_length() (len keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="420" y="105"><title>obtains data from String::from() (s1's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="420" y="145"><title>statically lends its data to calculate_length() (s1 becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="420" y="145"><title>calculate_length() no longer borrows from s1</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="490" y="145"><title>obtains data from calculate_length() (len's lifetime begins from here)</title></use>
     </g>
 
     <g id="arrows">
@@ -3360,8 +3220,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_02_02_acquire_from_function/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_02.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.64s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/safely_out_of_scope`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
@@ -3550,9 +3409,9 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="4" x="880" y="105"><title>copies it's value to another value (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="880" y="125"><title>copies it's value to len() (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="880" y="125"><title>copies it's value to len() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="880" y="105"><title>obtains data from another value (s's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="880" y="125"><title>statically lends its data to len() (s becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="880" y="125"><title>len() no longer borrows from s</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="880" y="145"><title>s goes out of scope. The data is not dropped because s is not the owner.</title></use>
     </g>
 
@@ -3576,8 +3435,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_02_03_safely_out_of_scope/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_03.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.63s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.04s
      Running `target/debug/examples/mut_ref`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -3757,8 +3615,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="480" y="90" data-hash="1"><title>s, mutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="580" y="90" data-hash="4"><title>some_string, mutable</title>some_string</text>
+        <text style="text-anchor:middle" class="code" x="480" y="90" data-hash="1"><title>s, mutable</title>s</text>
     </g>
 
     <g id="timelines">
@@ -3773,13 +3631,13 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="480" y="105"><title>copies it's value to String::from() (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="480" y="145"><title>copies it's value to change() (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="480" y="145"><title>copies it's value to change() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="480" y="105"><title>obtains data from String::from() (s's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="480" y="145"><title>statically lends its data to change() (s becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="480" y="145"><title>change() no longer borrows from s</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="480" y="165"><title>s goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="580" y="205"><title>copies it's value to another value (some_string keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="580" y="225"><title>copies it's value to push_str() (some_string keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="580" y="225"><title>copies it's value to push_str() (some_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="580" y="205"><title>obtains data from another value (some_string's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="580" y="225"><title>statically lends its data to push_str() (some_string becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="580" y="225"><title>push_str() no longer borrows from some_string</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="580" y="245"><title>some_string goes out of scope. The data is not dropped because some_string is not the owner.</title></use>
     </g>
 
@@ -3809,8 +3667,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_02_05_mut_ref/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_05.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.98s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
      Running `target/debug/examples/scope_reference`
 s 1 2 OutOfScope
 s 2 5 FullPrivilege
@@ -3990,9 +3847,9 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="970" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
-        <text style="text-anchor:middle" class="code" x="1040" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
         <text style="text-anchor:middle" class="code" x="900" y="90" data-hash="1"><title>s, mutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="1040" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
+        <text style="text-anchor:middle" class="code" x="970" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
     </g>
 
     <g id="timelines">
@@ -4003,12 +3860,12 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="900" y="105"><title>copies it's value to String::from() (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="900" y="165"><title>copies it's value to r1 (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="900" y="185"><title>copies it's value to r1 (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="900" y="245"><title>copies it's value to r2 (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="900" y="105"><title>obtains data from String::from() (s's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="900" y="165"><title>mutably lends its data to r1 (s becomes un-readable until the end of r1's lifetime)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="900" y="185"><title>r1 is no longer a mutable referece of s, so we may read and write the data</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="900" y="245"><title>mutably lends its data to r2 (s becomes un-readable until the end of r2's lifetime)</title></use>
         <use xlink:href="#eventDot" data-hash="2" x="970" y="165"><title>mutably borrows data from s (r1 gains read and write access to data)</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="970" y="185"><title>copies it's value to s (r1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="970" y="185"><title>returns borrowed data to s (r1's lifetime ends here)</title></use>
         <use xlink:href="#eventDot" data-hash="2" x="970" y="185"><title>r1 goes out of scope. The data is not dropped because r1 is not the owner.</title></use>
         <use xlink:href="#eventDot" data-hash="3" x="1040" y="245"><title>mutably borrows data from s (r2 gains read and write access to data)</title></use>
     </g>
@@ -4040,8 +3897,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_02_07_scope_reference/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_07.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 1.05s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/shared_and_unique_borrow`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -4236,10 +4092,10 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="690" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
         <text style="text-anchor:middle" class="code" x="620" y="90" data-hash="1"><title>s, mutable</title>s</text>
-        <text style="text-anchor:middle" class="code" x="760" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
         <text style="text-anchor:middle" class="code" x="830" y="90" data-hash="4"><title>r3, immutable</title>r3</text>
+        <text style="text-anchor:middle" class="code" x="690" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
+        <text style="text-anchor:middle" class="code" x="760" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
     </g>
 
     <g id="timelines">
@@ -4273,28 +4129,28 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="620" y="105"><title>copies it's value to String::from() (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="620" y="145"><title>copies it's value to r1 (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="620" y="165"><title>copies it's value to r2 (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="620" y="185"><title>copies it's value to r1 (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="620" y="185"><title>copies it's value to r2 (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="620" y="245"><title>copies it's value to r3 (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="620" y="265"><title>copies it's value to r3 (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="620" y="105"><title>obtains data from String::from() (s's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="620" y="145"><title>statically lends its data to r1 (s becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="620" y="165"><title>statically lends its data to r2 (s becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="620" y="185"><title>r1 no longer borrows from s</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="620" y="185"><title>r2 no longer borrows from s</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="620" y="245"><title>mutably lends its data to r3 (s becomes un-readable until the end of r3's lifetime)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="620" y="265"><title>r3 is no longer a mutable referece of s, so we may read and write the data</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="620" y="305"><title>s goes out of scope. The data is dropped.</title></use>
         <use xlink:href="#eventDot" data-hash="2" x="690" y="145"><title>statically borrows data from s (r1 gains read only access to data)</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="690" y="185"><title>copies it's value to println!() (r1 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="690" y="185"><title>copies it's value to println!() (r1 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="690" y="185"><title>copies it's value to s (r1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="690" y="185"><title>statically lends its data to println!() (r1 becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="690" y="185"><title>println!() no longer borrows from r1</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="690" y="185"><title>returns borrowed data to s (r1's lifetime ends here)</title></use>
         <use xlink:href="#eventDot" data-hash="2" x="690" y="305"><title>r1 goes out of scope. The data is not dropped because r1 is not the owner.</title></use>
         <use xlink:href="#eventDot" data-hash="3" x="760" y="165"><title>statically borrows data from s (r2 gains read only access to data)</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="760" y="185"><title>copies it's value to println!() (r2 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="760" y="185"><title>copies it's value to println!() (r2 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="760" y="185"><title>copies it's value to s (r2 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="760" y="185"><title>statically lends its data to println!() (r2 becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="760" y="185"><title>println!() no longer borrows from r2</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="760" y="185"><title>returns borrowed data to s (r2's lifetime ends here)</title></use>
         <use xlink:href="#eventDot" data-hash="3" x="760" y="305"><title>r2 goes out of scope. The data is not dropped because r2 is not the owner.</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="830" y="245"><title>mutably borrows data from s (r3 gains read and write access to data)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="830" y="265"><title>copies it's value to println!() (r3 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="830" y="265"><title>copies it's value to println!() (r3 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="830" y="265"><title>copies it's value to s (r3 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="830" y="265"><title>statically lends its data to println!() (r3 becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="830" y="265"><title>println!() no longer borrows from r3</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="830" y="265"><title>returns borrowed data to s (r3's lifetime ends here)</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="830" y="305"><title>r3 goes out of scope. The data is not dropped because r3 is not the owner.</title></use>
     </g>
 
@@ -4334,8 +4190,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_02_09_shared_and_unique_borrow/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_09.svg
-   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.76s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
      Running `target/debug/examples/no_dangle`
 s 1 2 OutOfScope
 s 2 5 FullPrivilege
@@ -4518,8 +4373,8 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="440" y="105"><title>copies it's value to String::from() (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="440" y="165"><title>copies it's value to another value (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="440" y="105"><title>obtains data from String::from() (s's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="440" y="165"><title>moves it's value to another value (s lost ownership)</title></use>
     </g>
 
     <g id="arrows">

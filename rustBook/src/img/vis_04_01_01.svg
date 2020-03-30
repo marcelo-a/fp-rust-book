@@ -177,7 +177,7 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="4" x="440" y="105"><title>copies it's value to String::from() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="440" y="105"><title>obtains data from String::from() (s's lifetime begins from here)</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="440" y="125"><title>s goes out of scope. The data is dropped.</title></use>
     </g>
 

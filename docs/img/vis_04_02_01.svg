@@ -191,15 +191,15 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="610" y="105"><title>copies it's value to String::from() (s1 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="610" y="145"><title>copies it's value to calculate_length() (s1 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="610" y="145"><title>copies it's value to calculate_length() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="610" y="105"><title>obtains data from String::from() (s1's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="610" y="145"><title>statically lends its data to calculate_length() (s1 becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="610" y="145"><title>calculate_length() no longer borrows from s1</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="610" y="205"><title>s1 goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="680" y="145"><title>copies it's value to calculate_length() (len keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="680" y="145"><title>obtains data from calculate_length() (len's lifetime begins from here)</title></use>
         <use xlink:href="#eventDot" data-hash="2" x="680" y="205"><title>len goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="750" y="245"><title>copies it's value to another value (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="750" y="265"><title>copies it's value to len() (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="750" y="265"><title>copies it's value to len() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="750" y="245"><title>obtains data from another value (s's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="750" y="265"><title>statically lends its data to len() (s becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="750" y="265"><title>len() no longer borrows from s</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="750" y="285"><title>s goes out of scope. The data is not dropped because s is not the owner.</title></use>
     </g>
 

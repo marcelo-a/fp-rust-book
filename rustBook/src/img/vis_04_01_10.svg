@@ -168,8 +168,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="540" y="90" data-hash="4"><title>y, immutable</title>y</text>
         <text style="text-anchor:middle" class="code" x="470" y="90" data-hash="3"><title>x, immutable</title>x</text>
+        <text style="text-anchor:middle" class="code" x="540" y="90" data-hash="4"><title>y, immutable</title>y</text>
     </g>
 
     <g id="timelines">
@@ -190,14 +190,14 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="3" x="470" y="105"><title>copies it's value to another value (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="470" y="105"><title>obtains data from another value (x's lifetime begins from here)</title></use>
         <use xlink:href="#eventDot" data-hash="3" x="470" y="125"><title>copies it's value to y (x keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="470" y="165"><title>copies it's value to println!() (x keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="470" y="165"><title>copies it's value to println!() (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="470" y="165"><title>statically lends its data to println!() (x becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="470" y="165"><title>println!() no longer borrows from x</title></use>
         <use xlink:href="#eventDot" data-hash="3" x="470" y="185"><title>x goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="540" y="125"><title>copies it's value to x (y keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="540" y="165"><title>copies it's value to println!() (y keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="540" y="165"><title>copies it's value to println!() (y keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="540" y="125"><title>obtains data from x (y's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="540" y="165"><title>statically lends its data to println!() (y becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="540" y="165"><title>println!() no longer borrows from y</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="540" y="185"><title>y goes out of scope. The data is dropped.</title></use>
     </g>
 

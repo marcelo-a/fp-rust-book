@@ -180,10 +180,10 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="420" y="105"><title>copies it's value to String::from() (s1 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="420" y="145"><title>copies it's value to calculate_length() (s1 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="420" y="145"><title>copies it's value to calculate_length() (s1 keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="490" y="145"><title>copies it's value to calculate_length() (len keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="420" y="105"><title>obtains data from String::from() (s1's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="420" y="145"><title>statically lends its data to calculate_length() (s1 becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="420" y="145"><title>calculate_length() no longer borrows from s1</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="490" y="145"><title>obtains data from calculate_length() (len's lifetime begins from here)</title></use>
     </g>
 
     <g id="arrows">

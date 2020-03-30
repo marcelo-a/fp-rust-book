@@ -181,9 +181,9 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="4" x="880" y="105"><title>copies it's value to another value (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="880" y="125"><title>copies it's value to len() (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="880" y="125"><title>copies it's value to len() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="880" y="105"><title>obtains data from another value (s's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="880" y="125"><title>statically lends its data to len() (s becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="880" y="125"><title>len() no longer borrows from s</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="880" y="145"><title>s goes out of scope. The data is not dropped because s is not the owner.</title></use>
     </g>
 

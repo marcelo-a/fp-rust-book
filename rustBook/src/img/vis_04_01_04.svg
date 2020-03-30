@@ -180,11 +180,11 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="810" y="105"><title>copies it's value to String::from() (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="810" y="145"><title>copies it's value to push_str() (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="810" y="145"><title>copies it's value to push_str() (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="810" y="185"><title>copies it's value to println!() (s keeps ownership)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="810" y="185"><title>copies it's value to println!() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="810" y="105"><title>obtains data from String::from() (s's lifetime begins from here)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="810" y="145"><title>mutably lends its data to push_str() (s becomes un-readable until the end of push_str()'s lifetime)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="810" y="145"><title>push_str() is no longer a mutable referece of s, so we may read and write the data</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="810" y="185"><title>statically lends its data to println!() (s becomes read-only)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="810" y="185"><title>println!() no longer borrows from s</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="810" y="205"><title>s goes out of scope. The data is dropped.</title></use>
     </g>
 

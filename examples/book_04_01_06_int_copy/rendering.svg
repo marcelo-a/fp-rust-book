@@ -182,10 +182,10 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="3" x="240" y="105"><title>copies it's value to another value (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="240" y="105"><title>obtains data from another value (x's lifetime begins from here)</title></use>
         <use xlink:href="#eventDot" data-hash="3" x="240" y="125"><title>copies it's value to y (x keeps ownership)</title></use>
         <use xlink:href="#eventDot" data-hash="3" x="240" y="145"><title>x goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="310" y="125"><title>copies it's value to x (y keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="310" y="125"><title>obtains data from x (y's lifetime begins from here)</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="310" y="145"><title>y goes out of scope. The data is dropped.</title></use>
     </g>
 

@@ -168,8 +168,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="240" y="90" data-hash="1"><title>x, immutable</title>x</text>
         <text style="text-anchor:middle" class="code" x="310" y="90" data-hash="2"><title>y, immutable</title>y</text>
+        <text style="text-anchor:middle" class="code" x="240" y="90" data-hash="1"><title>x, immutable</title>x</text>
     </g>
 
     <g id="timelines">

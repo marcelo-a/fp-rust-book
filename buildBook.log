@@ -972,7 +972,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/reference`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -1588,7 +1588,7 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/int_copy`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -1765,8 +1765,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="240" y="90" data-hash="1"><title>x, immutable</title>x</text>
         <text style="text-anchor:middle" class="code" x="310" y="90" data-hash="2"><title>y, immutable</title>y</text>
+        <text style="text-anchor:middle" class="code" x="240" y="90" data-hash="1"><title>x, immutable</title>x</text>
     </g>
 
     <g id="timelines">
@@ -1893,7 +1893,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
      Running `target/debug/examples/string_move`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -2068,8 +2068,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="410" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="480" y="90" data-hash="2"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="410" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -2512,7 +2512,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/int_copy_2`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -3024,9 +3024,9 @@ text.functionIcon {
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="1070" y="90" data-hash="3"><title>some_string, immutable</title>some_string</text>
-        <text style="text-anchor:middle" class="code" x="900" y="90" data-hash="1"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="970" y="90" data-hash="2"><title>x, immutable</title>x</text>
         <text style="text-anchor:middle" class="code" x="1180" y="90" data-hash="4"><title>some_integer, immutable</title>some_integer</text>
+        <text style="text-anchor:middle" class="code" x="900" y="90" data-hash="1"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
@@ -3197,7 +3197,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
      Running `target/debug/examples/return_values`
 s1 1 2 OutOfScope
 s1 2 10 FullPrivilege
@@ -3382,11 +3382,11 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="1020" y="90" data-hash="3"><title>s3, immutable</title>s3</text>
-        <text style="text-anchor:middle" class="code" x="950" y="90" data-hash="2"><title>s2, immutable</title>s2</text>
-        <text style="text-anchor:middle" class="code" x="1190" y="90" data-hash="5"><title>a_string, immutable</title>a_string</text>
         <text style="text-anchor:middle" class="code" x="880" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="950" y="90" data-hash="2"><title>s2, immutable</title>s2</text>
         <text style="text-anchor:middle" class="code" x="1120" y="90" data-hash="4"><title>some_string, immutable</title>some_string</text>
+        <text style="text-anchor:middle" class="code" x="1020" y="90" data-hash="3"><title>s3, immutable</title>s3</text>
+        <text style="text-anchor:middle" class="code" x="1190" y="90" data-hash="5"><title>a_string, immutable</title>a_string</text>
     </g>
 
     <g id="timelines">
@@ -3552,7 +3552,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/return_tuple`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -3741,11 +3741,11 @@ text.functionIcon {
     </g>
 
     <g id="labels">
+        <text style="text-anchor:middle" class="code" x="750" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="1030" y="90" data-hash="5"><title>length, immutable</title>length</text>
-        <text style="text-anchor:middle" class="code" x="890" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
         <text style="text-anchor:middle" class="code" x="960" y="90" data-hash="4"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="820" y="90" data-hash="2"><title>len, immutable</title>len</text>
-        <text style="text-anchor:middle" class="code" x="750" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="890" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
     </g>
 
     <g id="timelines">
@@ -3918,7 +3918,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
      Running `target/debug/examples/pass_reference`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -4100,9 +4100,9 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="680" y="90" data-hash="2"><title>len, immutable</title>len</text>
-        <text style="text-anchor:middle" class="code" x="610" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="750" y="90" data-hash="3"><title>s, immutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="610" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="680" y="90" data-hash="2"><title>len, immutable</title>len</text>
     </g>
 
     <g id="timelines">
@@ -4252,8 +4252,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.54s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
      Running `target/debug/examples/acquire_from_function`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -5039,8 +5038,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="480" y="90" data-hash="1"><title>s, mutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="580" y="90" data-hash="2"><title>some_string, mutable</title>some_string</text>
+        <text style="text-anchor:middle" class="code" x="480" y="90" data-hash="1"><title>s, mutable</title>s</text>
     </g>
 
     <g id="timelines">
@@ -5359,9 +5358,9 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="900" y="90" data-hash="1"><title>s, mutable</title>s</text>
-        <text style="text-anchor:middle" class="code" x="970" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
         <text style="text-anchor:middle" class="code" x="1040" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
+        <text style="text-anchor:middle" class="code" x="970" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
+        <text style="text-anchor:middle" class="code" x="900" y="90" data-hash="1"><title>s, mutable</title>s</text>
     </g>
 
     <g id="timelines">
@@ -5692,10 +5691,10 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="760" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
-        <text style="text-anchor:middle" class="code" x="690" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
-        <text style="text-anchor:middle" class="code" x="830" y="90" data-hash="4"><title>r3, immutable</title>r3</text>
         <text style="text-anchor:middle" class="code" x="620" y="90" data-hash="1"><title>s, mutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="690" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
+        <text style="text-anchor:middle" class="code" x="760" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
+        <text style="text-anchor:middle" class="code" x="830" y="90" data-hash="4"><title>r3, immutable</title>r3</text>
     </g>
 
     <g id="timelines">

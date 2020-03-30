@@ -11,7 +11,7 @@ value:
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust hidden
+```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-07-reference/src/main.rs:all}}
 ```
 <div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_01.svg" style="width: auto;" >
@@ -38,7 +38,7 @@ s1`</span>
 
 Let’s take a closer look at the function call here:
 
-```rust hidden
+```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-07-reference/src/main.rs:here}}
 ```
 <div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_02.svg" style="width: auto;" >
@@ -52,7 +52,7 @@ not be dropped when the reference goes out of scope.
 Likewise, the signature of the function uses `&` to indicate that the type of
 the parameter `s` is a reference. Let’s add some explanatory annotations:
 
-```rust hidden
+```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-08-reference-with-annotations/src/main.rs:here}}
 ```
 <div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_03.svg" style="width: auto;" >
@@ -95,7 +95,7 @@ We can fix the error in the code from Listing 4-6 with just a small tweak:
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust hidden
+```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-09-fixes-listing-04-06/src/main.rs}}
 ```
 <div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_05.svg" style="width: auto;" >

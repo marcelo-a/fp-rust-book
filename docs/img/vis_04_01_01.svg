@@ -168,25 +168,25 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="294" y="90" data-hash="4"><title>s, immutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="328" y="90" data-hash="4"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="4" class="solid" x1="294" x2="294" y1="105" y2="125"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="294" x2="294" y1="110" y2="120"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="328" x2="328" y1="105" y2="125"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="328" x2="328" y1="110" y2="120"><title>has read only privilege to the real data</title></line>
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="4" x="294" y="105"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="294" y="125"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="328" y="105"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="328" y="125"><title>Goes out of scope</title></use>
     </g>
 
     <g id="arrows">
-        <text x="320" y="110" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="317,105 307,105 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
+        <text x="354" y="110" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="351,105 341,105 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
     </g>
 
     <g id="dividers">
-            <line stroke="gray" stroke-width="2" x1="224" x2="224" y1="70" y2="140"/>
+            <line stroke="gray" stroke-width="2" x1="258" x2="258" y1="70" y2="140"/>
     </g>
 
     <g id="code">

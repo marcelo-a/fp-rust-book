@@ -168,28 +168,28 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="276" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
-        <text style="text-anchor:middle" class="code" x="346" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="377" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="307" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid" x1="276" x2="276" y1="105" y2="125"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="276" x2="276" y1="110" y2="120"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="307" x2="307" y1="105" y2="125"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="307" x2="307" y1="110" y2="120"><title>has read only privilege to the real data</title></line>
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="276" y="105"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="276" y="125"><title>Moving resource to s2</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="346" y="125"><title>Acquiring resource from s1</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="307" y="105"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="307" y="125"><title>Moving resource to s2</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="377" y="125"><title>Acquiring resource from s1</title></use>
     </g>
 
     <g id="arrows">
-        <text x="302" y="110" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="299,105 289,105 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of String::from() to s1</title></polyline>
-        <polyline stroke-width="5" stroke="gray" points="276,125 336,125 " marker-end="url(#arrowHead)"><title>Move from s1 to s2</title></polyline>
+        <text x="333" y="110" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="330,105 320,105 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of String::from() to s1</title></polyline>
+        <polyline stroke-width="5" stroke="gray" points="307,125 367,125 " marker-end="url(#arrowHead)"><title>Move from s1 to s2</title></polyline>
     </g>
 
     <g id="dividers">
-            <line stroke="gray" stroke-width="2" x1="206" x2="206" y1="70" y2="140"/>
+            <line stroke="gray" stroke-width="2" x1="237" x2="237" y1="70" y2="140"/>
     </g>
 
     <g id="code">

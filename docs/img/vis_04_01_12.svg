@@ -169,8 +169,8 @@ text.functionIcon {
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="1120" y="90" data-hash="5"><title>s3, immutable</title>s3</text>
-        <text style="text-anchor:middle" class="code" x="880" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="1050" y="90" data-hash="4"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="880" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="980" y="90" data-hash="3"><title>some_string, immutable</title>some_string</text>
         <text style="text-anchor:middle" class="code" x="1190" y="90" data-hash="7"><title>a_string, immutable</title>a_string</text>
     </g>

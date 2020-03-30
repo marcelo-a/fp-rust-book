@@ -3659,7 +3659,7 @@ call to <code>calculate_length</code>, because the <code>String</code> was moved
 reference to an object as a parameter instead of taking ownership of the
 value:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
-<pre><pre class="playpen"><code class="language-rusthidden">fn main() {
+<pre><pre class="playpen"><code class="language-rust hidden">fn main() {
     let s1 = String::from(&quot;hello&quot;);
 
     let len = calculate_length(&amp;s1);
@@ -3689,7 +3689,7 @@ dereference operator in Chapter 8 and discuss details of dereferencing in
 Chapter 15.</p>
 </blockquote>
 <p>Let’s take a closer look at the function call here:</p>
-<pre><pre class="playpen"><code class="language-rusthidden"><span class="boring">fn main() {
+<pre><pre class="playpen"><code class="language-rust hidden"><span class="boring">fn main() {
 </span>    let s1 = String::from(&quot;hello&quot;);
 
     let len = calculate_length(&amp;s1);
@@ -3709,7 +3709,7 @@ but does not own it. Because it does not own it, the value it points to will
 not be dropped when the reference goes out of scope.</p>
 <p>Likewise, the signature of the function uses <code>&amp;</code> to indicate that the type of
 the parameter <code>s</code> is a reference. Let’s add some explanatory annotations:</p>
-<pre><pre class="playpen"><code class="language-rusthidden"><span class="boring">fn main() {
+<pre><pre class="playpen"><code class="language-rust hidden"><span class="boring">fn main() {
 </span><span class="boring">    let s1 = String::from(&quot;hello&quot;);
 </span><span class="boring">
 </span><span class="boring">    let len = calculate_length(&amp;s1);
@@ -3770,7 +3770,7 @@ allowed to modify something we have a reference to.</p>
 <h3><a class="header" href="#mutable-references" id="mutable-references">Mutable References</a></h3>
 <p>We can fix the error in the code from Listing 4-6 with just a small tweak:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
-<pre><pre class="playpen"><code class="language-rusthidden">fn main() {
+<pre><pre class="playpen"><code class="language-rust hidden">fn main() {
     let mut s = String::from(&quot;hello&quot;);
 
     change(&amp;mut s);

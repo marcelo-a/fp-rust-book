@@ -201,12 +201,15 @@ fn render_dots_string(
     for (hash, timeline) in timelines {
         if let ResourceOwner::Variable(_) = timeline.resource_owner {
             for (line_number, event) in timeline.history.iter() {
-                let data = EventDotData {
+                let mut data = EventDotData {
                     hash: *hash as i64,
                     dot_x: resource_owners_layout[hash].x_val,
                     dot_y: get_y_axis_pos(line_number),
-                    title: event.to_string()
+                    title: "Unknown Resource Owner Value".to_owned()
                 };
+                if let Some(name) = visualization_data.get_name_from_hash(hash) {
+                    data.title = event.print_message_with_name(&name);
+                }
                 output.push_str(&registry.render("dot_template", &data).unwrap());
             }
         }   
@@ -436,66 +439,55 @@ fn render_timelines_string(
                 y1: get_y_axis_pos(line_start),
                 x2: resource_owners_layout[hash].x_val,
                 y2: get_y_axis_pos(line_end),
-                title: String::new()
+                title: state.print_message_with_name(ro.name())
             };
             match (state, ro.is_mut()) {
                 (State::FullPrivilege, true) => {
                     data.line_class = String::from("solid");
                     if ro.is_ref() {
-                        data.title = String::from("has read and write privilege to the reference itself")
-                    }else{
-                        data.title = String::from("has read and write privilege to the real data")
+                        data.title += "; can read and write data; can point to another piece of data";
+                    } else {
+                        data.title += "; can read and write data";
                     }
                     output.push_str(&registry.render("vertical_line_template", &data).unwrap());
                 },
                 (State::FullPrivilege, false) => {
                     data.line_class = String::from("solid");
                     if ro.is_ref() {
-                        data.title = String::from("has read only privilege to the reference itself")
-                    }else{
-                        data.title = String::from("has read only privilege to the real data")
+                        data.title += "; can read and write data; can not point to another piece of data";
+                    } else {
+                        data.title += "; can only read data";
                     }
                     output.push_str(&registry.render("vertical_line_template", &data).unwrap());
+                    
                     let mut hollow_internal_line_data = data.clone();
                     hollow_internal_line_data.y1 += 5;
                     hollow_internal_line_data.y2 -= 5;
-                    if ro.is_ref() {
-                        hollow_internal_line_data.title = String::from("has read only privilege to the reference itself")
-                    }else{
-                        hollow_internal_line_data.title = String::from("has read only privilege to the real data")
-                    }
+                    hollow_internal_line_data.title = data.title;
+                    
                     output.push_str(&registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
                 },
                 (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, _) => {
                     data.line_class = String::from("solid");
-                    if ro.is_ref() {
-                        data.title = String::from("has read only privilege to the reference itself")
-                    }else{
-                        data.title = String::from("has read only privilege to the real data")
-                    }
+                    data.title += "; can only read data";
                     output.push_str(&registry.render("vertical_line_template", &data).unwrap());
+                    
                     let mut hollow_internal_line_data = data.clone();
                     hollow_internal_line_data.y1 += 5;
                     hollow_internal_line_data.y2 -= 5;
-                    if ro.is_ref() {
-                        hollow_internal_line_data.title = String::from("has read only privilege to the reference itself")
-                    }else{
-                        hollow_internal_line_data.title = String::from("has read only privilege to the real data")
-                    }
+                    hollow_internal_line_data.title = data.title;
+
                     output.push_str(&registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
                 },
                 (State::ResourceMoved{ move_to: _, move_at_line: _ }, true) => {
                     data.line_class = String::from("extend");
-                    if ro.is_ref() {
-                        data.title = String::from("its value(reference) has been moved")
-                    }else{
-                        data.title = String::from("its value(data) has been moved")
-                    }
+                    data.title += "; cannot access data";
                     output.push_str(&registry.render("vertical_line_template", &data).unwrap());
                 }
                  // do nothing when the case is (RevokedPrivilege, false), (OutofScope, _), (ResouceMoved, false)
                  _ => (),
             }
+            
         }
         }
     }

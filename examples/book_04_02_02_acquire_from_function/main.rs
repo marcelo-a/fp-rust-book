@@ -18,25 +18,14 @@ fn main() {
         is_ref: false,
         lifetime_trait: LifetimeTrait::Copy,
     }));
-    let s = Some(ResourceOwner::Variable(Variable {
-        hash: 4,
-        name: String::from("s"),
-        is_mut: false,
-        is_ref: true,
-        lifetime_trait: LifetimeTrait::Move,
-    }));
     // Functions
     let calculate_length = Some(ResourceOwner::Function(Function {
         hash: 3,
         name: String::from("calculate_length()"),
     }));
     let string_ctor = Some(ResourceOwner::Function(Function {
-        hash: 5,
+        hash: 4,
         name: String::from("String::from()"),
-    }));
-    let len_func = Some(ResourceOwner::Function(Function {
-        hash: 6,
-        name: String::from("len()"),
     }));
     // Data
     let mut vd = VisualizationData {

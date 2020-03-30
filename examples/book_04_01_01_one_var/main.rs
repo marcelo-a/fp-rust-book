@@ -4,7 +4,7 @@ use std::collections::BTreeMap;
 
 fn main() {
     let s = ResourceOwner::Variable(Variable {
-        hash: 4,
+        hash: 1,
         name: String::from("s"),
         is_mut: false,
         is_ref: false,

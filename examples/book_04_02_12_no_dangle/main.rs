@@ -26,7 +26,7 @@ fn main() {
     // s gets resource from String::from
     vd.append_external_event(ExternalEvent::Move{from: Some(string_ctor.clone()), to: Some(s.clone())}, &(2 as usize));
     // move out as return value, does not render because to=None
-    vd.append_external_event(ExternalEvent::Move{from: Some(s.clone()), to: None}, &(5 as usize));
+    vd.append_external_event(ExternalEvent::Move{from: Some(s.clone()), to: None}, &(4 as usize));
     vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : no_dangle.clone() },  &(5 as usize));
     
     //rendering image

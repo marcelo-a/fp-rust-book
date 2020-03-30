@@ -19,7 +19,7 @@ fn main() {
         lifetime_trait: LifetimeTrait::Copy,
     }));
     let s = Some(ResourceOwner::Variable(Variable {
-        hash: 4,
+        hash: 3,
         name: String::from("s"),
         is_mut: false,
         is_ref: true,
@@ -27,7 +27,7 @@ fn main() {
     }));
     // Functions
     let calculate_length = Some(ResourceOwner::Function(Function {
-        hash: 3,
+        hash: 4,
         name: String::from("calculate_length()"),
     }));
     let string_ctor = Some(ResourceOwner::Function(Function {

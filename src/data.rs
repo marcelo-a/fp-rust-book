@@ -1,5 +1,8 @@
- use std::collections::{HashSet, BTreeMap, HashMap};
+use std::collections::{HashSet, BTreeMap};
 use std::vec::Vec;
+use std::fmt::{Formatter, Result, Display};
+use crate::data::Event::*;
+use crate::hover_messages;
 /**
  * Basic Data Structure Needed by Lifetime Visualization
  */
@@ -208,9 +211,13 @@ pub enum Event {
     StaticReacquire {
         from: Option<ResourceOwner>
     },
-    // this happens when a variable is returned this line,
-    // or if this variable's scope ends at this line.
-    GoOutOfScope,
+    // this happens when a owner is returned this line,
+    // or if this owner's scope ends at this line. The data must be dropped. 
+    OwnerGoOutOfScope,
+    // this happens when a vairable that is not an owner goes out of scope. 
+    // The data is not dropped in this case
+    RefGoOutOfScope
+
 }
 
 // Trait of a resource owner that might impact the way lifetime visualization
@@ -261,7 +268,7 @@ pub enum State {
 }
 
 impl std::fmt::Display for State {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> Result {
         match self {
             State::OutOfScope => write!(f, "OutOfScope"),
             State::ResourceMoved { move_to: _, move_at_line: _ } => write!(f, "ResourceMoved"),
@@ -274,12 +281,53 @@ impl std::fmt::Display for State {
 }
 
 
-impl std::fmt::Display for Event {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+fn safe_message(
+    message_functor: fn(&String, &String) -> String,
+    my_name: &String,
+    some_target: &Option<ResourceOwner>
+) -> String {
+    if let Some(target) = some_target {
+        message_functor(my_name, target.name())
+    }
+    else {
+        message_functor(my_name, &"another value".to_owned())
+    }
+}
+
+
+impl State {
+    pub fn print_message_with_name(&self, my_name: &String) -> String {
+        match self {
+            State::OutOfScope => {
+                hover_messages::state_out_of_scope(my_name)
+            }
+            State::ResourceMoved{ move_to , move_at_line: _ } => {
+                safe_message(hover_messages::state_resource_moved, my_name, move_to)
+            }
+            State::FullPrivilege => {
+                hover_messages::state_full_priviledge(my_name)
+            }
+            State::PartialPrivilege { borrow_count: _, borrow_to: _ } => {
+                hover_messages::state_partial_priviledge(my_name)
+            }
+            State::RevokedPrivilege { to: _, borrow_to } => {
+                safe_message(hover_messages::state_resource_revoked, my_name, borrow_to)
+            }
+            State::Invalid => {
+                hover_messages::state_invalid(my_name)
+            }
+        }
+    }
+}
+
+
+// provide string output for usages like format!("{}", eventA)
+impl Display for Event {
+    fn fmt(&self, f: &mut Formatter) -> Result {       
         let mut from_ro = None;
         let mut to_ro = None;
         let mut display = match self {
-            Event::Acquire{ from } => { from_ro = from.to_owned(); "Acquiring resource" },
+            Event::Acquire{ from } => { from_ro = from.to_owned(); "" },
             Event::Duplicate{ to } => { to_ro = to.to_owned(); "Copying resource" },
             Event::Move{ to } => { to_ro = to.to_owned(); "Moving resource" },
             Event::MutableLend{ to } => { to_ro = to.to_owned(); "Mutable lend" },
@@ -290,7 +338,8 @@ impl std::fmt::Display for Event {
             Event::StaticBorrow{ from } => { from_ro = Some(from.to_owned()); "Partially borrows resource" },
             Event::StaticReturn{ to } => { to_ro = to.to_owned(); "Partially returns resource"},
             Event::StaticReacquire{ from } => { from_ro = from.to_owned(); "Partially reacquires resource" },
-            Event::GoOutOfScope => { "Goes out of scope"}
+            Event::OwnerGoOutOfScope => { "Goes out of Scope as an owner of resource" },
+            Event::RefGoOutOfScope => { "Goes out of Scope as an reference to resource" },
         }.to_string();
 
         if let Some(from_ro) = from_ro {
@@ -299,8 +348,57 @@ impl std::fmt::Display for Event {
         if let Some(to_ro) = to_ro {
             display = format!("{} to {}", display, &(to_ro.name()));
         };
-
         write!(f, "{}", display)
+    }
+}
+
+
+impl Event {
+    pub fn print_message_with_name(&self, my_name: &String) -> String {
+        match self {
+            // no arrow involved
+            OwnerGoOutOfScope => { 
+                hover_messages::event_dot_owner_go_out_out_scope(my_name)
+            }
+            RefGoOutOfScope => {
+                hover_messages::event_dot_ref_go_out_out_scope(my_name)
+            }
+            // arrow going out
+            Duplicate{ to } => {
+                safe_message(hover_messages::event_dot_copy_to, my_name, to)
+            }
+            Move{ to } => {
+                safe_message(hover_messages::event_dot_move_to, my_name, to)
+            }
+            StaticLend{ to } => {
+                safe_message(hover_messages::event_dot_static_lend, my_name, to)
+            }
+            MutableLend{ to } => {
+                safe_message(hover_messages::event_dot_mut_lend, my_name, to)
+            }
+            StaticReturn{ to } => {
+                safe_message(hover_messages::event_dot_static_return, my_name, to)
+            }
+            MutableReturn{ to } => {
+                safe_message(hover_messages::event_dot_mut_return, my_name, to)
+            }
+            // arrow going in
+            Acquire{ from } => {
+                safe_message(hover_messages::event_dot_acquire, my_name, from)
+            }
+            MutableBorrow{ from } => {
+                hover_messages::event_dot_mut_borrow(my_name, from.name())
+            }
+            StaticBorrow{ from } => {
+                hover_messages::event_dot_static_borrow(my_name, from.name())
+            }
+            StaticReacquire{ from } => {
+                safe_message(hover_messages::event_dot_static_reacquire, my_name, from)
+            }
+            MutableReacquire{ from } => {
+                safe_message(hover_messages::event_dot_mut_reacquire, my_name, from)
+            }
+        }
     }
 }
 
@@ -376,12 +474,10 @@ impl Visualizable for VisualizationData {
 
             (State::FullPrivilege, Event::MutableLend{ to: to_ro }) =>
                 if self.is_mut(hash) { State::RevokedPrivilege{ to: None, borrow_to: to_ro.to_owned() } } else { State::Invalid },
-
+            
+            // happends when a mutable reference returns, invalid otherwise
             (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
-                State::RevokedPrivilege {
-                    to: to_ro.to_owned(),
-                    borrow_to: None
-                },
+                State::OutOfScope,
         
             // this looks impossible?
             // (State::FullPrivilege, Event::MutableReacquire{ from: ro }) =>
@@ -429,7 +525,9 @@ impl Visualizable for VisualizationData {
                     }
                 }
 
-            (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::GoOutOfScope) => State::OutOfScope,
+            (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::OwnerGoOutOfScope) => State::OutOfScope,
+
+            (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::RefGoOutOfScope) => State::OutOfScope,
 
             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
 
@@ -563,7 +661,11 @@ impl Visualizable for VisualizationData {
                 maybe_append_event(self, &to_ro, Event::MutableReturn{to : from_ro.to_owned()}, line_number);
             }
             ExternalEvent::GoOutOfScope{ro} => {
-                maybe_append_event(self, &Some(ro), Event::GoOutOfScope, line_number);         
+                if ro.is_ref() {
+                    maybe_append_event(self, &Some(ro), Event::RefGoOutOfScope, line_number);
+                } else {
+                    maybe_append_event(self, &Some(ro), Event::OwnerGoOutOfScope, line_number);
+                }
             }
         }
     }

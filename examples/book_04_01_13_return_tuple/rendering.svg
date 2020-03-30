@@ -168,11 +168,11 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="690" y="90" data-hash="2"><title>len, immutable</title>len</text>
-        <text style="text-anchor:middle" class="code" x="900" y="90" data-hash="5"><title>length, immutable</title>length</text>
-        <text style="text-anchor:middle" class="code" x="760" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
         <text style="text-anchor:middle" class="code" x="830" y="90" data-hash="4"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="620" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="690" y="90" data-hash="2"><title>len, immutable</title>len</text>
+        <text style="text-anchor:middle" class="code" x="760" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="900" y="90" data-hash="5"><title>length, immutable</title>length</text>
     </g>
 
     <g id="timelines">
@@ -192,6 +192,8 @@ text.functionIcon {
         <line class="colorless" stroke-width="8px" x1="760" x2="760" y1="150" y2="180"><title>s2 is the unique value that can access the data in memory; can only read data</title></line>
         <line data-hash="3" class="solid" x1="760" x2="760" y1="185" y2="185"><title>some values are statically referencing to s2; can only read data</title></line>
         <line class="colorless" stroke-width="8px" x1="760" x2="760" y1="190" y2="180"><title>some values are statically referencing to s2; can only read data</title></line>
+        <line data-hash="3" class="solid" x1="760" x2="760" y1="185" y2="205"><title>s2 is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="760" x2="760" y1="190" y2="200"><title>s2 is the unique value that can access the data in memory; can only read data</title></line>
         <line data-hash="4" class="solid" x1="830" x2="830" y1="245" y2="265"><title>s is the unique value that can access the data in memory; can only read data</title></line>
         <line class="colorless" stroke-width="8px" x1="830" x2="830" y1="250" y2="260"><title>s is the unique value that can access the data in memory; can only read data</title></line>
         <line data-hash="4" class="solid" x1="830" x2="830" y1="265" y2="265"><title>some values are statically referencing to s; can only read data</title></line>
@@ -214,6 +216,7 @@ text.functionIcon {
         <use xlink:href="#eventDot" data-hash="3" x="760" y="145"><title>obtains data from calculate_length() (s2's lifetime begins from here)</title></use>
         <use xlink:href="#eventDot" data-hash="3" x="760" y="185"><title>statically lends its data to println!() (s2 becomes read-only)</title></use>
         <use xlink:href="#eventDot" data-hash="3" x="760" y="185"><title>println!() no longer borrows from s2</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="760" y="205"><title>s2 goes out of scope. The data is dropped.</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="830" y="245"><title>obtains data from another value (s's lifetime begins from here)</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="830" y="265"><title>statically lends its data to len() (s becomes read-only)</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="830" y="265"><title>len() no longer borrows from s</title></use>

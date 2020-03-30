@@ -1,5 +1,4 @@
 Running the following examples: 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
 warning: unused imports: `Formatter`, `Result`
  --> src/hover_messages.rs:1:16
   |
@@ -76,7 +75,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 8.75s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
      Running `target/debug/examples/one_var`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
@@ -357,7 +356,6 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
 warning: unused import: `Function`
  --> examples/book_04_01_02_scope/main.rs:1:76
   |
@@ -366,7 +364,7 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 4.66s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/scope`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
@@ -650,8 +648,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.75s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
      Running `target/debug/examples/string_from`
 s 1 2 OutOfScope
 <svg width="750" height="170px" 
@@ -927,8 +924,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.04s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
      Running `target/debug/examples/reference`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -1226,8 +1222,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 3.78s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.23s
      Running `target/debug/examples/scope2`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
@@ -1513,7 +1508,6 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
 warning: unused import: `Function`
  --> examples/book_04_01_06_int_copy/main.rs:1:76
   |
@@ -1522,7 +1516,7 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 3.94s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/int_copy`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -1699,8 +1693,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="282" y="90" data-hash="2"><title>y, immutable</title>y</text>
         <text style="text-anchor:middle" class="code" x="212" y="90" data-hash="1"><title>x, immutable</title>x</text>
+        <text style="text-anchor:middle" class="code" x="282" y="90" data-hash="2"><title>y, immutable</title>y</text>
     </g>
 
     <g id="timelines">
@@ -1815,8 +1809,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.00s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
      Running `target/debug/examples/string_move`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -2101,8 +2094,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.02s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
      Running `target/debug/examples/string_clone`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -2412,8 +2404,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 3.93s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.23s
      Running `target/debug/examples/int_copy_2`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -2594,8 +2585,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="396" y="90" data-hash="1"><title>x, immutable</title>x</text>
         <text style="text-anchor:middle" class="code" x="466" y="90" data-hash="2"><title>y, immutable</title>y</text>
+        <text style="text-anchor:middle" class="code" x="396" y="90" data-hash="1"><title>x, immutable</title>x</text>
     </g>
 
     <g id="timelines">
@@ -2726,8 +2717,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.17s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.26s
      Running `target/debug/examples/ownership_function`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -2913,10 +2903,10 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="810" y="90" data-hash="2"><title>x, immutable</title>x</text>
-        <text style="text-anchor:middle" class="code" x="1020" y="90" data-hash="4"><title>some_integer, immutable</title>some_integer</text>
         <text style="text-anchor:middle" class="code" x="910" y="90" data-hash="3"><title>some_string, immutable</title>some_string</text>
+        <text style="text-anchor:middle" class="code" x="1020" y="90" data-hash="4"><title>some_integer, immutable</title>some_integer</text>
         <text style="text-anchor:middle" class="code" x="740" y="90" data-hash="1"><title>s, immutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="810" y="90" data-hash="2"><title>x, immutable</title>x</text>
     </g>
 
     <g id="timelines">
@@ -3075,8 +3065,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.01s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.26s
      Running `target/debug/examples/return_values`
 s1 1 2 OutOfScope
 s1 2 10 FullPrivilege
@@ -3261,11 +3250,11 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="864" y="90" data-hash="3"><title>s3, immutable</title>s3</text>
         <text style="text-anchor:middle" class="code" x="724" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="1034" y="90" data-hash="5"><title>a_string, immutable</title>a_string</text>
-        <text style="text-anchor:middle" class="code" x="964" y="90" data-hash="4"><title>some_string, immutable</title>some_string</text>
         <text style="text-anchor:middle" class="code" x="794" y="90" data-hash="2"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="864" y="90" data-hash="3"><title>s3, immutable</title>s3</text>
+        <text style="text-anchor:middle" class="code" x="964" y="90" data-hash="4"><title>some_string, immutable</title>some_string</text>
     </g>
 
     <g id="timelines">
@@ -3419,8 +3408,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.46s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.26s
      Running `target/debug/examples/return_tuple`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -3433,6 +3421,7 @@ len 6 7 FullPrivilege
 s2 1 4 OutOfScope
 s2 4 6 FullPrivilege
 s2 6 6 PartialPrivilege
+s2 6 7 FullPrivilege
 s 1 9 OutOfScope
 s 9 10 FullPrivilege
 s 10 10 PartialPrivilege
@@ -3609,11 +3598,11 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="690" y="90" data-hash="2"><title>len, immutable</title>len</text>
-        <text style="text-anchor:middle" class="code" x="900" y="90" data-hash="5"><title>length, immutable</title>length</text>
-        <text style="text-anchor:middle" class="code" x="760" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
         <text style="text-anchor:middle" class="code" x="830" y="90" data-hash="4"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="620" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="690" y="90" data-hash="2"><title>len, immutable</title>len</text>
+        <text style="text-anchor:middle" class="code" x="760" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="900" y="90" data-hash="5"><title>length, immutable</title>length</text>
     </g>
 
     <g id="timelines">
@@ -3633,6 +3622,8 @@ text.functionIcon {
         <line class="colorless" stroke-width="8px" x1="760" x2="760" y1="150" y2="180"><title>s2 is the unique value that can access the data in memory; can only read data</title></line>
         <line data-hash="3" class="solid" x1="760" x2="760" y1="185" y2="185"><title>some values are statically referencing to s2; can only read data</title></line>
         <line class="colorless" stroke-width="8px" x1="760" x2="760" y1="190" y2="180"><title>some values are statically referencing to s2; can only read data</title></line>
+        <line data-hash="3" class="solid" x1="760" x2="760" y1="185" y2="205"><title>s2 is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="760" x2="760" y1="190" y2="200"><title>s2 is the unique value that can access the data in memory; can only read data</title></line>
         <line data-hash="4" class="solid" x1="830" x2="830" y1="245" y2="265"><title>s is the unique value that can access the data in memory; can only read data</title></line>
         <line class="colorless" stroke-width="8px" x1="830" x2="830" y1="250" y2="260"><title>s is the unique value that can access the data in memory; can only read data</title></line>
         <line data-hash="4" class="solid" x1="830" x2="830" y1="265" y2="265"><title>some values are statically referencing to s; can only read data</title></line>
@@ -3655,6 +3646,7 @@ text.functionIcon {
         <use xlink:href="#eventDot" data-hash="3" x="760" y="145"><title>obtains data from calculate_length() (s2's lifetime begins from here)</title></use>
         <use xlink:href="#eventDot" data-hash="3" x="760" y="185"><title>statically lends its data to println!() (s2 becomes read-only)</title></use>
         <use xlink:href="#eventDot" data-hash="3" x="760" y="185"><title>println!() no longer borrows from s2</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="760" y="205"><title>s2 goes out of scope. The data is dropped.</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="830" y="245"><title>obtains data from another value (s's lifetime begins from here)</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="830" y="265"><title>statically lends its data to len() (s becomes read-only)</title></use>
         <use xlink:href="#eventDot" data-hash="4" x="830" y="265"><title>len() no longer borrows from s</title></use>
@@ -3774,8 +3766,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.04s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.18s
      Running `target/debug/examples/pass_reference`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -3958,8 +3949,8 @@ text.functionIcon {
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="578" y="90" data-hash="2"><title>len, immutable</title>len</text>
-        <text style="text-anchor:middle" class="code" x="508" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="648" y="90" data-hash="3"><title>s, immutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="508" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -4097,8 +4088,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 3.93s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/acquire_from_function`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -4274,8 +4264,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="356" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="426" y="90" data-hash="2"><title>len, immutable</title>len</text>
+        <text style="text-anchor:middle" class="code" x="356" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -4389,8 +4379,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 3.90s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/safely_out_of_scope`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
@@ -4681,8 +4670,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 3.89s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.18s
      Running `target/debug/examples/mut_ref`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -4990,8 +4978,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 3.85s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
      Running `target/debug/examples/scope_reference`
 s 1 2 OutOfScope
 s 2 5 FullPrivilege
@@ -5172,8 +5159,8 @@ text.functionIcon {
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="740" y="90" data-hash="1"><title>s, mutable</title>s</text>
-        <text style="text-anchor:middle" class="code" x="810" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
         <text style="text-anchor:middle" class="code" x="880" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
+        <text style="text-anchor:middle" class="code" x="810" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
     </g>
 
     <g id="timelines">
@@ -5297,8 +5284,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 3.83s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.24s
      Running `target/debug/examples/shared_and_unique_borrow`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -5494,8 +5480,8 @@ text.functionIcon {
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="656" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
-        <text style="text-anchor:middle" class="code" x="726" y="90" data-hash="4"><title>r3, immutable</title>r3</text>
         <text style="text-anchor:middle" class="code" x="586" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
+        <text style="text-anchor:middle" class="code" x="726" y="90" data-hash="4"><title>r3, immutable</title>r3</text>
         <text style="text-anchor:middle" class="code" x="516" y="90" data-hash="1"><title>s, mutable</title>s</text>
     </g>
 
@@ -5667,8 +5653,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.07s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.23s
      Running `target/debug/examples/no_dangle`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege

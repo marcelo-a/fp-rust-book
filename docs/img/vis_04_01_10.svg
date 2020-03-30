@@ -173,38 +173,38 @@ text.functionIcon {
     </g>
 
     <g id="timelines">
-        <line data-hash="3" class="solid" x1="382" x2="382" y1="108" y2="128"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="382" x2="382" y1="113" y2="123"><title>has read only privilege to the real data</title></line>
-        <line data-hash="3" class="solid" x1="382" x2="382" y1="128" y2="168"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="382" x2="382" y1="133" y2="163"><title>has read only privilege to the real data</title></line>
-        <line data-hash="3" class="solid" x1="382" x2="382" y1="168" y2="168"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="382" x2="382" y1="173" y2="163"><title>has read only privilege to the real data</title></line>
-        <line data-hash="3" class="solid" x1="382" x2="382" y1="168" y2="188"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="382" x2="382" y1="173" y2="183"><title>has read only privilege to the real data</title></line>
-        <line data-hash="4" class="solid" x1="312" x2="312" y1="128" y2="168"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="312" x2="312" y1="133" y2="163"><title>has read only privilege to the real data</title></line>
-        <line data-hash="4" class="solid" x1="312" x2="312" y1="168" y2="168"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="312" x2="312" y1="173" y2="163"><title>has read only privilege to the real data</title></line>
-        <line data-hash="4" class="solid" x1="312" x2="312" y1="168" y2="188"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="312" x2="312" y1="173" y2="183"><title>has read only privilege to the real data</title></line>
+        <line data-hash="3" class="solid" x1="382" x2="382" y1="105" y2="125"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="382" x2="382" y1="110" y2="120"><title>has read only privilege to the real data</title></line>
+        <line data-hash="3" class="solid" x1="382" x2="382" y1="125" y2="165"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="382" x2="382" y1="130" y2="160"><title>has read only privilege to the real data</title></line>
+        <line data-hash="3" class="solid" x1="382" x2="382" y1="165" y2="165"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="382" x2="382" y1="170" y2="160"><title>has read only privilege to the real data</title></line>
+        <line data-hash="3" class="solid" x1="382" x2="382" y1="165" y2="185"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="382" x2="382" y1="170" y2="180"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="312" x2="312" y1="125" y2="165"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="312" x2="312" y1="130" y2="160"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="312" x2="312" y1="165" y2="165"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="312" x2="312" y1="170" y2="160"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="312" x2="312" y1="165" y2="185"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="312" x2="312" y1="170" y2="180"><title>has read only privilege to the real data</title></line>
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="3" x="382" y="108"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="382" y="128"><title>Copying resource to y</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="382" y="168"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="382" y="168"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="382" y="188"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="312" y="128"><title>Acquiring resource from x</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="312" y="168"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="312" y="168"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="312" y="188"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="382" y="105"><title>Acquiring resource</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="382" y="125"><title>Copying resource to y</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="382" y="165"><title>Partially lends resource to println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="382" y="165"><title>Partially reacquires resource from println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="382" y="185"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="312" y="125"><title>Acquiring resource from x</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="312" y="165"><title>Partially lends resource to println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="312" y="165"><title>Partially reacquires resource from println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="312" y="185"><title>Goes out of scope</title></use>
     </g>
 
     <g id="arrows">
-        <polyline stroke-width="5" stroke="gray" points="382,128 322,128 " marker-end="url(#arrowHead)"><title>Duplicate from x to y</title></polyline>
-        <use xlink:href="#functionDot" data-hash="3" x="382" y="168"><title>println!() reads from x</title></use>
-        <use xlink:href="#functionDot" data-hash="4" x="312" y="168"><title>println!() reads from y</title></use>
+        <polyline stroke-width="5" stroke="gray" points="382,125 322,125 " marker-end="url(#arrowHead)"><title>Duplicate from x to y</title></polyline>
+        <use xlink:href="#functionDot" data-hash="3" x="382" y="165"><title>println!() reads from x</title></use>
+        <use xlink:href="#functionDot" data-hash="4" x="312" y="165"><title>println!() reads from y</title></use>
     </g>
 
     <g id="dividers">

@@ -172,23 +172,23 @@ text.functionIcon {
     </g>
 
     <g id="timelines">
-        <line data-hash="4" class="solid" x1="558" x2="558" y1="108" y2="128"><title>has read only privilege to the reference itself</title></line>
-        <line class="colorless" stroke-width="8px" x1="558" x2="558" y1="113" y2="123"><title>has read only privilege to the reference itself</title></line>
-        <line data-hash="4" class="solid" x1="558" x2="558" y1="128" y2="128"><title>has read only privilege to the reference itself</title></line>
-        <line class="colorless" stroke-width="8px" x1="558" x2="558" y1="133" y2="123"><title>has read only privilege to the reference itself</title></line>
-        <line data-hash="4" class="solid" x1="558" x2="558" y1="128" y2="148"><title>has read only privilege to the reference itself</title></line>
-        <line class="colorless" stroke-width="8px" x1="558" x2="558" y1="133" y2="143"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="4" class="solid" x1="558" x2="558" y1="105" y2="125"><title>has read only privilege to the reference itself</title></line>
+        <line class="colorless" stroke-width="8px" x1="558" x2="558" y1="110" y2="120"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="4" class="solid" x1="558" x2="558" y1="125" y2="125"><title>has read only privilege to the reference itself</title></line>
+        <line class="colorless" stroke-width="8px" x1="558" x2="558" y1="130" y2="120"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="4" class="solid" x1="558" x2="558" y1="125" y2="145"><title>has read only privilege to the reference itself</title></line>
+        <line class="colorless" stroke-width="8px" x1="558" x2="558" y1="130" y2="140"><title>has read only privilege to the reference itself</title></line>
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="4" x="558" y="108"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="558" y="128"><title>Partially lends resource to len()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="558" y="128"><title>Partially reacquires resource from len()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="558" y="148"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="558" y="105"><title>Acquiring resource</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="558" y="125"><title>Partially lends resource to len()</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="558" y="125"><title>Partially reacquires resource from len()</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="558" y="145"><title>Goes out of scope</title></use>
     </g>
 
     <g id="arrows">
-        <use xlink:href="#functionDot" data-hash="4" x="558" y="128"><title>len() reads from s</title></use>
+        <use xlink:href="#functionDot" data-hash="4" x="558" y="125"><title>len() reads from s</title></use>
     </g>
 
     <g id="dividers">

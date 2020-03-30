@@ -172,26 +172,26 @@ text.functionIcon {
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid" x1="516" x2="516" y1="108" y2="148"><title>has read and write privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="516" x2="516" y1="148" y2="188"><title>has read and write privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="516" x2="516" y1="188" y2="188"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="516" x2="516" y1="193" y2="183"><title>has read only privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="516" x2="516" y1="188" y2="208"><title>has read and write privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="516" x2="516" y1="105" y2="145"><title>has read and write privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="516" x2="516" y1="145" y2="185"><title>has read and write privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="516" x2="516" y1="185" y2="185"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="516" x2="516" y1="190" y2="180"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="516" x2="516" y1="185" y2="205"><title>has read and write privilege to the real data</title></line>
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="516" y="108"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="516" y="148"><title>Mutable lend to String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="516" y="148"><title>Fully reacquires resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="516" y="188"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="516" y="188"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="516" y="208"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="516" y="105"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="516" y="145"><title>Mutable lend to String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="516" y="145"><title>Fully reacquires resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="516" y="185"><title>Partially lends resource to println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="516" y="185"><title>Partially reacquires resource from println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="516" y="205"><title>Goes out of scope</title></use>
     </g>
 
     <g id="arrows">
-        <text x="542" y="113" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="539,108 529,108 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
-        <use xlink:href="#functionDot" data-hash="1" x="516" y="148"><title>String::from() reads from/writes to s</title></use>
-        <use xlink:href="#functionDot" data-hash="1" x="516" y="188"><title>println!() reads from s</title></use>
+        <text x="542" y="110" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="539,105 529,105 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
+        <use xlink:href="#functionDot" data-hash="1" x="516" y="145"><title>String::from() reads from/writes to s</title></use>
+        <use xlink:href="#functionDot" data-hash="1" x="516" y="185"><title>println!() reads from s</title></use>
     </g>
 
     <g id="dividers">

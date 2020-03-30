@@ -168,34 +168,34 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="710" y="90" data-hash="1"><title>s, mutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="640" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
         <text style="text-anchor:middle" class="code" x="570" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
+        <text style="text-anchor:middle" class="code" x="710" y="90" data-hash="1"><title>s, mutable</title>s</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid" x1="710" x2="710" y1="108" y2="168"><title>has read and write privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="710" x2="710" y1="188" y2="248"><title>has read and write privilege to the real data</title></line>
-        <line data-hash="2" class="solid" x1="640" x2="640" y1="168" y2="188"><title>has read only privilege to the reference itself</title></line>
-        <line class="colorless" stroke-width="8px" x1="640" x2="640" y1="173" y2="183"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="1" class="solid" x1="710" x2="710" y1="105" y2="165"><title>has read and write privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="710" x2="710" y1="185" y2="245"><title>has read and write privilege to the real data</title></line>
+        <line data-hash="2" class="solid" x1="640" x2="640" y1="165" y2="185"><title>has read only privilege to the reference itself</title></line>
+        <line class="colorless" stroke-width="8px" x1="640" x2="640" y1="170" y2="180"><title>has read only privilege to the reference itself</title></line>
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="710" y="108"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="710" y="168"><title>Mutable lend to r1</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="710" y="188"><title>Fully reacquires resource from r1</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="710" y="248"><title>Mutable lend to r2</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="640" y="168"><title>Fully borrows resource from s</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="640" y="188"><title>Fully returns resource to s</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="640" y="188"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="570" y="248"><title>Fully borrows resource from s</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="710" y="105"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="710" y="165"><title>Mutable lend to r1</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="710" y="185"><title>Fully reacquires resource from r1</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="710" y="245"><title>Mutable lend to r2</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="640" y="165"><title>Fully borrows resource from s</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="640" y="185"><title>Fully returns resource to s</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="640" y="185"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="570" y="245"><title>Fully borrows resource from s</title></use>
     </g>
 
     <g id="arrows">
-        <text x="736" y="113" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="733,108 723,108 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
-        <polyline stroke-width="5" stroke="gray" points="710,168 650,168 " marker-end="url(#arrowHead)"><title>Mutable borrow from s to r1</title></polyline>
-        <polyline stroke-width="5" stroke="gray" points="640,188 700,188 " marker-end="url(#arrowHead)"><title>Return mutably borrowed resource from r1 to s</title></polyline>
-        <polyline stroke-width="5" stroke="gray" points="710,248 580,248 " marker-end="url(#arrowHead)"><title>Mutable borrow from s to r2</title></polyline>
+        <text x="736" y="110" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="733,105 723,105 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
+        <polyline stroke-width="5" stroke="gray" points="710,165 650,165 " marker-end="url(#arrowHead)"><title>Mutable borrow from s to r1</title></polyline>
+        <polyline stroke-width="5" stroke="gray" points="640,185 700,185 " marker-end="url(#arrowHead)"><title>Return mutably borrowed resource from r1 to s</title></polyline>
+        <polyline stroke-width="5" stroke="gray" points="710,245 580,245 " marker-end="url(#arrowHead)"><title>Mutable borrow from s to r2</title></polyline>
     </g>
 
     <g id="dividers">

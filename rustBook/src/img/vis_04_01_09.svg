@@ -173,37 +173,37 @@ text.functionIcon {
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid" x1="382" x2="382" y1="108" y2="128"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="382" x2="382" y1="113" y2="123"><title>has read only privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="382" x2="382" y1="128" y2="128"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="382" x2="382" y1="133" y2="123"><title>has read only privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="382" x2="382" y1="128" y2="168"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="382" x2="382" y1="133" y2="163"><title>has read only privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="382" x2="382" y1="168" y2="168"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="382" x2="382" y1="173" y2="163"><title>has read only privilege to the real data</title></line>
-        <line data-hash="3" class="solid" x1="312" x2="312" y1="128" y2="168"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="312" x2="312" y1="133" y2="163"><title>has read only privilege to the real data</title></line>
-        <line data-hash="3" class="solid" x1="312" x2="312" y1="168" y2="168"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="312" x2="312" y1="173" y2="163"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="382" x2="382" y1="105" y2="125"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="382" x2="382" y1="110" y2="120"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="382" x2="382" y1="125" y2="125"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="382" x2="382" y1="130" y2="120"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="382" x2="382" y1="125" y2="165"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="382" x2="382" y1="130" y2="160"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="382" x2="382" y1="165" y2="165"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="382" x2="382" y1="170" y2="160"><title>has read only privilege to the real data</title></line>
+        <line data-hash="3" class="solid" x1="312" x2="312" y1="125" y2="165"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="312" x2="312" y1="130" y2="160"><title>has read only privilege to the real data</title></line>
+        <line data-hash="3" class="solid" x1="312" x2="312" y1="165" y2="165"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="312" x2="312" y1="170" y2="160"><title>has read only privilege to the real data</title></line>
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="382" y="108"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="382" y="128"><title>Partially lends resource to clone()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="382" y="128"><title>Partially reacquires resource from clone()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="382" y="168"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="382" y="168"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="312" y="128"><title>Acquiring resource from clone()</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="312" y="168"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="312" y="168"><title>Partially reacquires resource from println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="382" y="105"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="382" y="125"><title>Partially lends resource to clone()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="382" y="125"><title>Partially reacquires resource from clone()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="382" y="165"><title>Partially lends resource to println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="382" y="165"><title>Partially reacquires resource from println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="312" y="125"><title>Acquiring resource from clone()</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="312" y="165"><title>Partially lends resource to println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="312" y="165"><title>Partially reacquires resource from println!()</title></use>
     </g>
 
     <g id="arrows">
-        <text x="408" y="113" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="405,108 395,108 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of String::from() to s1</title></polyline>
-        <text x="338" y="133" font-size = "20" font-style="italic" class="heavy" ><title>clone()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="335,128 325,128 " marker-end="url(#arrowHead)"><title>Move from the return value of clone() to s2</title></polyline>
-        <use xlink:href="#functionDot" data-hash="1" x="382" y="128"><title>clone() reads from s1</title></use>
-        <use xlink:href="#functionDot" data-hash="1" x="382" y="168"><title>println!() reads from s1</title></use>
-        <use xlink:href="#functionDot" data-hash="3" x="312" y="168"><title>println!() reads from s2</title></use>
+        <text x="408" y="110" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="405,105 395,105 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of String::from() to s1</title></polyline>
+        <text x="338" y="130" font-size = "20" font-style="italic" class="heavy" ><title>clone()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="335,125 325,125 " marker-end="url(#arrowHead)"><title>Move from the return value of clone() to s2</title></polyline>
+        <use xlink:href="#functionDot" data-hash="1" x="382" y="125"><title>clone() reads from s1</title></use>
+        <use xlink:href="#functionDot" data-hash="1" x="382" y="165"><title>println!() reads from s1</title></use>
+        <use xlink:href="#functionDot" data-hash="3" x="312" y="165"><title>println!() reads from s2</title></use>
     </g>
 
     <g id="dividers">

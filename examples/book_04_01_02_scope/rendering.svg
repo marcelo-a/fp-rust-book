@@ -172,13 +172,13 @@ text.functionIcon {
     </g>
 
     <g id="timelines">
-        <line data-hash="4" class="solid" x1="558" x2="558" y1="128" y2="188"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="558" x2="558" y1="133" y2="183"><title>has read only privilege to the real data</title></line>
+        <line data-hash="4" class="solid" x1="558" x2="558" y1="125" y2="185"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="558" x2="558" y1="130" y2="180"><title>has read only privilege to the real data</title></line>
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="4" x="558" y="128"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="558" y="188"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="558" y="125"><title>Acquiring resource</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="558" y="185"><title>Goes out of scope</title></use>
     </g>
 
     <g id="arrows">

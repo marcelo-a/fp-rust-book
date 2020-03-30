@@ -22,8 +22,8 @@ pub fn render_svg(listing_id: &String, description: &String, visualization_data:
     let example_dir_path = format!("examples/book_{}_{}/", listing_id, description);
     let book_image_file_path = format!("rustBook/src/img/vis_{}.svg", listing_id);
     
-    let mut right_panel_string = String::new();
-    let mut line_of_code = 0;
+    let mut left_panel_string = String::new();
+    let mut num_lines = 0;
     let mut max_x = 0;
 
     let svg_template = utils::read_file_to_string("src/svg_frontend/template.svg")
@@ -41,32 +41,30 @@ pub fn render_svg(listing_id: &String, description: &String, visualization_data:
     let css_string = utils::read_file_to_string("src/svg_frontend/book_svg_style.css")
         .unwrap_or("Reading book_svg_style.css failed.".to_owned());
 
-        // data for right panel
-        if let Ok(lines) = utils::read_lines(example_dir_path.to_owned() + "annotated_source.rs") {
-            let long_tuple = right_panel::render_right_panel(lines);
-            right_panel_string = long_tuple.0;
-            line_of_code = long_tuple.1;
-        }
+    // data for left panel
+    if let Ok(lines) = utils::read_lines(example_dir_path.to_owned() + "annotated_source.rs") {
+        let (output, line_of_code) = left_panel::render_left_panel(lines);
+        left_panel_string = output;
+        num_lines = line_of_code;
+    }
         
     // set divider position
     if let Ok(lines) = utils::read_lines(example_dir_path.to_owned() + "source.rs") {
-        max_x = right_panel::set_divider_pos(lines);
+        max_x = left_panel::set_divider_pos(lines);
     }
-    println!("Max_x = {}", max_x);
 
-
-    // data for left panel
-    let (left_panel_string, max_width) = left_panel::render_left_panel(visualization_data, max_x);
+    // data for right panel
+    let (right_panel_string, max_width) = right_panel::render_right_panel(visualization_data, max_x);
         
     let svg_data = SvgData {
         visualization_name: description.to_owned(),
         css: css_string,
-        code: right_panel_string,
-        diagram: left_panel_string,
+        code: left_panel_string,
+        diagram: right_panel_string,
         divider_x_pos: max_x,
-        divider_y_endpoint: line_of_code * 20 + 80,
+        divider_y_endpoint: num_lines * 20 + 80,
         width: cmp::max(max_width, 650),
-        height: (line_of_code * 20 + 80) + 50,
+        height: (num_lines * 20 + 80) + 50,
     };
 
     let final_svg_content = handlebars.render("full_svg_template", &svg_data).unwrap();

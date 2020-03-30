@@ -163,7 +163,7 @@ text.functionIcon {
     </defs>
 
     <g>
-        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="30">Hover over timeline events (dots), </text>
         <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 

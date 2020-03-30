@@ -59,6 +59,48 @@ warning: function is never used: `render_arrows_string`
     |
     = note: `#[warn(dead_code)]` on by default
 
+warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
+   --> src/hover_messages.rs:101:1
+    |
+101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
+   --> src/hover_messages.rs:108:1
+    |
+108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_ACQUIRE`
+   --> src/hover_messages.rs:119:1
+    |
+119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
+   --> src/hover_messages.rs:125:1
+    |
+125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
+   --> src/hover_messages.rs:131:1
+    |
+131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
+   --> src/hover_messages.rs:138:1
+    |
+138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
+   --> src/hover_messages.rs:145:1
+    |
+145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 warning: the `borrow_to:` in this pattern is redundant
    --> src/data.rs:401:62
     |
@@ -69,11 +111,11 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.43s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
      Running `target/debug/examples/one_var`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
-<svg width="650" height="190px" 
+<svg width="750" height="190px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>one_var</desc>
@@ -238,7 +280,7 @@ text.functionIcon {
     </defs>
 
     <g>
-        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="30">Hover over timeline events (dots), </text>
         <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
@@ -334,6 +376,48 @@ warning: function is never used: `render_arrows_string`
     |
     = note: `#[warn(dead_code)]` on by default
 
+warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
+   --> src/hover_messages.rs:101:1
+    |
+101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
+   --> src/hover_messages.rs:108:1
+    |
+108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_ACQUIRE`
+   --> src/hover_messages.rs:119:1
+    |
+119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
+   --> src/hover_messages.rs:125:1
+    |
+125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
+   --> src/hover_messages.rs:131:1
+    |
+131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
+   --> src/hover_messages.rs:138:1
+    |
+138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
+   --> src/hover_messages.rs:145:1
+    |
+145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 warning: the `borrow_to:` in this pattern is redundant
    --> src/data.rs:401:62
     |
@@ -352,11 +436,11 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.16s
      Running `target/debug/examples/scope`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
-<svg width="736" height="270px" 
+<svg width="750" height="270px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>scope</desc>
@@ -521,7 +605,7 @@ text.functionIcon {
     </defs>
 
     <g>
-        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="30">Hover over timeline events (dots), </text>
         <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
@@ -620,6 +704,48 @@ warning: function is never used: `render_arrows_string`
     |
     = note: `#[warn(dead_code)]` on by default
 
+warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
+   --> src/hover_messages.rs:101:1
+    |
+101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
+   --> src/hover_messages.rs:108:1
+    |
+108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_ACQUIRE`
+   --> src/hover_messages.rs:119:1
+    |
+119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
+   --> src/hover_messages.rs:125:1
+    |
+125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
+   --> src/hover_messages.rs:131:1
+    |
+131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
+   --> src/hover_messages.rs:138:1
+    |
+138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
+   --> src/hover_messages.rs:145:1
+    |
+145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 warning: the `borrow_to:` in this pattern is redundant
    --> src/data.rs:401:62
     |
@@ -630,10 +756,10 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
      Running `target/debug/examples/string_from`
 s 1 2 OutOfScope
-<svg width="650" height="170px" 
+<svg width="750" height="170px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>string_from</desc>
@@ -798,7 +924,7 @@ text.functionIcon {
     </defs>
 
     <g>
-        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="30">Hover over timeline events (dots), </text>
         <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
@@ -890,6 +1016,48 @@ warning: function is never used: `render_arrows_string`
     |
     = note: `#[warn(dead_code)]` on by default
 
+warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
+   --> src/hover_messages.rs:101:1
+    |
+101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
+   --> src/hover_messages.rs:108:1
+    |
+108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_ACQUIRE`
+   --> src/hover_messages.rs:119:1
+    |
+119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
+   --> src/hover_messages.rs:125:1
+    |
+125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
+   --> src/hover_messages.rs:131:1
+    |
+131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
+   --> src/hover_messages.rs:138:1
+    |
+138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
+   --> src/hover_messages.rs:145:1
+    |
+145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 warning: the `borrow_to:` in this pattern is redundant
    --> src/data.rs:401:62
     |
@@ -900,8 +1068,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 5.78s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
      Running `target/debug/examples/reference`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -909,7 +1076,7 @@ s 4 4 RevokedPrivilege
 s 4 6 FullPrivilege
 s 6 6 PartialPrivilege
 s 6 7 FullPrivilege
-<svg width="687" height="270px" 
+<svg width="750" height="270px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>reference</desc>
@@ -1074,7 +1241,7 @@ text.functionIcon {
     </defs>
 
     <g>
-        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="30">Hover over timeline events (dots), </text>
         <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
@@ -1183,6 +1350,48 @@ warning: function is never used: `render_arrows_string`
     |
     = note: `#[warn(dead_code)]` on by default
 
+warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
+   --> src/hover_messages.rs:101:1
+    |
+101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
+   --> src/hover_messages.rs:108:1
+    |
+108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_ACQUIRE`
+   --> src/hover_messages.rs:119:1
+    |
+119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
+   --> src/hover_messages.rs:125:1
+    |
+125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
+   --> src/hover_messages.rs:131:1
+    |
+131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
+   --> src/hover_messages.rs:138:1
+    |
+138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
+   --> src/hover_messages.rs:145:1
+    |
+145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 warning: the `borrow_to:` in this pattern is redundant
    --> src/data.rs:401:62
     |
@@ -1201,11 +1410,11 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.14s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/scope2`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
-<svg width="729" height="290px" 
+<svg width="750" height="290px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>scope2</desc>
@@ -1370,7 +1579,7 @@ text.functionIcon {
     </defs>
 
     <g>
-        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="30">Hover over timeline events (dots), </text>
         <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
@@ -1470,6 +1679,48 @@ warning: function is never used: `render_arrows_string`
     |
     = note: `#[warn(dead_code)]` on by default
 
+warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
+   --> src/hover_messages.rs:101:1
+    |
+101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
+   --> src/hover_messages.rs:108:1
+    |
+108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_ACQUIRE`
+   --> src/hover_messages.rs:119:1
+    |
+119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
+   --> src/hover_messages.rs:125:1
+    |
+125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
+   --> src/hover_messages.rs:131:1
+    |
+131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
+   --> src/hover_messages.rs:138:1
+    |
+138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
+   --> src/hover_messages.rs:145:1
+    |
+145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 warning: the `borrow_to:` in this pattern is redundant
    --> src/data.rs:401:62
     |
@@ -1488,14 +1739,14 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.17s
      Running `target/debug/examples/int_copy`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
 x 3 4 FullPrivilege
 y 1 3 OutOfScope
 y 3 4 FullPrivilege
-<svg width="650" height="210px" 
+<svg width="750" height="210px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>int_copy</desc>
@@ -1660,13 +1911,13 @@ text.functionIcon {
     </defs>
 
     <g>
-        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="30">Hover over timeline events (dots), </text>
         <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="188" y="90" data-hash="3"><title>x, immutable</title>x</text>
         <text style="text-anchor:middle" class="code" x="258" y="90" data-hash="4"><title>y, immutable</title>y</text>
+        <text style="text-anchor:middle" class="code" x="188" y="90" data-hash="3"><title>x, immutable</title>x</text>
     </g>
 
     <g id="timelines">
@@ -1765,6 +2016,48 @@ warning: function is never used: `render_arrows_string`
     |
     = note: `#[warn(dead_code)]` on by default
 
+warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
+   --> src/hover_messages.rs:101:1
+    |
+101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
+   --> src/hover_messages.rs:108:1
+    |
+108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_ACQUIRE`
+   --> src/hover_messages.rs:119:1
+    |
+119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
+   --> src/hover_messages.rs:125:1
+    |
+125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
+   --> src/hover_messages.rs:131:1
+    |
+131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
+   --> src/hover_messages.rs:138:1
+    |
+138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
+   --> src/hover_messages.rs:145:1
+    |
+145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 warning: the `borrow_to:` in this pattern is redundant
    --> src/data.rs:401:62
     |
@@ -1775,12 +2068,12 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
      Running `target/debug/examples/string_move`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
 s2 1 3 OutOfScope
-<svg width="650" height="190px" 
+<svg width="750" height="190px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>string_move</desc>
@@ -1945,13 +2238,13 @@ text.functionIcon {
     </defs>
 
     <g>
-        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="30">Hover over timeline events (dots), </text>
         <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="377" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
         <text style="text-anchor:middle" class="code" x="307" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="377" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
     </g>
 
     <g id="timelines">
@@ -2044,6 +2337,48 @@ warning: function is never used: `render_arrows_string`
     |
     = note: `#[warn(dead_code)]` on by default
 
+warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
+   --> src/hover_messages.rs:101:1
+    |
+101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
+   --> src/hover_messages.rs:108:1
+    |
+108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_ACQUIRE`
+   --> src/hover_messages.rs:119:1
+    |
+119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
+   --> src/hover_messages.rs:125:1
+    |
+125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
+   --> src/hover_messages.rs:131:1
+    |
+131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
+   --> src/hover_messages.rs:138:1
+    |
+138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
+   --> src/hover_messages.rs:145:1
+    |
+145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 warning: the `borrow_to:` in this pattern is redundant
    --> src/data.rs:401:62
     |
@@ -2054,7 +2389,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.24s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.23s
      Running `target/debug/examples/string_clone`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -2064,7 +2399,7 @@ s1 5 5 PartialPrivilege
 s2 1 3 OutOfScope
 s2 3 5 FullPrivilege
 s2 5 5 PartialPrivilege
-<svg width="650" height="230px" 
+<svg width="750" height="230px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>string_clone</desc>
@@ -2229,7 +2564,7 @@ text.functionIcon {
     </defs>
 
     <g>
-        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="30">Hover over timeline events (dots), </text>
         <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
@@ -2348,6 +2683,48 @@ warning: function is never used: `render_arrows_string`
     |
     = note: `#[warn(dead_code)]` on by default
 
+warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
+   --> src/hover_messages.rs:101:1
+    |
+101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
+   --> src/hover_messages.rs:108:1
+    |
+108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_ACQUIRE`
+   --> src/hover_messages.rs:119:1
+    |
+119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
+   --> src/hover_messages.rs:125:1
+    |
+125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
+   --> src/hover_messages.rs:131:1
+    |
+131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
+   --> src/hover_messages.rs:138:1
+    |
+138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
+   --> src/hover_messages.rs:145:1
+    |
+145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 warning: the `borrow_to:` in this pattern is redundant
    --> src/data.rs:401:62
     |
@@ -2358,7 +2735,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.26s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/int_copy_2`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -2369,7 +2746,7 @@ y 1 3 OutOfScope
 y 3 5 FullPrivilege
 y 5 5 PartialPrivilege
 y 5 6 FullPrivilege
-<svg width="650" height="250px" 
+<svg width="750" height="250px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>int_copy_2</desc>
@@ -2534,7 +2911,7 @@ text.functionIcon {
     </defs>
 
     <g>
-        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="30">Hover over timeline events (dots), </text>
         <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
@@ -2654,6 +3031,48 @@ warning: function is never used: `render_arrows_string`
     |    ^^^^^^^^^^^^^^^^^^^^
     |
     = note: `#[warn(dead_code)]` on by default
+
+warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
+   --> src/hover_messages.rs:101:1
+    |
+101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
+   --> src/hover_messages.rs:108:1
+    |
+108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_ACQUIRE`
+   --> src/hover_messages.rs:119:1
+    |
+119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
+   --> src/hover_messages.rs:125:1
+    |
+125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
+   --> src/hover_messages.rs:131:1
+    |
+131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
+   --> src/hover_messages.rs:138:1
+    |
+138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
+   --> src/hover_messages.rs:145:1
+    |
+145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 warning: the `borrow_to:` in this pattern is redundant
    --> src/data.rs:401:62
@@ -2846,15 +3265,15 @@ text.functionIcon {
     </defs>
 
     <g>
-        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="30">Hover over timeline events (dots), </text>
         <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="820" y="90" data-hash="6"><title>some_string, immutable</title>some_string</text>
-        <text style="text-anchor:middle" class="code" x="650" y="90" data-hash="1"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="930" y="90" data-hash="7"><title>some_integer, immutable</title>some_integer</text>
+        <text style="text-anchor:middle" class="code" x="650" y="90" data-hash="1"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="720" y="90" data-hash="4"><title>x, immutable</title>x</text>
+        <text style="text-anchor:middle" class="code" x="820" y="90" data-hash="6"><title>some_string, immutable</title>some_string</text>
     </g>
 
     <g id="timelines">
@@ -2997,6 +3416,48 @@ warning: function is never used: `render_arrows_string`
     |
     = note: `#[warn(dead_code)]` on by default
 
+warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
+   --> src/hover_messages.rs:101:1
+    |
+101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
+   --> src/hover_messages.rs:108:1
+    |
+108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_ACQUIRE`
+   --> src/hover_messages.rs:119:1
+    |
+119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
+   --> src/hover_messages.rs:125:1
+    |
+125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
+   --> src/hover_messages.rs:131:1
+    |
+131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
+   --> src/hover_messages.rs:138:1
+    |
+138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
+   --> src/hover_messages.rs:145:1
+    |
+145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 warning: the `borrow_to:` in this pattern is redundant
    --> src/data.rs:401:62
     |
@@ -3007,7 +3468,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.18s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.14s
      Running `target/debug/examples/return_values`
 s1 1 2 OutOfScope
 s1 2 10 FullPrivilege
@@ -3187,16 +3648,16 @@ text.functionIcon {
     </defs>
 
     <g>
-        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="30">Hover over timeline events (dots), </text>
         <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="876" y="90" data-hash="5"><title>s3, immutable</title>s3</text>
-        <text style="text-anchor:middle" class="code" x="636" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="806" y="90" data-hash="4"><title>s2, immutable</title>s2</text>
         <text style="text-anchor:middle" class="code" x="736" y="90" data-hash="3"><title>some_string, immutable</title>some_string</text>
         <text style="text-anchor:middle" class="code" x="946" y="90" data-hash="7"><title>a_string, immutable</title>a_string</text>
-        <text style="text-anchor:middle" class="code" x="806" y="90" data-hash="4"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="636" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="876" y="90" data-hash="5"><title>s3, immutable</title>s3</text>
     </g>
 
     <g id="timelines">
@@ -3334,6 +3795,48 @@ warning: function is never used: `render_arrows_string`
     |
     = note: `#[warn(dead_code)]` on by default
 
+warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
+   --> src/hover_messages.rs:101:1
+    |
+101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
+   --> src/hover_messages.rs:108:1
+    |
+108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_ACQUIRE`
+   --> src/hover_messages.rs:119:1
+    |
+119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
+   --> src/hover_messages.rs:125:1
+    |
+125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
+   --> src/hover_messages.rs:131:1
+    |
+131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
+   --> src/hover_messages.rs:138:1
+    |
+138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
+   --> src/hover_messages.rs:145:1
+    |
+145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 warning: the `borrow_to:` in this pattern is redundant
    --> src/data.rs:401:62
     |
@@ -3352,7 +3855,7 @@ warning: unused variable: `println_func`
    |
    = note: `#[warn(unused_variables)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.18s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/return_tuple`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -3536,16 +4039,16 @@ text.functionIcon {
     </defs>
 
     <g>
-        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="30">Hover over timeline events (dots), </text>
         <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="615" y="90" data-hash="2"><title>len, immutable</title>len</text>
-        <text style="text-anchor:middle" class="code" x="545" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
-        <text style="text-anchor:middle" class="code" x="685" y="90" data-hash="4"><title>s, immutable</title>s</text>
-        <text style="text-anchor:middle" class="code" x="755" y="90" data-hash="6"><title>s2, immutable</title>s2</text>
         <text style="text-anchor:middle" class="code" x="825" y="90" data-hash="8"><title>length, immutable</title>length</text>
+        <text style="text-anchor:middle" class="code" x="755" y="90" data-hash="6"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="685" y="90" data-hash="4"><title>s, immutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="545" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -3690,6 +4193,48 @@ warning: function is never used: `render_arrows_string`
     |
     = note: `#[warn(dead_code)]` on by default
 
+warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
+   --> src/hover_messages.rs:101:1
+    |
+101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
+   --> src/hover_messages.rs:108:1
+    |
+108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_ACQUIRE`
+   --> src/hover_messages.rs:119:1
+    |
+119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
+   --> src/hover_messages.rs:125:1
+    |
+125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
+   --> src/hover_messages.rs:131:1
+    |
+131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
+   --> src/hover_messages.rs:138:1
+    |
+138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
+   --> src/hover_messages.rs:145:1
+    |
+145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 warning: the `borrow_to:` in this pattern is redundant
    --> src/data.rs:401:62
     |
@@ -3700,7 +4245,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/pass_reference`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -3712,7 +4257,7 @@ s 1 9 OutOfScope
 s 9 10 FullPrivilege
 s 10 10 PartialPrivilege
 s 10 11 FullPrivilege
-<svg width="687" height="350px" 
+<svg width="750" height="350px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>pass_reference</desc>
@@ -3877,14 +4422,14 @@ text.functionIcon {
     </defs>
 
     <g>
-        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="30">Hover over timeline events (dots), </text>
         <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="447" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
-        <text style="text-anchor:middle" class="code" x="517" y="90" data-hash="2"><title>len, immutable</title>len</text>
         <text style="text-anchor:middle" class="code" x="587" y="90" data-hash="4"><title>s, immutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="517" y="90" data-hash="2"><title>len, immutable</title>len</text>
     </g>
 
     <g id="timelines">
@@ -4006,6 +4551,48 @@ warning: function is never used: `render_arrows_string`
     |
     = note: `#[warn(dead_code)]` on by default
 
+warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
+   --> src/hover_messages.rs:101:1
+    |
+101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
+   --> src/hover_messages.rs:108:1
+    |
+108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_ACQUIRE`
+   --> src/hover_messages.rs:119:1
+    |
+119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
+   --> src/hover_messages.rs:125:1
+    |
+125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
+   --> src/hover_messages.rs:131:1
+    |
+131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
+   --> src/hover_messages.rs:138:1
+    |
+138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
+   --> src/hover_messages.rs:145:1
+    |
+145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 warning: the `borrow_to:` in this pattern is redundant
    --> src/data.rs:401:62
     |
@@ -4030,13 +4617,13 @@ warning: unused variable: `len_func`
 37 |     let len_func = Some(ResourceOwner::Function(Function {
    |         ^^^^^^^^ help: consider prefixing with an underscore: `_len_func`
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.24s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/acquire_from_function`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
 s1 4 4 PartialPrivilege
 len 1 4 OutOfScope
-<svg width="650" height="210px" 
+<svg width="750" height="210px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>acquire_from_function</desc>
@@ -4201,7 +4788,7 @@ text.functionIcon {
     </defs>
 
     <g>
-        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="30">Hover over timeline events (dots), </text>
         <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
@@ -4305,6 +4892,48 @@ warning: function is never used: `render_arrows_string`
     |
     = note: `#[warn(dead_code)]` on by default
 
+warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
+   --> src/hover_messages.rs:101:1
+    |
+101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
+   --> src/hover_messages.rs:108:1
+    |
+108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_ACQUIRE`
+   --> src/hover_messages.rs:119:1
+    |
+119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
+   --> src/hover_messages.rs:125:1
+    |
+125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
+   --> src/hover_messages.rs:131:1
+    |
+131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
+   --> src/hover_messages.rs:138:1
+    |
+138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
+   --> src/hover_messages.rs:145:1
+    |
+145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 warning: the `borrow_to:` in this pattern is redundant
    --> src/data.rs:401:62
     |
@@ -4315,13 +4944,13 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.18s
      Running `target/debug/examples/safely_out_of_scope`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
 s 3 3 PartialPrivilege
 s 3 4 FullPrivilege
-<svg width="736" height="230px" 
+<svg width="750" height="230px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>safely_out_of_scope</desc>
@@ -4486,7 +5115,7 @@ text.functionIcon {
     </defs>
 
     <g>
-        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="30">Hover over timeline events (dots), </text>
         <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
@@ -4590,6 +5219,48 @@ warning: function is never used: `render_arrows_string`
     |
     = note: `#[warn(dead_code)]` on by default
 
+warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
+   --> src/hover_messages.rs:101:1
+    |
+101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
+   --> src/hover_messages.rs:108:1
+    |
+108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_ACQUIRE`
+   --> src/hover_messages.rs:119:1
+    |
+119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
+   --> src/hover_messages.rs:125:1
+    |
+125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
+   --> src/hover_messages.rs:131:1
+    |
+131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
+   --> src/hover_messages.rs:138:1
+    |
+138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
+   --> src/hover_messages.rs:145:1
+    |
+145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 warning: the `borrow_to:` in this pattern is redundant
    --> src/data.rs:401:62
     |
@@ -4600,7 +5271,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/mut_ref`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -4610,7 +5281,7 @@ some_string 1 7 OutOfScope
 some_string 7 8 FullPrivilege
 some_string 8 8 PartialPrivilege
 some_string 8 9 FullPrivilege
-<svg width="650" height="310px" 
+<svg width="750" height="310px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>mut_ref</desc>
@@ -4775,13 +5446,13 @@ text.functionIcon {
     </defs>
 
     <g>
-        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="30">Hover over timeline events (dots), </text>
         <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="356" y="90" data-hash="1"><title>s, mutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="456" y="90" data-hash="4"><title>some_string, mutable</title>some_string</text>
+        <text style="text-anchor:middle" class="code" x="356" y="90" data-hash="1"><title>s, mutable</title>s</text>
     </g>
 
     <g id="timelines">
@@ -4892,6 +5563,48 @@ warning: function is never used: `render_arrows_string`
     |
     = note: `#[warn(dead_code)]` on by default
 
+warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
+   --> src/hover_messages.rs:101:1
+    |
+101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
+   --> src/hover_messages.rs:108:1
+    |
+108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_ACQUIRE`
+   --> src/hover_messages.rs:119:1
+    |
+119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
+   --> src/hover_messages.rs:125:1
+    |
+125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
+   --> src/hover_messages.rs:131:1
+    |
+131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
+   --> src/hover_messages.rs:138:1
+    |
+138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
+   --> src/hover_messages.rs:145:1
+    |
+145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 warning: the `borrow_to:` in this pattern is redundant
    --> src/data.rs:401:62
     |
@@ -4902,7 +5615,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.18s
      Running `target/debug/examples/scope_reference`
 s 1 2 OutOfScope
 s 2 5 FullPrivilege
@@ -5077,7 +5790,7 @@ text.functionIcon {
     </defs>
 
     <g>
-        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="30">Hover over timeline events (dots), </text>
         <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
@@ -5192,6 +5905,48 @@ warning: function is never used: `render_arrows_string`
     |
     = note: `#[warn(dead_code)]` on by default
 
+warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
+   --> src/hover_messages.rs:101:1
+    |
+101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
+   --> src/hover_messages.rs:108:1
+    |
+108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_ACQUIRE`
+   --> src/hover_messages.rs:119:1
+    |
+119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
+   --> src/hover_messages.rs:125:1
+    |
+125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
+   --> src/hover_messages.rs:131:1
+    |
+131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
+   --> src/hover_messages.rs:138:1
+    |
+138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
+   --> src/hover_messages.rs:145:1
+    |
+145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 warning: the `borrow_to:` in this pattern is redundant
    --> src/data.rs:401:62
     |
@@ -5202,7 +5957,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.18s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
      Running `target/debug/examples/shared_and_unique_borrow`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -5392,15 +6147,15 @@ text.functionIcon {
     </defs>
 
     <g>
-        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="30">Hover over timeline events (dots), </text>
         <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="594" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
-        <text style="text-anchor:middle" class="code" x="454" y="90" data-hash="1"><title>s, mutable</title>s</text>
-        <text style="text-anchor:middle" class="code" x="664" y="90" data-hash="4"><title>r3, immutable</title>r3</text>
         <text style="text-anchor:middle" class="code" x="524" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
+        <text style="text-anchor:middle" class="code" x="454" y="90" data-hash="1"><title>s, mutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="594" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
+        <text style="text-anchor:middle" class="code" x="664" y="90" data-hash="4"><title>r3, immutable</title>r3</text>
     </g>
 
     <g id="timelines">
@@ -5555,6 +6310,48 @@ warning: function is never used: `render_arrows_string`
     |
     = note: `#[warn(dead_code)]` on by default
 
+warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
+   --> src/hover_messages.rs:101:1
+    |
+101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
+   --> src/hover_messages.rs:108:1
+    |
+108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_ACQUIRE`
+   --> src/hover_messages.rs:119:1
+    |
+119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
+   --> src/hover_messages.rs:125:1
+    |
+125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
+   --> src/hover_messages.rs:131:1
+    |
+131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
+   --> src/hover_messages.rs:138:1
+    |
+138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
+   --> src/hover_messages.rs:145:1
+    |
+145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 warning: the `borrow_to:` in this pattern is redundant
    --> src/data.rs:401:62
     |
@@ -5565,11 +6362,11 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.18s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
      Running `target/debug/examples/no_dangle`
 s 1 2 OutOfScope
 s 2 5 FullPrivilege
-<svg width="650" height="230px" 
+<svg width="750" height="230px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>no_dangle</desc>
@@ -5734,7 +6531,7 @@ text.functionIcon {
     </defs>
 
     <g>
-        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="30">Hover over timeline events (dots), </text>
         <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 

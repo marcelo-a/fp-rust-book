@@ -163,15 +163,15 @@ text.functionIcon {
     </defs>
 
     <g>
-        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="30">Hover over timeline events (dots), </text>
         <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="820" y="90" data-hash="6"><title>some_string, immutable</title>some_string</text>
-        <text style="text-anchor:middle" class="code" x="650" y="90" data-hash="1"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="930" y="90" data-hash="7"><title>some_integer, immutable</title>some_integer</text>
+        <text style="text-anchor:middle" class="code" x="650" y="90" data-hash="1"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="720" y="90" data-hash="4"><title>x, immutable</title>x</text>
+        <text style="text-anchor:middle" class="code" x="820" y="90" data-hash="6"><title>some_string, immutable</title>some_string</text>
     </g>
 
     <g id="timelines">

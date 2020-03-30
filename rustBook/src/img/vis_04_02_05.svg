@@ -1,4 +1,4 @@
-<svg width="650" height="310px" 
+<svg width="750" height="310px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>mut_ref</desc>
@@ -163,13 +163,13 @@ text.functionIcon {
     </defs>
 
     <g>
-        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="30">Hover over timeline events (dots), </text>
         <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="356" y="90" data-hash="1"><title>s, mutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="456" y="90" data-hash="4"><title>some_string, mutable</title>some_string</text>
+        <text style="text-anchor:middle" class="code" x="356" y="90" data-hash="1"><title>s, mutable</title>s</text>
     </g>
 
     <g id="timelines">

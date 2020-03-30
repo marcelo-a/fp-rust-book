@@ -63,7 +63,7 @@ pub fn render_svg(listing_id: &String, description: &String, visualization_data:
         diagram: right_panel_string,
         divider_x_pos: max_x,
         divider_y_endpoint: num_lines * 20 + 80,
-        width: cmp::max(max_width, 650),
+        width: cmp::max(max_width, 750),
         height: (num_lines * 20 + 80) + 50,
     };
 

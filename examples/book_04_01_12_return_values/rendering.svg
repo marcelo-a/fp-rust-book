@@ -169,10 +169,10 @@ text.functionIcon {
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="806" y="90" data-hash="4"><title>s2, immutable</title>s2</text>
-        <text style="text-anchor:middle" class="code" x="736" y="90" data-hash="3"><title>some_string, immutable</title>some_string</text>
-        <text style="text-anchor:middle" class="code" x="946" y="90" data-hash="7"><title>a_string, immutable</title>a_string</text>
-        <text style="text-anchor:middle" class="code" x="636" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="876" y="90" data-hash="5"><title>s3, immutable</title>s3</text>
+        <text style="text-anchor:middle" class="code" x="946" y="90" data-hash="7"><title>a_string, immutable</title>a_string</text>
+        <text style="text-anchor:middle" class="code" x="736" y="90" data-hash="3"><title>some_string, immutable</title>some_string</text>
+        <text style="text-anchor:middle" class="code" x="636" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -189,19 +189,19 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="636" y="105"><title>Acquiring resource from gives_ownership()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="636" y="265"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="736" y="405"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="736" y="445"><title>Moving resource</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="736" y="505"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="806" y="165"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="806" y="205"><title>Moving resource to takes_and_gives_back()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="806" y="265"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="5" x="876" y="205"><title>Acquiring resource from takes_and_gives_back()</title></use>
-        <use xlink:href="#eventDot" data-hash="5" x="876" y="265"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="7" x="946" y="565"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="7" x="946" y="625"><title>Moving resource</title></use>
-        <use xlink:href="#eventDot" data-hash="7" x="946" y="645"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="636" y="105"><title>copies it's value to gives_ownership() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="636" y="265"><title>s1 goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="736" y="405"><title>copies it's value to another value (some_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="736" y="445"><title>copies it's value to another value (some_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="736" y="505"><title>some_string goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="806" y="165"><title>copies it's value to another value (s2 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="806" y="205"><title>copies it's value to takes_and_gives_back() (s2 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="806" y="265"><title>s2 goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="5" x="876" y="205"><title>copies it's value to takes_and_gives_back() (s3 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="5" x="876" y="265"><title>s3 goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="946" y="565"><title>copies it's value to another value (a_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="946" y="625"><title>copies it's value to another value (a_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="946" y="645"><title>a_string goes out of scope. The data is dropped.</title></use>
     </g>
 
     <g id="arrows">

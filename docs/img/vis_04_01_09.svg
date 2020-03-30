@@ -168,8 +168,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="349" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="419" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="349" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -188,14 +188,14 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="349" y="105"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="349" y="125"><title>Partially lends resource to clone()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="349" y="125"><title>Partially reacquires resource from clone()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="349" y="165"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="349" y="165"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="419" y="125"><title>Acquiring resource from clone()</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="419" y="165"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="419" y="165"><title>Partially reacquires resource from println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="349" y="105"><title>copies it's value to String::from() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="349" y="125"><title>copies it's value to clone() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="349" y="125"><title>copies it's value to clone() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="349" y="165"><title>copies it's value to println!() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="349" y="165"><title>copies it's value to println!() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="419" y="125"><title>copies it's value to clone() (s2 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="419" y="165"><title>copies it's value to println!() (s2 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="419" y="165"><title>copies it's value to println!() (s2 keeps ownership)</title></use>
     </g>
 
     <g id="arrows">

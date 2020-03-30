@@ -169,8 +169,8 @@ text.functionIcon {
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="447" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
-        <text style="text-anchor:middle" class="code" x="587" y="90" data-hash="4"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="517" y="90" data-hash="2"><title>len, immutable</title>len</text>
+        <text style="text-anchor:middle" class="code" x="587" y="90" data-hash="4"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
@@ -191,16 +191,16 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="447" y="105"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="447" y="145"><title>Partially lends resource to calculate_length()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="447" y="145"><title>Partially reacquires resource from calculate_length()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="447" y="205"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="517" y="145"><title>Acquiring resource from calculate_length()</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="517" y="205"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="587" y="245"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="587" y="265"><title>Partially lends resource to len()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="587" y="265"><title>Partially reacquires resource from len()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="587" y="285"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="447" y="105"><title>copies it's value to String::from() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="447" y="145"><title>copies it's value to calculate_length() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="447" y="145"><title>copies it's value to calculate_length() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="447" y="205"><title>s1 goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="517" y="145"><title>copies it's value to calculate_length() (len keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="517" y="205"><title>len goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="587" y="245"><title>copies it's value to another value (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="587" y="265"><title>copies it's value to len() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="587" y="265"><title>copies it's value to len() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="587" y="285"><title>s goes out of scope. The data is not dropped because s is not the owner.</title></use>
     </g>
 
     <g id="arrows">

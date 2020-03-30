@@ -168,8 +168,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="456" y="90" data-hash="4"><title>some_string, mutable</title>some_string</text>
         <text style="text-anchor:middle" class="code" x="356" y="90" data-hash="1"><title>s, mutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="456" y="90" data-hash="4"><title>some_string, mutable</title>some_string</text>
     </g>
 
     <g id="timelines">
@@ -184,14 +184,14 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="356" y="105"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="356" y="145"><title>Partially lends resource to change()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="356" y="145"><title>Partially reacquires resource from change()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="356" y="165"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="456" y="205"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="456" y="225"><title>Partially lends resource to push_str()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="456" y="225"><title>Partially reacquires resource from push_str()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="456" y="245"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="356" y="105"><title>copies it's value to String::from() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="356" y="145"><title>copies it's value to change() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="356" y="145"><title>copies it's value to change() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="356" y="165"><title>s goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="456" y="205"><title>copies it's value to another value (some_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="456" y="225"><title>copies it's value to push_str() (some_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="456" y="225"><title>copies it's value to push_str() (some_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="456" y="245"><title>some_string goes out of scope. The data is not dropped because some_string is not the owner.</title></use>
     </g>
 
     <g id="arrows">

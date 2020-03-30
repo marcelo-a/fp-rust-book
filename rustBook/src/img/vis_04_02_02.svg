@@ -168,8 +168,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="314" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="384" y="90" data-hash="2"><title>len, immutable</title>len</text>
+        <text style="text-anchor:middle" class="code" x="314" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -180,10 +180,10 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="314" y="105"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="314" y="145"><title>Partially lends resource to calculate_length()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="314" y="145"><title>Partially reacquires resource from calculate_length()</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="384" y="145"><title>Acquiring resource from calculate_length()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="314" y="105"><title>copies it's value to String::from() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="314" y="145"><title>copies it's value to calculate_length() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="314" y="145"><title>copies it's value to calculate_length() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="384" y="145"><title>copies it's value to calculate_length() (len keeps ownership)</title></use>
     </g>
 
     <g id="arrows">

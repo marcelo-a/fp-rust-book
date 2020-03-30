@@ -168,9 +168,9 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="524" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
-        <text style="text-anchor:middle" class="code" x="454" y="90" data-hash="1"><title>s, mutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="594" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
+        <text style="text-anchor:middle" class="code" x="454" y="90" data-hash="1"><title>s, mutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="524" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
         <text style="text-anchor:middle" class="code" x="664" y="90" data-hash="4"><title>r3, immutable</title>r3</text>
     </g>
 
@@ -205,29 +205,29 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="454" y="105"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="454" y="145"><title>Partially lends resource to r1</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="454" y="165"><title>Partially lends resource to r2</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="454" y="185"><title>Partially reacquires resource from r1</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="454" y="185"><title>Partially reacquires resource from r2</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="454" y="245"><title>Mutable lend to r3</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="454" y="265"><title>Fully reacquires resource from r3</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="454" y="305"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="524" y="145"><title>Partially borrows resource from s</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="524" y="185"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="524" y="185"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="524" y="185"><title>Partially returns resource to s</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="524" y="305"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="594" y="165"><title>Partially borrows resource from s</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="594" y="185"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="594" y="185"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="594" y="185"><title>Partially returns resource to s</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="594" y="305"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="664" y="245"><title>Fully borrows resource from s</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="664" y="265"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="664" y="265"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="664" y="265"><title>Fully returns resource to s</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="664" y="305"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="454" y="105"><title>copies it's value to String::from() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="454" y="145"><title>copies it's value to r1 (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="454" y="165"><title>copies it's value to r2 (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="454" y="185"><title>copies it's value to r1 (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="454" y="185"><title>copies it's value to r2 (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="454" y="245"><title>copies it's value to r3 (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="454" y="265"><title>copies it's value to r3 (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="454" y="305"><title>s goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="524" y="145"><title>statically borrows data from s (r1 gains read only access to data)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="524" y="185"><title>copies it's value to println!() (r1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="524" y="185"><title>copies it's value to println!() (r1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="524" y="185"><title>copies it's value to s (r1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="524" y="305"><title>r1 goes out of scope. The data is not dropped because r1 is not the owner.</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="594" y="165"><title>statically borrows data from s (r2 gains read only access to data)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="594" y="185"><title>copies it's value to println!() (r2 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="594" y="185"><title>copies it's value to println!() (r2 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="594" y="185"><title>copies it's value to s (r2 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="594" y="305"><title>r2 goes out of scope. The data is not dropped because r2 is not the owner.</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="664" y="245"><title>mutably borrows data from s (r3 gains read and write access to data)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="664" y="265"><title>copies it's value to println!() (r3 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="664" y="265"><title>copies it's value to println!() (r3 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="664" y="265"><title>copies it's value to s (r3 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="664" y="305"><title>r3 goes out of scope. The data is not dropped because r3 is not the owner.</title></use>
     </g>
 
     <g id="arrows">

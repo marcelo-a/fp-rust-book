@@ -181,10 +181,10 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="4" x="636" y="105"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="636" y="125"><title>Partially lends resource to len()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="636" y="125"><title>Partially reacquires resource from len()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="636" y="145"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="636" y="105"><title>copies it's value to another value (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="636" y="125"><title>copies it's value to len() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="636" y="125"><title>copies it's value to len() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="636" y="145"><title>s goes out of scope. The data is not dropped because s is not the owner.</title></use>
     </g>
 
     <g id="arrows">

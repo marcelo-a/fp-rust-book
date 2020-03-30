@@ -169,8 +169,8 @@ text.functionIcon {
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="930" y="90" data-hash="7"><title>some_integer, immutable</title>some_integer</text>
-        <text style="text-anchor:middle" class="code" x="650" y="90" data-hash="1"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="720" y="90" data-hash="4"><title>x, immutable</title>x</text>
+        <text style="text-anchor:middle" class="code" x="650" y="90" data-hash="1"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="820" y="90" data-hash="6"><title>some_string, immutable</title>some_string</text>
     </g>
 
@@ -196,20 +196,20 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="650" y="105"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="650" y="145"><title>Moving resource to takes_ownership()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="650" y="325"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="720" y="205"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="720" y="245"><title>Copying resource to makes_copy()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="720" y="325"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="6" x="820" y="385"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="6" x="820" y="405"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="6" x="820" y="405"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="6" x="820" y="425"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="7" x="930" y="485"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="7" x="930" y="505"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="7" x="930" y="505"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="7" x="930" y="525"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="650" y="105"><title>copies it's value to String::from() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="650" y="145"><title>copies it's value to takes_ownership() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="650" y="325"><title>s goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="720" y="205"><title>copies it's value to another value (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="720" y="245"><title>copies it's value to makes_copy() (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="720" y="325"><title>x goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="820" y="385"><title>copies it's value to another value (some_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="820" y="405"><title>copies it's value to println!() (some_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="820" y="405"><title>copies it's value to println!() (some_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="820" y="425"><title>some_string goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="930" y="485"><title>copies it's value to another value (some_integer keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="930" y="505"><title>copies it's value to println!() (some_integer keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="930" y="505"><title>copies it's value to println!() (some_integer keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="930" y="525"><title>some_integer goes out of scope. The data is dropped.</title></use>
     </g>
 
     <g id="arrows">

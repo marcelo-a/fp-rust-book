@@ -180,12 +180,12 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="587" y="105"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="587" y="145"><title>Mutable lend to push_str()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="587" y="145"><title>Fully reacquires resource from push_str()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="587" y="185"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="587" y="185"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="587" y="205"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="587" y="105"><title>copies it's value to String::from() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="587" y="145"><title>copies it's value to push_str() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="587" y="145"><title>copies it's value to push_str() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="587" y="185"><title>copies it's value to println!() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="587" y="185"><title>copies it's value to println!() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="587" y="205"><title>s goes out of scope. The data is dropped.</title></use>
     </g>
 
     <g id="arrows">

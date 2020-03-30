@@ -190,15 +190,15 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="3" x="349" y="105"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="349" y="125"><title>Copying resource to y</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="349" y="165"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="349" y="165"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="349" y="185"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="419" y="125"><title>Acquiring resource from x</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="419" y="165"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="419" y="165"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="419" y="185"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="349" y="105"><title>copies it's value to another value (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="349" y="125"><title>copies it's value to y (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="349" y="165"><title>copies it's value to println!() (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="349" y="165"><title>copies it's value to println!() (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="349" y="185"><title>x goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="419" y="125"><title>copies it's value to x (y keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="419" y="165"><title>copies it's value to println!() (y keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="419" y="165"><title>copies it's value to println!() (y keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="419" y="185"><title>y goes out of scope. The data is dropped.</title></use>
     </g>
 
     <g id="arrows">

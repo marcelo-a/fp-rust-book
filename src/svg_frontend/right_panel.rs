@@ -201,12 +201,15 @@ fn render_dots_string(
     for (hash, timeline) in timelines {
         if let ResourceOwner::Variable(_) = timeline.resource_owner {
             for (line_number, event) in timeline.history.iter() {
-                let data = EventDotData {
+                let mut data = EventDotData {
                     hash: *hash as i64,
                     dot_x: resource_owners_layout[hash].x_val,
                     dot_y: get_y_axis_pos(line_number),
-                    title: event.to_string()
+                    title: "Unknown Resource Owner Value".to_owned()
                 };
+                if let Some(name) = visualization_data.get_name_from_hash(hash) {
+                    data.title = event.print_message_with_name(&name);
+                }
                 output.push_str(&registry.render("dot_template", &data).unwrap());
             }
         }   

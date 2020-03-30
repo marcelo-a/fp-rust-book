@@ -1,117 +1,88 @@
 Running the following examples: 
-warning: unused import: `HashMap`
- --> src/data.rs:1:44
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+warning: unused imports: `Formatter`, `Result`
+ --> src/hover_messages.rs:1:16
   |
-1 |  use std::collections::{HashSet, BTreeMap, HashMap};
-  |                                            ^^^^^^^
+1 | use std::fmt::{Formatter, Result};
+  |                ^^^^^^^^^  ^^^^^^
   |
   = note: `#[warn(unused_imports)]` on by default
 
+warning: unused variable: `message_functor`
+ --> src/data.rs:316:5
+  |
+31|     message_functor: fn(&String, &String) -> String,
+  |     ^^^^^^^^^^^^^^^ help: consider prefixing with an underscore: `_message_functor`
+  |
+  = note: `#[warn(unused_variables)]` on by default
+
 warning: unused variable: `ro`
-   --> src/data.rs:372:61
+   --> src/data.rs:440:61
     |
-372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+440 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
     |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:399:96
+   --> src/data.rs:467:96
     |
-399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+467 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
     |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:413:97
+   --> src/data.rs:481:97
     |
-413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+481 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
     |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:434:93
+   --> src/data.rs:504:93
     |
-434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+504 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
     |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:436:40
+   --> src/data.rs:506:40
     |
-436 |             (_, Event::Duplicate { to: ro }) =>
+506 |             (_, Event::Duplicate { to: ro }) =>
     |                                        ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `timeline`
-   --> src/data.rs:461:18
+   --> src/data.rs:531:18
     |
-461 |             Some(timeline) => {
+531 |             Some(timeline) => {
     |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
 
 warning: unused variable: `line_number`
-   --> src/data.rs:459:37
+   --> src/data.rs:529:37
     |
-459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+529 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
     |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
 
 warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:219:4
-    |
-219 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
-   --> src/hover_messages.rs:101:1
-    |
-101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
-   --> src/hover_messages.rs:108:1
-    |
-108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_ACQUIRE`
-   --> src/hover_messages.rs:119:1
-    |
-119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
-   --> src/hover_messages.rs:125:1
-    |
-125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
-   --> src/hover_messages.rs:131:1
-    |
-131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
-   --> src/hover_messages.rs:138:1
-    |
-138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
-   --> src/hover_messages.rs:145:1
-    |
-145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ --> src/svg_frontend/right_panel.rs:222:1
+  |
+22| / fn render_arrows_string(
+22| |     visualization_data: &VisualizationData,
+22| |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+22| |     registry: &Handlebars
+... |
+27| |     output
+27| | }
+  | |_^
+  |
+  = note: `#[warn(dead_code)]` on by default
 
 warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:401:62
-    |
-401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+ --> src/data.rs:469:62
+  |
+46|             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+  |                                                              ----------^^^^^^^^^^
+  |                                                              |
+  |                                                              help: remove this
+  |
+  = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
+    Finished dev [unoptimized + debuginfo] target(s) in 2.27s
      Running `target/debug/examples/one_var`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
@@ -294,8 +265,8 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="4" x="328" y="105"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="328" y="125"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="328" y="105"><title>copies it's value to String::from() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="328" y="125"><title>s goes out of scope. The data is dropped.</title></use>
     </g>
 
     <g id="arrows">
@@ -316,118 +287,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_01_one_var/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_01.svg
-warning: unused import: `HashMap`
- --> src/data.rs:1:44
-  |
-1 |  use std::collections::{HashSet, BTreeMap, HashMap};
-  |                                            ^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:372:61
-    |
-372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:399:96
-    |
-399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:413:97
-    |
-413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:434:93
-    |
-434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:436:40
-    |
-436 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:461:18
-    |
-461 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:459:37
-    |
-459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:219:4
-    |
-219 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
-   --> src/hover_messages.rs:101:1
-    |
-101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
-   --> src/hover_messages.rs:108:1
-    |
-108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_ACQUIRE`
-   --> src/hover_messages.rs:119:1
-    |
-119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
-   --> src/hover_messages.rs:125:1
-    |
-125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
-   --> src/hover_messages.rs:131:1
-    |
-131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
-   --> src/hover_messages.rs:138:1
-    |
-138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
-   --> src/hover_messages.rs:145:1
-    |
-145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:401:62
-    |
-401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
 warning: unused import: `Function`
  --> examples/book_04_01_02_scope/main.rs:1:76
   |
@@ -436,7 +296,7 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.16s
+    Finished dev [unoptimized + debuginfo] target(s) in 1.70s
      Running `target/debug/examples/scope`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
@@ -619,8 +479,8 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="4" x="636" y="125"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="636" y="185"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="636" y="125"><title>copies it's value to another value (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="636" y="185"><title>s goes out of scope. The data is dropped.</title></use>
     </g>
 
     <g id="arrows">
@@ -644,119 +504,8 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_02_scope/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_02.svg
-warning: unused import: `HashMap`
- --> src/data.rs:1:44
-  |
-1 |  use std::collections::{HashSet, BTreeMap, HashMap};
-  |                                            ^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:372:61
-    |
-372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:399:96
-    |
-399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:413:97
-    |
-413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:434:93
-    |
-434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:436:40
-    |
-436 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:461:18
-    |
-461 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:459:37
-    |
-459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:219:4
-    |
-219 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
-   --> src/hover_messages.rs:101:1
-    |
-101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
-   --> src/hover_messages.rs:108:1
-    |
-108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_ACQUIRE`
-   --> src/hover_messages.rs:119:1
-    |
-119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
-   --> src/hover_messages.rs:125:1
-    |
-125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
-   --> src/hover_messages.rs:131:1
-    |
-131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
-   --> src/hover_messages.rs:138:1
-    |
-138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
-   --> src/hover_messages.rs:145:1
-    |
-145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:401:62
-    |
-401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.78s
      Running `target/debug/examples/string_from`
 s 1 2 OutOfScope
 <svg width="750" height="170px" 
@@ -936,7 +685,7 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="300" y="105"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="300" y="105"><title>copies it's value to String::from() (s keeps ownership)</title></use>
     </g>
 
     <g id="arrows">
@@ -956,119 +705,8 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_03_string_from/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_03.svg
-warning: unused import: `HashMap`
- --> src/data.rs:1:44
-  |
-1 |  use std::collections::{HashSet, BTreeMap, HashMap};
-  |                                            ^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:372:61
-    |
-372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:399:96
-    |
-399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:413:97
-    |
-413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:434:93
-    |
-434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:436:40
-    |
-436 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:461:18
-    |
-461 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:459:37
-    |
-459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:219:4
-    |
-219 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
-   --> src/hover_messages.rs:101:1
-    |
-101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
-   --> src/hover_messages.rs:108:1
-    |
-108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_ACQUIRE`
-   --> src/hover_messages.rs:119:1
-    |
-119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
-   --> src/hover_messages.rs:125:1
-    |
-125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
-   --> src/hover_messages.rs:131:1
-    |
-131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
-   --> src/hover_messages.rs:138:1
-    |
-138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
-   --> src/hover_messages.rs:145:1
-    |
-145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:401:62
-    |
-401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.72s
      Running `target/debug/examples/reference`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -1258,12 +896,12 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="587" y="105"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="587" y="145"><title>Mutable lend to push_str()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="587" y="145"><title>Fully reacquires resource from push_str()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="587" y="185"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="587" y="185"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="587" y="205"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="587" y="105"><title>copies it's value to String::from() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="587" y="145"><title>copies it's value to push_str() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="587" y="145"><title>copies it's value to push_str() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="587" y="185"><title>copies it's value to println!() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="587" y="185"><title>copies it's value to println!() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="587" y="205"><title>s goes out of scope. The data is dropped.</title></use>
     </g>
 
     <g id="arrows">
@@ -1290,118 +928,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_04_reference/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_04.svg
-warning: unused import: `HashMap`
- --> src/data.rs:1:44
-  |
-1 |  use std::collections::{HashSet, BTreeMap, HashMap};
-  |                                            ^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:372:61
-    |
-372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:399:96
-    |
-399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:413:97
-    |
-413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:434:93
-    |
-434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:436:40
-    |
-436 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:461:18
-    |
-461 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:459:37
-    |
-459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:219:4
-    |
-219 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
-   --> src/hover_messages.rs:101:1
-    |
-101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
-   --> src/hover_messages.rs:108:1
-    |
-108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_ACQUIRE`
-   --> src/hover_messages.rs:119:1
-    |
-119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
-   --> src/hover_messages.rs:125:1
-    |
-125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
-   --> src/hover_messages.rs:131:1
-    |
-131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
-   --> src/hover_messages.rs:138:1
-    |
-138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
-   --> src/hover_messages.rs:145:1
-    |
-145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:401:62
-    |
-401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
 warning: unused import: `Function`
  --> examples/book_04_01_05_scope2/main.rs:1:76
   |
@@ -1410,7 +937,7 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.79s
      Running `target/debug/examples/scope2`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
@@ -1593,8 +1120,8 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="4" x="629" y="125"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="629" y="185"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="629" y="125"><title>copies it's value to another value (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="629" y="185"><title>s goes out of scope. The data is dropped.</title></use>
     </g>
 
     <g id="arrows">
@@ -1619,118 +1146,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_05_scope2/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_05.svg
-warning: unused import: `HashMap`
- --> src/data.rs:1:44
-  |
-1 |  use std::collections::{HashSet, BTreeMap, HashMap};
-  |                                            ^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:372:61
-    |
-372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:399:96
-    |
-399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:413:97
-    |
-413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:434:93
-    |
-434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:436:40
-    |
-436 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:461:18
-    |
-461 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:459:37
-    |
-459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:219:4
-    |
-219 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
-   --> src/hover_messages.rs:101:1
-    |
-101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
-   --> src/hover_messages.rs:108:1
-    |
-108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_ACQUIRE`
-   --> src/hover_messages.rs:119:1
-    |
-119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
-   --> src/hover_messages.rs:125:1
-    |
-125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
-   --> src/hover_messages.rs:131:1
-    |
-131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
-   --> src/hover_messages.rs:138:1
-    |
-138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
-   --> src/hover_messages.rs:145:1
-    |
-145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:401:62
-    |
-401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
 warning: unused import: `Function`
  --> examples/book_04_01_06_int_copy/main.rs:1:76
   |
@@ -1739,7 +1155,7 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.17s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.86s
      Running `target/debug/examples/int_copy`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -1930,11 +1346,11 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="3" x="188" y="105"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="188" y="125"><title>Copying resource to y</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="188" y="145"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="258" y="125"><title>Acquiring resource from x</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="258" y="145"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="188" y="105"><title>copies it's value to another value (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="188" y="125"><title>copies it's value to y (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="188" y="145"><title>x goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="258" y="125"><title>copies it's value to x (y keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="258" y="145"><title>y goes out of scope. The data is dropped.</title></use>
     </g>
 
     <g id="arrows">
@@ -1956,119 +1372,8 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_06_int_copy/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_06.svg
-warning: unused import: `HashMap`
- --> src/data.rs:1:44
-  |
-1 |  use std::collections::{HashSet, BTreeMap, HashMap};
-  |                                            ^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:372:61
-    |
-372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:399:96
-    |
-399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:413:97
-    |
-413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:434:93
-    |
-434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:436:40
-    |
-436 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:461:18
-    |
-461 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:459:37
-    |
-459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:219:4
-    |
-219 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
-   --> src/hover_messages.rs:101:1
-    |
-101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
-   --> src/hover_messages.rs:108:1
-    |
-108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_ACQUIRE`
-   --> src/hover_messages.rs:119:1
-    |
-119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
-   --> src/hover_messages.rs:125:1
-    |
-125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
-   --> src/hover_messages.rs:131:1
-    |
-131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
-   --> src/hover_messages.rs:138:1
-    |
-138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
-   --> src/hover_messages.rs:145:1
-    |
-145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:401:62
-    |
-401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 1.63s
      Running `target/debug/examples/string_move`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -2243,8 +1548,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="307" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="377" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="307" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -2253,9 +1558,9 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="307" y="105"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="307" y="125"><title>Moving resource to s2</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="377" y="125"><title>Acquiring resource from s1</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="307" y="105"><title>copies it's value to String::from() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="307" y="125"><title>copies it's value to s2 (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="377" y="125"><title>copies it's value to s1 (s2 keeps ownership)</title></use>
     </g>
 
     <g id="arrows">
@@ -2277,119 +1582,8 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_07_string_move/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_07.svg
-warning: unused import: `HashMap`
- --> src/data.rs:1:44
-  |
-1 |  use std::collections::{HashSet, BTreeMap, HashMap};
-  |                                            ^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:372:61
-    |
-372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:399:96
-    |
-399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:413:97
-    |
-413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:434:93
-    |
-434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:436:40
-    |
-436 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:461:18
-    |
-461 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:459:37
-    |
-459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:219:4
-    |
-219 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
-   --> src/hover_messages.rs:101:1
-    |
-101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
-   --> src/hover_messages.rs:108:1
-    |
-108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_ACQUIRE`
-   --> src/hover_messages.rs:119:1
-    |
-119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
-   --> src/hover_messages.rs:125:1
-    |
-125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
-   --> src/hover_messages.rs:131:1
-    |
-131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
-   --> src/hover_messages.rs:138:1
-    |
-138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
-   --> src/hover_messages.rs:145:1
-    |
-145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:401:62
-    |
-401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.23s
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.86s
      Running `target/debug/examples/string_clone`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -2569,8 +1763,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="349" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="419" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="349" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -2589,14 +1783,14 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="349" y="105"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="349" y="125"><title>Partially lends resource to clone()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="349" y="125"><title>Partially reacquires resource from clone()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="349" y="165"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="349" y="165"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="419" y="125"><title>Acquiring resource from clone()</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="419" y="165"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="419" y="165"><title>Partially reacquires resource from println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="349" y="105"><title>copies it's value to String::from() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="349" y="125"><title>copies it's value to clone() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="349" y="125"><title>copies it's value to clone() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="349" y="165"><title>copies it's value to println!() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="349" y="165"><title>copies it's value to println!() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="419" y="125"><title>copies it's value to clone() (s2 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="419" y="165"><title>copies it's value to println!() (s2 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="419" y="165"><title>copies it's value to println!() (s2 keeps ownership)</title></use>
     </g>
 
     <g id="arrows">
@@ -2623,119 +1817,8 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_09_string_clone/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_09.svg
-warning: unused import: `HashMap`
- --> src/data.rs:1:44
-  |
-1 |  use std::collections::{HashSet, BTreeMap, HashMap};
-  |                                            ^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:372:61
-    |
-372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:399:96
-    |
-399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:413:97
-    |
-413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:434:93
-    |
-434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:436:40
-    |
-436 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:461:18
-    |
-461 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:459:37
-    |
-459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:219:4
-    |
-219 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
-   --> src/hover_messages.rs:101:1
-    |
-101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
-   --> src/hover_messages.rs:108:1
-    |
-108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_ACQUIRE`
-   --> src/hover_messages.rs:119:1
-    |
-119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
-   --> src/hover_messages.rs:125:1
-    |
-125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
-   --> src/hover_messages.rs:131:1
-    |
-131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
-   --> src/hover_messages.rs:138:1
-    |
-138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
-   --> src/hover_messages.rs:145:1
-    |
-145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:401:62
-    |
-401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 1.25s
      Running `target/debug/examples/int_copy_2`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -2938,15 +2021,15 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="3" x="349" y="105"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="349" y="125"><title>Copying resource to y</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="349" y="165"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="349" y="165"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="349" y="185"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="419" y="125"><title>Acquiring resource from x</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="419" y="165"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="419" y="165"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="419" y="185"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="349" y="105"><title>copies it's value to another value (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="349" y="125"><title>copies it's value to y (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="349" y="165"><title>copies it's value to println!() (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="349" y="165"><title>copies it's value to println!() (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="349" y="185"><title>x goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="419" y="125"><title>copies it's value to x (y keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="419" y="165"><title>copies it's value to println!() (y keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="419" y="165"><title>copies it's value to println!() (y keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="419" y="185"><title>y goes out of scope. The data is dropped.</title></use>
     </g>
 
     <g id="arrows">
@@ -2972,119 +2055,8 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_10_int_copy_2/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_10.svg
-warning: unused import: `HashMap`
- --> src/data.rs:1:44
-  |
-1 |  use std::collections::{HashSet, BTreeMap, HashMap};
-  |                                            ^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:372:61
-    |
-372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:399:96
-    |
-399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:413:97
-    |
-413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:434:93
-    |
-434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:436:40
-    |
-436 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:461:18
-    |
-461 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:459:37
-    |
-459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:219:4
-    |
-219 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
-   --> src/hover_messages.rs:101:1
-    |
-101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
-   --> src/hover_messages.rs:108:1
-    |
-108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_ACQUIRE`
-   --> src/hover_messages.rs:119:1
-    |
-119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
-   --> src/hover_messages.rs:125:1
-    |
-125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
-   --> src/hover_messages.rs:131:1
-    |
-131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
-   --> src/hover_messages.rs:138:1
-    |
-138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
-   --> src/hover_messages.rs:145:1
-    |
-145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:401:62
-    |
-401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 1.50s
      Running `target/debug/examples/ownership_function`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -3271,8 +2243,8 @@ text.functionIcon {
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="930" y="90" data-hash="7"><title>some_integer, immutable</title>some_integer</text>
-        <text style="text-anchor:middle" class="code" x="650" y="90" data-hash="1"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="720" y="90" data-hash="4"><title>x, immutable</title>x</text>
+        <text style="text-anchor:middle" class="code" x="650" y="90" data-hash="1"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="820" y="90" data-hash="6"><title>some_string, immutable</title>some_string</text>
     </g>
 
@@ -3298,20 +2270,20 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="650" y="105"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="650" y="145"><title>Moving resource to takes_ownership()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="650" y="325"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="720" y="205"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="720" y="245"><title>Copying resource to makes_copy()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="720" y="325"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="6" x="820" y="385"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="6" x="820" y="405"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="6" x="820" y="405"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="6" x="820" y="425"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="7" x="930" y="485"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="7" x="930" y="505"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="7" x="930" y="505"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="7" x="930" y="525"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="650" y="105"><title>copies it's value to String::from() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="650" y="145"><title>copies it's value to takes_ownership() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="650" y="325"><title>s goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="720" y="205"><title>copies it's value to another value (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="720" y="245"><title>copies it's value to makes_copy() (x keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="720" y="325"><title>x goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="820" y="385"><title>copies it's value to another value (some_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="820" y="405"><title>copies it's value to println!() (some_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="820" y="405"><title>copies it's value to println!() (some_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="820" y="425"><title>some_string goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="930" y="485"><title>copies it's value to another value (some_integer keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="930" y="505"><title>copies it's value to println!() (some_integer keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="930" y="505"><title>copies it's value to println!() (some_integer keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="930" y="525"><title>some_integer goes out of scope. The data is dropped.</title></use>
     </g>
 
     <g id="arrows">
@@ -3356,119 +2328,8 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_11_ownership_function/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_11.svg
-warning: unused import: `HashMap`
- --> src/data.rs:1:44
-  |
-1 |  use std::collections::{HashSet, BTreeMap, HashMap};
-  |                                            ^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:372:61
-    |
-372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:399:96
-    |
-399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:413:97
-    |
-413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:434:93
-    |
-434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:436:40
-    |
-436 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:461:18
-    |
-461 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:459:37
-    |
-459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:219:4
-    |
-219 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
-   --> src/hover_messages.rs:101:1
-    |
-101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
-   --> src/hover_messages.rs:108:1
-    |
-108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_ACQUIRE`
-   --> src/hover_messages.rs:119:1
-    |
-119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
-   --> src/hover_messages.rs:125:1
-    |
-125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
-   --> src/hover_messages.rs:131:1
-    |
-131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
-   --> src/hover_messages.rs:138:1
-    |
-138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
-   --> src/hover_messages.rs:145:1
-    |
-145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:401:62
-    |
-401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.14s
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.88s
      Running `target/debug/examples/return_values`
 s1 1 2 OutOfScope
 s1 2 10 FullPrivilege
@@ -3654,10 +2515,10 @@ text.functionIcon {
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="806" y="90" data-hash="4"><title>s2, immutable</title>s2</text>
-        <text style="text-anchor:middle" class="code" x="736" y="90" data-hash="3"><title>some_string, immutable</title>some_string</text>
-        <text style="text-anchor:middle" class="code" x="946" y="90" data-hash="7"><title>a_string, immutable</title>a_string</text>
-        <text style="text-anchor:middle" class="code" x="636" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="876" y="90" data-hash="5"><title>s3, immutable</title>s3</text>
+        <text style="text-anchor:middle" class="code" x="946" y="90" data-hash="7"><title>a_string, immutable</title>a_string</text>
+        <text style="text-anchor:middle" class="code" x="736" y="90" data-hash="3"><title>some_string, immutable</title>some_string</text>
+        <text style="text-anchor:middle" class="code" x="636" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -3674,19 +2535,19 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="636" y="105"><title>Acquiring resource from gives_ownership()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="636" y="265"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="736" y="405"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="736" y="445"><title>Moving resource</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="736" y="505"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="806" y="165"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="806" y="205"><title>Moving resource to takes_and_gives_back()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="806" y="265"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="5" x="876" y="205"><title>Acquiring resource from takes_and_gives_back()</title></use>
-        <use xlink:href="#eventDot" data-hash="5" x="876" y="265"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="7" x="946" y="565"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="7" x="946" y="625"><title>Moving resource</title></use>
-        <use xlink:href="#eventDot" data-hash="7" x="946" y="645"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="636" y="105"><title>copies it's value to gives_ownership() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="636" y="265"><title>s1 goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="736" y="405"><title>copies it's value to another value (some_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="736" y="445"><title>copies it's value to another value (some_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="736" y="505"><title>some_string goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="806" y="165"><title>copies it's value to another value (s2 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="806" y="205"><title>copies it's value to takes_and_gives_back() (s2 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="806" y="265"><title>s2 goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="5" x="876" y="205"><title>copies it's value to takes_and_gives_back() (s3 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="5" x="876" y="265"><title>s3 goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="946" y="565"><title>copies it's value to another value (a_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="946" y="625"><title>copies it's value to another value (a_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="7" x="946" y="645"><title>a_string goes out of scope. The data is dropped.</title></use>
     </g>
 
     <g id="arrows">
@@ -3735,127 +2596,16 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_12_return_values/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_12.svg
-warning: unused import: `HashMap`
- --> src/data.rs:1:44
-  |
-1 |  use std::collections::{HashSet, BTreeMap, HashMap};
-  |                                            ^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:372:61
-    |
-372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:399:96
-    |
-399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:413:97
-    |
-413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:434:93
-    |
-434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:436:40
-    |
-436 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:461:18
-    |
-461 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:459:37
-    |
-459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:219:4
-    |
-219 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
-   --> src/hover_messages.rs:101:1
-    |
-101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
-   --> src/hover_messages.rs:108:1
-    |
-108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_ACQUIRE`
-   --> src/hover_messages.rs:119:1
-    |
-119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
-   --> src/hover_messages.rs:125:1
-    |
-125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
-   --> src/hover_messages.rs:131:1
-    |
-131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
-   --> src/hover_messages.rs:138:1
-    |
-138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
-   --> src/hover_messages.rs:145:1
-    |
-145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:401:62
-    |
-401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
 warning: unused variable: `println_func`
-  --> examples/book_04_01_13_return_tuple/main.rs:55:9
-   |
-55 |     let println_func = ResourceOwner::Function(Function {
-   |         ^^^^^^^^^^^^ help: consider prefixing with an underscore: `_println_func`
-   |
-   = note: `#[warn(unused_variables)]` on by default
+ --> examples/book_04_01_13_return_tuple/main.rs:55:9
+  |
+55|     let println_func = ResourceOwner::Function(Function {
+  |         ^^^^^^^^^^^^ help: consider prefixing with an underscore: `_println_func`
+  |
+  = note: `#[warn(unused_variables)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.72s
      Running `target/debug/examples/return_tuple`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -4046,9 +2796,9 @@ text.functionIcon {
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="615" y="90" data-hash="2"><title>len, immutable</title>len</text>
         <text style="text-anchor:middle" class="code" x="825" y="90" data-hash="8"><title>length, immutable</title>length</text>
+        <text style="text-anchor:middle" class="code" x="545" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="755" y="90" data-hash="6"><title>s2, immutable</title>s2</text>
         <text style="text-anchor:middle" class="code" x="685" y="90" data-hash="4"><title>s, immutable</title>s</text>
-        <text style="text-anchor:middle" class="code" x="545" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -4079,23 +2829,23 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="545" y="105"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="545" y="145"><title>Partially lends resource to calculate_length()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="545" y="145"><title>Partially reacquires resource from calculate_length()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="545" y="205"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="615" y="145"><title>Acquiring resource from calculate_length()</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="615" y="185"><title>Partially lends resource to len()</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="615" y="185"><title>Partially reacquires resource from len()</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="615" y="205"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="685" y="245"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="685" y="265"><title>Partially lends resource to len()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="685" y="265"><title>Partially reacquires resource from len()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="685" y="305"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="6" x="755" y="145"><title>Acquiring resource from calculate_length()</title></use>
-        <use xlink:href="#eventDot" data-hash="6" x="755" y="185"><title>Partially lends resource to len()</title></use>
-        <use xlink:href="#eventDot" data-hash="6" x="755" y="185"><title>Partially reacquires resource from len()</title></use>
-        <use xlink:href="#eventDot" data-hash="8" x="825" y="265"><title>Acquiring resource from len()</title></use>
-        <use xlink:href="#eventDot" data-hash="8" x="825" y="305"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="545" y="105"><title>copies it's value to String::from() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="545" y="145"><title>copies it's value to calculate_length() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="545" y="145"><title>copies it's value to calculate_length() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="545" y="205"><title>s1 goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="615" y="145"><title>copies it's value to calculate_length() (len keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="615" y="185"><title>copies it's value to len() (len keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="615" y="185"><title>copies it's value to len() (len keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="615" y="205"><title>len goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="685" y="245"><title>copies it's value to another value (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="685" y="265"><title>copies it's value to len() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="685" y="265"><title>copies it's value to len() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="685" y="305"><title>s goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="755" y="145"><title>copies it's value to calculate_length() (s2 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="755" y="185"><title>copies it's value to len() (s2 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="6" x="755" y="185"><title>copies it's value to len() (s2 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="8" x="825" y="265"><title>copies it's value to len() (length keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="8" x="825" y="305"><title>length goes out of scope. The data is dropped.</title></use>
     </g>
 
     <g id="arrows">
@@ -4133,119 +2883,8 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_13_return_tuple/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_13.svg
-warning: unused import: `HashMap`
- --> src/data.rs:1:44
-  |
-1 |  use std::collections::{HashSet, BTreeMap, HashMap};
-  |                                            ^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:372:61
-    |
-372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:399:96
-    |
-399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:413:97
-    |
-413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:434:93
-    |
-434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:436:40
-    |
-436 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:461:18
-    |
-461 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:459:37
-    |
-459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:219:4
-    |
-219 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
-   --> src/hover_messages.rs:101:1
-    |
-101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
-   --> src/hover_messages.rs:108:1
-    |
-108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_ACQUIRE`
-   --> src/hover_messages.rs:119:1
-    |
-119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
-   --> src/hover_messages.rs:125:1
-    |
-125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
-   --> src/hover_messages.rs:131:1
-    |
-131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
-   --> src/hover_messages.rs:138:1
-    |
-138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
-   --> src/hover_messages.rs:145:1
-    |
-145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:401:62
-    |
-401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.76s
      Running `target/debug/examples/pass_reference`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -4428,8 +3067,8 @@ text.functionIcon {
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="447" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
-        <text style="text-anchor:middle" class="code" x="587" y="90" data-hash="4"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="517" y="90" data-hash="2"><title>len, immutable</title>len</text>
+        <text style="text-anchor:middle" class="code" x="587" y="90" data-hash="4"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
@@ -4450,16 +3089,16 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="447" y="105"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="447" y="145"><title>Partially lends resource to calculate_length()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="447" y="145"><title>Partially reacquires resource from calculate_length()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="447" y="205"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="517" y="145"><title>Acquiring resource from calculate_length()</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="517" y="205"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="587" y="245"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="587" y="265"><title>Partially lends resource to len()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="587" y="265"><title>Partially reacquires resource from len()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="587" y="285"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="447" y="105"><title>copies it's value to String::from() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="447" y="145"><title>copies it's value to calculate_length() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="447" y="145"><title>copies it's value to calculate_length() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="447" y="205"><title>s1 goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="517" y="145"><title>copies it's value to calculate_length() (len keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="517" y="205"><title>len goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="587" y="245"><title>copies it's value to another value (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="587" y="265"><title>copies it's value to len() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="587" y="265"><title>copies it's value to len() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="587" y="285"><title>s goes out of scope. The data is not dropped because s is not the owner.</title></use>
     </g>
 
     <g id="arrows">
@@ -4491,125 +3130,14 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_02_01_pass_reference/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_01.svg
-warning: unused import: `HashMap`
- --> src/data.rs:1:44
-  |
-1 |  use std::collections::{HashSet, BTreeMap, HashMap};
-  |                                            ^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:372:61
-    |
-372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:399:96
-    |
-399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:413:97
-    |
-413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:434:93
-    |
-434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:436:40
-    |
-436 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:461:18
-    |
-461 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:459:37
-    |
-459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:219:4
-    |
-219 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
-   --> src/hover_messages.rs:101:1
-    |
-101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
-   --> src/hover_messages.rs:108:1
-    |
-108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_ACQUIRE`
-   --> src/hover_messages.rs:119:1
-    |
-119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
-   --> src/hover_messages.rs:125:1
-    |
-125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
-   --> src/hover_messages.rs:131:1
-    |
-131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
-   --> src/hover_messages.rs:138:1
-    |
-138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
-   --> src/hover_messages.rs:145:1
-    |
-145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:401:62
-    |
-401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
 warning: unused variable: `s`
-  --> examples/book_04_02_02_acquire_from_function/main.rs:21:9
-   |
-21 |     let s = Some(ResourceOwner::Variable(Variable {
-   |         ^ help: consider prefixing with an underscore: `_s`
-   |
-   = note: `#[warn(unused_variables)]` on by default
+ --> examples/book_04_02_02_acquire_from_function/main.rs:21:9
+  |
+21|     let s = Some(ResourceOwner::Variable(Variable {
+  |         ^ help: consider prefixing with an underscore: `_s`
+  |
+  = note: `#[warn(unused_variables)]` on by default
 
 warning: unused variable: `len_func`
   --> examples/book_04_02_02_acquire_from_function/main.rs:37:9
@@ -4617,7 +3145,7 @@ warning: unused variable: `len_func`
 37 |     let len_func = Some(ResourceOwner::Function(Function {
    |         ^^^^^^^^ help: consider prefixing with an underscore: `_len_func`
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.80s
      Running `target/debug/examples/acquire_from_function`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -4793,8 +3321,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="314" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="384" y="90" data-hash="2"><title>len, immutable</title>len</text>
+        <text style="text-anchor:middle" class="code" x="314" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -4805,10 +3333,10 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="314" y="105"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="314" y="145"><title>Partially lends resource to calculate_length()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="314" y="145"><title>Partially reacquires resource from calculate_length()</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="384" y="145"><title>Acquiring resource from calculate_length()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="314" y="105"><title>copies it's value to String::from() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="314" y="145"><title>copies it's value to calculate_length() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="314" y="145"><title>copies it's value to calculate_length() (s1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="384" y="145"><title>copies it's value to calculate_length() (len keeps ownership)</title></use>
     </g>
 
     <g id="arrows">
@@ -4832,119 +3360,8 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_02_02_acquire_from_function/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_02.svg
-warning: unused import: `HashMap`
- --> src/data.rs:1:44
-  |
-1 |  use std::collections::{HashSet, BTreeMap, HashMap};
-  |                                            ^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:372:61
-    |
-372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:399:96
-    |
-399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:413:97
-    |
-413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:434:93
-    |
-434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:436:40
-    |
-436 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:461:18
-    |
-461 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:459:37
-    |
-459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:219:4
-    |
-219 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
-   --> src/hover_messages.rs:101:1
-    |
-101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
-   --> src/hover_messages.rs:108:1
-    |
-108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_ACQUIRE`
-   --> src/hover_messages.rs:119:1
-    |
-119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
-   --> src/hover_messages.rs:125:1
-    |
-125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
-   --> src/hover_messages.rs:131:1
-    |
-131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
-   --> src/hover_messages.rs:138:1
-    |
-138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
-   --> src/hover_messages.rs:145:1
-    |
-145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:401:62
-    |
-401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.18s
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 1.85s
      Running `target/debug/examples/safely_out_of_scope`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
@@ -5133,10 +3550,10 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="4" x="636" y="105"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="636" y="125"><title>Partially lends resource to len()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="636" y="125"><title>Partially reacquires resource from len()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="636" y="145"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="636" y="105"><title>copies it's value to another value (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="636" y="125"><title>copies it's value to len() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="636" y="125"><title>copies it's value to len() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="636" y="145"><title>s goes out of scope. The data is not dropped because s is not the owner.</title></use>
     </g>
 
     <g id="arrows">
@@ -5159,119 +3576,8 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_02_03_safely_out_of_scope/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_03.svg
-warning: unused import: `HashMap`
- --> src/data.rs:1:44
-  |
-1 |  use std::collections::{HashSet, BTreeMap, HashMap};
-  |                                            ^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:372:61
-    |
-372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:399:96
-    |
-399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:413:97
-    |
-413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:434:93
-    |
-434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:436:40
-    |
-436 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:461:18
-    |
-461 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:459:37
-    |
-459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:219:4
-    |
-219 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
-   --> src/hover_messages.rs:101:1
-    |
-101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
-   --> src/hover_messages.rs:108:1
-    |
-108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_ACQUIRE`
-   --> src/hover_messages.rs:119:1
-    |
-119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
-   --> src/hover_messages.rs:125:1
-    |
-125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
-   --> src/hover_messages.rs:131:1
-    |
-131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
-   --> src/hover_messages.rs:138:1
-    |
-138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
-   --> src/hover_messages.rs:145:1
-    |
-145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:401:62
-    |
-401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 1.07s
      Running `target/debug/examples/mut_ref`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -5451,8 +3757,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="456" y="90" data-hash="4"><title>some_string, mutable</title>some_string</text>
         <text style="text-anchor:middle" class="code" x="356" y="90" data-hash="1"><title>s, mutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="456" y="90" data-hash="4"><title>some_string, mutable</title>some_string</text>
     </g>
 
     <g id="timelines">
@@ -5467,14 +3773,14 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="356" y="105"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="356" y="145"><title>Partially lends resource to change()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="356" y="145"><title>Partially reacquires resource from change()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="356" y="165"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="456" y="205"><title>Acquiring resource</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="456" y="225"><title>Partially lends resource to push_str()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="456" y="225"><title>Partially reacquires resource from push_str()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="456" y="245"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="356" y="105"><title>copies it's value to String::from() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="356" y="145"><title>copies it's value to change() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="356" y="145"><title>copies it's value to change() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="356" y="165"><title>s goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="456" y="205"><title>copies it's value to another value (some_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="456" y="225"><title>copies it's value to push_str() (some_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="456" y="225"><title>copies it's value to push_str() (some_string keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="456" y="245"><title>some_string goes out of scope. The data is not dropped because some_string is not the owner.</title></use>
     </g>
 
     <g id="arrows">
@@ -5503,119 +3809,8 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_02_05_mut_ref/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_05.svg
-warning: unused import: `HashMap`
- --> src/data.rs:1:44
-  |
-1 |  use std::collections::{HashSet, BTreeMap, HashMap};
-  |                                            ^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:372:61
-    |
-372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:399:96
-    |
-399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:413:97
-    |
-413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:434:93
-    |
-434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:436:40
-    |
-436 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:461:18
-    |
-461 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:459:37
-    |
-459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:219:4
-    |
-219 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
-   --> src/hover_messages.rs:101:1
-    |
-101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
-   --> src/hover_messages.rs:108:1
-    |
-108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_ACQUIRE`
-   --> src/hover_messages.rs:119:1
-    |
-119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
-   --> src/hover_messages.rs:125:1
-    |
-125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
-   --> src/hover_messages.rs:131:1
-    |
-131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
-   --> src/hover_messages.rs:138:1
-    |
-138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
-   --> src/hover_messages.rs:145:1
-    |
-145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:401:62
-    |
-401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.18s
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.76s
      Running `target/debug/examples/scope_reference`
 s 1 2 OutOfScope
 s 2 5 FullPrivilege
@@ -5795,8 +3990,8 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="650" y="90" data-hash="1"><title>s, mutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="720" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
+        <text style="text-anchor:middle" class="code" x="650" y="90" data-hash="1"><title>s, mutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="790" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
     </g>
 
@@ -5808,14 +4003,14 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="650" y="105"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="650" y="165"><title>Mutable lend to r1</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="650" y="185"><title>Fully reacquires resource from r1</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="650" y="245"><title>Mutable lend to r2</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="720" y="165"><title>Fully borrows resource from s</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="720" y="185"><title>Fully returns resource to s</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="720" y="185"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="790" y="245"><title>Fully borrows resource from s</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="650" y="105"><title>copies it's value to String::from() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="650" y="165"><title>copies it's value to r1 (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="650" y="185"><title>copies it's value to r1 (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="650" y="245"><title>copies it's value to r2 (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="720" y="165"><title>mutably borrows data from s (r1 gains read and write access to data)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="720" y="185"><title>copies it's value to s (r1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="720" y="185"><title>r1 goes out of scope. The data is not dropped because r1 is not the owner.</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="790" y="245"><title>mutably borrows data from s (r2 gains read and write access to data)</title></use>
     </g>
 
     <g id="arrows">
@@ -5845,119 +4040,8 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_02_07_scope_reference/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_07.svg
-warning: unused import: `HashMap`
- --> src/data.rs:1:44
-  |
-1 |  use std::collections::{HashSet, BTreeMap, HashMap};
-  |                                            ^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:372:61
-    |
-372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:399:96
-    |
-399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:413:97
-    |
-413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:434:93
-    |
-434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:436:40
-    |
-436 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:461:18
-    |
-461 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:459:37
-    |
-459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:219:4
-    |
-219 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
-   --> src/hover_messages.rs:101:1
-    |
-101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
-   --> src/hover_messages.rs:108:1
-    |
-108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_ACQUIRE`
-   --> src/hover_messages.rs:119:1
-    |
-119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
-   --> src/hover_messages.rs:125:1
-    |
-125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
-   --> src/hover_messages.rs:131:1
-    |
-131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
-   --> src/hover_messages.rs:138:1
-    |
-138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
-   --> src/hover_messages.rs:145:1
-    |
-145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:401:62
-    |
-401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.76s
      Running `target/debug/examples/shared_and_unique_borrow`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -6152,9 +4236,9 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="524" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
-        <text style="text-anchor:middle" class="code" x="454" y="90" data-hash="1"><title>s, mutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="594" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
+        <text style="text-anchor:middle" class="code" x="454" y="90" data-hash="1"><title>s, mutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="524" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
         <text style="text-anchor:middle" class="code" x="664" y="90" data-hash="4"><title>r3, immutable</title>r3</text>
     </g>
 
@@ -6189,29 +4273,29 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="454" y="105"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="454" y="145"><title>Partially lends resource to r1</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="454" y="165"><title>Partially lends resource to r2</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="454" y="185"><title>Partially reacquires resource from r1</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="454" y="185"><title>Partially reacquires resource from r2</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="454" y="245"><title>Mutable lend to r3</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="454" y="265"><title>Fully reacquires resource from r3</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="454" y="305"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="524" y="145"><title>Partially borrows resource from s</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="524" y="185"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="524" y="185"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="524" y="185"><title>Partially returns resource to s</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="524" y="305"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="594" y="165"><title>Partially borrows resource from s</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="594" y="185"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="594" y="185"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="594" y="185"><title>Partially returns resource to s</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="594" y="305"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="664" y="245"><title>Fully borrows resource from s</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="664" y="265"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="664" y="265"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="664" y="265"><title>Fully returns resource to s</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="664" y="305"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="454" y="105"><title>copies it's value to String::from() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="454" y="145"><title>copies it's value to r1 (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="454" y="165"><title>copies it's value to r2 (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="454" y="185"><title>copies it's value to r1 (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="454" y="185"><title>copies it's value to r2 (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="454" y="245"><title>copies it's value to r3 (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="454" y="265"><title>copies it's value to r3 (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="454" y="305"><title>s goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="524" y="145"><title>statically borrows data from s (r1 gains read only access to data)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="524" y="185"><title>copies it's value to println!() (r1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="524" y="185"><title>copies it's value to println!() (r1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="524" y="185"><title>copies it's value to s (r1 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="524" y="305"><title>r1 goes out of scope. The data is not dropped because r1 is not the owner.</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="594" y="165"><title>statically borrows data from s (r2 gains read only access to data)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="594" y="185"><title>copies it's value to println!() (r2 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="594" y="185"><title>copies it's value to println!() (r2 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="594" y="185"><title>copies it's value to s (r2 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="594" y="305"><title>r2 goes out of scope. The data is not dropped because r2 is not the owner.</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="664" y="245"><title>mutably borrows data from s (r3 gains read and write access to data)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="664" y="265"><title>copies it's value to println!() (r3 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="664" y="265"><title>copies it's value to println!() (r3 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="664" y="265"><title>copies it's value to s (r3 keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="664" y="305"><title>r3 goes out of scope. The data is not dropped because r3 is not the owner.</title></use>
     </g>
 
     <g id="arrows">
@@ -6250,119 +4334,8 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_02_09_shared_and_unique_borrow/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_09.svg
-warning: unused import: `HashMap`
- --> src/data.rs:1:44
-  |
-1 |  use std::collections::{HashSet, BTreeMap, HashMap};
-  |                                            ^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:372:61
-    |
-372 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:399:96
-    |
-399 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:413:97
-    |
-413 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:434:93
-    |
-434 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:436:40
-    |
-436 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:461:18
-    |
-461 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:459:37
-    |
-459 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:219:4
-    |
-219 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: constant item is never used: `EVENT_DOT_STATIC_RETURN`
-   --> src/hover_messages.rs:101:1
-    |
-101 | const EVENT_DOT_STATIC_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_RETURN`
-   --> src/hover_messages.rs:108:1
-    |
-108 | const EVENT_DOT_MUT_RETURN: &'static str = "returns borrowed data to {1} ({0}'s lifetime ends here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_ACQUIRE`
-   --> src/hover_messages.rs:119:1
-    |
-119 | const EVENT_DOT_ACQUIRE: &'static str = "obtains data from {1} ({0}'s lifetime begins from here)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_BORROW`
-   --> src/hover_messages.rs:125:1
-    |
-125 | const EVENT_DOT_MUT_BORROW: &'static str = "mutably borrows data from {1} ({0} gains read and write access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_BORROW`
-   --> src/hover_messages.rs:131:1
-    |
-131 | const EVENT_DOT_STATIC_BORROW: &'static str = "statically borrows data from {1} ({0} gains read only access to data)";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_STATIC_REACQUIRE`
-   --> src/hover_messages.rs:138:1
-    |
-138 | const EVENT_DOT_STATIC_REACQUIRE: &'static str = "{1} no longer borrows from {0}";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: constant item is never used: `EVENT_DOT_MUT_REACQUIRE`
-   --> src/hover_messages.rs:145:1
-    |
-145 | const EVENT_DOT_MUT_REACQUIRE: &'static str = "{0} no longer has any reference, so we may read and write the data";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:401:62
-    |
-401 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.71s
      Running `target/debug/examples/no_dangle`
 s 1 2 OutOfScope
 s 2 5 FullPrivilege
@@ -6545,8 +4518,8 @@ text.functionIcon {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="328" y="105"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="328" y="165"><title>Moving resource</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="328" y="105"><title>copies it's value to String::from() (s keeps ownership)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="328" y="165"><title>copies it's value to another value (s keeps ownership)</title></use>
     </g>
 
     <g id="arrows">

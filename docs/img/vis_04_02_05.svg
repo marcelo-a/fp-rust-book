@@ -168,11 +168,16 @@ text.functionIcon {
     </g>
 
     <g id="labels">
+<<<<<<< refs/remotes/fplab/dev
         <text style="text-anchor:middle" class="code" x="580" y="90" data-hash="2"><title>some_string, mutable</title>some_string</text>
+=======
+        <text style="text-anchor:middle" class="code" x="580" y="90" data-hash="4"><title>some_string, mutable</title>some_string</text>
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
         <text style="text-anchor:middle" class="code" x="480" y="90" data-hash="1"><title>s, mutable</title>s</text>
     </g>
 
     <g id="timelines">
+<<<<<<< refs/remotes/fplab/dev
         <line data-hash="1" class="solid" x1="480" x2="480" y1="105" y2="145"><title>has read and write privilege to the real data</title></line>
         <line data-hash="1" class="solid" x1="480" x2="480" y1="145" y2="145"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="480" x2="480" y1="150" y2="140"><title>has read only privilege to the real data</title></line>
@@ -181,6 +186,16 @@ text.functionIcon {
         <line data-hash="2" class="solid" x1="580" x2="580" y1="225" y2="225"><title>has read only privilege to the reference itself</title></line>
         <line class="colorless" stroke-width="8px" x1="580" x2="580" y1="230" y2="220"><title>has read only privilege to the reference itself</title></line>
         <line data-hash="2" class="solid" x1="580" x2="580" y1="225" y2="245"><title>has read and write privilege to the reference itself</title></line>
+=======
+        <line data-hash="1" class="solid" x1="480" x2="480" y1="105" y2="145"><title>s is the unique value that can access the data in memory; can read and write data</title></line>
+        <line data-hash="1" class="solid" x1="480" x2="480" y1="145" y2="145"><title>some values are statically referencing to s; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="480" x2="480" y1="150" y2="140"><title>some values are statically referencing to s; can only read data</title></line>
+        <line data-hash="1" class="solid" x1="480" x2="480" y1="145" y2="165"><title>s is the unique value that can access the data in memory; can read and write data</title></line>
+        <line data-hash="4" class="solid" x1="580" x2="580" y1="205" y2="225"><title>some_string is the unique value that can access the data in memory; can read and write data; can point to another piece of data</title></line>
+        <line data-hash="4" class="solid" x1="580" x2="580" y1="225" y2="225"><title>some values are statically referencing to some_string; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="580" x2="580" y1="230" y2="220"><title>some values are statically referencing to some_string; can only read data</title></line>
+        <line data-hash="4" class="solid" x1="580" x2="580" y1="225" y2="245"><title>some_string is the unique value that can access the data in memory; can read and write data; can point to another piece of data</title></line>
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
     </g>
 
     <g id="events">

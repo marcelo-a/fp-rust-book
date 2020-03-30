@@ -172,8 +172,8 @@ text.functionIcon {
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid" x1="870" x2="870" y1="125" y2="185"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="870" x2="870" y1="130" y2="180"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="870" x2="870" y1="125" y2="185"><title>s is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="870" x2="870" y1="130" y2="180"><title>s is the unique value that can access the data in memory; can only read data</title></line>
     </g>
 
     <g id="events">

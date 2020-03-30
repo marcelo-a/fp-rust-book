@@ -1,4 +1,8 @@
 Running the following examples: 
+<<<<<<< refs/remotes/fplab/dev
+=======
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
 warning: unused imports: `Formatter`, `Result`
  --> src/hover_messages.rs:1:16
   |
@@ -7,6 +11,7 @@ warning: unused imports: `Formatter`, `Result`
   |
   = note: `#[warn(unused_imports)]` on by default
 
+<<<<<<< refs/remotes/fplab/dev
 warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
   --> src/svg_frontend/utils.rs:50:67
    |
@@ -88,6 +93,77 @@ warning: the `borrow_to:` in this pattern is redundant
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
     Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+=======
+warning: unused variable: `ro`
+ --> src/data.rs:470:61
+  |
+47|             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+  |                                                             ^^ help: consider prefixing with an underscore: `_ro`
+  |
+  = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:497:96
+    |
+497 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `to_ro`
+   --> src/data.rs:511:97
+    |
+511 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:534:93
+    |
+534 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `ro`
+   --> src/data.rs:536:40
+    |
+536 |             (_, Event::Duplicate { to: ro }) =>
+    |                                        ^^ help: consider prefixing with an underscore: `_ro`
+
+warning: unused variable: `timeline`
+   --> src/data.rs:561:18
+    |
+561 |             Some(timeline) => {
+    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
+
+warning: unused variable: `line_number`
+   --> src/data.rs:559:37
+    |
+559 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+
+warning: function is never used: `render_arrows_string`
+ --> src/svg_frontend/right_panel.rs:222:1
+  |
+22| / fn render_arrows_string(
+22| |     visualization_data: &VisualizationData,
+22| |     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
+22| |     registry: &Handlebars
+... |
+27| |     output
+27| | }
+  | |_^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+warning: the `borrow_to:` in this pattern is redundant
+ --> src/data.rs:499:62
+  |
+49|             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+  |                                                              ----------^^^^^^^^^^
+  |                                                              |
+  |                                                              help: remove this
+  |
+  = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.97s
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
      Running `target/debug/examples/one_var`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
@@ -265,8 +341,13 @@ text.functionIcon {
     </g>
 
     <g id="timelines">
+<<<<<<< refs/remotes/fplab/dev
         <line data-hash="1" class="solid" x1="440" x2="440" y1="105" y2="125"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="440" x2="440" y1="110" y2="120"><title>has read only privilege to the real data</title></line>
+=======
+        <line data-hash="4" class="solid" x1="440" x2="440" y1="105" y2="125"><title>s is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="440" x2="440" y1="110" y2="120"><title>s is the unique value that can access the data in memory; can only read data</title></line>
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
     </g>
 
     <g id="events">
@@ -292,6 +373,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_01_one_var/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_01.svg
+<<<<<<< refs/remotes/fplab/dev
 warning: unused imports: `Formatter`, `Result`
  --> src/hover_messages.rs:1:16
   |
@@ -380,6 +462,9 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
+=======
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
 warning: unused import: `Function`
  --> examples/book_04_01_02_scope/main.rs:1:76
   |
@@ -388,7 +473,11 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
+<<<<<<< refs/remotes/fplab/dev
     Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+=======
+    Finished dev [unoptimized + debuginfo] target(s) in 0.57s
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
      Running `target/debug/examples/scope`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
@@ -566,8 +655,13 @@ text.functionIcon {
     </g>
 
     <g id="timelines">
+<<<<<<< refs/remotes/fplab/dev
         <line data-hash="1" class="solid" x1="880" x2="880" y1="125" y2="185"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="880" x2="880" y1="130" y2="180"><title>has read only privilege to the real data</title></line>
+=======
+        <line data-hash="4" class="solid" x1="880" x2="880" y1="125" y2="185"><title>s is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="880" x2="880" y1="130" y2="180"><title>s is the unique value that can access the data in memory; can only read data</title></line>
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
     </g>
 
     <g id="events">
@@ -596,6 +690,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_02_scope/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_02.svg
+<<<<<<< refs/remotes/fplab/dev
 warning: unused imports: `Formatter`, `Result`
  --> src/hover_messages.rs:1:16
   |
@@ -685,6 +780,10 @@ warning: the `borrow_to:` in this pattern is redundant
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
     Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+=======
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.58s
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
      Running `target/debug/examples/string_from`
 s 1 2 OutOfScope
 <svg width="750" height="170px" 
@@ -884,6 +983,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_03_string_from/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_03.svg
+<<<<<<< refs/remotes/fplab/dev
 warning: unused imports: `Formatter`, `Result`
  --> src/hover_messages.rs:1:16
   |
@@ -973,6 +1073,10 @@ warning: the `borrow_to:` in this pattern is redundant
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
     Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+=======
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.84s
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
      Running `target/debug/examples/reference`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -1154,11 +1258,11 @@ text.functionIcon {
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid" x1="810" x2="810" y1="105" y2="145"><title>has read and write privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="810" x2="810" y1="145" y2="185"><title>has read and write privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="810" x2="810" y1="185" y2="185"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="810" x2="810" y1="190" y2="180"><title>has read only privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="810" x2="810" y1="185" y2="205"><title>has read and write privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="810" x2="810" y1="105" y2="145"><title>s is the unique value that can access the data in memory; can read and write data</title></line>
+        <line data-hash="1" class="solid" x1="810" x2="810" y1="145" y2="185"><title>s is the unique value that can access the data in memory; can read and write data</title></line>
+        <line data-hash="1" class="solid" x1="810" x2="810" y1="185" y2="185"><title>some values are statically referencing to s; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="810" x2="810" y1="190" y2="180"><title>some values are statically referencing to s; can only read data</title></line>
+        <line data-hash="1" class="solid" x1="810" x2="810" y1="185" y2="205"><title>s is the unique value that can access the data in memory; can read and write data</title></line>
     </g>
 
     <g id="events">
@@ -1194,6 +1298,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_04_reference/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_04.svg
+<<<<<<< refs/remotes/fplab/dev
 warning: unused imports: `Formatter`, `Result`
  --> src/hover_messages.rs:1:16
   |
@@ -1283,6 +1388,10 @@ warning: the `borrow_to:` in this pattern is redundant
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
     Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+=======
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.57s
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
      Running `target/debug/examples/scope2`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
@@ -1460,8 +1569,8 @@ text.functionIcon {
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid" x1="870" x2="870" y1="125" y2="185"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="870" x2="870" y1="130" y2="180"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="870" x2="870" y1="125" y2="185"><title>s is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="870" x2="870" y1="130" y2="180"><title>s is the unique value that can access the data in memory; can only read data</title></line>
     </g>
 
     <g id="events">
@@ -1492,6 +1601,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_05_scope2/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_05.svg
+<<<<<<< refs/remotes/fplab/dev
 warning: unused imports: `Formatter`, `Result`
  --> src/hover_messages.rs:1:16
   |
@@ -1580,6 +1690,9 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
+=======
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
 warning: unused import: `Function`
  --> examples/book_04_01_06_int_copy/main.rs:1:76
   |
@@ -1588,7 +1701,11 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
+<<<<<<< refs/remotes/fplab/dev
     Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+=======
+    Finished dev [unoptimized + debuginfo] target(s) in 1.37s
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
      Running `target/debug/examples/int_copy`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -1770,12 +1887,21 @@ text.functionIcon {
     </g>
 
     <g id="timelines">
+<<<<<<< refs/remotes/fplab/dev
         <line data-hash="1" class="solid" x1="240" x2="240" y1="105" y2="125"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="240" x2="240" y1="110" y2="120"><title>has read only privilege to the real data</title></line>
         <line data-hash="1" class="solid" x1="240" x2="240" y1="125" y2="145"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="240" x2="240" y1="130" y2="140"><title>has read only privilege to the real data</title></line>
         <line data-hash="2" class="solid" x1="310" x2="310" y1="125" y2="145"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="310" x2="310" y1="130" y2="140"><title>has read only privilege to the real data</title></line>
+=======
+        <line data-hash="3" class="solid" x1="240" x2="240" y1="105" y2="125"><title>x is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="240" x2="240" y1="110" y2="120"><title>x is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="3" class="solid" x1="240" x2="240" y1="125" y2="145"><title>x is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="240" x2="240" y1="130" y2="140"><title>x is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="4" class="solid" x1="310" x2="310" y1="125" y2="145"><title>y is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="310" x2="310" y1="130" y2="140"><title>y is the unique value that can access the data in memory; can only read data</title></line>
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
     </g>
 
     <g id="events">
@@ -1805,6 +1931,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_06_int_copy/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_06.svg
+<<<<<<< refs/remotes/fplab/dev
 warning: unused imports: `Formatter`, `Result`
  --> src/hover_messages.rs:1:16
   |
@@ -1894,6 +2021,10 @@ warning: the `borrow_to:` in this pattern is redundant
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
     Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+=======
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.61s
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
      Running `target/debug/examples/string_move`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -2068,13 +2199,17 @@ text.functionIcon {
     </g>
 
     <g id="labels">
+<<<<<<< refs/remotes/fplab/dev
         <text style="text-anchor:middle" class="code" x="480" y="90" data-hash="2"><title>s2, immutable</title>s2</text>
+=======
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
         <text style="text-anchor:middle" class="code" x="410" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="480" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid" x1="410" x2="410" y1="105" y2="125"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="410" x2="410" y1="110" y2="120"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="410" x2="410" y1="105" y2="125"><title>s1 is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="410" x2="410" y1="110" y2="120"><title>s1 is the unique value that can access the data in memory; can only read data</title></line>
     </g>
 
     <g id="events">
@@ -2102,6 +2237,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_07_string_move/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_07.svg
+<<<<<<< refs/remotes/fplab/dev
 warning: unused imports: `Formatter`, `Result`
  --> src/hover_messages.rs:1:16
   |
@@ -2191,6 +2327,10 @@ warning: the `borrow_to:` in this pattern is redundant
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
     Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+=======
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 1.29s
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
      Running `target/debug/examples/string_clone`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -2370,11 +2510,16 @@ text.functionIcon {
     </g>
 
     <g id="labels">
+<<<<<<< refs/remotes/fplab/dev
         <text style="text-anchor:middle" class="code" x="540" y="90" data-hash="2"><title>s2, immutable</title>s2</text>
+=======
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
         <text style="text-anchor:middle" class="code" x="470" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="540" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
     </g>
 
     <g id="timelines">
+<<<<<<< refs/remotes/fplab/dev
         <line data-hash="1" class="solid" x1="470" x2="470" y1="105" y2="125"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="470" x2="470" y1="110" y2="120"><title>has read only privilege to the real data</title></line>
         <line data-hash="1" class="solid" x1="470" x2="470" y1="125" y2="125"><title>has read only privilege to the real data</title></line>
@@ -2387,6 +2532,20 @@ text.functionIcon {
         <line class="colorless" stroke-width="8px" x1="540" x2="540" y1="130" y2="160"><title>has read only privilege to the real data</title></line>
         <line data-hash="2" class="solid" x1="540" x2="540" y1="165" y2="165"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="540" x2="540" y1="170" y2="160"><title>has read only privilege to the real data</title></line>
+=======
+        <line data-hash="1" class="solid" x1="470" x2="470" y1="105" y2="125"><title>s1 is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="470" x2="470" y1="110" y2="120"><title>s1 is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="1" class="solid" x1="470" x2="470" y1="125" y2="125"><title>some values are statically referencing to s1; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="470" x2="470" y1="130" y2="120"><title>some values are statically referencing to s1; can only read data</title></line>
+        <line data-hash="1" class="solid" x1="470" x2="470" y1="125" y2="165"><title>s1 is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="470" x2="470" y1="130" y2="160"><title>s1 is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="1" class="solid" x1="470" x2="470" y1="165" y2="165"><title>some values are statically referencing to s1; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="470" x2="470" y1="170" y2="160"><title>some values are statically referencing to s1; can only read data</title></line>
+        <line data-hash="3" class="solid" x1="540" x2="540" y1="125" y2="165"><title>s2 is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="540" x2="540" y1="130" y2="160"><title>s2 is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="3" class="solid" x1="540" x2="540" y1="165" y2="165"><title>some values are statically referencing to s2; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="540" x2="540" y1="170" y2="160"><title>some values are statically referencing to s2; can only read data</title></line>
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
     </g>
 
     <g id="events">
@@ -2424,6 +2583,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_09_string_clone/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_09.svg
+<<<<<<< refs/remotes/fplab/dev
 warning: unused imports: `Formatter`, `Result`
  --> src/hover_messages.rs:1:16
   |
@@ -2513,6 +2673,10 @@ warning: the `borrow_to:` in this pattern is redundant
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
     Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+=======
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.67s
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
      Running `target/debug/examples/int_copy_2`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -2698,6 +2862,7 @@ text.functionIcon {
     </g>
 
     <g id="timelines">
+<<<<<<< refs/remotes/fplab/dev
         <line data-hash="1" class="solid" x1="470" x2="470" y1="105" y2="125"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="470" x2="470" y1="110" y2="120"><title>has read only privilege to the real data</title></line>
         <line data-hash="1" class="solid" x1="470" x2="470" y1="125" y2="165"><title>has read only privilege to the real data</title></line>
@@ -2712,6 +2877,22 @@ text.functionIcon {
         <line class="colorless" stroke-width="8px" x1="540" x2="540" y1="170" y2="160"><title>has read only privilege to the real data</title></line>
         <line data-hash="2" class="solid" x1="540" x2="540" y1="165" y2="185"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="540" x2="540" y1="170" y2="180"><title>has read only privilege to the real data</title></line>
+=======
+        <line data-hash="3" class="solid" x1="470" x2="470" y1="105" y2="125"><title>x is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="470" x2="470" y1="110" y2="120"><title>x is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="3" class="solid" x1="470" x2="470" y1="125" y2="165"><title>x is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="470" x2="470" y1="130" y2="160"><title>x is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="3" class="solid" x1="470" x2="470" y1="165" y2="165"><title>some values are statically referencing to x; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="470" x2="470" y1="170" y2="160"><title>some values are statically referencing to x; can only read data</title></line>
+        <line data-hash="3" class="solid" x1="470" x2="470" y1="165" y2="185"><title>x is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="470" x2="470" y1="170" y2="180"><title>x is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="4" class="solid" x1="540" x2="540" y1="125" y2="165"><title>y is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="540" x2="540" y1="130" y2="160"><title>y is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="4" class="solid" x1="540" x2="540" y1="165" y2="165"><title>some values are statically referencing to y; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="540" x2="540" y1="170" y2="160"><title>some values are statically referencing to y; can only read data</title></line>
+        <line data-hash="4" class="solid" x1="540" x2="540" y1="165" y2="185"><title>y is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="540" x2="540" y1="170" y2="180"><title>y is the unique value that can access the data in memory; can only read data</title></line>
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
     </g>
 
     <g id="events">
@@ -2749,6 +2930,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_10_int_copy_2/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_10.svg
+<<<<<<< refs/remotes/fplab/dev
 warning: unused imports: `Formatter`, `Result`
  --> src/hover_messages.rs:1:16
   |
@@ -2838,6 +3020,10 @@ warning: the `borrow_to:` in this pattern is redundant
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
     Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+=======
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.59s
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
      Running `target/debug/examples/ownership_function`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -3023,13 +3209,20 @@ text.functionIcon {
     </g>
 
     <g id="labels">
+<<<<<<< refs/remotes/fplab/dev
         <text style="text-anchor:middle" class="code" x="1070" y="90" data-hash="3"><title>some_string, immutable</title>some_string</text>
         <text style="text-anchor:middle" class="code" x="970" y="90" data-hash="2"><title>x, immutable</title>x</text>
         <text style="text-anchor:middle" class="code" x="1180" y="90" data-hash="4"><title>some_integer, immutable</title>some_integer</text>
+=======
+        <text style="text-anchor:middle" class="code" x="970" y="90" data-hash="4"><title>x, immutable</title>x</text>
+        <text style="text-anchor:middle" class="code" x="1180" y="90" data-hash="7"><title>some_integer, immutable</title>some_integer</text>
+        <text style="text-anchor:middle" class="code" x="1070" y="90" data-hash="6"><title>some_string, immutable</title>some_string</text>
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
         <text style="text-anchor:middle" class="code" x="900" y="90" data-hash="1"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
+<<<<<<< refs/remotes/fplab/dev
         <line data-hash="1" class="solid" x1="900" x2="900" y1="105" y2="145"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="900" x2="900" y1="110" y2="140"><title>has read only privilege to the real data</title></line>
         <line data-hash="2" class="solid" x1="970" x2="970" y1="205" y2="245"><title>has read only privilege to the real data</title></line>
@@ -3048,6 +3241,26 @@ text.functionIcon {
         <line class="colorless" stroke-width="8px" x1="1180" x2="1180" y1="510" y2="500"><title>has read only privilege to the real data</title></line>
         <line data-hash="4" class="solid" x1="1180" x2="1180" y1="505" y2="525"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="1180" x2="1180" y1="510" y2="520"><title>has read only privilege to the real data</title></line>
+=======
+        <line data-hash="1" class="solid" x1="900" x2="900" y1="105" y2="145"><title>s is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="900" x2="900" y1="110" y2="140"><title>s is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="4" class="solid" x1="970" x2="970" y1="205" y2="245"><title>x is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="970" x2="970" y1="210" y2="240"><title>x is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="4" class="solid" x1="970" x2="970" y1="245" y2="325"><title>x is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="970" x2="970" y1="250" y2="320"><title>x is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="6" class="solid" x1="1070" x2="1070" y1="385" y2="405"><title>some_string is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="1070" x2="1070" y1="390" y2="400"><title>some_string is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="6" class="solid" x1="1070" x2="1070" y1="405" y2="405"><title>some values are statically referencing to some_string; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="1070" x2="1070" y1="410" y2="400"><title>some values are statically referencing to some_string; can only read data</title></line>
+        <line data-hash="6" class="solid" x1="1070" x2="1070" y1="405" y2="425"><title>some_string is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="1070" x2="1070" y1="410" y2="420"><title>some_string is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="7" class="solid" x1="1180" x2="1180" y1="485" y2="505"><title>some_integer is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="1180" x2="1180" y1="490" y2="500"><title>some_integer is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="7" class="solid" x1="1180" x2="1180" y1="505" y2="505"><title>some values are statically referencing to some_integer; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="1180" x2="1180" y1="510" y2="500"><title>some values are statically referencing to some_integer; can only read data</title></line>
+        <line data-hash="7" class="solid" x1="1180" x2="1180" y1="505" y2="525"><title>some_integer is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="1180" x2="1180" y1="510" y2="520"><title>some_integer is the unique value that can access the data in memory; can only read data</title></line>
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
     </g>
 
     <g id="events">
@@ -3109,6 +3322,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_11_ownership_function/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_11.svg
+<<<<<<< refs/remotes/fplab/dev
 warning: unused imports: `Formatter`, `Result`
  --> src/hover_messages.rs:1:16
   |
@@ -3198,6 +3412,10 @@ warning: the `borrow_to:` in this pattern is redundant
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
     Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+=======
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.95s
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
      Running `target/debug/examples/return_values`
 s1 1 2 OutOfScope
 s1 2 10 FullPrivilege
@@ -3383,6 +3601,7 @@ text.functionIcon {
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="880" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
+<<<<<<< refs/remotes/fplab/dev
         <text style="text-anchor:middle" class="code" x="950" y="90" data-hash="2"><title>s2, immutable</title>s2</text>
         <text style="text-anchor:middle" class="code" x="1120" y="90" data-hash="4"><title>some_string, immutable</title>some_string</text>
         <text style="text-anchor:middle" class="code" x="1020" y="90" data-hash="3"><title>s3, immutable</title>s3</text>
@@ -3400,6 +3619,25 @@ text.functionIcon {
         <line class="colorless" stroke-width="8px" x1="1120" x2="1120" y1="410" y2="440"><title>has read only privilege to the real data</title></line>
         <line data-hash="5" class="solid" x1="1190" x2="1190" y1="565" y2="625"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="1190" x2="1190" y1="570" y2="620"><title>has read only privilege to the real data</title></line>
+=======
+        <text style="text-anchor:middle" class="code" x="1050" y="90" data-hash="4"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="1190" y="90" data-hash="7"><title>a_string, immutable</title>a_string</text>
+        <text style="text-anchor:middle" class="code" x="980" y="90" data-hash="3"><title>some_string, immutable</title>some_string</text>
+        <text style="text-anchor:middle" class="code" x="1120" y="90" data-hash="5"><title>s3, immutable</title>s3</text>
+    </g>
+
+    <g id="timelines">
+        <line data-hash="1" class="solid" x1="880" x2="880" y1="105" y2="265"><title>s1 is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="880" x2="880" y1="110" y2="260"><title>s1 is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="3" class="solid" x1="980" x2="980" y1="405" y2="445"><title>some_string is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="980" x2="980" y1="410" y2="440"><title>some_string is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="4" class="solid" x1="1050" x2="1050" y1="165" y2="205"><title>s2 is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="1050" x2="1050" y1="170" y2="200"><title>s2 is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="5" class="solid" x1="1120" x2="1120" y1="205" y2="265"><title>s3 is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="1120" x2="1120" y1="210" y2="260"><title>s3 is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="7" class="solid" x1="1190" x2="1190" y1="565" y2="625"><title>a_string is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="1190" x2="1190" y1="570" y2="620"><title>a_string is the unique value that can access the data in memory; can only read data</title></line>
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
     </g>
 
     <g id="events">
@@ -3464,6 +3702,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_12_return_values/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_12.svg
+<<<<<<< refs/remotes/fplab/dev
 warning: unused imports: `Formatter`, `Result`
  --> src/hover_messages.rs:1:16
   |
@@ -3553,6 +3792,18 @@ warning: the `borrow_to:` in this pattern is redundant
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
     Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+=======
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+warning: unused variable: `println_func`
+ --> examples/book_04_01_13_return_tuple/main.rs:55:9
+  |
+55|     let println_func = ResourceOwner::Function(Function {
+  |         ^^^^^^^^^^^^ help: consider prefixing with an underscore: `_println_func`
+  |
+  = note: `#[warn(unused_variables)]` on by default
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.67s
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
      Running `target/debug/examples/return_tuple`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -3745,6 +3996,7 @@ text.functionIcon {
         <text style="text-anchor:middle" class="code" x="1030" y="90" data-hash="5"><title>length, immutable</title>length</text>
         <text style="text-anchor:middle" class="code" x="960" y="90" data-hash="4"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="820" y="90" data-hash="2"><title>len, immutable</title>len</text>
+<<<<<<< refs/remotes/fplab/dev
         <text style="text-anchor:middle" class="code" x="890" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
     </g>
 
@@ -3773,6 +4025,38 @@ text.functionIcon {
         <line class="colorless" stroke-width="8px" x1="960" x2="960" y1="270" y2="300"><title>has read only privilege to the real data</title></line>
         <line data-hash="5" class="solid" x1="1030" x2="1030" y1="265" y2="305"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="1030" x2="1030" y1="270" y2="300"><title>has read only privilege to the real data</title></line>
+=======
+        <text style="text-anchor:middle" class="code" x="960" y="90" data-hash="6"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="890" y="90" data-hash="4"><title>s, immutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="1030" y="90" data-hash="8"><title>length, immutable</title>length</text>
+    </g>
+
+    <g id="timelines">
+        <line data-hash="1" class="solid" x1="750" x2="750" y1="105" y2="145"><title>s1 is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="750" x2="750" y1="110" y2="140"><title>s1 is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="1" class="solid" x1="750" x2="750" y1="145" y2="145"><title>some values are statically referencing to s1; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="750" x2="750" y1="150" y2="140"><title>some values are statically referencing to s1; can only read data</title></line>
+        <line data-hash="1" class="solid" x1="750" x2="750" y1="145" y2="205"><title>s1 is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="750" x2="750" y1="150" y2="200"><title>s1 is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="2" class="solid" x1="820" x2="820" y1="145" y2="185"><title>len is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="820" x2="820" y1="150" y2="180"><title>len is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="2" class="solid" x1="820" x2="820" y1="185" y2="185"><title>some values are statically referencing to len; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="820" x2="820" y1="190" y2="180"><title>some values are statically referencing to len; can only read data</title></line>
+        <line data-hash="2" class="solid" x1="820" x2="820" y1="185" y2="205"><title>len is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="820" x2="820" y1="190" y2="200"><title>len is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="4" class="solid" x1="890" x2="890" y1="245" y2="265"><title>s is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="890" x2="890" y1="250" y2="260"><title>s is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="4" class="solid" x1="890" x2="890" y1="265" y2="265"><title>some values are statically referencing to s; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="890" x2="890" y1="270" y2="260"><title>some values are statically referencing to s; can only read data</title></line>
+        <line data-hash="4" class="solid" x1="890" x2="890" y1="265" y2="305"><title>s is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="890" x2="890" y1="270" y2="300"><title>s is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="6" class="solid" x1="960" x2="960" y1="145" y2="185"><title>s2 is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="960" x2="960" y1="150" y2="180"><title>s2 is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="6" class="solid" x1="960" x2="960" y1="185" y2="185"><title>some values are statically referencing to s2; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="960" x2="960" y1="190" y2="180"><title>some values are statically referencing to s2; can only read data</title></line>
+        <line data-hash="8" class="solid" x1="1030" x2="1030" y1="265" y2="305"><title>length is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="1030" x2="1030" y1="270" y2="300"><title>length is the unique value that can access the data in memory; can only read data</title></line>
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
     </g>
 
     <g id="events">
@@ -3830,6 +4114,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_01_13_return_tuple/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_01_13.svg
+<<<<<<< refs/remotes/fplab/dev
 warning: unused imports: `Formatter`, `Result`
  --> src/hover_messages.rs:1:16
   |
@@ -3919,6 +4204,10 @@ warning: the `borrow_to:` in this pattern is redundant
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
     Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+=======
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 1.22s
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
      Running `target/debug/examples/pass_reference`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -4100,6 +4389,7 @@ text.functionIcon {
     </g>
 
     <g id="labels">
+<<<<<<< refs/remotes/fplab/dev
         <text style="text-anchor:middle" class="code" x="750" y="90" data-hash="3"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="610" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="680" y="90" data-hash="2"><title>len, immutable</title>len</text>
@@ -4120,6 +4410,28 @@ text.functionIcon {
         <line class="colorless" stroke-width="8px" x1="750" x2="750" y1="270" y2="260"><title>has read only privilege to the reference itself</title></line>
         <line data-hash="3" class="solid" x1="750" x2="750" y1="265" y2="285"><title>has read only privilege to the reference itself</title></line>
         <line class="colorless" stroke-width="8px" x1="750" x2="750" y1="270" y2="280"><title>has read only privilege to the reference itself</title></line>
+=======
+        <text style="text-anchor:middle" class="code" x="750" y="90" data-hash="4"><title>s, immutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="680" y="90" data-hash="2"><title>len, immutable</title>len</text>
+        <text style="text-anchor:middle" class="code" x="610" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
+    </g>
+
+    <g id="timelines">
+        <line data-hash="1" class="solid" x1="610" x2="610" y1="105" y2="145"><title>s1 is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="610" x2="610" y1="110" y2="140"><title>s1 is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="1" class="solid" x1="610" x2="610" y1="145" y2="145"><title>some values are statically referencing to s1; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="610" x2="610" y1="150" y2="140"><title>some values are statically referencing to s1; can only read data</title></line>
+        <line data-hash="1" class="solid" x1="610" x2="610" y1="145" y2="205"><title>s1 is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="610" x2="610" y1="150" y2="200"><title>s1 is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="2" class="solid" x1="680" x2="680" y1="145" y2="205"><title>len is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="680" x2="680" y1="150" y2="200"><title>len is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="4" class="solid" x1="750" x2="750" y1="245" y2="265"><title>s is the unique value that can access the data in memory; can read and write data; can not point to another piece of data</title></line>
+        <line class="colorless" stroke-width="8px" x1="750" x2="750" y1="250" y2="260"><title>s is the unique value that can access the data in memory; can read and write data; can not point to another piece of data</title></line>
+        <line data-hash="4" class="solid" x1="750" x2="750" y1="265" y2="265"><title>some values are statically referencing to s; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="750" x2="750" y1="270" y2="260"><title>some values are statically referencing to s; can only read data</title></line>
+        <line data-hash="4" class="solid" x1="750" x2="750" y1="265" y2="285"><title>s is the unique value that can access the data in memory; can read and write data; can not point to another piece of data</title></line>
+        <line class="colorless" stroke-width="8px" x1="750" x2="750" y1="270" y2="280"><title>s is the unique value that can access the data in memory; can read and write data; can not point to another piece of data</title></line>
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
     </g>
 
     <g id="events">
@@ -4164,6 +4476,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_02_01_pass_reference/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_01.svg
+<<<<<<< refs/remotes/fplab/dev
 warning: unused imports: `Formatter`, `Result`
  --> src/hover_messages.rs:1:16
   |
@@ -4253,6 +4566,24 @@ warning: the `borrow_to:` in this pattern is redundant
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
     Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+=======
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+warning: unused variable: `s`
+ --> examples/book_04_02_02_acquire_from_function/main.rs:21:9
+  |
+21|     let s = Some(ResourceOwner::Variable(Variable {
+  |         ^ help: consider prefixing with an underscore: `_s`
+  |
+  = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `len_func`
+  --> examples/book_04_02_02_acquire_from_function/main.rs:37:9
+   |
+37 |     let len_func = Some(ResourceOwner::Function(Function {
+   |         ^^^^^^^^ help: consider prefixing with an underscore: `_len_func`
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.87s
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
      Running `target/debug/examples/acquire_from_function`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -4433,10 +4764,10 @@ text.functionIcon {
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid" x1="420" x2="420" y1="105" y2="145"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="420" x2="420" y1="110" y2="140"><title>has read only privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="420" x2="420" y1="145" y2="145"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="420" x2="420" y1="150" y2="140"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="420" x2="420" y1="105" y2="145"><title>s1 is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="420" x2="420" y1="110" y2="140"><title>s1 is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="1" class="solid" x1="420" x2="420" y1="145" y2="145"><title>some values are statically referencing to s1; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="420" x2="420" y1="150" y2="140"><title>some values are statically referencing to s1; can only read data</title></line>
     </g>
 
     <g id="events">
@@ -4467,6 +4798,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_02_02_acquire_from_function/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_02.svg
+<<<<<<< refs/remotes/fplab/dev
 warning: unused imports: `Formatter`, `Result`
  --> src/hover_messages.rs:1:16
   |
@@ -4556,6 +4888,10 @@ warning: the `borrow_to:` in this pattern is redundant
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
     Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+=======
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 1.21s
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
      Running `target/debug/examples/safely_out_of_scope`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
@@ -4735,12 +5071,21 @@ text.functionIcon {
     </g>
 
     <g id="timelines">
+<<<<<<< refs/remotes/fplab/dev
         <line data-hash="1" class="solid" x1="880" x2="880" y1="105" y2="125"><title>has read only privilege to the reference itself</title></line>
         <line class="colorless" stroke-width="8px" x1="880" x2="880" y1="110" y2="120"><title>has read only privilege to the reference itself</title></line>
         <line data-hash="1" class="solid" x1="880" x2="880" y1="125" y2="125"><title>has read only privilege to the reference itself</title></line>
         <line class="colorless" stroke-width="8px" x1="880" x2="880" y1="130" y2="120"><title>has read only privilege to the reference itself</title></line>
         <line data-hash="1" class="solid" x1="880" x2="880" y1="125" y2="145"><title>has read only privilege to the reference itself</title></line>
         <line class="colorless" stroke-width="8px" x1="880" x2="880" y1="130" y2="140"><title>has read only privilege to the reference itself</title></line>
+=======
+        <line data-hash="4" class="solid" x1="880" x2="880" y1="105" y2="125"><title>s is the unique value that can access the data in memory; can read and write data; can not point to another piece of data</title></line>
+        <line class="colorless" stroke-width="8px" x1="880" x2="880" y1="110" y2="120"><title>s is the unique value that can access the data in memory; can read and write data; can not point to another piece of data</title></line>
+        <line data-hash="4" class="solid" x1="880" x2="880" y1="125" y2="125"><title>some values are statically referencing to s; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="880" x2="880" y1="130" y2="120"><title>some values are statically referencing to s; can only read data</title></line>
+        <line data-hash="4" class="solid" x1="880" x2="880" y1="125" y2="145"><title>s is the unique value that can access the data in memory; can read and write data; can not point to another piece of data</title></line>
+        <line class="colorless" stroke-width="8px" x1="880" x2="880" y1="130" y2="140"><title>s is the unique value that can access the data in memory; can read and write data; can not point to another piece of data</title></line>
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
     </g>
 
     <g id="events">
@@ -4770,6 +5115,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_02_03_safely_out_of_scope/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_03.svg
+<<<<<<< refs/remotes/fplab/dev
 warning: unused imports: `Formatter`, `Result`
  --> src/hover_messages.rs:1:16
   |
@@ -4859,6 +5205,10 @@ warning: the `borrow_to:` in this pattern is redundant
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
     Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+=======
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 1.51s
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
      Running `target/debug/examples/mut_ref`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -5038,11 +5388,16 @@ text.functionIcon {
     </g>
 
     <g id="labels">
+<<<<<<< refs/remotes/fplab/dev
         <text style="text-anchor:middle" class="code" x="580" y="90" data-hash="2"><title>some_string, mutable</title>some_string</text>
+=======
+        <text style="text-anchor:middle" class="code" x="580" y="90" data-hash="4"><title>some_string, mutable</title>some_string</text>
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
         <text style="text-anchor:middle" class="code" x="480" y="90" data-hash="1"><title>s, mutable</title>s</text>
     </g>
 
     <g id="timelines">
+<<<<<<< refs/remotes/fplab/dev
         <line data-hash="1" class="solid" x1="480" x2="480" y1="105" y2="145"><title>has read and write privilege to the real data</title></line>
         <line data-hash="1" class="solid" x1="480" x2="480" y1="145" y2="145"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="480" x2="480" y1="150" y2="140"><title>has read only privilege to the real data</title></line>
@@ -5051,6 +5406,16 @@ text.functionIcon {
         <line data-hash="2" class="solid" x1="580" x2="580" y1="225" y2="225"><title>has read only privilege to the reference itself</title></line>
         <line class="colorless" stroke-width="8px" x1="580" x2="580" y1="230" y2="220"><title>has read only privilege to the reference itself</title></line>
         <line data-hash="2" class="solid" x1="580" x2="580" y1="225" y2="245"><title>has read and write privilege to the reference itself</title></line>
+=======
+        <line data-hash="1" class="solid" x1="480" x2="480" y1="105" y2="145"><title>s is the unique value that can access the data in memory; can read and write data</title></line>
+        <line data-hash="1" class="solid" x1="480" x2="480" y1="145" y2="145"><title>some values are statically referencing to s; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="480" x2="480" y1="150" y2="140"><title>some values are statically referencing to s; can only read data</title></line>
+        <line data-hash="1" class="solid" x1="480" x2="480" y1="145" y2="165"><title>s is the unique value that can access the data in memory; can read and write data</title></line>
+        <line data-hash="4" class="solid" x1="580" x2="580" y1="205" y2="225"><title>some_string is the unique value that can access the data in memory; can read and write data; can point to another piece of data</title></line>
+        <line data-hash="4" class="solid" x1="580" x2="580" y1="225" y2="225"><title>some values are statically referencing to some_string; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="580" x2="580" y1="230" y2="220"><title>some values are statically referencing to some_string; can only read data</title></line>
+        <line data-hash="4" class="solid" x1="580" x2="580" y1="225" y2="245"><title>some_string is the unique value that can access the data in memory; can read and write data; can point to another piece of data</title></line>
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
     </g>
 
     <g id="events">
@@ -5090,6 +5455,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_02_05_mut_ref/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_05.svg
+<<<<<<< refs/remotes/fplab/dev
 warning: unused imports: `Formatter`, `Result`
  --> src/hover_messages.rs:1:16
   |
@@ -5179,6 +5545,10 @@ warning: the `borrow_to:` in this pattern is redundant
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
     Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+=======
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.61s
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
      Running `target/debug/examples/scope_reference`
 s 1 2 OutOfScope
 s 2 5 FullPrivilege
@@ -5359,15 +5729,20 @@ text.functionIcon {
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="1040" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
+<<<<<<< refs/remotes/fplab/dev
         <text style="text-anchor:middle" class="code" x="970" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
         <text style="text-anchor:middle" class="code" x="900" y="90" data-hash="1"><title>s, mutable</title>s</text>
+=======
+        <text style="text-anchor:middle" class="code" x="900" y="90" data-hash="1"><title>s, mutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="970" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid" x1="900" x2="900" y1="105" y2="165"><title>has read and write privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="900" x2="900" y1="185" y2="245"><title>has read and write privilege to the real data</title></line>
-        <line data-hash="2" class="solid" x1="970" x2="970" y1="165" y2="185"><title>has read only privilege to the reference itself</title></line>
-        <line class="colorless" stroke-width="8px" x1="970" x2="970" y1="170" y2="180"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="1" class="solid" x1="900" x2="900" y1="105" y2="165"><title>s is the unique value that can access the data in memory; can read and write data</title></line>
+        <line data-hash="1" class="solid" x1="900" x2="900" y1="185" y2="245"><title>s is the unique value that can access the data in memory; can read and write data</title></line>
+        <line data-hash="2" class="solid" x1="970" x2="970" y1="165" y2="185"><title>r1 is the unique value that can access the data in memory; can read and write data; can not point to another piece of data</title></line>
+        <line class="colorless" stroke-width="8px" x1="970" x2="970" y1="170" y2="180"><title>r1 is the unique value that can access the data in memory; can read and write data; can not point to another piece of data</title></line>
     </g>
 
     <g id="events">
@@ -5408,6 +5783,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_02_07_scope_reference/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_07.svg
+<<<<<<< refs/remotes/fplab/dev
 warning: unused imports: `Formatter`, `Result`
  --> src/hover_messages.rs:1:16
   |
@@ -5497,6 +5873,10 @@ warning: the `borrow_to:` in this pattern is redundant
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
     Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+=======
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.57s
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
      Running `target/debug/examples/shared_and_unique_borrow`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -5691,6 +6071,10 @@ text.functionIcon {
     </g>
 
     <g id="labels">
+<<<<<<< refs/remotes/fplab/dev
+=======
+        <text style="text-anchor:middle" class="code" x="690" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
         <text style="text-anchor:middle" class="code" x="620" y="90" data-hash="1"><title>s, mutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="690" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
         <text style="text-anchor:middle" class="code" x="760" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
@@ -5698,33 +6082,33 @@ text.functionIcon {
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid" x1="620" x2="620" y1="105" y2="145"><title>has read and write privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="620" x2="620" y1="145" y2="165"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="620" x2="620" y1="150" y2="160"><title>has read only privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="620" x2="620" y1="165" y2="185"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="620" x2="620" y1="170" y2="180"><title>has read only privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="620" x2="620" y1="185" y2="185"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="620" x2="620" y1="190" y2="180"><title>has read only privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="620" x2="620" y1="185" y2="245"><title>has read and write privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="620" x2="620" y1="265" y2="305"><title>has read and write privilege to the real data</title></line>
-        <line data-hash="2" class="solid" x1="690" x2="690" y1="145" y2="185"><title>has read only privilege to the reference itself</title></line>
-        <line class="colorless" stroke-width="8px" x1="690" x2="690" y1="150" y2="180"><title>has read only privilege to the reference itself</title></line>
-        <line data-hash="2" class="solid" x1="690" x2="690" y1="185" y2="185"><title>has read only privilege to the reference itself</title></line>
-        <line class="colorless" stroke-width="8px" x1="690" x2="690" y1="190" y2="180"><title>has read only privilege to the reference itself</title></line>
-        <line data-hash="2" class="solid" x1="690" x2="690" y1="185" y2="185"><title>has read only privilege to the reference itself</title></line>
-        <line class="colorless" stroke-width="8px" x1="690" x2="690" y1="190" y2="180"><title>has read only privilege to the reference itself</title></line>
-        <line data-hash="3" class="solid" x1="760" x2="760" y1="165" y2="185"><title>has read only privilege to the reference itself</title></line>
-        <line class="colorless" stroke-width="8px" x1="760" x2="760" y1="170" y2="180"><title>has read only privilege to the reference itself</title></line>
-        <line data-hash="3" class="solid" x1="760" x2="760" y1="185" y2="185"><title>has read only privilege to the reference itself</title></line>
-        <line class="colorless" stroke-width="8px" x1="760" x2="760" y1="190" y2="180"><title>has read only privilege to the reference itself</title></line>
-        <line data-hash="3" class="solid" x1="760" x2="760" y1="185" y2="185"><title>has read only privilege to the reference itself</title></line>
-        <line class="colorless" stroke-width="8px" x1="760" x2="760" y1="190" y2="180"><title>has read only privilege to the reference itself</title></line>
-        <line data-hash="4" class="solid" x1="830" x2="830" y1="245" y2="265"><title>has read only privilege to the reference itself</title></line>
-        <line class="colorless" stroke-width="8px" x1="830" x2="830" y1="250" y2="260"><title>has read only privilege to the reference itself</title></line>
-        <line data-hash="4" class="solid" x1="830" x2="830" y1="265" y2="265"><title>has read only privilege to the reference itself</title></line>
-        <line class="colorless" stroke-width="8px" x1="830" x2="830" y1="270" y2="260"><title>has read only privilege to the reference itself</title></line>
-        <line data-hash="4" class="solid" x1="830" x2="830" y1="265" y2="265"><title>has read only privilege to the reference itself</title></line>
-        <line class="colorless" stroke-width="8px" x1="830" x2="830" y1="270" y2="260"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="1" class="solid" x1="620" x2="620" y1="105" y2="145"><title>s is the unique value that can access the data in memory; can read and write data</title></line>
+        <line data-hash="1" class="solid" x1="620" x2="620" y1="145" y2="165"><title>some values are statically referencing to s; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="620" x2="620" y1="150" y2="160"><title>some values are statically referencing to s; can only read data</title></line>
+        <line data-hash="1" class="solid" x1="620" x2="620" y1="165" y2="185"><title>some values are statically referencing to s; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="620" x2="620" y1="170" y2="180"><title>some values are statically referencing to s; can only read data</title></line>
+        <line data-hash="1" class="solid" x1="620" x2="620" y1="185" y2="185"><title>some values are statically referencing to s; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="620" x2="620" y1="190" y2="180"><title>some values are statically referencing to s; can only read data</title></line>
+        <line data-hash="1" class="solid" x1="620" x2="620" y1="185" y2="245"><title>s is the unique value that can access the data in memory; can read and write data</title></line>
+        <line data-hash="1" class="solid" x1="620" x2="620" y1="265" y2="305"><title>s is the unique value that can access the data in memory; can read and write data</title></line>
+        <line data-hash="2" class="solid" x1="690" x2="690" y1="145" y2="185"><title>some values are statically referencing to r1; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="690" x2="690" y1="150" y2="180"><title>some values are statically referencing to r1; can only read data</title></line>
+        <line data-hash="2" class="solid" x1="690" x2="690" y1="185" y2="185"><title>some values are statically referencing to r1; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="690" x2="690" y1="190" y2="180"><title>some values are statically referencing to r1; can only read data</title></line>
+        <line data-hash="2" class="solid" x1="690" x2="690" y1="185" y2="185"><title>some values are statically referencing to r1; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="690" x2="690" y1="190" y2="180"><title>some values are statically referencing to r1; can only read data</title></line>
+        <line data-hash="3" class="solid" x1="760" x2="760" y1="165" y2="185"><title>some values are statically referencing to r2; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="760" x2="760" y1="170" y2="180"><title>some values are statically referencing to r2; can only read data</title></line>
+        <line data-hash="3" class="solid" x1="760" x2="760" y1="185" y2="185"><title>some values are statically referencing to r2; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="760" x2="760" y1="190" y2="180"><title>some values are statically referencing to r2; can only read data</title></line>
+        <line data-hash="3" class="solid" x1="760" x2="760" y1="185" y2="185"><title>some values are statically referencing to r2; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="760" x2="760" y1="190" y2="180"><title>some values are statically referencing to r2; can only read data</title></line>
+        <line data-hash="4" class="solid" x1="830" x2="830" y1="245" y2="265"><title>r3 is the unique value that can access the data in memory; can read and write data; can not point to another piece of data</title></line>
+        <line class="colorless" stroke-width="8px" x1="830" x2="830" y1="250" y2="260"><title>r3 is the unique value that can access the data in memory; can read and write data; can not point to another piece of data</title></line>
+        <line data-hash="4" class="solid" x1="830" x2="830" y1="265" y2="265"><title>some values are statically referencing to r3; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="830" x2="830" y1="270" y2="260"><title>some values are statically referencing to r3; can only read data</title></line>
+        <line data-hash="4" class="solid" x1="830" x2="830" y1="265" y2="265"><title>r3 is the unique value that can access the data in memory; can read and write data; can not point to another piece of data</title></line>
+        <line class="colorless" stroke-width="8px" x1="830" x2="830" y1="270" y2="260"><title>r3 is the unique value that can access the data in memory; can read and write data; can not point to another piece of data</title></line>
     </g>
 
     <g id="events">
@@ -5789,6 +6173,7 @@ text.functionIcon {
 </svg>
 successfully wrote to examples/book_04_02_09_shared_and_unique_borrow/rendering.svg
 successfully wrote to rustBook/src/img/vis_04_02_09.svg
+<<<<<<< refs/remotes/fplab/dev
 warning: unused imports: `Formatter`, `Result`
  --> src/hover_messages.rs:1:16
   |
@@ -5878,6 +6263,10 @@ warning: the `borrow_to:` in this pattern is redundant
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
     Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+=======
+   Compiling rrt v0.1.0 (/home/gluo/Develop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.65s
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
      Running `target/debug/examples/no_dangle`
 s 1 2 OutOfScope
 s 2 5 FullPrivilege
@@ -6055,8 +6444,8 @@ text.functionIcon {
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid" x1="440" x2="440" y1="105" y2="165"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="440" x2="440" y1="110" y2="160"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="440" x2="440" y1="105" y2="165"><title>s is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="440" x2="440" y1="110" y2="160"><title>s is the unique value that can access the data in memory; can only read data</title></line>
     </g>
 
     <g id="events">

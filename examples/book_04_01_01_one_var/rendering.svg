@@ -172,8 +172,13 @@ text.functionIcon {
     </g>
 
     <g id="timelines">
+<<<<<<< refs/remotes/fplab/dev
         <line data-hash="1" class="solid" x1="440" x2="440" y1="105" y2="125"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="440" x2="440" y1="110" y2="120"><title>has read only privilege to the real data</title></line>
+=======
+        <line data-hash="4" class="solid" x1="440" x2="440" y1="105" y2="125"><title>s is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="440" x2="440" y1="110" y2="120"><title>s is the unique value that can access the data in memory; can only read data</title></line>
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
     </g>
 
     <g id="events">

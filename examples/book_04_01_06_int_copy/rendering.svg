@@ -173,12 +173,21 @@ text.functionIcon {
     </g>
 
     <g id="timelines">
+<<<<<<< refs/remotes/fplab/dev
         <line data-hash="1" class="solid" x1="240" x2="240" y1="105" y2="125"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="240" x2="240" y1="110" y2="120"><title>has read only privilege to the real data</title></line>
         <line data-hash="1" class="solid" x1="240" x2="240" y1="125" y2="145"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="240" x2="240" y1="130" y2="140"><title>has read only privilege to the real data</title></line>
         <line data-hash="2" class="solid" x1="310" x2="310" y1="125" y2="145"><title>has read only privilege to the real data</title></line>
         <line class="colorless" stroke-width="8px" x1="310" x2="310" y1="130" y2="140"><title>has read only privilege to the real data</title></line>
+=======
+        <line data-hash="3" class="solid" x1="240" x2="240" y1="105" y2="125"><title>x is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="240" x2="240" y1="110" y2="120"><title>x is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="3" class="solid" x1="240" x2="240" y1="125" y2="145"><title>x is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="240" x2="240" y1="130" y2="140"><title>x is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="4" class="solid" x1="310" x2="310" y1="125" y2="145"><title>y is the unique value that can access the data in memory; can only read data</title></line>
+        <line class="colorless" stroke-width="8px" x1="310" x2="310" y1="130" y2="140"><title>y is the unique value that can access the data in memory; can only read data</title></line>
+>>>>>>> State Message (Vertical lines) now uses the hover_message.rs
     </g>
 
     <g id="events">

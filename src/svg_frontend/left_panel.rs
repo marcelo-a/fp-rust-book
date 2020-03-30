@@ -70,13 +70,13 @@ struct VerticalLineData {
     title: String,
 }
 
-pub fn render_left_panel(visualization_data : &VisualizationData) -> String {
+pub fn render_left_panel(visualization_data : &VisualizationData, divider_x_pos: i64) -> (String, i32) {
     /* Template creation */
     let mut registry = Handlebars::new();
     prepare_registry(&mut registry);
 
     // hash -> TimelineColumnData
-    let resource_owners_layout = compute_column_layout(visualization_data);
+    let (resource_owners_layout, width) = compute_column_layout(visualization_data, divider_x_pos);
 
     // render resource owner labels
     let labels_string = render_labels_string(&resource_owners_layout, &registry);
@@ -91,7 +91,7 @@ pub fn render_left_panel(visualization_data : &VisualizationData) -> String {
         arrows: arrows_string
     };
 
-    registry.render("left_panel_template", &left_panel_data).unwrap()
+    (registry.render("left_panel_template", &left_panel_data).unwrap(), width)
 }
 
 fn prepare_registry(registry: &mut Handlebars) {
@@ -105,7 +105,7 @@ fn prepare_registry(registry: &mut Handlebars) {
         <g id=\"arrows\">\n{{ arrows }}    </g>";
 
     let label_template =
-        "        <text style=\"text-anchor:middle\" class=\"code\" x=\"{{x_val}}\" y=\"80\" data-hash=\"{{hash}}\"><title>{{title}}</title>{{name}}</text>\n";
+        "        <text style=\"text-anchor:middle\" class=\"code\" x=\"{{x_val}}\" y=\"90\" data-hash=\"{{hash}}\"><title>{{title}}</title>{{name}}</text>\n";
     let dot_template =
         "        <use xlink:href=\"#eventDot\" data-hash=\"{{hash}}\" x=\"{{dot_x}}\" y=\"{{dot_y}}\"><title>{{title}}</title></use>\n";
     let function_dot_template =    
@@ -146,10 +146,10 @@ fn prepare_registry(registry: &mut Handlebars) {
 }
 
 // Returns: a hashmap from the hash of the ResourceOwner to its Column information
-fn compute_column_layout<'a>(visualization_data: &'a VisualizationData) -> HashMap<&'a u64, TimelineColumnData> {
+fn compute_column_layout<'a>(visualization_data: &'a VisualizationData, divider_x_pos: i64) -> (HashMap<&'a u64, TimelineColumnData>, i32) {
     let mut resource_owners_layout = HashMap::new();
-    let mut x : i64 = -10;                   // Right-most Column x-offset.
-    // let x_space = 30;                   // for every new ResourceOwner, move 30 px to the left
+    let mut x = divider_x_pos;                   // Right-most Column x-offset.
+    // let x_end = 0;
     for (hash, timeline) in visualization_data.timelines.iter().rev() {
         // only put variable in the column layout
         if let ResourceOwner::Variable(_) = timeline.resource_owner {
@@ -158,7 +158,8 @@ fn compute_column_layout<'a>(visualization_data: &'a VisualizationData) -> HashM
                 None => panic!("no matching resource owner for hash {}", hash),
             };
             let x_space = cmp::max(70, (&(name.len() as i64)-1)*10);
-            x = x - x_space;
+            x = x + x_space;
+            // x_end = cmp::max(x_end, x),
             let title = match visualization_data.is_mut(hash) {
                 true => String::from("mutable"),
                 false => String::from("immutable"),
@@ -172,7 +173,7 @@ fn compute_column_layout<'a>(visualization_data: &'a VisualizationData) -> HashM
         }
         
     }
-    resource_owners_layout
+    (resource_owners_layout, (x as i32)+100)
 }
 
 fn render_labels_string(
@@ -505,5 +506,5 @@ fn render_timelines_string(
 
 
 fn get_y_axis_pos(line_number : &usize) -> i64 {
-    (60 + 20 * line_number) as i64
+    (68 + 20 * line_number) as i64
 }

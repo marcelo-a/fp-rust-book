@@ -1,4 +1,4 @@
-<svg width="1800px" height="600px" viewBox="-180 0 1620 700"
+<svg width="712" height="370px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>shared_and_unique_borrow</desc>
@@ -28,8 +28,9 @@ text {
 }
 
 #caption {
-    font-size: 20px;
+    font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
 }
 
 /* code related styling */
@@ -156,109 +157,109 @@ text.functionIcon {
             refX="1" refY="5" 
             markerUnits="strokeWidth"
             markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="black">
+            orient="auto" fill="gray">
             <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
         </marker>
     </defs>
 
     <g>
-        <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="4"><title>r3, immutable</title>r3</text>
-        <text style="text-anchor:middle" class="code" x="-220" y="80" data-hash="2"><title>r1, immutable</title>r1</text>
-        <text style="text-anchor:middle" class="code" x="-290" y="80" data-hash="1"><title>s, mutable</title>s</text>
-        <text style="text-anchor:middle" class="code" x="-150" y="80" data-hash="3"><title>r2, immutable</title>r2</text>
+        <text style="text-anchor:middle" class="code" x="472" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
+        <text style="text-anchor:middle" class="code" x="402" y="90" data-hash="4"><title>r3, immutable</title>r3</text>
+        <text style="text-anchor:middle" class="code" x="542" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
+        <text style="text-anchor:middle" class="code" x="612" y="90" data-hash="1"><title>s, mutable</title>s</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid" x1="-290" x2="-290" y1="100" y2="140"><title>has read and write privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="-290" x2="-290" y1="140" y2="160"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="-290" x2="-290" y1="145" y2="155"><title>has read only privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="-290" x2="-290" y1="160" y2="180"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="-290" x2="-290" y1="165" y2="175"><title>has read only privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="-290" x2="-290" y1="180" y2="180"><title>has read only privilege to the real data</title></line>
-        <line class="colorless" stroke-width="8px" x1="-290" x2="-290" y1="185" y2="175"><title>has read only privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="-290" x2="-290" y1="180" y2="240"><title>has read and write privilege to the real data</title></line>
-        <line data-hash="1" class="solid" x1="-290" x2="-290" y1="260" y2="300"><title>has read and write privilege to the real data</title></line>
-        <line data-hash="2" class="solid" x1="-220" x2="-220" y1="140" y2="180"><title>has read only privilege to the reference itself</title></line>
-        <line class="colorless" stroke-width="8px" x1="-220" x2="-220" y1="145" y2="175"><title>has read only privilege to the reference itself</title></line>
-        <line data-hash="2" class="solid" x1="-220" x2="-220" y1="180" y2="180"><title>has read only privilege to the reference itself</title></line>
-        <line class="colorless" stroke-width="8px" x1="-220" x2="-220" y1="185" y2="175"><title>has read only privilege to the reference itself</title></line>
-        <line data-hash="2" class="solid" x1="-220" x2="-220" y1="180" y2="180"><title>has read only privilege to the reference itself</title></line>
-        <line class="colorless" stroke-width="8px" x1="-220" x2="-220" y1="185" y2="175"><title>has read only privilege to the reference itself</title></line>
-        <line data-hash="3" class="solid" x1="-150" x2="-150" y1="160" y2="180"><title>has read only privilege to the reference itself</title></line>
-        <line class="colorless" stroke-width="8px" x1="-150" x2="-150" y1="165" y2="175"><title>has read only privilege to the reference itself</title></line>
-        <line data-hash="3" class="solid" x1="-150" x2="-150" y1="180" y2="180"><title>has read only privilege to the reference itself</title></line>
-        <line class="colorless" stroke-width="8px" x1="-150" x2="-150" y1="185" y2="175"><title>has read only privilege to the reference itself</title></line>
-        <line data-hash="3" class="solid" x1="-150" x2="-150" y1="180" y2="180"><title>has read only privilege to the reference itself</title></line>
-        <line class="colorless" stroke-width="8px" x1="-150" x2="-150" y1="185" y2="175"><title>has read only privilege to the reference itself</title></line>
-        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="240" y2="260"><title>has read only privilege to the reference itself</title></line>
-        <line class="colorless" stroke-width="8px" x1="-80" x2="-80" y1="245" y2="255"><title>has read only privilege to the reference itself</title></line>
-        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="260" y2="260"><title>has read only privilege to the reference itself</title></line>
-        <line class="colorless" stroke-width="8px" x1="-80" x2="-80" y1="265" y2="255"><title>has read only privilege to the reference itself</title></line>
-        <line data-hash="4" class="solid" x1="-80" x2="-80" y1="260" y2="260"><title>has read only privilege to the reference itself</title></line>
-        <line class="colorless" stroke-width="8px" x1="-80" x2="-80" y1="265" y2="255"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="1" class="solid" x1="612" x2="612" y1="108" y2="148"><title>has read and write privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="612" x2="612" y1="148" y2="168"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="612" x2="612" y1="153" y2="163"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="612" x2="612" y1="168" y2="188"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="612" x2="612" y1="173" y2="183"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="612" x2="612" y1="188" y2="188"><title>has read only privilege to the real data</title></line>
+        <line class="colorless" stroke-width="8px" x1="612" x2="612" y1="193" y2="183"><title>has read only privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="612" x2="612" y1="188" y2="248"><title>has read and write privilege to the real data</title></line>
+        <line data-hash="1" class="solid" x1="612" x2="612" y1="268" y2="308"><title>has read and write privilege to the real data</title></line>
+        <line data-hash="2" class="solid" x1="542" x2="542" y1="148" y2="188"><title>has read only privilege to the reference itself</title></line>
+        <line class="colorless" stroke-width="8px" x1="542" x2="542" y1="153" y2="183"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="2" class="solid" x1="542" x2="542" y1="188" y2="188"><title>has read only privilege to the reference itself</title></line>
+        <line class="colorless" stroke-width="8px" x1="542" x2="542" y1="193" y2="183"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="2" class="solid" x1="542" x2="542" y1="188" y2="188"><title>has read only privilege to the reference itself</title></line>
+        <line class="colorless" stroke-width="8px" x1="542" x2="542" y1="193" y2="183"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="3" class="solid" x1="472" x2="472" y1="168" y2="188"><title>has read only privilege to the reference itself</title></line>
+        <line class="colorless" stroke-width="8px" x1="472" x2="472" y1="173" y2="183"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="3" class="solid" x1="472" x2="472" y1="188" y2="188"><title>has read only privilege to the reference itself</title></line>
+        <line class="colorless" stroke-width="8px" x1="472" x2="472" y1="193" y2="183"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="3" class="solid" x1="472" x2="472" y1="188" y2="188"><title>has read only privilege to the reference itself</title></line>
+        <line class="colorless" stroke-width="8px" x1="472" x2="472" y1="193" y2="183"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="4" class="solid" x1="402" x2="402" y1="248" y2="268"><title>has read only privilege to the reference itself</title></line>
+        <line class="colorless" stroke-width="8px" x1="402" x2="402" y1="253" y2="263"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="4" class="solid" x1="402" x2="402" y1="268" y2="268"><title>has read only privilege to the reference itself</title></line>
+        <line class="colorless" stroke-width="8px" x1="402" x2="402" y1="273" y2="263"><title>has read only privilege to the reference itself</title></line>
+        <line data-hash="4" class="solid" x1="402" x2="402" y1="268" y2="268"><title>has read only privilege to the reference itself</title></line>
+        <line class="colorless" stroke-width="8px" x1="402" x2="402" y1="273" y2="263"><title>has read only privilege to the reference itself</title></line>
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="-290" y="100"><title>Acquiring resource from String::from()</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="-290" y="140"><title>Partially lends resource to r1</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="-290" y="160"><title>Partially lends resource to r2</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="-290" y="180"><title>Partially reacquires resource from r1</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="-290" y="180"><title>Partially reacquires resource from r2</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="-290" y="240"><title>Mutable lend to r3</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="-290" y="260"><title>Fully reacquires resource from r3</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="-290" y="300"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="-220" y="140"><title>Partially borrows resource from s</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="-220" y="180"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="-220" y="180"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="-220" y="180"><title>Partially returns resource to s</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="-220" y="300"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="-150" y="160"><title>Partially borrows resource from s</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="-150" y="180"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="-150" y="180"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="-150" y="180"><title>Partially returns resource to s</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="-150" y="300"><title>Goes out of scope</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="240"><title>Fully borrows resource from s</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="260"><title>Partially lends resource to println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="260"><title>Partially reacquires resource from println!()</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="260"><title>Fully returns resource to s</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="-80" y="300"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="612" y="108"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="612" y="148"><title>Partially lends resource to r1</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="612" y="168"><title>Partially lends resource to r2</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="612" y="188"><title>Partially reacquires resource from r1</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="612" y="188"><title>Partially reacquires resource from r2</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="612" y="248"><title>Mutable lend to r3</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="612" y="268"><title>Fully reacquires resource from r3</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="612" y="308"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="542" y="148"><title>Partially borrows resource from s</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="542" y="188"><title>Partially lends resource to println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="542" y="188"><title>Partially reacquires resource from println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="542" y="188"><title>Partially returns resource to s</title></use>
+        <use xlink:href="#eventDot" data-hash="2" x="542" y="308"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="472" y="168"><title>Partially borrows resource from s</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="472" y="188"><title>Partially lends resource to println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="472" y="188"><title>Partially reacquires resource from println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="472" y="188"><title>Partially returns resource to s</title></use>
+        <use xlink:href="#eventDot" data-hash="3" x="472" y="308"><title>Goes out of scope</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="402" y="248"><title>Fully borrows resource from s</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="402" y="268"><title>Partially lends resource to println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="402" y="268"><title>Partially reacquires resource from println!()</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="402" y="268"><title>Fully returns resource to s</title></use>
+        <use xlink:href="#eventDot" data-hash="4" x="402" y="308"><title>Goes out of scope</title></use>
     </g>
 
     <g id="arrows">
-        <text x="-264" y="105" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-267,100 -277,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
-        <polyline stroke-width="5" stroke="black" points="-290,140 -230,140 " marker-end="url(#arrowHead)"><title>Static borrow from s to r1</title></polyline>
-        <polyline stroke-width="5" stroke="black" points="-290,160 -160,160 " marker-end="url(#arrowHead)"><title>Static borrow from s to r2</title></polyline>
-        <use xlink:href="#functionDot" data-hash="2" x="-220" y="180"><title>println!() reads from r1</title></use>
-        <use xlink:href="#functionDot" data-hash="3" x="-150" y="180"><title>println!() reads from r2</title></use>
-        <polyline stroke-width="5" stroke="black" points="-220,180 -280,180 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from r1 to s</title></polyline>
-        <polyline stroke-width="5" stroke="black" points="-150,180 -280,180 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from r2 to s</title></polyline>
-        <polyline stroke-width="5" stroke="black" points="-290,240 -90,240 " marker-end="url(#arrowHead)"><title>Mutable borrow from s to r3</title></polyline>
-        <use xlink:href="#functionDot" data-hash="4" x="-80" y="260"><title>println!() reads from r3</title></use>
-        <polyline stroke-width="5" stroke="black" points="-80,260 -280,260 " marker-end="url(#arrowHead)"><title>Return mutably borrowed resource from r3 to s</title></polyline>
+        <text x="638" y="113" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="635,108 625,108 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
+        <polyline stroke-width="5" stroke="gray" points="612,148 552,148 " marker-end="url(#arrowHead)"><title>Static borrow from s to r1</title></polyline>
+        <polyline stroke-width="5" stroke="gray" points="612,168 482,168 " marker-end="url(#arrowHead)"><title>Static borrow from s to r2</title></polyline>
+        <use xlink:href="#functionDot" data-hash="2" x="542" y="188"><title>println!() reads from r1</title></use>
+        <use xlink:href="#functionDot" data-hash="3" x="472" y="188"><title>println!() reads from r2</title></use>
+        <polyline stroke-width="5" stroke="gray" points="542,188 602,188 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from r1 to s</title></polyline>
+        <polyline stroke-width="5" stroke="gray" points="472,188 602,188 " marker-end="url(#arrowHead)"><title>Return statically borrowed resource from r2 to s</title></polyline>
+        <polyline stroke-width="5" stroke="gray" points="612,248 412,248 " marker-end="url(#arrowHead)"><title>Mutable borrow from s to r3</title></polyline>
+        <use xlink:href="#functionDot" data-hash="4" x="402" y="268"><title>println!() reads from r3</title></use>
+        <polyline stroke-width="5" stroke="gray" points="402,268 602,268 " marker-end="url(#arrowHead)"><title>Return mutably borrowed resource from r3 to s</title></polyline>
     </g>
 
     <g id="dividers">
-            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="320"/>
+            <line stroke="gray" stroke-width="2" x1="332" x2="332" y1="70" y2="320"/>
     </g>
 
     <g id="code">
-        <text class="code" x="0" y="80"> fn main(){ </text>
-        <text class="code" x="0" y="100">     let mut <tspan data-hash="1">s</tspan> = String::from("hello"); </text>
-        <text class="code" x="0" y="120">  </text>
-        <text class="code" x="0" y="140">     let <tspan data-hash="2">r1</tspan> = <tspan data-hash="1">&amp;s</tspan>; // no problem </text>
-        <text class="code" x="0" y="160">     let <tspan data-hash="3">r2</tspan> = <tspan data-hash="1">&amp;s</tspan>; // no problem </text>
-        <text class="code" x="0" y="180">     println!("{} and {}", <tspan data-hash="2">r1</tspan>, <tspan data-hash="3">r2</tspan>); </text>
-        <text class="code" x="0" y="200">     // <tspan data-hash="2">r1</tspan> and <tspan data-hash="3">r2</tspan> are no longer used after this point </text>
-        <text class="code" x="0" y="220">  </text>
-        <text class="code" x="0" y="240">     let <tspan data-hash="4">r3</tspan> = <tspan data-hash="1">&amp;mut s</tspan>; // no problem </text>
-        <text class="code" x="0" y="260">     println!("{}", <tspan data-hash="4">r3</tspan>); </text>
-        <text class="code" x="0" y="280">  </text>
-        <text class="code" x="0" y="300"> } </text>
+        <text class="code" x="20" y="90"> fn main(){ </text>
+        <text class="code" x="20" y="110">     let mut <tspan data-hash="1">s</tspan> = String::from("hello"); </text>
+        <text class="code" x="20" y="130">  </text>
+        <text class="code" x="20" y="150">     let <tspan data-hash="2">r1</tspan> = <tspan data-hash="1">&amp;s</tspan>; // no problem </text>
+        <text class="code" x="20" y="170">     let <tspan data-hash="3">r2</tspan> = <tspan data-hash="1">&amp;s</tspan>; // no problem </text>
+        <text class="code" x="20" y="190">     println!("{} and {}", <tspan data-hash="2">r1</tspan>, <tspan data-hash="3">r2</tspan>); </text>
+        <text class="code" x="20" y="210">     // <tspan data-hash="2">r1</tspan> and <tspan data-hash="3">r2</tspan> are no longer used after this point </text>
+        <text class="code" x="20" y="230">  </text>
+        <text class="code" x="20" y="250">     let <tspan data-hash="4">r3</tspan> = <tspan data-hash="1">&amp;mut s</tspan>; // no problem </text>
+        <text class="code" x="20" y="270">     println!("{}", <tspan data-hash="4">r3</tspan>); </text>
+        <text class="code" x="20" y="290">  </text>
+        <text class="code" x="20" y="310"> } </text>
     </g>
 
    

@@ -4,6 +4,7 @@ use crate::data::VisualizationData;
 use crate::svg_frontend::{left_panel, right_panel, utils};
 use handlebars::Handlebars;
 use serde::Serialize;
+use std::cmp;
 
 #[derive(Serialize)]
 struct SvgData {
@@ -11,7 +12,10 @@ struct SvgData {
     css: String,
     code: String,
     diagram: String,
+    divider_x_pos: i64,
     divider_y_endpoint: i32,
+    width: i32,
+    height: i32,
 }
 
 pub fn render_svg(listing_id: &String, description: &String, visualization_data: &VisualizationData) {
@@ -20,7 +24,7 @@ pub fn render_svg(listing_id: &String, description: &String, visualization_data:
     
     let mut right_panel_string = String::new();
     let mut line_of_code = 0;
-    // let mut left_panel_string = String::new();
+    let mut max_x = 0;
 
     let svg_template = utils::read_file_to_string("src/svg_frontend/template.svg")
         .unwrap_or("Reading template.svg failed.".to_owned());
@@ -37,22 +41,32 @@ pub fn render_svg(listing_id: &String, description: &String, visualization_data:
     let css_string = utils::read_file_to_string("src/svg_frontend/book_svg_style.css")
         .unwrap_or("Reading book_svg_style.css failed.".to_owned());
 
-    // data for left panel
-    let left_panel_string = left_panel::render_left_panel(visualization_data);
-
-    // data for right panel
-    if let Ok(lines) = utils::read_lines(example_dir_path.to_owned() + "annotated_source.rs") {
-        let (left, right) = right_panel::render_right_panel(lines);
-        right_panel_string = left;
-        line_of_code = right;
+        // data for right panel
+        if let Ok(lines) = utils::read_lines(example_dir_path.to_owned() + "annotated_source.rs") {
+            let long_tuple = right_panel::render_right_panel(lines);
+            right_panel_string = long_tuple.0;
+            line_of_code = long_tuple.1;
+        }
+        
+    // set divider position
+    if let Ok(lines) = utils::read_lines(example_dir_path.to_owned() + "source.rs") {
+        max_x = right_panel::set_divider_pos(lines);
     }
+    println!("Max_x = {}", max_x);
 
+
+    // data for left panel
+    let (left_panel_string, max_width) = left_panel::render_left_panel(visualization_data, max_x);
+        
     let svg_data = SvgData {
         visualization_name: description.to_owned(),
         css: css_string,
         code: right_panel_string,
         diagram: left_panel_string,
+        divider_x_pos: max_x,
         divider_y_endpoint: line_of_code * 20 + 80,
+        width: cmp::max(max_width, 650),
+        height: (line_of_code * 20 + 80) + 50,
     };
 
     let final_svg_content = handlebars.render("full_svg_template", &svg_data).unwrap();

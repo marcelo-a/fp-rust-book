@@ -4,6 +4,20 @@ use handlebars::Handlebars;
 use std::collections::BTreeMap;
 use std::fs::File;
 use std::io;
+use std::cmp;
+
+pub fn set_divider_pos(lines: io::Lines<io::BufReader<File>>) -> i64 {
+    let x = 20;
+    let mut x_space = 100;
+    for line in lines {
+        if let Ok(line_string) = line {
+            // read max line length
+            x_space = cmp::max(x_space, x+(line_string.clone().to_string().len() as i64)*6);
+            println!("{}", x_space);
+        }
+    }
+    x_space
+}
 
 pub fn render_right_panel(lines: io::Lines<io::BufReader<File>>) -> (String, i32) {
     /* Template creation */
@@ -18,8 +32,8 @@ pub fn render_right_panel(lines: io::Lines<io::BufReader<File>>) -> (String, i32
         .is_ok());
 
     /* Render the code segment of the svg to a String */
-    let x = 0;
-    let mut y = 80;
+    let x = 20;
+    let mut y = 90;
     let mut output = String::from("    <g id=\"code\">\n");
     let mut line_of_code = 0;
     for line in lines {
@@ -27,7 +41,7 @@ pub fn render_right_panel(lines: io::Lines<io::BufReader<File>>) -> (String, i32
             let mut data = BTreeMap::new();
             data.insert("X_VAL".to_string(), x.to_string());
             data.insert("Y_VAL".to_string(), y.to_string());
-            data.insert("LINE".to_string(), line_string);
+            data.insert("LINE".to_string(), line_string.clone());
             output.push_str(&handlebars.render("code_line_template", &data).unwrap());
             y = y + 20;
         }

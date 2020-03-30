@@ -1,4 +1,4 @@
-<svg width="1800px" height="600px" viewBox="-180 0 1620 700"
+<svg width="650" height="170px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>string_from</desc>
@@ -28,8 +28,9 @@ text {
 }
 
 #caption {
-    font-size: 20px;
+    font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
 }
 
 /* code related styling */
@@ -156,38 +157,38 @@ text.functionIcon {
             refX="1" refY="5" 
             markerUnits="strokeWidth"
             markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="black">
+            orient="auto" fill="gray">
             <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
         </marker>
     </defs>
 
     <g>
-        <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="-80" y="80" data-hash="1"><title>s, immutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="270" y="90" data-hash="1"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="-80" y="100"><title>Acquiring resource from String::from()</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="270" y="108"><title>Acquiring resource from String::from()</title></use>
     </g>
 
     <g id="arrows">
-        <text x="-54" y="105" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="black" points="-57,100 -67,100 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
+        <text x="296" y="113" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="293,108 283,108 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
     </g>
 
     <g id="dividers">
-            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="120"/>
+            <line stroke="gray" stroke-width="2" x1="200" x2="200" y1="70" y2="120"/>
     </g>
 
     <g id="code">
-        <text class="code" x="0" y="80">  </text>
-        <text class="code" x="0" y="100"> let <tspan data-hash="1">s</tspan> = String::from("hello"); </text>
+        <text class="code" x="20" y="90">  </text>
+        <text class="code" x="20" y="110"> let <tspan data-hash="1">s</tspan> = String::from("hello"); </text>
     </g>
 
    

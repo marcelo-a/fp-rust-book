@@ -1,4 +1,4 @@
-<svg width="1800px" height="600px" viewBox="-180 0 1620 700"
+<svg width="{{width}}" height="{{height}}px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>{{ visualization_name }}</desc>
@@ -26,14 +26,14 @@
     </defs>
 
     <g>
-        <text id="caption" x="-390" y="20">Hover over timeline events (dots), </text>
-        <text id="caption" x="-390" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
+        <text id="caption" x="30" y="20">Hover over timeline events (dots), </text>
+        <text id="caption" x="30" y="50">states (vertical lines), and actions (arrows) for extra information.</text>
     </g>
 
 {{ diagram }}
 
     <g id="dividers">
-            <line stroke="gray" stroke-width="2" x1="-20" x2="-20" y1="60" y2="{{divider_y_endpoint}}"/>
+            <line stroke="gray" stroke-width="2" x1="{{divider_x_pos}}" x2="{{divider_x_pos}}" y1="70" y2="{{divider_y_endpoint}}"/>
     </g>
 
 {{ code }}

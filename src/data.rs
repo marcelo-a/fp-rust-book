@@ -42,7 +42,6 @@ pub struct Function {
     pub name: String,
 }
 
-
 #[derive(Clone, Hash, PartialEq, Eq)]
 pub enum RefKind {
     MutRef, // a mutable reference, eg let a = &mut b

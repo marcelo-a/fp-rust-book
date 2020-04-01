@@ -168,26 +168,33 @@ text.functionIcon {
     </g>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="480" y="90" data-hash="1"><title>s, mutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="580" y="90" data-hash="2"><title>some_string, mutable</title>some_string</text>
+        <text style="text-anchor:middle" class="code" x="480" y="90" data-hash="1"><title>s, mutable</title>s</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid" x1="480" x2="480" y1="105" y2="145"><title>s is the unique value that can access the data in memory; can read and write data</title></line>
+        <line data-hash="1" class="solid" x1="480" x2="480" y1="105" y2="145"><title>s is the unique value that can access the data in memory; can read and write data; can point to another piece of data</title></line>
         <line data-hash="1" class="solid" x1="480" x2="480" y1="145" y2="145"><title>some values are statically referencing to s; can only read data</title></line>
         <line class="colorless" stroke-width="8px" x1="480" x2="480" y1="150" y2="140"><title>some values are statically referencing to s; can only read data</title></line>
-        <line data-hash="1" class="solid" x1="480" x2="480" y1="145" y2="165"><title>s is the unique value that can access the data in memory; can read and write data</title></line>
+        <line data-hash="1" class="solid" x1="480" x2="480" y1="145" y2="165"><title>s is the unique value that can access the data in memory; can read and write data; can point to another piece of data</title></line>
         <line data-hash="2" class="solid" x1="580" x2="580" y1="205" y2="225"><title>some_string is the unique value that can access the data in memory; can read and write data; can point to another piece of data</title></line>
         <line data-hash="2" class="solid" x1="580" x2="580" y1="225" y2="225"><title>some values are statically referencing to some_string; can only read data</title></line>
         <line class="colorless" stroke-width="8px" x1="580" x2="580" y1="230" y2="220"><title>some values are statically referencing to some_string; can only read data</title></line>
         <line data-hash="2" class="solid" x1="580" x2="580" y1="225" y2="245"><title>some_string is the unique value that can access the data in memory; can read and write data; can point to another piece of data</title></line>
     </g>
 
+    <g id="resource_accessibility">
+        <line data-hash="1" class="solid" x1="490" x2="490" y1="105" y2="145"><title>can mutate the resource it refers to</title></line>
+        <line data-hash="1" class="solid" x1="490" x2="490" y1="145" y2="165"><title>can mutate the resource it refers to</title></line>
+        <line data-hash="2" class="solid" x1="590" x2="590" y1="205" y2="225"><title>can mutate the resource it refers to</title></line>
+        <line data-hash="2" class="solid" x1="590" x2="590" y1="225" y2="245"><title>can mutate the resource it refers to</title></line>
+    </g>
+
     <g id="events">
         <use xlink:href="#eventDot" data-hash="1" x="480" y="105"><title>obtains data from String::from() (s's lifetime begins from here)</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="480" y="145"><title>statically lends its data to change() (s becomes read-only)</title></use>
         <use xlink:href="#eventDot" data-hash="1" x="480" y="145"><title>change() no longer borrows from s</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="480" y="165"><title>s goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="480" y="165"><title>s goes out of scope. The data is not dropped because s is not the owner.</title></use>
         <use xlink:href="#eventDot" data-hash="2" x="580" y="205"><title>obtains data from another value (some_string's lifetime begins from here)</title></use>
         <use xlink:href="#eventDot" data-hash="2" x="580" y="225"><title>statically lends its data to push_str() (some_string becomes read-only)</title></use>
         <use xlink:href="#eventDot" data-hash="2" x="580" y="225"><title>push_str() no longer borrows from some_string</title></use>

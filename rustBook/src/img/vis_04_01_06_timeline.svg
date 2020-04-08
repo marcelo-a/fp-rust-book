@@ -57,15 +57,6 @@ text.code {
     flex-shrink: 1;
 }
 
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
-
 #functionDot:hover {
     transform: scale(1.5);
 }
@@ -173,8 +164,8 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>x, immutable</title>x</text>
         <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>y, immutable</title>y</text>
+        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>x, immutable</title>x</text>
     </g>
 
     <g id="timelines">

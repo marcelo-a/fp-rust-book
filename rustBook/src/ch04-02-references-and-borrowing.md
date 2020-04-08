@@ -14,7 +14,7 @@ value:
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-07-reference/src/main.rs:all}}
 ```
-<div class="flex-container">
+<div class="flex-container" style = "position:relative; margin-right:-100px;">
   <object type="image/svg+xml" class="visualization" data="img/vis_04_02_01_code.svg" style="width: auto;" >
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="visualization" data="img/vis_04_02_01_timeline.svg" style="width: auto;" >
@@ -61,7 +61,7 @@ the parameter `s` is a reference. Let’s add some explanatory annotations:
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-08-reference-with-annotations/src/main.rs:here}}
 ```
-<div class="flex-container">
+<div class="flex-container" style = "position:relative; margin-right:-100px;">
   <object type="image/svg+xml" class="visualization" data="img/vis_04_02_03_code.svg" style="width: auto;" >
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="visualization" data="img/vis_04_02_03_timeline.svg" style="width: auto;" >
@@ -156,7 +156,7 @@ multiple mutable references, just not *simultaneous* ones:
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-11-muts-in-separate-scopes/src/main.rs:here}}
 ```
-<div class="flex-container">
+<div class="flex-container" style = "position:relative; margin-left: -100px; margin-right:-100px;">
   <object type="image/svg+xml" class="visualization" data="img/vis_04_02_07_code.svg" style="width: auto;" >
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="visualization" data="img/vis_04_02_07_timeline.svg" style="width: auto;" >
@@ -190,7 +190,7 @@ mutable reference is introduced:
 ```rust,edition2018,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-13-reference-scope-ends/src/main.rs:here}}
 ```
-<div class="flex-container">
+<div class="flex-container" style = "position:relative; margin-right:-100px;">
   <object type="image/svg+xml" class="visualization" data="img/vis_04_02_09_code.svg" style="width: auto;" >
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="visualization" data="img/vis_04_02_09_timeline.svg" style="width: auto;" >

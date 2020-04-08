@@ -3250,7 +3250,7 @@ comments annotating where the variable <code>s</code> is valid.</p>
     }                      // this scope is now over, and s is no longer valid
 <span class="boring">}
 </span></code></pre></pre>
-<div class="flex-container">
+<div class="flex-container" style = "position:relative; margin-right:-100px;">
   <object type="image/svg+xml" class="visualization" data="img/vis_04_01_02_code.svg" style="width: auto;" >
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="visualization" data="img/vis_04_01_02_timeline.svg" style="width: auto;" >
@@ -3359,7 +3359,7 @@ from Listing 4-1 using a <code>String</code> instead of a string literal:</p>
                                        // longer valid
 <span class="boring">}
 </span></code></pre></pre>
-<div class="flex-container">
+<div class="flex-container" style = "position:relative; margin-right:-100px;">
   <object type="image/svg+xml" class="visualization" data="img/vis_04_01_05_code.svg" style="width: auto;" >
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="visualization" data="img/vis_04_01_05_timeline.svg" style="width: auto;" >
@@ -3597,7 +3597,7 @@ fn makes_copy(some_integer: i32) { // some_integer comes into scope
     println!(&quot;{}&quot;, some_integer);
 } // Here, some_integer goes out of scope. Nothing special happens.
 </code></pre></pre>
-<div class="flex-container">
+<div class="flex-container" style = "position:relative; margin-left:-150px; margin-right:-200px;">
   <object type="image/svg+xml" class="visualization" data="img/vis_04_01_11_code.svg" style="width: auto;" >
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="visualization" data="img/vis_04_01_11_timeline.svg" style="width: auto;" >
@@ -3643,7 +3643,7 @@ fn takes_and_gives_back(a_string: String) -&gt; String { // a_string comes into
     a_string  // a_string is returned and moves out to the calling function
 }
 </code></pre></pre>
-<div class="flex-container">
+<div class="flex-container" style = "position:relative; margin-left:-150px; margin-right:-200px;">
   <object type="image/svg+xml" class="visualization" data="img/vis_04_01_12_code.svg" style="width: auto;" >
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="visualization" data="img/vis_04_01_12_timeline.svg" style="width: auto;" >
@@ -3676,7 +3676,7 @@ fn calculate_length(s: String) -&gt; (String, usize) {
     (s, length)
 }
 </code></pre></pre>
-<div class="flex-container">
+<div class="flex-container" style = "position:relative; margin-left:-100px; margin-right:-100px;">
   <object type="image/svg+xml" class="visualization" data="img/vis_04_01_13_code.svg" style="width: auto;" >
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="visualization" data="img/vis_04_01_13_timeline.svg" style="width: auto;" >
@@ -3707,7 +3707,7 @@ fn calculate_length(s: &amp;String) -&gt; usize {
     s.len()
 }
 </code></pre></pre>
-<div class="flex-container">
+<div class="flex-container" style = "position:relative; margin-right:-100px;">
   <object type="image/svg+xml" class="visualization" data="img/vis_04_02_01_code.svg" style="width: auto;" >
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="visualization" data="img/vis_04_02_01_timeline.svg" style="width: auto;" >
@@ -3764,7 +3764,7 @@ the parameter <code>s</code> is a reference. Let’s add some explanatory annota
 } // Here, s goes out of scope. But because it does not have ownership of what
   // it refers to, nothing happens.
 </code></pre></pre>
-<div class="flex-container">
+<div class="flex-container" style = "position:relative; margin-right:-100px;">
   <object type="image/svg+xml" class="visualization" data="img/vis_04_02_03_code.svg" style="width: auto;" >
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="visualization" data="img/vis_04_02_03_timeline.svg" style="width: auto;" >
@@ -3893,7 +3893,7 @@ multiple mutable references, just not <em>simultaneous</em> ones:</p>
     let r2 = &amp;mut s;
 <span class="boring">}
 </span></code></pre></pre>
-<div class="flex-container">
+<div class="flex-container" style = "position:relative; margin-left: -100px; margin-right:-100px;">
   <object type="image/svg+xml" class="visualization" data="img/vis_04_02_07_code.svg" style="width: auto;" >
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="visualization" data="img/vis_04_02_07_timeline.svg" style="width: auto;" >
@@ -3954,7 +3954,7 @@ mutable reference is introduced:</p>
     println!(&quot;{}&quot;, r3);
 <span class="boring">}
 </span></code></pre></pre>
-<div class="flex-container">
+<div class="flex-container" style = "position:relative; margin-right:-100px;">
   <object type="image/svg+xml" class="visualization" data="img/vis_04_02_09_code.svg" style="width: auto;" >
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="visualization" data="img/vis_04_02_09_timeline.svg" style="width: auto;" >

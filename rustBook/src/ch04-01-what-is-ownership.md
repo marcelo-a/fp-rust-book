@@ -125,7 +125,7 @@ comments annotating where the variable `s` is valid.
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-01/src/main.rs:here}}
 ```
-<div class="flex-container">
+<div class="flex-container" style = "position:relative; margin-right:-100px;">
   <object type="image/svg+xml" class="visualization" data="img/vis_04_01_02_code.svg" style="width: auto;" >
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="visualization" data="img/vis_04_01_02_timeline.svg" style="width: auto;" >
@@ -237,7 +237,7 @@ from Listing 4-1 using a `String` instead of a string literal:
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-02-string-scope/src/main.rs:here}}
 ```
-<div class="flex-container">
+<div class="flex-container" style = "position:relative; margin-right:-100px;">
   <object type="image/svg+xml" class="visualization" data="img/vis_04_01_05_code.svg" style="width: auto;" >
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="visualization" data="img/vis_04_01_05_timeline.svg" style="width: auto;" >
@@ -466,7 +466,7 @@ showing where variables go into and out of scope.
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-03/src/main.rs}}
 ```
-<div class="flex-container">
+<div class="flex-container" style = "position:relative; margin-left:-150px; margin-right:-200px;">
   <object type="image/svg+xml" class="visualization" data="img/vis_04_01_11_code.svg" style="width: auto;" >
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="visualization" data="img/vis_04_01_11_timeline.svg" style="width: auto;" >
@@ -491,7 +491,7 @@ similar annotations to those in Listing 4-3.
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-04/src/main.rs}}
 ```
-<div class="flex-container">
+<div class="flex-container" style = "position:relative; margin-left:-150px; margin-right:-200px;">
   <object type="image/svg+xml" class="visualization" data="img/vis_04_01_12_code.svg" style="width: auto;" >
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="visualization" data="img/vis_04_01_12_timeline.svg" style="width: auto;" >
@@ -519,7 +519,7 @@ It’s possible to return multiple values using a tuple, as shown in Listing 4-5
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-05/src/main.rs}}
 ```
-<div class="flex-container">
+<div class="flex-container" style = "position:relative; margin-left:-100px; margin-right:-100px;">
   <object type="image/svg+xml" class="visualization" data="img/vis_04_01_13_code.svg" style="width: auto;" >
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="visualization" data="img/vis_04_01_13_timeline.svg" style="width: auto;" >

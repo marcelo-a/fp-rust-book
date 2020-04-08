@@ -75,7 +75,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/one_var`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
@@ -137,15 +137,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -237,20 +228,6 @@ text.code {
 }
         ]]>
         </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
-        <!-- used when pass to function by ref -->
-        <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text class="functionIcon" dx="-6" dy="2">f</text>
-        </g>
-        <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
-            markerUnits="strokeWidth"
-            markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="gray">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
-        </marker>
     </defs>
 
     <g>
@@ -324,15 +301,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -551,7 +519,7 @@ warning: unused import: `Function`
      Running `target/debug/examples/scope`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
-<svg width="810" height="270px" 
+<svg width="576" height="270px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>scope</desc>
@@ -609,15 +577,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -709,20 +668,6 @@ text.code {
 }
         ]]>
         </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
-        <!-- used when pass to function by ref -->
-        <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text class="functionIcon" dx="-6" dy="2">f</text>
-        </g>
-        <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
-            markerUnits="strokeWidth"
-            markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="gray">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
-        </marker>
     </defs>
 
     <g>
@@ -800,15 +745,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -1014,7 +950,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.36s
      Running `target/debug/examples/string_from`
 s 1 2 OutOfScope
 <svg width="450" height="170px" 
@@ -1075,15 +1011,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -1175,20 +1102,6 @@ text.code {
 }
         ]]>
         </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
-        <!-- used when pass to function by ref -->
-        <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text class="functionIcon" dx="-6" dy="2">f</text>
-        </g>
-        <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
-            markerUnits="strokeWidth"
-            markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="gray">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
-        </marker>
     </defs>
 
     <g>
@@ -1261,15 +1174,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -1473,7 +1377,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.23s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
      Running `target/debug/examples/reference`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -1481,7 +1385,7 @@ s 4 4 RevokedPrivilege
 s 4 6 FullPrivilege
 s 6 6 PartialPrivilege
 s 6 7 FullPrivilege
-<svg width="740" height="270px" 
+<svg width="527" height="270px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>reference</desc>
@@ -1539,15 +1443,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -1639,20 +1534,6 @@ text.code {
 }
         ]]>
         </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
-        <!-- used when pass to function by ref -->
-        <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text class="functionIcon" dx="-6" dy="2">f</text>
-        </g>
-        <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
-            markerUnits="strokeWidth"
-            markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="gray">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
-        </marker>
     </defs>
 
     <g>
@@ -1730,15 +1611,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -1954,11 +1826,11 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.23s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.30s
      Running `target/debug/examples/scope2`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
-<svg width="800" height="290px" 
+<svg width="569" height="290px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>scope2</desc>
@@ -2016,15 +1888,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -2116,20 +1979,6 @@ text.code {
 }
         ]]>
         </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
-        <!-- used when pass to function by ref -->
-        <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text class="functionIcon" dx="-6" dy="2">f</text>
-        </g>
-        <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
-            markerUnits="strokeWidth"
-            markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="gray">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
-        </marker>
     </defs>
 
     <g>
@@ -2208,15 +2057,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -2431,7 +2271,7 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.10s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.25s
      Running `target/debug/examples/int_copy`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -2496,15 +2336,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -2596,20 +2427,6 @@ text.code {
 }
         ]]>
         </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
-        <!-- used when pass to function by ref -->
-        <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text class="functionIcon" dx="-6" dy="2">f</text>
-        </g>
-        <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
-            markerUnits="strokeWidth"
-            markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="gray">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
-        </marker>
     </defs>
 
     <g>
@@ -2684,15 +2501,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -2801,8 +2609,8 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>x, immutable</title>x</text>
         <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>y, immutable</title>y</text>
+        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>x, immutable</title>x</text>
     </g>
 
     <g id="timelines">
@@ -2907,7 +2715,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.15s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.25s
      Running `target/debug/examples/string_move`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -2970,15 +2778,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -3070,20 +2869,6 @@ text.code {
 }
         ]]>
         </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
-        <!-- used when pass to function by ref -->
-        <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text class="functionIcon" dx="-6" dy="2">f</text>
-        </g>
-        <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
-            markerUnits="strokeWidth"
-            markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="gray">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
-        </marker>
     </defs>
 
     <g>
@@ -3157,15 +2942,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -3375,7 +3151,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.10s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/string_clone`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -3443,15 +3219,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -3543,20 +3310,6 @@ text.code {
 }
         ]]>
         </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
-        <!-- used when pass to function by ref -->
-        <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text class="functionIcon" dx="-6" dy="2">f</text>
-        </g>
-        <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
-            markerUnits="strokeWidth"
-            markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="gray">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
-        </marker>
     </defs>
 
     <g>
@@ -3632,15 +3385,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -3749,8 +3493,8 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -3868,7 +3612,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.10s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
      Running `target/debug/examples/int_copy_2`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -3937,15 +3681,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -4037,20 +3772,6 @@ text.code {
 }
         ]]>
         </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
-        <!-- used when pass to function by ref -->
-        <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text class="functionIcon" dx="-6" dy="2">f</text>
-        </g>
-        <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
-            markerUnits="strokeWidth"
-            markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="gray">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
-        </marker>
     </defs>
 
     <g>
@@ -4127,15 +3848,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -4244,8 +3956,8 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>y, immutable</title>y</text>
         <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>x, immutable</title>x</text>
+        <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>y, immutable</title>y</text>
     </g>
 
     <g id="timelines">
@@ -4364,7 +4076,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.10s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
      Running `target/debug/examples/ownership_function`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -4380,7 +4092,7 @@ some_integer 1 21 OutOfScope
 some_integer 21 22 FullPrivilege
 some_integer 22 22 PartialPrivilege
 some_integer 22 23 FullPrivilege
-<svg width="830" height="590px" 
+<svg width="590" height="590px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>ownership_function</desc>
@@ -4438,15 +4150,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -4538,20 +4241,6 @@ text.code {
 }
         ]]>
         </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
-        <!-- used when pass to function by ref -->
-        <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text class="functionIcon" dx="-6" dy="2">f</text>
-        </g>
-        <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
-            markerUnits="strokeWidth"
-            markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="gray">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
-        </marker>
     </defs>
 
     <g>
@@ -4645,15 +4334,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -4762,10 +4442,10 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>x, immutable</title>x</text>
-        <text style="text-anchor:middle" class="code" x="350" y="90" data-hash="4"><title>some_integer, immutable</title>some_integer</text>
         <text style="text-anchor:middle" class="code" x="240" y="90" data-hash="3"><title>some_string, immutable</title>some_string</text>
         <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s, immutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="350" y="90" data-hash="4"><title>some_integer, immutable</title>some_integer</text>
+        <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>x, immutable</title>x</text>
     </g>
 
     <g id="timelines">
@@ -4895,7 +4575,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.13s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.33s
      Running `target/debug/examples/return_values`
 s1 1 2 OutOfScope
 s1 2 10 FullPrivilege
@@ -4910,7 +4590,7 @@ some_string 19 22 ResourceMoved
 a_string 1 25 OutOfScope
 a_string 25 28 FullPrivilege
 a_string 28 29 ResourceMoved
-<svg width="810" height="710px" 
+<svg width="576" height="710px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>return_values</desc>
@@ -4968,15 +4648,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -5068,20 +4739,6 @@ text.code {
 }
         ]]>
         </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
-        <!-- used when pass to function by ref -->
-        <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text class="functionIcon" dx="-6" dy="2">f</text>
-        </g>
-        <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
-            markerUnits="strokeWidth"
-            markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="gray">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
-        </marker>
     </defs>
 
     <g>
@@ -5181,15 +4838,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -5298,11 +4946,11 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="380" y="90" data-hash="5"><title>a_string, immutable</title>a_string</text>
         <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
-        <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>s2, immutable</title>s2</text>
-        <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>s3, immutable</title>s3</text>
+        <text style="text-anchor:middle" class="code" x="380" y="90" data-hash="5"><title>a_string, immutable</title>a_string</text>
         <text style="text-anchor:middle" class="code" x="310" y="90" data-hash="4"><title>some_string, immutable</title>some_string</text>
+        <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>s3, immutable</title>s3</text>
+        <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>s2, immutable</title>s2</text>
     </g>
 
     <g id="timelines">
@@ -5421,7 +5069,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.11s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.26s
      Running `target/debug/examples/return_tuple`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -5441,7 +5089,7 @@ s 10 10 PartialPrivilege
 s 10 12 FullPrivilege
 length 1 10 OutOfScope
 length 10 12 FullPrivilege
-<svg width="680" height="390px" 
+<svg width="485" height="390px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>return_tuple</desc>
@@ -5499,15 +5147,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -5599,20 +5238,6 @@ text.code {
 }
         ]]>
         </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
-        <!-- used when pass to function by ref -->
-        <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text class="functionIcon" dx="-6" dy="2">f</text>
-        </g>
-        <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
-            markerUnits="strokeWidth"
-            markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="gray">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
-        </marker>
     </defs>
 
     <g>
@@ -5696,15 +5321,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -5813,10 +5429,10 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="280" y="90" data-hash="4"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="350" y="90" data-hash="5"><title>length, immutable</title>length</text>
         <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>len, immutable</title>len</text>
     </g>
 
@@ -5962,7 +5578,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.10s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
      Running `target/debug/examples/pass_reference`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -5974,7 +5590,7 @@ s 1 9 OutOfScope
 s 9 10 FullPrivilege
 s 10 10 PartialPrivilege
 s 10 11 FullPrivilege
-<svg width="540" height="350px" 
+<svg width="450" height="350px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>pass_reference</desc>
@@ -6032,15 +5648,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -6132,20 +5739,6 @@ text.code {
 }
         ]]>
         </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
-        <!-- used when pass to function by ref -->
-        <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text class="functionIcon" dx="-6" dy="2">f</text>
-        </g>
-        <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
-            markerUnits="strokeWidth"
-            markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="gray">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
-        </marker>
     </defs>
 
     <g>
@@ -6227,15 +5820,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -6345,8 +5929,8 @@ text.code {
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
-        <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>len, immutable</title>len</text>
+        <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
@@ -6467,7 +6051,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.10s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.17s
      Running `target/debug/examples/acquire_from_function`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -6531,15 +6115,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -6631,20 +6206,6 @@ text.code {
 }
         ]]>
         </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
-        <!-- used when pass to function by ref -->
-        <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text class="functionIcon" dx="-6" dy="2">f</text>
-        </g>
-        <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
-            markerUnits="strokeWidth"
-            markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="gray">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
-        </marker>
     </defs>
 
     <g>
@@ -6719,15 +6280,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -6941,13 +6493,13 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.10s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.25s
      Running `target/debug/examples/safely_out_of_scope`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
 s 3 3 PartialPrivilege
 s 3 4 FullPrivilege
-<svg width="810" height="230px" 
+<svg width="576" height="230px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>safely_out_of_scope</desc>
@@ -7005,15 +6557,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -7105,20 +6648,6 @@ text.code {
 }
         ]]>
         </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
-        <!-- used when pass to function by ref -->
-        <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text class="functionIcon" dx="-6" dy="2">f</text>
-        </g>
-        <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
-            markerUnits="strokeWidth"
-            markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="gray">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
-        </marker>
     </defs>
 
     <g>
@@ -7194,15 +6723,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -7415,7 +6935,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.16s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
      Running `target/debug/examples/mut_ref`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -7483,15 +7003,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -7583,20 +7094,6 @@ text.code {
 }
         ]]>
         </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
-        <!-- used when pass to function by ref -->
-        <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text class="functionIcon" dx="-6" dy="2">f</text>
-        </g>
-        <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
-            markerUnits="strokeWidth"
-            markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="gray">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
-        </marker>
     </defs>
 
     <g>
@@ -7676,15 +7173,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -7793,8 +7281,8 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="170" y="90" data-hash="2"><title>some_string, mutable</title>some_string</text>
         <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s, mutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="170" y="90" data-hash="2"><title>some_string, mutable</title>some_string</text>
     </g>
 
     <g id="timelines">
@@ -7906,7 +7394,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.32s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
      Running `target/debug/examples/scope_reference`
 s 1 2 OutOfScope
 s 2 5 FullPrivilege
@@ -7916,7 +7404,7 @@ r1 1 5 OutOfScope
 r1 5 6 FullPrivilege
 r1 6 6 OutOfScope
 r2 1 9 OutOfScope
-<svg width="830" height="310px" 
+<svg width="590" height="310px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>scope_reference</desc>
@@ -7974,15 +7462,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -8074,20 +7553,6 @@ text.code {
 }
         ]]>
         </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
-        <!-- used when pass to function by ref -->
-        <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text class="functionIcon" dx="-6" dy="2">f</text>
-        </g>
-        <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
-            markerUnits="strokeWidth"
-            markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="gray">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
-        </marker>
     </defs>
 
     <g>
@@ -8167,15 +7632,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -8284,9 +7740,9 @@ text.code {
     </defs>
 
     <g id="labels">
+        <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
         <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s, mutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
-        <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
     </g>
 
     <g id="timelines">
@@ -8395,7 +7851,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.12s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.24s
      Running `target/debug/examples/shared_and_unique_borrow`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -8420,7 +7876,7 @@ r3 9 10 FullPrivilege
 r3 10 10 PartialPrivilege
 r3 10 10 FullPrivilege
 r3 10 12 OutOfScope
-<svg width="550" height="370px" 
+<svg width="450" height="370px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>shared_and_unique_borrow</desc>
@@ -8478,15 +7934,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -8578,20 +8025,6 @@ text.code {
 }
         ]]>
         </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
-        <!-- used when pass to function by ref -->
-        <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text class="functionIcon" dx="-6" dy="2">f</text>
-        </g>
-        <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
-            markerUnits="strokeWidth"
-            markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="gray">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
-        </marker>
     </defs>
 
     <g>
@@ -8674,15 +8107,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -8792,9 +8216,9 @@ text.code {
 
     <g id="labels">
         <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
+        <text style="text-anchor:middle" class="code" x="280" y="90" data-hash="4"><title>r3, immutable</title>r3</text>
         <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
         <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s, mutable</title>s</text>
-        <text style="text-anchor:middle" class="code" x="280" y="90" data-hash="4"><title>r3, immutable</title>r3</text>
     </g>
 
     <g id="timelines">
@@ -8947,7 +8371,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.11s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/no_dangle`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -9009,15 +8433,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -9109,20 +8524,6 @@ text.code {
 }
         ]]>
         </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
-        <!-- used when pass to function by ref -->
-        <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text class="functionIcon" dx="-6" dy="2">f</text>
-        </g>
-        <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
-            markerUnits="strokeWidth"
-            markerWidth="3px" markerHeight="3px"
-            orient="auto" fill="gray">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
-        </marker>
     </defs>
 
     <g>
@@ -9198,15 +8599,6 @@ text.code {
     flex-wrap: nowrap;
     flex-shrink: 1;
 }
-
-#code {
-    position: relative;
-    left: -100px;
-}
-
-/* #timeline {
-
-} */
 
 #functionDot:hover {
     transform: scale(1.5);

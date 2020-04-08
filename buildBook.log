@@ -1,5 +1,4 @@
 Running the following examples: 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
 warning: unused imports: `Formatter`, `Result`
  --> src/hover_messages.rs:1:16
   |
@@ -76,7 +75,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 6.58s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
      Running `target/debug/examples/one_var`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
@@ -133,12 +132,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -312,12 +319,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -524,7 +539,6 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
 warning: unused import: `Function`
  --> examples/book_04_01_02_scope/main.rs:1:76
   |
@@ -533,7 +547,7 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 3.86s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.17s
      Running `target/debug/examples/scope`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
@@ -590,12 +604,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -773,12 +795,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -984,8 +1014,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.18s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
      Running `target/debug/examples/string_from`
 s 1 2 OutOfScope
 <svg width="450" height="170px" 
@@ -1041,12 +1070,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -1219,12 +1256,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -1428,8 +1473,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 3.88s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.23s
      Running `target/debug/examples/reference`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -1490,12 +1534,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -1673,12 +1725,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -1894,8 +1954,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.43s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.23s
      Running `target/debug/examples/scope2`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
@@ -1952,12 +2011,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -2136,12 +2203,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -2348,7 +2423,6 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
 warning: unused import: `Function`
  --> examples/book_04_01_06_int_copy/main.rs:1:76
   |
@@ -2357,7 +2431,7 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 4.07s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.10s
      Running `target/debug/examples/int_copy`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -2417,12 +2491,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -2597,12 +2679,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -2817,8 +2907,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.39s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.15s
      Running `target/debug/examples/string_move`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -2876,12 +2965,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -3055,12 +3152,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -3169,8 +3274,8 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -3270,8 +3375,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.05s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.10s
      Running `target/debug/examples/string_clone`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -3334,12 +3438,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -3515,12 +3627,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -3748,8 +3868,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 3.92s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.10s
      Running `target/debug/examples/int_copy_2`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -3813,12 +3932,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -3995,12 +4122,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -4229,8 +4364,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 3.58s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.10s
      Running `target/debug/examples/ownership_function`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -4299,12 +4433,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -4498,12 +4640,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -4612,10 +4762,10 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>x, immutable</title>x</text>
         <text style="text-anchor:middle" class="code" x="350" y="90" data-hash="4"><title>some_integer, immutable</title>some_integer</text>
         <text style="text-anchor:middle" class="code" x="240" y="90" data-hash="3"><title>some_string, immutable</title>some_string</text>
+        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s, immutable</title>s</text>
     </g>
 
     <g id="timelines">
@@ -4745,8 +4895,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.39s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.13s
      Running `target/debug/examples/return_values`
 s1 1 2 OutOfScope
 s1 2 10 FullPrivilege
@@ -4814,12 +4963,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -5019,12 +5176,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -5133,10 +5298,10 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>s3, immutable</title>s3</text>
+        <text style="text-anchor:middle" class="code" x="380" y="90" data-hash="5"><title>a_string, immutable</title>a_string</text>
         <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>s2, immutable</title>s2</text>
-        <text style="text-anchor:middle" class="code" x="380" y="90" data-hash="5"><title>a_string, immutable</title>a_string</text>
+        <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>s3, immutable</title>s3</text>
         <text style="text-anchor:middle" class="code" x="310" y="90" data-hash="4"><title>some_string, immutable</title>some_string</text>
     </g>
 
@@ -5256,8 +5421,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 3.93s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.11s
      Running `target/debug/examples/return_tuple`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -5330,12 +5494,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -5519,12 +5691,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -5633,11 +5813,11 @@ text.code {
     </defs>
 
     <g id="labels">
+        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text style="text-anchor:middle" class="code" x="280" y="90" data-hash="4"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="350" y="90" data-hash="5"><title>length, immutable</title>length</text>
         <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
-        <text style="text-anchor:middle" class="code" x="280" y="90" data-hash="4"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>len, immutable</title>len</text>
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -5782,8 +5962,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 3.79s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.10s
      Running `target/debug/examples/pass_reference`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -5848,12 +6027,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -6035,12 +6222,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -6149,9 +6344,9 @@ text.code {
     </defs>
 
     <g id="labels">
+        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
         <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>len, immutable</title>len</text>
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
@@ -6272,8 +6467,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 3.01s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.10s
      Running `target/debug/examples/acquire_from_function`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -6332,12 +6526,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -6512,12 +6714,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -6731,8 +6941,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 2.77s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.10s
      Running `target/debug/examples/safely_out_of_scope`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
@@ -6791,12 +7000,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -6972,12 +7189,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -7190,8 +7415,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 2.46s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.16s
      Running `target/debug/examples/mut_ref`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -7254,12 +7478,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -7439,12 +7671,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -7666,8 +7906,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 2.59s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.32s
      Running `target/debug/examples/scope_reference`
 s 1 2 OutOfScope
 s 2 5 FullPrivilege
@@ -7730,12 +7969,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -7915,12 +8162,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -8029,8 +8284,8 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
         <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s, mutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
         <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
     </g>
 
@@ -8140,8 +8395,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 2.69s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.12s
      Running `target/debug/examples/shared_and_unique_borrow`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -8219,12 +8473,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -8407,12 +8669,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -8521,10 +8791,10 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s, mutable</title>s</text>
-        <text style="text-anchor:middle" class="code" x="280" y="90" data-hash="4"><title>r3, immutable</title>r3</text>
         <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
         <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
+        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s, mutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="280" y="90" data-hash="4"><title>r3, immutable</title>r3</text>
     </g>
 
     <g id="timelines">
@@ -8677,8 +8947,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 3.65s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.11s
      Running `target/debug/examples/no_dangle`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -8735,12 +9004,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -8916,12 +9193,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);

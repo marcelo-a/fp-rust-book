@@ -3233,10 +3233,10 @@ have a variable that looks like this:</p>
 <span class="boring">}
 </span></code></pre></pre>
 <div class="flex-container">
-  <div><object type="image/svg+xml" class="visualization" data="img/vis_04_01_01_code.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object></div>
-  <div><object type="image/svg+xml" class="visualization" data="img/vis_04_01_01_timeline.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object></div>
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_01_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_01_timeline.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
 </div>
 <p>The variable <code>s</code> refers to a string literal, where the value of the string is
 hardcoded into the text of our program. The variable is valid from the point at
@@ -3251,10 +3251,10 @@ comments annotating where the variable <code>s</code> is valid.</p>
 <span class="boring">}
 </span></code></pre></pre>
 <div class="flex-container">
-  <div><object type="image/svg+xml" class="visualization" data="img/vis_04_01_02_code.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object></div>
-  <div><object type="image/svg+xml" class="visualization" data="img/vis_04_01_02_timeline.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object></div>
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_02_code.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_02_timeline.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
 </div>
 <p><span class="caption">Listing 4-1: A variable and the scope in which it is
 valid</span></p>
@@ -3293,10 +3293,10 @@ using the <code>from</code> function, like so:</p>
 <span class="boring">}
 </span></code></pre></pre>
 <div class="flex-container">
-  <div><object type="image/svg+xml" class="visualization" data="img/vis_04_01_03_code.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object></div>
-  <div><object type="image/svg+xml" class="visualization" data="img/vis_04_01_03_timeline.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object></div>
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_03_code.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_03_timeline.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
 </div>
 <p>The double colon (<code>::</code>) is an operator that allows us to namespace this
 particular <code>from</code> function under the <code>String</code> type rather than using some sort
@@ -3313,9 +3313,12 @@ Module Tree”</a><!-- ignore --> in Chapter 7.</p>
     println!(&quot;{}&quot;, s); // This will print `hello, world!`
 <span class="boring">}
 </span></code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_04.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container">
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_04_code.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_04_timeline.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+</div>
 <p>So, what’s the difference here? Why can <code>String</code> be mutated but literals
 cannot? The difference is how these two types deal with memory.</p>
 <h3><a class="header" href="#memory-and-allocation" id="memory-and-allocation">Memory and Allocation</a></h3>
@@ -3356,9 +3359,12 @@ from Listing 4-1 using a <code>String</code> instead of a string literal:</p>
                                        // longer valid
 <span class="boring">}
 </span></code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_05.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container">
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_05_code.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_05_timeline.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+</div>
 <p>There is a natural point at which we can return the memory our <code>String</code> needs
 to the operating system: when <code>s</code> goes out of scope. When a variable goes out
 of scope, Rust calls a special function for us. This function is called <code>drop</code>,
@@ -3382,9 +3388,12 @@ Let’s look at an example using an integer in Listing 4-2.</p>
     let y = x;
 <span class="boring">}
 </span></code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_06.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container">
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_06_code.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_06_timeline.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+</div>
 <p><span class="caption">Listing 4-2: Assigning the integer value of variable <code>x</code>
 to <code>y</code></span></p>
 <p>We can probably guess what this is doing: “bind the value <code>5</code> to <code>x</code>; then make
@@ -3398,9 +3407,12 @@ onto the stack.</p>
     let s2 = s1;
 <span class="boring">}
 </span></code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_07.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container">
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_07_code.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_07_timeline.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+</div>
 <p>This looks very similar to the previous code, so we might assume that the way
 it works would be the same: that is, the second line would make a copy of the
 value in <code>s1</code> and bind it to <code>s2</code>. But this isn’t quite what happens.</p>
@@ -3499,9 +3511,12 @@ programming languages, you’ve probably seen them before.</p>
     println!(&quot;s1 = {}, s2 = {}&quot;, s1, s2);
 <span class="boring">}
 </span></code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_09.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container">
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_09_code.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_09_timeline.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+</div>
 <p>This works just fine and explicitly produces the behavior shown in Figure 4-3,
 where the heap data <em>does</em> get copied.</p>
 <p>When you see a call to <code>clone</code>, you know that some arbitrary code is being
@@ -3517,9 +3532,12 @@ part of which was shown in Listing 4-2, works and is valid:</p>
     println!(&quot;x = {}, y = {}&quot;, x, y);
 <span class="boring">}
 </span></code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_10.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container">
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_10_code.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_10_timeline.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+</div>
 <p>But this code seems to contradict what we just learned: we don’t have a call to
 <code>clone</code>, but <code>x</code> is still valid and wasn’t moved into <code>y</code>.</p>
 <p>The reason is that types such as integers that have a known size at compile
@@ -3579,9 +3597,12 @@ fn makes_copy(some_integer: i32) { // some_integer comes into scope
     println!(&quot;{}&quot;, some_integer);
 } // Here, some_integer goes out of scope. Nothing special happens.
 </code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_11.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container">
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_11_code.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_11_timeline.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+</div>
 <p><span class="caption">Listing 4-3: Functions with ownership and scope
 annotated</span></p>
 <p>If we tried to use <code>s</code> after the call to <code>takes_ownership</code>, Rust would throw a
@@ -3622,9 +3643,12 @@ fn takes_and_gives_back(a_string: String) -&gt; String { // a_string comes into
     a_string  // a_string is returned and moves out to the calling function
 }
 </code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_12.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container">
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_12_code.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_12_timeline.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+</div>
 <p><span class="caption">Listing 4-4: Transferring ownership of return
 values</span></p>
 <p>The ownership of a variable follows the same pattern every time: assigning a
@@ -3653,10 +3677,10 @@ fn calculate_length(s: String) -&gt; (String, usize) {
 }
 </code></pre></pre>
 <div class="flex-container">
-  <div><object type="image/svg+xml" class="visualization" data="img/vis_04_01_13_code.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object></div>
-  <div><object type="image/svg+xml" class="visualization" data="img/vis_04_01_13_timeline.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object></div>
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_13_code.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_01_13_timeline.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
 </div>
 <p><span class="caption">Listing 4-5: Returning ownership of parameters</span></p>
 <p>But this is too much ceremony and a lot of work for a concept that should be
@@ -3683,9 +3707,12 @@ fn calculate_length(s: &amp;String) -&gt; usize {
     s.len()
 }
 </code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_01.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container">
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_02_01_code.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_02_01_timeline.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+</div>
 <p>First, notice that all the tuple code in the variable declaration and the
 function return value is gone. Second, note that we pass <code>&amp;s1</code> into
 <code>calculate_length</code> and, in its definition, we take <code>&amp;String</code> rather than
@@ -3713,9 +3740,12 @@ Chapter 15.</p>
 </span><span class="boring">    s.len()
 </span><span class="boring">}
 </span></code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_02.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container">
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_02_02_code.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_02_02_timeline.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+</div>
 <p>The <code>&amp;s1</code> syntax lets us create a reference that <em>refers</em> to the value of <code>s1</code>
 but does not own it. Because it does not own it, the value it points to will
 not be dropped when the reference goes out of scope.</p>
@@ -3734,9 +3764,12 @@ the parameter <code>s</code> is a reference. Let’s add some explanatory annota
 } // Here, s goes out of scope. But because it does not have ownership of what
   // it refers to, nothing happens.
 </code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_03.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container">
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_02_03_code.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_02_03_timeline.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+</div>
 <p>The scope in which the variable <code>s</code> is valid is the same as any function
 parameter’s scope, but we don’t drop what the reference points to when it goes
 out of scope because we don’t have ownership. When functions have references as
@@ -3792,9 +3825,12 @@ fn change(some_string: &amp;mut String) {
     some_string.push_str(&quot;, world&quot;);
 }
 </code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_05.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container">
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_02_05_code.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_02_05_timeline.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+</div>
 <p>First, we had to change <code>s</code> to be <code>mut</code>. Then we had to create a mutable
 reference with <code>&amp;mut s</code> and accept a mutable reference with <code>some_string: &amp;mut String</code>.</p>
 <p>But mutable references have one big restriction: you can have only one mutable
@@ -3857,9 +3893,12 @@ multiple mutable references, just not <em>simultaneous</em> ones:</p>
     let r2 = &amp;mut s;
 <span class="boring">}
 </span></code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_07.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container">
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_02_07_code.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_02_07_timeline.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+</div>
 <p>A similar rule exists for combining mutable and immutable references. This code
 results in an error:</p>
 <pre><code class="language-rust ignore does_not_compile"><span class="boring">fn main() {
@@ -3915,9 +3954,12 @@ mutable reference is introduced:</p>
     println!(&quot;{}&quot;, r3);
 <span class="boring">}
 </span></code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_09.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container">
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_02_09_code.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_02_09_timeline.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+</div>
 <p>The scopes of the immutable references <code>r1</code> and <code>r2</code> end after the <code>println!</code>
 where they are last used, which is before the mutable reference <code>r3</code> is
 created. These scopes don’t overlap, so this code is allowed.</p>
@@ -4000,9 +4042,12 @@ won’t let us do this.</p>
     s
 }
 </code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_12.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container">
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_02_12_code.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="visualization" data="img/vis_04_02_12_timeline.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+</div>
 <p>This works without any problems. Ownership is moved out, and nothing is
 deallocated.</p>
 <h3><a class="header" href="#the-rules-of-references" id="the-rules-of-references">The Rules of References</a></h3>

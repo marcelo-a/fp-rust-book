@@ -8,7 +8,7 @@ use std::cmp;
 
 pub fn set_divider_pos(lines: io::Lines<io::BufReader<File>>) -> i32 {
     let x = 30;
-    let mut x_space = 100;
+    let mut x_space = 50;
     for line in lines {
         if let Ok(line_string) = line {
             // read max line length

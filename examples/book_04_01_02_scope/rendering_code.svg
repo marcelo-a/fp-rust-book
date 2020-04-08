@@ -51,12 +51,20 @@ text.code {
 /* flex related styling */
 .flex-container {
     display: flex;
-    margin: 10px;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-basis: auto;
+    flex-shrink: 1;
 }
+
+#code {
+    position: relative;
+    left: -100px;
+}
+
+/* #timeline {
+
+} */
 
 #functionDot:hover {
     transform: scale(1.5);

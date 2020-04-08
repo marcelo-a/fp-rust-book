@@ -110,9 +110,12 @@ have a variable that looks like this:
 ```rust,hidden
 let s = "hello";
 ```
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_01.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container">
+  <div><object type="image/svg+xml" class="visualization" data="img/vis_04_01_01_code.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object></div>
+  <div><object type="image/svg+xml" class="visualization" data="img/vis_04_01_01_timeline.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object></div>
+</div>
 
 The variable `s` refers to a string literal, where the value of the string is
 hardcoded into the text of our program. The variable is valid from the point at
@@ -122,9 +125,12 @@ comments annotating where the variable `s` is valid.
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-01/src/main.rs:here}}
 ```
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_02.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container">
+  <div><object type="image/svg+xml" class="visualization" data="img/vis_04_01_02_code.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object></div>
+  <div><object type="image/svg+xml" class="visualization" data="img/vis_04_01_02_timeline.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object></div>
+</div>
 
 <span class="caption">Listing 4-1: A variable and the scope in which it is
 valid</span>
@@ -165,9 +171,12 @@ using the `from` function, like so:
 ```rust,hidden
 let s = String::from("hello");
 ```
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_03.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container">
+  <div><object type="image/svg+xml" class="visualization" data="img/vis_04_01_03_code.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object></div>
+  <div><object type="image/svg+xml" class="visualization" data="img/vis_04_01_03_timeline.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object></div>
+</div>
 
 The double colon (`::`) is an operator that allows us to namespace this
 particular `from` function under the `String` type rather than using some sort
@@ -486,9 +495,12 @@ It’s possible to return multiple values using a tuple, as shown in Listing 4-5
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-05/src/main.rs}}
 ```
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_13.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container">
+  <div><object type="image/svg+xml" class="visualization" data="img/vis_04_01_13_code.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object></div>
+  <div><object type="image/svg+xml" class="visualization" data="img/vis_04_01_13_timeline.svg" style="width: auto;" >
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object></div>
+</div>
 
 <span class="caption">Listing 4-5: Returning ownership of parameters</span>
 

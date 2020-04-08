@@ -70,13 +70,13 @@ struct VerticalLineData {
     title: String,
 }
 
-pub fn render_right_panel(visualization_data : &VisualizationData, divider_x_pos: i64) -> (String, i32) {
+pub fn render_right_panel(visualization_data : &VisualizationData) -> (String, i32) {
     /* Template creation */
     let mut registry = Handlebars::new();
     prepare_registry(&mut registry);
 
     // hash -> TimelineColumnData
-    let (resource_owners_layout, width) = compute_column_layout(visualization_data, divider_x_pos);
+    let (resource_owners_layout, width) = compute_column_layout(visualization_data);
 
     // render resource owner labels
     let labels_string = render_labels_string(&resource_owners_layout, &registry);
@@ -146,9 +146,9 @@ fn prepare_registry(registry: &mut Handlebars) {
 }
 
 // Returns: a hashmap from the hash of the ResourceOwner to its Column information
-fn compute_column_layout<'a>(visualization_data: &'a VisualizationData, divider_x_pos: i64) -> (HashMap<&'a u64, TimelineColumnData>, i32) {
+fn compute_column_layout<'a>(visualization_data: &'a VisualizationData) -> (HashMap<&'a u64, TimelineColumnData>, i32) {
     let mut resource_owners_layout = HashMap::new();
-    let mut x = divider_x_pos;                   // Right-most Column x-offset.
+    let mut x = 0;                   // Right-most Column x-offset.
     for (hash, timeline) in visualization_data.timelines.iter() {
         // only put variable in the column layout
         if let ResourceOwner::Variable(_) = timeline.resource_owner {

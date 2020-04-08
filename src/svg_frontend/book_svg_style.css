@@ -40,13 +40,15 @@ text.code {
     transition: all 0.3s;
 }
 
-/* text.functionIcon:hover {
-    transform: scale(1.5);
+/* flex related styling */
+.flex-container {
+    display: flex;
+    margin: 10px;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    flex-basis: auto;
 }
-
-text.functionIcon {
-    transition: all 0.3s;
-} */
 
 #functionDot:hover {
     transform: scale(1.5);

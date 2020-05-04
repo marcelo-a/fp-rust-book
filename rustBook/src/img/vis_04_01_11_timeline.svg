@@ -174,31 +174,31 @@ text.code {
     </defs>
 
     <g id="labels">
+        <text style="text-anchor:middle" class="code" x="350" y="90" data-hash="4"><title>some_integer, immutable</title>some_integer</text>
         <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>x, immutable</title>x</text>
-        <text style="text-anchor:middle" class="code" x="350" y="90" data-hash="4"><title>some_integer, immutable</title>some_integer</text>
         <text style="text-anchor:middle" class="code" x="240" y="90" data-hash="3"><title>some_string, immutable</title>some_string</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid" x1="70" x2="70" y1="105" y2="145"><title>s is the unique value that can access the data in memory; can only read data</title></line>
-        <line class="colorless" stroke-width="8px" x1="70" x2="70" y1="110" y2="140"><title>s is the unique value that can access the data in memory; can only read data</title></line>
-        <line data-hash="2" class="solid" x1="140" x2="140" y1="205" y2="245"><title>x is the unique value that can access the data in memory; can only read data</title></line>
-        <line class="colorless" stroke-width="8px" x1="140" x2="140" y1="210" y2="240"><title>x is the unique value that can access the data in memory; can only read data</title></line>
-        <line data-hash="2" class="solid" x1="140" x2="140" y1="245" y2="325"><title>x is the unique value that can access the data in memory; can only read data</title></line>
-        <line class="colorless" stroke-width="8px" x1="140" x2="140" y1="250" y2="320"><title>x is the unique value that can access the data in memory; can only read data</title></line>
-        <line data-hash="3" class="solid" x1="240" x2="240" y1="385" y2="405"><title>some_string is the unique value that can access the data in memory; can only read data</title></line>
-        <line class="colorless" stroke-width="8px" x1="240" x2="240" y1="390" y2="400"><title>some_string is the unique value that can access the data in memory; can only read data</title></line>
-        <line data-hash="3" class="solid" x1="240" x2="240" y1="405" y2="405"><title>some values are statically referencing to some_string; can only read data</title></line>
-        <line class="colorless" stroke-width="8px" x1="240" x2="240" y1="410" y2="400"><title>some values are statically referencing to some_string; can only read data</title></line>
-        <line data-hash="3" class="solid" x1="240" x2="240" y1="405" y2="425"><title>some_string is the unique value that can access the data in memory; can only read data</title></line>
-        <line class="colorless" stroke-width="8px" x1="240" x2="240" y1="410" y2="420"><title>some_string is the unique value that can access the data in memory; can only read data</title></line>
-        <line data-hash="4" class="solid" x1="350" x2="350" y1="485" y2="505"><title>some_integer is the unique value that can access the data in memory; can only read data</title></line>
-        <line class="colorless" stroke-width="8px" x1="350" x2="350" y1="490" y2="500"><title>some_integer is the unique value that can access the data in memory; can only read data</title></line>
-        <line data-hash="4" class="solid" x1="350" x2="350" y1="505" y2="505"><title>some values are statically referencing to some_integer; can only read data</title></line>
-        <line class="colorless" stroke-width="8px" x1="350" x2="350" y1="510" y2="500"><title>some values are statically referencing to some_integer; can only read data</title></line>
-        <line data-hash="4" class="solid" x1="350" x2="350" y1="505" y2="525"><title>some_integer is the unique value that can access the data in memory; can only read data</title></line>
-        <line class="colorless" stroke-width="8px" x1="350" x2="350" y1="510" y2="520"><title>some_integer is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="105" y2="145" data-tooltip-text="s is the unique value that can access the data in memory; can only read data"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="70" x2="70" y1="110" y2="140" data-tooltip-text="s is the unique value that can access the data in memory; can only read data"/>
+        <line data-hash="2" class="solid tooltip-trigger" x1="140" x2="140" y1="205" y2="245" data-tooltip-text="x is the unique value that can access the data in memory; can only read data"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="140" x2="140" y1="210" y2="240" data-tooltip-text="x is the unique value that can access the data in memory; can only read data"/>
+        <line data-hash="2" class="solid tooltip-trigger" x1="140" x2="140" y1="245" y2="325" data-tooltip-text="x is the unique value that can access the data in memory; can only read data"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="140" x2="140" y1="250" y2="320" data-tooltip-text="x is the unique value that can access the data in memory; can only read data"/>
+        <line data-hash="3" class="solid tooltip-trigger" x1="240" x2="240" y1="385" y2="405" data-tooltip-text="some_string is the unique value that can access the data in memory; can only read data"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="240" x2="240" y1="390" y2="400" data-tooltip-text="some_string is the unique value that can access the data in memory; can only read data"/>
+        <line data-hash="3" class="solid tooltip-trigger" x1="240" x2="240" y1="405" y2="405" data-tooltip-text="some values are statically referencing to some_string; can only read data"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="240" x2="240" y1="410" y2="400" data-tooltip-text="some values are statically referencing to some_string; can only read data"/>
+        <line data-hash="3" class="solid tooltip-trigger" x1="240" x2="240" y1="405" y2="425" data-tooltip-text="some_string is the unique value that can access the data in memory; can only read data"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="240" x2="240" y1="410" y2="420" data-tooltip-text="some_string is the unique value that can access the data in memory; can only read data"/>
+        <line data-hash="4" class="solid tooltip-trigger" x1="350" x2="350" y1="485" y2="505" data-tooltip-text="some_integer is the unique value that can access the data in memory; can only read data"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="350" x2="350" y1="490" y2="500" data-tooltip-text="some_integer is the unique value that can access the data in memory; can only read data"/>
+        <line data-hash="4" class="solid tooltip-trigger" x1="350" x2="350" y1="505" y2="505" data-tooltip-text="some values are statically referencing to some_integer; can only read data"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="350" x2="350" y1="510" y2="500" data-tooltip-text="some values are statically referencing to some_integer; can only read data"/>
+        <line data-hash="4" class="solid tooltip-trigger" x1="350" x2="350" y1="505" y2="525" data-tooltip-text="some_integer is the unique value that can access the data in memory; can only read data"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="350" x2="350" y1="510" y2="520" data-tooltip-text="some_integer is the unique value that can access the data in memory; can only read data"/>
     </g>
 
     <g id="events">

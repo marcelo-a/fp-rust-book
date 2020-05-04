@@ -174,24 +174,24 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
-        <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>s3, immutable</title>s3</text>
         <text style="text-anchor:middle" class="code" x="310" y="90" data-hash="4"><title>some_string, immutable</title>some_string</text>
-        <text style="text-anchor:middle" class="code" x="380" y="90" data-hash="5"><title>a_string, immutable</title>a_string</text>
         <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>s2, immutable</title>s2</text>
+        <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>s3, immutable</title>s3</text>
+        <text style="text-anchor:middle" class="code" x="380" y="90" data-hash="5"><title>a_string, immutable</title>a_string</text>
+        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid" x1="70" x2="70" y1="105" y2="265"><title>s1 is the unique value that can access the data in memory; can only read data</title></line>
-        <line class="colorless" stroke-width="8px" x1="70" x2="70" y1="110" y2="260"><title>s1 is the unique value that can access the data in memory; can only read data</title></line>
-        <line data-hash="2" class="solid" x1="140" x2="140" y1="165" y2="205"><title>s2 is the unique value that can access the data in memory; can only read data</title></line>
-        <line class="colorless" stroke-width="8px" x1="140" x2="140" y1="170" y2="200"><title>s2 is the unique value that can access the data in memory; can only read data</title></line>
-        <line data-hash="3" class="solid" x1="210" x2="210" y1="205" y2="265"><title>s3 is the unique value that can access the data in memory; can only read data</title></line>
-        <line class="colorless" stroke-width="8px" x1="210" x2="210" y1="210" y2="260"><title>s3 is the unique value that can access the data in memory; can only read data</title></line>
-        <line data-hash="4" class="solid" x1="310" x2="310" y1="405" y2="445"><title>some_string is the unique value that can access the data in memory; can only read data</title></line>
-        <line class="colorless" stroke-width="8px" x1="310" x2="310" y1="410" y2="440"><title>some_string is the unique value that can access the data in memory; can only read data</title></line>
-        <line data-hash="5" class="solid" x1="380" x2="380" y1="565" y2="625"><title>a_string is the unique value that can access the data in memory; can only read data</title></line>
-        <line class="colorless" stroke-width="8px" x1="380" x2="380" y1="570" y2="620"><title>a_string is the unique value that can access the data in memory; can only read data</title></line>
+        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="105" y2="265" data-tooltip-text="s1 is the unique value that can access the data in memory; can only read data"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="70" x2="70" y1="110" y2="260" data-tooltip-text="s1 is the unique value that can access the data in memory; can only read data"/>
+        <line data-hash="2" class="solid tooltip-trigger" x1="140" x2="140" y1="165" y2="205" data-tooltip-text="s2 is the unique value that can access the data in memory; can only read data"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="140" x2="140" y1="170" y2="200" data-tooltip-text="s2 is the unique value that can access the data in memory; can only read data"/>
+        <line data-hash="3" class="solid tooltip-trigger" x1="210" x2="210" y1="205" y2="265" data-tooltip-text="s3 is the unique value that can access the data in memory; can only read data"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="210" x2="210" y1="210" y2="260" data-tooltip-text="s3 is the unique value that can access the data in memory; can only read data"/>
+        <line data-hash="4" class="solid tooltip-trigger" x1="310" x2="310" y1="405" y2="445" data-tooltip-text="some_string is the unique value that can access the data in memory; can only read data"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="310" x2="310" y1="410" y2="440" data-tooltip-text="some_string is the unique value that can access the data in memory; can only read data"/>
+        <line data-hash="5" class="solid tooltip-trigger" x1="380" x2="380" y1="565" y2="625" data-tooltip-text="a_string is the unique value that can access the data in memory; can only read data"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="380" x2="380" y1="570" y2="620" data-tooltip-text="a_string is the unique value that can access the data in memory; can only read data"/>
     </g>
 
     <g id="events">

@@ -1,5 +1,6 @@
-<svg width="200" height="270px" 
-        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="200px" height="270px" 
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+        id="timeline_svg">
 
     <desc>reference</desc>
 
@@ -10,6 +11,7 @@
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
+    overflow:visible;
 }
 
 svg {
@@ -17,7 +19,8 @@ svg {
 }
 
 text {
-    fill: var(--text-color);
+    /* fill: white; */
+    /* fill: var(--text-color); */
     vertical-align: baseline;
     text-anchor: start;
 }
@@ -46,15 +49,6 @@ text.code {
 
 #eventDot {
     transition: all 0.3s;
-}
-
-/* flex related styling */
-.flex-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    flex-shrink: 1;
 }
 
 #functionDot:hover {
@@ -101,6 +95,22 @@ text.code {
     text-anchor: start;
     font-style: italic;
 }
+
+/* flex related styling */
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    flex-shrink: 1;
+}
+
+/* tooltip styling */
+#tooltip {
+    dominant-baseline: hanging;
+    overflow:visible;
+}
+
 /* hash based styling */
 [data-hash*="1"] {
     fill: #3355ff;
@@ -152,7 +162,7 @@ text.code {
         <!-- used when pass to function by ref -->
         <g id="functionDot">
              <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text class="functionIcon" dx="-6" dy="2">f</text>
+             <text class="functionIcon" dx="-6" dy="2" fill="#6e6b5e">f</text>
         </g>
         <marker id="arrowHead" viewBox="0 0 10 10"
             refX="1" refY="5" 
@@ -176,18 +186,53 @@ text.code {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="70" y="105"><title>obtains data from String::from() (s's lifetime begins from here)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="70" y="145"><title>mutably lends its data to push_str() (s becomes un-readable until the end of push_str()'s lifetime)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="70" y="145"><title>push_str() is no longer a mutable referece of s, so we may read and write the data</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="70" y="185"><title>statically lends its data to println!() (s becomes read-only)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="70" y="185"><title>println!() no longer borrows from s</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="70" y="205"><title>s goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="70" y="105" class="tooltip-trigger" data-tooltip-text="obtains data from String::from() (s's lifetime begins from here)"/>
+        <use xlink:href="#eventDot" data-hash="1" x="70" y="145" class="tooltip-trigger" data-tooltip-text="mutably lends its data to push_str() (s becomes un-readable until the end of push_str()'s lifetime)"/>
+        <use xlink:href="#eventDot" data-hash="1" x="70" y="145" class="tooltip-trigger" data-tooltip-text="push_str() is no longer a mutable referece of s, so we may read and write the data"/>
+        <use xlink:href="#eventDot" data-hash="1" x="70" y="185" class="tooltip-trigger" data-tooltip-text="statically lends its data to println!() (s becomes read-only)"/>
+        <use xlink:href="#eventDot" data-hash="1" x="70" y="185" class="tooltip-trigger" data-tooltip-text="println!() no longer borrows from s"/>
+        <use xlink:href="#eventDot" data-hash="1" x="70" y="205" class="tooltip-trigger" data-tooltip-text="s goes out of scope. The data is dropped."/>
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
-        <use xlink:href="#functionDot" data-hash="1" x="70" y="145"><title>push_str() reads from/writes to s</title></use>
-        <use xlink:href="#functionDot" data-hash="1" x="70" y="185"><title>println!() reads from s</title></use>
+        <text x="96" y="110" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
+        <use xlink:href="#functionDot" data-hash="1" x="70" y="145" class="tooltip-trigger" data-tooltip-text="push_str() reads from/writes to s"/>
+        <use xlink:href="#functionDot" data-hash="1" x="70" y="185" class="tooltip-trigger" data-tooltip-text="println!() reads from s"/>
     </g>
    
+   <g id="tooltip" visibility="hidden">
+		<rect x="2" y="2" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="10" y="7" fill="white" font-size="12px" width="10px">Tooltip</text>
+    </g>
+
+    <script type="text/ecmascript"><![CDATA[
+		(function() {
+			var svg = document.getElementById('timeline_svg');
+			var tooltip = svg.getElementById('tooltip');
+			var tooltipText = tooltip.getElementsByTagName('text')[0];
+            var tooltipRects = tooltip.getElementsByTagName('rect');
+			var triggers = svg.getElementsByClassName('tooltip-trigger');
+
+			for (var i = 0; i < triggers.length; i++) {
+				triggers[i].addEventListener('mousemove', showTooltip);
+				triggers[i].addEventListener('mouseout', hideTooltip);
+			}
+			function showTooltip(evt) {
+				var CTM = svg.getScreenCTM();
+				var x = (evt.clientX - CTM.e + 10) / CTM.a;
+				var y = (evt.clientY - CTM.f + 10) / CTM.d;
+				tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				tooltip.setAttributeNS(null, "visibility", "visible");
+				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
+
+                var length = tooltipText.getComputedTextLength();
+				for (var i = 0; i < tooltipRects.length; i++) {
+					tooltipRects[i].setAttribute("width", length + 15);
+				}
+			}
+			function hideTooltip(evt) {
+				tooltip.setAttributeNS(null, "visibility", "hidden");
+			}
+		})()
+    ]]></script>
 </svg>

@@ -1,5 +1,6 @@
-<svg width="310" height="310px" 
-        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="310px" height="310px" 
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+        id="timeline_svg">
 
     <desc>scope_reference</desc>
 
@@ -10,6 +11,7 @@
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
+    overflow:visible;
 }
 
 svg {
@@ -17,7 +19,8 @@ svg {
 }
 
 text {
-    fill: var(--text-color);
+    /* fill: white; */
+    /* fill: var(--text-color); */
     vertical-align: baseline;
     text-anchor: start;
 }
@@ -46,15 +49,6 @@ text.code {
 
 #eventDot {
     transition: all 0.3s;
-}
-
-/* flex related styling */
-.flex-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    flex-shrink: 1;
 }
 
 #functionDot:hover {
@@ -101,6 +95,22 @@ text.code {
     text-anchor: start;
     font-style: italic;
 }
+
+/* flex related styling */
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    flex-shrink: 1;
+}
+
+/* tooltip styling */
+#tooltip {
+    dominant-baseline: hanging;
+    overflow:visible;
+}
+
 /* hash based styling */
 [data-hash*="1"] {
     fill: #3355ff;
@@ -152,7 +162,7 @@ text.code {
         <!-- used when pass to function by ref -->
         <g id="functionDot">
              <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text class="functionIcon" dx="-6" dy="2">f</text>
+             <text class="functionIcon" dx="-6" dy="2" fill="#6e6b5e">f</text>
         </g>
         <marker id="arrowHead" viewBox="0 0 10 10"
             refX="1" refY="5" 
@@ -164,9 +174,9 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s, mutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
+        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s, mutable</title>s</text>
+        <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
     </g>
 
     <g id="timelines">
@@ -177,21 +187,56 @@ text.code {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="70" y="105"><title>obtains data from String::from() (s's lifetime begins from here)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="70" y="165"><title>mutably lends its data to r1 (s becomes un-readable until the end of r1's lifetime)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="70" y="185"><title>r1 is no longer a mutable referece of s, so we may read and write the data</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="70" y="245"><title>mutably lends its data to r2 (s becomes un-readable until the end of r2's lifetime)</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="140" y="165"><title>mutably borrows data from s (r1 gains read and write access to data)</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="140" y="185"><title>returns borrowed data to s (r1's lifetime ends here)</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="140" y="185"><title>r1 goes out of scope. The data is not dropped because r1 is not the owner.</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="210" y="245"><title>mutably borrows data from s (r2 gains read and write access to data)</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="70" y="105" class="tooltip-trigger" data-tooltip-text="obtains data from String::from() (s's lifetime begins from here)"/>
+        <use xlink:href="#eventDot" data-hash="1" x="70" y="165" class="tooltip-trigger" data-tooltip-text="mutably lends its data to r1 (s becomes un-readable until the end of r1's lifetime)"/>
+        <use xlink:href="#eventDot" data-hash="1" x="70" y="185" class="tooltip-trigger" data-tooltip-text="r1 is no longer a mutable referece of s, so we may read and write the data"/>
+        <use xlink:href="#eventDot" data-hash="1" x="70" y="245" class="tooltip-trigger" data-tooltip-text="mutably lends its data to r2 (s becomes un-readable until the end of r2's lifetime)"/>
+        <use xlink:href="#eventDot" data-hash="2" x="140" y="165" class="tooltip-trigger" data-tooltip-text="mutably borrows data from s (r1 gains read and write access to data)"/>
+        <use xlink:href="#eventDot" data-hash="2" x="140" y="185" class="tooltip-trigger" data-tooltip-text="returns borrowed data to s (r1's lifetime ends here)"/>
+        <use xlink:href="#eventDot" data-hash="2" x="140" y="185" class="tooltip-trigger" data-tooltip-text="r1 goes out of scope. The data is not dropped because r1 is not the owner."/>
+        <use xlink:href="#eventDot" data-hash="3" x="210" y="245" class="tooltip-trigger" data-tooltip-text="mutably borrows data from s (r2 gains read and write access to data)"/>
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s</title></polyline>
-        <polyline stroke-width="5" stroke="gray" points="70,165 130,165 " marker-end="url(#arrowHead)"><title>Mutable borrow from s to r1</title></polyline>
-        <polyline stroke-width="5" stroke="gray" points="140,185 80,185 " marker-end="url(#arrowHead)"><title>Return mutably borrowed resource from r1 to s</title></polyline>
-        <polyline stroke-width="5" stroke="gray" points="70,245 200,245 " marker-end="url(#arrowHead)"><title>Mutable borrow from s to r2</title></polyline>
+        <text x="96" y="110" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
+        <polyline stroke-width="5" stroke="gray" points="70,165 130,165 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Mutable borrow from s to r1"/>
+        <polyline stroke-width="5" stroke="gray" points="140,185 80,185 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Return mutably borrowed resource from r1 to s"/>
+        <polyline stroke-width="5" stroke="gray" points="70,245 200,245 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Mutable borrow from s to r2"/>
     </g>
    
+   <g id="tooltip" visibility="hidden">
+		<rect x="2" y="2" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="10" y="7" fill="white" font-size="12px" width="10px">Tooltip</text>
+    </g>
+
+    <script type="text/ecmascript"><![CDATA[
+		(function() {
+			var svg = document.getElementById('timeline_svg');
+			var tooltip = svg.getElementById('tooltip');
+			var tooltipText = tooltip.getElementsByTagName('text')[0];
+            var tooltipRects = tooltip.getElementsByTagName('rect');
+			var triggers = svg.getElementsByClassName('tooltip-trigger');
+
+			for (var i = 0; i < triggers.length; i++) {
+				triggers[i].addEventListener('mousemove', showTooltip);
+				triggers[i].addEventListener('mouseout', hideTooltip);
+			}
+			function showTooltip(evt) {
+				var CTM = svg.getScreenCTM();
+				var x = (evt.clientX - CTM.e + 10) / CTM.a;
+				var y = (evt.clientY - CTM.f + 10) / CTM.d;
+				tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				tooltip.setAttributeNS(null, "visibility", "visible");
+				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
+
+                var length = tooltipText.getComputedTextLength();
+				for (var i = 0; i < tooltipRects.length; i++) {
+					tooltipRects[i].setAttribute("width", length + 15);
+				}
+			}
+			function hideTooltip(evt) {
+				tooltip.setAttributeNS(null, "visibility", "hidden");
+			}
+		})()
+    ]]></script>
 </svg>

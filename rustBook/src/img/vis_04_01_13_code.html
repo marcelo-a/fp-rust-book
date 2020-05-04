@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        html, body {
+            height: 390px;
+            margin: 0;
+            background: #f1f1f1;
+            font-size: 16px;
+            white-space: nowrap;
+            font-family: "monospace";
+        }
+
+        /* general setup */
+#caption {
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+}
+
+/* hash based styling */
+#hash1 {
+    color: #3355ff;
+    font-weight: bold;
+    /* stroke: #3355ff; */
+}
+
+#hash2 {
+    color: #33cc33;
+    /* stroke: #33cc33; */
+}
+
+#hash3 {
+    color: #ff3300;
+    /* stroke: #ff3300; */
+}
+
+#hash4 {
+    color: #6600ff;
+    /* stroke: #6600ff; */
+}
+
+#hash5 {
+    color: #ff33cc;
+    /* stroke: #ff33cc; */
+}
+
+#hash6 {
+    color: #663300;
+    /* stroke: #663300; */
+}
+
+#hash7 {
+    color: #ff9900;
+    /* stroke: #ff9900; */
+}
+#hash8 {
+    color: #00d6fc;
+    /* stroke: #00d6fc; */
+}
+
+#hash9 {
+    color: #9aeb58;
+    /* stroke: #9aeb58; */
+}
+
+        </style>
+    </head>
+
+    <p>
+        <span id="caption">&emsp;Hover over timeline events (dots), states (vertical lines),
+        <br>&emsp;and actions (arrows) for extra information.</span>
+    </p>
+
+    <p id="code">
+        <br>&ensp; fn main() { 
+        <br>&ensp;     let s1 = String::from("hello"); 
+        <br>&ensp;  
+        <br>&ensp;     let (s2, len) = calculate_length(s1); 
+        <br>&ensp;  
+        <br>&ensp;     println!("The length of '{}' is {}.", s2, len); 
+        <br>&ensp; } 
+        <br>&ensp;  
+        <br>&ensp; fn calculate_length(s: String) -> (String, usize) { 
+        <br>&ensp;     let length = s.len(); // len() returns the length of a String 
+        <br>&ensp;  
+        <br>&ensp;     (s, length) 
+        <br>&ensp; } 
+    </p
+
+   
+</html>

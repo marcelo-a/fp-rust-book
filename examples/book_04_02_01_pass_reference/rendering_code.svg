@@ -10,6 +10,7 @@
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
+    overflow:visible;
 }
 
 svg {
@@ -17,7 +18,8 @@ svg {
 }
 
 text {
-    fill: var(--text-color);
+    /* fill: white; */
+    /* fill: var(--text-color); */
     vertical-align: baseline;
     text-anchor: start;
 }
@@ -46,15 +48,6 @@ text.code {
 
 #eventDot {
     transition: all 0.3s;
-}
-
-/* flex related styling */
-.flex-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    flex-shrink: 1;
 }
 
 #functionDot:hover {
@@ -101,6 +94,22 @@ text.code {
     text-anchor: start;
     font-style: italic;
 }
+
+/* flex related styling */
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    flex-shrink: 1;
+}
+
+/* tooltip styling */
+#tooltip {
+    dominant-baseline: hanging;
+    overflow:visible;
+}
+
 /* hash based styling */
 [data-hash*="1"] {
     fill: #3355ff;

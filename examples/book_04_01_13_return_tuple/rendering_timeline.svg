@@ -1,5 +1,6 @@
-<svg width="450" height="390px" 
-        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="450px" height="390px" 
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+        id="timeline_svg">
 
     <desc>return_tuple</desc>
 
@@ -10,6 +11,7 @@
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
+    overflow:visible;
 }
 
 svg {
@@ -17,7 +19,8 @@ svg {
 }
 
 text {
-    fill: var(--text-color);
+    /* fill: white; */
+    /* fill: var(--text-color); */
     vertical-align: baseline;
     text-anchor: start;
 }
@@ -46,15 +49,6 @@ text.code {
 
 #eventDot {
     transition: all 0.3s;
-}
-
-/* flex related styling */
-.flex-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    flex-shrink: 1;
 }
 
 #functionDot:hover {
@@ -101,6 +95,22 @@ text.code {
     text-anchor: start;
     font-style: italic;
 }
+
+/* flex related styling */
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    flex-shrink: 1;
+}
+
+/* tooltip styling */
+#tooltip {
+    dominant-baseline: hanging;
+    overflow:visible;
+}
+
 /* hash based styling */
 [data-hash*="1"] {
     fill: #3355ff;
@@ -152,7 +162,7 @@ text.code {
         <!-- used when pass to function by ref -->
         <g id="functionDot">
              <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text class="functionIcon" dx="-6" dy="2">f</text>
+             <text class="functionIcon" dx="-6" dy="2" fill="#6e6b5e">f</text>
         </g>
         <marker id="arrowHead" viewBox="0 0 10 10"
             refX="1" refY="5" 
@@ -164,11 +174,11 @@ text.code {
     </defs>
 
     <g id="labels">
+        <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>len, immutable</title>len</text>
+        <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
         <text style="text-anchor:middle" class="code" x="280" y="90" data-hash="4"><title>s, immutable</title>s</text>
         <text style="text-anchor:middle" class="code" x="350" y="90" data-hash="5"><title>length, immutable</title>length</text>
-        <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
         <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
-        <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>len, immutable</title>len</text>
     </g>
 
     <g id="timelines">
@@ -201,35 +211,70 @@ text.code {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="70" y="105"><title>obtains data from String::from() (s1's lifetime begins from here)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="70" y="145"><title>statically lends its data to calculate_length() (s1 becomes read-only)</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="70" y="145"><title>calculate_length() no longer borrows from s1</title></use>
-        <use xlink:href="#eventDot" data-hash="1" x="70" y="205"><title>s1 goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="140" y="145"><title>obtains data from calculate_length() (len's lifetime begins from here)</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="140" y="185"><title>statically lends its data to println!() (len becomes read-only)</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="140" y="185"><title>println!() no longer borrows from len</title></use>
-        <use xlink:href="#eventDot" data-hash="2" x="140" y="205"><title>len goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="210" y="145"><title>obtains data from calculate_length() (s2's lifetime begins from here)</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="210" y="185"><title>statically lends its data to println!() (s2 becomes read-only)</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="210" y="185"><title>println!() no longer borrows from s2</title></use>
-        <use xlink:href="#eventDot" data-hash="3" x="210" y="205"><title>s2 goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="280" y="245"><title>obtains data from another value (s's lifetime begins from here)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="280" y="265"><title>statically lends its data to len() (s becomes read-only)</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="280" y="265"><title>len() no longer borrows from s</title></use>
-        <use xlink:href="#eventDot" data-hash="4" x="280" y="305"><title>s goes out of scope. The data is dropped.</title></use>
-        <use xlink:href="#eventDot" data-hash="5" x="350" y="265"><title>obtains data from len() (length's lifetime begins from here)</title></use>
-        <use xlink:href="#eventDot" data-hash="5" x="350" y="305"><title>length goes out of scope. The data is dropped.</title></use>
+        <use xlink:href="#eventDot" data-hash="1" x="70" y="105" class="tooltip-trigger" data-tooltip-text="obtains data from String::from() (s1's lifetime begins from here)"/>
+        <use xlink:href="#eventDot" data-hash="1" x="70" y="145" class="tooltip-trigger" data-tooltip-text="statically lends its data to calculate_length() (s1 becomes read-only)"/>
+        <use xlink:href="#eventDot" data-hash="1" x="70" y="145" class="tooltip-trigger" data-tooltip-text="calculate_length() no longer borrows from s1"/>
+        <use xlink:href="#eventDot" data-hash="1" x="70" y="205" class="tooltip-trigger" data-tooltip-text="s1 goes out of scope. The data is dropped."/>
+        <use xlink:href="#eventDot" data-hash="2" x="140" y="145" class="tooltip-trigger" data-tooltip-text="obtains data from calculate_length() (len's lifetime begins from here)"/>
+        <use xlink:href="#eventDot" data-hash="2" x="140" y="185" class="tooltip-trigger" data-tooltip-text="statically lends its data to println!() (len becomes read-only)"/>
+        <use xlink:href="#eventDot" data-hash="2" x="140" y="185" class="tooltip-trigger" data-tooltip-text="println!() no longer borrows from len"/>
+        <use xlink:href="#eventDot" data-hash="2" x="140" y="205" class="tooltip-trigger" data-tooltip-text="len goes out of scope. The data is dropped."/>
+        <use xlink:href="#eventDot" data-hash="3" x="210" y="145" class="tooltip-trigger" data-tooltip-text="obtains data from calculate_length() (s2's lifetime begins from here)"/>
+        <use xlink:href="#eventDot" data-hash="3" x="210" y="185" class="tooltip-trigger" data-tooltip-text="statically lends its data to println!() (s2 becomes read-only)"/>
+        <use xlink:href="#eventDot" data-hash="3" x="210" y="185" class="tooltip-trigger" data-tooltip-text="println!() no longer borrows from s2"/>
+        <use xlink:href="#eventDot" data-hash="3" x="210" y="205" class="tooltip-trigger" data-tooltip-text="s2 goes out of scope. The data is dropped."/>
+        <use xlink:href="#eventDot" data-hash="4" x="280" y="245" class="tooltip-trigger" data-tooltip-text="obtains data from another value (s's lifetime begins from here)"/>
+        <use xlink:href="#eventDot" data-hash="4" x="280" y="265" class="tooltip-trigger" data-tooltip-text="statically lends its data to len() (s becomes read-only)"/>
+        <use xlink:href="#eventDot" data-hash="4" x="280" y="265" class="tooltip-trigger" data-tooltip-text="len() no longer borrows from s"/>
+        <use xlink:href="#eventDot" data-hash="4" x="280" y="305" class="tooltip-trigger" data-tooltip-text="s goes out of scope. The data is dropped."/>
+        <use xlink:href="#eventDot" data-hash="5" x="350" y="265" class="tooltip-trigger" data-tooltip-text="obtains data from len() (length's lifetime begins from here)"/>
+        <use xlink:href="#eventDot" data-hash="5" x="350" y="305" class="tooltip-trigger" data-tooltip-text="length goes out of scope. The data is dropped."/>
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" font-size = "20" font-style="italic" class="heavy" ><title>String::from()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)"><title>Move from the return value of String::from() to s1</title></polyline>
-        <use xlink:href="#functionDot" data-hash="1" x="70" y="145"><title>calculate_length() reads from s1</title></use>
-        <text x="236" y="150" font-size = "20" font-style="italic" class="heavy" ><title>calculate_length()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="233,145 223,145 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length() to s2</title></polyline>
-        <text x="166" y="150" font-size = "20" font-style="italic" class="heavy" ><title>calculate_length()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="163,145 153,145 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of calculate_length() to len</title></polyline>
-        <use xlink:href="#functionDot" data-hash="3" x="210" y="185"><title>println!() reads from s2</title></use>
-        <use xlink:href="#functionDot" data-hash="2" x="140" y="185"><title>println!() reads from len</title></use>
-        <use xlink:href="#functionDot" data-hash="4" x="280" y="265"><title>len() reads from s</title></use>
-        <text x="376" y="270" font-size = "20" font-style="italic" class="heavy" ><title>len()</title>f</text>        <polyline stroke-width="5" stroke="gray" points="373,265 363,265 " marker-end="url(#arrowHead)"><title>Duplicate from the return value of len() to length</title></polyline>
+        <text x="96" y="110" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s1"/>
+        <use xlink:href="#functionDot" data-hash="1" x="70" y="145" class="tooltip-trigger" data-tooltip-text="calculate_length() reads from s1"/>
+        <text x="236" y="150" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="calculate_length()">f</text>        <polyline stroke-width="5" stroke="gray" points="233,145 223,145 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of calculate_length() to s2"/>
+        <text x="166" y="150" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="calculate_length()">f</text>        <polyline stroke-width="5" stroke="gray" points="163,145 153,145 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of calculate_length() to len"/>
+        <use xlink:href="#functionDot" data-hash="3" x="210" y="185" class="tooltip-trigger" data-tooltip-text="println!() reads from s2"/>
+        <use xlink:href="#functionDot" data-hash="2" x="140" y="185" class="tooltip-trigger" data-tooltip-text="println!() reads from len"/>
+        <use xlink:href="#functionDot" data-hash="4" x="280" y="265" class="tooltip-trigger" data-tooltip-text="len() reads from s"/>
+        <text x="376" y="270" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="len()">f</text>        <polyline stroke-width="5" stroke="gray" points="373,265 363,265 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of len() to length"/>
     </g>
    
+   <g id="tooltip" visibility="hidden">
+		<rect x="2" y="2" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="10" y="7" fill="white" font-size="12px" width="10px">Tooltip</text>
+    </g>
+
+    <script type="text/ecmascript"><![CDATA[
+		(function() {
+			var svg = document.getElementById('timeline_svg');
+			var tooltip = svg.getElementById('tooltip');
+			var tooltipText = tooltip.getElementsByTagName('text')[0];
+            var tooltipRects = tooltip.getElementsByTagName('rect');
+			var triggers = svg.getElementsByClassName('tooltip-trigger');
+
+			for (var i = 0; i < triggers.length; i++) {
+				triggers[i].addEventListener('mousemove', showTooltip);
+				triggers[i].addEventListener('mouseout', hideTooltip);
+			}
+			function showTooltip(evt) {
+				var CTM = svg.getScreenCTM();
+				var x = (evt.clientX - CTM.e + 10) / CTM.a;
+				var y = (evt.clientY - CTM.f + 10) / CTM.d;
+				tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				tooltip.setAttributeNS(null, "visibility", "visible");
+				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
+
+                var length = tooltipText.getComputedTextLength();
+				for (var i = 0; i < tooltipRects.length; i++) {
+					tooltipRects[i].setAttribute("width", length + 15);
+				}
+			}
+			function hideTooltip(evt) {
+				tooltip.setAttributeNS(null, "visibility", "hidden");
+			}
+		})()
+    ]]></script>
 </svg>

@@ -2,7 +2,6 @@
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -99,7 +98,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -137,6 +135,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;

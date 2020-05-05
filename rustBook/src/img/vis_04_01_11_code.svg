@@ -10,7 +10,6 @@
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -107,7 +106,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -145,6 +143,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -165,27 +164,27 @@ text.code {
 
     <g id="code">
         <text class="code" x="20" y="90"> fn main() { </text>
-        <text class="code" x="20" y="110">     let <tspan data-hash="1">s</tspan> = <tspan data-hash="5">String::from</tspan>("hello");  // s comes into scope </text>
+        <text class="code" x="20" y="110">     let <tspan data-hash="1">s</tspan> = String::from("hello");  // s comes into scope </text>
         <text class="code" x="20" y="130">  </text>
-        <text class="code" x="20" y="150">     <tspan data-hash="6">takes_ownership</tspan>(<tspan data-hash="1">s</tspan>);             // s's value moves into the function... </text>
+        <text class="code" x="20" y="150">     takes_ownership(<tspan data-hash="1">s</tspan>);             // s's value moves into the function... </text>
         <text class="code" x="20" y="170">                                     // ... and so is no longer valid here </text>
         <text class="code" x="20" y="190">  </text>
         <text class="code" x="20" y="210">     let <tspan data-hash="2">x</tspan> = 5;                      // x comes into scope </text>
         <text class="code" x="20" y="230">  </text>
-        <text class="code" x="20" y="250">     <tspan data-hash="7">makes_copy</tspan>(<tspan data-hash="2">x</tspan>);                  // x would move into the function, </text>
+        <text class="code" x="20" y="250">     makes_copy(<tspan data-hash="2">x</tspan>);                  // x would move into the function, </text>
         <text class="code" x="20" y="270">                                     // but i32 is Copy, so it’s okay to still </text>
         <text class="code" x="20" y="290">                                     // use x afterward </text>
         <text class="code" x="20" y="310">  </text>
         <text class="code" x="20" y="330"> } // Here, x goes out of scope, then s. But because s's value was moved, nothing </text>
         <text class="code" x="20" y="350">   // special happens. </text>
         <text class="code" x="20" y="370">  </text>
-        <text class="code" x="20" y="390"> fn <tspan data-hash="6">takes_ownership</tspan>(<tspan data-hash="3">some_string</tspan>: String) { // some_string comes into scope </text>
-        <text class="code" x="20" y="410">     <tspan data-hash="8">println!</tspan>("{}", <tspan data-hash="3">some_string</tspan>); </text>
+        <text class="code" x="20" y="390"> fn takes_ownership(<tspan data-hash="3">some_string</tspan>: String) { // some_string comes into scope </text>
+        <text class="code" x="20" y="410">     println!("{}", <tspan data-hash="3">some_string</tspan>); </text>
         <text class="code" x="20" y="430"> } // Here, some_string goes out of scope and `drop` is called. The backing </text>
         <text class="code" x="20" y="450">   // memory is freed. </text>
         <text class="code" x="20" y="470">  </text>
-        <text class="code" x="20" y="490"> fn <tspan data-hash="7">makes_copy</tspan>(<tspan data-hash="4">some_integer</tspan>: i32) { // some_integer comes into scope </text>
-        <text class="code" x="20" y="510">     <tspan data-hash="8">println!</tspan>("{}", <tspan data-hash="4">some_integer</tspan>); </text>
+        <text class="code" x="20" y="490"> fn makes_copy(<tspan data-hash="4">some_integer</tspan>: i32) { // some_integer comes into scope </text>
+        <text class="code" x="20" y="510">     println!("{}", <tspan data-hash="4">some_integer</tspan>); </text>
         <text class="code" x="20" y="530"> } // Here, some_integer goes out of scope. Nothing special happens. </text>
     </g>
 

@@ -105,13 +105,13 @@ fn prepare_registry(registry: &mut Handlebars) {
         <g id=\"arrows\">\n{{ arrows }}    </g>";
 
     let label_template =
-        "        <text style=\"text-anchor:middle\" class=\"code\" x=\"{{x_val}}\" y=\"90\" data-hash=\"{{hash}}\"><title>{{title}}</title>{{name}}</text>\n";
+        "        <text x=\"{{x_val}}\" y=\"90\" style=\"text-anchor:middle\" data-hash=\"{{hash}}\" class=\"code tooltip-trigger\" data-tooltip-text=\"{{title}}\">{{name}}</text>\n";
     let dot_template =
         "        <use xlink:href=\"#eventDot\" data-hash=\"{{hash}}\" x=\"{{dot_x}}\" y=\"{{dot_y}}\" class=\"tooltip-trigger\" data-tooltip-text=\"{{title}}\"/>\n";
     let function_dot_template =    
         "        <use xlink:href=\"#functionDot\" data-hash=\"{{hash}}\" x=\"{{x}}\" y=\"{{y}}\" class=\"tooltip-trigger\" data-tooltip-text=\"{{title}}\"/>\n";
     let function_logo_template =
-        "        <text x=\"{{x}}\" y=\"{{y}}\" fill=\"gray\" font-size = \"20\" font-style=\"italic\" class=\"tooltip-trigger\" data-tooltip-text=\"{{title}}\">f</text>";
+        "        <text x=\"{{x}}\" y=\"{{y}}\" fill=\"gray\" font-size=\"20\" font-style=\"italic\" class=\"tooltip-trigger\" data-tooltip-text=\"{{title}}\">f</text>\n";
     let arrow_template =
         "        <polyline stroke-width=\"5\" stroke=\"gray\" points=\"{{x2}},{{y2}} {{x1}},{{y1}} \" marker-end=\"url(#arrowHead)\" class=\"tooltip-trigger\" data-tooltip-text=\"{{title}}\"/>\n";
     let vertical_line_template =

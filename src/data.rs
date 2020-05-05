@@ -479,13 +479,6 @@ impl Visualizable for VisualizationData {
             (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
                 State::OutOfScope,
         
-            // this looks impossible?
-            // (State::FullPrivilege, Event::MutableReacquire{ from: ro }) =>
-            //     State::ResourceReturned { to: ro.to_owned() },
-
-            // (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) =>
-            //         State::ResourceReturned { to: ro.to_owned() },
-
             (State::FullPrivilege, Event::StaticLend{ to: to_ro }) =>
                 State::PartialPrivilege {
                     borrow_count: 1,

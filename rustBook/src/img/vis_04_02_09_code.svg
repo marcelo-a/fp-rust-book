@@ -10,7 +10,6 @@
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -107,7 +106,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -145,6 +143,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -165,15 +164,15 @@ text.code {
 
     <g id="code">
         <text class="code" x="20" y="90"> fn main(){ </text>
-        <text class="code" x="20" y="110">     let mut <tspan data-hash="1">s</tspan> = <tspan data-hash="5">String::from</tspan>("hello"); </text>
+        <text class="code" x="20" y="110">     let mut <tspan data-hash="1">s</tspan> = String::from("hello"); </text>
         <text class="code" x="20" y="130">  </text>
         <text class="code" x="20" y="150">     let <tspan data-hash="2">r1</tspan> = <tspan data-hash="1">&amp;s</tspan>; // no problem </text>
         <text class="code" x="20" y="170">     let <tspan data-hash="3">r2</tspan> = <tspan data-hash="1">&amp;s</tspan>; // no problem </text>
-        <text class="code" x="20" y="190">     <tspan data-hash="6">println!</tspan>("{} and {}", <tspan data-hash="2">r1</tspan>, <tspan data-hash="3">r2</tspan>); </text>
+        <text class="code" x="20" y="190">     println!("{} and {}", <tspan data-hash="2">r1</tspan>, <tspan data-hash="3">r2</tspan>); </text>
         <text class="code" x="20" y="210">     // <tspan data-hash="2">r1</tspan> and <tspan data-hash="3">r2</tspan> are no longer used after this point </text>
         <text class="code" x="20" y="230">  </text>
         <text class="code" x="20" y="250">     let <tspan data-hash="4">r3</tspan> = <tspan data-hash="1">&amp;mut s</tspan>; // no problem </text>
-        <text class="code" x="20" y="270">     <tspan data-hash="6">println!</tspan>("{}", <tspan data-hash="4">r3</tspan>); </text>
+        <text class="code" x="20" y="270">     println!("{}", <tspan data-hash="4">r3</tspan>); </text>
         <text class="code" x="20" y="290">  </text>
         <text class="code" x="20" y="310"> } </text>
     </g>

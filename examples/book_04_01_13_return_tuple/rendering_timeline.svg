@@ -11,7 +11,6 @@
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -108,7 +107,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -146,6 +144,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -174,11 +173,11 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="350" y="90" data-hash="5"><title>length, immutable</title>length</text>
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
-        <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
-        <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>len, immutable</title>len</text>
-        <text style="text-anchor:middle" class="code" x="280" y="90" data-hash="4"><title>s, immutable</title>s</text>
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="len, immutable">len</text>
+        <text x="280" y="90" style="text-anchor:middle" data-hash="4" class="code tooltip-trigger" data-tooltip-text="s, immutable">s</text>
+        <text x="350" y="90" style="text-anchor:middle" data-hash="5" class="code tooltip-trigger" data-tooltip-text="length, immutable">length</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
+        <text x="210" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="s2, immutable">s2</text>
     </g>
 
     <g id="timelines">
@@ -232,19 +231,23 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s1"/>
+        <text x="96" y="110" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s1"/>
         <use xlink:href="#functionDot" data-hash="1" x="70" y="145" class="tooltip-trigger" data-tooltip-text="calculate_length() reads from s1"/>
-        <text x="236" y="150" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="calculate_length()">f</text>        <polyline stroke-width="5" stroke="gray" points="233,145 223,145 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of calculate_length() to s2"/>
-        <text x="166" y="150" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="calculate_length()">f</text>        <polyline stroke-width="5" stroke="gray" points="163,145 153,145 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of calculate_length() to len"/>
+        <text x="236" y="150" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="calculate_length()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="233,145 223,145 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of calculate_length() to s2"/>
+        <text x="166" y="150" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="calculate_length()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="163,145 153,145 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of calculate_length() to len"/>
         <use xlink:href="#functionDot" data-hash="3" x="210" y="185" class="tooltip-trigger" data-tooltip-text="println!() reads from s2"/>
         <use xlink:href="#functionDot" data-hash="2" x="140" y="185" class="tooltip-trigger" data-tooltip-text="println!() reads from len"/>
         <use xlink:href="#functionDot" data-hash="4" x="280" y="265" class="tooltip-trigger" data-tooltip-text="len() reads from s"/>
-        <text x="376" y="270" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="len()">f</text>        <polyline stroke-width="5" stroke="gray" points="373,265 363,265 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of len() to length"/>
+        <text x="376" y="270" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="len()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="373,265 363,265 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of len() to length"/>
     </g>
    
    <g id="tooltip" visibility="hidden">
-		<rect x="2" y="2" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
-		<text x="10" y="7" fill="white" font-size="12px" width="10px">Tooltip</text>
+		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
     </g>
 
     <script type="text/ecmascript"><![CDATA[
@@ -259,19 +262,23 @@ text.code {
 				triggers[i].addEventListener('mousemove', showTooltip);
 				triggers[i].addEventListener('mouseout', hideTooltip);
 			}
+
 			function showTooltip(evt) {
+                <!-- track mouse movement -->
 				var CTM = svg.getScreenCTM();
 				var x = (evt.clientX - CTM.e + 10) / CTM.a;
-				var y = (evt.clientY - CTM.f + 10) / CTM.d;
-				tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				var y = (evt.clientY - CTM.f + 15) / CTM.d;
+                tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
 				tooltip.setAttributeNS(null, "visibility", "visible");
 				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
-
+                
+                <!-- adjust box dimensions -->
                 var length = tooltipText.getComputedTextLength();
 				for (var i = 0; i < tooltipRects.length; i++) {
-					tooltipRects[i].setAttribute("width", length + 15);
+					tooltipRects[i].setAttribute("width", length + 10);
 				}
 			}
+
 			function hideTooltip(evt) {
 				tooltip.setAttributeNS(null, "visibility", "hidden");
 			}

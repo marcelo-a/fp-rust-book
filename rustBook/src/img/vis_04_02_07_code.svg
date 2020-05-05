@@ -10,7 +10,6 @@
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -107,7 +106,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -145,6 +143,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -165,7 +164,7 @@ text.code {
 
     <g id="code">
         <text class="code" x="20" y="90">  </text>
-        <text class="code" x="20" y="110"> let mut <tspan data-hash="1">s</tspan> = <tspan data-hash="4">String::from</tspan>("hello"); </text>
+        <text class="code" x="20" y="110"> let mut <tspan data-hash="1">s</tspan> = String::from("hello"); </text>
         <text class="code" x="20" y="130">  </text>
         <text class="code" x="20" y="150"> { </text>
         <text class="code" x="20" y="170">     let <tspan data-hash="2">r1</tspan> = <tspan data-hash="1">&amp;mut s</tspan>; </text>

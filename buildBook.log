@@ -22,39 +22,39 @@ warning: unused variable: `to_ro`
     |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:495:96
+   --> src/data.rs:488:96
     |
-495 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
     |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:509:97
+   --> src/data.rs:502:97
     |
-509 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
     |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:532:93
+   --> src/data.rs:525:93
     |
-532 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
     |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:534:40
+   --> src/data.rs:527:40
     |
-534 |             (_, Event::Duplicate { to: ro }) =>
+527 |             (_, Event::Duplicate { to: ro }) =>
     |                                        ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `timeline`
-   --> src/data.rs:559:18
+   --> src/data.rs:552:18
     |
-559 |             Some(timeline) => {
+552 |             Some(timeline) => {
     |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
 
 warning: unused variable: `line_number`
-   --> src/data.rs:557:37
+   --> src/data.rs:550:37
     |
-557 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
     |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
 
 warning: function is never used: `render_arrows_string`
@@ -66,16 +66,16 @@ warning: function is never used: `render_arrows_string`
     = note: `#[warn(dead_code)]` on by default
 
 warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:497:62
+   --> src/data.rs:490:62
     |
-497 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
     |                                                              ----------^^^^^^^^^^
     |                                                              |
     |                                                              help: remove this
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.07s
      Running `target/debug/examples/one_var`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
@@ -91,7 +91,6 @@ s 2 3 FullPrivilege
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -188,7 +187,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -226,6 +224,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -265,7 +264,6 @@ text.code {
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -362,7 +360,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -400,6 +397,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -428,7 +426,7 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s, immutable</title>s</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s, immutable">s</text>
     </g>
 
     <g id="timelines">
@@ -442,12 +440,13 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
+        <text x="96" y="110" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
     </g>
    
    <g id="tooltip" visibility="hidden">
-		<rect x="2" y="2" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
-		<text x="10" y="7" fill="white" font-size="12px" width="10px">Tooltip</text>
+		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
     </g>
 
     <script type="text/ecmascript"><![CDATA[
@@ -462,19 +461,23 @@ text.code {
 				triggers[i].addEventListener('mousemove', showTooltip);
 				triggers[i].addEventListener('mouseout', hideTooltip);
 			}
+
 			function showTooltip(evt) {
+                <!-- track mouse movement -->
 				var CTM = svg.getScreenCTM();
 				var x = (evt.clientX - CTM.e + 10) / CTM.a;
-				var y = (evt.clientY - CTM.f + 10) / CTM.d;
-				tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				var y = (evt.clientY - CTM.f + 15) / CTM.d;
+                tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
 				tooltip.setAttributeNS(null, "visibility", "visible");
 				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
-
+                
+                <!-- adjust box dimensions -->
                 var length = tooltipText.getComputedTextLength();
 				for (var i = 0; i < tooltipRects.length; i++) {
-					tooltipRects[i].setAttribute("width", length + 15);
+					tooltipRects[i].setAttribute("width", length + 10);
 				}
 			}
+
 			function hideTooltip(evt) {
 				tooltip.setAttributeNS(null, "visibility", "hidden");
 			}
@@ -508,39 +511,39 @@ warning: unused variable: `to_ro`
     |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:495:96
+   --> src/data.rs:488:96
     |
-495 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
     |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:509:97
+   --> src/data.rs:502:97
     |
-509 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
     |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:532:93
+   --> src/data.rs:525:93
     |
-532 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
     |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:534:40
+   --> src/data.rs:527:40
     |
-534 |             (_, Event::Duplicate { to: ro }) =>
+527 |             (_, Event::Duplicate { to: ro }) =>
     |                                        ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `timeline`
-   --> src/data.rs:559:18
+   --> src/data.rs:552:18
     |
-559 |             Some(timeline) => {
+552 |             Some(timeline) => {
     |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
 
 warning: unused variable: `line_number`
-   --> src/data.rs:557:37
+   --> src/data.rs:550:37
     |
-557 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
     |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
 
 warning: function is never used: `render_arrows_string`
@@ -552,16 +555,15 @@ warning: function is never used: `render_arrows_string`
     = note: `#[warn(dead_code)]` on by default
 
 warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:497:62
+   --> src/data.rs:490:62
     |
-497 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
     |                                                              ----------^^^^^^^^^^
     |                                                              |
     |                                                              help: remove this
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
 warning: unused import: `Function`
  --> examples/book_04_01_02_scope/main.rs:1:76
   |
@@ -570,7 +572,7 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 4.94s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.07s
      Running `target/debug/examples/scope`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
@@ -586,7 +588,6 @@ s 3 6 FullPrivilege
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -683,7 +684,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -721,6 +721,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -764,7 +765,6 @@ text.code {
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -861,7 +861,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -899,6 +898,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -927,7 +927,7 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s, immutable</title>s</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s, immutable">s</text>
     </g>
 
     <g id="timelines">
@@ -944,8 +944,8 @@ text.code {
     </g>
    
    <g id="tooltip" visibility="hidden">
-		<rect x="2" y="2" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
-		<text x="10" y="7" fill="white" font-size="12px" width="10px">Tooltip</text>
+		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
     </g>
 
     <script type="text/ecmascript"><![CDATA[
@@ -960,19 +960,23 @@ text.code {
 				triggers[i].addEventListener('mousemove', showTooltip);
 				triggers[i].addEventListener('mouseout', hideTooltip);
 			}
+
 			function showTooltip(evt) {
+                <!-- track mouse movement -->
 				var CTM = svg.getScreenCTM();
 				var x = (evt.clientX - CTM.e + 10) / CTM.a;
-				var y = (evt.clientY - CTM.f + 10) / CTM.d;
-				tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				var y = (evt.clientY - CTM.f + 15) / CTM.d;
+                tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
 				tooltip.setAttributeNS(null, "visibility", "visible");
 				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
-
+                
+                <!-- adjust box dimensions -->
                 var length = tooltipText.getComputedTextLength();
 				for (var i = 0; i < tooltipRects.length; i++) {
-					tooltipRects[i].setAttribute("width", length + 15);
+					tooltipRects[i].setAttribute("width", length + 10);
 				}
 			}
+
 			function hideTooltip(evt) {
 				tooltip.setAttributeNS(null, "visibility", "hidden");
 			}
@@ -1006,39 +1010,39 @@ warning: unused variable: `to_ro`
     |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:495:96
+   --> src/data.rs:488:96
     |
-495 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
     |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:509:97
+   --> src/data.rs:502:97
     |
-509 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
     |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:532:93
+   --> src/data.rs:525:93
     |
-532 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
     |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:534:40
+   --> src/data.rs:527:40
     |
-534 |             (_, Event::Duplicate { to: ro }) =>
+527 |             (_, Event::Duplicate { to: ro }) =>
     |                                        ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `timeline`
-   --> src/data.rs:559:18
+   --> src/data.rs:552:18
     |
-559 |             Some(timeline) => {
+552 |             Some(timeline) => {
     |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
 
 warning: unused variable: `line_number`
-   --> src/data.rs:557:37
+   --> src/data.rs:550:37
     |
-557 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
     |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
 
 warning: function is never used: `render_arrows_string`
@@ -1050,17 +1054,16 @@ warning: function is never used: `render_arrows_string`
     = note: `#[warn(dead_code)]` on by default
 
 warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:497:62
+   --> src/data.rs:490:62
     |
-497 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
     |                                                              ----------^^^^^^^^^^
     |                                                              |
     |                                                              help: remove this
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.48s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.07s
      Running `target/debug/examples/string_from`
 s 1 2 OutOfScope
 <svg width="450" height="170px" 
@@ -1075,7 +1078,6 @@ s 1 2 OutOfScope
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -1172,7 +1174,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -1210,6 +1211,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -1248,7 +1250,6 @@ text.code {
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -1345,7 +1346,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -1383,6 +1383,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -1411,7 +1412,7 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s, immutable</title>s</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s, immutable">s</text>
     </g>
 
     <g id="timelines">
@@ -1422,12 +1423,13 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
+        <text x="96" y="110" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
     </g>
    
    <g id="tooltip" visibility="hidden">
-		<rect x="2" y="2" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
-		<text x="10" y="7" fill="white" font-size="12px" width="10px">Tooltip</text>
+		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
     </g>
 
     <script type="text/ecmascript"><![CDATA[
@@ -1442,19 +1444,23 @@ text.code {
 				triggers[i].addEventListener('mousemove', showTooltip);
 				triggers[i].addEventListener('mouseout', hideTooltip);
 			}
+
 			function showTooltip(evt) {
+                <!-- track mouse movement -->
 				var CTM = svg.getScreenCTM();
 				var x = (evt.clientX - CTM.e + 10) / CTM.a;
-				var y = (evt.clientY - CTM.f + 10) / CTM.d;
-				tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				var y = (evt.clientY - CTM.f + 15) / CTM.d;
+                tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
 				tooltip.setAttributeNS(null, "visibility", "visible");
 				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
-
+                
+                <!-- adjust box dimensions -->
                 var length = tooltipText.getComputedTextLength();
 				for (var i = 0; i < tooltipRects.length; i++) {
-					tooltipRects[i].setAttribute("width", length + 15);
+					tooltipRects[i].setAttribute("width", length + 10);
 				}
 			}
+
 			function hideTooltip(evt) {
 				tooltip.setAttributeNS(null, "visibility", "hidden");
 			}
@@ -1488,39 +1494,39 @@ warning: unused variable: `to_ro`
     |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:495:96
+   --> src/data.rs:488:96
     |
-495 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
     |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:509:97
+   --> src/data.rs:502:97
     |
-509 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
     |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:532:93
+   --> src/data.rs:525:93
     |
-532 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
     |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:534:40
+   --> src/data.rs:527:40
     |
-534 |             (_, Event::Duplicate { to: ro }) =>
+527 |             (_, Event::Duplicate { to: ro }) =>
     |                                        ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `timeline`
-   --> src/data.rs:559:18
+   --> src/data.rs:552:18
     |
-559 |             Some(timeline) => {
+552 |             Some(timeline) => {
     |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
 
 warning: unused variable: `line_number`
-   --> src/data.rs:557:37
+   --> src/data.rs:550:37
     |
-557 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
     |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
 
 warning: function is never used: `render_arrows_string`
@@ -1532,17 +1538,16 @@ warning: function is never used: `render_arrows_string`
     = note: `#[warn(dead_code)]` on by default
 
 warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:497:62
+   --> src/data.rs:490:62
     |
-497 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
     |                                                              ----------^^^^^^^^^^
     |                                                              |
     |                                                              help: remove this
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.48s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.07s
      Running `target/debug/examples/reference`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -1562,7 +1567,6 @@ s 6 7 FullPrivilege
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -1659,7 +1663,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -1697,6 +1700,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -1740,7 +1744,6 @@ text.code {
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -1837,7 +1840,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -1875,6 +1877,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -1903,7 +1906,7 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s, mutable</title>s</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s, mutable">s</text>
     </g>
 
     <g id="timelines">
@@ -1924,14 +1927,15 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
+        <text x="96" y="110" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
         <use xlink:href="#functionDot" data-hash="1" x="70" y="145" class="tooltip-trigger" data-tooltip-text="push_str() reads from/writes to s"/>
         <use xlink:href="#functionDot" data-hash="1" x="70" y="185" class="tooltip-trigger" data-tooltip-text="println!() reads from s"/>
     </g>
    
    <g id="tooltip" visibility="hidden">
-		<rect x="2" y="2" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
-		<text x="10" y="7" fill="white" font-size="12px" width="10px">Tooltip</text>
+		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
     </g>
 
     <script type="text/ecmascript"><![CDATA[
@@ -1946,19 +1950,23 @@ text.code {
 				triggers[i].addEventListener('mousemove', showTooltip);
 				triggers[i].addEventListener('mouseout', hideTooltip);
 			}
+
 			function showTooltip(evt) {
+                <!-- track mouse movement -->
 				var CTM = svg.getScreenCTM();
 				var x = (evt.clientX - CTM.e + 10) / CTM.a;
-				var y = (evt.clientY - CTM.f + 10) / CTM.d;
-				tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				var y = (evt.clientY - CTM.f + 15) / CTM.d;
+                tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
 				tooltip.setAttributeNS(null, "visibility", "visible");
 				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
-
+                
+                <!-- adjust box dimensions -->
                 var length = tooltipText.getComputedTextLength();
 				for (var i = 0; i < tooltipRects.length; i++) {
-					tooltipRects[i].setAttribute("width", length + 15);
+					tooltipRects[i].setAttribute("width", length + 10);
 				}
 			}
+
 			function hideTooltip(evt) {
 				tooltip.setAttributeNS(null, "visibility", "hidden");
 			}
@@ -1992,39 +2000,39 @@ warning: unused variable: `to_ro`
     |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:495:96
+   --> src/data.rs:488:96
     |
-495 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
     |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:509:97
+   --> src/data.rs:502:97
     |
-509 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
     |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:532:93
+   --> src/data.rs:525:93
     |
-532 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
     |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:534:40
+   --> src/data.rs:527:40
     |
-534 |             (_, Event::Duplicate { to: ro }) =>
+527 |             (_, Event::Duplicate { to: ro }) =>
     |                                        ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `timeline`
-   --> src/data.rs:559:18
+   --> src/data.rs:552:18
     |
-559 |             Some(timeline) => {
+552 |             Some(timeline) => {
     |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
 
 warning: unused variable: `line_number`
-   --> src/data.rs:557:37
+   --> src/data.rs:550:37
     |
-557 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
     |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
 
 warning: function is never used: `render_arrows_string`
@@ -2036,17 +2044,16 @@ warning: function is never used: `render_arrows_string`
     = note: `#[warn(dead_code)]` on by default
 
 warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:497:62
+   --> src/data.rs:490:62
     |
-497 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
     |                                                              ----------^^^^^^^^^^
     |                                                              |
     |                                                              help: remove this
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.70s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.10s
      Running `target/debug/examples/scope2`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
@@ -2062,7 +2069,6 @@ s 3 6 FullPrivilege
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -2159,7 +2165,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -2197,6 +2202,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -2241,7 +2247,6 @@ text.code {
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -2338,7 +2343,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -2376,6 +2380,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -2404,7 +2409,7 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s, immutable</title>s</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s, immutable">s</text>
     </g>
 
     <g id="timelines">
@@ -2418,12 +2423,13 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="96" y="130" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>        <polyline stroke-width="5" stroke="gray" points="93,125 83,125 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
+        <text x="96" y="130" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="93,125 83,125 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
     </g>
    
    <g id="tooltip" visibility="hidden">
-		<rect x="2" y="2" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
-		<text x="10" y="7" fill="white" font-size="12px" width="10px">Tooltip</text>
+		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
     </g>
 
     <script type="text/ecmascript"><![CDATA[
@@ -2438,19 +2444,23 @@ text.code {
 				triggers[i].addEventListener('mousemove', showTooltip);
 				triggers[i].addEventListener('mouseout', hideTooltip);
 			}
+
 			function showTooltip(evt) {
+                <!-- track mouse movement -->
 				var CTM = svg.getScreenCTM();
 				var x = (evt.clientX - CTM.e + 10) / CTM.a;
-				var y = (evt.clientY - CTM.f + 10) / CTM.d;
-				tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				var y = (evt.clientY - CTM.f + 15) / CTM.d;
+                tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
 				tooltip.setAttributeNS(null, "visibility", "visible");
 				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
-
+                
+                <!-- adjust box dimensions -->
                 var length = tooltipText.getComputedTextLength();
 				for (var i = 0; i < tooltipRects.length; i++) {
-					tooltipRects[i].setAttribute("width", length + 15);
+					tooltipRects[i].setAttribute("width", length + 10);
 				}
 			}
+
 			function hideTooltip(evt) {
 				tooltip.setAttributeNS(null, "visibility", "hidden");
 			}
@@ -2484,39 +2494,39 @@ warning: unused variable: `to_ro`
     |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:495:96
+   --> src/data.rs:488:96
     |
-495 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
     |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:509:97
+   --> src/data.rs:502:97
     |
-509 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
     |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:532:93
+   --> src/data.rs:525:93
     |
-532 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
     |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:534:40
+   --> src/data.rs:527:40
     |
-534 |             (_, Event::Duplicate { to: ro }) =>
+527 |             (_, Event::Duplicate { to: ro }) =>
     |                                        ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `timeline`
-   --> src/data.rs:559:18
+   --> src/data.rs:552:18
     |
-559 |             Some(timeline) => {
+552 |             Some(timeline) => {
     |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
 
 warning: unused variable: `line_number`
-   --> src/data.rs:557:37
+   --> src/data.rs:550:37
     |
-557 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
     |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
 
 warning: function is never used: `render_arrows_string`
@@ -2528,16 +2538,15 @@ warning: function is never used: `render_arrows_string`
     = note: `#[warn(dead_code)]` on by default
 
 warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:497:62
+   --> src/data.rs:490:62
     |
-497 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
     |                                                              ----------^^^^^^^^^^
     |                                                              |
     |                                                              help: remove this
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
 warning: unused import: `Function`
  --> examples/book_04_01_06_int_copy/main.rs:1:76
   |
@@ -2546,7 +2555,7 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 4.87s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.08s
      Running `target/debug/examples/int_copy`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -2565,7 +2574,6 @@ y 3 4 FullPrivilege
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -2662,7 +2670,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -2700,6 +2707,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -2721,7 +2729,7 @@ text.code {
     <g id="code">
         <text class="code" x="20" y="90"> fn main() { </text>
         <text class="code" x="20" y="110">     let <tspan data-hash="1">x</tspan> = 5; </text>
-        <text class="code" x="20" y="130">     let <tspan data-hash="2">y</tspan> = x; </text>
+        <text class="code" x="20" y="130">     let <tspan data-hash="2">y</tspan> = <tspan data-hash="1">x</tspan>; </text>
         <text class="code" x="20" y="150"> } </text>
     </g>
 
@@ -2740,7 +2748,6 @@ text.code {
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -2837,7 +2844,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -2875,6 +2881,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -2903,8 +2910,8 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>x, immutable</title>x</text>
-        <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>y, immutable</title>y</text>
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="y, immutable">y</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="x, immutable">x</text>
     </g>
 
     <g id="timelines">
@@ -2929,8 +2936,8 @@ text.code {
     </g>
    
    <g id="tooltip" visibility="hidden">
-		<rect x="2" y="2" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
-		<text x="10" y="7" fill="white" font-size="12px" width="10px">Tooltip</text>
+		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
     </g>
 
     <script type="text/ecmascript"><![CDATA[
@@ -2945,19 +2952,23 @@ text.code {
 				triggers[i].addEventListener('mousemove', showTooltip);
 				triggers[i].addEventListener('mouseout', hideTooltip);
 			}
+
 			function showTooltip(evt) {
+                <!-- track mouse movement -->
 				var CTM = svg.getScreenCTM();
 				var x = (evt.clientX - CTM.e + 10) / CTM.a;
-				var y = (evt.clientY - CTM.f + 10) / CTM.d;
-				tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				var y = (evt.clientY - CTM.f + 15) / CTM.d;
+                tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
 				tooltip.setAttributeNS(null, "visibility", "visible");
 				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
-
+                
+                <!-- adjust box dimensions -->
                 var length = tooltipText.getComputedTextLength();
 				for (var i = 0; i < tooltipRects.length; i++) {
-					tooltipRects[i].setAttribute("width", length + 15);
+					tooltipRects[i].setAttribute("width", length + 10);
 				}
 			}
+
 			function hideTooltip(evt) {
 				tooltip.setAttributeNS(null, "visibility", "hidden");
 			}
@@ -2991,39 +3002,39 @@ warning: unused variable: `to_ro`
     |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:495:96
+   --> src/data.rs:488:96
     |
-495 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
     |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:509:97
+   --> src/data.rs:502:97
     |
-509 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
     |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:532:93
+   --> src/data.rs:525:93
     |
-532 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
     |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:534:40
+   --> src/data.rs:527:40
     |
-534 |             (_, Event::Duplicate { to: ro }) =>
+527 |             (_, Event::Duplicate { to: ro }) =>
     |                                        ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `timeline`
-   --> src/data.rs:559:18
+   --> src/data.rs:552:18
     |
-559 |             Some(timeline) => {
+552 |             Some(timeline) => {
     |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
 
 warning: unused variable: `line_number`
-   --> src/data.rs:557:37
+   --> src/data.rs:550:37
     |
-557 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
     |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
 
 warning: function is never used: `render_arrows_string`
@@ -3035,17 +3046,16 @@ warning: function is never used: `render_arrows_string`
     = note: `#[warn(dead_code)]` on by default
 
 warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:497:62
+   --> src/data.rs:490:62
     |
-497 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
     |                                                              ----------^^^^^^^^^^
     |                                                              |
     |                                                              help: remove this
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 3.89s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.08s
      Running `target/debug/examples/string_move`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -3062,7 +3072,6 @@ s2 1 3 OutOfScope
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -3159,7 +3168,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -3197,6 +3205,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -3217,7 +3226,7 @@ text.code {
 
     <g id="code">
         <text class="code" x="20" y="90">  </text>
-        <text class="code" x="20" y="110"> let <tspan data-hash="1">s1</tspan> = <tspan data-hash="3">String::from</tspan>("hello"); </text>
+        <text class="code" x="20" y="110"> let <tspan data-hash="1">s1</tspan> = String::from("hello"); </text>
         <text class="code" x="20" y="130"> let <tspan data-hash="2">s2</tspan> = <tspan data-hash="1">s1</tspan>; </text>
     </g>
 
@@ -3236,7 +3245,6 @@ text.code {
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -3333,7 +3341,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -3371,6 +3378,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -3399,8 +3407,8 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
-        <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>s2, immutable</title>s2</text>
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="s2, immutable">s2</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
     </g>
 
     <g id="timelines">
@@ -3415,13 +3423,14 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of String::from() to s1"/>
+        <text x="96" y="110" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of String::from() to s1"/>
         <polyline stroke-width="5" stroke="gray" points="70,125 130,125 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from s1 to s2"/>
     </g>
    
    <g id="tooltip" visibility="hidden">
-		<rect x="2" y="2" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
-		<text x="10" y="7" fill="white" font-size="12px" width="10px">Tooltip</text>
+		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
     </g>
 
     <script type="text/ecmascript"><![CDATA[
@@ -3436,19 +3445,23 @@ text.code {
 				triggers[i].addEventListener('mousemove', showTooltip);
 				triggers[i].addEventListener('mouseout', hideTooltip);
 			}
+
 			function showTooltip(evt) {
+                <!-- track mouse movement -->
 				var CTM = svg.getScreenCTM();
 				var x = (evt.clientX - CTM.e + 10) / CTM.a;
-				var y = (evt.clientY - CTM.f + 10) / CTM.d;
-				tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				var y = (evt.clientY - CTM.f + 15) / CTM.d;
+                tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
 				tooltip.setAttributeNS(null, "visibility", "visible");
 				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
-
+                
+                <!-- adjust box dimensions -->
                 var length = tooltipText.getComputedTextLength();
 				for (var i = 0; i < tooltipRects.length; i++) {
-					tooltipRects[i].setAttribute("width", length + 15);
+					tooltipRects[i].setAttribute("width", length + 10);
 				}
 			}
+
 			function hideTooltip(evt) {
 				tooltip.setAttributeNS(null, "visibility", "hidden");
 			}
@@ -3482,39 +3495,39 @@ warning: unused variable: `to_ro`
     |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:495:96
+   --> src/data.rs:488:96
     |
-495 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
     |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:509:97
+   --> src/data.rs:502:97
     |
-509 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
     |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:532:93
+   --> src/data.rs:525:93
     |
-532 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
     |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:534:40
+   --> src/data.rs:527:40
     |
-534 |             (_, Event::Duplicate { to: ro }) =>
+527 |             (_, Event::Duplicate { to: ro }) =>
     |                                        ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `timeline`
-   --> src/data.rs:559:18
+   --> src/data.rs:552:18
     |
-559 |             Some(timeline) => {
+552 |             Some(timeline) => {
     |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
 
 warning: unused variable: `line_number`
-   --> src/data.rs:557:37
+   --> src/data.rs:550:37
     |
-557 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
     |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
 
 warning: function is never used: `render_arrows_string`
@@ -3526,17 +3539,16 @@ warning: function is never used: `render_arrows_string`
     = note: `#[warn(dead_code)]` on by default
 
 warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:497:62
+   --> src/data.rs:490:62
     |
-497 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
     |                                                              ----------^^^^^^^^^^
     |                                                              |
     |                                                              help: remove this
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.36s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.08s
      Running `target/debug/examples/string_clone`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -3558,7 +3570,6 @@ s2 5 5 PartialPrivilege
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -3655,7 +3666,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -3693,6 +3703,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -3713,10 +3724,10 @@ text.code {
 
     <g id="code">
         <text class="code" x="20" y="90">  </text>
-        <text class="code" x="20" y="110"> let <tspan data-hash="1">s1</tspan> = <tspan data-hash="3">String::from</tspan>("hello"); </text>
-        <text class="code" x="20" y="130"> let <tspan data-hash="2">s2</tspan> = <tspan data-hash="1">s1</tspan>.<tspan data-hash="4">clone</tspan>(); </text>
+        <text class="code" x="20" y="110"> let <tspan data-hash="1">s1</tspan> = String::from("hello"); </text>
+        <text class="code" x="20" y="130"> let <tspan data-hash="2">s2</tspan> = <tspan data-hash="1">s1</tspan>.clone(); </text>
         <text class="code" x="20" y="150">  </text>
-        <text class="code" x="20" y="170"> <tspan data-hash="5">println!</tspan>("s1 = {}, s2 = {}", <tspan data-hash="1">s1</tspan>, <tspan data-hash="2">s2</tspan>); </text>
+        <text class="code" x="20" y="170"> println!("s1 = {}, s2 = {}", <tspan data-hash="1">s1</tspan>, <tspan data-hash="2">s2</tspan>); </text>
     </g>
 
    
@@ -3734,7 +3745,6 @@ text.code {
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -3831,7 +3841,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -3869,6 +3878,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -3897,8 +3907,8 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
-        <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>s2, immutable</title>s2</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="s2, immutable">s2</text>
     </g>
 
     <g id="timelines">
@@ -3928,16 +3938,18 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of String::from() to s1"/>
-        <text x="166" y="130" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="clone()">f</text>        <polyline stroke-width="5" stroke="gray" points="163,125 153,125 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of clone() to s2"/>
+        <text x="96" y="110" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of String::from() to s1"/>
+        <text x="166" y="130" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="clone()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="163,125 153,125 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of clone() to s2"/>
         <use xlink:href="#functionDot" data-hash="1" x="70" y="125" class="tooltip-trigger" data-tooltip-text="clone() reads from s1"/>
         <use xlink:href="#functionDot" data-hash="1" x="70" y="165" class="tooltip-trigger" data-tooltip-text="println!() reads from s1"/>
         <use xlink:href="#functionDot" data-hash="2" x="140" y="165" class="tooltip-trigger" data-tooltip-text="println!() reads from s2"/>
     </g>
    
    <g id="tooltip" visibility="hidden">
-		<rect x="2" y="2" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
-		<text x="10" y="7" fill="white" font-size="12px" width="10px">Tooltip</text>
+		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
     </g>
 
     <script type="text/ecmascript"><![CDATA[
@@ -3952,19 +3964,23 @@ text.code {
 				triggers[i].addEventListener('mousemove', showTooltip);
 				triggers[i].addEventListener('mouseout', hideTooltip);
 			}
+
 			function showTooltip(evt) {
+                <!-- track mouse movement -->
 				var CTM = svg.getScreenCTM();
 				var x = (evt.clientX - CTM.e + 10) / CTM.a;
-				var y = (evt.clientY - CTM.f + 10) / CTM.d;
-				tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				var y = (evt.clientY - CTM.f + 15) / CTM.d;
+                tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
 				tooltip.setAttributeNS(null, "visibility", "visible");
 				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
-
+                
+                <!-- adjust box dimensions -->
                 var length = tooltipText.getComputedTextLength();
 				for (var i = 0; i < tooltipRects.length; i++) {
-					tooltipRects[i].setAttribute("width", length + 15);
+					tooltipRects[i].setAttribute("width", length + 10);
 				}
 			}
+
 			function hideTooltip(evt) {
 				tooltip.setAttributeNS(null, "visibility", "hidden");
 			}
@@ -3998,39 +4014,39 @@ warning: unused variable: `to_ro`
     |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:495:96
+   --> src/data.rs:488:96
     |
-495 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
     |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:509:97
+   --> src/data.rs:502:97
     |
-509 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
     |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:532:93
+   --> src/data.rs:525:93
     |
-532 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
     |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:534:40
+   --> src/data.rs:527:40
     |
-534 |             (_, Event::Duplicate { to: ro }) =>
+527 |             (_, Event::Duplicate { to: ro }) =>
     |                                        ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `timeline`
-   --> src/data.rs:559:18
+   --> src/data.rs:552:18
     |
-559 |             Some(timeline) => {
+552 |             Some(timeline) => {
     |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
 
 warning: unused variable: `line_number`
-   --> src/data.rs:557:37
+   --> src/data.rs:550:37
     |
-557 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
     |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
 
 warning: function is never used: `render_arrows_string`
@@ -4042,17 +4058,16 @@ warning: function is never used: `render_arrows_string`
     = note: `#[warn(dead_code)]` on by default
 
 warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:497:62
+   --> src/data.rs:490:62
     |
-497 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
     |                                                              ----------^^^^^^^^^^
     |                                                              |
     |                                                              help: remove this
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.33s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.07s
      Running `target/debug/examples/int_copy_2`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -4075,7 +4090,6 @@ y 5 6 FullPrivilege
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -4172,7 +4186,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -4210,6 +4223,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -4252,7 +4266,6 @@ text.code {
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -4349,7 +4362,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -4387,6 +4399,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -4415,8 +4428,8 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>x, immutable</title>x</text>
-        <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>y, immutable</title>y</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="x, immutable">x</text>
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="y, immutable">y</text>
     </g>
 
     <g id="timelines">
@@ -4455,8 +4468,8 @@ text.code {
     </g>
    
    <g id="tooltip" visibility="hidden">
-		<rect x="2" y="2" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
-		<text x="10" y="7" fill="white" font-size="12px" width="10px">Tooltip</text>
+		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
     </g>
 
     <script type="text/ecmascript"><![CDATA[
@@ -4471,19 +4484,23 @@ text.code {
 				triggers[i].addEventListener('mousemove', showTooltip);
 				triggers[i].addEventListener('mouseout', hideTooltip);
 			}
+
 			function showTooltip(evt) {
+                <!-- track mouse movement -->
 				var CTM = svg.getScreenCTM();
 				var x = (evt.clientX - CTM.e + 10) / CTM.a;
-				var y = (evt.clientY - CTM.f + 10) / CTM.d;
-				tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				var y = (evt.clientY - CTM.f + 15) / CTM.d;
+                tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
 				tooltip.setAttributeNS(null, "visibility", "visible");
 				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
-
+                
+                <!-- adjust box dimensions -->
                 var length = tooltipText.getComputedTextLength();
 				for (var i = 0; i < tooltipRects.length; i++) {
-					tooltipRects[i].setAttribute("width", length + 15);
+					tooltipRects[i].setAttribute("width", length + 10);
 				}
 			}
+
 			function hideTooltip(evt) {
 				tooltip.setAttributeNS(null, "visibility", "hidden");
 			}
@@ -4517,39 +4534,39 @@ warning: unused variable: `to_ro`
     |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:495:96
+   --> src/data.rs:488:96
     |
-495 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
     |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:509:97
+   --> src/data.rs:502:97
     |
-509 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
     |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:532:93
+   --> src/data.rs:525:93
     |
-532 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
     |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:534:40
+   --> src/data.rs:527:40
     |
-534 |             (_, Event::Duplicate { to: ro }) =>
+527 |             (_, Event::Duplicate { to: ro }) =>
     |                                        ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `timeline`
-   --> src/data.rs:559:18
+   --> src/data.rs:552:18
     |
-559 |             Some(timeline) => {
+552 |             Some(timeline) => {
     |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
 
 warning: unused variable: `line_number`
-   --> src/data.rs:557:37
+   --> src/data.rs:550:37
     |
-557 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
     |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
 
 warning: function is never used: `render_arrows_string`
@@ -4561,17 +4578,16 @@ warning: function is never used: `render_arrows_string`
     = note: `#[warn(dead_code)]` on by default
 
 warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:497:62
+   --> src/data.rs:490:62
     |
-497 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
     |                                                              ----------^^^^^^^^^^
     |                                                              |
     |                                                              help: remove this
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.87s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.07s
      Running `target/debug/examples/ownership_function`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -4599,7 +4615,6 @@ some_integer 22 23 FullPrivilege
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -4696,7 +4711,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -4734,6 +4748,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -4754,27 +4769,27 @@ text.code {
 
     <g id="code">
         <text class="code" x="20" y="90"> fn main() { </text>
-        <text class="code" x="20" y="110">     let <tspan data-hash="1">s</tspan> = <tspan data-hash="5">String::from</tspan>("hello");  // s comes into scope </text>
+        <text class="code" x="20" y="110">     let <tspan data-hash="1">s</tspan> = String::from("hello");  // s comes into scope </text>
         <text class="code" x="20" y="130">  </text>
-        <text class="code" x="20" y="150">     <tspan data-hash="6">takes_ownership</tspan>(<tspan data-hash="1">s</tspan>);             // s's value moves into the function... </text>
+        <text class="code" x="20" y="150">     takes_ownership(<tspan data-hash="1">s</tspan>);             // s's value moves into the function... </text>
         <text class="code" x="20" y="170">                                     // ... and so is no longer valid here </text>
         <text class="code" x="20" y="190">  </text>
         <text class="code" x="20" y="210">     let <tspan data-hash="2">x</tspan> = 5;                      // x comes into scope </text>
         <text class="code" x="20" y="230">  </text>
-        <text class="code" x="20" y="250">     <tspan data-hash="7">makes_copy</tspan>(<tspan data-hash="2">x</tspan>);                  // x would move into the function, </text>
+        <text class="code" x="20" y="250">     makes_copy(<tspan data-hash="2">x</tspan>);                  // x would move into the function, </text>
         <text class="code" x="20" y="270">                                     // but i32 is Copy, so it’s okay to still </text>
         <text class="code" x="20" y="290">                                     // use x afterward </text>
         <text class="code" x="20" y="310">  </text>
         <text class="code" x="20" y="330"> } // Here, x goes out of scope, then s. But because s's value was moved, nothing </text>
         <text class="code" x="20" y="350">   // special happens. </text>
         <text class="code" x="20" y="370">  </text>
-        <text class="code" x="20" y="390"> fn <tspan data-hash="6">takes_ownership</tspan>(<tspan data-hash="3">some_string</tspan>: String) { // some_string comes into scope </text>
-        <text class="code" x="20" y="410">     <tspan data-hash="8">println!</tspan>("{}", <tspan data-hash="3">some_string</tspan>); </text>
+        <text class="code" x="20" y="390"> fn takes_ownership(<tspan data-hash="3">some_string</tspan>: String) { // some_string comes into scope </text>
+        <text class="code" x="20" y="410">     println!("{}", <tspan data-hash="3">some_string</tspan>); </text>
         <text class="code" x="20" y="430"> } // Here, some_string goes out of scope and `drop` is called. The backing </text>
         <text class="code" x="20" y="450">   // memory is freed. </text>
         <text class="code" x="20" y="470">  </text>
-        <text class="code" x="20" y="490"> fn <tspan data-hash="7">makes_copy</tspan>(<tspan data-hash="4">some_integer</tspan>: i32) { // some_integer comes into scope </text>
-        <text class="code" x="20" y="510">     <tspan data-hash="8">println!</tspan>("{}", <tspan data-hash="4">some_integer</tspan>); </text>
+        <text class="code" x="20" y="490"> fn makes_copy(<tspan data-hash="4">some_integer</tspan>: i32) { // some_integer comes into scope </text>
+        <text class="code" x="20" y="510">     println!("{}", <tspan data-hash="4">some_integer</tspan>); </text>
         <text class="code" x="20" y="530"> } // Here, some_integer goes out of scope. Nothing special happens. </text>
     </g>
 
@@ -4793,7 +4808,6 @@ text.code {
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -4890,7 +4904,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -4928,6 +4941,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -4956,10 +4970,10 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="350" y="90" data-hash="4"><title>some_integer, immutable</title>some_integer</text>
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s, immutable</title>s</text>
-        <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>x, immutable</title>x</text>
-        <text style="text-anchor:middle" class="code" x="240" y="90" data-hash="3"><title>some_string, immutable</title>some_string</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s, immutable">s</text>
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="x, immutable">x</text>
+        <text x="240" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="some_string, immutable">some_string</text>
+        <text x="350" y="90" style="text-anchor:middle" data-hash="4" class="code tooltip-trigger" data-tooltip-text="some_integer, immutable">some_integer</text>
     </g>
 
     <g id="timelines">
@@ -5001,16 +5015,19 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
-        <text x="35" y="150" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="takes_ownership()">f</text>        <polyline stroke-width="5" stroke="gray" points="65,145 55,145 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from s to the parameter of takes_ownership()"/>
-        <text x="105" y="250" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="makes_copy()">f</text>        <polyline stroke-width="5" stroke="gray" points="135,245 125,245 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from x to the parameter of makes_copy()"/>
+        <text x="96" y="110" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
+        <text x="35" y="150" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="takes_ownership()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="65,145 55,145 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from s to the parameter of takes_ownership()"/>
+        <text x="105" y="250" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="makes_copy()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="135,245 125,245 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from x to the parameter of makes_copy()"/>
         <use xlink:href="#functionDot" data-hash="3" x="240" y="405" class="tooltip-trigger" data-tooltip-text="println!() reads from some_string"/>
         <use xlink:href="#functionDot" data-hash="4" x="350" y="505" class="tooltip-trigger" data-tooltip-text="println!() reads from some_integer"/>
     </g>
    
    <g id="tooltip" visibility="hidden">
-		<rect x="2" y="2" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
-		<text x="10" y="7" fill="white" font-size="12px" width="10px">Tooltip</text>
+		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
     </g>
 
     <script type="text/ecmascript"><![CDATA[
@@ -5025,19 +5042,23 @@ text.code {
 				triggers[i].addEventListener('mousemove', showTooltip);
 				triggers[i].addEventListener('mouseout', hideTooltip);
 			}
+
 			function showTooltip(evt) {
+                <!-- track mouse movement -->
 				var CTM = svg.getScreenCTM();
 				var x = (evt.clientX - CTM.e + 10) / CTM.a;
-				var y = (evt.clientY - CTM.f + 10) / CTM.d;
-				tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				var y = (evt.clientY - CTM.f + 15) / CTM.d;
+                tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
 				tooltip.setAttributeNS(null, "visibility", "visible");
 				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
-
+                
+                <!-- adjust box dimensions -->
                 var length = tooltipText.getComputedTextLength();
 				for (var i = 0; i < tooltipRects.length; i++) {
-					tooltipRects[i].setAttribute("width", length + 15);
+					tooltipRects[i].setAttribute("width", length + 10);
 				}
 			}
+
 			function hideTooltip(evt) {
 				tooltip.setAttributeNS(null, "visibility", "hidden");
 			}
@@ -5071,39 +5092,39 @@ warning: unused variable: `to_ro`
     |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:495:96
+   --> src/data.rs:488:96
     |
-495 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
     |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:509:97
+   --> src/data.rs:502:97
     |
-509 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
     |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:532:93
+   --> src/data.rs:525:93
     |
-532 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
     |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:534:40
+   --> src/data.rs:527:40
     |
-534 |             (_, Event::Duplicate { to: ro }) =>
+527 |             (_, Event::Duplicate { to: ro }) =>
     |                                        ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `timeline`
-   --> src/data.rs:559:18
+   --> src/data.rs:552:18
     |
-559 |             Some(timeline) => {
+552 |             Some(timeline) => {
     |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
 
 warning: unused variable: `line_number`
-   --> src/data.rs:557:37
+   --> src/data.rs:550:37
     |
-557 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
     |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
 
 warning: function is never used: `render_arrows_string`
@@ -5115,17 +5136,16 @@ warning: function is never used: `render_arrows_string`
     = note: `#[warn(dead_code)]` on by default
 
 warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:497:62
+   --> src/data.rs:490:62
     |
-497 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
     |                                                              ----------^^^^^^^^^^
     |                                                              |
     |                                                              help: remove this
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.77s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.06s
      Running `target/debug/examples/return_values`
 s1 1 2 OutOfScope
 s1 2 10 FullPrivilege
@@ -5152,7 +5172,6 @@ a_string 28 29 ResourceMoved
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -5249,7 +5268,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -5287,6 +5305,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -5307,18 +5326,18 @@ text.code {
 
     <g id="code">
         <text class="code" x="20" y="90"> fn main() { </text>
-        <text class="code" x="20" y="110">     let <tspan data-hash="1">s1</tspan> = <tspan data-hash="6">gives_ownership</tspan>();         // gives_ownership moves its return </text>
+        <text class="code" x="20" y="110">     let <tspan data-hash="1">s1</tspan> = gives_ownership();         // gives_ownership moves its return </text>
         <text class="code" x="20" y="130">                                         // value into s1 </text>
         <text class="code" x="20" y="150">  </text>
         <text class="code" x="20" y="170">     let <tspan data-hash="2">s2</tspan> = String::from("hello");     // s2 comes into scope </text>
         <text class="code" x="20" y="190">  </text>
-        <text class="code" x="20" y="210">     let <tspan data-hash="3">s3</tspan> = <tspan data-hash="7">takes_and_gives_back</tspan>(<tspan data-hash="2">s2</tspan>);  // s2 is moved into </text>
+        <text class="code" x="20" y="210">     let <tspan data-hash="3">s3</tspan> = takes_and_gives_back(<tspan data-hash="2">s2</tspan>);  // s2 is moved into </text>
         <text class="code" x="20" y="230">                                         // takes_and_gives_back, which also </text>
         <text class="code" x="20" y="250">                                         // moves its return value into s3 </text>
         <text class="code" x="20" y="270"> } // Here, s3 goes out of scope and is dropped. s2 goes out of scope but was </text>
         <text class="code" x="20" y="290">   // moved, so nothing happens. s1 goes out of scope and is dropped. </text>
         <text class="code" x="20" y="310">  </text>
-        <text class="code" x="20" y="330"> fn <tspan data-hash="6">gives_ownership</tspan>() -> String {             // gives_ownership will move its </text>
+        <text class="code" x="20" y="330"> fn gives_ownership() -> String {             // gives_ownership will move its </text>
         <text class="code" x="20" y="350">                                              // return value into the function </text>
         <text class="code" x="20" y="370">                                              // that calls it </text>
         <text class="code" x="20" y="390">  </text>
@@ -5330,7 +5349,7 @@ text.code {
         <text class="code" x="20" y="510"> } </text>
         <text class="code" x="20" y="530">  </text>
         <text class="code" x="20" y="550"> // takes_and_gives_back will take a String and return one </text>
-        <text class="code" x="20" y="570"> fn <tspan data-hash="7">takes_and_gives_back</tspan>(<tspan data-hash="5">a_string</tspan>: String) -> String { // a_string comes into </text>
+        <text class="code" x="20" y="570"> fn takes_and_gives_back(<tspan data-hash="5">a_string</tspan>: String) -> String { // a_string comes into </text>
         <text class="code" x="20" y="590">                                                       // scope </text>
         <text class="code" x="20" y="610">  </text>
         <text class="code" x="20" y="630">     <tspan data-hash="5">a_string</tspan>  // a_string is returned and moves out to the calling function </text>
@@ -5352,7 +5371,6 @@ text.code {
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -5449,7 +5467,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -5487,6 +5504,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -5515,11 +5533,11 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="310" y="90" data-hash="4"><title>some_string, immutable</title>some_string</text>
-        <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>s2, immutable</title>s2</text>
-        <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>s3, immutable</title>s3</text>
-        <text style="text-anchor:middle" class="code" x="380" y="90" data-hash="5"><title>a_string, immutable</title>a_string</text>
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
+        <text x="210" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="s3, immutable">s3</text>
+        <text x="310" y="90" style="text-anchor:middle" data-hash="4" class="code tooltip-trigger" data-tooltip-text="some_string, immutable">some_string</text>
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="s2, immutable">s2</text>
+        <text x="380" y="90" style="text-anchor:middle" data-hash="5" class="code tooltip-trigger" data-tooltip-text="a_string, immutable">a_string</text>
     </g>
 
     <g id="timelines">
@@ -5552,14 +5570,17 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="gives_ownership()">f</text>        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of gives_ownership() to s1"/>
-        <text x="105" y="210" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="takes_and_gives_back()">f</text>        <polyline stroke-width="5" stroke="gray" points="135,205 125,205 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from s2 to the parameter of takes_and_gives_back()"/>
-        <text x="236" y="210" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="takes_and_gives_back()">f</text>        <polyline stroke-width="5" stroke="gray" points="233,205 223,205 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of takes_and_gives_back() to s3"/>
+        <text x="96" y="110" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="gives_ownership()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of gives_ownership() to s1"/>
+        <text x="105" y="210" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="takes_and_gives_back()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="135,205 125,205 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from s2 to the parameter of takes_and_gives_back()"/>
+        <text x="236" y="210" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="takes_and_gives_back()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="233,205 223,205 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of takes_and_gives_back() to s3"/>
     </g>
    
    <g id="tooltip" visibility="hidden">
-		<rect x="2" y="2" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
-		<text x="10" y="7" fill="white" font-size="12px" width="10px">Tooltip</text>
+		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
     </g>
 
     <script type="text/ecmascript"><![CDATA[
@@ -5574,19 +5595,23 @@ text.code {
 				triggers[i].addEventListener('mousemove', showTooltip);
 				triggers[i].addEventListener('mouseout', hideTooltip);
 			}
+
 			function showTooltip(evt) {
+                <!-- track mouse movement -->
 				var CTM = svg.getScreenCTM();
 				var x = (evt.clientX - CTM.e + 10) / CTM.a;
-				var y = (evt.clientY - CTM.f + 10) / CTM.d;
-				tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				var y = (evt.clientY - CTM.f + 15) / CTM.d;
+                tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
 				tooltip.setAttributeNS(null, "visibility", "visible");
 				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
-
+                
+                <!-- adjust box dimensions -->
                 var length = tooltipText.getComputedTextLength();
 				for (var i = 0; i < tooltipRects.length; i++) {
-					tooltipRects[i].setAttribute("width", length + 15);
+					tooltipRects[i].setAttribute("width", length + 10);
 				}
 			}
+
 			function hideTooltip(evt) {
 				tooltip.setAttributeNS(null, "visibility", "hidden");
 			}
@@ -5620,39 +5645,39 @@ warning: unused variable: `to_ro`
     |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:495:96
+   --> src/data.rs:488:96
     |
-495 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
     |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:509:97
+   --> src/data.rs:502:97
     |
-509 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
     |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:532:93
+   --> src/data.rs:525:93
     |
-532 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
     |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:534:40
+   --> src/data.rs:527:40
     |
-534 |             (_, Event::Duplicate { to: ro }) =>
+527 |             (_, Event::Duplicate { to: ro }) =>
     |                                        ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `timeline`
-   --> src/data.rs:559:18
+   --> src/data.rs:552:18
     |
-559 |             Some(timeline) => {
+552 |             Some(timeline) => {
     |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
 
 warning: unused variable: `line_number`
-   --> src/data.rs:557:37
+   --> src/data.rs:550:37
     |
-557 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
     |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
 
 warning: function is never used: `render_arrows_string`
@@ -5664,17 +5689,16 @@ warning: function is never used: `render_arrows_string`
     = note: `#[warn(dead_code)]` on by default
 
 warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:497:62
+   --> src/data.rs:490:62
     |
-497 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
     |                                                              ----------^^^^^^^^^^
     |                                                              |
     |                                                              help: remove this
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.80s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.06s
      Running `target/debug/examples/return_tuple`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -5706,7 +5730,6 @@ length 10 12 FullPrivilege
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -5803,7 +5826,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -5841,6 +5863,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -5861,15 +5884,15 @@ text.code {
 
     <g id="code">
         <text class="code" x="20" y="90"> fn main() { </text>
-        <text class="code" x="20" y="110">     let <tspan data-hash="1">s1</tspan> = <tspan data-hash="7">String::from</tspan>("hello"); </text>
+        <text class="code" x="20" y="110">     let <tspan data-hash="1">s1</tspan> = String::from("hello"); </text>
         <text class="code" x="20" y="130">  </text>
-        <text class="code" x="20" y="150">     let (<tspan data-hash="3">s2</tspan>, <tspan data-hash="2">len</tspan>) = <tspan data-hash="6">calculate_length</tspan>(<tspan data-hash="1">&amp;s1</tspan>); </text>
+        <text class="code" x="20" y="150">     let (<tspan data-hash="3">s2</tspan>, <tspan data-hash="2">len</tspan>) = calculate_length(<tspan data-hash="1">&amp;s1</tspan>); </text>
         <text class="code" x="20" y="170">      </text>
-        <text class="code" x="20" y="190">     <tspan data-hash="9">println!</tspan>("The length of '{}' is {}.", <tspan data-hash="3">s2</tspan>, <tspan data-hash="2">len</tspan>); </text>
+        <text class="code" x="20" y="190">     println!("The length of '{}' is {}.", <tspan data-hash="3">s2</tspan>, <tspan data-hash="2">len</tspan>); </text>
         <text class="code" x="20" y="210"> } </text>
         <text class="code" x="20" y="230">  </text>
-        <text class="code" x="20" y="250"> fn <tspan data-hash="6">calculate_length</tspan>(<tspan data-hash="4">s</tspan>: String) -> (String, usize) { </text>
-        <text class="code" x="20" y="270">     let <tspan data-hash="5">length</tspan> = <tspan data-hash="4">s</tspan>.<tspan data-hash="8">len</tspan>(); // len() returns the length of a String </text>
+        <text class="code" x="20" y="250"> fn calculate_length(<tspan data-hash="4">s</tspan>: String) -> (String, usize) { </text>
+        <text class="code" x="20" y="270">     let <tspan data-hash="5">length</tspan> = <tspan data-hash="4">s</tspan>.len(); // len() returns the length of a String </text>
         <text class="code" x="20" y="290">  </text>
         <text class="code" x="20" y="310">     (<tspan data-hash="4">s</tspan>, <tspan data-hash="5">length</tspan>) </text>
         <text class="code" x="20" y="330"> } </text>
@@ -5890,7 +5913,6 @@ text.code {
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -5987,7 +6009,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -6025,6 +6046,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -6053,11 +6075,11 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="350" y="90" data-hash="5"><title>length, immutable</title>length</text>
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
-        <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>s2, immutable</title>s2</text>
-        <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>len, immutable</title>len</text>
-        <text style="text-anchor:middle" class="code" x="280" y="90" data-hash="4"><title>s, immutable</title>s</text>
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="len, immutable">len</text>
+        <text x="280" y="90" style="text-anchor:middle" data-hash="4" class="code tooltip-trigger" data-tooltip-text="s, immutable">s</text>
+        <text x="350" y="90" style="text-anchor:middle" data-hash="5" class="code tooltip-trigger" data-tooltip-text="length, immutable">length</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
+        <text x="210" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="s2, immutable">s2</text>
     </g>
 
     <g id="timelines">
@@ -6111,19 +6133,23 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s1"/>
+        <text x="96" y="110" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s1"/>
         <use xlink:href="#functionDot" data-hash="1" x="70" y="145" class="tooltip-trigger" data-tooltip-text="calculate_length() reads from s1"/>
-        <text x="236" y="150" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="calculate_length()">f</text>        <polyline stroke-width="5" stroke="gray" points="233,145 223,145 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of calculate_length() to s2"/>
-        <text x="166" y="150" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="calculate_length()">f</text>        <polyline stroke-width="5" stroke="gray" points="163,145 153,145 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of calculate_length() to len"/>
+        <text x="236" y="150" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="calculate_length()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="233,145 223,145 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of calculate_length() to s2"/>
+        <text x="166" y="150" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="calculate_length()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="163,145 153,145 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of calculate_length() to len"/>
         <use xlink:href="#functionDot" data-hash="3" x="210" y="185" class="tooltip-trigger" data-tooltip-text="println!() reads from s2"/>
         <use xlink:href="#functionDot" data-hash="2" x="140" y="185" class="tooltip-trigger" data-tooltip-text="println!() reads from len"/>
         <use xlink:href="#functionDot" data-hash="4" x="280" y="265" class="tooltip-trigger" data-tooltip-text="len() reads from s"/>
-        <text x="376" y="270" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="len()">f</text>        <polyline stroke-width="5" stroke="gray" points="373,265 363,265 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of len() to length"/>
+        <text x="376" y="270" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="len()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="373,265 363,265 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of len() to length"/>
     </g>
    
    <g id="tooltip" visibility="hidden">
-		<rect x="2" y="2" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
-		<text x="10" y="7" fill="white" font-size="12px" width="10px">Tooltip</text>
+		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
     </g>
 
     <script type="text/ecmascript"><![CDATA[
@@ -6138,19 +6164,23 @@ text.code {
 				triggers[i].addEventListener('mousemove', showTooltip);
 				triggers[i].addEventListener('mouseout', hideTooltip);
 			}
+
 			function showTooltip(evt) {
+                <!-- track mouse movement -->
 				var CTM = svg.getScreenCTM();
 				var x = (evt.clientX - CTM.e + 10) / CTM.a;
-				var y = (evt.clientY - CTM.f + 10) / CTM.d;
-				tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				var y = (evt.clientY - CTM.f + 15) / CTM.d;
+                tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
 				tooltip.setAttributeNS(null, "visibility", "visible");
 				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
-
+                
+                <!-- adjust box dimensions -->
                 var length = tooltipText.getComputedTextLength();
 				for (var i = 0; i < tooltipRects.length; i++) {
-					tooltipRects[i].setAttribute("width", length + 15);
+					tooltipRects[i].setAttribute("width", length + 10);
 				}
 			}
+
 			function hideTooltip(evt) {
 				tooltip.setAttributeNS(null, "visibility", "hidden");
 			}
@@ -6184,39 +6214,39 @@ warning: unused variable: `to_ro`
     |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:495:96
+   --> src/data.rs:488:96
     |
-495 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
     |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:509:97
+   --> src/data.rs:502:97
     |
-509 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
     |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:532:93
+   --> src/data.rs:525:93
     |
-532 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
     |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:534:40
+   --> src/data.rs:527:40
     |
-534 |             (_, Event::Duplicate { to: ro }) =>
+527 |             (_, Event::Duplicate { to: ro }) =>
     |                                        ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `timeline`
-   --> src/data.rs:559:18
+   --> src/data.rs:552:18
     |
-559 |             Some(timeline) => {
+552 |             Some(timeline) => {
     |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
 
 warning: unused variable: `line_number`
-   --> src/data.rs:557:37
+   --> src/data.rs:550:37
     |
-557 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
     |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
 
 warning: function is never used: `render_arrows_string`
@@ -6228,17 +6258,16 @@ warning: function is never used: `render_arrows_string`
     = note: `#[warn(dead_code)]` on by default
 
 warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:497:62
+   --> src/data.rs:490:62
     |
-497 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
     |                                                              ----------^^^^^^^^^^
     |                                                              |
     |                                                              help: remove this
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.67s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.07s
      Running `target/debug/examples/pass_reference`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -6262,7 +6291,6 @@ s 10 11 FullPrivilege
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -6359,7 +6387,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -6397,6 +6424,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -6417,14 +6445,14 @@ text.code {
 
     <g id="code">
         <text class="code" x="20" y="90"> fn main() { </text>
-        <text class="code" x="20" y="110">     let <tspan data-hash="1">s1</tspan> = <tspan data-hash="5">String::from</tspan>("hello"); </text>
+        <text class="code" x="20" y="110">     let <tspan data-hash="1">s1</tspan> = String::from("hello"); </text>
         <text class="code" x="20" y="130">  </text>
-        <text class="code" x="20" y="150">     let <tspan data-hash="2">len</tspan> = <tspan data-hash="4">calculate_length</tspan>(<tspan data-hash="1">&amp;s1</tspan>); </text>
+        <text class="code" x="20" y="150">     let <tspan data-hash="2">len</tspan> = calculate_length(<tspan data-hash="1">&amp;s1</tspan>); </text>
         <text class="code" x="20" y="170">  </text>
         <text class="code" x="20" y="190">     println!("The length of '{}' is {}.", <tspan data-hash="1">s1</tspan>, <tspan data-hash="2">len</tspan>); </text>
         <text class="code" x="20" y="210"> } </text>
         <text class="code" x="20" y="230">  </text>
-        <text class="code" x="20" y="250"> fn <tspan data-hash="4">calculate_length</tspan>(<tspan data-hash="3">s</tspan>: &amp;String) -> usize { </text>
+        <text class="code" x="20" y="250"> fn calculate_length(<tspan data-hash="3">s</tspan>: &amp;String) -> usize { </text>
         <text class="code" x="20" y="270">     <tspan data-hash="3">s</tspan>.len() </text>
         <text class="code" x="20" y="290"> } </text>
     </g>
@@ -6444,7 +6472,6 @@ text.code {
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -6541,7 +6568,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -6579,6 +6605,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -6607,9 +6634,9 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>len, immutable</title>len</text>
-        <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>s, immutable</title>s</text>
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="len, immutable">len</text>
+        <text x="210" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="s, immutable">s</text>
     </g>
 
     <g id="timelines">
@@ -6643,15 +6670,17 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s1"/>
+        <text x="96" y="110" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s1"/>
         <use xlink:href="#functionDot" data-hash="1" x="70" y="145" class="tooltip-trigger" data-tooltip-text="calculate_length() reads from s1"/>
-        <text x="166" y="150" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="calculate_length()">f</text>        <polyline stroke-width="5" stroke="gray" points="163,145 153,145 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of calculate_length() to len"/>
+        <text x="166" y="150" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="calculate_length()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="163,145 153,145 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of calculate_length() to len"/>
         <use xlink:href="#functionDot" data-hash="3" x="210" y="265" class="tooltip-trigger" data-tooltip-text="len() reads from s"/>
     </g>
    
    <g id="tooltip" visibility="hidden">
-		<rect x="2" y="2" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
-		<text x="10" y="7" fill="white" font-size="12px" width="10px">Tooltip</text>
+		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
     </g>
 
     <script type="text/ecmascript"><![CDATA[
@@ -6666,19 +6695,23 @@ text.code {
 				triggers[i].addEventListener('mousemove', showTooltip);
 				triggers[i].addEventListener('mouseout', hideTooltip);
 			}
+
 			function showTooltip(evt) {
+                <!-- track mouse movement -->
 				var CTM = svg.getScreenCTM();
 				var x = (evt.clientX - CTM.e + 10) / CTM.a;
-				var y = (evt.clientY - CTM.f + 10) / CTM.d;
-				tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				var y = (evt.clientY - CTM.f + 15) / CTM.d;
+                tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
 				tooltip.setAttributeNS(null, "visibility", "visible");
 				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
-
+                
+                <!-- adjust box dimensions -->
                 var length = tooltipText.getComputedTextLength();
 				for (var i = 0; i < tooltipRects.length; i++) {
-					tooltipRects[i].setAttribute("width", length + 15);
+					tooltipRects[i].setAttribute("width", length + 10);
 				}
 			}
+
 			function hideTooltip(evt) {
 				tooltip.setAttributeNS(null, "visibility", "hidden");
 			}
@@ -6712,39 +6745,39 @@ warning: unused variable: `to_ro`
     |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:495:96
+   --> src/data.rs:488:96
     |
-495 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
     |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:509:97
+   --> src/data.rs:502:97
     |
-509 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
     |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:532:93
+   --> src/data.rs:525:93
     |
-532 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
     |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:534:40
+   --> src/data.rs:527:40
     |
-534 |             (_, Event::Duplicate { to: ro }) =>
+527 |             (_, Event::Duplicate { to: ro }) =>
     |                                        ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `timeline`
-   --> src/data.rs:559:18
+   --> src/data.rs:552:18
     |
-559 |             Some(timeline) => {
+552 |             Some(timeline) => {
     |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
 
 warning: unused variable: `line_number`
-   --> src/data.rs:557:37
+   --> src/data.rs:550:37
     |
-557 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
     |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
 
 warning: function is never used: `render_arrows_string`
@@ -6756,17 +6789,16 @@ warning: function is never used: `render_arrows_string`
     = note: `#[warn(dead_code)]` on by default
 
 warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:497:62
+   --> src/data.rs:490:62
     |
-497 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
     |                                                              ----------^^^^^^^^^^
     |                                                              |
     |                                                              help: remove this
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.70s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.07s
      Running `target/debug/examples/acquire_from_function`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -6784,7 +6816,6 @@ len 1 4 OutOfScope
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -6881,7 +6912,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -6919,6 +6949,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -6939,9 +6970,9 @@ text.code {
 
     <g id="code">
         <text class="code" x="20" y="90">  </text>
-        <text class="code" x="20" y="110"> let <tspan data-hash="1">s1</tspan> = <tspan data-hash="4">String::from</tspan>("hello"); </text>
+        <text class="code" x="20" y="110"> let <tspan data-hash="1">s1</tspan> = String::from("hello"); </text>
         <text class="code" x="20" y="130">  </text>
-        <text class="code" x="20" y="150"> let <tspan data-hash="2">len</tspan> = <tspan data-hash="3">calculate_length</tspan>(&amp;<tspan data-hash="1">s1</tspan>); </text>
+        <text class="code" x="20" y="150"> let <tspan data-hash="2">len</tspan> = calculate_length(<tspan data-hash="1">&amp; s1</tspan>); </text>
     </g>
 
    
@@ -6959,7 +6990,6 @@ text.code {
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -7056,7 +7086,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -7094,6 +7123,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -7122,8 +7152,8 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s1, immutable</title>s1</text>
-        <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>len, immutable</title>len</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="len, immutable">len</text>
     </g>
 
     <g id="timelines">
@@ -7141,14 +7171,16 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s1"/>
+        <text x="96" y="110" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s1"/>
         <use xlink:href="#functionDot" data-hash="1" x="70" y="145" class="tooltip-trigger" data-tooltip-text="calculate_length() reads from s1"/>
-        <text x="166" y="150" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="calculate_length()">f</text>        <polyline stroke-width="5" stroke="gray" points="163,145 153,145 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of calculate_length() to len"/>
+        <text x="166" y="150" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="calculate_length()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="163,145 153,145 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of calculate_length() to len"/>
     </g>
    
    <g id="tooltip" visibility="hidden">
-		<rect x="2" y="2" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
-		<text x="10" y="7" fill="white" font-size="12px" width="10px">Tooltip</text>
+		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
     </g>
 
     <script type="text/ecmascript"><![CDATA[
@@ -7163,19 +7195,23 @@ text.code {
 				triggers[i].addEventListener('mousemove', showTooltip);
 				triggers[i].addEventListener('mouseout', hideTooltip);
 			}
+
 			function showTooltip(evt) {
+                <!-- track mouse movement -->
 				var CTM = svg.getScreenCTM();
 				var x = (evt.clientX - CTM.e + 10) / CTM.a;
-				var y = (evt.clientY - CTM.f + 10) / CTM.d;
-				tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				var y = (evt.clientY - CTM.f + 15) / CTM.d;
+                tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
 				tooltip.setAttributeNS(null, "visibility", "visible");
 				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
-
+                
+                <!-- adjust box dimensions -->
                 var length = tooltipText.getComputedTextLength();
 				for (var i = 0; i < tooltipRects.length; i++) {
-					tooltipRects[i].setAttribute("width", length + 15);
+					tooltipRects[i].setAttribute("width", length + 10);
 				}
 			}
+
 			function hideTooltip(evt) {
 				tooltip.setAttributeNS(null, "visibility", "hidden");
 			}
@@ -7209,39 +7245,39 @@ warning: unused variable: `to_ro`
     |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:495:96
+   --> src/data.rs:488:96
     |
-495 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
     |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:509:97
+   --> src/data.rs:502:97
     |
-509 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
     |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:532:93
+   --> src/data.rs:525:93
     |
-532 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
     |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:534:40
+   --> src/data.rs:527:40
     |
-534 |             (_, Event::Duplicate { to: ro }) =>
+527 |             (_, Event::Duplicate { to: ro }) =>
     |                                        ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `timeline`
-   --> src/data.rs:559:18
+   --> src/data.rs:552:18
     |
-559 |             Some(timeline) => {
+552 |             Some(timeline) => {
     |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
 
 warning: unused variable: `line_number`
-   --> src/data.rs:557:37
+   --> src/data.rs:550:37
     |
-557 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
     |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
 
 warning: function is never used: `render_arrows_string`
@@ -7253,17 +7289,16 @@ warning: function is never used: `render_arrows_string`
     = note: `#[warn(dead_code)]` on by default
 
 warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:497:62
+   --> src/data.rs:490:62
     |
-497 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
     |                                                              ----------^^^^^^^^^^
     |                                                              |
     |                                                              help: remove this
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.51s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.07s
      Running `target/debug/examples/safely_out_of_scope`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
@@ -7281,7 +7316,6 @@ s 3 4 FullPrivilege
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -7378,7 +7412,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -7416,6 +7449,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -7436,8 +7470,8 @@ text.code {
 
     <g id="code">
         <text class="code" x="20" y="90">  </text>
-        <text class="code" x="20" y="110"> fn <tspan data-hash="3">calculate_length</tspan>(<tspan data-hash="1">s</tspan>: &amp;String) -> usize { </text>
-        <text class="code" x="20" y="130">     <tspan data-hash="1">s</tspan>.<tspan data-hash="2">len</tspan>() </text>
+        <text class="code" x="20" y="110"> fn calculate_length(<tspan data-hash="1">s</tspan>: &amp;String) -> usize { </text>
+        <text class="code" x="20" y="130">     <tspan data-hash="1">s</tspan>.len() </text>
         <text class="code" x="20" y="150"> } // Here, s goes out of scope. But because it does not have ownership of what </text>
         <text class="code" x="20" y="170">   // it refers to, nothing happens. </text>
     </g>
@@ -7457,7 +7491,6 @@ text.code {
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -7554,7 +7587,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -7592,6 +7624,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -7620,7 +7653,7 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s, immutable</title>s</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s, immutable">s</text>
     </g>
 
     <g id="timelines">
@@ -7644,8 +7677,8 @@ text.code {
     </g>
    
    <g id="tooltip" visibility="hidden">
-		<rect x="2" y="2" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
-		<text x="10" y="7" fill="white" font-size="12px" width="10px">Tooltip</text>
+		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
     </g>
 
     <script type="text/ecmascript"><![CDATA[
@@ -7660,19 +7693,23 @@ text.code {
 				triggers[i].addEventListener('mousemove', showTooltip);
 				triggers[i].addEventListener('mouseout', hideTooltip);
 			}
+
 			function showTooltip(evt) {
+                <!-- track mouse movement -->
 				var CTM = svg.getScreenCTM();
 				var x = (evt.clientX - CTM.e + 10) / CTM.a;
-				var y = (evt.clientY - CTM.f + 10) / CTM.d;
-				tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				var y = (evt.clientY - CTM.f + 15) / CTM.d;
+                tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
 				tooltip.setAttributeNS(null, "visibility", "visible");
 				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
-
+                
+                <!-- adjust box dimensions -->
                 var length = tooltipText.getComputedTextLength();
 				for (var i = 0; i < tooltipRects.length; i++) {
-					tooltipRects[i].setAttribute("width", length + 15);
+					tooltipRects[i].setAttribute("width", length + 10);
 				}
 			}
+
 			function hideTooltip(evt) {
 				tooltip.setAttributeNS(null, "visibility", "hidden");
 			}
@@ -7706,39 +7743,39 @@ warning: unused variable: `to_ro`
     |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:495:96
+   --> src/data.rs:488:96
     |
-495 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
     |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:509:97
+   --> src/data.rs:502:97
     |
-509 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
     |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:532:93
+   --> src/data.rs:525:93
     |
-532 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
     |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:534:40
+   --> src/data.rs:527:40
     |
-534 |             (_, Event::Duplicate { to: ro }) =>
+527 |             (_, Event::Duplicate { to: ro }) =>
     |                                        ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `timeline`
-   --> src/data.rs:559:18
+   --> src/data.rs:552:18
     |
-559 |             Some(timeline) => {
+552 |             Some(timeline) => {
     |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
 
 warning: unused variable: `line_number`
-   --> src/data.rs:557:37
+   --> src/data.rs:550:37
     |
-557 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
     |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
 
 warning: function is never used: `render_arrows_string`
@@ -7750,17 +7787,16 @@ warning: function is never used: `render_arrows_string`
     = note: `#[warn(dead_code)]` on by default
 
 warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:497:62
+   --> src/data.rs:490:62
     |
-497 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
     |                                                              ----------^^^^^^^^^^
     |                                                              |
     |                                                              help: remove this
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.41s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.07s
      Running `target/debug/examples/mut_ref`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -7782,7 +7818,6 @@ some_string 8 9 FullPrivilege
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -7879,7 +7914,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -7917,6 +7951,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -7937,13 +7972,13 @@ text.code {
 
     <g id="code">
         <text class="code" x="20" y="90"> fn main() { </text>
-        <text class="code" x="20" y="110">     let mut <tspan data-hash="1">s</tspan> = <tspan data-hash="4">String::from</tspan>("hello"); </text>
+        <text class="code" x="20" y="110">     let mut <tspan data-hash="1">s</tspan> = String::from"hello"); </text>
         <text class="code" x="20" y="130">  </text>
-        <text class="code" x="20" y="150">     <tspan data-hash="3">change</tspan>(&amp;mut <tspan data-hash="1">s</tspan>); </text>
+        <text class="code" x="20" y="150">     change<tspan data-hash="1">(&amp;mut s</tspan>); </text>
         <text class="code" x="20" y="170"> } </text>
         <text class="code" x="20" y="190">  </text>
         <text class="code" x="20" y="210"> fn change(<tspan data-hash="2">some_string</tspan>: &amp;mut String) { </text>
-        <text class="code" x="20" y="230">     <tspan data-hash="2">some_string</tspan>.<tspan data-hash="5">push_str</tspan>(", world"); </text>
+        <text class="code" x="20" y="230">     <tspan data-hash="2">some_string</tspan>.push_str(", world"); </text>
         <text class="code" x="20" y="250"> } </text>
     </g>
 
@@ -7962,7 +7997,6 @@ text.code {
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -8059,7 +8093,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -8097,6 +8130,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -8125,8 +8159,8 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="170" y="90" data-hash="2"><title>some_string, mutable</title>some_string</text>
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s, mutable</title>s</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s, mutable">s</text>
+        <text x="170" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="some_string, mutable">some_string</text>
     </g>
 
     <g id="timelines">
@@ -8152,14 +8186,15 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of String::from() to s"/>
+        <text x="96" y="110" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of String::from() to s"/>
         <use xlink:href="#functionDot" data-hash="1" x="70" y="145" class="tooltip-trigger" data-tooltip-text="change() reads from s"/>
         <use xlink:href="#functionDot" data-hash="2" x="170" y="225" class="tooltip-trigger" data-tooltip-text="push_str() reads from some_string"/>
     </g>
    
    <g id="tooltip" visibility="hidden">
-		<rect x="2" y="2" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
-		<text x="10" y="7" fill="white" font-size="12px" width="10px">Tooltip</text>
+		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
     </g>
 
     <script type="text/ecmascript"><![CDATA[
@@ -8174,19 +8209,23 @@ text.code {
 				triggers[i].addEventListener('mousemove', showTooltip);
 				triggers[i].addEventListener('mouseout', hideTooltip);
 			}
+
 			function showTooltip(evt) {
+                <!-- track mouse movement -->
 				var CTM = svg.getScreenCTM();
 				var x = (evt.clientX - CTM.e + 10) / CTM.a;
-				var y = (evt.clientY - CTM.f + 10) / CTM.d;
-				tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				var y = (evt.clientY - CTM.f + 15) / CTM.d;
+                tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
 				tooltip.setAttributeNS(null, "visibility", "visible");
 				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
-
+                
+                <!-- adjust box dimensions -->
                 var length = tooltipText.getComputedTextLength();
 				for (var i = 0; i < tooltipRects.length; i++) {
-					tooltipRects[i].setAttribute("width", length + 15);
+					tooltipRects[i].setAttribute("width", length + 10);
 				}
 			}
+
 			function hideTooltip(evt) {
 				tooltip.setAttributeNS(null, "visibility", "hidden");
 			}
@@ -8220,39 +8259,39 @@ warning: unused variable: `to_ro`
     |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:495:96
+   --> src/data.rs:488:96
     |
-495 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
     |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:509:97
+   --> src/data.rs:502:97
     |
-509 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
     |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:532:93
+   --> src/data.rs:525:93
     |
-532 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
     |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:534:40
+   --> src/data.rs:527:40
     |
-534 |             (_, Event::Duplicate { to: ro }) =>
+527 |             (_, Event::Duplicate { to: ro }) =>
     |                                        ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `timeline`
-   --> src/data.rs:559:18
+   --> src/data.rs:552:18
     |
-559 |             Some(timeline) => {
+552 |             Some(timeline) => {
     |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
 
 warning: unused variable: `line_number`
-   --> src/data.rs:557:37
+   --> src/data.rs:550:37
     |
-557 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
     |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
 
 warning: function is never used: `render_arrows_string`
@@ -8264,17 +8303,16 @@ warning: function is never used: `render_arrows_string`
     = note: `#[warn(dead_code)]` on by default
 
 warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:497:62
+   --> src/data.rs:490:62
     |
-497 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
     |                                                              ----------^^^^^^^^^^
     |                                                              |
     |                                                              help: remove this
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.56s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.06s
      Running `target/debug/examples/scope_reference`
 s 1 2 OutOfScope
 s 2 5 FullPrivilege
@@ -8296,7 +8334,6 @@ r2 1 9 OutOfScope
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -8393,7 +8430,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -8431,6 +8467,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -8451,7 +8488,7 @@ text.code {
 
     <g id="code">
         <text class="code" x="20" y="90">  </text>
-        <text class="code" x="20" y="110"> let mut <tspan data-hash="1">s</tspan> = <tspan data-hash="4">String::from</tspan>("hello"); </text>
+        <text class="code" x="20" y="110"> let mut <tspan data-hash="1">s</tspan> = String::from("hello"); </text>
         <text class="code" x="20" y="130">  </text>
         <text class="code" x="20" y="150"> { </text>
         <text class="code" x="20" y="170">     let <tspan data-hash="2">r1</tspan> = <tspan data-hash="1">&amp;mut s</tspan>; </text>
@@ -8476,7 +8513,6 @@ text.code {
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -8573,7 +8609,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -8611,6 +8646,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -8639,9 +8675,9 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
-        <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s, mutable</title>s</text>
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="r1, immutable">r1</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s, mutable">s</text>
+        <text x="210" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="r2, immutable">r2</text>
     </g>
 
     <g id="timelines">
@@ -8663,15 +8699,16 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
+        <text x="96" y="110" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
         <polyline stroke-width="5" stroke="gray" points="70,165 130,165 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Mutable borrow from s to r1"/>
         <polyline stroke-width="5" stroke="gray" points="140,185 80,185 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Return mutably borrowed resource from r1 to s"/>
         <polyline stroke-width="5" stroke="gray" points="70,245 200,245 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Mutable borrow from s to r2"/>
     </g>
    
    <g id="tooltip" visibility="hidden">
-		<rect x="2" y="2" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
-		<text x="10" y="7" fill="white" font-size="12px" width="10px">Tooltip</text>
+		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
     </g>
 
     <script type="text/ecmascript"><![CDATA[
@@ -8686,19 +8723,23 @@ text.code {
 				triggers[i].addEventListener('mousemove', showTooltip);
 				triggers[i].addEventListener('mouseout', hideTooltip);
 			}
+
 			function showTooltip(evt) {
+                <!-- track mouse movement -->
 				var CTM = svg.getScreenCTM();
 				var x = (evt.clientX - CTM.e + 10) / CTM.a;
-				var y = (evt.clientY - CTM.f + 10) / CTM.d;
-				tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				var y = (evt.clientY - CTM.f + 15) / CTM.d;
+                tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
 				tooltip.setAttributeNS(null, "visibility", "visible");
 				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
-
+                
+                <!-- adjust box dimensions -->
                 var length = tooltipText.getComputedTextLength();
 				for (var i = 0; i < tooltipRects.length; i++) {
-					tooltipRects[i].setAttribute("width", length + 15);
+					tooltipRects[i].setAttribute("width", length + 10);
 				}
 			}
+
 			function hideTooltip(evt) {
 				tooltip.setAttributeNS(null, "visibility", "hidden");
 			}
@@ -8732,39 +8773,39 @@ warning: unused variable: `to_ro`
     |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:495:96
+   --> src/data.rs:488:96
     |
-495 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
     |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:509:97
+   --> src/data.rs:502:97
     |
-509 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
     |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:532:93
+   --> src/data.rs:525:93
     |
-532 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
     |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:534:40
+   --> src/data.rs:527:40
     |
-534 |             (_, Event::Duplicate { to: ro }) =>
+527 |             (_, Event::Duplicate { to: ro }) =>
     |                                        ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `timeline`
-   --> src/data.rs:559:18
+   --> src/data.rs:552:18
     |
-559 |             Some(timeline) => {
+552 |             Some(timeline) => {
     |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
 
 warning: unused variable: `line_number`
-   --> src/data.rs:557:37
+   --> src/data.rs:550:37
     |
-557 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
     |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
 
 warning: function is never used: `render_arrows_string`
@@ -8776,17 +8817,16 @@ warning: function is never used: `render_arrows_string`
     = note: `#[warn(dead_code)]` on by default
 
 warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:497:62
+   --> src/data.rs:490:62
     |
-497 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
     |                                                              ----------^^^^^^^^^^
     |                                                              |
     |                                                              help: remove this
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.45s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.06s
      Running `target/debug/examples/shared_and_unique_borrow`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -8823,7 +8863,6 @@ r3 10 12 OutOfScope
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -8920,7 +8959,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -8958,6 +8996,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -8978,15 +9017,15 @@ text.code {
 
     <g id="code">
         <text class="code" x="20" y="90"> fn main(){ </text>
-        <text class="code" x="20" y="110">     let mut <tspan data-hash="1">s</tspan> = <tspan data-hash="5">String::from</tspan>("hello"); </text>
+        <text class="code" x="20" y="110">     let mut <tspan data-hash="1">s</tspan> = String::from("hello"); </text>
         <text class="code" x="20" y="130">  </text>
         <text class="code" x="20" y="150">     let <tspan data-hash="2">r1</tspan> = <tspan data-hash="1">&amp;s</tspan>; // no problem </text>
         <text class="code" x="20" y="170">     let <tspan data-hash="3">r2</tspan> = <tspan data-hash="1">&amp;s</tspan>; // no problem </text>
-        <text class="code" x="20" y="190">     <tspan data-hash="6">println!</tspan>("{} and {}", <tspan data-hash="2">r1</tspan>, <tspan data-hash="3">r2</tspan>); </text>
+        <text class="code" x="20" y="190">     println!("{} and {}", <tspan data-hash="2">r1</tspan>, <tspan data-hash="3">r2</tspan>); </text>
         <text class="code" x="20" y="210">     // <tspan data-hash="2">r1</tspan> and <tspan data-hash="3">r2</tspan> are no longer used after this point </text>
         <text class="code" x="20" y="230">  </text>
         <text class="code" x="20" y="250">     let <tspan data-hash="4">r3</tspan> = <tspan data-hash="1">&amp;mut s</tspan>; // no problem </text>
-        <text class="code" x="20" y="270">     <tspan data-hash="6">println!</tspan>("{}", <tspan data-hash="4">r3</tspan>); </text>
+        <text class="code" x="20" y="270">     println!("{}", <tspan data-hash="4">r3</tspan>); </text>
         <text class="code" x="20" y="290">  </text>
         <text class="code" x="20" y="310"> } </text>
     </g>
@@ -9006,7 +9045,6 @@ text.code {
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -9103,7 +9141,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -9141,6 +9178,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -9169,10 +9207,10 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s, mutable</title>s</text>
-        <text style="text-anchor:middle" class="code" x="280" y="90" data-hash="4"><title>r3, immutable</title>r3</text>
-        <text style="text-anchor:middle" class="code" x="210" y="90" data-hash="3"><title>r2, immutable</title>r2</text>
-        <text style="text-anchor:middle" class="code" x="140" y="90" data-hash="2"><title>r1, immutable</title>r1</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s, mutable">s</text>
+        <text x="280" y="90" style="text-anchor:middle" data-hash="4" class="code tooltip-trigger" data-tooltip-text="r3, immutable">r3</text>
+        <text x="210" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="r2, immutable">r2</text>
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="r1, immutable">r1</text>
     </g>
 
     <g id="timelines">
@@ -9232,7 +9270,8 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
+        <text x="96" y="110" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
         <polyline stroke-width="5" stroke="gray" points="70,145 130,145 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Static borrow from s to r1"/>
         <polyline stroke-width="5" stroke="gray" points="70,165 200,165 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Static borrow from s to r2"/>
         <use xlink:href="#functionDot" data-hash="2" x="140" y="185" class="tooltip-trigger" data-tooltip-text="println!() reads from r1"/>
@@ -9245,8 +9284,8 @@ text.code {
     </g>
    
    <g id="tooltip" visibility="hidden">
-		<rect x="2" y="2" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
-		<text x="10" y="7" fill="white" font-size="12px" width="10px">Tooltip</text>
+		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
     </g>
 
     <script type="text/ecmascript"><![CDATA[
@@ -9261,19 +9300,23 @@ text.code {
 				triggers[i].addEventListener('mousemove', showTooltip);
 				triggers[i].addEventListener('mouseout', hideTooltip);
 			}
+
 			function showTooltip(evt) {
+                <!-- track mouse movement -->
 				var CTM = svg.getScreenCTM();
 				var x = (evt.clientX - CTM.e + 10) / CTM.a;
-				var y = (evt.clientY - CTM.f + 10) / CTM.d;
-				tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				var y = (evt.clientY - CTM.f + 15) / CTM.d;
+                tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
 				tooltip.setAttributeNS(null, "visibility", "visible");
 				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
-
+                
+                <!-- adjust box dimensions -->
                 var length = tooltipText.getComputedTextLength();
 				for (var i = 0; i < tooltipRects.length; i++) {
-					tooltipRects[i].setAttribute("width", length + 15);
+					tooltipRects[i].setAttribute("width", length + 10);
 				}
 			}
+
 			function hideTooltip(evt) {
 				tooltip.setAttributeNS(null, "visibility", "hidden");
 			}
@@ -9307,39 +9350,39 @@ warning: unused variable: `to_ro`
     |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:495:96
+   --> src/data.rs:488:96
     |
-495 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
     |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `to_ro`
-   --> src/data.rs:509:97
+   --> src/data.rs:502:97
     |
-509 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
     |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:532:93
+   --> src/data.rs:525:93
     |
-532 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
     |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `ro`
-   --> src/data.rs:534:40
+   --> src/data.rs:527:40
     |
-534 |             (_, Event::Duplicate { to: ro }) =>
+527 |             (_, Event::Duplicate { to: ro }) =>
     |                                        ^^ help: consider prefixing with an underscore: `_ro`
 
 warning: unused variable: `timeline`
-   --> src/data.rs:559:18
+   --> src/data.rs:552:18
     |
-559 |             Some(timeline) => {
+552 |             Some(timeline) => {
     |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
 
 warning: unused variable: `line_number`
-   --> src/data.rs:557:37
+   --> src/data.rs:550:37
     |
-557 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
     |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
 
 warning: function is never used: `render_arrows_string`
@@ -9351,17 +9394,16 @@ warning: function is never used: `render_arrows_string`
     = note: `#[warn(dead_code)]` on by default
 
 warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:497:62
+   --> src/data.rs:490:62
     |
-497 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
     |                                                              ----------^^^^^^^^^^
     |                                                              |
     |                                                              help: remove this
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.76s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.06s
      Running `target/debug/examples/no_dangle`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -9377,7 +9419,6 @@ s 2 4 FullPrivilege
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -9474,7 +9515,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -9512,6 +9552,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -9531,8 +9572,8 @@ text.code {
     </g>
 
     <g id="code">
-        <text class="code" x="20" y="90"> fn <tspan data-hash="2">no_dangle</tspan>() -> String { </text>
-        <text class="code" x="20" y="110">     let <tspan data-hash="1">s</tspan> = <tspan data-hash="3">String::from</tspan>("hello"); </text>
+        <text class="code" x="20" y="90"> fn no_dangle() -> String { </text>
+        <text class="code" x="20" y="110">     let <tspan data-hash="1">s</tspan> = String::from("hello"); </text>
         <text class="code" x="20" y="130">  </text>
         <text class="code" x="20" y="150">     <tspan data-hash="1">s</tspan> </text>
         <text class="code" x="20" y="170"> } </text>
@@ -9553,7 +9594,6 @@ text.code {
 :root {
     --bg-color:#f1f1f1;
     --text-color: #6e6b5e;
-    overflow:visible;
 }
 
 svg {
@@ -9650,7 +9690,6 @@ text.code {
 /* tooltip styling */
 #tooltip {
     dominant-baseline: hanging;
-    overflow:visible;
 }
 
 /* hash based styling */
@@ -9688,6 +9727,7 @@ text.code {
     fill: #ff9900;
     stroke: #ff9900;
 }
+
 [data-hash*="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
@@ -9716,7 +9756,7 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text style="text-anchor:middle" class="code" x="70" y="90" data-hash="1"><title>s, immutable</title>s</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s, immutable">s</text>
     </g>
 
     <g id="timelines">
@@ -9730,12 +9770,13 @@ text.code {
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" fill="gray" font-size = "20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
+        <text x="96" y="110" fill="gray" font-size="20" font-style="italic" class="tooltip-trigger" data-tooltip-text="String::from()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
     </g>
    
    <g id="tooltip" visibility="hidden">
-		<rect x="2" y="2" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
-		<text x="10" y="7" fill="white" font-size="12px" width="10px">Tooltip</text>
+		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
     </g>
 
     <script type="text/ecmascript"><![CDATA[
@@ -9750,19 +9791,23 @@ text.code {
 				triggers[i].addEventListener('mousemove', showTooltip);
 				triggers[i].addEventListener('mouseout', hideTooltip);
 			}
+
 			function showTooltip(evt) {
+                <!-- track mouse movement -->
 				var CTM = svg.getScreenCTM();
 				var x = (evt.clientX - CTM.e + 10) / CTM.a;
-				var y = (evt.clientY - CTM.f + 10) / CTM.d;
-				tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				var y = (evt.clientY - CTM.f + 15) / CTM.d;
+                tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
 				tooltip.setAttributeNS(null, "visibility", "visible");
 				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
-
+                
+                <!-- adjust box dimensions -->
                 var length = tooltipText.getComputedTextLength();
 				for (var i = 0; i < tooltipRects.length; i++) {
-					tooltipRects[i].setAttribute("width", length + 15);
+					tooltipRects[i].setAttribute("width", length + 10);
 				}
 			}
+
 			function hideTooltip(evt) {
 				tooltip.setAttributeNS(null, "visibility", "hidden");
 			}

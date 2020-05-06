@@ -5,7 +5,7 @@ use std::collections::BTreeMap;
 fn main() {
     // Variables
     let s = Some(ResourceOwner::Variable(Variable {
-        hash: 1,
+        hash: 5,
         name: String::from("s"),
         is_mut: false,
         is_ref: true,
@@ -15,6 +15,10 @@ fn main() {
     let len_func = Some(ResourceOwner::Function(Function {
         hash: 2,
         name: String::from("len()"),
+    }));
+    let calculate_length = Some(ResourceOwner::Function(Function {
+        hash: 3,
+        name: String::from("calculate_length()"),
     }));
 
     // Data

@@ -1,6 +1,6 @@
 <svg width="240px" height="250px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-        id="timeline_svg">
+        id="tl_04_01_10">
 
     <desc>int_copy_2</desc>
 
@@ -110,47 +110,51 @@ text.code {
 }
 
 /* hash based styling */
-[data-hash*="1"] {
+[data-hash="0"] {
+    fill: black;
+}
+
+[data-hash="1"] {
     fill: #3355ff;
     stroke: #3355ff;
 }
 
-[data-hash*="2"] {
+[data-hash="2"] {
     fill: #33cc33;
     stroke: #33cc33;
 }
 
-[data-hash*="3"] {
-    fill: #ff3300;
-    stroke: #ff3300;
+[data-hash="3"] {
+    fill: #dc143c;
+    stroke: #dc143c;
 }
 
-[data-hash*="4"] {
+[data-hash="4"] {
     fill: #6600ff;
     stroke: #6600ff;
 }
 
-[data-hash*="5"] {
+[data-hash="5"] {
     fill: #ff33cc;
     stroke: #ff33cc;
 }
 
-[data-hash*="6"] {
-    fill: #663300;
-    stroke: #663300;
+[data-hash="6"] {
+    fill: #008080;
+    stroke: #008080;
 }
 
-[data-hash*="7"] {
+[data-hash="7"] {
     fill: #ff9900;
     stroke: #ff9900;
 }
 
-[data-hash*="8"] {
+[data-hash="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
 }
 
-[data-hash*="9"] {
+[data-hash="9"] {
     fill: #9aeb58;
     stroke: #9aeb58;
 }
@@ -161,7 +165,7 @@ text.code {
         <!-- used when pass to function by ref -->
         <g id="functionDot">
              <circle id="eventDot" cx="0" cy="0" r="8"/>
-             <text class="functionIcon" dx="-6" dy="2" fill="#6e6b5e">f</text>
+             <text class="functionIcon" dx="-4" dy="0" fill="#6e6b5e">f</text>
         </g>
         <marker id="arrowHead" viewBox="0 0 10 10"
             refX="1" refY="5" 
@@ -173,8 +177,8 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="x, immutable">x</text>
         <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="y, immutable">y</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="x, immutable">x</text>
     </g>
 
     <g id="timelines">
@@ -196,7 +200,7 @@ text.code {
 
     <g id="events">
         <use xlink:href="#eventDot" data-hash="1" x="70" y="105" class="tooltip-trigger" data-tooltip-text="obtains data from another value (x's lifetime begins from here)"/>
-        <use xlink:href="#eventDot" data-hash="1" x="70" y="125" class="tooltip-trigger" data-tooltip-text="copies it's value to y (x keeps ownership)"/>
+        <use xlink:href="#eventDot" data-hash="1" x="70" y="125" class="tooltip-trigger" data-tooltip-text="copies its value to y (x keeps ownership)"/>
         <use xlink:href="#eventDot" data-hash="1" x="70" y="165" class="tooltip-trigger" data-tooltip-text="statically lends its data to println!() (x becomes read-only)"/>
         <use xlink:href="#eventDot" data-hash="1" x="70" y="165" class="tooltip-trigger" data-tooltip-text="println!() no longer borrows from x"/>
         <use xlink:href="#eventDot" data-hash="1" x="70" y="185" class="tooltip-trigger" data-tooltip-text="x goes out of scope. The data is dropped."/>
@@ -219,7 +223,8 @@ text.code {
 
     <script type="text/ecmascript"><![CDATA[
 		(function() {
-			var svg = document.getElementById('timeline_svg');
+            var timeline_id = "tl_04_01_10";
+			var svg = document.getElementById(timeline_id);
 			var tooltip = svg.getElementById('tooltip');
 			var tooltipText = tooltip.getElementsByTagName('text')[0];
             var tooltipRects = tooltip.getElementsByTagName('rect');
@@ -234,7 +239,7 @@ text.code {
                 <!-- track mouse movement -->
 				var CTM = svg.getScreenCTM();
 				var x = (evt.clientX - CTM.e + 10) / CTM.a;
-				var y = (evt.clientY - CTM.f + 15) / CTM.d;
+				var y = (evt.clientY - CTM.f + 10) / CTM.d;
                 tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
 				tooltip.setAttributeNS(null, "visibility", "visible");
 				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
@@ -251,4 +256,7 @@ text.code {
 			}
 		})()
     ]]></script>
+
+    <!-- HIGHLIGHT FUNCTION NAME -->
+    
 </svg>

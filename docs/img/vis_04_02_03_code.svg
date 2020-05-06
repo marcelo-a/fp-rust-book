@@ -109,47 +109,51 @@ text.code {
 }
 
 /* hash based styling */
-[data-hash*="1"] {
+[data-hash="0"] {
+    fill: black;
+}
+
+[data-hash="1"] {
     fill: #3355ff;
     stroke: #3355ff;
 }
 
-[data-hash*="2"] {
+[data-hash="2"] {
     fill: #33cc33;
     stroke: #33cc33;
 }
 
-[data-hash*="3"] {
-    fill: #ff3300;
-    stroke: #ff3300;
+[data-hash="3"] {
+    fill: #dc143c;
+    stroke: #dc143c;
 }
 
-[data-hash*="4"] {
+[data-hash="4"] {
     fill: #6600ff;
     stroke: #6600ff;
 }
 
-[data-hash*="5"] {
+[data-hash="5"] {
     fill: #ff33cc;
     stroke: #ff33cc;
 }
 
-[data-hash*="6"] {
-    fill: #663300;
-    stroke: #663300;
+[data-hash="6"] {
+    fill: #008080;
+    stroke: #008080;
 }
 
-[data-hash*="7"] {
+[data-hash="7"] {
     fill: #ff9900;
     stroke: #ff9900;
 }
 
-[data-hash*="8"] {
+[data-hash="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
 }
 
-[data-hash*="9"] {
+[data-hash="9"] {
     fill: #9aeb58;
     stroke: #9aeb58;
 }
@@ -164,8 +168,8 @@ text.code {
 
     <g id="code">
         <text class="code" x="20" y="90">  </text>
-        <text class="code" x="20" y="110"> fn calculate_length(<tspan data-hash="1">s</tspan>: &amp;String) -> usize { </text>
-        <text class="code" x="20" y="130">     <tspan data-hash="1">s</tspan>.len() </text>
+        <text class="code" x="20" y="110"> fn <tspan class="fn" data-hash="0" hash="3">calculate_length</tspan>(<tspan data-hash="5">s</tspan>: &amp;String) -> usize { </text>
+        <text class="code" x="20" y="130">     <tspan data-hash="5">s</tspan>.<tspan class="fn" data-hash="0" hash="2">len()</tspan> </text>
         <text class="code" x="20" y="150"> } // Here, s goes out of scope. But because it does not have ownership of what </text>
         <text class="code" x="20" y="170">   // it refers to, nothing happens. </text>
     </g>

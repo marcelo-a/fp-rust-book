@@ -56,6 +56,7 @@ struct ArrowData {
 struct FunctionLogoData {
     x: i64,
     y: i64,
+    hash: i64,
     title: String
 }
 
@@ -111,7 +112,7 @@ fn prepare_registry(registry: &mut Handlebars) {
     let function_dot_template =    
         "        <use xlink:href=\"#functionDot\" data-hash=\"{{hash}}\" x=\"{{x}}\" y=\"{{y}}\" class=\"tooltip-trigger\" data-tooltip-text=\"{{title}}\"/>\n";
     let function_logo_template =
-        "        <text x=\"{{x}}\" y=\"{{y}}\" fill=\"gray\" font-size=\"20\" font-style=\"italic\" class=\"tooltip-trigger\" data-tooltip-text=\"{{title}}\">f</text>\n";
+        "        <text x=\"{{x}}\" y=\"{{y}}\" data-hash=\"{{hash}}\" font-size=\"20\" font-style=\"italic\" class=\"tooltip-trigger fn-trigger\" data-tooltip-text=\"{{title}}\">f</text>\n";
     let arrow_template =
         "        <polyline stroke-width=\"5\" stroke=\"gray\" points=\"{{x2}},{{y2}} {{x1}},{{y1}} \" marker-end=\"url(#arrowHead)\" class=\"tooltip-trigger\" data-tooltip-text=\"{{title}}\"/>\n";
     let vertical_line_template =
@@ -377,6 +378,7 @@ fn render_arrows_string_external_events_version(
                 let function_data = FunctionLogoData {
                     x: data.x2 + 3,
                     y: data.y2 + 5,
+                    hash: from_function.hash.to_owned() as i64,
                     title: from_function.name.to_owned(),
                 };
                 output.push_str(&registry.render("function_logo_template", &function_data).unwrap());
@@ -389,6 +391,7 @@ fn render_arrows_string_external_events_version(
                     // adjust Function logo pos
                     x: data.x1 - 10,  
                     y: data.y1 + 5,
+                    hash: to_function.hash.to_owned() as i64,
                     title: to_function.name.to_owned(),
                 };
                 output.push_str(&registry.render("function_logo_template", &function_data).unwrap());

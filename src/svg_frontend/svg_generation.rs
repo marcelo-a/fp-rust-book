@@ -12,6 +12,7 @@ struct SvgData {
     css: String,
     code: String,
     diagram: String,
+    tl_id: String,
     code_width: i32,
     tl_width: i32,
     height: i32,
@@ -67,6 +68,7 @@ pub fn render_svg(listing_id: &String, description: &String, visualization_data:
         css: css_string,
         code: left_panel_string,
         diagram: right_panel_string,
+        tl_id: "tl_".to_owned() + listing_id,
         code_width: cmp::max(left_width, 450),
         tl_width: cmp::max(max_width, 200),
         height: (num_lines * 20 + 80) + 50,
@@ -76,8 +78,8 @@ pub fn render_svg(listing_id: &String, description: &String, visualization_data:
     let final_timeline_svg_content = handlebars.render("timeline_svg_template", &svg_data).unwrap();
 
     // print for debugging (?)
-    println!("{}", final_code_svg_content);
-    println!("{}", final_timeline_svg_content);
+    // println!("{}", final_code_svg_content);
+    // println!("{}", final_timeline_svg_content);
 
     // write to file
     utils::create_and_write_to_file(&final_code_svg_content, example_dir_path.clone() + "rendering_code.svg"); // write svg to /examples

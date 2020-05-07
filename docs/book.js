@@ -210,8 +210,11 @@ function playpen_text(playpen) {
     // Insert toggle visualization button
     Array.from(document.querySelectorAll("pre code")).forEach(function (block) {
         // only add button if there is a visualization available
-        if (!block.classList.contains("no_run") && !block.classList.contains("does_not_compile")
-                && !block.classList.contains("language-text") ) {
+        var correct_doc = (document.getElementsByClassName('active')[0].attributes.href.value == 'ch04-01-what-is-ownership.html'
+                            || document.getElementsByClassName('active')[0].attributes.href.value == 'ch04-02-references-and-borrowing.html');
+        var code_ok = (!block.classList.contains("no_run") && !block.classList.contains("does_not_compile")
+                        && !block.classList.contains("language-text"));
+        if (correct_doc && code_ok) {
 
             // search section/block for other buttons
             var pre_block = block.parentNode;

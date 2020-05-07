@@ -57,6 +57,7 @@ struct ArrowData {
 struct FunctionLogoData {
     x: i64,
     y: i64,
+    hash: i64,
     title: String
 }
 
@@ -71,13 +72,13 @@ struct VerticalLineData {
     title: String,
 }
 
-pub fn render_right_panel(visualization_data : &VisualizationData, divider_x_pos: i64) -> (String, i32) {
+pub fn render_right_panel(visualization_data : &VisualizationData) -> (String, i32) {
     /* Template creation */
     let mut registry = Handlebars::new();
     prepare_registry(&mut registry);
 
     // hash -> TimelineColumnData
-    let (resource_owners_layout, width) = compute_column_layout(visualization_data, divider_x_pos);
+    let (resource_owners_layout, width) = compute_column_layout(visualization_data);
 
     // render resource owner labels
     let labels_string = render_labels_string(&resource_owners_layout, &registry);
@@ -108,20 +109,19 @@ fn prepare_registry(registry: &mut Handlebars) {
         <g id=\"arrows\">\n{{ arrows }}    </g>";
 
     let label_template =
-        "        <text style=\"text-anchor:middle\" class=\"code\" x=\"{{x_val}}\" y=\"90\" data-hash=\"{{hash}}\"><title>{{title}}</title>{{name}}</text>\n";
+        "        <text x=\"{{x_val}}\" y=\"90\" style=\"text-anchor:middle\" data-hash=\"{{hash}}\" class=\"code tooltip-trigger\" data-tooltip-text=\"{{title}}\">{{name}}</text>\n";
     let dot_template =
-        "        <use xlink:href=\"#eventDot\" data-hash=\"{{hash}}\" x=\"{{dot_x}}\" y=\"{{dot_y}}\"><title>{{title}}</title></use>\n";
+        "        <use xlink:href=\"#eventDot\" data-hash=\"{{hash}}\" x=\"{{dot_x}}\" y=\"{{dot_y}}\" class=\"tooltip-trigger\" data-tooltip-text=\"{{title}}\"/>\n";
     let function_dot_template =    
-        "        <use xlink:href=\"#functionDot\" data-hash=\"{{hash}}\" x=\"{{x}}\" y=\"{{y}}\"><title>{{title}}</title></use>\n";
+        "        <use xlink:href=\"#functionDot\" data-hash=\"{{hash}}\" x=\"{{x}}\" y=\"{{y}}\" class=\"tooltip-trigger\" data-tooltip-text=\"{{title}}\"/>\n";
     let function_logo_template =
-        "        <text x=\"{{x}}\" y=\"{{y}}\" font-size = \"20\" font-style=\"italic\" class=\"heavy\" ><title>{{title}}</title>f</text>";
+        "        <text x=\"{{x}}\" y=\"{{y}}\" data-hash=\"{{hash}}\" font-size=\"20\" font-style=\"italic\" class=\"tooltip-trigger fn-trigger\" data-tooltip-text=\"{{title}}\">f</text>\n";
     let arrow_template =
-        "        <polyline stroke-width=\"5\" stroke=\"gray\" points=\"{{x2}},{{y2}} {{x1}},{{y1}} \" marker-end=\"url(#arrowHead)\"><title>{{title}}</title></polyline>\n";
+        "        <polyline stroke-width=\"5\" stroke=\"gray\" points=\"{{x2}},{{y2}} {{x1}},{{y1}} \" marker-end=\"url(#arrowHead)\" class=\"tooltip-trigger\" data-tooltip-text=\"{{title}}\"/>\n";
     let vertical_line_template =
-        "        <line data-hash=\"{{hash}}\" class=\"{{line_class}}\" x1=\"{{x1}}\" x2=\"{{x2}}\" y1=\"{{y1}}\" y2=\"{{y2}}\"><title>{{title}}</title></line>\n";
-    
+        "        <line data-hash=\"{{hash}}\" class=\"{{line_class}} tooltip-trigger\" x1=\"{{x1}}\" x2=\"{{x2}}\" y1=\"{{y1}}\" y2=\"{{y2}}\" data-tooltip-text=\"{{title}}\"/>\n";
     let hollow_line_internal_template =
-        "        <line class=\"colorless\" stroke-width=\"8px\" x1=\"{{x1}}\" x2=\"{{x2}}\" y1=\"{{y1}}\" y2=\"{{y2}}\"><title>{{title}}</title></line>\n";
+        "        <line class=\"colorless tooltip-trigger\" stroke-width=\"8px\" x1=\"{{x1}}\" x2=\"{{x2}}\" y1=\"{{y1}}\" y2=\"{{y2}}\" data-tooltip-text=\"{{title}}\"/>\n";
     assert!(
         registry.register_template_string("right_panel_template", right_panel_template).is_ok()
     );
@@ -149,9 +149,9 @@ fn prepare_registry(registry: &mut Handlebars) {
 }
 
 // Returns: a hashmap from the hash of the ResourceOwner to its Column information
-fn compute_column_layout<'a>(visualization_data: &'a VisualizationData, divider_x_pos: i64) -> (HashMap<&'a u64, TimelineColumnData>, i32) {
+fn compute_column_layout<'a>(visualization_data: &'a VisualizationData) -> (HashMap<&'a u64, TimelineColumnData>, i32) {
     let mut resource_owners_layout = HashMap::new();
-    let mut x = divider_x_pos;                   // Right-most Column x-offset.
+    let mut x = 0;                   // Right-most Column x-offset.
     for (hash, timeline) in visualization_data.timelines.iter() {
         // only put variable in the column layout
         if let ResourceOwner::Variable(_) = timeline.resource_owner {
@@ -380,6 +380,7 @@ fn render_arrows_string_external_events_version(
                 let function_data = FunctionLogoData {
                     x: data.x2 + 3,
                     y: data.y2 + 5,
+                    hash: from_function.hash.to_owned() as i64,
                     title: from_function.name.to_owned(),
                 };
                 output.push_str(&registry.render("function_logo_template", &function_data).unwrap());
@@ -392,6 +393,7 @@ fn render_arrows_string_external_events_version(
                     // adjust Function logo pos
                     x: data.x1 - 10,  
                     y: data.y1 + 5,
+                    hash: to_function.hash.to_owned() as i64,
                     title: to_function.name.to_owned(),
                 };
                 output.push_str(&registry.render("function_logo_template", &function_data).unwrap());

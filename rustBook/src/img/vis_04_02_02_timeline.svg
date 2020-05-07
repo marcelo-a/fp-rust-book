@@ -1,0 +1,249 @@
+<svg width="240px" height="210px" 
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+        id="tl_04_02_02">
+
+    <desc>acquire_from_function</desc>
+
+    <defs>
+        <style type="text/css">
+        <![CDATA[
+        /* general setup */
+:root {
+    --bg-color:#f1f1f1;
+    --text-color: #6e6b5e;
+}
+
+svg {
+    background-color: var(--bg-color);
+}
+
+text {
+    /* fill: white; */
+    /* fill: var(--text-color); */
+    vertical-align: baseline;
+    text-anchor: start;
+}
+
+#heading {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#caption {
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+}
+
+/* code related styling */
+text.code {
+    white-space: pre;
+    font-family: "monospace";
+}
+
+/* event related styling */
+#eventDot:hover {
+    transform: scale(1.5);
+}
+
+#eventDot {
+    transition: all 0.3s;
+}
+
+#functionDot:hover {
+    transform: scale(1.5);
+}
+
+#functionDot {
+    transition: all 0.3s;
+}
+
+/* timeline/event interaction styling */
+.solid {
+    stroke-width: 5px;
+}
+
+.hollow_internal {
+    stroke-width: 3px;
+    fill: var(--bg-color);
+}
+
+.dotted {
+    stroke-width: 5px;
+    stroke-dasharray: "2 1";
+}
+
+.extend {
+    stroke-width: 1px;
+    stroke-dasharray: "2 1";
+}
+
+.colorless {
+    color: var(--bg-color);
+    fill: var(--bg-color);
+}
+
+.functionIcon {
+    stroke: gray;
+    fill: white;
+    stroke-width: 1px;
+    font-size: 30px;
+    font-family: times;
+    font-weight: lighter;
+    dominant-baseline: central;
+    text-anchor: start;
+    font-style: italic;
+}
+
+/* flex related styling */
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    flex-shrink: 1;
+}
+
+/* tooltip styling */
+#tooltip {
+    dominant-baseline: hanging;
+}
+
+/* hash based styling */
+[data-hash="0"] {
+    fill: black;
+}
+
+[data-hash="1"] {
+    fill: #3355ff;
+    stroke: #3355ff;
+}
+
+[data-hash="2"] {
+    fill: #33cc33;
+    stroke: #33cc33;
+}
+
+[data-hash="3"] {
+    fill: #dc143c;
+    stroke: #dc143c;
+}
+
+[data-hash="4"] {
+    fill: #6600ff;
+    stroke: #6600ff;
+}
+
+[data-hash="5"] {
+    fill: #ff33cc;
+    stroke: #ff33cc;
+}
+
+[data-hash="6"] {
+    fill: #008080;
+    stroke: #008080;
+}
+
+[data-hash="7"] {
+    fill: #ff9900;
+    stroke: #ff9900;
+}
+
+[data-hash="8"] {
+    fill: #00d6fc;
+    stroke: #00d6fc;
+}
+
+[data-hash="9"] {
+    fill: #9aeb58;
+    stroke: #9aeb58;
+}
+        ]]>
+        </style>
+        <!-- Useful constructs -->
+        <circle id="eventDot" cx="0" cy="0" r="5"/>
+        <!-- used when pass to function by ref -->
+        <g id="functionDot">
+             <circle id="eventDot" cx="0" cy="0" r="8"/>
+             <text class="functionIcon" dx="-4" dy="0" fill="#6e6b5e">f</text>
+        </g>
+        <marker id="arrowHead" viewBox="0 0 10 10"
+            refX="1" refY="5" 
+            markerUnits="strokeWidth"
+            markerWidth="3px" markerHeight="3px"
+            orient="auto" fill="gray">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
+        </marker>
+    </defs>
+
+    <g id="labels">
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="len, immutable">len</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
+    </g>
+
+    <g id="timelines">
+        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="105" y2="145" data-tooltip-text="s1 is the unique value that can access the data in memory; can only read data"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="70" x2="70" y1="110" y2="140" data-tooltip-text="s1 is the unique value that can access the data in memory; can only read data"/>
+        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="145" y2="145" data-tooltip-text="some values are statically referencing to s1; can only read data"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="70" x2="70" y1="150" y2="140" data-tooltip-text="some values are statically referencing to s1; can only read data"/>
+    </g>
+
+    <g id="events">
+        <use xlink:href="#eventDot" data-hash="1" x="70" y="105" class="tooltip-trigger" data-tooltip-text="obtains data from String::from() (s1's lifetime begins from here)"/>
+        <use xlink:href="#eventDot" data-hash="1" x="70" y="145" class="tooltip-trigger" data-tooltip-text="statically lends its data to calculate_length() (s1 becomes read-only)"/>
+        <use xlink:href="#eventDot" data-hash="1" x="70" y="145" class="tooltip-trigger" data-tooltip-text="calculate_length() no longer borrows from s1"/>
+        <use xlink:href="#eventDot" data-hash="2" x="140" y="145" class="tooltip-trigger" data-tooltip-text="obtains data from calculate_length() (len's lifetime begins from here)"/>
+    </g>
+
+    <g id="arrows">
+        <text x="96" y="110" data-hash="4" font-size="20" font-style="italic" class="tooltip-trigger fn-trigger" data-tooltip-text="String::from()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s1"/>
+        <use xlink:href="#functionDot" data-hash="1" x="70" y="145" class="tooltip-trigger" data-tooltip-text="calculate_length() reads from s1"/>
+        <text x="166" y="150" data-hash="3" font-size="20" font-style="italic" class="tooltip-trigger fn-trigger" data-tooltip-text="calculate_length()">f</text>
+        <polyline stroke-width="5" stroke="gray" points="163,145 153,145 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of calculate_length() to len"/>
+    </g>
+   
+   <g id="tooltip" visibility="hidden">
+		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
+    </g>
+
+    <script type="text/ecmascript"><![CDATA[
+		(function() {
+            var timeline_id = "tl_04_02_02";
+			var svg = document.getElementById(timeline_id);
+			var tooltip = svg.getElementById('tooltip');
+			var tooltipText = tooltip.getElementsByTagName('text')[0];
+            var tooltipRects = tooltip.getElementsByTagName('rect');
+			var triggers = svg.getElementsByClassName('tooltip-trigger');
+
+			for (var i = 0; i < triggers.length; i++) {
+				triggers[i].addEventListener('mousemove', showTooltip);
+				triggers[i].addEventListener('mouseout', hideTooltip);
+			}
+
+			function showTooltip(evt) {
+                <!-- track mouse movement -->
+				var CTM = svg.getScreenCTM();
+				var x = (evt.clientX - CTM.e + 10) / CTM.a;
+				var y = (evt.clientY - CTM.f + 10) / CTM.d;
+                tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				tooltip.setAttributeNS(null, "visibility", "visible");
+				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
+                
+                <!-- adjust box dimensions -->
+                var length = tooltipText.getComputedTextLength();
+				for (var i = 0; i < tooltipRects.length; i++) {
+					tooltipRects[i].setAttribute("width", length + 10);
+				}
+			}
+
+			function hideTooltip(evt) {
+				tooltip.setAttributeNS(null, "visibility", "hidden");
+			}
+		})()
+    ]]></script>
+
+    <!-- HIGHLIGHT FUNCTION NAME -->
+    
+</svg>

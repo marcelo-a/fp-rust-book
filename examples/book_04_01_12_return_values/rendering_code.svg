@@ -1,0 +1,202 @@
+<svg width="576" height="710px" 
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <desc>return_values</desc>
+
+    <defs>
+        <style type="text/css">
+        <![CDATA[
+        /* general setup */
+:root {
+    --bg-color:#f1f1f1;
+    --text-color: #6e6b5e;
+}
+
+svg {
+    background-color: var(--bg-color);
+}
+
+text {
+    /* fill: white; */
+    /* fill: var(--text-color); */
+    vertical-align: baseline;
+    text-anchor: start;
+}
+
+#heading {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#caption {
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+}
+
+/* code related styling */
+text.code {
+    white-space: pre;
+    font-family: "monospace";
+}
+
+/* event related styling */
+#eventDot:hover {
+    transform: scale(1.5);
+}
+
+#eventDot {
+    transition: all 0.3s;
+}
+
+#functionDot:hover {
+    transform: scale(1.5);
+}
+
+#functionDot {
+    transition: all 0.3s;
+}
+
+/* timeline/event interaction styling */
+.solid {
+    stroke-width: 5px;
+}
+
+.hollow_internal {
+    stroke-width: 3px;
+    fill: var(--bg-color);
+}
+
+.dotted {
+    stroke-width: 5px;
+    stroke-dasharray: "2 1";
+}
+
+.extend {
+    stroke-width: 1px;
+    stroke-dasharray: "2 1";
+}
+
+.colorless {
+    color: var(--bg-color);
+    fill: var(--bg-color);
+}
+
+.functionIcon {
+    stroke: gray;
+    fill: white;
+    stroke-width: 1px;
+    font-size: 30px;
+    font-family: times;
+    font-weight: lighter;
+    dominant-baseline: central;
+    text-anchor: start;
+    font-style: italic;
+}
+
+/* flex related styling */
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    flex-shrink: 1;
+}
+
+/* tooltip styling */
+#tooltip {
+    dominant-baseline: hanging;
+}
+
+/* hash based styling */
+[data-hash="0"] {
+    fill: black;
+}
+
+[data-hash="1"] {
+    fill: #3355ff;
+    stroke: #3355ff;
+}
+
+[data-hash="2"] {
+    fill: #33cc33;
+    stroke: #33cc33;
+}
+
+[data-hash="3"] {
+    fill: #dc143c;
+    stroke: #dc143c;
+}
+
+[data-hash="4"] {
+    fill: #6600ff;
+    stroke: #6600ff;
+}
+
+[data-hash="5"] {
+    fill: #ff33cc;
+    stroke: #ff33cc;
+}
+
+[data-hash="6"] {
+    fill: #008080;
+    stroke: #008080;
+}
+
+[data-hash="7"] {
+    fill: #ff9900;
+    stroke: #ff9900;
+}
+
+[data-hash="8"] {
+    fill: #00d6fc;
+    stroke: #00d6fc;
+}
+
+[data-hash="9"] {
+    fill: #9aeb58;
+    stroke: #9aeb58;
+}
+        ]]>
+        </style>
+    </defs>
+
+    <g>
+        <text id="caption" x="30" y="30">Hover over timeline events (dots), states (vertical lines),</text>
+        <text id="caption" x="30" y="50">and actions (arrows) for extra information.</text>
+    </g>
+
+    <g id="code">
+        <text class="code" x="20" y="90"> fn main() { </text>
+        <text class="code" x="20" y="110">     let <tspan data-hash="1">s1</tspan> = <tspan class="fn" data-hash="0" hash="6">gives_ownership</tspan>();         // gives_ownership moves its return </text>
+        <text class="code" x="20" y="130">                                         // value into s1 </text>
+        <text class="code" x="20" y="150">  </text>
+        <text class="code" x="20" y="170">     let <tspan data-hash="2">s2</tspan> = <tspan class="fn" data-hash="0" hash="8">String::from</tspan>("hello");     // s2 comes into scope </text>
+        <text class="code" x="20" y="190">  </text>
+        <text class="code" x="20" y="210">     let <tspan data-hash="3">s3</tspan> = <tspan class="fn" data-hash="0" hash="7">takes_and_gives_back</tspan>(<tspan data-hash="2">s2</tspan>);  // s2 is moved into </text>
+        <text class="code" x="20" y="230">                                         // takes_and_gives_back, which also </text>
+        <text class="code" x="20" y="250">                                         // moves its return value into s3 </text>
+        <text class="code" x="20" y="270"> } // Here, s3 goes out of scope and is dropped. s2 goes out of scope but was </text>
+        <text class="code" x="20" y="290">   // moved, so nothing happens. s1 goes out of scope and is dropped. </text>
+        <text class="code" x="20" y="310">  </text>
+        <text class="code" x="20" y="330"> fn <tspan class="fn" data-hash="0" hash="6">gives_ownership</tspan>() -> String {             // gives_ownership will move its </text>
+        <text class="code" x="20" y="350">                                              // return value into the function </text>
+        <text class="code" x="20" y="370">                                              // that calls it </text>
+        <text class="code" x="20" y="390">  </text>
+        <text class="code" x="20" y="410">     let <tspan data-hash="4">some_string</tspan> = <tspan class="fn" data-hash="0" hash="8">String::from</tspan>("hello"); // some_string comes into scope </text>
+        <text class="code" x="20" y="430">  </text>
+        <text class="code" x="20" y="450">     <tspan data-hash="4">some_string</tspan>                             // some_string is returned and </text>
+        <text class="code" x="20" y="470">                                              // moves out to the calling </text>
+        <text class="code" x="20" y="490">                                              // function </text>
+        <text class="code" x="20" y="510"> } </text>
+        <text class="code" x="20" y="530">  </text>
+        <text class="code" x="20" y="550"> // takes_and_gives_back will take a String and return one </text>
+        <text class="code" x="20" y="570"> fn <tspan class="fn" data-hash="0" hash="7">takes_and_gives_back</tspan>(<tspan data-hash="5">a_string</tspan>: String) -> String { // a_string comes into </text>
+        <text class="code" x="20" y="590">                                                       // scope </text>
+        <text class="code" x="20" y="610">  </text>
+        <text class="code" x="20" y="630">     <tspan data-hash="5">a_string</tspan>  // a_string is returned and moves out to the calling function </text>
+        <text class="code" x="20" y="650"> } </text>
+    </g>
+
+   
+</svg>

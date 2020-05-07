@@ -9,7 +9,8 @@ svg {
 }
 
 text {
-    fill: var(--text-color);
+    /* fill: white; */
+    /* fill: var(--text-color); */
     vertical-align: baseline;
     text-anchor: start;
 }
@@ -39,14 +40,6 @@ text.code {
 #eventDot {
     transition: all 0.3s;
 }
-
-/* text.functionIcon:hover {
-    transform: scale(1.5);
-}
-
-text.functionIcon {
-    transition: all 0.3s;
-} */
 
 #functionDot:hover {
     transform: scale(1.5);
@@ -85,54 +78,74 @@ text.functionIcon {
     stroke: gray;
     fill: white;
     stroke-width: 1px;
-    font-size: 30px;
+    font-size: 24px;
     font-family: times;
     font-weight: lighter;
     dominant-baseline: central;
     text-anchor: start;
     font-style: italic;
 }
+
+/* flex related styling */
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    flex-shrink: 1;
+}
+
+/* tooltip styling */
+#tooltip {
+    dominant-baseline: hanging;
+}
+
 /* hash based styling */
-[data-hash*="1"] {
+[data-hash="0"] {
+    fill: black;
+}
+
+[data-hash="1"] {
     fill: #3355ff;
     stroke: #3355ff;
 }
 
-[data-hash*="2"] {
+[data-hash="2"] {
     fill: #33cc33;
     stroke: #33cc33;
 }
 
-[data-hash*="3"] {
-    fill: #ff3300;
-    stroke: #ff3300;
+[data-hash="3"] {
+    fill: #dc143c;
+    stroke: #dc143c;
 }
 
-[data-hash*="4"] {
+[data-hash="4"] {
     fill: #6600ff;
     stroke: #6600ff;
 }
 
-[data-hash*="5"] {
+[data-hash="5"] {
     fill: #ff33cc;
     stroke: #ff33cc;
 }
 
-[data-hash*="6"] {
-    fill: #663300;
-    stroke: #663300;
+[data-hash="6"] {
+    fill: #008080;
+    stroke: #008080;
 }
 
-[data-hash*="7"] {
+[data-hash="7"] {
     fill: #ff9900;
     stroke: #ff9900;
 }
-[data-hash*="8"] {
+
+[data-hash="8"] {
     fill: #00d6fc;
     stroke: #00d6fc;
 }
 
-[data-hash*="9"] {
+[data-hash="9"] {
     fill: #9aeb58;
     stroke: #9aeb58;
 }

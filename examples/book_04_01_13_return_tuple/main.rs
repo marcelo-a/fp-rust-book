@@ -73,7 +73,8 @@ fn main() {
     vd.append_external_event(ExternalEvent::PassByStaticReference{from: len.clone(), to: Some(println_func.clone())}, &(6 as usize));
     
     vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : s1.unwrap().clone() },  &(7 as usize));
-    vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : len.unwrap().clone() },  &(7 as usize));
+    vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : s2.unwrap().clone() },  &(7 as usize));
+    vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : len.unwrap().clone() }, &(7 as usize));
 
     // vd.append_external_event(ExternalEvent::StaticBorrow{from: Some(calculate_length.clone()), to: Some(s.clone())}, &(9 as usize));
     

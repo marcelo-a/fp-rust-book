@@ -48,6 +48,10 @@ fn main() {
         hash: 7,
         name: String::from("takes_and_gives_back()"),
     });
+    let from_func = ResourceOwner::Function(Function {
+        hash: 8,
+        name: String::from("String::from()"),
+    });
     let mut vd = VisualizationData {
         timelines: BTreeMap::new(),
         external_events: Vec::new(),
@@ -56,13 +60,13 @@ fn main() {
     // s1 gets resource from gives_ownership()
     vd.append_external_event(ExternalEvent::Move{from: Some(gives_ownership.clone()), to: Some(s1.clone())}, &(2 as usize));
     // some_string gets resource from String::from()
-    vd.append_external_event(ExternalEvent::Move{from: None, to: Some(some_string.clone())}, &(17 as usize));
+    vd.append_external_event(ExternalEvent::Move{from: Some(from_func.clone()), to: Some(some_string.clone())}, &(17 as usize));
     // move out as return value, does not render because to=None
     vd.append_external_event(ExternalEvent::Move{from: Some(some_string.clone()), to: None}, &(19 as usize));
     vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : some_string.clone() }, &(22 as usize));
 
     // s2 gets resource from String::from()
-    vd.append_external_event(ExternalEvent::Move{from: None, to: Some(s2.clone())}, &(5 as usize));
+    vd.append_external_event(ExternalEvent::Move{from: Some(from_func.clone()), to: Some(s2.clone())}, &(5 as usize));
     // s2 moves resource to takes_and_gives_back()
     vd.append_external_event(ExternalEvent::Move{from: Some(s2.clone()), to: Some(takes_and_gives_back.clone())}, &(7 as usize));
 

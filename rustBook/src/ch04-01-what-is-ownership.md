@@ -111,8 +111,7 @@ have a variable that looks like this:
 let s = "hello";
 ```
 <div class="flex-container" style="overflow:visible; display:none;">
-  <object type="image/svg+xml" class="vis_04_01_01" data="img/vis_04_01_01_code.svg">
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_01" data="img/vis_04_01_01_code.svg"></object>
   <object type="image/svg+xml" class="vis_04_01_01" data="img/vis_04_01_01_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_01')"></object>
   <script type="text/javascript" src="../src/svg_frontend/function_hover.js"></script>
 </div>
@@ -126,8 +125,7 @@ comments annotating where the variable `s` is valid.
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-01/src/main.rs:here}}
 ```
 <div class="flex-container" style="position:relative; margin-right:-100px; overflow:visible; display:none;">
-  <object type="image/svg+xml" class="vis_04_01_02" data="img/vis_04_01_02_code.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_02" data="img/vis_04_01_02_code.svg" style="width: auto;"></object>
   <object type="image/svg+xml" class="vis_04_01_02" data="img/vis_04_01_02_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_02')"></object>
   <script type="text/javascript" src="../src/svg_frontend/function_hover.js"></script>
 </div>
@@ -172,8 +170,7 @@ using the `from` function, like so:
 let s = String::from("hello");
 ```
 <div class="flex-container" style="display:none;">
-  <object type="image/svg+xml" class="vis_04_01_03" data="img/vis_04_01_03_code.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_03" data="img/vis_04_01_03_code.svg" style="width: auto;"></object>
   <object type="image/svg+xml" class="vis_04_01_03" data="img/vis_04_01_03_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_03')"></object>
   <script type="text/javascript" src="../src/svg_frontend/function_hover.js"></script>
 </div>
@@ -191,8 +188,7 @@ This kind of string *can* be mutated:
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-01-can-mutate-string/src/main.rs:here}}
 ```
 <div class="flex-container" style="display:none;">
-  <object type="image/svg+xml" class="vis_04_01_04" data="img/vis_04_01_04_code.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_04" data="img/vis_04_01_04_code.svg" style="width: auto;"></object>
   <object type="image/svg+xml" class="vis_04_01_04" data="img/vis_04_01_04_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_04')"></object>
   <script type="text/javascript" src="../src/svg_frontend/function_hover.js"></script>
 </div>
@@ -238,8 +234,7 @@ from Listing 4-1 using a `String` instead of a string literal:
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-02-string-scope/src/main.rs:here}}
 ```
 <div class="flex-container" style="position:relative; margin-right:-100px; display:none;">
-  <object type="image/svg+xml" class="vis_04_01_05" data="img/vis_04_01_05_code.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_05" data="img/vis_04_01_05_code.svg" style="width: auto;"></object>
   <object type="image/svg+xml" class="vis_04_01_05" data="img/vis_04_01_05_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_05')"></object>
   <script type="text/javascript" src="../src/svg_frontend/function_hover.js"></script>
 </div>
@@ -269,8 +264,7 @@ Let’s look at an example using an integer in Listing 4-2.
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-02/src/main.rs:here}}
 ```
 <div class="flex-container" style="display:none;">
-  <object type="image/svg+xml" class="vis_04_01_06" data="img/vis_04_01_06_code.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_06" data="img/vis_04_01_06_code.svg" style="width: auto;"></object>
   <object type="image/svg+xml" class="vis_04_01_06" data="img/vis_04_01_06_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_06')"></object>
   <script type="text/javascript" src="../src/svg_frontend/function_hover.js"></script>
 </div>
@@ -290,8 +284,7 @@ Now let’s look at the `String` version:
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-03-string-move/src/main.rs:here}}
 ```
 <div class="flex-container" style="display:none;">
-  <object type="image/svg+xml" class="vis_04_01_07" data="img/vis_04_01_07_code.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_07" data="img/vis_04_01_07_code.svg" style="width: auto;"></object>
   <object type="image/svg+xml" class="vis_04_01_07" data="img/vis_04_01_07_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_07')"></object>
   <script type="text/javascript" src="../src/svg_frontend/function_hover.js"></script>
 </div>
@@ -394,8 +387,7 @@ Here’s an example of the `clone` method in action:
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-05-clone/src/main.rs:here}}
 ```
 <div class="flex-container" style="display:none;">
-  <object type="image/svg+xml" class="vis_04_01_09" data="img/vis_04_01_09_code.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_09" data="img/vis_04_01_09_code.svg" style="width: auto;"></object>
   <object type="image/svg+xml" class="vis_04_01_09" data="img/vis_04_01_09_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_09')"></object>
   <script type="text/javascript" src="../src/svg_frontend/function_hover.js"></script>
 </div>
@@ -416,8 +408,7 @@ part of which was shown in Listing 4-2, works and is valid:
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-06-copy/src/main.rs:here}}
 ```
 <div class="flex-container" style="display:none;">
-  <object type="image/svg+xml" class="vis_04_01_10" data="img/vis_04_01_10_code.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_10" data="img/vis_04_01_10_code.svg" style="width: auto;"></object>
   <object type="image/svg+xml" class="vis_04_01_10" data="img/vis_04_01_10_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_10')"></object>
   <script type="text/javascript" src="../src/svg_frontend/function_hover.js"></script>
 </div>
@@ -465,8 +456,7 @@ showing where variables go into and out of scope.
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-03/src/main.rs}}
 ```
 <div class="flex-container" style="position:relative; margin-left:-150px; margin-right:-200px; display:none;">
-  <object type="image/svg+xml" class="vis_04_01_11" data="img/vis_04_01_11_code.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_11" data="img/vis_04_01_11_code.svg" style="width: auto;"></object>
   <object type="image/svg+xml" class="vis_04_01_11" data="img/vis_04_01_11_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_11')"></object>
   <script type="text/javascript" src="../src/svg_frontend/function_hover.js"></script>
 </div>
@@ -488,8 +478,7 @@ similar annotations to those in Listing 4-3.
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-04/src/main.rs}}
 ```
 <div class="flex-container" style="position:relative; margin-left:-150px; margin-right:-200px; display:none;">
-  <object type="image/svg+xml" class="vis_04_01_12" data="img/vis_04_01_12_code.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_12" data="img/vis_04_01_12_code.svg" style="width: auto;"></object>
   <object type="image/svg+xml" class="vis_04_01_12" data="img/vis_04_01_12_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_12')"></object>
   <script type="text/javascript" src="../src/svg_frontend/function_hover.js"></script>
 </div>

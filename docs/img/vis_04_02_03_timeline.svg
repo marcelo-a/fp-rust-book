@@ -87,7 +87,7 @@ text.code {
     stroke: gray;
     fill: white;
     stroke-width: 1px;
-    font-size: 30px;
+    font-size: 24px;
     font-family: times;
     font-weight: lighter;
     dominant-baseline: central;
@@ -205,6 +205,7 @@ text.code {
 		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
     </g>
 
+    <!-- tooltip display script -->
     <script type="text/ecmascript"><![CDATA[
 		(function() {
             var timeline_id = "tl_04_02_03";

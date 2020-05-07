@@ -13,9 +13,8 @@ value:
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-07-reference/src/main.rs:all}}
 ```
 <div class="flex-container" style = "position:relative; margin-right:-100px; display:none;">
-  <object type="image/svg+xml" class="vis_04_02_01" data="img/vis_04_02_01_code.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
-  <object type="image/svg+xml" class="vis_04_02_01" data="img/vis_04_02_01_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_01')"></object>
+  <object type="image/svg+xml" class="vis_04_02_01" data="img/vis_04_02_01_code.svg" style="width: auto;"></object>
+  <object type="image/svg+xml" class="vis_04_02_01" data="img/vis_04_02_01_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_01')</object>
   <script type="text/javascript" src="../src/svg_frontend/function_hover.js"></script>
 </div>
 
@@ -43,8 +42,7 @@ Let’s take a closer look at the function call here:
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-07-reference/src/main.rs:here}}
 ```
 <div class="flex-container" style = "display:none;">
-  <object type="image/svg+xml" class="vis_04_02_02" data="img/vis_04_02_02_code.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_02_02" data="img/vis_04_02_02_code.svg" style="width: auto;"></object>
   <object type="image/svg+xml" class="vis_04_02_02" data="img/vis_04_02_02_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_02')"></object>
   <script type="text/javascript" src="../src/svg_frontend/function_hover.js"></script>
 </div>
@@ -60,8 +58,7 @@ the parameter `s` is a reference. Let’s add some explanatory annotations:
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-08-reference-with-annotations/src/main.rs:here}}
 ```
 <div class="flex-container" style = "position:relative; margin-right:-100px; display:none;">
-  <object type="image/svg+xml" class="vis_04_02_03" data="img/vis_04_02_03_code.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_02_03" data="img/vis_04_02_03_code.svg" style="width: auto;"></object>
   <object type="image/svg+xml" class="vis_04_02_03" data="img/vis_04_02_03_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_03')"></object>
   <script type="text/javascript" src="../src/svg_frontend/function_hover.js"></script>
 </div>
@@ -102,8 +99,7 @@ We can fix the error in the code from Listing 4-6 with just a small tweak:
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-09-fixes-listing-04-06/src/main.rs}}
 ```
 <div class="flex-container" style="display:none;">
-  <object type="image/svg+xml" class="vis_04_02_05" data="img/vis_04_02_05_code.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_02_05" data="img/vis_04_02_05_code.svg" style="width: auto;"></object>
   <object type="image/svg+xml" class="vis_04_02_05" data="img/vis_04_02_05_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_05')"></object>
   <script type="text/javascript" src="../src/svg_frontend/function_hover.js"></script>
 </div>
@@ -149,8 +145,7 @@ multiple mutable references, just not *simultaneous* ones:
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-11-muts-in-separate-scopes/src/main.rs:here}}
 ```
 <div class="flex-container" style = "position:relative; margin-left: -100px; margin-right:-100px; display:none;">
-  <object type="image/svg+xml" class="vis_04_02_07" data="img/vis_04_02_07_code.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_02_07" data="img/vis_04_02_07_code.svg" style="width: auto;"></object>
   <object type="image/svg+xml" class="vis_04_02_07" data="img/vis_04_02_07_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_07')"></object>
   <script type="text/javascript" src="../src/svg_frontend/function_hover.js"></script>
 </div>
@@ -183,8 +178,7 @@ mutable reference is introduced:
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-13-reference-scope-ends/src/main.rs:here}}
 ```
 <div class="flex-container" style = "position:relative; margin-right:-100px; display:none;">
-  <object type="image/svg+xml" class="vis_04_02_09" data="img/vis_04_02_09_code.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_02_09" data="img/vis_04_02_09_code.svg" style="width: auto;"></object>
   <object type="image/svg+xml" class="vis_04_02_09" data="img/vis_04_02_09_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_09')"></object>
   <script type="text/javascript" src="../src/svg_frontend/function_hover.js"></script>
 </div>
@@ -248,8 +242,7 @@ The solution here is to return the `String` directly:
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-16-no-dangle/src/main.rs:here}}
 ```
 <div class="flex-container" style = "display:none;">
-  <object type="image/svg+xml" class="vis_04_02_12" data="img/vis_04_02_12_code.svg" style="width: auto;" >
-  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_02_12" data="img/vis_04_02_12_code.svg" style="width: auto;"></object>
   <object type="image/svg+xml" class="vis_04_02_12" data="img/vis_04_02_12_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_12')"></object>
   <script type="text/javascript" src="../src/svg_frontend/function_hover.js"></script>
 </div>

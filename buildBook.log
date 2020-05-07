@@ -75,7 +75,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
      Running `target/debug/examples/one_var`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
@@ -167,7 +167,7 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.11s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/scope`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
@@ -334,7 +334,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
      Running `target/debug/examples/reference`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -422,7 +422,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.28s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.25s
      Running `target/debug/examples/scope2`
 s 1 3 OutOfScope
 s 3 6 FullPrivilege
@@ -514,7 +514,7 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.26s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.27s
      Running `target/debug/examples/int_copy`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -601,7 +601,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/string_move`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -686,7 +686,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
      Running `target/debug/examples/string_clone`
 s1 1 2 OutOfScope
 s1 2 3 FullPrivilege
@@ -776,7 +776,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/int_copy_2`
 x 1 2 OutOfScope
 x 2 3 FullPrivilege
@@ -867,7 +867,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/ownership_function`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -963,7 +963,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.23s
      Running `target/debug/examples/return_values`
 s1 1 2 OutOfScope
 s1 2 10 FullPrivilege
@@ -1158,7 +1158,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.27s
      Running `target/debug/examples/pass_reference`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -1250,7 +1250,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.26s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
      Running `target/debug/examples/acquire_from_function`
 s1 1 2 OutOfScope
 s1 2 4 FullPrivilege
@@ -1344,7 +1344,7 @@ warning: unused variable: `calculate_length`
    |
    = note: `#[warn(unused_variables)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.23s
      Running `target/debug/examples/safely_out_of_scope`
 s 1 2 OutOfScope
 s 2 3 FullPrivilege
@@ -1430,7 +1430,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/mut_ref`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -1520,7 +1520,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.23s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
      Running `target/debug/examples/scope_reference`
 s 1 2 OutOfScope
 s 2 5 FullPrivilege
@@ -1610,7 +1610,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.24s
      Running `target/debug/examples/shared_and_unique_borrow`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege
@@ -1715,7 +1715,7 @@ warning: the `borrow_to:` in this pattern is redundant
     |
     = note: `#[warn(non_shorthand_field_patterns)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/no_dangle`
 s 1 2 OutOfScope
 s 2 4 FullPrivilege

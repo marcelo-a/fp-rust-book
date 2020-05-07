@@ -87,7 +87,7 @@ text.code {
     stroke: gray;
     fill: white;
     stroke-width: 1px;
-    font-size: 30px;
+    font-size: 24px;
     font-family: times;
     font-weight: lighter;
     dominant-baseline: central;
@@ -177,11 +177,11 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text x="210" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="s3, immutable">s3</text>
-        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
-        <text x="310" y="90" style="text-anchor:middle" data-hash="4" class="code tooltip-trigger" data-tooltip-text="some_string, immutable">some_string</text>
-        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="s2, immutable">s2</text>
         <text x="380" y="90" style="text-anchor:middle" data-hash="5" class="code tooltip-trigger" data-tooltip-text="a_string, immutable">a_string</text>
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="s2, immutable">s2</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
+        <text x="210" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="s3, immutable">s3</text>
+        <text x="310" y="90" style="text-anchor:middle" data-hash="4" class="code tooltip-trigger" data-tooltip-text="some_string, immutable">some_string</text>
     </g>
 
     <g id="timelines">
@@ -231,6 +231,7 @@ text.code {
 		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
     </g>
 
+    <!-- tooltip display script -->
     <script type="text/ecmascript"><![CDATA[
 		(function() {
             var timeline_id = "tl_04_01_12";

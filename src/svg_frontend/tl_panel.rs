@@ -14,7 +14,7 @@ struct TimelineColumnData {
 }
 
 #[derive(Serialize)]
-struct RightPanelData {
+struct TLPanelData {
     labels: String,
     dots: String,
     timelines: String,
@@ -87,7 +87,7 @@ struct RefLineData {
     title: String,
 }
 
-pub fn render_right_panel(visualization_data : &VisualizationData) -> (String, i32) {
+pub fn render_tl_panel(visualization_data : &VisualizationData) -> (String, i32) {
     /* Template creation */
     let mut registry = Handlebars::new();
     prepare_registry(&mut registry);
@@ -101,7 +101,7 @@ pub fn render_right_panel(visualization_data : &VisualizationData) -> (String, i
     let timelines_string = render_timelines(visualization_data, &resource_owners_layout, &registry);
     let resource_accessibility_string = render_ref_line(visualization_data, &resource_owners_layout, &registry);
     let arrows_string = render_arrows_string_external_events_version(visualization_data, &resource_owners_layout, &registry);
-    let right_panel_data = RightPanelData {
+    let tl_panel_data = TLPanelData {
         labels: labels_string,
         dots: dots_string,
         timelines: timelines_string,
@@ -109,14 +109,14 @@ pub fn render_right_panel(visualization_data : &VisualizationData) -> (String, i
         arrows: arrows_string
     };
 
-    (registry.render("right_panel_template", &right_panel_data).unwrap(), width)
+    (registry.render("tl_panel_template", &tl_panel_data).unwrap(), width)
 }
 
 fn prepare_registry(registry: &mut Handlebars) {
     // We want to preserve the inputs `as is`, and want to make no changes based on html escape.
     registry.register_escape_fn(handlebars::no_escape);
 
-    let right_panel_template =
+    let tl_panel_template =
         "    <g id=\"labels\">\n{{ labels }}    </g>\n\n    \
         <g id=\"timelines\">\n{{ timelines }}    </g>\n\n    \
         <g id=\"resource_accessibility\">\n{{ resource_accessibility }}    </g>\n\n    \
@@ -142,7 +142,7 @@ fn prepare_registry(registry: &mut Handlebars) {
     let hollow_ref_line_template =
         "        <path data-hash=\"{{hash}}\" class=\"colorless tooltip-trigger\" style=\"fill:transparent;\" stroke-width=\"2px\" stroke-dasharray=\"3\" d=\"M {{x1}} {{y1}} l {{dx}} {{dy}} v {{v}} l -{{dx}} {{dy}}\" data-tooltip-text=\"{{title}}\"/>\n";
     assert!(
-        registry.register_template_string("right_panel_template", right_panel_template).is_ok()
+        registry.register_template_string("tl_panel_template", tl_panel_template).is_ok()
     );
     assert!(
         registry.register_template_string("label_template", label_template).is_ok()
@@ -561,7 +561,7 @@ fn render_timelines(
                             output.push_str(&registry.render("vertical_line_template", &data).unwrap());
                         },
                         (State::FullPrivilege, OwnerLine::Hollow) => {
-                            data.line_class = String::from("solid");
+                            data.line_class = String::from("hollow");
                             // data.title += "; can only read data";
                             
                             let mut hollow_internal_line_data = data.clone();
@@ -574,6 +574,10 @@ fn render_timelines(
                         (State::FullPrivilege, OwnerLine::Dotted) => {
                             // cannot read nor write the data from this RAP temporarily (borrowed away by a mut reference)
                         }
+                        (State::PartialPrivilege{..}, _) => {
+                            data.line_class = String::from("solid");
+                            output.push_str(&registry.render("vertical_line_template", &data).unwrap());
+                        },
                         // do nothing when the case is (RevokedPrivilege, false), (OutofScope, _), (ResourceMoved, false)
                         (State::OutOfScope, _) => (),
                         (_, _) => (),
@@ -683,10 +687,8 @@ fn render_ref_line(
                 };
 
                 for (line_start, _line_end, state) in states.iter() {
-                    // println!("REF LINE {} {} {} {}", resource_owners_layout[hash].name, line_start, _line_end, state);
-                    // println!("Data {{\n\tline_class: {}\n\tx1: {}\n\tx2: {}\n\ty1: {}\n\ty2: {}\n\tv: {}\n\tdy: {}\n}}", data.line_class, data.x1, data.x2, data.y1, data.y2, data.v, data.dy);
-                    match (state, ro.is_ref()) { // consider removing .clone()
-                        (State::OutOfScope, true) => {
+                    match state { // consider removing .clone()
+                        State::OutOfScope => {
                             if alive {
                                 // finish line template
                                 data.x2 = data.x1.clone();
@@ -720,7 +722,7 @@ fn render_ref_line(
                                 alive = false;
                             }
                         },
-                        (State::FullPrivilege, true) => {
+                        State::FullPrivilege => {
                             if !alive {
                                 // set known vals
                                 data.hash = *hash;
@@ -732,7 +734,7 @@ fn render_ref_line(
                                 alive = true;
                             }
                         },
-                        (State::PartialPrivilege{..}, true) => {
+                        State::PartialPrivilege{..} => {
                             if !alive {
                                 // set known vals
                                 data.hash = *hash;

@@ -1,7 +1,7 @@
 extern crate handlebars;
 
 use crate::data::VisualizationData;
-use crate::svg_frontend::{left_panel, right_panel, utils};
+use crate::svg_frontend::{code_panel, tl_panel, utils};
 use handlebars::Handlebars;
 use serde::Serialize;
 use std::cmp;
@@ -23,8 +23,8 @@ pub fn render_svg(listing_id: &String, description: &String, visualization_data:
     let code_image_file_path = format!("rustBook/src/img/vis_{}_code.svg", listing_id);
     let timeline_image_file_path = format!("rustBook/src/img/vis_{}_timeline.svg", listing_id);
     
-    let mut left_panel_string = String::new();
-    let mut left_width = 0;
+    let mut code_panel_string = String::new();
+    let mut code_width = 0;
     let mut num_lines = 0;
 
     let svg_code_template = utils::read_file_to_string("src/svg_frontend/code_template.svg")
@@ -49,27 +49,27 @@ pub fn render_svg(listing_id: &String, description: &String, visualization_data:
     let css_string = utils::read_file_to_string("src/svg_frontend/book_svg_style.css")
         .unwrap_or("Reading book_svg_style.css failed.".to_owned());
 
-    // data for left panel
+    // data for code panel
     if let Ok(lines) = utils::read_lines(example_dir_path.to_owned() + "annotated_source.rs") {
-        let (output, line_of_code) = left_panel::render_left_panel(lines);
-        left_panel_string = output;
+        let (output, line_of_code) = code_panel::render_code_panel(lines);
+        code_panel_string = output;
         num_lines = line_of_code;
     }
-    // set left panel width position
+    // set code panel width position
     if let Ok(lines) = utils::read_lines(example_dir_path.to_owned() + "source.rs") {
-        left_width = left_panel::set_divider_pos(lines);
+        code_width = code_panel::set_divider_pos(lines);
     }
         
-    // data for right panel
-    let (right_panel_string, max_width) = right_panel::render_right_panel(visualization_data);
+    // data for tl panel
+    let (tl_panel_string, max_width) = tl_panel::render_tl_panel(visualization_data);
         
     let svg_data = SvgData {
         visualization_name: description.to_owned(),
         css: css_string,
-        code: left_panel_string,
-        diagram: right_panel_string,
+        code: code_panel_string,
+        diagram: tl_panel_string,
         tl_id: "tl_".to_owned() + listing_id,
-        code_width: cmp::max(left_width, 450),
+        code_width: cmp::max(code_width, 450),
         tl_width: cmp::max(max_width, 200),
         height: (num_lines * 20 + 80) + 50,
     };

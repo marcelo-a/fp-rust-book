@@ -14,7 +14,7 @@
         <circle id="eventDot" cx="0" cy="0" r="5"/>
         <!-- used when pass to function by ref -->
         <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="8"/>
+             <circle id="eventDot" cx="0" cy="0" r="5"/>
              <text class="functionIcon" dx="-4" dy="0" fill="#6e6b5e">f</text>
         </g>
         <marker id="arrowHead" viewBox="0 0 10 10"

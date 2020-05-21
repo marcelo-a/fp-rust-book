@@ -49,29 +49,29 @@ pub enum ResourceAccessPoint {
 // when something is not a reference
 #[derive(Clone, Hash, PartialEq, Eq)]
 pub struct Owner {
+    pub name: String,
     pub hash: u64,
     pub is_mut: bool,                     // let a = 42; vs let mut a = 42;
-    pub name: String,
     pub lifetime_trait: LifetimeTrait,
 }
 
 // a reference of type &mut T
 #[derive(Clone, Hash, PartialEq, Eq)]
 pub struct MutRef {         // let (mut) r1 = &mut a;
-    pub hash: u64,
-    pub is_mut: bool,
-    pub my_owner_hash: Option<u64>,
     pub name: String,
+    pub hash: u64,
+    pub my_owner_hash: Option<u64>,
+    pub is_mut: bool,
     pub lifetime_trait: LifetimeTrait,
 }
 
 // a reference of type & T
 #[derive(Clone, Hash, PartialEq, Eq)]
 pub struct StaticRef {                // let (mut) r1 = & a;
+    pub name: String,
     pub hash: u64,
     pub my_owner_hash: Option<u64>,
     pub is_mut: bool,
-    pub name: String,
     pub lifetime_trait: LifetimeTrait,
 }
 
@@ -112,13 +112,16 @@ impl ResourceAccessPoint {
             ResourceAccessPoint::Function(_) => false,
         }
     }
-}
 
-// impl std::string::ToString for ResourceAccessPoint {
-//     fn to_string(&self) -> String {
-//         self.name.to_owned()
-//     }
-// }
+    pub fn is_ref(&self) -> bool {
+        match self {
+            ResourceAccessPoint::Owner(_) => false,
+            ResourceAccessPoint::MutRef(_) => true,
+            ResourceAccessPoint::StaticRef(_) => true,
+            ResourceAccessPoint::Function(_) => false,
+        }
+    }
+}
 
 /* let binding is either Duplicate (let _ = 1;)
 or move (let a = String::from("");) */
@@ -464,8 +467,6 @@ impl Visualizable for VisualizationData {
         self.timelines[hash].resource_access_point.is_mut()
     }
 
-
-    
     // a Function does not have a State, so we assume previous_state is always for Variables
     fn calc_state(&self, previous_state: & State, event: & Event, event_line: usize, hash: &u64) -> State {
         /* a Variable cannot borrow or return resource from Functions, 

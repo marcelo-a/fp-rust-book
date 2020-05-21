@@ -1,6 +1,6 @@
 extern crate handlebars;
 
-use crate::data::{VisualizationData, Visualizable, ExternalEvent, State, ResourceAccessPoint};
+use crate::data::{VisualizationData, Visualizable, ExternalEvent, Event, State, ResourceAccessPoint};
 use crate::svg_frontend::line_styles::{LineStyle, RefDataLine, RefValueLine, OwnerLine};
 use handlebars::Handlebars;
 use std::collections::HashMap;
@@ -31,7 +31,7 @@ struct ResourceAccessPointLabelData {
 
 #[derive(Serialize)]
 struct EventDotData {
-    hash: i64,
+    hash: u64,
     dot_x: i64,
     dot_y: i64,
     title: String
@@ -39,7 +39,7 @@ struct EventDotData {
 
 #[derive(Serialize)]
 struct FunctionDotData {
-    hash: i64,
+    hash: u64,
     x: i64,
     y: i64,
     title: String
@@ -56,9 +56,9 @@ struct ArrowData {
 
 #[derive(Serialize)]
 struct FunctionLogoData {
+    hash: u64,
     x: i64,
     y: i64,
-    hash: i64,
     title: String
 }
 
@@ -70,6 +70,20 @@ struct VerticalLineData {
     x2: i64,
     y1: i64,
     y2: i64,
+    title: String,
+}
+
+#[derive(Serialize, Clone)]
+struct RefLineData {
+    line_class: String,
+    hash: u64,
+    x1: i64,
+    x2: i64,
+    y1: i64,
+    y2: i64,
+    dx: i64,
+    dy: i64,
+    v: i64,
     title: String,
 }
 
@@ -85,7 +99,7 @@ pub fn render_right_panel(visualization_data : &VisualizationData) -> (String, i
     let labels_string = render_labels_string(&resource_owners_layout, &registry);
     let dots_string = render_dots_string(visualization_data, &resource_owners_layout, &registry);
     let timelines_string = render_timelines(visualization_data, &resource_owners_layout, &registry);
-    let resource_accessibility_string = render_resource_accessibility_string(visualization_data, &resource_owners_layout, &registry);
+    let resource_accessibility_string = render_ref_line(visualization_data, &resource_owners_layout, &registry);
     let arrows_string = render_arrows_string_external_events_version(visualization_data, &resource_owners_layout, &registry);
     let right_panel_data = RightPanelData {
         labels: labels_string,
@@ -123,6 +137,10 @@ fn prepare_registry(registry: &mut Handlebars) {
         "        <line data-hash=\"{{hash}}\" class=\"{{line_class}} tooltip-trigger\" x1=\"{{x1}}\" x2=\"{{x2}}\" y1=\"{{y1}}\" y2=\"{{y2}}\" data-tooltip-text=\"{{title}}\"/>\n";
     let hollow_line_internal_template =
         "        <line class=\"colorless tooltip-trigger\" stroke-width=\"8px\" x1=\"{{x1}}\" x2=\"{{x2}}\" y1=\"{{y1}}\" y2=\"{{y2}}\" data-tooltip-text=\"{{title}}\"/>\n";
+    let solid_ref_line_template =
+        "        <path data-hash=\"{{hash}}\" class=\"{{line_class}} tooltip-trigger\" style=\"fill:transparent;\" d=\"M {{x1}} {{y1}} l {{dx}} {{dy}} v {{v}} l -{{dx}} {{dy}}\" data-tooltip-text=\"{{title}}\"/>\n";
+    let hollow_ref_line_template =
+        "        <path data-hash=\"{{hash}}\" class=\"colorless tooltip-trigger\" style=\"fill:transparent;\" stroke-width=\"2px\" stroke-dasharray=\"3\" d=\"M {{x1}} {{y1}} l {{dx}} {{dy}} v {{v}} l -{{dx}} {{dy}}\" data-tooltip-text=\"{{title}}\"/>\n";
     assert!(
         registry.register_template_string("right_panel_template", right_panel_template).is_ok()
     );
@@ -147,6 +165,12 @@ fn prepare_registry(registry: &mut Handlebars) {
     assert!(
         registry.register_template_string("function_logo_template", function_logo_template).is_ok()
     );
+    assert!(
+        registry.register_template_string("solid_ref_line_template", solid_ref_line_template).is_ok()
+    );
+    assert!(
+        registry.register_template_string("hollow_ref_line_template", hollow_ref_line_template).is_ok()
+    );
 }
 
 // Returns: a hashmap from the hash of the ResourceOwner to its Column information
@@ -155,25 +179,30 @@ fn compute_column_layout<'a>(visualization_data: &'a VisualizationData) -> (Hash
     let mut x = 0;                   // Right-most Column x-offset.
     for (hash, timeline) in visualization_data.timelines.iter() {
         // only put variable in the column layout
-        if let ResourceOwner::Variable(_) = timeline.resource_owner {
-            let name = match visualization_data.get_name_from_hash(hash) {
-                Some(_name) => _name,
-                None => panic!("no matching resource owner for hash {}", hash),
-            };
-            let x_space = cmp::max(70, (&(name.len() as i64)-1)*10);
-            x = x + x_space;
-            let title = match visualization_data.is_mut(hash) {
-                true => String::from("mutable"),
-                false => String::from("immutable"),
-            };
-            resource_owners_layout.insert(hash, TimelineColumnData
-                { 
-                    name: name.clone(), 
-                    x_val: x, 
-                    title: name.clone() + ", " + &title,
-                });
+        match timeline.resource_access_point {
+            ResourceAccessPoint::Function(_) => {
+                /* do nothing */
+            },
+            ResourceAccessPoint::Owner(_) | ResourceAccessPoint::MutRef(_) | ResourceAccessPoint::StaticRef(_) =>
+            {
+                let name = match visualization_data.get_name_from_hash(hash) {
+                    Some(_name) => _name,
+                    None => panic!("no matching resource owner for hash {}", hash),
+                };
+                let x_space = cmp::max(70, (&(name.len() as i64)-1)*10);
+                x = x + x_space;
+                let title = match visualization_data.is_mut(hash) {
+                    true => String::from("mutable"),
+                    false => String::from("immutable"),
+                };
+                resource_owners_layout.insert(hash, TimelineColumnData
+                    { 
+                        name: name.clone(), 
+                        x_val: x, 
+                        title: name.clone() + ", " + &title,
+                    });
+            }
         }
-        
     }
     (resource_owners_layout, (x as i32)+100)
 }
@@ -212,7 +241,7 @@ fn render_dots_string(
             {
                 for (line_number, event) in timeline.history.iter() {
                     let mut data = EventDotData {
-                        hash: *hash as i64,
+                        hash: *hash as u64,
                         dot_x: resource_owners_layout[hash].x_val,
                         dot_y: get_y_axis_pos(line_number),
                         title: "Unknown Resource Owner Value".to_owned()        // default value if the 
@@ -240,50 +269,56 @@ fn render_arrows_string(
 
     let mut output = String::new();
     for (hash, timeline) in timelines {
-        if let ResourceOwner::Variable(_) = timeline.resource_owner {
-
-            let _ = timelines[hash].resource_owner.to_owned();
-            
-            for (line_number, event) in timeline.history.iter() {
-                let ro1_x_pos = resource_owners_layout[hash].x_val;
-                let ro1_y_pos = get_y_axis_pos(line_number);
-
-                // render arrow only if ro2 give resource to ro1
-                // i.e. ro2 points to ro1
-                let some_ro2 : Option<ResourceOwner> = match event {
-                    Event::Acquire { from : from_ro } => from_ro.to_owned(),
-                    Event::MutableBorrow { from : from_ro } => Some(from_ro.to_owned()),
-                    Event::StaticBorrow { from : from_ro } => Some(from_ro.to_owned()),
-                    Event::StaticReacquire { from : from_ro } => from_ro.to_owned(),
-                    Event::MutableReacquire { from: from_ro } => from_ro.to_owned(),
-                    _ => None,
+        match timeline.resource_access_point {
+            ResourceAccessPoint::Function(_) => {
+                /* do nothing */
+            },
+            ResourceAccessPoint::Owner(_) | ResourceAccessPoint::MutRef(_) | ResourceAccessPoint::StaticRef(_) =>
+            {
+                let _ = timelines[hash].resource_access_point.to_owned();
+                
+                for (line_number, event) in timeline.history.iter() {
+                    let ro1_x_pos = resource_owners_layout[hash].x_val;
+                    let ro1_y_pos = get_y_axis_pos(line_number);
+    
+                    // render arrow only if ro2 give resource to ro1
+                    // i.e. ro2 points to ro1
+                    let some_ro2 : Option<ResourceAccessPoint> = match event {
+                        Event::Acquire { from : from_ro } => from_ro.to_owned(),
+                        Event::MutableBorrow { from : from_ro } => Some(from_ro.to_owned()),
+                        Event::StaticBorrow { from : from_ro } => Some(from_ro.to_owned()),
+                        Event::StaticReacquire { from : from_ro } => from_ro.to_owned(),
+                        Event::MutableReacquire { from: from_ro } => from_ro.to_owned(),
+                        _ => None,
+                        };
+                    let title: String = match event {
+                        Event::Acquire { from : Some(from_ro) } => format!("{}{}", String::from("acquire resource from: "), from_ro.name()),
+                        Event::MutableBorrow { from : from_ro } => format!("{}{}", String::from("dynamic borrow from: "), from_ro.name()),
+                        Event::StaticBorrow { from : from_ro } => format!("{}{}", String::from("static borrow from: "), from_ro.name()),
+                        Event::StaticReacquire { from : Some(from_ro) } => format!("{}{}", String::from("static return from: "), from_ro.name()),
+                        Event::MutableReacquire { from: Some(from_ro) } => format!("{}{}", String::from("dynamic return from: "), from_ro.name()),
+                        _ => String::from(""),
                     };
-                let title: String = match event {
-                    Event::Acquire { from : Some(from_ro) } => format!("{}{}", String::from("acquire resource from: "), from_ro.name()),
-                    Event::MutableBorrow { from : from_ro } => format!("{}{}", String::from("dynamic borrow from: "), from_ro.name()),
-                    Event::StaticBorrow { from : from_ro } => format!("{}{}", String::from("static borrow from: "), from_ro.name()),
-                    Event::StaticReacquire { from : Some(from_ro) } => format!("{}{}", String::from("static return from: "), from_ro.name()),
-                    Event::MutableReacquire { from: Some(from_ro) } => format!("{}{}", String::from("dynamic return from: "), from_ro.name()),
-                    _ => String::from(""),
-                };
-                if let Some(ro2) = some_ro2 {
-                    let mut data = ArrowData {
-                        x1: ro1_x_pos,
-                        y1: ro1_y_pos,
-                        x2: resource_owners_layout[&ro2.hash()].x_val,
-                        y2: ro1_y_pos,
-                        title: title,
-                    };
-                    // adjust arrow head pos
-                    if data.x1 < data.x2 {
-                        data.x1 = data.x1 + 10;
+                    println!("{}", title);
+                    if let Some(ro2) = some_ro2 {
+                        let mut data = ArrowData {
+                            x1: ro1_x_pos,
+                            y1: ro1_y_pos,
+                            x2: resource_owners_layout[&ro2.hash()].x_val,
+                            y2: ro1_y_pos,
+                            title: title,
+                        };
+                        // adjust arrow head pos
+                        if data.x1 < data.x2 {
+                            data.x1 = data.x1 + 10;
+                        }
+                        else {
+                            data.x1 = data.x1 - 10;
+                        }
+                        output.push_str(&registry.render("arrow_template", &data).unwrap());
                     }
-                    else {
-                        data.x1 = data.x1 - 10;
-                    }
-                    output.push_str(&registry.render("arrow_template", &data).unwrap());
                 }
-            }
+            },
         }
     }
     output
@@ -336,15 +371,19 @@ fn render_arrows_string_external_events_version(
         // complete title
         if let Some(some_from) = from {
             let from_string = match some_from {
-                    ResourceOwner::Variable(var) => var.name.to_owned(),
-                    ResourceOwner::Function(func) => "the return value of ".to_owned() + &func.name,
+                ResourceAccessPoint::Owner(owner) => owner.name.to_owned(),
+                ResourceAccessPoint::MutRef(mutref) => mutref.name.to_owned(),
+                ResourceAccessPoint::StaticRef(statref) => statref.name.to_owned(),
+                ResourceAccessPoint::Function(func) => "the return value of ".to_owned() + &func.name,
             };
             title = format!("{} from {}", title, from_string);
         };
         if let Some(some_to) = to {
             let to_string = match some_to {
-                ResourceOwner::Variable(var) => var.name.to_owned(),
-                ResourceOwner::Function(func) => "the parameter of ".to_owned() + &func.name,
+                ResourceAccessPoint::Owner(owner) => owner.name.to_owned(),
+                ResourceAccessPoint::MutRef(mutref) => mutref.name.to_owned(),
+                ResourceAccessPoint::StaticRef(statref) => statref.name.to_owned(),
+                ResourceAccessPoint::Function(func) => "the parameter of ".to_owned() + &func.name,
             };
             title = format!("{} to {}", title, to_string);
         };
@@ -357,63 +396,67 @@ fn render_arrows_string_external_events_version(
             title: title
         };
         let arrow_length = 20;
+
+        // render title
         match (from, to, external_event) {
-            (Some(ResourceOwner::Variable(variable)), 
-             Some(ResourceOwner::Function(function)), 
-             ExternalEvent::PassByStaticReference{..}) => {
-                // get variable's position
-                let function_dot_data = FunctionDotData {
-                x: resource_owners_layout[&variable.hash].x_val,
-                y: get_y_axis_pos(line_number),
-                title: function.name.to_owned() + " reads from " + &variable.name,
-                hash: variable.hash.to_owned() as i64,
-                };
-                output.push_str(&registry.render("function_dot_template", &function_dot_data).unwrap());
+            (Some(ResourceAccessPoint::Function(_)), Some(ResourceAccessPoint::Function(_)), _) => {
+                // do nothing for case: from = function
+                // it is easier to exclude this case than list all possible cases for when ResourceAccessPoint is a variable
             },
-            (Some(ResourceOwner::Variable(variable)), 
-             Some(ResourceOwner::Function(function)), 
-             ExternalEvent::PassByMutableReference{..}) => {
-                // get variable's position
-                let function_dot_data = FunctionDotData {
-                x: resource_owners_layout[&variable.hash].x_val,
-                y: get_y_axis_pos(line_number),
-                title: function.name.to_owned() + " reads from/writes to " + &variable.name,
-                hash: variable.hash.to_owned() as i64,
-                };
-                output.push_str(&registry.render("function_dot_template", &function_dot_data).unwrap());
-            },
-            (Some(ResourceOwner::Function(from_function)), Some(ResourceOwner::Variable(to_variable)), _) => {
+            (Some(ResourceAccessPoint::Function(from_function)), Some(to_variable), _) => {  // (Some(function), Some(variable), _)
                 // ro1 (to_variable) <- ro2 (from_function)
-                data.x1 = resource_owners_layout[&to_variable.hash].x_val + 3; // adjust arrow head pos
+                data.x1 = resource_owners_layout[to_variable.hash()].x_val + 3; // adjust arrow head pos
                 data.x2 = data.x1 + arrow_length;
                 let function_data = FunctionLogoData {
                     x: data.x2 + 3,
                     y: data.y2 + 5,
-                    hash: from_function.hash.to_owned() as i64,
+                    hash: from_function.hash.to_owned() as u64,
                     title: from_function.name.to_owned(),
                 };
                 output.push_str(&registry.render("function_logo_template", &function_data).unwrap());
             },
-            (Some(ResourceOwner::Variable(from_variable)), Some(ResourceOwner::Function(to_function)), _) => {
+            (Some(from_variable), Some(ResourceAccessPoint::Function(function)), 
+             ExternalEvent::PassByStaticReference{..}) => { // (Some(variable), Some(function), PassByStatRef)
+                // get variable's position
+                let function_dot_data = FunctionDotData {
+                    x: resource_owners_layout[from_variable.hash()].x_val,
+                    y: get_y_axis_pos(line_number),
+                    title: function.name.to_owned() + " reads from " + from_variable.name(),
+                    hash: from_variable.hash().to_owned() as u64,
+                };
+                output.push_str(&registry.render("function_dot_template", &function_dot_data).unwrap());
+            },
+            (Some(from_variable), Some(ResourceAccessPoint::Function(function)), 
+             ExternalEvent::PassByMutableReference{..}) => {  // (Some(variable), Some(function), PassByMutRef)
+                // get variable's position
+                let function_dot_data = FunctionDotData {
+                x: resource_owners_layout[from_variable.hash()].x_val,
+                y: get_y_axis_pos(line_number),
+                title: function.name.to_owned() + " reads from/writes to " + from_variable.name(),
+                hash: from_variable.hash().to_owned() as u64,
+                };
+                output.push_str(&registry.render("function_dot_template", &function_dot_data).unwrap());
+            },
+            (Some(from_variable), Some(ResourceAccessPoint::Function(to_function)), _) => { // (Some(variable), Some(function), _)
                 //  ro1 (to_function) <- ro2 (from_variable)
-                data.x2 = resource_owners_layout[&from_variable.hash].x_val - 5;
+                data.x2 = resource_owners_layout[from_variable.hash()].x_val - 5;
                 data.x1 = data.x2 - arrow_length;
                 let function_data = FunctionLogoData {
                     // adjust Function logo pos
                     x: data.x1 - 10,  
                     y: data.y1 + 5,
-                    hash: to_function.hash.to_owned() as i64,
+                    hash: to_function.hash.to_owned() as u64,
                     title: to_function.name.to_owned(),
                 };
                 output.push_str(&registry.render("function_logo_template", &function_data).unwrap());
             },
-            (Some(ResourceOwner::Variable(from_variable)), Some(ResourceOwner::Variable(to_variable)), _) => {
-                data.x1 = resource_owners_layout[&to_variable.hash].x_val;
-                data.x2 = resource_owners_layout[&from_variable.hash].x_val;
+            (Some(from_variable), Some(to_variable), _) => {
+                data.x1 = resource_owners_layout[to_variable.hash()].x_val;
+                data.x2 = resource_owners_layout[from_variable.hash()].x_val;
             },
             _ => (), // don't support other cases for now
         }
-        // draw arrow only if data.x1 is not dafault value
+        // draw arrow only if data.x1 is not default value
         if data.x1 != 0 {
             // adjust arrow head pos
             if data.x1 < data.x2 {
@@ -434,8 +477,8 @@ fn determine_owner_line_styles(
     state: &State
 ) -> OwnerLine {
     match (state, rap.is_mut()) {
-        (FullPriviledge, true) => OwnerLine::Solid,
-        (FullPriviledge, false) => OwnerLine::Hollow,
+        (State::FullPrivilege, true) => OwnerLine::Solid,
+        (State::FullPrivilege, false) => OwnerLine::Hollow,
         _ => OwnerLine::Empty,              // TODO: more implementations 
     }
 }
@@ -446,11 +489,11 @@ fn determine_stat_ref_line_styles(
     state: &State
 ) -> (RefDataLine, RefValueLine) {
     match (state, rap.is_mut()) {
-        (PartialPrivilege, false) => (
+        (State::PartialPrivilege{..}, false) => (
             RefDataLine::Hollow,
             RefValueLine::NotReassignable,
         ),
-        (PartialPrivilege, true) => (
+        (State::PartialPrivilege{..}, true) => (
             RefDataLine::Hollow,
             RefValueLine::Reassignable,     // potentially wrong. Not taking second level 
                                             // borrowing into account
@@ -468,11 +511,11 @@ fn determine_mut_ref_line_styles(
     state: &State
 ) -> (RefDataLine, RefValueLine) {
     match (state, rap.is_mut()) {
-        (FullPriviledge, false) => (
+        (State::FullPrivilege, false) => (
             RefDataLine::Solid,
             RefValueLine::NotReassignable,
         ),
-        (FullPriviledge, true) => (
+        (State::FullPrivilege, true) => (
             RefDataLine::Solid,
             RefValueLine::Reassignable,
         ),
@@ -503,6 +546,38 @@ fn render_timelines(
                 let rap_states = visualization_data.get_states(hash);
                 for (line_start, line_end, state) in rap_states.iter() {
                     let style = determine_owner_line_styles(rap, &state);
+                    let mut data = VerticalLineData {
+                        line_class: String::new(),
+                        hash: *hash,
+                        x1: resource_owners_layout[hash].x_val,
+                        y1: get_y_axis_pos(line_start),
+                        x2: resource_owners_layout[hash].x_val,
+                        y2: get_y_axis_pos(line_end),
+                        title: state.print_message_with_name(rap.name())
+                    };
+                    match (state, style) {
+                        (State::FullPrivilege, OwnerLine::Solid) | (State::PartialPrivilege { .. }, OwnerLine::Solid) => {
+                            data.line_class = String::from("solid");
+                            output.push_str(&registry.render("vertical_line_template", &data).unwrap());
+                        },
+                        (State::FullPrivilege, OwnerLine::Hollow) => {
+                            data.line_class = String::from("solid");
+                            // data.title += "; can only read data";
+                            
+                            let mut hollow_internal_line_data = data.clone();
+                            hollow_internal_line_data.y1 += 5;
+                            hollow_internal_line_data.y2 -= 5;
+                            hollow_internal_line_data.title = data.title;
+                            
+                            output.push_str(&registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
+                        },
+                        (State::FullPrivilege, OwnerLine::Dotted) => {
+                            // cannot read nor write the data from this RAP temporarily (borrowed away by a mut reference)
+                        }
+                        // do nothing when the case is (RevokedPrivilege, false), (OutofScope, _), (ResourceMoved, false)
+                        (State::OutOfScope, _) => (),
+                        (_, _) => (),
+                    }
                 }
             },
             ResourceAccessPoint::StaticRef(_) | ResourceAccessPoint::MutRef(_) => {
@@ -528,7 +603,7 @@ fn render_timelines(
                             }
                             output.push_str(&registry.render("vertical_line_template", &data).unwrap());
                         },
-                        (State::FullPrivilege, ftruealse) => {
+                        (State::FullPrivilege, false) => {
                             data.line_class = String::from("solid");
                             if rap.is_ref() {
                                 data.title += "; can read and write data; can not point to another piece of data";
@@ -568,76 +643,12 @@ fn render_timelines(
             },
         }
     }
-        if let ResourceAccessPoint::Variable(_) = timeline.resource_access_point {
-            let ro = timeline.resource_access_point.to_owned();
-            // verticle state lines
-            let states = visualization_data.get_states(hash);
-            for (line_start, line_end, state) in states.iter() {
-            println!("{} {} {} {}", resource_owners_layout[hash].name, line_start, line_end, state);
-            let mut data = VerticalLineData {
-                line_class: String::new(),
-                hash: *hash,
-                x1: resource_owners_layout[hash].x_val,
-                y1: get_y_axis_pos(line_start),
-                x2: resource_owners_layout[hash].x_val,
-                y2: get_y_axis_pos(line_end),
-                title: state.print_message_with_name(ro.name())
-            };
-            match (state, ro.is_mut()) {
-                (State::FullPrivilege, true) => {
-                    data.line_class = String::from("solid");
-                    if ro.is_ref() {
-                        data.title += "; can read and write data; can point to another piece of data";
-                    } else {
-                        data.title += "; can read and write data";
-                    }
-                    output.push_str(&registry.render("vertical_line_template", &data).unwrap());
-                },
-                (State::FullPrivilege, false) => {
-                    data.line_class = String::from("solid");
-                    if ro.is_ref() {
-                        data.title += "; can read and write data; can not point to another piece of data";
-                    } else {
-                        data.title += "; can only read data";
-                    }
-                    output.push_str(&registry.render("vertical_line_template", &data).unwrap());
-                    
-                    let mut hollow_internal_line_data = data.clone();
-                    hollow_internal_line_data.y1 += 5;
-                    hollow_internal_line_data.y2 -= 5;
-                    hollow_internal_line_data.title = data.title;
-                    
-                    output.push_str(&registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
-                },
-                (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, _) => {
-                    data.line_class = String::from("solid");
-                    data.title += "; can only read data";
-                    output.push_str(&registry.render("vertical_line_template", &data).unwrap());
-                    
-                    let mut hollow_internal_line_data = data.clone();
-                    hollow_internal_line_data.y1 += 5;
-                    hollow_internal_line_data.y2 -= 5;
-                    hollow_internal_line_data.title = data.title;
-
-                    output.push_str(&registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
-                },
-                (State::ResourceMoved{ move_to: _, move_at_line: _ }, true) => {
-                    data.line_class = String::from("extend");
-                    data.title += "; cannot access data";
-                    output.push_str(&registry.render("vertical_line_template", &data).unwrap());
-                }
-                 // do nothing when the case is (RevokedPrivilege, false), (OutofScope, _), (ResourceMoved, false)
-                 _ => (),
-            }
-        }
-        }
-    }
     output
 }
 
 // vertical lines indicating whether a reference can mutate its resource(deref as many times)
 // (iff it's a MutRef && it has FullPrivilege)
-fn render_resource_accessibility_string(
+fn render_ref_line(
     visualization_data: &VisualizationData,
     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
     registry: &Handlebars
@@ -646,31 +657,95 @@ fn render_resource_accessibility_string(
 
     let mut output = String::new();
     for (hash, timeline) in timelines{
-        if let ResourceAccessPoint::Variable(_) = timeline.resource_owner {
-            let ro = timeline.resource_owner.to_owned();
-            // verticle state lines
-            let states = visualization_data.get_states(hash);
-            for (line_start, line_end, state) in states.iter() {
-               
-                // add a horizontal offset to the line
-                let offset = 10;
-                let mut data = VerticalLineData {
+        match timeline.resource_access_point {
+            ResourceAccessPoint::Function(_) => {
+                /* do nothing */
+            },
+            ResourceAccessPoint::Owner(_) | ResourceAccessPoint::MutRef(_) | ResourceAccessPoint::StaticRef(_) =>
+            {
+                let ro = timeline.resource_access_point.to_owned();
+                // verticle state lines
+                let states = visualization_data.get_states(hash);
+
+                // struct can live over events
+                let mut alive = false;
+                let mut data = RefLineData {
                     line_class: String::new(),
-                    hash: *hash,
-                    x1: resource_owners_layout[hash].x_val + offset,
-                    y1: get_y_axis_pos(line_start),
-                    x2: resource_owners_layout[hash].x_val + offset,
-                    y2: get_y_axis_pos(line_end),
-                    title: String::new()
+                    hash: 0,
+                    x1: 0,
+                    x2: 0,
+                    y1: 0,
+                    y2: 0,
+                    v: 0,
+                    dx: 15,
+                    dy: 0,
+                    title: String::new(),
                 };
-                match (state, ro.ref_kind()) {
-                    (State::FullPrivilege, Some(RefKind::MutRef)) => {
-                        println!("ACCESIBILITY {} {} {} {}", resource_owners_layout[hash].name, line_start, line_end, state);
-                        data.title = String::from("can mutate the resource it refers to");
-                        data.line_class = String::from("solid");
-                        output.push_str(&registry.render("vertical_line_template", &data).unwrap());
-                    },
-                    _ => (),
+
+                for (line_start, _line_end, state) in states.iter() {
+                    // println!("REF LINE {} {} {} {}", resource_owners_layout[hash].name, line_start, _line_end, state);
+                    // println!("Data {{\n\tline_class: {}\n\tx1: {}\n\tx2: {}\n\ty1: {}\n\ty2: {}\n\tv: {}\n\tdy: {}\n}}", data.line_class, data.x1, data.x2, data.y1, data.y2, data.v, data.dy);
+                    match (state, ro.is_ref()) { // consider removing .clone()
+                        (State::OutOfScope, true) => {
+                            if alive {
+                                // finish line template
+                                data.x2 = data.x1.clone();
+                                data.y2 = get_y_axis_pos(line_start);
+                                let dv = get_y_axis_pos(line_start)-data.y1;
+                                data.v = dv - 2*dv/5;
+                                data.dy = dv/5;
+
+                                match ro {
+                                    ResourceAccessPoint::MutRef(_) => {
+                                        output.push_str(&registry.render("solid_ref_line_template", &data).unwrap());
+                                    },
+                                    ResourceAccessPoint::StaticRef(_) => {
+                                        // adjust line positions and render template
+                                        // data.y1 += 3;
+                                        // data.y2 -= 3;
+                                        output.push_str(&registry.render("hollow_ref_line_template", &data).unwrap());
+
+                                        // let mut hollow_line_data = data.clone();
+                                        // hollow_line_data.y1 -= 3;
+                                        // hollow_line_data.y2 += 6;
+                                        // hollow_line_data.dx = 20;
+                                        // hollow_line_data.title = data.title.clone();
+                                        // // render template
+                                        // output.push_str(&registry.render("hollow_ref_line_template", &hollow_line_data).unwrap());
+
+                                    },
+                                    _ => (),
+                                }
+
+                                alive = false;
+                            }
+                        },
+                        (State::FullPrivilege, true) => {
+                            if !alive {
+                                // set known vals
+                                data.hash = *hash;
+                                data.x1 = resource_owners_layout[hash].x_val;
+                                data.y1 = get_y_axis_pos(line_start);
+
+                                data.title = String::from("can mutate the resource it refers to");
+                                data.line_class = String::from("solid");
+                                alive = true;
+                            }
+                        },
+                        (State::PartialPrivilege{..}, true) => {
+                            if !alive {
+                                // set known vals
+                                data.hash = *hash;
+                                data.x1 = resource_owners_layout[hash].x_val;
+                                data.y1 = get_y_axis_pos(line_start);
+
+                                data.title = String::from("cannot mutate the resource it refers to");
+                                data.line_class = String::from("solid");
+                                alive = true;
+                            }
+                        },
+                        _ => (),
+                    }
                 }
             }
         }

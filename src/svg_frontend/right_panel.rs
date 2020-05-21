@@ -1,6 +1,7 @@
 extern crate handlebars;
 
-use crate::data::{VisualizationData, Visualizable, Event, ExternalEvent, State, ResourceOwner, RefKind};
+use crate::data::{VisualizationData, Visualizable, ExternalEvent, State, ResourceAccessPoint};
+use crate::svg_frontend::line_styles::{LineStyle, RefDataLine, RefValueLine, OwnerLine};
 use handlebars::Handlebars;
 use std::collections::HashMap;
 use serde::Serialize;
@@ -21,7 +22,7 @@ struct RightPanelData {
     arrows: String,
 }
 #[derive(Serialize)]
-struct ResourceOwnerLabelData {
+struct ResourceAccessPointLabelData {
     x_val: i64,
     hash: String,
     name: String,
@@ -83,7 +84,7 @@ pub fn render_right_panel(visualization_data : &VisualizationData) -> (String, i
     // render resource owner labels
     let labels_string = render_labels_string(&resource_owners_layout, &registry);
     let dots_string = render_dots_string(visualization_data, &resource_owners_layout, &registry);
-    let timelines_string = render_timelines_string(visualization_data, &resource_owners_layout, &registry);
+    let timelines_string = render_timelines(visualization_data, &resource_owners_layout, &registry);
     let resource_accessibility_string = render_resource_accessibility_string(visualization_data, &resource_owners_layout, &registry);
     let arrows_string = render_arrows_string_external_events_version(visualization_data, &resource_owners_layout, &registry);
     let right_panel_data = RightPanelData {
@@ -183,7 +184,7 @@ fn render_labels_string(
 ) -> String {
     let mut output = String::new();
     for (hash, column_data) in resource_owners_layout.iter() {
-        let data = ResourceOwnerLabelData {
+        let data = ResourceAccessPointLabelData {
             x_val: column_data.x_val,
             hash: hash.to_string(),
             name: column_data.name.clone(),
@@ -202,20 +203,28 @@ fn render_dots_string(
     let timelines = &visualization_data.timelines;
     let mut output = String::new();
     for (hash, timeline) in timelines {
-        if let ResourceOwner::Variable(_) = timeline.resource_owner {
-            for (line_number, event) in timeline.history.iter() {
-                let mut data = EventDotData {
-                    hash: *hash as i64,
-                    dot_x: resource_owners_layout[hash].x_val,
-                    dot_y: get_y_axis_pos(line_number),
-                    title: "Unknown Resource Owner Value".to_owned()
-                };
-                if let Some(name) = visualization_data.get_name_from_hash(hash) {
-                    data.title = event.print_message_with_name(&name);
+        // render just the name of Owners and References
+        match timeline.resource_access_point {
+            ResourceAccessPoint::Function(_) => {
+                // nothing to be done
+            },
+            ResourceAccessPoint::Owner(_) | ResourceAccessPoint::MutRef(_) | ResourceAccessPoint::StaticRef(_) =>
+            {
+                for (line_number, event) in timeline.history.iter() {
+                    let mut data = EventDotData {
+                        hash: *hash as i64,
+                        dot_x: resource_owners_layout[hash].x_val,
+                        dot_y: get_y_axis_pos(line_number),
+                        title: "Unknown Resource Owner Value".to_owned()        // default value if the 
+                                                                                // print_message_with_name() fails
+                    };
+                    if let Some(name) = visualization_data.get_name_from_hash(hash) {
+                        data.title = event.print_message_with_name(&name);
+                    }
+                    output.push_str(&registry.render("dot_template", &data).unwrap());
                 }
-                output.push_str(&registry.render("dot_template", &data).unwrap());
-            }
-        }   
+            },
+        }
     }
     output
 }
@@ -415,13 +424,68 @@ fn render_arrows_string_external_events_version(
             }
             output.push_str(&registry.render("arrow_template", &data).unwrap()); 
         }
-           
     }
     output
 }
 
+
+fn determine_owner_line_styles(
+    rap: &ResourceAccessPoint,
+    state: &State
+) -> OwnerLine {
+    match (state, rap.is_mut()) {
+        (FullPriviledge, true) => OwnerLine::Solid,
+        (FullPriviledge, false) => OwnerLine::Hollow,
+        _ => OwnerLine::Empty,              // TODO: more implementations 
+    }
+}
+
+
+fn determine_stat_ref_line_styles(
+    rap: &ResourceAccessPoint,
+    state: &State
+) -> (RefDataLine, RefValueLine) {
+    match (state, rap.is_mut()) {
+        (PartialPrivilege, false) => (
+            RefDataLine::Hollow,
+            RefValueLine::NotReassignable,
+        ),
+        (PartialPrivilege, true) => (
+            RefDataLine::Hollow,
+            RefValueLine::Reassignable,     // potentially wrong. Not taking second level 
+                                            // borrowing into account
+        ),
+        _ => (                              // TODO: not finished
+            RefDataLine::Hollow,
+            RefValueLine::NotReassignable,
+        )
+    }
+}
+
+
+fn determine_mut_ref_line_styles(
+    rap: &ResourceAccessPoint,
+    state: &State
+) -> (RefDataLine, RefValueLine) {
+    match (state, rap.is_mut()) {
+        (FullPriviledge, false) => (
+            RefDataLine::Solid,
+            RefValueLine::NotReassignable,
+        ),
+        (FullPriviledge, true) => (
+            RefDataLine::Solid,
+            RefValueLine::Reassignable,
+        ),
+        _ => ( // TODO: not finished
+            RefDataLine::Hollow,
+            RefValueLine::NotReassignable,
+        )
+    }
+}
+
+
 // render timelines (states) for ROs using vertical lines
-fn render_timelines_string(
+fn render_timelines(
     visualization_data: &VisualizationData,
     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
     registry: &Handlebars
@@ -429,9 +493,83 @@ fn render_timelines_string(
     let timelines = &visualization_data.timelines;
 
     let mut output = String::new();
-    for (hash, timeline) in timelines{
-        if let ResourceOwner::Variable(_) = timeline.resource_owner {
-            let ro = timeline.resource_owner.to_owned();
+    for (hash, timeline) in timelines {
+        let rap = &timeline.resource_access_point;
+        match rap {
+            ResourceAccessPoint::Function(_) => {
+                // Don't do anything
+            },
+            ResourceAccessPoint::Owner(_) => {
+                let rap_states = visualization_data.get_states(hash);
+                for (line_start, line_end, state) in rap_states.iter() {
+                    let style = determine_owner_line_styles(rap, &state);
+                }
+            },
+            ResourceAccessPoint::StaticRef(_) | ResourceAccessPoint::MutRef(_) => {
+                // verticle state lines
+                let states = visualization_data.get_states(hash);
+                for (line_start, line_end, state) in states.iter() {
+                    let mut data = VerticalLineData {
+                        line_class: String::new(),
+                        hash: *hash,
+                        x1: resource_owners_layout[hash].x_val,
+                        y1: get_y_axis_pos(line_start),
+                        x2: resource_owners_layout[hash].x_val,
+                        y2: get_y_axis_pos(line_end),
+                        title: state.print_message_with_name(rap.name())
+                    };
+                    match (state, rap.is_mut()) {
+                        (State::FullPrivilege, true) => {
+                            data.line_class = String::from("solid");
+                            if rap.is_ref() {
+                                data.title += "; can read and write data; can point to another piece of data";
+                            } else {
+                                data.title += "; can read and write data";
+                            }
+                            output.push_str(&registry.render("vertical_line_template", &data).unwrap());
+                        },
+                        (State::FullPrivilege, ftruealse) => {
+                            data.line_class = String::from("solid");
+                            if rap.is_ref() {
+                                data.title += "; can read and write data; can not point to another piece of data";
+                            } else {
+                                data.title += "; can only read data";
+                            }
+                            output.push_str(&registry.render("vertical_line_template", &data).unwrap());
+                            
+                            let mut hollow_internal_line_data = data.clone();
+                            hollow_internal_line_data.y1 += 5;
+                            hollow_internal_line_data.y2 -= 5;
+                            hollow_internal_line_data.title = data.title;
+                            
+                            output.push_str(&registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
+                        },
+                        (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, _) => {
+                            data.line_class = String::from("solid");
+                            data.title += "; can only read data";
+                            output.push_str(&registry.render("vertical_line_template", &data).unwrap());
+                            
+                            let mut hollow_internal_line_data = data.clone();
+                            hollow_internal_line_data.y1 += 5;
+                            hollow_internal_line_data.y2 -= 5;
+                            hollow_internal_line_data.title = data.title;
+
+                            output.push_str(&registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
+                        },
+                        (State::ResourceMoved{ move_to: _, move_at_line: _ }, true) => {
+                            data.line_class = String::from("extend");
+                            data.title += "; cannot access data";
+                            output.push_str(&registry.render("vertical_line_template", &data).unwrap());
+                        }
+                        // do nothing when the case is (RevokedPrivilege, false), (OutofScope, _), (ResourceMoved, false)
+                        _ => (),
+                    }
+                }
+            },
+        }
+    }
+        if let ResourceAccessPoint::Variable(_) = timeline.resource_access_point {
+            let ro = timeline.resource_access_point.to_owned();
             // verticle state lines
             let states = visualization_data.get_states(hash);
             for (line_start, line_end, state) in states.iter() {
@@ -488,10 +626,9 @@ fn render_timelines_string(
                     data.title += "; cannot access data";
                     output.push_str(&registry.render("vertical_line_template", &data).unwrap());
                 }
-                 // do nothing when the case is (RevokedPrivilege, false), (OutofScope, _), (ResouceMoved, false)
+                 // do nothing when the case is (RevokedPrivilege, false), (OutofScope, _), (ResourceMoved, false)
                  _ => (),
             }
-            
         }
         }
     }
@@ -499,7 +636,7 @@ fn render_timelines_string(
 }
 
 // vertical lines indicating whether a reference can mutate its resource(deref as many times)
-// (iff it's a MutRef && it has FullPriviledge)
+// (iff it's a MutRef && it has FullPrivilege)
 fn render_resource_accessibility_string(
     visualization_data: &VisualizationData,
     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
@@ -509,7 +646,7 @@ fn render_resource_accessibility_string(
 
     let mut output = String::new();
     for (hash, timeline) in timelines{
-        if let ResourceOwner::Variable(_) = timeline.resource_owner {
+        if let ResourceAccessPoint::Variable(_) = timeline.resource_owner {
             let ro = timeline.resource_owner.to_owned();
             // verticle state lines
             let states = visualization_data.get_states(hash);

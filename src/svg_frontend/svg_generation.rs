@@ -1,7 +1,7 @@
 extern crate handlebars;
 
 use crate::data::VisualizationData;
-use crate::svg_frontend::{code_panel, tl_panel, utils};
+use crate::svg_frontend::{code_panel, timeline_panel, utils};
 use handlebars::Handlebars;
 use serde::Serialize;
 use std::cmp;
@@ -61,13 +61,13 @@ pub fn render_svg(listing_id: &String, description: &String, visualization_data:
     }
         
     // data for tl panel
-    let (tl_panel_string, max_width) = tl_panel::render_tl_panel(visualization_data);
+    let (timeline_panel_string, max_width) = timeline_panel::render_timeline_panel(visualization_data);
         
     let svg_data = SvgData {
         visualization_name: description.to_owned(),
         css: css_string,
         code: code_panel_string,
-        diagram: tl_panel_string,
+        diagram: timeline_panel_string,
         tl_id: "tl_".to_owned() + listing_id,
         code_width: cmp::max(code_width, 450),
         tl_width: cmp::max(max_width, 200),

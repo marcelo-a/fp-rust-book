@@ -1,7 +1,7 @@
 extern crate handlebars;
 
 use crate::data::{VisualizationData, Visualizable, ExternalEvent, Event, State, ResourceAccessPoint};
-use crate::svg_frontend::line_styles::{LineStyle, RefDataLine, RefValueLine, OwnerLine};
+use crate::svg_frontend::line_styles::{RefDataLine, RefValueLine, OwnerLine};
 use handlebars::Handlebars;
 use std::collections::HashMap;
 use serde::Serialize;

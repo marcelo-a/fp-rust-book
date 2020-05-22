@@ -493,7 +493,7 @@ impl Visualizable for VisualizationData {
                     borrow_to: [ro.to_owned()].iter().cloned().collect()
                 },
 
-            (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+            (State::OutOfScope, Event::MutableBorrow{ from: _ }) =>
                 State::FullPrivilege,
 
             (State::FullPrivilege, Event::Move{to: to_ro}) => State::ResourceMoved{ move_to: to_ro.to_owned(), move_at_line: event_line },
@@ -502,7 +502,7 @@ impl Visualizable for VisualizationData {
                 if self.is_mut(hash) { State::RevokedPrivilege{ to: None, borrow_to: to_ro.to_owned() } } else { State::Invalid },
             
             // happends when a mutable reference returns, invalid otherwise
-            (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
+            (State::FullPrivilege, Event::MutableReturn{ to: _ }) =>
                 State::OutOfScope,
         
             // this looks impossible?
@@ -518,9 +518,9 @@ impl Visualizable for VisualizationData {
                     borrow_to: [(to_ro.to_owned().unwrap())].iter().cloned().collect() // we assume there is no borrow_to:None
                 },
 
-            (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+            (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: _ }) => State::Invalid,
 
-            (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+            (State::PartialPrivilege{ borrow_count: current, borrow_to }, Event::StaticLend{ to: to_ro }) => {
                 let mut new_borrow_to = borrow_to.clone();
                 // Assume can not lend to None
                 new_borrow_to.insert(to_ro.to_owned().unwrap());
@@ -532,7 +532,7 @@ impl Visualizable for VisualizationData {
                 
 
             // self statically borrowed resource, and it returns; TODO what about references to self?
-            (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+            (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: _ }) => State::OutOfScope,
 
             (State::PartialPrivilege{ borrow_count, borrow_to }, Event::StaticReacquire{ from: ro }) => {
                 let new_borrow_count = borrow_count - 1;
@@ -555,9 +555,9 @@ impl Visualizable for VisualizationData {
 
             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::RefGoOutOfScope) => State::OutOfScope,
 
-            (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+            (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: _ }) => State::FullPrivilege,
 
-            (_, Event::Duplicate { to: ro }) =>
+            (_, Event::Duplicate { to: _ }) =>
                 (*previous_state).clone(),
 
              // State::FullPrivilege,
@@ -580,9 +580,10 @@ impl Visualizable for VisualizationData {
         states
     }
 
-    fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    fn get_state(&self, hash: &u64, _line_number: &usize) -> Option<State> {
+        // TODO: the line_number variable should be used to determine state here
         match self.timelines.get(hash) {
-            Some(timeline) => {
+            Some(_timeline) => {
                 // example return value
                 Some(State::OutOfScope)
             },

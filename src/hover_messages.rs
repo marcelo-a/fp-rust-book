@@ -1,5 +1,3 @@
-use std::fmt::{Formatter, Result};
-
 /* Event Dot messages: shows up when someone hovers over a dot */
 
 

@@ -1,4 +1,4 @@
-use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceAccessPoint, Owner, MutRef, StaticRef, Function, VisualizationData, Visualizable};
+use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceAccessPoint, Owner, Function, VisualizationData, Visualizable};
 use rrt_lib::svg_frontend::svg_generation;
 use std::collections::BTreeMap;
 

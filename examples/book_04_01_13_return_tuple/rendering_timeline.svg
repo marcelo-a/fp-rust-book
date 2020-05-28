@@ -87,7 +87,7 @@ text.code {
     stroke: gray;
     fill: white;
     stroke-width: 1px;
-    font-size: 30px;
+    font-size: 24px;
     font-family: times;
     font-weight: lighter;
     dominant-baseline: central;
@@ -164,7 +164,7 @@ text.code {
         <circle id="eventDot" cx="0" cy="0" r="5"/>
         <!-- used when pass to function by ref -->
         <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="8"/>
+             <circle id="eventDot" cx="0" cy="0" r="5"/>
              <text class="functionIcon" dx="-4" dy="0" fill="#6e6b5e">f</text>
         </g>
         <marker id="arrowHead" viewBox="0 0 10 10"
@@ -178,39 +178,29 @@ text.code {
 
     <g id="labels">
         <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
-        <text x="210" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="s2, immutable">s2</text>
         <text x="280" y="90" style="text-anchor:middle" data-hash="4" class="code tooltip-trigger" data-tooltip-text="s, immutable">s</text>
-        <text x="350" y="90" style="text-anchor:middle" data-hash="5" class="code tooltip-trigger" data-tooltip-text="length, immutable">length</text>
+        <text x="210" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="s2, immutable">s2</text>
         <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="len, immutable">len</text>
+        <text x="350" y="90" style="text-anchor:middle" data-hash="5" class="code tooltip-trigger" data-tooltip-text="length, immutable">length</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="105" y2="145" data-tooltip-text="s1 is the unique value that can access the data in memory; can only read data"/>
-        <line class="colorless tooltip-trigger" stroke-width="8px" x1="70" x2="70" y1="110" y2="140" data-tooltip-text="s1 is the unique value that can access the data in memory; can only read data"/>
-        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="145" y2="145" data-tooltip-text="some values are statically referencing to s1; can only read data"/>
-        <line class="colorless tooltip-trigger" stroke-width="8px" x1="70" x2="70" y1="150" y2="140" data-tooltip-text="some values are statically referencing to s1; can only read data"/>
-        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="145" y2="205" data-tooltip-text="s1 is the unique value that can access the data in memory; can only read data"/>
-        <line class="colorless tooltip-trigger" stroke-width="8px" x1="70" x2="70" y1="150" y2="200" data-tooltip-text="s1 is the unique value that can access the data in memory; can only read data"/>
-        <line data-hash="2" class="solid tooltip-trigger" x1="140" x2="140" y1="145" y2="185" data-tooltip-text="len is the unique value that can access the data in memory; can only read data"/>
-        <line class="colorless tooltip-trigger" stroke-width="8px" x1="140" x2="140" y1="150" y2="180" data-tooltip-text="len is the unique value that can access the data in memory; can only read data"/>
-        <line data-hash="2" class="solid tooltip-trigger" x1="140" x2="140" y1="185" y2="185" data-tooltip-text="some values are statically referencing to len; can only read data"/>
-        <line class="colorless tooltip-trigger" stroke-width="8px" x1="140" x2="140" y1="190" y2="180" data-tooltip-text="some values are statically referencing to len; can only read data"/>
-        <line data-hash="2" class="solid tooltip-trigger" x1="140" x2="140" y1="185" y2="205" data-tooltip-text="len is the unique value that can access the data in memory; can only read data"/>
-        <line class="colorless tooltip-trigger" stroke-width="8px" x1="140" x2="140" y1="190" y2="200" data-tooltip-text="len is the unique value that can access the data in memory; can only read data"/>
-        <line data-hash="3" class="solid tooltip-trigger" x1="210" x2="210" y1="145" y2="185" data-tooltip-text="s2 is the unique value that can access the data in memory; can only read data"/>
-        <line class="colorless tooltip-trigger" stroke-width="8px" x1="210" x2="210" y1="150" y2="180" data-tooltip-text="s2 is the unique value that can access the data in memory; can only read data"/>
-        <line data-hash="3" class="solid tooltip-trigger" x1="210" x2="210" y1="185" y2="185" data-tooltip-text="some values are statically referencing to s2; can only read data"/>
-        <line class="colorless tooltip-trigger" stroke-width="8px" x1="210" x2="210" y1="190" y2="180" data-tooltip-text="some values are statically referencing to s2; can only read data"/>
-        <line data-hash="3" class="solid tooltip-trigger" x1="210" x2="210" y1="185" y2="205" data-tooltip-text="s2 is the unique value that can access the data in memory; can only read data"/>
-        <line class="colorless tooltip-trigger" stroke-width="8px" x1="210" x2="210" y1="190" y2="200" data-tooltip-text="s2 is the unique value that can access the data in memory; can only read data"/>
-        <line data-hash="4" class="solid tooltip-trigger" x1="280" x2="280" y1="245" y2="265" data-tooltip-text="s is the unique value that can access the data in memory; can only read data"/>
-        <line class="colorless tooltip-trigger" stroke-width="8px" x1="280" x2="280" y1="250" y2="260" data-tooltip-text="s is the unique value that can access the data in memory; can only read data"/>
-        <line data-hash="4" class="solid tooltip-trigger" x1="280" x2="280" y1="265" y2="265" data-tooltip-text="some values are statically referencing to s; can only read data"/>
-        <line class="colorless tooltip-trigger" stroke-width="8px" x1="280" x2="280" y1="270" y2="260" data-tooltip-text="some values are statically referencing to s; can only read data"/>
-        <line data-hash="4" class="solid tooltip-trigger" x1="280" x2="280" y1="265" y2="305" data-tooltip-text="s is the unique value that can access the data in memory; can only read data"/>
-        <line class="colorless tooltip-trigger" stroke-width="8px" x1="280" x2="280" y1="270" y2="300" data-tooltip-text="s is the unique value that can access the data in memory; can only read data"/>
-        <line data-hash="5" class="solid tooltip-trigger" x1="350" x2="350" y1="265" y2="305" data-tooltip-text="length is the unique value that can access the data in memory; can only read data"/>
-        <line class="colorless tooltip-trigger" stroke-width="8px" x1="350" x2="350" y1="270" y2="300" data-tooltip-text="length is the unique value that can access the data in memory; can only read data"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="70" x2="70" y1="110" y2="140" data-tooltip-text="s1 is the unique value that can access the data in memory"/>
+        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="145" y2="145" data-tooltip-text="some values are statically referencing to s1"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="70" x2="70" y1="150" y2="200" data-tooltip-text="s1 is the unique value that can access the data in memory"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="140" x2="140" y1="150" y2="180" data-tooltip-text="len is the unique value that can access the data in memory"/>
+        <line data-hash="2" class="solid tooltip-trigger" x1="140" x2="140" y1="185" y2="185" data-tooltip-text="some values are statically referencing to len"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="140" x2="140" y1="190" y2="200" data-tooltip-text="len is the unique value that can access the data in memory"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="210" x2="210" y1="150" y2="180" data-tooltip-text="s2 is the unique value that can access the data in memory"/>
+        <line data-hash="3" class="solid tooltip-trigger" x1="210" x2="210" y1="185" y2="185" data-tooltip-text="some values are statically referencing to s2"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="210" x2="210" y1="190" y2="200" data-tooltip-text="s2 is the unique value that can access the data in memory"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="280" x2="280" y1="250" y2="260" data-tooltip-text="s is the unique value that can access the data in memory"/>
+        <line data-hash="4" class="solid tooltip-trigger" x1="280" x2="280" y1="265" y2="265" data-tooltip-text="some values are statically referencing to s"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="280" x2="280" y1="270" y2="300" data-tooltip-text="s is the unique value that can access the data in memory"/>
+        <line class="colorless tooltip-trigger" stroke-width="8px" x1="350" x2="350" y1="270" y2="300" data-tooltip-text="length is the unique value that can access the data in memory"/>
+    </g>
+
+    <g id="resource_accessibility">
     </g>
 
     <g id="events">

@@ -1,4 +1,4 @@
-use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, Visualizable, VisualizationData};
+use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceAccessPoint, Owner, MutRef, Function, Visualizable, VisualizationData};
 use rrt_lib::svg_frontend::svg_generation;
 use std::collections::BTreeMap;
 
@@ -8,28 +8,27 @@ use std::collections::BTreeMap;
 // variable oriented: display stats on variable, not the data stored in it
 fn main() {
     
-    let s = ResourceOwner::Variable(Variable {
+    let s = ResourceAccessPoint::Owner(Owner {
         hash: 1,
         name: String::from("s"),
         is_mut: true,
-        is_ref: false,
         lifetime_trait: LifetimeTrait::Move,
     });
-    let r1 = ResourceOwner::Variable(Variable {
+    let r1 = ResourceAccessPoint::MutRef(MutRef {
         hash: 2,
         name: String::from("r1"),
         is_mut: false,
-        is_ref: true,
+        my_owner_hash: Some(1),
         lifetime_trait: LifetimeTrait::None,
     });
-    let r2 = ResourceOwner::Variable(Variable {
+    let r2 = ResourceAccessPoint::MutRef(MutRef {
         hash: 3,
         name: String::from("r2"),
         is_mut: false,
-        is_ref: true,
+        my_owner_hash: Some(1),
         lifetime_trait: LifetimeTrait::None,
     });
-    let string_ctor = Some(ResourceOwner::Function(Function {
+    let string_ctor = Some(ResourceAccessPoint::Function(Function {
         hash: 4,
         name: String::from("String::from()"),
     }));

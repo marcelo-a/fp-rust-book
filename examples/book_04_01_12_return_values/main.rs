@@ -1,54 +1,49 @@
-use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, Visualizable, VisualizationData};
+use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceAccessPoint, Owner, Function, Visualizable, VisualizationData};
 use rrt_lib::svg_frontend::svg_generation;
 use std::collections::BTreeMap;
 
 fn main() {
     // Variables
-    let s1 = ResourceOwner::Variable(Variable {
+    let s1 = ResourceAccessPoint::Owner(Owner {
         hash: 1,
         name: String::from("s1"),
         is_mut: false,
-        is_ref: false,
         lifetime_trait: LifetimeTrait::Move,
     });
-    let s2 = ResourceOwner::Variable(Variable {
+    let s2 = ResourceAccessPoint::Owner(Owner {
         hash: 2,
         name: String::from("s2"),
         is_mut: false,
-        is_ref: false,
         lifetime_trait: LifetimeTrait::Move,
     });
-    let s3 = ResourceOwner::Variable(Variable {
+    let s3 = ResourceAccessPoint::Owner(Owner {
         hash: 3,
         name: String::from("s3"),
         is_mut: false,
-        is_ref: false,
         lifetime_trait: LifetimeTrait::Move,
     });
-    let some_string = ResourceOwner::Variable(Variable {
+    let some_string = ResourceAccessPoint::Owner(Owner {
         hash: 4,
         name: String::from("some_string"),
         is_mut: false,
-        is_ref: false,
         lifetime_trait: LifetimeTrait::Move,
     });
-    let a_string = ResourceOwner::Variable(Variable {
+    let a_string = ResourceAccessPoint::Owner(Owner {
         hash: 5,
         name: String::from("a_string"),
         is_mut: false,
-        is_ref: false,
         lifetime_trait: LifetimeTrait::Move,
     });
     // Functions
-    let gives_ownership = ResourceOwner::Function(Function {
+    let gives_ownership = ResourceAccessPoint::Function(Function {
         hash: 6,
         name: String::from("gives_ownership()"),
     });
-    let takes_and_gives_back = ResourceOwner::Function(Function {
+    let takes_and_gives_back = ResourceAccessPoint::Function(Function {
         hash: 7,
         name: String::from("takes_and_gives_back()"),
     });
-    let from_func = ResourceOwner::Function(Function {
+    let from_func = ResourceAccessPoint::Function(Function {
         hash: 8,
         name: String::from("String::from()"),
     });

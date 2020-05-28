@@ -14,11 +14,11 @@ struct TimelineColumnData {
 }
 
 #[derive(Serialize)]
-struct TLPanelData {
+struct TimelinePanelData {
     labels: String,
     dots: String,
     timelines: String,
-    resource_accessibility: String,
+    ref_line: String,
     arrows: String,
 }
 #[derive(Serialize)]
@@ -99,13 +99,13 @@ pub fn render_timeline_panel(visualization_data : &VisualizationData) -> (String
     let labels_string = render_labels_string(&resource_owners_layout, &registry);
     let dots_string = render_dots_string(visualization_data, &resource_owners_layout, &registry);
     let timelines_string = render_timelines(visualization_data, &resource_owners_layout, &registry);
-    let resource_accessibility_string = render_ref_line(visualization_data, &resource_owners_layout, &registry);
+    let ref_line_string = render_ref_line(visualization_data, &resource_owners_layout, &registry);
     let arrows_string = render_arrows_string_external_events_version(visualization_data, &resource_owners_layout, &registry);
-    let timeline_panel_data = TLPanelData {
+    let timeline_panel_data = TimelinePanelData {
         labels: labels_string,
         dots: dots_string,
         timelines: timelines_string,
-        resource_accessibility: resource_accessibility_string,
+        ref_line: ref_line_string,
         arrows: arrows_string
     };
 
@@ -119,7 +119,7 @@ fn prepare_registry(registry: &mut Handlebars) {
     let timeline_panel_template =
         "    <g id=\"labels\">\n{{ labels }}    </g>\n\n    \
         <g id=\"timelines\">\n{{ timelines }}    </g>\n\n    \
-        <g id=\"resource_accessibility\">\n{{ resource_accessibility }}    </g>\n\n    \
+        <g id=\"ref_line\">\n{{ ref_line }}    </g>\n\n    \
         <g id=\"events\">\n{{ dots }}    </g>\n\n    \
         <g id=\"arrows\">\n{{ arrows }}    </g>";
 

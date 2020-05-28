@@ -97,11 +97,6 @@ text.code {
     flex-shrink: 1;
 }
 
-/* tooltip styling */
-#tooltip {
-    dominant-baseline: hanging;
-}
-
 /* hash based styling */
 [data-hash="0"] {
     fill: #6e6b5e;

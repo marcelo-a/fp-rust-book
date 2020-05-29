@@ -526,125 +526,153 @@ fn determine_mut_ref_line_styles(
     }
 }
 
+// generate a Owner Line string from the RAP and its State
+fn create_owner_line_string(
+    rap: &ResourceAccessPoint,
+    state: &State,
+    data: &mut VerticalLineData,
+    registry: &Handlebars,
+) -> String {
+    let style = determine_owner_line_styles(rap, state);
+    match (state, style) {
+        (State::FullPrivilege, OwnerLine::Solid) | (State::PartialPrivilege { .. }, OwnerLine::Solid) => {
+            data.line_class = String::from("solid");
+            registry.render("vertical_line_template", &data).unwrap()
+        },
+        (State::FullPrivilege, OwnerLine::Hollow) => {
+            data.line_class = String::from("hollow");
+            // data.title += "; can only read data";
+            
+            let mut hollow_internal_line_data = data.clone();
+            hollow_internal_line_data.y1 += 5;
+            hollow_internal_line_data.y2 -= 5;
+            hollow_internal_line_data.title = data.title.to_owned();
+            
+            registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap()
+        },
+        (State::FullPrivilege, OwnerLine::Dotted) => {
+            // cannot read nor write the data from this RAP temporarily (borrowed away by a mut reference)
+            "".to_owned()
+        }
+        (State::PartialPrivilege{..}, _) => {
+            data.line_class = String::from("solid");
+            registry.render("vertical_line_template", &data).unwrap()
+        },
+        (State::OutOfScope, _) => (
+            "".to_owned()
+        ),
+        // do nothing when the case is (RevokedPrivilege, false), (OutofScope, _), (ResourceMoved, false)
+        (_, _) => (
+            "".to_owned()
+        ),
+    }
+}
 
-// render timelines (states) for ROs using vertical lines
+// generate Reference Line(s) string from the RAP and its State
+fn create_reference_line_string(
+    rap: &ResourceAccessPoint,
+    state: &State,
+    data: &mut VerticalLineData,
+    registry: &Handlebars,
+) -> String {
+    match (state, rap.is_mut()) {
+        (State::FullPrivilege, true) => {
+            data.line_class = String::from("solid");
+            if rap.is_ref() {
+                data.title += "; can read and write data; can point to another piece of data";
+            } else {
+                data.title += "; can read and write data";
+            }
+            registry.render("vertical_line_template", &data).unwrap()
+        },
+        (State::FullPrivilege, false) => {
+            data.line_class = String::from("solid");
+            if rap.is_ref() {
+                data.title += "; can read and write data; can not point to another piece of data";
+            } else {
+                data.title += "; can only read data";
+            }
+            registry.render("vertical_line_template", &data).unwrap();
+            
+            let mut hollow_internal_line_data = data.clone();
+            hollow_internal_line_data.y1 += 5;
+            hollow_internal_line_data.y2 -= 5;
+            hollow_internal_line_data.title = data.title.to_owned();
+            
+            registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap()
+        },
+        (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, _) => {
+            data.line_class = String::from("solid");
+            data.title += "; can only read data";
+            // the background of the hollow line
+            let final_line = registry.render("vertical_line_template", &data).unwrap();
+            
+            let mut hollow_internal_line_data = data.clone();
+            hollow_internal_line_data.y1 += 5;
+            hollow_internal_line_data.y2 -= 5;
+            hollow_internal_line_data.title = data.title.to_owned();
+
+            final_line + &registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap()
+        },
+        (State::ResourceMoved{ move_to: _, move_at_line: _ }, true) => {
+            data.line_class = String::from("extend");
+            data.title += "; cannot access data";
+            registry.render("vertical_line_template", &data).unwrap()
+        }
+        // do nothing when the case is (RevokedPrivilege, false), (OutofScope, _), (ResourceMoved, false)
+        _ => (
+            "".to_owned()
+        ),
+    }
+}
+
+// render timelines (states) for RAPs using vertical lines
 fn render_timelines(
     visualization_data: &VisualizationData,
     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
     registry: &Handlebars
 ) -> String {
-    let timelines = &visualization_data.timelines;
-
     let mut output = String::new();
+    let timelines = &visualization_data.timelines;
     for (hash, timeline) in timelines {
         let rap = &timeline.resource_access_point;
-        match rap {
-            ResourceAccessPoint::Function(_) => {
-                // Don't do anything
-            },
-            ResourceAccessPoint::Owner(_) => {
-                let rap_states = visualization_data.get_states(hash);
-                for (line_start, line_end, state) in rap_states.iter() {
-                    let style = determine_owner_line_styles(rap, &state);
-                    let mut data = VerticalLineData {
-                        line_class: String::new(),
-                        hash: *hash,
-                        x1: resource_owners_layout[hash].x_val,
-                        y1: get_y_axis_pos(line_start),
-                        x2: resource_owners_layout[hash].x_val,
-                        y2: get_y_axis_pos(line_end),
-                        title: state.print_message_with_name(rap.name())
-                    };
-                    match (state, style) {
-                        (State::FullPrivilege, OwnerLine::Solid) | (State::PartialPrivilege { .. }, OwnerLine::Solid) => {
-                            data.line_class = String::from("solid");
-                            output.push_str(&registry.render("vertical_line_template", &data).unwrap());
-                        },
-                        (State::FullPrivilege, OwnerLine::Hollow) => {
-                            data.line_class = String::from("hollow");
-                            // data.title += "; can only read data";
-                            
-                            let mut hollow_internal_line_data = data.clone();
-                            hollow_internal_line_data.y1 += 5;
-                            hollow_internal_line_data.y2 -= 5;
-                            hollow_internal_line_data.title = data.title;
-                            
-                            output.push_str(&registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
-                        },
-                        (State::FullPrivilege, OwnerLine::Dotted) => {
-                            // cannot read nor write the data from this RAP temporarily (borrowed away by a mut reference)
+        let rap_states = visualization_data.get_states(hash);
+        for (line_start, line_end, state) in rap_states.iter() {
+            let data = match rap {
+                ResourceAccessPoint::Function(_) => {
+                    None
+                },
+                _ => {
+                    Some (
+                        VerticalLineData {
+                            line_class: String::new(),
+                            hash: *hash,
+                            x1: resource_owners_layout[hash].x_val,
+                            y1: get_y_axis_pos(line_start),
+                            x2: resource_owners_layout[hash].x_val,
+                            y2: get_y_axis_pos(line_end),
+                            title: state.print_message_with_name(rap.name())
                         }
-                        (State::PartialPrivilege{..}, _) => {
-                            data.line_class = String::from("solid");
-                            output.push_str(&registry.render("vertical_line_template", &data).unwrap());
-                        },
-                        // do nothing when the case is (RevokedPrivilege, false), (OutofScope, _), (ResourceMoved, false)
-                        (State::OutOfScope, _) => (),
-                        (_, _) => (),
-                    }
+                    )
                 }
-            },
-            ResourceAccessPoint::StaticRef(_) | ResourceAccessPoint::MutRef(_) => {
-                // verticle state lines
-                let states = visualization_data.get_states(hash);
-                for (line_start, line_end, state) in states.iter() {
-                    let mut data = VerticalLineData {
-                        line_class: String::new(),
-                        hash: *hash,
-                        x1: resource_owners_layout[hash].x_val,
-                        y1: get_y_axis_pos(line_start),
-                        x2: resource_owners_layout[hash].x_val,
-                        y2: get_y_axis_pos(line_end),
-                        title: state.print_message_with_name(rap.name())
-                    };
-                    match (state, rap.is_mut()) {
-                        (State::FullPrivilege, true) => {
-                            data.line_class = String::from("solid");
-                            if rap.is_ref() {
-                                data.title += "; can read and write data; can point to another piece of data";
-                            } else {
-                                data.title += "; can read and write data";
-                            }
-                            output.push_str(&registry.render("vertical_line_template", &data).unwrap());
-                        },
-                        (State::FullPrivilege, false) => {
-                            data.line_class = String::from("solid");
-                            if rap.is_ref() {
-                                data.title += "; can read and write data; can not point to another piece of data";
-                            } else {
-                                data.title += "; can only read data";
-                            }
-                            output.push_str(&registry.render("vertical_line_template", &data).unwrap());
-                            
-                            let mut hollow_internal_line_data = data.clone();
-                            hollow_internal_line_data.y1 += 5;
-                            hollow_internal_line_data.y2 -= 5;
-                            hollow_internal_line_data.title = data.title;
-                            
-                            output.push_str(&registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
-                        },
-                        (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, _) => {
-                            data.line_class = String::from("solid");
-                            data.title += "; can only read data";
-                            output.push_str(&registry.render("vertical_line_template", &data).unwrap());
-                            
-                            let mut hollow_internal_line_data = data.clone();
-                            hollow_internal_line_data.y1 += 5;
-                            hollow_internal_line_data.y2 -= 5;
-                            hollow_internal_line_data.title = data.title;
-
-                            output.push_str(&registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
-                        },
-                        (State::ResourceMoved{ move_to: _, move_at_line: _ }, true) => {
-                            data.line_class = String::from("extend");
-                            data.title += "; cannot access data";
-                            output.push_str(&registry.render("vertical_line_template", &data).unwrap());
-                        }
-                        // do nothing when the case is (RevokedPrivilege, false), (OutofScope, _), (ResourceMoved, false)
-                        _ => (),
-                    }
-                }
-            },
+            };
+            match rap {
+                ResourceAccessPoint::Function(_) => {
+                    // Don't do anything
+                },
+                ResourceAccessPoint::Owner(_) => {
+                    output.push_str(
+                        // the unwrap is safe as long as data is built in this branch. 
+                        &create_owner_line_string(rap, state, &mut data.unwrap(), registry)
+                    );
+                },
+                ResourceAccessPoint::StaticRef(_) | ResourceAccessPoint::MutRef(_) => {
+                    output.push_str(
+                        // the unwrap is safe as long as data is built in this branch. 
+                        &create_reference_line_string(rap, state, &mut data.unwrap(), registry)
+                    );
+                },
+            }
         }
     }
     output

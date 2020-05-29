@@ -1,29 +1,27 @@
-use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, Visualizable, VisualizationData};
+use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceAccessPoint, Owner, Function, Visualizable, VisualizationData};
 use rrt_lib::svg_frontend::svg_generation;
 use std::collections::BTreeMap;
 
 fn main() {
     // Variables
-    let s1 = Some(ResourceOwner::Variable(Variable {
+    let s1 = Some(ResourceAccessPoint::Owner(Owner {
         hash: 1,
         name: String::from("s1"),
         is_mut: false,
-        is_ref: false,
         lifetime_trait: LifetimeTrait::Move,
     }));
-    let len = Some(ResourceOwner::Variable(Variable {
+    let len = Some(ResourceAccessPoint::Owner(Owner {
         hash: 2,
         name: String::from("len"),
         is_mut: false,
-        is_ref: false,
         lifetime_trait: LifetimeTrait::Copy,
     }));
     // Functions
-    let calculate_length = Some(ResourceOwner::Function(Function {
+    let calculate_length = Some(ResourceAccessPoint::Function(Function {
         hash: 3,
         name: String::from("calculate_length()"),
     }));
-    let string_ctor = Some(ResourceOwner::Function(Function {
+    let string_ctor = Some(ResourceAccessPoint::Function(Function {
         hash: 4,
         name: String::from("String::from()"),
     }));

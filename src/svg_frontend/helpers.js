@@ -1,3 +1,4 @@
+// change function name color on hover
 function displayFn(evt, classname) {
     // get svg elements
     var vis_num = document.getElementsByClassName(classname);
@@ -32,5 +33,15 @@ function displayFn(evt, classname) {
         for (var i = 0; i < functions.length; i++) {
             functions[i].dataset.hash = 0;
         }
+    }
+}
+
+// resize code block to fit comments
+function sizeToFit(svg_block) {
+    if (svg_block.contentDocument.readyState == "complete") {
+        var svg_doc = svg_block.contentDocument;
+        var code_width = svg_doc.getElementById('code').getBBox().width;
+        var new_width = Math.max(code_width + 30, 400);
+        svg_doc.firstChild.setAttribute('width', new_width + 'px');
     }
 }

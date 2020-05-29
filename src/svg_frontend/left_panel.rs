@@ -6,18 +6,6 @@ use std::fs::File;
 use std::io;
 use std::cmp;
 
-pub fn set_divider_pos(lines: io::Lines<io::BufReader<File>>) -> i32 {
-    let x = 30;
-    let mut x_space = 50;
-    for line in lines {
-        if let Ok(line_string) = line {
-            // read max line length
-            x_space = cmp::max(x_space, x+(line_string.clone().to_string().len() as i32)*7);
-        }
-    }
-    x_space
-}
-
 pub fn render_left_panel(lines: io::Lines<io::BufReader<File>>) -> (String, i32) {
     /* Template creation */
     let mut handlebars = Handlebars::new();

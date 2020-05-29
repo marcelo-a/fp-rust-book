@@ -207,7 +207,7 @@ function playpen_text(playpen) {
         });
     });
 
-    // Insert toggle visualization button
+    // Insert toggle visualization button, ADDED BY marcelo-a 
     Array.from(document.querySelectorAll("pre code")).forEach(function (block) {
         // only add button if there is a visualization available
         var correct_doc = (document.getElementsByClassName('active')[0].attributes.href.value == 'ch04-01-what-is-ownership.html'
@@ -239,20 +239,18 @@ function playpen_text(playpen) {
                 if (e.target.classList.contains('fa-toggle-on')) {
                     e.target.classList.remove('fa-toggle-on');
                     e.target.classList.add('fa-toggle-off');
-                    // e.target.title = 'Show visualization';
-                    // e.target.setAttribute('aria-label', e.target.title);
 
-                    // block.classList.add('hide-boring');
                     pre_block.querySelector('.language-rust').style.display = 'block';
                     $(pre_block).parent().next().hide();
                 } else if (e.target.classList.contains('fa-toggle-off')) {
                     e.target.classList.remove('fa-toggle-off');
                     e.target.classList.add('fa-toggle-on');
-                    // e.target.title = 'Hide visualization';
-                    // e.target.setAttribute('aria-label', e.target.title);
 
                     pre_block.querySelector('.language-rust').style.display = 'none';
                     $(pre_block).parent().next().show();
+
+                    // resize code block
+                    sizeToFit($(pre_block).parent().next()[0].firstElementChild);
                 }
             });
         }

@@ -200,9 +200,9 @@ text.code {
     <g id="arrows">
         <use xlink:href="#functionDot" data-hash="5" x="70" y="125" class="tooltip-trigger" data-tooltip-text="len() reads from s"/>
     </g>
-   
+
     <!-- tooltip styling -->
-   <g id="tooltip" dominant-baseline="hanging" visibility="hidden">
+    <g id="tooltip" dominant-baseline="hanging" visibility="hidden">
 		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
 		<text x="5" y="5" fill="white" font-size="12px" font-family="'Open Sans', sans-serif" width="10px">Tooltip</text>
     </g>

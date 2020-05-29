@@ -1,4 +1,4 @@
-<svg width="310px" height="310px" 
+<svg width="310px" height="290px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
         id="tl_04_02_07">
 
@@ -212,9 +212,9 @@ text.code {
         <polyline stroke-width="5px" stroke="gray" points="140,185 80,185 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Return mutably borrowed resource from r1 to s"/>
         <polyline stroke-width="5px" stroke="gray" points="70,245 200,245 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Mutable borrow from s to r2"/>
     </g>
-   
+
     <!-- tooltip styling -->
-   <g id="tooltip" dominant-baseline="hanging" visibility="hidden">
+    <g id="tooltip" dominant-baseline="hanging" visibility="hidden">
 		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
 		<text x="5" y="5" fill="white" font-size="12px" font-family="'Open Sans', sans-serif" width="10px">Tooltip</text>
     </g>

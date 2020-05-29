@@ -195,9 +195,9 @@ text.code {
         <text x="96" y="130" data-hash="2" font-size="20" font-style="italic" class="tooltip-trigger fn-trigger" data-tooltip-text="String::from()">f</text>
         <polyline stroke-width="5px" stroke="gray" points="93,125 83,125 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
     </g>
-   
+
     <!-- tooltip styling -->
-   <g id="tooltip" dominant-baseline="hanging" visibility="hidden">
+    <g id="tooltip" dominant-baseline="hanging" visibility="hidden">
 		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
 		<text x="5" y="5" fill="white" font-size="12px" font-family="'Open Sans', sans-serif" width="10px">Tooltip</text>
     </g>

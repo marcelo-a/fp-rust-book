@@ -230,9 +230,9 @@ text.code {
         <text x="236" y="210" data-hash="7" font-size="20" font-style="italic" class="tooltip-trigger fn-trigger" data-tooltip-text="takes_and_gives_back()">f</text>
         <polyline stroke-width="5px" stroke="gray" points="233,205 223,205 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of takes_and_gives_back() to s3"/>
     </g>
-   
+
     <!-- tooltip styling -->
-   <g id="tooltip" dominant-baseline="hanging" visibility="hidden">
+    <g id="tooltip" dominant-baseline="hanging" visibility="hidden">
 		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
 		<text x="5" y="5" fill="white" font-size="12px" font-family="'Open Sans', sans-serif" width="10px">Tooltip</text>
     </g>

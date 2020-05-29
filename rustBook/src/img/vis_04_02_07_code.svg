@@ -1,4 +1,4 @@
-<svg width="590" height="310px" 
+<svg height="290px" 
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <desc>scope_reference</desc>
@@ -169,10 +169,9 @@ text.code {
         <text class="code" x="20" y="130">  </text>
         <text class="code" x="20" y="150"> { </text>
         <text class="code" x="20" y="170">     let <tspan data-hash="2">r1</tspan> = <tspan data-hash="1">&amp;mut s</tspan>; </text>
-        <text class="code" x="20" y="190">  </text>
-        <text class="code" x="20" y="210"> } // r1 goes out of scope here, so we can make a new reference with no problems. </text>
-        <text class="code" x="20" y="230">  </text>
-        <text class="code" x="20" y="250"> let <tspan data-hash="3">r2</tspan> = <tspan data-hash="1">&amp;mut s</tspan>; </text>
+        <text class="code" x="20" y="190"> } // r1 goes out of scope here, so we can make a new reference with no problems. </text>
+        <text class="code" x="20" y="210">  </text>
+        <text class="code" x="20" y="230"> let <tspan data-hash="3">r2</tspan> = <tspan data-hash="1">&amp;mut s</tspan>; </text>
     </g>
 
    

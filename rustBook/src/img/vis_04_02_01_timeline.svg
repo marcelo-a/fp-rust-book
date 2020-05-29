@@ -174,9 +174,9 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="len, immutable">len</text>
-        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
         <text x="210" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="s, immutable">s</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="len, immutable">len</text>
     </g>
 
     <g id="timelines">
@@ -225,9 +225,9 @@ text.code {
         <polyline stroke-width="5px" stroke="gray" points="163,145 153,145 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of calculate_length() to len"/>
         <use xlink:href="#functionDot" data-hash="3" x="210" y="265" class="tooltip-trigger" data-tooltip-text="len() reads from s"/>
     </g>
-   
+
     <!-- tooltip styling -->
-   <g id="tooltip" dominant-baseline="hanging" visibility="hidden">
+    <g id="tooltip" dominant-baseline="hanging" visibility="hidden">
 		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
 		<text x="5" y="5" fill="white" font-size="12px" font-family="'Open Sans', sans-serif" width="10px">Tooltip</text>
     </g>

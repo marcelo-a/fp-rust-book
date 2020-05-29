@@ -3,12 +3,21 @@
 // Fix back button cache problem
 window.onunload = function () { };
 
-// Link jQuery
+// Link jQuery when window loads
 window.onload = function () {
     var script = document.createElement('script');
     script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js';
     script.type = 'text/javascript';
     document.getElementsByTagName('head')[0].appendChild(script);
+
+    var correct_page = (document.getElementsByClassName('active')[0].attributes.href.value == 'ch04-01-what-is-ownership.html'
+                            || document.getElementsByClassName('active')[0].attributes.href.value == 'ch04-02-references-and-borrowing.html');
+    if (correct_page) {
+        var helper_script = document.createElement('script');
+        helper_script.src = '../src/svg_frontend/helpers.js';
+        helper_script.type = 'text/javascript';
+        document.getElementsByTagName('head')[0].appendChild(helper_script);
+    }
 };
 
 // Global variable, shared between modules
@@ -207,11 +216,16 @@ function playpen_text(playpen) {
         });
     });
 
-    // Insert toggle visualization button
+    // Insert toggle visualization button, ADDED BY marcelo-a 
     Array.from(document.querySelectorAll("pre code")).forEach(function (block) {
-        if (!block.classList.contains("no_run") && !block.classList.contains("does_not_compile")
-                && !block.classList.contains("language-text") ) {
-            // add toggle button
+        // only add button if there is a visualization available
+        var correct_doc = (document.getElementsByClassName('active')[0].attributes.href.value == 'ch04-01-what-is-ownership.html'
+                            || document.getElementsByClassName('active')[0].attributes.href.value == 'ch04-02-references-and-borrowing.html');
+        var code_ok = (!block.classList.contains("no_run") && !block.classList.contains("does_not_compile")
+                        && !block.classList.contains("language-text"));
+        if (correct_doc && code_ok) {
+
+            // search section/block for other buttons
             var pre_block = block.parentNode;
             var buttons = pre_block.querySelector(".buttons");
             if (!buttons) {
@@ -220,32 +234,32 @@ function playpen_text(playpen) {
                 pre_block.insertBefore(buttons, pre_block.firstChild);
             }
             
+            // create button element
             var toggleButton = document.createElement('button');
                     toggleButton.className = 'fa fa-toggle-off toggle-button';
-                    toggleButton.title = 'Toggle visualization tool';
+                    toggleButton.title = 'Toggle visualization';
                     toggleButton.setAttribute('aria-label', toggleButton.title);
-
+    
             buttons.insertBefore(toggleButton, buttons.firstChild);
-            block.style.display = 'block';
+            block.style.display = 'block'; // initialize display to original code
 
+            // on button click, show visualization and hide code
             pre_block.querySelector('.buttons').addEventListener('click', function (e) {
                 if (e.target.classList.contains('fa-toggle-on')) {
                     e.target.classList.remove('fa-toggle-on');
                     e.target.classList.add('fa-toggle-off');
-                    e.target.title = 'Show visualization';
-                    e.target.setAttribute('aria-label', e.target.title);
 
-                    // block.classList.add('hide-boring');
                     pre_block.querySelector('.language-rust').style.display = 'block';
                     $(pre_block).parent().next().hide();
                 } else if (e.target.classList.contains('fa-toggle-off')) {
                     e.target.classList.remove('fa-toggle-off');
                     e.target.classList.add('fa-toggle-on');
-                    e.target.title = 'Hide visualization';
-                    e.target.setAttribute('aria-label', e.target.title);
 
                     pre_block.querySelector('.language-rust').style.display = 'none';
                     $(pre_block).parent().next().show();
+
+                    // resize code block
+                    sizeToFit($(pre_block).parent().next()[0].firstElementChild);
                 }
             });
         }

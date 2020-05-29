@@ -175,9 +175,9 @@ text.code {
 
     <g id="labels">
         <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s, immutable">s</text>
-        <text x="350" y="90" style="text-anchor:middle" data-hash="4" class="code tooltip-trigger" data-tooltip-text="some_integer, immutable">some_integer</text>
-        <text x="240" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="some_string, immutable">some_string</text>
         <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="x, immutable">x</text>
+        <text x="240" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="some_string, immutable">some_string</text>
+        <text x="350" y="90" style="text-anchor:middle" data-hash="4" class="code tooltip-trigger" data-tooltip-text="some_integer, immutable">some_integer</text>
     </g>
 
     <g id="timelines">
@@ -236,9 +236,9 @@ text.code {
         <use xlink:href="#functionDot" data-hash="3" x="240" y="405" class="tooltip-trigger" data-tooltip-text="println!() reads from some_string"/>
         <use xlink:href="#functionDot" data-hash="4" x="350" y="505" class="tooltip-trigger" data-tooltip-text="println!() reads from some_integer"/>
     </g>
-   
+
     <!-- tooltip styling -->
-   <g id="tooltip" dominant-baseline="hanging" visibility="hidden">
+    <g id="tooltip" dominant-baseline="hanging" visibility="hidden">
 		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
 		<text x="5" y="5" fill="white" font-size="12px" font-family="'Open Sans', sans-serif" width="10px">Tooltip</text>
     </g>

@@ -51,8 +51,6 @@ fn main() {
     vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : s1.unwrap().clone() },  &(7 as usize));
     vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : len.unwrap().clone() },  &(7 as usize));
 
-    // vd.append_external_event(ExternalEvent::StaticBorrow{from: Some(calculate_length.clone()), to: Some(s.clone())}, &(9 as usize));
-    
     // len(&self) -> usize
     // s is a reference copied from god knows where
     vd.append_external_event(ExternalEvent::Duplicate{ from: None, to: s.clone() }, &(9 as usize));

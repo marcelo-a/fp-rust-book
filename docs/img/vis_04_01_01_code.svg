@@ -29,15 +29,17 @@ text {
 }
 
 #caption {
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.875em;
+    font-family: "Open Sans", sans-serif;
     font-style: italic;
 }
 
 /* code related styling */
 text.code {
+    fill: #6e6b5e;
     white-space: pre;
-    font-family: "monospace";
+    font-family: "Source Code Pro", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace !important;
+    font-size: 0.875em;
 }
 
 /* event related styling */
@@ -62,8 +64,8 @@ text.code {
     stroke-width: 5px;
 }
 
-.hollow_internal {
-    stroke-width: 3px;
+.hollow {
+    stroke-width: 5px;
     fill: var(--bg-color);
 }
 
@@ -78,7 +80,7 @@ text.code {
 }
 
 .colorless {
-    color: var(--bg-color);
+    stroke: var(--bg-color);
     fill: var(--bg-color);
 }
 
@@ -103,14 +105,9 @@ text.code {
     flex-shrink: 1;
 }
 
-/* tooltip styling */
-#tooltip {
-    dominant-baseline: hanging;
-}
-
 /* hash based styling */
 [data-hash="0"] {
-    fill: black;
+    fill: #6e6b5e;
 }
 
 [data-hash="1"] {

@@ -30,15 +30,17 @@ text {
 }
 
 #caption {
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.875em;
+    font-family: "Open Sans", sans-serif;
     font-style: italic;
 }
 
 /* code related styling */
 text.code {
+    fill: #6e6b5e;
     white-space: pre;
-    font-family: "monospace";
+    font-family: "Source Code Pro", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace !important;
+    font-size: 0.875em;
 }
 
 /* event related styling */
@@ -63,8 +65,8 @@ text.code {
     stroke-width: 5px;
 }
 
-.hollow_internal {
-    stroke-width: 3px;
+.hollow {
+    stroke-width: 5px;
     fill: var(--bg-color);
 }
 
@@ -79,7 +81,7 @@ text.code {
 }
 
 .colorless {
-    color: var(--bg-color);
+    stroke: var(--bg-color);
     fill: var(--bg-color);
 }
 
@@ -104,14 +106,9 @@ text.code {
     flex-shrink: 1;
 }
 
-/* tooltip styling */
-#tooltip {
-    dominant-baseline: hanging;
-}
-
 /* hash based styling */
 [data-hash="0"] {
-    fill: black;
+    fill: #6e6b5e;
 }
 
 [data-hash="1"] {
@@ -177,18 +174,20 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="r1, immutable">r1</text>
         <text x="210" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="r2, immutable">r2</text>
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="r1, immutable">r1</text>
         <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s, mutable">s</text>
     </g>
 
     <g id="timelines">
         <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="105" y2="165" data-tooltip-text="s is the unique value that can access the data in memory"/>
         <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="185" y2="245" data-tooltip-text="s is the unique value that can access the data in memory"/>
-        <line class="colorless tooltip-trigger" stroke-width="8px" x1="140" x2="140" y1="170" y2="180" data-tooltip-text="r1 is the unique value that can access the data in memory; can read and write data; can not point to another piece of data"/>
+        <line data-hash="2" class="hollow tooltip-trigger" x1="140" x2="140" y1="165" y2="185" data-tooltip-text="r1 is the unique value that can access the data in memory; can read and write data; cannot point to another piece of data"/>
+
+        <line class="colorless tooltip-trigger" stroke-width="2px" x1="140" x2="140" y1="170" y2="180" data-tooltip-text="r1 is the unique value that can access the data in memory; can read and write data; cannot point to another piece of data"/>
     </g>
 
-    <g id="resource_accessibility">
+    <g id="ref_line">
         <path data-hash="2" class="solid tooltip-trigger" style="fill:transparent;" d="M 140 165 l 15 4 v 12 l -15 4" data-tooltip-text="can mutate the resource it refers to"/>
     </g>
 
@@ -205,17 +204,19 @@ text.code {
 
     <g id="arrows">
         <text x="96" y="110" data-hash="4" font-size="20" font-style="italic" class="tooltip-trigger fn-trigger" data-tooltip-text="String::from()">f</text>
-        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
-        <polyline stroke-width="5" stroke="gray" points="70,165 130,165 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Mutable borrow from s to r1"/>
-        <polyline stroke-width="5" stroke="gray" points="140,185 80,185 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Return mutably borrowed resource from r1 to s"/>
-        <polyline stroke-width="5" stroke="gray" points="70,245 200,245 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Mutable borrow from s to r2"/>
+        <polyline stroke-width="5px" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
+        <polyline stroke-width="5px" stroke="gray" points="70,165 130,165 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Mutable borrow from s to r1"/>
+        <polyline stroke-width="5px" stroke="gray" points="140,185 80,185 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Return mutably borrowed resource from r1 to s"/>
+        <polyline stroke-width="5px" stroke="gray" points="70,245 200,245 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Mutable borrow from s to r2"/>
     </g>
    
-   <g id="tooltip" visibility="hidden">
+    <!-- tooltip styling -->
+   <g id="tooltip" dominant-baseline="hanging" visibility="hidden">
 		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
-		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="'Open Sans', sans-serif" width="10px">Tooltip</text>
     </g>
 
+    <!-- DISPLAY TOOLTIP SCRIPT -->
     <script type="text/ecmascript"><![CDATA[
 		(function() {
             var timeline_id = "tl_04_02_07";
@@ -233,8 +234,8 @@ text.code {
 			function showTooltip(evt) {
                 <!-- track mouse movement -->
 				var CTM = svg.getScreenCTM();
-				var x = (evt.clientX - CTM.e + 10) / CTM.a;
-				var y = (evt.clientY - CTM.f + 10) / CTM.d;
+				var x = (evt.clientX - CTM.e + 15) / CTM.a;
+				var y = (evt.clientY - CTM.f + 5) / CTM.d;
                 tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
 				tooltip.setAttributeNS(null, "visibility", "visible");
 				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
@@ -252,6 +253,4 @@ text.code {
 		})()
     ]]></script>
 
-    <!-- HIGHLIGHT FUNCTION NAME -->
-    
 </svg>

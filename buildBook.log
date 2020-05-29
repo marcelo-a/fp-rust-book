@@ -1,163 +1,87 @@
 Running the following examples: 
-warning: unused imports: `Formatter`, `Result`
- --> src/hover_messages.rs:1:16
-  |
-1 | use std::fmt::{Formatter, Result};
-  |                ^^^^^^^^^  ^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
+   Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
 
-warning: unused variable: `ro`
-   --> src/data.rs:470:61
-    |
-470 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:479:62
-    |
-479 |             (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
-    |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:488:96
-    |
-488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:502:97
-    |
-502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:525:93
-    |
-525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:527:40
-    |
-527 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:552:18
-    |
-552 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:550:37
-    |
-550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
 
 warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:222:4
+   --> src/svg_frontend/timeline_panel.rs:263:4
     |
-222 | fn render_arrows_string(
+263 | fn render_arrows_string(
     |    ^^^^^^^^^^^^^^^^^^^^
     |
     = note: `#[warn(dead_code)]` on by default
 
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:490:62
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:487:4
     |
-490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+487 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:509:4
+    |
+509 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    Finished dev [unoptimized + debuginfo] target(s) in 2.40s
      Running `target/debug/examples/one_var`
-s 1 2 OutOfScope
-s 2 3 FullPrivilege
 successfully wrote to examples/book_04_01_01_one_var/rendering_code.svg
 successfully wrote to examples/book_04_01_01_one_var/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_01_code.svg
 successfully wrote to rustBook/src/img/vis_04_01_01_timeline.svg
-warning: unused imports: `Formatter`, `Result`
- --> src/hover_messages.rs:1:16
-  |
-1 | use std::fmt::{Formatter, Result};
-  |                ^^^^^^^^^  ^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
 
-warning: unused variable: `ro`
-   --> src/data.rs:470:61
-    |
-470 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:479:62
-    |
-479 |             (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
-    |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:488:96
-    |
-488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:502:97
-    |
-502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:525:93
-    |
-525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:527:40
-    |
-527 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:552:18
-    |
-552 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:550:37
-    |
-550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
 
 warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:222:4
+   --> src/svg_frontend/timeline_panel.rs:263:4
     |
-222 | fn render_arrows_string(
+263 | fn render_arrows_string(
     |    ^^^^^^^^^^^^^^^^^^^^
     |
     = note: `#[warn(dead_code)]` on by default
 
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:490:62
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:487:4
     |
-490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
+487 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:509:4
     |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+509 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
+error[E0432]: unresolved imports `rrt_lib::data::ResourceOwner`, `rrt_lib::data::Variable`
+ --> examples/book_04_01_02_scope/main.rs:1:51
+  |
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, VisualizationData, Visualizable};
+  |                                                   ^^^^^^^^^^^^^  ^^^^^^^^ no `Variable` in `data`
+  |                                                   |
+  |                                                   no `ResourceOwner` in `data`
 
 warning: unused import: `Function`
  --> examples/book_04_01_02_scope/main.rs:1:76
@@ -167,344 +91,201 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.11s
-     Running `target/debug/examples/scope`
-s 1 3 OutOfScope
-s 3 6 FullPrivilege
-successfully wrote to examples/book_04_01_02_scope/rendering_code.svg
-successfully wrote to examples/book_04_01_02_scope/rendering_timeline.svg
-successfully wrote to rustBook/src/img/vis_04_01_02_code.svg
-successfully wrote to rustBook/src/img/vis_04_01_02_timeline.svg
-warning: unused imports: `Formatter`, `Result`
- --> src/hover_messages.rs:1:16
-  |
-1 | use std::fmt::{Formatter, Result};
-  |                ^^^^^^^^^  ^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
+error: aborting due to previous error
 
-warning: unused variable: `ro`
-   --> src/data.rs:470:61
-    |
-470 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `rrt`.
 
-warning: unused variable: `to_ro`
-   --> src/data.rs:479:62
-    |
-479 |             (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
-    |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+To learn more, run the command again with --verbose.
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
 
-warning: unused variable: `to_ro`
-   --> src/data.rs:488:96
-    |
-488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:502:97
-    |
-502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:525:93
-    |
-525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:527:40
-    |
-527 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:552:18
-    |
-552 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:550:37
-    |
-550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
 
 warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:222:4
+   --> src/svg_frontend/timeline_panel.rs:263:4
     |
-222 | fn render_arrows_string(
+263 | fn render_arrows_string(
     |    ^^^^^^^^^^^^^^^^^^^^
     |
     = note: `#[warn(dead_code)]` on by default
 
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:490:62
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:487:4
     |
-490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+487 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
-     Running `target/debug/examples/string_from`
-s 1 2 OutOfScope
-successfully wrote to examples/book_04_01_03_string_from/rendering_code.svg
-successfully wrote to examples/book_04_01_03_string_from/rendering_timeline.svg
-successfully wrote to rustBook/src/img/vis_04_01_03_code.svg
-successfully wrote to rustBook/src/img/vis_04_01_03_timeline.svg
-warning: unused imports: `Formatter`, `Result`
- --> src/hover_messages.rs:1:16
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:509:4
+    |
+509 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
+error[E0432]: unresolved imports `rrt_lib::data::ResourceOwner`, `rrt_lib::data::Variable`
+ --> examples/book_04_01_03_string_from/main.rs:1:51
   |
-1 | use std::fmt::{Formatter, Result};
-  |                ^^^^^^^^^  ^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, VisualizationData, Visualizable};
+  |                                                   ^^^^^^^^^^^^^  ^^^^^^^^ no `Variable` in `data`
+  |                                                   |
+  |                                                   no `ResourceOwner` in `data`
 
-warning: unused variable: `ro`
-   --> src/data.rs:470:61
-    |
-470 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
+error: aborting due to previous error
 
-warning: unused variable: `to_ro`
-   --> src/data.rs:479:62
-    |
-479 |             (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
-    |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `rrt`.
 
-warning: unused variable: `to_ro`
-   --> src/data.rs:488:96
-    |
-488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+To learn more, run the command again with --verbose.
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
 
-warning: unused variable: `to_ro`
-   --> src/data.rs:502:97
-    |
-502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:525:93
-    |
-525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:527:40
-    |
-527 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:552:18
-    |
-552 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:550:37
-    |
-550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
 
 warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:222:4
+   --> src/svg_frontend/timeline_panel.rs:263:4
     |
-222 | fn render_arrows_string(
+263 | fn render_arrows_string(
     |    ^^^^^^^^^^^^^^^^^^^^
     |
     = note: `#[warn(dead_code)]` on by default
 
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:490:62
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:487:4
     |
-490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+487 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
-     Running `target/debug/examples/reference`
-s 1 2 OutOfScope
-s 2 4 FullPrivilege
-s 4 4 RevokedPrivilege
-s 4 6 FullPrivilege
-s 6 6 PartialPrivilege
-s 6 7 FullPrivilege
-successfully wrote to examples/book_04_01_04_reference/rendering_code.svg
-successfully wrote to examples/book_04_01_04_reference/rendering_timeline.svg
-successfully wrote to rustBook/src/img/vis_04_01_04_code.svg
-successfully wrote to rustBook/src/img/vis_04_01_04_timeline.svg
-warning: unused imports: `Formatter`, `Result`
- --> src/hover_messages.rs:1:16
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:509:4
+    |
+509 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
+error[E0432]: unresolved imports `rrt_lib::data::ResourceOwner`, `rrt_lib::data::Variable`
+ --> examples/book_04_01_04_reference/main.rs:1:51
   |
-1 | use std::fmt::{Formatter, Result};
-  |                ^^^^^^^^^  ^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, VisualizationData, Visualizable};
+  |                                                   ^^^^^^^^^^^^^  ^^^^^^^^ no `Variable` in `data`
+  |                                                   |
+  |                                                   no `ResourceOwner` in `data`
 
-warning: unused variable: `ro`
-   --> src/data.rs:470:61
-    |
-470 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
+error: aborting due to previous error
 
-warning: unused variable: `to_ro`
-   --> src/data.rs:479:62
-    |
-479 |             (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
-    |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `rrt`.
 
-warning: unused variable: `to_ro`
-   --> src/data.rs:488:96
-    |
-488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+To learn more, run the command again with --verbose.
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
 
-warning: unused variable: `to_ro`
-   --> src/data.rs:502:97
-    |
-502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:525:93
-    |
-525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:527:40
-    |
-527 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:552:18
-    |
-552 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:550:37
-    |
-550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
 
 warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:222:4
+   --> src/svg_frontend/timeline_panel.rs:263:4
     |
-222 | fn render_arrows_string(
+263 | fn render_arrows_string(
     |    ^^^^^^^^^^^^^^^^^^^^
     |
     = note: `#[warn(dead_code)]` on by default
 
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:490:62
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:487:4
     |
-490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+487 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.28s
-     Running `target/debug/examples/scope2`
-s 1 3 OutOfScope
-s 3 6 FullPrivilege
-successfully wrote to examples/book_04_01_05_scope2/rendering_code.svg
-successfully wrote to examples/book_04_01_05_scope2/rendering_timeline.svg
-successfully wrote to rustBook/src/img/vis_04_01_05_code.svg
-successfully wrote to rustBook/src/img/vis_04_01_05_timeline.svg
-warning: unused imports: `Formatter`, `Result`
- --> src/hover_messages.rs:1:16
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:509:4
+    |
+509 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
+error[E0432]: unresolved imports `rrt_lib::data::ResourceOwner`, `rrt_lib::data::Variable`
+ --> examples/book_04_01_05_scope2/main.rs:1:51
   |
-1 | use std::fmt::{Formatter, Result};
-  |                ^^^^^^^^^  ^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, VisualizationData, Visualizable};
+  |                                                   ^^^^^^^^^^^^^  ^^^^^^^^ no `Variable` in `data`
+  |                                                   |
+  |                                                   no `ResourceOwner` in `data`
 
-warning: unused variable: `ro`
-   --> src/data.rs:470:61
-    |
-470 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
+error: aborting due to previous error
 
-warning: unused variable: `to_ro`
-   --> src/data.rs:479:62
-    |
-479 |             (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
-    |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `rrt`.
 
-warning: unused variable: `to_ro`
-   --> src/data.rs:488:96
-    |
-488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+To learn more, run the command again with --verbose.
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
 
-warning: unused variable: `to_ro`
-   --> src/data.rs:502:97
-    |
-502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:525:93
-    |
-525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:527:40
-    |
-527 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:552:18
-    |
-552 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:550:37
-    |
-550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
 
 warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:222:4
+   --> src/svg_frontend/timeline_panel.rs:263:4
     |
-222 | fn render_arrows_string(
+263 | fn render_arrows_string(
     |    ^^^^^^^^^^^^^^^^^^^^
     |
     = note: `#[warn(dead_code)]` on by default
 
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:490:62
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:487:4
     |
-490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
+487 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:509:4
     |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+509 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
+error[E0432]: unresolved imports `rrt_lib::data::ResourceOwner`, `rrt_lib::data::Variable`
+ --> examples/book_04_01_06_int_copy/main.rs:1:51
+  |
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, VisualizationData, Visualizable};
+  |                                                   ^^^^^^^^^^^^^  ^^^^^^^^ no `Variable` in `data`
+  |                                                   |
+  |                                                   no `ResourceOwner` in `data`
 
 warning: unused import: `Function`
  --> examples/book_04_01_06_int_copy/main.rs:1:76
@@ -514,1212 +295,662 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.26s
-     Running `target/debug/examples/int_copy`
-x 1 2 OutOfScope
-x 2 3 FullPrivilege
-x 3 4 FullPrivilege
-y 1 3 OutOfScope
-y 3 4 FullPrivilege
-successfully wrote to examples/book_04_01_06_int_copy/rendering_code.svg
-successfully wrote to examples/book_04_01_06_int_copy/rendering_timeline.svg
-successfully wrote to rustBook/src/img/vis_04_01_06_code.svg
-successfully wrote to rustBook/src/img/vis_04_01_06_timeline.svg
-warning: unused imports: `Formatter`, `Result`
- --> src/hover_messages.rs:1:16
-  |
-1 | use std::fmt::{Formatter, Result};
-  |                ^^^^^^^^^  ^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
+error: aborting due to previous error
 
-warning: unused variable: `ro`
-   --> src/data.rs:470:61
-    |
-470 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `rrt`.
 
-warning: unused variable: `to_ro`
-   --> src/data.rs:479:62
-    |
-479 |             (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
-    |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:488:96
-    |
-488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:502:97
-    |
-502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:525:93
-    |
-525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:527:40
-    |
-527 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:552:18
-    |
-552 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:550:37
-    |
-550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:222:4
-    |
-222 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:490:62
-    |
-490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
-     Running `target/debug/examples/string_move`
-s1 1 2 OutOfScope
-s1 2 3 FullPrivilege
-s2 1 3 OutOfScope
-successfully wrote to examples/book_04_01_07_string_move/rendering_code.svg
-successfully wrote to examples/book_04_01_07_string_move/rendering_timeline.svg
-successfully wrote to rustBook/src/img/vis_04_01_07_code.svg
-successfully wrote to rustBook/src/img/vis_04_01_07_timeline.svg
-warning: unused imports: `Formatter`, `Result`
- --> src/hover_messages.rs:1:16
-  |
-1 | use std::fmt::{Formatter, Result};
-  |                ^^^^^^^^^  ^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:470:61
-    |
-470 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:479:62
-    |
-479 |             (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
-    |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:488:96
-    |
-488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:502:97
-    |
-502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:525:93
-    |
-525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:527:40
-    |
-527 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:552:18
-    |
-552 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:550:37
-    |
-550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:222:4
-    |
-222 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:490:62
-    |
-490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
-     Running `target/debug/examples/string_clone`
-s1 1 2 OutOfScope
-s1 2 3 FullPrivilege
-s1 3 3 PartialPrivilege
-s1 3 5 FullPrivilege
-s1 5 5 PartialPrivilege
-s2 1 3 OutOfScope
-s2 3 5 FullPrivilege
-s2 5 5 PartialPrivilege
-successfully wrote to examples/book_04_01_09_string_clone/rendering_code.svg
-successfully wrote to examples/book_04_01_09_string_clone/rendering_timeline.svg
-successfully wrote to rustBook/src/img/vis_04_01_09_code.svg
-successfully wrote to rustBook/src/img/vis_04_01_09_timeline.svg
-warning: unused imports: `Formatter`, `Result`
- --> src/hover_messages.rs:1:16
-  |
-1 | use std::fmt::{Formatter, Result};
-  |                ^^^^^^^^^  ^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:470:61
-    |
-470 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:479:62
-    |
-479 |             (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
-    |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:488:96
-    |
-488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:502:97
-    |
-502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:525:93
-    |
-525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:527:40
-    |
-527 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:552:18
-    |
-552 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:550:37
-    |
-550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:222:4
-    |
-222 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:490:62
-    |
-490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
-     Running `target/debug/examples/int_copy_2`
-x 1 2 OutOfScope
-x 2 3 FullPrivilege
-x 3 5 FullPrivilege
-x 5 5 PartialPrivilege
-x 5 6 FullPrivilege
-y 1 3 OutOfScope
-y 3 5 FullPrivilege
-y 5 5 PartialPrivilege
-y 5 6 FullPrivilege
-successfully wrote to examples/book_04_01_10_int_copy_2/rendering_code.svg
-successfully wrote to examples/book_04_01_10_int_copy_2/rendering_timeline.svg
-successfully wrote to rustBook/src/img/vis_04_01_10_code.svg
-successfully wrote to rustBook/src/img/vis_04_01_10_timeline.svg
-warning: unused imports: `Formatter`, `Result`
- --> src/hover_messages.rs:1:16
-  |
-1 | use std::fmt::{Formatter, Result};
-  |                ^^^^^^^^^  ^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:470:61
-    |
-470 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:479:62
-    |
-479 |             (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
-    |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:488:96
-    |
-488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:502:97
-    |
-502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:525:93
-    |
-525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:527:40
-    |
-527 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:552:18
-    |
-552 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:550:37
-    |
-550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:222:4
-    |
-222 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:490:62
-    |
-490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
-     Running `target/debug/examples/ownership_function`
-s 1 2 OutOfScope
-s 2 4 FullPrivilege
-s 4 13 ResourceMoved
-x 1 7 OutOfScope
-x 7 9 FullPrivilege
-x 9 13 FullPrivilege
-some_string 1 16 OutOfScope
-some_string 16 17 FullPrivilege
-some_string 17 17 PartialPrivilege
-some_string 17 18 FullPrivilege
-some_integer 1 21 OutOfScope
-some_integer 21 22 FullPrivilege
-some_integer 22 22 PartialPrivilege
-some_integer 22 23 FullPrivilege
-successfully wrote to examples/book_04_01_11_ownership_function/rendering_code.svg
-successfully wrote to examples/book_04_01_11_ownership_function/rendering_timeline.svg
-successfully wrote to rustBook/src/img/vis_04_01_11_code.svg
-successfully wrote to rustBook/src/img/vis_04_01_11_timeline.svg
-warning: unused imports: `Formatter`, `Result`
- --> src/hover_messages.rs:1:16
-  |
-1 | use std::fmt::{Formatter, Result};
-  |                ^^^^^^^^^  ^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:470:61
-    |
-470 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:479:62
-    |
-479 |             (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
-    |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:488:96
-    |
-488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:502:97
-    |
-502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:525:93
-    |
-525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:527:40
-    |
-527 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:552:18
-    |
-552 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:550:37
-    |
-550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:222:4
-    |
-222 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:490:62
-    |
-490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
-     Running `target/debug/examples/return_values`
-s1 1 2 OutOfScope
-s1 2 10 FullPrivilege
-s2 1 5 OutOfScope
-s2 5 7 FullPrivilege
-s2 7 10 ResourceMoved
-s3 1 7 OutOfScope
-s3 7 10 FullPrivilege
-some_string 1 17 OutOfScope
-some_string 17 19 FullPrivilege
-some_string 19 22 ResourceMoved
-a_string 1 25 OutOfScope
-a_string 25 28 FullPrivilege
-a_string 28 29 ResourceMoved
-successfully wrote to examples/book_04_01_12_return_values/rendering_code.svg
-successfully wrote to examples/book_04_01_12_return_values/rendering_timeline.svg
-successfully wrote to rustBook/src/img/vis_04_01_12_code.svg
-successfully wrote to rustBook/src/img/vis_04_01_12_timeline.svg
-warning: unused imports: `Formatter`, `Result`
- --> src/hover_messages.rs:1:16
-  |
-1 | use std::fmt::{Formatter, Result};
-  |                ^^^^^^^^^  ^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:470:61
-    |
-470 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:479:62
-    |
-479 |             (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
-    |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:488:96
-    |
-488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:502:97
-    |
-502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:525:93
-    |
-525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:527:40
-    |
-527 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:552:18
-    |
-552 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:550:37
-    |
-550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:222:4
-    |
-222 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:490:62
-    |
-490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
-     Running `target/debug/examples/return_tuple`
-s1 1 2 OutOfScope
-s1 2 4 FullPrivilege
-s1 4 4 PartialPrivilege
-s1 4 7 FullPrivilege
-len 1 4 OutOfScope
-len 4 6 FullPrivilege
-len 6 6 PartialPrivilege
-len 6 7 FullPrivilege
-s2 1 4 OutOfScope
-s2 4 6 FullPrivilege
-s2 6 6 PartialPrivilege
-s2 6 7 FullPrivilege
-s 1 9 OutOfScope
-s 9 10 FullPrivilege
-s 10 10 PartialPrivilege
-s 10 12 FullPrivilege
-length 1 10 OutOfScope
-length 10 12 FullPrivilege
-successfully wrote to examples/book_04_01_13_return_tuple/rendering_code.svg
-successfully wrote to examples/book_04_01_13_return_tuple/rendering_timeline.svg
-successfully wrote to rustBook/src/img/vis_04_01_13_code.svg
-successfully wrote to rustBook/src/img/vis_04_01_13_timeline.svg
-warning: unused imports: `Formatter`, `Result`
- --> src/hover_messages.rs:1:16
-  |
-1 | use std::fmt::{Formatter, Result};
-  |                ^^^^^^^^^  ^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:470:61
-    |
-470 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:479:62
-    |
-479 |             (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
-    |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:488:96
-    |
-488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:502:97
-    |
-502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:525:93
-    |
-525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:527:40
-    |
-527 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:552:18
-    |
-552 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:550:37
-    |
-550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:222:4
-    |
-222 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:490:62
-    |
-490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
-     Running `target/debug/examples/pass_reference`
-s1 1 2 OutOfScope
-s1 2 4 FullPrivilege
-s1 4 4 PartialPrivilege
-s1 4 7 FullPrivilege
-len 1 4 OutOfScope
-len 4 7 FullPrivilege
-s 1 9 OutOfScope
-s 9 10 FullPrivilege
-s 10 10 PartialPrivilege
-s 10 11 FullPrivilege
-successfully wrote to examples/book_04_02_01_pass_reference/rendering_code.svg
-successfully wrote to examples/book_04_02_01_pass_reference/rendering_timeline.svg
-successfully wrote to rustBook/src/img/vis_04_02_01_code.svg
-successfully wrote to rustBook/src/img/vis_04_02_01_timeline.svg
-warning: unused imports: `Formatter`, `Result`
- --> src/hover_messages.rs:1:16
-  |
-1 | use std::fmt::{Formatter, Result};
-  |                ^^^^^^^^^  ^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:470:61
-    |
-470 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:479:62
-    |
-479 |             (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
-    |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:488:96
-    |
-488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:502:97
-    |
-502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:525:93
-    |
-525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:527:40
-    |
-527 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:552:18
-    |
-552 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:550:37
-    |
-550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:222:4
-    |
-222 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:490:62
-    |
-490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.26s
-     Running `target/debug/examples/acquire_from_function`
-s1 1 2 OutOfScope
-s1 2 4 FullPrivilege
-s1 4 4 PartialPrivilege
-len 1 4 OutOfScope
-successfully wrote to examples/book_04_02_02_acquire_from_function/rendering_code.svg
-successfully wrote to examples/book_04_02_02_acquire_from_function/rendering_timeline.svg
-successfully wrote to rustBook/src/img/vis_04_02_02_code.svg
-successfully wrote to rustBook/src/img/vis_04_02_02_timeline.svg
-warning: unused imports: `Formatter`, `Result`
- --> src/hover_messages.rs:1:16
-  |
-1 | use std::fmt::{Formatter, Result};
-  |                ^^^^^^^^^  ^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:470:61
-    |
-470 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:479:62
-    |
-479 |             (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
-    |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:488:96
-    |
-488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:502:97
-    |
-502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:525:93
-    |
-525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:527:40
-    |
-527 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:552:18
-    |
-552 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:550:37
-    |
-550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
-
-warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:222:4
-    |
-222 | fn render_arrows_string(
-    |    ^^^^^^^^^^^^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
-
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:490:62
-    |
-490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
-
-warning: unused variable: `calculate_length`
-  --> examples/book_04_02_03_safely_out_of_scope/main.rs:19:9
+To learn more, run the command again with --verbose.
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
    |
-19 |     let calculate_length = Some(ResourceOwner::Function(Function {
-   |         ^^^^^^^^^^^^^^^^ help: consider prefixing with an underscore: `_calculate_length`
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
    |
-   = note: `#[warn(unused_variables)]` on by default
+   = note: `#[warn(deprecated)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
-     Running `target/debug/examples/safely_out_of_scope`
-s 1 2 OutOfScope
-s 2 3 FullPrivilege
-s 3 3 PartialPrivilege
-s 3 4 FullPrivilege
-successfully wrote to examples/book_04_02_03_safely_out_of_scope/rendering_code.svg
-successfully wrote to examples/book_04_02_03_safely_out_of_scope/rendering_timeline.svg
-successfully wrote to rustBook/src/img/vis_04_02_03_code.svg
-successfully wrote to rustBook/src/img/vis_04_02_03_timeline.svg
-warning: unused imports: `Formatter`, `Result`
- --> src/hover_messages.rs:1:16
-  |
-1 | use std::fmt::{Formatter, Result};
-  |                ^^^^^^^^^  ^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: unused variable: `ro`
-   --> src/data.rs:470:61
-    |
-470 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:479:62
-    |
-479 |             (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
-    |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:488:96
-    |
-488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:502:97
-    |
-502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:525:93
-    |
-525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:527:40
-    |
-527 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:552:18
-    |
-552 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:550:37
-    |
-550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
 
 warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:222:4
+   --> src/svg_frontend/timeline_panel.rs:263:4
     |
-222 | fn render_arrows_string(
+263 | fn render_arrows_string(
     |    ^^^^^^^^^^^^^^^^^^^^
     |
     = note: `#[warn(dead_code)]` on by default
 
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:490:62
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:487:4
     |
-490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+487 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
-     Running `target/debug/examples/mut_ref`
-s 1 2 OutOfScope
-s 2 4 FullPrivilege
-s 4 4 PartialPrivilege
-s 4 5 FullPrivilege
-some_string 1 7 OutOfScope
-some_string 7 8 FullPrivilege
-some_string 8 8 PartialPrivilege
-some_string 8 9 FullPrivilege
-successfully wrote to examples/book_04_02_05_mut_ref/rendering_code.svg
-successfully wrote to examples/book_04_02_05_mut_ref/rendering_timeline.svg
-successfully wrote to rustBook/src/img/vis_04_02_05_code.svg
-successfully wrote to rustBook/src/img/vis_04_02_05_timeline.svg
-warning: unused imports: `Formatter`, `Result`
- --> src/hover_messages.rs:1:16
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:509:4
+    |
+509 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
+error[E0432]: unresolved imports `rrt_lib::data::ResourceOwner`, `rrt_lib::data::Variable`
+ --> examples/book_04_01_07_string_move/main.rs:1:51
   |
-1 | use std::fmt::{Formatter, Result};
-  |                ^^^^^^^^^  ^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, VisualizationData, Visualizable};
+  |                                                   ^^^^^^^^^^^^^  ^^^^^^^^ no `Variable` in `data`
+  |                                                   |
+  |                                                   no `ResourceOwner` in `data`
 
-warning: unused variable: `ro`
-   --> src/data.rs:470:61
-    |
-470 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
+error: aborting due to previous error
 
-warning: unused variable: `to_ro`
-   --> src/data.rs:479:62
-    |
-479 |             (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
-    |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `rrt`.
 
-warning: unused variable: `to_ro`
-   --> src/data.rs:488:96
-    |
-488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+To learn more, run the command again with --verbose.
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
 
-warning: unused variable: `to_ro`
-   --> src/data.rs:502:97
-    |
-502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:525:93
-    |
-525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:527:40
-    |
-527 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:552:18
-    |
-552 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:550:37
-    |
-550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
 
 warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:222:4
+   --> src/svg_frontend/timeline_panel.rs:263:4
     |
-222 | fn render_arrows_string(
+263 | fn render_arrows_string(
     |    ^^^^^^^^^^^^^^^^^^^^
     |
     = note: `#[warn(dead_code)]` on by default
 
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:490:62
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:487:4
     |
-490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+487 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.23s
-     Running `target/debug/examples/scope_reference`
-s 1 2 OutOfScope
-s 2 5 FullPrivilege
-s 5 6 RevokedPrivilege
-s 6 9 FullPrivilege
-r1 1 5 OutOfScope
-r1 5 6 FullPrivilege
-r1 6 6 OutOfScope
-r2 1 9 OutOfScope
-successfully wrote to examples/book_04_02_07_scope_reference/rendering_code.svg
-successfully wrote to examples/book_04_02_07_scope_reference/rendering_timeline.svg
-successfully wrote to rustBook/src/img/vis_04_02_07_code.svg
-successfully wrote to rustBook/src/img/vis_04_02_07_timeline.svg
-warning: unused imports: `Formatter`, `Result`
- --> src/hover_messages.rs:1:16
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:509:4
+    |
+509 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
+error[E0432]: unresolved imports `rrt_lib::data::ResourceOwner`, `rrt_lib::data::Variable`
+ --> examples/book_04_01_09_string_clone/main.rs:1:51
   |
-1 | use std::fmt::{Formatter, Result};
-  |                ^^^^^^^^^  ^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, VisualizationData, Visualizable};
+  |                                                   ^^^^^^^^^^^^^  ^^^^^^^^ no `Variable` in `data`
+  |                                                   |
+  |                                                   no `ResourceOwner` in `data`
 
-warning: unused variable: `ro`
-   --> src/data.rs:470:61
-    |
-470 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
+error: aborting due to previous error
 
-warning: unused variable: `to_ro`
-   --> src/data.rs:479:62
-    |
-479 |             (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
-    |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `rrt`.
 
-warning: unused variable: `to_ro`
-   --> src/data.rs:488:96
-    |
-488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
+To learn more, run the command again with --verbose.
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
 
-warning: unused variable: `to_ro`
-   --> src/data.rs:502:97
-    |
-502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:525:93
-    |
-525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:527:40
-    |
-527 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:552:18
-    |
-552 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:550:37
-    |
-550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
 
 warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:222:4
+   --> src/svg_frontend/timeline_panel.rs:263:4
     |
-222 | fn render_arrows_string(
+263 | fn render_arrows_string(
     |    ^^^^^^^^^^^^^^^^^^^^
     |
     = note: `#[warn(dead_code)]` on by default
 
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:490:62
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:487:4
     |
-490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+487 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:509:4
+    |
+509 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
+error[E0432]: unresolved imports `rrt_lib::data::ResourceOwner`, `rrt_lib::data::Variable`
+ --> examples/book_04_01_10_int_copy_2/main.rs:1:51
+  |
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, VisualizationData, Visualizable};
+  |                                                   ^^^^^^^^^^^^^  ^^^^^^^^ no `Variable` in `data`
+  |                                                   |
+  |                                                   no `ResourceOwner` in `data`
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `rrt`.
+
+To learn more, run the command again with --verbose.
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/timeline_panel.rs:263:4
+    |
+263 | fn render_arrows_string(
+    |    ^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:487:4
+    |
+487 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:509:4
+    |
+509 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
+error[E0432]: unresolved imports `rrt_lib::data::ResourceOwner`, `rrt_lib::data::Variable`
+ --> examples/book_04_01_11_ownership_function/main.rs:1:51
+  |
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, Visualizable, VisualizationData};
+  |                                                   ^^^^^^^^^^^^^  ^^^^^^^^ no `Variable` in `data`
+  |                                                   |
+  |                                                   no `ResourceOwner` in `data`
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `rrt`.
+
+To learn more, run the command again with --verbose.
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/timeline_panel.rs:263:4
+    |
+263 | fn render_arrows_string(
+    |    ^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:487:4
+    |
+487 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:509:4
+    |
+509 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
+error[E0432]: unresolved imports `rrt_lib::data::ResourceOwner`, `rrt_lib::data::Variable`
+ --> examples/book_04_01_12_return_values/main.rs:1:51
+  |
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, Visualizable, VisualizationData};
+  |                                                   ^^^^^^^^^^^^^  ^^^^^^^^ no `Variable` in `data`
+  |                                                   |
+  |                                                   no `ResourceOwner` in `data`
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `rrt`.
+
+To learn more, run the command again with --verbose.
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/timeline_panel.rs:263:4
+    |
+263 | fn render_arrows_string(
+    |    ^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:487:4
+    |
+487 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:509:4
+    |
+509 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
+error[E0432]: unresolved imports `rrt_lib::data::ResourceOwner`, `rrt_lib::data::Variable`
+ --> examples/book_04_01_13_return_tuple/main.rs:1:51
+  |
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, Visualizable, VisualizationData};
+  |                                                   ^^^^^^^^^^^^^  ^^^^^^^^ no `Variable` in `data`
+  |                                                   |
+  |                                                   no `ResourceOwner` in `data`
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `rrt`.
+
+To learn more, run the command again with --verbose.
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/timeline_panel.rs:263:4
+    |
+263 | fn render_arrows_string(
+    |    ^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:487:4
+    |
+487 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:509:4
+    |
+509 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
+error[E0432]: unresolved imports `rrt_lib::data::ResourceOwner`, `rrt_lib::data::Variable`
+ --> examples/book_04_02_01_pass_reference/main.rs:1:51
+  |
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, Visualizable, VisualizationData};
+  |                                                   ^^^^^^^^^^^^^  ^^^^^^^^ no `Variable` in `data`
+  |                                                   |
+  |                                                   no `ResourceOwner` in `data`
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `rrt`.
+
+To learn more, run the command again with --verbose.
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/timeline_panel.rs:263:4
+    |
+263 | fn render_arrows_string(
+    |    ^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:487:4
+    |
+487 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:509:4
+    |
+509 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
+error[E0432]: unresolved imports `rrt_lib::data::ResourceOwner`, `rrt_lib::data::Variable`
+ --> examples/book_04_02_02_acquire_from_function/main.rs:1:51
+  |
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, Visualizable, VisualizationData};
+  |                                                   ^^^^^^^^^^^^^  ^^^^^^^^ no `Variable` in `data`
+  |                                                   |
+  |                                                   no `ResourceOwner` in `data`
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `rrt`.
+
+To learn more, run the command again with --verbose.
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/timeline_panel.rs:263:4
+    |
+263 | fn render_arrows_string(
+    |    ^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:487:4
+    |
+487 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:509:4
+    |
+509 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
+error[E0432]: unresolved imports `rrt_lib::data::ResourceOwner`, `rrt_lib::data::Variable`
+ --> examples/book_04_02_03_safely_out_of_scope/main.rs:1:51
+  |
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, Visualizable, VisualizationData};
+  |                                                   ^^^^^^^^^^^^^  ^^^^^^^^ no `Variable` in `data`
+  |                                                   |
+  |                                                   no `ResourceOwner` in `data`
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `rrt`.
+
+To learn more, run the command again with --verbose.
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/timeline_panel.rs:263:4
+    |
+263 | fn render_arrows_string(
+    |    ^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:487:4
+    |
+487 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:509:4
+    |
+509 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
+error[E0432]: unresolved imports `rrt_lib::data::RefKind`, `rrt_lib::data::ResourceOwner`, `rrt_lib::data::Variable`
+ --> examples/book_04_02_05_mut_ref/main.rs:1:21
+  |
+1 | use rrt_lib::data::{RefKind::*, ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, Visualizable, VisualizationData};
+  |                     ^^^^^^^                                   ^^^^^^^^^^^^^  ^^^^^^^^ no `Variable` in `data`
+  |                     |                                         |
+  |                     |                                         no `ResourceOwner` in `data`
+  |                     could not find `RefKind` in `data`
+
+error[E0425]: cannot find value `MutRef` in this scope
+  --> examples/book_04_02_05_mut_ref/main.rs:11:19
+   |
+11 |         ref_kind: MutRef,
+   |                   ^^^^^^ not found in this scope
+   |
+help: possible candidate is found in another module, you can import it into scope
+   |
+1  | use rrt_lib::data::ResourceAccessPoint::MutRef;
+   |
+
+error[E0425]: cannot find value `MutRef` in this scope
+  --> examples/book_04_02_05_mut_ref/main.rs:18:19
+   |
+18 |         ref_kind: MutRef,
+   |                   ^^^^^^ not found in this scope
+   |
+help: possible candidate is found in another module, you can import it into scope
+   |
+1  | use rrt_lib::data::ResourceAccessPoint::MutRef;
+   |
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0425, E0432.
+For more information about an error, try `rustc --explain E0425`.
+error: could not compile `rrt`.
+
+To learn more, run the command again with --verbose.
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/timeline_panel.rs:263:4
+    |
+263 | fn render_arrows_string(
+    |    ^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:487:4
+    |
+487 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:509:4
+    |
+509 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
+error[E0432]: unresolved imports `rrt_lib::data::ResourceOwner`, `rrt_lib::data::Variable`
+ --> examples/book_04_02_07_scope_reference/main.rs:1:51
+  |
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, Visualizable, VisualizationData};
+  |                                                   ^^^^^^^^^^^^^  ^^^^^^^^ no `Variable` in `data`
+  |                                                   |
+  |                                                   no `ResourceOwner` in `data`
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `rrt`.
+
+To learn more, run the command again with --verbose.
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `render_arrows_string`
+   --> src/svg_frontend/timeline_panel.rs:263:4
+    |
+263 | fn render_arrows_string(
+    |    ^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:487:4
+    |
+487 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:509:4
+    |
+509 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.58s
      Running `target/debug/examples/shared_and_unique_borrow`
-s 1 2 OutOfScope
-s 2 4 FullPrivilege
-s 4 5 PartialPrivilege
-s 5 6 PartialPrivilege
-s 6 6 PartialPrivilege
-s 6 9 FullPrivilege
-s 9 10 RevokedPrivilege
-s 10 12 FullPrivilege
-r1 1 4 OutOfScope
-r1 4 6 PartialPrivilege
-r1 6 6 PartialPrivilege
-r1 6 6 PartialPrivilege
-r1 6 12 OutOfScope
-r2 1 5 OutOfScope
-r2 5 6 PartialPrivilege
-r2 6 6 PartialPrivilege
-r2 6 6 PartialPrivilege
-r2 6 12 OutOfScope
-r3 1 9 OutOfScope
-r3 9 10 FullPrivilege
-r3 10 10 PartialPrivilege
-r3 10 10 FullPrivilege
-r3 10 12 OutOfScope
 successfully wrote to examples/book_04_02_09_shared_and_unique_borrow/rendering_code.svg
 successfully wrote to examples/book_04_02_09_shared_and_unique_borrow/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_02_09_code.svg
 successfully wrote to rustBook/src/img/vis_04_02_09_timeline.svg
-warning: unused imports: `Formatter`, `Result`
- --> src/hover_messages.rs:1:16
-  |
-1 | use std::fmt::{Formatter, Result};
-  |                ^^^^^^^^^  ^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
 
-warning: unused variable: `ro`
-   --> src/data.rs:470:61
-    |
-470 |             (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
-    |                                                             ^^ help: consider prefixing with an underscore: `_ro`
-    |
-    = note: `#[warn(unused_variables)]` on by default
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:479:62
-    |
-479 |             (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
-    |                                                              ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:488:96
-    |
-488 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
-    |                                                                                                ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `to_ro`
-   --> src/data.rs:502:97
-    |
-502 |             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
-    |                                                                                                 ^^^^^ help: consider prefixing with an underscore: `_to_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:525:93
-    |
-525 |             (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
-    |                                                                                             ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `ro`
-   --> src/data.rs:527:40
-    |
-527 |             (_, Event::Duplicate { to: ro }) =>
-    |                                        ^^ help: consider prefixing with an underscore: `_ro`
-
-warning: unused variable: `timeline`
-   --> src/data.rs:552:18
-    |
-552 |             Some(timeline) => {
-    |                  ^^^^^^^^ help: consider prefixing with an underscore: `_timeline`
-
-warning: unused variable: `line_number`
-   --> src/data.rs:550:37
-    |
-550 |     fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
-    |                                     ^^^^^^^^^^^ help: consider prefixing with an underscore: `_line_number`
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
 
 warning: function is never used: `render_arrows_string`
-   --> src/svg_frontend/right_panel.rs:222:4
+   --> src/svg_frontend/timeline_panel.rs:263:4
     |
-222 | fn render_arrows_string(
+263 | fn render_arrows_string(
     |    ^^^^^^^^^^^^^^^^^^^^
     |
     = note: `#[warn(dead_code)]` on by default
 
-warning: the `borrow_to:` in this pattern is redundant
-   --> src/data.rs:490:62
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:487:4
     |
-490 |             (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
-    |                                                              ----------^^^^^^^^^^
-    |                                                              |
-    |                                                              help: remove this
-    |
-    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+487 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
-     Running `target/debug/examples/no_dangle`
-s 1 2 OutOfScope
-s 2 4 FullPrivilege
-successfully wrote to examples/book_04_02_12_no_dangle/rendering_code.svg
-successfully wrote to examples/book_04_02_12_no_dangle/rendering_timeline.svg
-successfully wrote to rustBook/src/img/vis_04_02_12_code.svg
-successfully wrote to rustBook/src/img/vis_04_02_12_timeline.svg
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:509:4
+    |
+509 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
+error[E0432]: unresolved imports `rrt_lib::data::ResourceOwner`, `rrt_lib::data::Variable`
+ --> examples/book_04_02_12_no_dangle/main.rs:1:51
+  |
+1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, Visualizable, VisualizationData};
+  |                                                   ^^^^^^^^^^^^^  ^^^^^^^^ no `Variable` in `data`
+  |                                                   |
+  |                                                   no `ResourceOwner` in `data`
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `rrt`.
+
+To learn more, run the command again with --verbose.

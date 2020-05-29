@@ -479,7 +479,8 @@ fn determine_owner_line_styles(
     match (state, rap.is_mut()) {
         (State::FullPrivilege, true) => OwnerLine::Solid,
         (State::FullPrivilege, false) => OwnerLine::Hollow,
-        _ => OwnerLine::Empty,              // TODO: more implementations 
+        (State::PartialPrivilege{..}, _) => OwnerLine::Hollow, // let (mut) a = 5;
+        _ => OwnerLine::Empty,              // Otherwise its empty
     }
 }
 
@@ -489,6 +490,10 @@ fn determine_stat_ref_line_styles(
     state: &State
 ) -> (RefDataLine, RefValueLine) {
     match (state, rap.is_mut()) {
+        (State::FullPrivilege, _) => (
+            RefDataLine::Solid,
+            if rap.is_mut() {RefValueLine::Reassignable} else {RefValueLine::NotReassignable},
+        ),
         (State::PartialPrivilege{..}, false) => (
             RefDataLine::Hollow,
             RefValueLine::NotReassignable,

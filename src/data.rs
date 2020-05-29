@@ -505,6 +505,10 @@ impl Visualizable for VisualizationData {
             (State::FullPrivilege, Event::MutableReturn{ to: _ }) =>
                 State::OutOfScope,
         
+            (State::FullPrivilege, Event::OwnerGoOutOfScope) => State::OutOfScope,
+
+            (State::FullPrivilege, Event::RefGoOutOfScope) => State::OutOfScope,
+
             // this looks impossible?
             // (State::FullPrivilege, Event::MutableReacquire{ from: ro }) =>
             //     State::ResourceReturned { to: ro.to_owned() },
@@ -577,6 +581,9 @@ impl Visualizable for VisualizationData {
             prev_state = self.calc_state(&prev_state, &event, *line_number, hash);
             previous_line_number = *line_number;
         }
+        states.push(
+            (previous_line_number, previous_line_number, prev_state.clone())
+        );
         states
     }
 

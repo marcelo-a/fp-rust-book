@@ -42,8 +42,13 @@ warning: function is never used: `determine_mut_ref_line_styles`
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.78s
+    Finished dev [unoptimized + debuginfo] target(s) in 1.50s
      Running `target/debug/examples/one_var`
+1 2 s OutOfScope
+2 3 s FullPrivilege
+alive! 2 3 s
+3 3 s OutOfScope
+die 3 3 s
 successfully wrote to examples/book_04_01_01_one_var/rendering_code.svg
 successfully wrote to examples/book_04_01_01_one_var/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_01_code.svg
@@ -99,8 +104,13 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.73s
+    Finished dev [unoptimized + debuginfo] target(s) in 1.50s
      Running `target/debug/examples/scope`
+1 3 s OutOfScope
+3 6 s FullPrivilege
+alive! 3 6 s
+6 6 s OutOfScope
+die 6 6 s
 successfully wrote to examples/book_04_01_02_scope/rendering_code.svg
 successfully wrote to examples/book_04_01_02_scope/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_02_code.svg
@@ -148,8 +158,11 @@ warning: function is never used: `determine_mut_ref_line_styles`
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.68s
+    Finished dev [unoptimized + debuginfo] target(s) in 1.50s
      Running `target/debug/examples/string_from`
+1 2 s OutOfScope
+2 2 s FullPrivilege
+alive! 2 2 s
 successfully wrote to examples/book_04_01_03_string_from/rendering_code.svg
 successfully wrote to examples/book_04_01_03_string_from/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_03_code.svg
@@ -197,8 +210,17 @@ warning: function is never used: `determine_mut_ref_line_styles`
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.71s
+    Finished dev [unoptimized + debuginfo] target(s) in 1.52s
      Running `target/debug/examples/reference`
+1 2 s OutOfScope
+2 4 s FullPrivilege
+alive! 2 4 s
+4 4 s RevokedPrivilege
+4 6 s FullPrivilege
+6 6 s PartialPrivilege
+6 7 s FullPrivilege
+7 7 s OutOfScope
+die 7 7 s
 successfully wrote to examples/book_04_01_04_reference/rendering_code.svg
 successfully wrote to examples/book_04_01_04_reference/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_04_code.svg
@@ -246,8 +268,13 @@ warning: function is never used: `determine_mut_ref_line_styles`
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.68s
+    Finished dev [unoptimized + debuginfo] target(s) in 1.50s
      Running `target/debug/examples/scope2`
+1 3 s OutOfScope
+3 6 s FullPrivilege
+alive! 3 6 s
+6 6 s OutOfScope
+die 6 6 s
 successfully wrote to examples/book_04_01_05_scope2/rendering_code.svg
 successfully wrote to examples/book_04_01_05_scope2/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_05_code.svg
@@ -303,8 +330,19 @@ warning: unused import: `Function`
   |
   = note: `#[warn(unused_imports)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.67s
+    Finished dev [unoptimized + debuginfo] target(s) in 1.50s
      Running `target/debug/examples/int_copy`
+1 2 x OutOfScope
+2 3 x FullPrivilege
+alive! 2 3 x
+3 4 x FullPrivilege
+4 4 x OutOfScope
+die 4 4 x
+1 3 y OutOfScope
+3 4 y FullPrivilege
+alive! 3 4 y
+4 4 y OutOfScope
+die 4 4 y
 successfully wrote to examples/book_04_01_06_int_copy/rendering_code.svg
 successfully wrote to examples/book_04_01_06_int_copy/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_06_code.svg
@@ -352,8 +390,15 @@ warning: function is never used: `determine_mut_ref_line_styles`
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.66s
+    Finished dev [unoptimized + debuginfo] target(s) in 1.50s
      Running `target/debug/examples/string_move`
+1 2 s1 OutOfScope
+2 3 s1 FullPrivilege
+alive! 2 3 s1
+3 3 s1 ResourceMoved
+1 3 s2 OutOfScope
+3 3 s2 FullPrivilege
+alive! 3 3 s2
 successfully wrote to examples/book_04_01_07_string_move/rendering_code.svg
 successfully wrote to examples/book_04_01_07_string_move/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_07_code.svg
@@ -401,8 +446,20 @@ warning: function is never used: `determine_mut_ref_line_styles`
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.66s
+    Finished dev [unoptimized + debuginfo] target(s) in 1.50s
      Running `target/debug/examples/string_clone`
+1 2 s1 OutOfScope
+2 3 s1 FullPrivilege
+alive! 2 3 s1
+3 3 s1 PartialPrivilege
+3 5 s1 FullPrivilege
+5 5 s1 PartialPrivilege
+5 5 s1 FullPrivilege
+1 3 s2 OutOfScope
+3 5 s2 FullPrivilege
+alive! 3 5 s2
+5 5 s2 PartialPrivilege
+5 5 s2 FullPrivilege
 successfully wrote to examples/book_04_01_09_string_clone/rendering_code.svg
 successfully wrote to examples/book_04_01_09_string_clone/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_09_code.svg
@@ -450,8 +507,23 @@ warning: function is never used: `determine_mut_ref_line_styles`
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.72s
+    Finished dev [unoptimized + debuginfo] target(s) in 1.48s
      Running `target/debug/examples/int_copy_2`
+1 2 x OutOfScope
+2 3 x FullPrivilege
+alive! 2 3 x
+3 5 x FullPrivilege
+5 5 x PartialPrivilege
+5 6 x FullPrivilege
+6 6 x OutOfScope
+die 6 6 x
+1 3 y OutOfScope
+3 5 y FullPrivilege
+alive! 3 5 y
+5 5 y PartialPrivilege
+5 6 y FullPrivilege
+6 6 y OutOfScope
+die 6 6 y
 successfully wrote to examples/book_04_01_10_int_copy_2/rendering_code.svg
 successfully wrote to examples/book_04_01_10_int_copy_2/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_10_code.svg
@@ -499,8 +571,33 @@ warning: function is never used: `determine_mut_ref_line_styles`
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.74s
+    Finished dev [unoptimized + debuginfo] target(s) in 1.49s
      Running `target/debug/examples/ownership_function`
+1 2 s OutOfScope
+2 4 s FullPrivilege
+alive! 2 4 s
+4 13 s ResourceMoved
+13 13 s Invalid
+1 7 x OutOfScope
+7 9 x FullPrivilege
+alive! 7 9 x
+9 13 x FullPrivilege
+13 13 x OutOfScope
+die 13 13 x
+1 16 some_string OutOfScope
+16 17 some_string FullPrivilege
+alive! 16 17 some_string
+17 17 some_string PartialPrivilege
+17 18 some_string FullPrivilege
+18 18 some_string OutOfScope
+die 18 18 some_string
+1 21 some_integer OutOfScope
+21 22 some_integer FullPrivilege
+alive! 21 22 some_integer
+22 22 some_integer PartialPrivilege
+22 23 some_integer FullPrivilege
+23 23 some_integer OutOfScope
+die 23 23 some_integer
 successfully wrote to examples/book_04_01_11_ownership_function/rendering_code.svg
 successfully wrote to examples/book_04_01_11_ownership_function/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_11_code.svg
@@ -548,8 +645,33 @@ warning: function is never used: `determine_mut_ref_line_styles`
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.71s
+    Finished dev [unoptimized + debuginfo] target(s) in 1.48s
      Running `target/debug/examples/return_values`
+1 2 s1 OutOfScope
+2 10 s1 FullPrivilege
+alive! 2 10 s1
+10 10 s1 OutOfScope
+die 10 10 s1
+1 5 s2 OutOfScope
+5 7 s2 FullPrivilege
+alive! 5 7 s2
+7 10 s2 ResourceMoved
+10 10 s2 Invalid
+1 7 s3 OutOfScope
+7 10 s3 FullPrivilege
+alive! 7 10 s3
+10 10 s3 OutOfScope
+die 10 10 s3
+1 17 some_string OutOfScope
+17 19 some_string FullPrivilege
+alive! 17 19 some_string
+19 22 some_string ResourceMoved
+22 22 some_string Invalid
+1 25 a_string OutOfScope
+25 28 a_string FullPrivilege
+alive! 25 28 a_string
+28 29 a_string ResourceMoved
+29 29 a_string Invalid
 successfully wrote to examples/book_04_01_12_return_values/rendering_code.svg
 successfully wrote to examples/book_04_01_12_return_values/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_12_code.svg
@@ -597,8 +719,41 @@ warning: function is never used: `determine_mut_ref_line_styles`
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.79s
+    Finished dev [unoptimized + debuginfo] target(s) in 1.50s
      Running `target/debug/examples/return_tuple`
+1 2 s1 OutOfScope
+2 4 s1 FullPrivilege
+alive! 2 4 s1
+4 4 s1 PartialPrivilege
+4 7 s1 FullPrivilege
+7 7 s1 OutOfScope
+die 7 7 s1
+1 4 len OutOfScope
+4 6 len FullPrivilege
+alive! 4 6 len
+6 6 len PartialPrivilege
+6 7 len FullPrivilege
+7 7 len OutOfScope
+die 7 7 len
+1 4 s2 OutOfScope
+4 6 s2 FullPrivilege
+alive! 4 6 s2
+6 6 s2 PartialPrivilege
+6 7 s2 FullPrivilege
+7 7 s2 OutOfScope
+die 7 7 s2
+1 9 s OutOfScope
+9 10 s FullPrivilege
+alive! 9 10 s
+10 10 s PartialPrivilege
+10 12 s FullPrivilege
+12 12 s OutOfScope
+die 12 12 s
+1 10 length OutOfScope
+10 12 length FullPrivilege
+alive! 10 12 length
+12 12 length OutOfScope
+die 12 12 length
 successfully wrote to examples/book_04_01_13_return_tuple/rendering_code.svg
 successfully wrote to examples/book_04_01_13_return_tuple/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_13_code.svg
@@ -646,8 +801,27 @@ warning: function is never used: `determine_mut_ref_line_styles`
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.79s
+    Finished dev [unoptimized + debuginfo] target(s) in 1.52s
      Running `target/debug/examples/pass_reference`
+1 2 s1 OutOfScope
+2 4 s1 FullPrivilege
+alive! 2 4 s1
+4 4 s1 PartialPrivilege
+4 7 s1 FullPrivilege
+7 7 s1 OutOfScope
+die 7 7 s1
+1 4 len OutOfScope
+4 7 len FullPrivilege
+alive! 4 7 len
+7 7 len OutOfScope
+die 7 7 len
+1 9 s OutOfScope
+9 10 s FullPrivilege
+alive! 9 10 s
+10 10 s PartialPrivilege
+10 11 s FullPrivilege
+11 11 s OutOfScope
+die 11 11 s
 successfully wrote to examples/book_04_02_01_pass_reference/rendering_code.svg
 successfully wrote to examples/book_04_02_01_pass_reference/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_02_01_code.svg
@@ -695,8 +869,16 @@ warning: function is never used: `determine_mut_ref_line_styles`
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.75s
+    Finished dev [unoptimized + debuginfo] target(s) in 1.54s
      Running `target/debug/examples/acquire_from_function`
+1 2 s1 OutOfScope
+2 4 s1 FullPrivilege
+alive! 2 4 s1
+4 4 s1 PartialPrivilege
+4 4 s1 FullPrivilege
+1 4 len OutOfScope
+4 4 len FullPrivilege
+alive! 4 4 len
 successfully wrote to examples/book_04_02_02_acquire_from_function/rendering_code.svg
 successfully wrote to examples/book_04_02_02_acquire_from_function/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_02_02_code.svg
@@ -752,8 +934,15 @@ warning: unused variable: `calculate_length`
    |
    = note: `#[warn(unused_variables)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.86s
+    Finished dev [unoptimized + debuginfo] target(s) in 1.51s
      Running `target/debug/examples/safely_out_of_scope`
+1 2 s OutOfScope
+2 3 s FullPrivilege
+alive! 2 3 s
+3 3 s PartialPrivilege
+3 4 s FullPrivilege
+4 4 s OutOfScope
+die 4 4 s
 successfully wrote to examples/book_04_02_03_safely_out_of_scope/rendering_code.svg
 successfully wrote to examples/book_04_02_03_safely_out_of_scope/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_02_03_code.svg
@@ -800,9 +989,22 @@ warning: function is never used: `determine_mut_ref_line_styles`
 514 | fn determine_mut_ref_line_styles(
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.82s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
      Running `target/debug/examples/mut_ref`
+1 2 s OutOfScope
+2 4 s FullPrivilege
+alive! 2 4 s
+4 4 s PartialPrivilege
+4 5 s FullPrivilege
+5 5 s OutOfScope
+die 5 5 s
+1 7 some_string OutOfScope
+7 8 some_string FullPrivilege
+alive! 7 8 some_string
+8 8 some_string PartialPrivilege
+8 9 some_string FullPrivilege
+9 9 some_string OutOfScope
+die 9 9 some_string
 successfully wrote to examples/book_04_02_05_mut_ref/rendering_code.svg
 successfully wrote to examples/book_04_02_05_mut_ref/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_02_05_code.svg
@@ -850,8 +1052,23 @@ warning: function is never used: `determine_mut_ref_line_styles`
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.89s
+    Finished dev [unoptimized + debuginfo] target(s) in 1.55s
      Running `target/debug/examples/scope_reference`
+1 2 s OutOfScope
+2 5 s FullPrivilege
+alive! 2 5 s
+5 6 s RevokedPrivilege
+6 9 s FullPrivilege
+9 9 s RevokedPrivilege
+1 5 r1 OutOfScope
+5 6 r1 FullPrivilege
+alive! 5 6 r1
+6 6 r1 OutOfScope
+die 6 6 r1
+6 6 r1 Invalid
+1 9 r2 OutOfScope
+9 9 r2 FullPrivilege
+alive! 9 9 r2
 successfully wrote to examples/book_04_02_07_scope_reference/rendering_code.svg
 successfully wrote to examples/book_04_02_07_scope_reference/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_02_07_code.svg
@@ -898,8 +1115,44 @@ warning: function is never used: `determine_mut_ref_line_styles`
 514 | fn determine_mut_ref_line_styles(
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+   Compiling rrt v0.1.0 (/home/madoka/play/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 1.52s
      Running `target/debug/examples/shared_and_unique_borrow`
+1 2 s OutOfScope
+2 4 s FullPrivilege
+alive! 2 4 s
+4 5 s PartialPrivilege
+5 6 s PartialPrivilege
+6 6 s PartialPrivilege
+6 9 s FullPrivilege
+9 10 s RevokedPrivilege
+10 12 s FullPrivilege
+12 12 s OutOfScope
+die 12 12 s
+1 4 r1 OutOfScope
+4 6 r1 PartialPrivilege
+alive! 4 6 r1
+6 6 r1 PartialPrivilege
+6 6 r1 PartialPrivilege
+6 12 r1 OutOfScope
+die 6 12 r1
+12 12 r1 Invalid
+1 5 r2 OutOfScope
+5 6 r2 PartialPrivilege
+alive! 5 6 r2
+6 6 r2 PartialPrivilege
+6 6 r2 PartialPrivilege
+6 12 r2 OutOfScope
+die 6 12 r2
+12 12 r2 Invalid
+1 9 r3 OutOfScope
+9 10 r3 FullPrivilege
+alive! 9 10 r3
+10 10 r3 PartialPrivilege
+10 10 r3 FullPrivilege
+10 12 r3 OutOfScope
+die 10 12 r3
+12 12 r3 Invalid
 successfully wrote to examples/book_04_02_09_shared_and_unique_borrow/rendering_code.svg
 successfully wrote to examples/book_04_02_09_shared_and_unique_borrow/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_02_09_code.svg
@@ -955,8 +1208,13 @@ warning: unused variable: `no_dangle`
    |
    = note: `#[warn(unused_variables)]` on by default
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.84s
+    Finished dev [unoptimized + debuginfo] target(s) in 1.58s
      Running `target/debug/examples/no_dangle`
+1 2 s OutOfScope
+2 4 s FullPrivilege
+alive! 2 4 s
+4 5 s ResourceMoved
+5 5 s Invalid
 successfully wrote to examples/book_04_02_12_no_dangle/rendering_code.svg
 successfully wrote to examples/book_04_02_12_no_dangle/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_02_12_code.svg

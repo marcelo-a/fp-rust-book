@@ -14,11 +14,11 @@ struct TimelineColumnData {
 }
 
 #[derive(Serialize)]
-struct TLPanelData {
+struct TimelinePanelData {
     labels: String,
     dots: String,
     timelines: String,
-    resource_accessibility: String,
+    ref_line: String,
     arrows: String,
 }
 #[derive(Serialize)]
@@ -99,13 +99,13 @@ pub fn render_timeline_panel(visualization_data : &VisualizationData) -> (String
     let labels_string = render_labels_string(&resource_owners_layout, &registry);
     let dots_string = render_dots_string(visualization_data, &resource_owners_layout, &registry);
     let timelines_string = render_timelines(visualization_data, &resource_owners_layout, &registry);
-    let resource_accessibility_string = render_ref_line(visualization_data, &resource_owners_layout, &registry);
+    let ref_line_string = render_ref_line(visualization_data, &resource_owners_layout, &registry);
     let arrows_string = render_arrows_string_external_events_version(visualization_data, &resource_owners_layout, &registry);
-    let timeline_panel_data = TLPanelData {
+    let timeline_panel_data = TimelinePanelData {
         labels: labels_string,
         dots: dots_string,
         timelines: timelines_string,
-        resource_accessibility: resource_accessibility_string,
+        ref_line: ref_line_string,
         arrows: arrows_string
     };
 
@@ -119,7 +119,7 @@ fn prepare_registry(registry: &mut Handlebars) {
     let timeline_panel_template =
         "    <g id=\"labels\">\n{{ labels }}    </g>\n\n    \
         <g id=\"timelines\">\n{{ timelines }}    </g>\n\n    \
-        <g id=\"resource_accessibility\">\n{{ resource_accessibility }}    </g>\n\n    \
+        <g id=\"ref_line\">\n{{ ref_line }}    </g>\n\n    \
         <g id=\"events\">\n{{ dots }}    </g>\n\n    \
         <g id=\"arrows\">\n{{ arrows }}    </g>";
 
@@ -132,11 +132,11 @@ fn prepare_registry(registry: &mut Handlebars) {
     let function_logo_template =
         "        <text x=\"{{x}}\" y=\"{{y}}\" data-hash=\"{{hash}}\" font-size=\"20\" font-style=\"italic\" class=\"tooltip-trigger fn-trigger\" data-tooltip-text=\"{{title}}\">f</text>\n";
     let arrow_template =
-        "        <polyline stroke-width=\"5\" stroke=\"gray\" points=\"{{x2}},{{y2}} {{x1}},{{y1}} \" marker-end=\"url(#arrowHead)\" class=\"tooltip-trigger\" data-tooltip-text=\"{{title}}\"/>\n";
+        "        <polyline stroke-width=\"5px\" stroke=\"gray\" points=\"{{x2}},{{y2}} {{x1}},{{y1}} \" marker-end=\"url(#arrowHead)\" class=\"tooltip-trigger\" data-tooltip-text=\"{{title}}\"/>\n";
     let vertical_line_template =
         "        <line data-hash=\"{{hash}}\" class=\"{{line_class}} tooltip-trigger\" x1=\"{{x1}}\" x2=\"{{x2}}\" y1=\"{{y1}}\" y2=\"{{y2}}\" data-tooltip-text=\"{{title}}\"/>\n";
     let hollow_line_internal_template =
-        "        <line class=\"colorless tooltip-trigger\" stroke-width=\"8px\" x1=\"{{x1}}\" x2=\"{{x2}}\" y1=\"{{y1}}\" y2=\"{{y2}}\" data-tooltip-text=\"{{title}}\"/>\n";
+        "        <line class=\"colorless tooltip-trigger\" stroke-width=\"2px\" x1=\"{{x1}}\" x2=\"{{x2}}\" y1=\"{{y1}}\" y2=\"{{y2}}\" data-tooltip-text=\"{{title}}\"/>\n";
     let solid_ref_line_template =
         "        <path data-hash=\"{{hash}}\" class=\"{{line_class}} tooltip-trigger\" style=\"fill:transparent;\" d=\"M {{x1}} {{y1}} l {{dx}} {{dy}} v {{v}} l -{{dx}} {{dy}}\" data-tooltip-text=\"{{title}}\"/>\n";
     let hollow_ref_line_template =
@@ -545,15 +545,18 @@ fn create_owner_line_string(
             registry.render("vertical_line_template", &data).unwrap()
         },
         (State::FullPrivilege, OwnerLine::Hollow) => {
+            // background for hollow line
             data.line_class = String::from("hollow");
-            // data.title += "; can only read data";
             
+            // overlap solid line with internal_line to create hollow effect
             let mut hollow_internal_line_data = data.clone();
             hollow_internal_line_data.y1 += 5;
             hollow_internal_line_data.y2 -= 5;
             hollow_internal_line_data.title = data.title.to_owned();
             
-            registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap()
+            let output = format!("{}\n{}", registry.render("vertical_line_template", &data).unwrap(),
+                                           registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
+            output
         },
         (State::FullPrivilege, OwnerLine::Dotted) => {
             // cannot read nor write the data from this RAP temporarily (borrowed away by a mut reference)
@@ -591,20 +594,21 @@ fn create_reference_line_string(
             registry.render("vertical_line_template", &data).unwrap()
         },
         (State::FullPrivilege, false) => {
-            data.line_class = String::from("solid");
+            data.line_class = String::from("hollow");
             if rap.is_ref() {
-                data.title += "; can read and write data; can not point to another piece of data";
+                data.title += "; can read and write data; cannot point to another piece of data";
             } else {
                 data.title += "; can only read data";
             }
-            let render = registry.render("vertical_line_template", &data).unwrap();
             
             let mut hollow_internal_line_data = data.clone();
             hollow_internal_line_data.y1 += 5;
             hollow_internal_line_data.y2 -= 5;
             hollow_internal_line_data.title = data.title.to_owned();
             
-            render + &registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap()
+            let output = format!("{}\n{}", registry.render("vertical_line_template", &data).unwrap(),
+                                           registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
+            output
         },
         (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, _) => {
             data.line_class = String::from("solid");
@@ -720,9 +724,11 @@ fn render_ref_line(
                 };
 
                 for (line_start, _line_end, state) in states.iter() {
+                    println!("{} {} {} {}", line_start, _line_end, &ro.name(), state);
                     match state { // consider removing .clone()
                         State::OutOfScope => {
                             if alive {
+                                println!("die {} {} {}", line_start, _line_end, &ro.name());
                                 // finish line template
                                 data.x2 = data.x1.clone();
                                 data.y2 = get_y_axis_pos(line_start);
@@ -757,6 +763,7 @@ fn render_ref_line(
                         },
                         State::FullPrivilege => {
                             if !alive {
+                                println!("alive! {} {} {}", line_start, _line_end, &ro.name());
                                 // set known vals
                                 data.hash = *hash;
                                 data.x1 = resource_owners_layout[hash].x_val;
@@ -769,6 +776,8 @@ fn render_ref_line(
                         },
                         State::PartialPrivilege{..} => {
                             if !alive {
+
+                                println!("alive! {} {} {}", line_start, _line_end, &ro.name());
                                 // set known vals
                                 data.hash = *hash;
                                 data.x1 = resource_owners_layout[hash].x_val;

@@ -30,15 +30,17 @@ text {
 }
 
 #caption {
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.875em;
+    font-family: "Open Sans", sans-serif;
     font-style: italic;
 }
 
 /* code related styling */
 text.code {
+    fill: #6e6b5e;
     white-space: pre;
-    font-family: "monospace";
+    font-family: "Source Code Pro", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace !important;
+    font-size: 0.875em;
 }
 
 /* event related styling */
@@ -63,8 +65,8 @@ text.code {
     stroke-width: 5px;
 }
 
-.hollow_internal {
-    stroke-width: 3px;
+.hollow {
+    stroke-width: 5px;
     fill: var(--bg-color);
 }
 
@@ -79,7 +81,7 @@ text.code {
 }
 
 .colorless {
-    color: var(--bg-color);
+    stroke: var(--bg-color);
     fill: var(--bg-color);
 }
 
@@ -104,14 +106,9 @@ text.code {
     flex-shrink: 1;
 }
 
-/* tooltip styling */
-#tooltip {
-    dominant-baseline: hanging;
-}
-
 /* hash based styling */
 [data-hash="0"] {
-    fill: black;
+    fill: #6e6b5e;
 }
 
 [data-hash="1"] {
@@ -177,25 +174,39 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text x="350" y="90" style="text-anchor:middle" data-hash="4" class="code tooltip-trigger" data-tooltip-text="some_integer, immutable">some_integer</text>
         <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s, immutable">s</text>
-        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="x, immutable">x</text>
+        <text x="350" y="90" style="text-anchor:middle" data-hash="4" class="code tooltip-trigger" data-tooltip-text="some_integer, immutable">some_integer</text>
         <text x="240" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="some_string, immutable">some_string</text>
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="x, immutable">x</text>
     </g>
 
     <g id="timelines">
-        <line class="colorless tooltip-trigger" stroke-width="8px" x1="70" x2="70" y1="110" y2="140" data-tooltip-text="s is the unique value that can access the data in memory"/>
-        <line class="colorless tooltip-trigger" stroke-width="8px" x1="140" x2="140" y1="210" y2="240" data-tooltip-text="x is the unique value that can access the data in memory"/>
-        <line class="colorless tooltip-trigger" stroke-width="8px" x1="140" x2="140" y1="250" y2="320" data-tooltip-text="x is the unique value that can access the data in memory"/>
-        <line class="colorless tooltip-trigger" stroke-width="8px" x1="240" x2="240" y1="390" y2="400" data-tooltip-text="some_string is the unique value that can access the data in memory"/>
+        <line data-hash="1" class="hollow tooltip-trigger" x1="70" x2="70" y1="105" y2="145" data-tooltip-text="s is the unique value that can access the data in memory"/>
+
+        <line class="colorless tooltip-trigger" stroke-width="2px" x1="70" x2="70" y1="110" y2="140" data-tooltip-text="s is the unique value that can access the data in memory"/>
+        <line data-hash="2" class="hollow tooltip-trigger" x1="140" x2="140" y1="205" y2="245" data-tooltip-text="x is the unique value that can access the data in memory"/>
+
+        <line class="colorless tooltip-trigger" stroke-width="2px" x1="140" x2="140" y1="210" y2="240" data-tooltip-text="x is the unique value that can access the data in memory"/>
+        <line data-hash="2" class="hollow tooltip-trigger" x1="140" x2="140" y1="245" y2="325" data-tooltip-text="x is the unique value that can access the data in memory"/>
+
+        <line class="colorless tooltip-trigger" stroke-width="2px" x1="140" x2="140" y1="250" y2="320" data-tooltip-text="x is the unique value that can access the data in memory"/>
+        <line data-hash="3" class="hollow tooltip-trigger" x1="240" x2="240" y1="385" y2="405" data-tooltip-text="some_string is the unique value that can access the data in memory"/>
+
+        <line class="colorless tooltip-trigger" stroke-width="2px" x1="240" x2="240" y1="390" y2="400" data-tooltip-text="some_string is the unique value that can access the data in memory"/>
         <line data-hash="3" class="solid tooltip-trigger" x1="240" x2="240" y1="405" y2="405" data-tooltip-text="some values are statically referencing to some_string"/>
-        <line class="colorless tooltip-trigger" stroke-width="8px" x1="240" x2="240" y1="410" y2="420" data-tooltip-text="some_string is the unique value that can access the data in memory"/>
-        <line class="colorless tooltip-trigger" stroke-width="8px" x1="350" x2="350" y1="490" y2="500" data-tooltip-text="some_integer is the unique value that can access the data in memory"/>
+        <line data-hash="3" class="hollow tooltip-trigger" x1="240" x2="240" y1="405" y2="425" data-tooltip-text="some_string is the unique value that can access the data in memory"/>
+
+        <line class="colorless tooltip-trigger" stroke-width="2px" x1="240" x2="240" y1="410" y2="420" data-tooltip-text="some_string is the unique value that can access the data in memory"/>
+        <line data-hash="4" class="hollow tooltip-trigger" x1="350" x2="350" y1="485" y2="505" data-tooltip-text="some_integer is the unique value that can access the data in memory"/>
+
+        <line class="colorless tooltip-trigger" stroke-width="2px" x1="350" x2="350" y1="490" y2="500" data-tooltip-text="some_integer is the unique value that can access the data in memory"/>
         <line data-hash="4" class="solid tooltip-trigger" x1="350" x2="350" y1="505" y2="505" data-tooltip-text="some values are statically referencing to some_integer"/>
-        <line class="colorless tooltip-trigger" stroke-width="8px" x1="350" x2="350" y1="510" y2="520" data-tooltip-text="some_integer is the unique value that can access the data in memory"/>
+        <line data-hash="4" class="hollow tooltip-trigger" x1="350" x2="350" y1="505" y2="525" data-tooltip-text="some_integer is the unique value that can access the data in memory"/>
+
+        <line class="colorless tooltip-trigger" stroke-width="2px" x1="350" x2="350" y1="510" y2="520" data-tooltip-text="some_integer is the unique value that can access the data in memory"/>
     </g>
 
-    <g id="resource_accessibility">
+    <g id="ref_line">
     </g>
 
     <g id="events">
@@ -217,20 +228,22 @@ text.code {
 
     <g id="arrows">
         <text x="96" y="110" data-hash="5" font-size="20" font-style="italic" class="tooltip-trigger fn-trigger" data-tooltip-text="String::from()">f</text>
-        <polyline stroke-width="5" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
+        <polyline stroke-width="5px" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
         <text x="35" y="150" data-hash="6" font-size="20" font-style="italic" class="tooltip-trigger fn-trigger" data-tooltip-text="takes_ownership()">f</text>
-        <polyline stroke-width="5" stroke="gray" points="65,145 55,145 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from s to the parameter of takes_ownership()"/>
+        <polyline stroke-width="5px" stroke="gray" points="65,145 55,145 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from s to the parameter of takes_ownership()"/>
         <text x="105" y="250" data-hash="7" font-size="20" font-style="italic" class="tooltip-trigger fn-trigger" data-tooltip-text="makes_copy()">f</text>
-        <polyline stroke-width="5" stroke="gray" points="135,245 125,245 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from x to the parameter of makes_copy()"/>
+        <polyline stroke-width="5px" stroke="gray" points="135,245 125,245 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from x to the parameter of makes_copy()"/>
         <use xlink:href="#functionDot" data-hash="3" x="240" y="405" class="tooltip-trigger" data-tooltip-text="println!() reads from some_string"/>
         <use xlink:href="#functionDot" data-hash="4" x="350" y="505" class="tooltip-trigger" data-tooltip-text="println!() reads from some_integer"/>
     </g>
    
-   <g id="tooltip" visibility="hidden">
+    <!-- tooltip styling -->
+   <g id="tooltip" dominant-baseline="hanging" visibility="hidden">
 		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
-		<text x="5" y="5" fill="white" font-size="12px" font-family="Arial, Helvetica, sans-serif" width="10px">Tooltip</text>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="'Open Sans', sans-serif" width="10px">Tooltip</text>
     </g>
 
+    <!-- DISPLAY TOOLTIP SCRIPT -->
     <script type="text/ecmascript"><![CDATA[
 		(function() {
             var timeline_id = "tl_04_01_11";
@@ -248,8 +261,8 @@ text.code {
 			function showTooltip(evt) {
                 <!-- track mouse movement -->
 				var CTM = svg.getScreenCTM();
-				var x = (evt.clientX - CTM.e + 10) / CTM.a;
-				var y = (evt.clientY - CTM.f + 10) / CTM.d;
+				var x = (evt.clientX - CTM.e + 15) / CTM.a;
+				var y = (evt.clientY - CTM.f + 5) / CTM.d;
                 tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
 				tooltip.setAttributeNS(null, "visibility", "visible");
 				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
@@ -267,6 +280,4 @@ text.code {
 		})()
     ]]></script>
 
-    <!-- HIGHLIGHT FUNCTION NAME -->
-    
 </svg>

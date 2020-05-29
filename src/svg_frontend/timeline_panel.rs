@@ -132,11 +132,11 @@ fn prepare_registry(registry: &mut Handlebars) {
     let function_logo_template =
         "        <text x=\"{{x}}\" y=\"{{y}}\" data-hash=\"{{hash}}\" font-size=\"20\" font-style=\"italic\" class=\"tooltip-trigger fn-trigger\" data-tooltip-text=\"{{title}}\">f</text>\n";
     let arrow_template =
-        "        <polyline stroke-width=\"5\" stroke=\"gray\" points=\"{{x2}},{{y2}} {{x1}},{{y1}} \" marker-end=\"url(#arrowHead)\" class=\"tooltip-trigger\" data-tooltip-text=\"{{title}}\"/>\n";
+        "        <polyline stroke-width=\"5px\" stroke=\"gray\" points=\"{{x2}},{{y2}} {{x1}},{{y1}} \" marker-end=\"url(#arrowHead)\" class=\"tooltip-trigger\" data-tooltip-text=\"{{title}}\"/>\n";
     let vertical_line_template =
         "        <line data-hash=\"{{hash}}\" class=\"{{line_class}} tooltip-trigger\" x1=\"{{x1}}\" x2=\"{{x2}}\" y1=\"{{y1}}\" y2=\"{{y2}}\" data-tooltip-text=\"{{title}}\"/>\n";
     let hollow_line_internal_template =
-        "        <line class=\"colorless tooltip-trigger\" stroke-width=\"8px\" x1=\"{{x1}}\" x2=\"{{x2}}\" y1=\"{{y1}}\" y2=\"{{y2}}\" data-tooltip-text=\"{{title}}\"/>\n";
+        "        <line class=\"colorless tooltip-trigger\" stroke-width=\"2px\" x1=\"{{x1}}\" x2=\"{{x2}}\" y1=\"{{y1}}\" y2=\"{{y2}}\" data-tooltip-text=\"{{title}}\"/>\n";
     let solid_ref_line_template =
         "        <path data-hash=\"{{hash}}\" class=\"{{line_class}} tooltip-trigger\" style=\"fill:transparent;\" d=\"M {{x1}} {{y1}} l {{dx}} {{dy}} v {{v}} l -{{dx}} {{dy}}\" data-tooltip-text=\"{{title}}\"/>\n";
     let hollow_ref_line_template =
@@ -555,6 +555,7 @@ fn render_timelines(
                         y2: get_y_axis_pos(line_end),
                         title: state.print_message_with_name(rap.name())
                     };
+
                     match (state, style) {
                         (State::FullPrivilege, OwnerLine::Solid) | (State::PartialPrivilege { .. }, OwnerLine::Solid) => {
                             data.line_class = String::from("solid");
@@ -562,7 +563,8 @@ fn render_timelines(
                         },
                         (State::FullPrivilege, OwnerLine::Hollow) => {
                             data.line_class = String::from("hollow");
-                            // data.title += "; can only read data";
+                            data.title += "; can only read data";
+                            output.push_str(&registry.render("vertical_line_template", &data).unwrap());
                             
                             let mut hollow_internal_line_data = data.clone();
                             hollow_internal_line_data.y1 += 5;

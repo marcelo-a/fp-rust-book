@@ -56,8 +56,8 @@ text.code {
     stroke-width: 5px;
 }
 
-.hollow_internal {
-    stroke-width: 3px;
+.hollow {
+    stroke-width: 5px;
     fill: var(--bg-color);
 }
 
@@ -72,7 +72,7 @@ text.code {
 }
 
 .colorless {
-    color: var(--bg-color);
+    stroke: var(--bg-color);
     fill: var(--bg-color);
 }
 

@@ -87,7 +87,7 @@ text.code {
     stroke: gray;
     fill: white;
     stroke-width: 1px;
-    font-size: 30px;
+    font-size: 24px;
     font-family: times;
     font-weight: lighter;
     dominant-baseline: central;
@@ -164,7 +164,7 @@ text.code {
         <circle id="eventDot" cx="0" cy="0" r="5"/>
         <!-- used when pass to function by ref -->
         <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="8"/>
+             <circle id="eventDot" cx="0" cy="0" r="5"/>
              <text class="functionIcon" dx="-4" dy="0" fill="#6e6b5e">f</text>
         </g>
         <marker id="arrowHead" viewBox="0 0 10 10"
@@ -177,16 +177,19 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text x="210" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="r2, immutable">r2</text>
         <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="r1, immutable">r1</text>
+        <text x="210" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="r2, immutable">r2</text>
         <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s, mutable">s</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="105" y2="165" data-tooltip-text="s is the unique value that can access the data in memory; can read and write data"/>
-        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="185" y2="245" data-tooltip-text="s is the unique value that can access the data in memory; can read and write data"/>
-        <line data-hash="2" class="solid tooltip-trigger" x1="140" x2="140" y1="165" y2="185" data-tooltip-text="r1 is the unique value that can access the data in memory; can read and write data; can not point to another piece of data"/>
+        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="105" y2="165" data-tooltip-text="s is the unique value that can access the data in memory"/>
+        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="185" y2="245" data-tooltip-text="s is the unique value that can access the data in memory"/>
         <line class="colorless tooltip-trigger" stroke-width="8px" x1="140" x2="140" y1="170" y2="180" data-tooltip-text="r1 is the unique value that can access the data in memory; can read and write data; can not point to another piece of data"/>
+    </g>
+
+    <g id="resource_accessibility">
+        <path data-hash="2" class="solid tooltip-trigger" style="fill:transparent;" d="M 140 165 l 15 4 v 12 l -15 4" data-tooltip-text="can mutate the resource it refers to"/>
     </g>
 
     <g id="events">

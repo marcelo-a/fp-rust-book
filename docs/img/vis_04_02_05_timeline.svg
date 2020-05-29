@@ -87,7 +87,7 @@ text.code {
     stroke: gray;
     fill: white;
     stroke-width: 1px;
-    font-size: 30px;
+    font-size: 24px;
     font-family: times;
     font-weight: lighter;
     dominant-baseline: central;
@@ -164,7 +164,7 @@ text.code {
         <circle id="eventDot" cx="0" cy="0" r="5"/>
         <!-- used when pass to function by ref -->
         <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="8"/>
+             <circle id="eventDot" cx="0" cy="0" r="5"/>
              <text class="functionIcon" dx="-4" dy="0" fill="#6e6b5e">f</text>
         </g>
         <marker id="arrowHead" viewBox="0 0 10 10"
@@ -182,14 +182,16 @@ text.code {
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="105" y2="145" data-tooltip-text="s is the unique value that can access the data in memory; can read and write data"/>
-        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="145" y2="145" data-tooltip-text="some values are statically referencing to s; can only read data"/>
-        <line class="colorless tooltip-trigger" stroke-width="8px" x1="70" x2="70" y1="150" y2="140" data-tooltip-text="some values are statically referencing to s; can only read data"/>
-        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="145" y2="165" data-tooltip-text="s is the unique value that can access the data in memory; can read and write data"/>
+        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="105" y2="145" data-tooltip-text="s is the unique value that can access the data in memory"/>
+        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="145" y2="145" data-tooltip-text="some values are statically referencing to s"/>
+        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="145" y2="165" data-tooltip-text="s is the unique value that can access the data in memory"/>
         <line data-hash="2" class="solid tooltip-trigger" x1="170" x2="170" y1="205" y2="225" data-tooltip-text="some_string is the unique value that can access the data in memory; can read and write data; can point to another piece of data"/>
         <line data-hash="2" class="solid tooltip-trigger" x1="170" x2="170" y1="225" y2="225" data-tooltip-text="some values are statically referencing to some_string; can only read data"/>
         <line class="colorless tooltip-trigger" stroke-width="8px" x1="170" x2="170" y1="230" y2="220" data-tooltip-text="some values are statically referencing to some_string; can only read data"/>
         <line data-hash="2" class="solid tooltip-trigger" x1="170" x2="170" y1="225" y2="245" data-tooltip-text="some_string is the unique value that can access the data in memory; can read and write data; can point to another piece of data"/>
+    </g>
+
+    <g id="resource_accessibility">
     </g>
 
     <g id="events">

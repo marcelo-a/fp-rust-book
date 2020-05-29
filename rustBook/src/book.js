@@ -9,6 +9,15 @@ window.onload = function () {
     script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js';
     script.type = 'text/javascript';
     document.getElementsByTagName('head')[0].appendChild(script);
+
+    var correct_page = (document.getElementsByClassName('active')[0].attributes.href.value == 'ch04-01-what-is-ownership.html'
+                            || document.getElementsByClassName('active')[0].attributes.href.value == 'ch04-02-references-and-borrowing.html');
+    if (correct_page) {
+        var helper_script = document.createElement('script');
+        helper_script.src = '../src/svg_frontend/helpers.js';
+        helper_script.type = 'text/javascript';
+        document.getElementsByTagName('head')[0].appendChild(helper_script);
+    }
 };
 
 // Global variable, shared between modules

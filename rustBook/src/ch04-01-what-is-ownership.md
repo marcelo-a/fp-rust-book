@@ -114,7 +114,6 @@ let s = "hello";
   <object type="image/svg+xml" class="vis_04_01_01" data="img/vis_04_01_01_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="vis_04_01_01" data="img/vis_04_01_01_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_01')"></object>
-  <script type="text/javascript" src="../src/svg_frontend/helpers.js"></script>
 </div>
 
 The variable `s` refers to a string literal, where the value of the string is
@@ -129,7 +128,6 @@ comments annotating where the variable `s` is valid.
   <object type="image/svg+xml" class="vis_04_01_02" data="img/vis_04_01_02_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="vis_04_01_02" data="img/vis_04_01_02_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_02')"></object>
-  <script type="text/javascript" src="../src/svg_frontend/helpers.js"></script>
 </div>
 
 <span class="caption">Listing 4-1: A variable and the scope in which it is
@@ -175,7 +173,6 @@ let s = String::from("hello");
   <object type="image/svg+xml" class="vis_04_01_03" data="img/vis_04_01_03_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="vis_04_01_03" data="img/vis_04_01_03_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_03')"></object>
-  <script type="text/javascript" src="../src/svg_frontend/helpers.js"></script>
 </div>
 
 The double colon (`::`) is an operator that allows us to namespace this
@@ -194,7 +191,6 @@ This kind of string *can* be mutated:
   <object type="image/svg+xml" class="vis_04_01_04" data="img/vis_04_01_04_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="vis_04_01_04" data="img/vis_04_01_04_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_04')"></object>
-  <script type="text/javascript" src="../src/svg_frontend/helpers.js"></script>
 </div>
 
 So, what’s the difference here? Why can `String` be mutated but literals
@@ -241,7 +237,6 @@ from Listing 4-1 using a `String` instead of a string literal:
   <object type="image/svg+xml" class="vis_04_01_05" data="img/vis_04_01_05_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="vis_04_01_05" data="img/vis_04_01_05_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_05')"></object>
-  <script type="text/javascript" src="../src/svg_frontend/helpers.js"></script>
 </div>
 
 There is a natural point at which we can return the memory our `String` needs
@@ -272,7 +267,6 @@ Let’s look at an example using an integer in Listing 4-2.
   <object type="image/svg+xml" class="vis_04_01_06" data="img/vis_04_01_06_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="vis_04_01_06" data="img/vis_04_01_06_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_06')"></object>
-  <script type="text/javascript" src="../src/svg_frontend/helpers.js"></script>
 </div>
 
 <span class="caption">Listing 4-2: Assigning the integer value of variable `x`
@@ -293,7 +287,6 @@ Now let’s look at the `String` version:
   <object type="image/svg+xml" class="vis_04_01_07" data="img/vis_04_01_07_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="vis_04_01_07" data="img/vis_04_01_07_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_07')"></object>
-  <script type="text/javascript" src="../src/svg_frontend/helpers.js"></script>
 </div>
 
 This looks very similar to the previous code, so we might assume that the way
@@ -397,7 +390,6 @@ Here’s an example of the `clone` method in action:
   <object type="image/svg+xml" class="vis_04_01_09" data="img/vis_04_01_09_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="vis_04_01_09" data="img/vis_04_01_09_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_09')"></object>
-  <script type="text/javascript" src="../src/svg_frontend/helpers.js"></script>
 </div>
 
 This works just fine and explicitly produces the behavior shown in Figure 4-3,
@@ -419,7 +411,6 @@ part of which was shown in Listing 4-2, works and is valid:
   <object type="image/svg+xml" class="vis_04_01_10" data="img/vis_04_01_10_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="vis_04_01_10" data="img/vis_04_01_10_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_10')"></object>
-  <script type="text/javascript" src="../src/svg_frontend/helpers.js"></script>
 </div>
 
 But this code seems to contradict what we just learned: we don’t have a call to
@@ -468,7 +459,6 @@ showing where variables go into and out of scope.
   <object type="image/svg+xml" class="vis_04_01_11" data="img/vis_04_01_11_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="vis_04_01_11" data="img/vis_04_01_11_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_11')"></object>
-  <script type="text/javascript" src="../src/svg_frontend/helpers.js"></script>
 </div>
 
 <span class="caption">Listing 4-3: Functions with ownership and scope
@@ -490,7 +480,6 @@ similar annotations to those in Listing 4-3.
 <div class="flex-container" style="position: relative; margin-left: -200px; margin-right: -250px; display: none;">
   <object type="image/svg+xml" class="vis_04_01_12" data="img/vis_04_01_12_code.svg"></object>
   <object type="image/svg+xml" class="vis_04_01_12" data="img/vis_04_01_12_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_12')"></object>
-  <script type="text/javascript" src="../src/svg_frontend/helpers.js"></script>
 </div>
 
 <span class="caption">Listing 4-4: Transferring ownership of return
@@ -515,7 +504,6 @@ It’s possible to return multiple values using a tuple, as shown in Listing 4-5
 <div class="flex-container" style="position:relative; margin-left:-150px; margin-right:-150px; display: none;">
   <object type="image/svg+xml" class="vis_04_01_13" data="img/vis_04_01_13_code.svg"></object>
   <object type="image/svg+xml" class="vis_04_01_13" data="img/vis_04_01_13_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_13')"></object>
-  <script type="text/javascript" src="../src/svg_frontend/helpers.js"></script>
 </div>
 
 <span type="text/javascript" class="caption">Listing 4-5: Returning ownership of parameters</span>

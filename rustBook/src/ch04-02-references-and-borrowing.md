@@ -16,7 +16,6 @@ value:
   <object type="image/svg+xml" class="vis_04_02_01" data="img/vis_04_02_01_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="vis_04_02_01" data="img/vis_04_02_01_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_01')"></object>
-  <script type="text/javascript" src="../src/svg_frontend/helpers.js"></script>
 </div>
 
 First, notice that all the tuple code in the variable declaration and the
@@ -46,7 +45,6 @@ Let’s take a closer look at the function call here:
   <object type="image/svg+xml" class="vis_04_02_02" data="img/vis_04_02_02_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="vis_04_02_02" data="img/vis_04_02_02_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_02')"></object>
-  <script type="text/javascript" src="../src/svg_frontend/helpers.js"></script>
 </div>
 
 The `&s1` syntax lets us create a reference that *refers* to the value of `s1`
@@ -63,7 +61,6 @@ the parameter `s` is a reference. Let’s add some explanatory annotations:
   <object type="image/svg+xml" class="vis_04_02_03" data="img/vis_04_02_03_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="vis_04_02_03" data="img/vis_04_02_03_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_03')"></object>
-  <script type="text/javascript" src="../src/svg_frontend/helpers.js"></script>
 </div>
 
 The scope in which the variable `s` is valid is the same as any function
@@ -105,7 +102,6 @@ We can fix the error in the code from Listing 4-6 with just a small tweak:
   <object type="image/svg+xml" class="vis_04_02_05" data="img/vis_04_02_05_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="vis_04_02_05" data="img/vis_04_02_05_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_05')"></object>
-  <script type="text/javascript" src="../src/svg_frontend/helpers.js"></script>
 </div>
 
 First, we had to change `s` to be `mut`. Then we had to create a mutable
@@ -152,7 +148,6 @@ multiple mutable references, just not *simultaneous* ones:
   <object type="image/svg+xml" class="vis_04_02_07" data="img/vis_04_02_07_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="vis_04_02_07" data="img/vis_04_02_07_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_07')"></object>
-  <script type="text/javascript" src="../src/svg_frontend/helpers.js"></script>
 </div>
 
 A similar rule exists for combining mutable and immutable references. This code
@@ -186,7 +181,6 @@ mutable reference is introduced:
   <object type="image/svg+xml" class="vis_04_02_09" data="img/vis_04_02_09_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="vis_04_02_09" data="img/vis_04_02_09_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_09')"></object>
-  <script type="text/javascript" src="../src/svg_frontend/helpers.js"></script>
 </div>
 
 The scopes of the immutable references `r1` and `r2` end after the `println!`
@@ -251,7 +245,6 @@ The solution here is to return the `String` directly:
   <object type="image/svg+xml" class="vis_04_02_12" data="img/vis_04_02_12_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
   <object type="image/svg+xml" class="vis_04_02_12" data="img/vis_04_02_12_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_12')"></object>
-  <script type="text/javascript" src="../src/svg_frontend/helpers.js"></script>
 </div>
 
 This works without any problems. Ownership is moved out, and nothing is

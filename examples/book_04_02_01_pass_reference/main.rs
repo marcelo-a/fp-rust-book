@@ -1,4 +1,4 @@
-use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceAccessPoint, Owner, Function, Visualizable, VisualizationData};
+use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceAccessPoint, Owner, StaticRef, Function, VisualizationData, Visualizable};
 use rrt_lib::svg_frontend::svg_generation;
 use std::collections::BTreeMap;
 
@@ -16,9 +16,10 @@ fn main() {
         is_mut: false,
         lifetime_trait: LifetimeTrait::Copy,
     }));
-    let s = Some(ResourceAccessPoint::Owner(Owner {
+    let s = Some(ResourceAccessPoint::StaticRef(StaticRef {
         hash: 3,
         name: String::from("s"),
+        my_owner_hash: Some(1),
         is_mut: false,
         lifetime_trait: LifetimeTrait::Move,
     }));

@@ -9,6 +9,15 @@ window.onload = function () {
     script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js';
     script.type = 'text/javascript';
     document.getElementsByTagName('head')[0].appendChild(script);
+
+    var correct_page = (document.getElementsByClassName('active')[0].attributes.href.value == 'ch04-01-what-is-ownership.html'
+                            || document.getElementsByClassName('active')[0].attributes.href.value == 'ch04-02-references-and-borrowing.html');
+    if (correct_page) {
+        var helper_script = document.createElement('script');
+        helper_script.src = '../src/svg_frontend/helpers.js';
+        helper_script.type = 'text/javascript';
+        document.getElementsByTagName('head')[0].appendChild(helper_script);
+    }
 };
 
 // Global variable, shared between modules
@@ -207,7 +216,7 @@ function playpen_text(playpen) {
         });
     });
 
-    // Insert toggle visualization button
+    // Insert toggle visualization button, ADDED BY marcelo-a 
     Array.from(document.querySelectorAll("pre code")).forEach(function (block) {
         // only add button if there is a visualization available
         var correct_doc = (document.getElementsByClassName('active')[0].attributes.href.value == 'ch04-01-what-is-ownership.html'
@@ -239,20 +248,18 @@ function playpen_text(playpen) {
                 if (e.target.classList.contains('fa-toggle-on')) {
                     e.target.classList.remove('fa-toggle-on');
                     e.target.classList.add('fa-toggle-off');
-                    // e.target.title = 'Show visualization';
-                    // e.target.setAttribute('aria-label', e.target.title);
 
-                    // block.classList.add('hide-boring');
                     pre_block.querySelector('.language-rust').style.display = 'block';
                     $(pre_block).parent().next().hide();
                 } else if (e.target.classList.contains('fa-toggle-off')) {
                     e.target.classList.remove('fa-toggle-off');
                     e.target.classList.add('fa-toggle-on');
-                    // e.target.title = 'Hide visualization';
-                    // e.target.setAttribute('aria-label', e.target.title);
 
                     pre_block.querySelector('.language-rust').style.display = 'none';
                     $(pre_block).parent().next().show();
+
+                    // resize code block
+                    sizeToFit($(pre_block).parent().next()[0].firstElementChild);
                 }
             });
         }

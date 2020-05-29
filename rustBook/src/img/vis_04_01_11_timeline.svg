@@ -174,10 +174,10 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="x, immutable">x</text>
-        <text x="350" y="90" style="text-anchor:middle" data-hash="4" class="code tooltip-trigger" data-tooltip-text="some_integer, immutable">some_integer</text>
         <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s, immutable">s</text>
         <text x="240" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="some_string, immutable">some_string</text>
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="x, immutable">x</text>
+        <text x="350" y="90" style="text-anchor:middle" data-hash="4" class="code tooltip-trigger" data-tooltip-text="some_integer, immutable">some_integer</text>
     </g>
 
     <g id="timelines">

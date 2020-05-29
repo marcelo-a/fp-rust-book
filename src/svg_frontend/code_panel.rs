@@ -6,7 +6,7 @@ use std::fs::File;
 use std::io;
 use std::cmp;
 
-pub fn render_left_panel(lines: io::Lines<io::BufReader<File>>) -> (String, i32) {
+pub fn render_code_panel(lines: io::Lines<io::BufReader<File>>) -> (String, i32) {
     /* Template creation */
     let mut handlebars = Handlebars::new();
     // We want to preserve the inputs `as is`, and want to make no changes based on html escape.

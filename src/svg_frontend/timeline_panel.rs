@@ -540,15 +540,18 @@ fn create_owner_line_string(
             registry.render("vertical_line_template", &data).unwrap()
         },
         (State::FullPrivilege, OwnerLine::Hollow) => {
+            // background for hollow line
             data.line_class = String::from("hollow");
-            // data.title += "; can only read data";
             
+            // overlap solid line with internal_line to create hollow effect
             let mut hollow_internal_line_data = data.clone();
             hollow_internal_line_data.y1 += 5;
             hollow_internal_line_data.y2 -= 5;
             hollow_internal_line_data.title = data.title.to_owned();
             
-            registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap()
+            let output = format!("{}\n{}", registry.render("vertical_line_template", &data).unwrap(),
+                                           registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
+            output
         },
         (State::FullPrivilege, OwnerLine::Dotted) => {
             // cannot read nor write the data from this RAP temporarily (borrowed away by a mut reference)
@@ -586,20 +589,21 @@ fn create_reference_line_string(
             registry.render("vertical_line_template", &data).unwrap()
         },
         (State::FullPrivilege, false) => {
-            data.line_class = String::from("solid");
+            data.line_class = String::from("hollow");
             if rap.is_ref() {
-                data.title += "; can read and write data; can not point to another piece of data";
+                data.title += "; can read and write data; cannot point to another piece of data";
             } else {
                 data.title += "; can only read data";
             }
-            registry.render("vertical_line_template", &data).unwrap();
             
             let mut hollow_internal_line_data = data.clone();
             hollow_internal_line_data.y1 += 5;
             hollow_internal_line_data.y2 -= 5;
             hollow_internal_line_data.title = data.title.to_owned();
             
-            registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap()
+            let output = format!("{}\n{}", registry.render("vertical_line_template", &data).unwrap(),
+                                           registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
+            output
         },
         (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, _) => {
             data.line_class = String::from("solid");

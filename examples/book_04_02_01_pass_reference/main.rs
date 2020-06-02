@@ -1,40 +1,38 @@
-use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, Visualizable, VisualizationData};
+use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceAccessPoint, Owner, StaticRef, Function, VisualizationData, Visualizable};
 use rrt_lib::svg_frontend::svg_generation;
 use std::collections::BTreeMap;
 
 fn main() {
     // Variables
-    let s1 = Some(ResourceOwner::Variable(Variable {
+    let s1 = Some(ResourceAccessPoint::Owner(Owner {
         hash: 1,
         name: String::from("s1"),
         is_mut: false,
-        is_ref: false,
         lifetime_trait: LifetimeTrait::Move,
     }));
-    let len = Some(ResourceOwner::Variable(Variable {
+    let len = Some(ResourceAccessPoint::Owner(Owner {
         hash: 2,
         name: String::from("len"),
         is_mut: false,
-        is_ref: false,
         lifetime_trait: LifetimeTrait::Copy,
     }));
-    let s = Some(ResourceOwner::Variable(Variable {
+    let s = Some(ResourceAccessPoint::StaticRef(StaticRef {
         hash: 3,
         name: String::from("s"),
+        my_owner_hash: Some(1),
         is_mut: false,
-        is_ref: true,
         lifetime_trait: LifetimeTrait::Move,
     }));
     // Functions
-    let calculate_length = Some(ResourceOwner::Function(Function {
+    let calculate_length = Some(ResourceAccessPoint::Function(Function {
         hash: 4,
         name: String::from("calculate_length()"),
     }));
-    let string_ctor = Some(ResourceOwner::Function(Function {
+    let string_ctor = Some(ResourceAccessPoint::Function(Function {
         hash: 5,
         name: String::from("String::from()"),
     }));
-    let len_func = Some(ResourceOwner::Function(Function {
+    let len_func = Some(ResourceAccessPoint::Function(Function {
         hash: 6,
         name: String::from("len()"),
     }));
@@ -53,8 +51,6 @@ fn main() {
     vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : s1.unwrap().clone() },  &(7 as usize));
     vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : len.unwrap().clone() },  &(7 as usize));
 
-    // vd.append_external_event(ExternalEvent::StaticBorrow{from: Some(calculate_length.clone()), to: Some(s.clone())}, &(9 as usize));
-    
     // len(&self) -> usize
     // s is a reference copied from god knows where
     vd.append_external_event(ExternalEvent::Duplicate{ from: None, to: s.clone() }, &(9 as usize));

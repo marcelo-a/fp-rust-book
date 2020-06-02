@@ -1,5 +1,3 @@
-use std::fmt::{Formatter, Result};
-
 /* Event Dot messages: shows up when someone hovers over a dot */
 
 
@@ -45,7 +43,7 @@ pub fn event_dot_owner_go_out_out_scope(my_name: &String) -> String {
 // |   |
 pub fn event_dot_copy_to(my_name: &String, target_name: &String) -> String {
     format!(
-        "copies it's value to {1} ({0} keeps ownership)",
+        "copies its value to {1} ({0} keeps ownership)",
         my_name,
         target_name
     )
@@ -57,7 +55,7 @@ pub fn event_dot_copy_to(my_name: &String, target_name: &String) -> String {
 // |
 pub fn event_dot_move_to(my_name: &String, target_name: &String) -> String {
     format!(
-        "moves it's value to {1} ({0} lost ownership)",
+        "moves its value to {1} ({0} lost ownership)",
         my_name,
         target_name
     )

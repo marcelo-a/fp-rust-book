@@ -110,9 +110,11 @@ have a variable that looks like this:
 ```rust,hidden
 let s = "hello";
 ```
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_01.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="overflow:visible; display: none;">
+  <object type="image/svg+xml" class="vis_04_01_01" data="img/vis_04_01_01_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_01" data="img/vis_04_01_01_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_01')"></object>
+</div>
 
 The variable `s` refers to a string literal, where the value of the string is
 hardcoded into the text of our program. The variable is valid from the point at
@@ -122,9 +124,11 @@ comments annotating where the variable `s` is valid.
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-01/src/main.rs:here}}
 ```
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_02.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="position: relative; margin-left: -75px; margin-right: -75px; overflow: visible; display: none;">
+  <object type="image/svg+xml" class="vis_04_01_02" data="img/vis_04_01_02_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_02" data="img/vis_04_01_02_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_02')"></object>
+</div>
 
 <span class="caption">Listing 4-1: A variable and the scope in which it is
 valid</span>
@@ -165,9 +169,11 @@ using the `from` function, like so:
 ```rust,hidden
 let s = String::from("hello");
 ```
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_03.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="display: none;">
+  <object type="image/svg+xml" class="vis_04_01_03" data="img/vis_04_01_03_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_03" data="img/vis_04_01_03_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_03')"></object>
+</div>
 
 The double colon (`::`) is an operator that allows us to namespace this
 particular `from` function under the `String` type rather than using some sort
@@ -181,9 +187,11 @@ This kind of string *can* be mutated:
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-01-can-mutate-string/src/main.rs:here}}
 ```
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_04.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="position: relative; margin-left: -25px; margin-right: -50px; overflow: visible; display: none;">
+  <object type="image/svg+xml" class="vis_04_01_04" data="img/vis_04_01_04_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_04" data="img/vis_04_01_04_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_04')"></object>
+</div>
 
 So, what’s the difference here? Why can `String` be mutated but literals
 cannot? The difference is how these two types deal with memory.
@@ -225,9 +233,11 @@ from Listing 4-1 using a `String` instead of a string literal:
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-02-string-scope/src/main.rs:here}}
 ```
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_05.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="position: relative; margin-left: -25px; margin-right: -100px; display: none;">
+  <object type="image/svg+xml" class="vis_04_01_05" data="img/vis_04_01_05_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_05" data="img/vis_04_01_05_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_05')"></object>
+</div>
 
 There is a natural point at which we can return the memory our `String` needs
 to the operating system: when `s` goes out of scope. When a variable goes out
@@ -253,9 +263,11 @@ Let’s look at an example using an integer in Listing 4-2.
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-02/src/main.rs:here}}
 ```
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_06.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="display: none;">
+  <object type="image/svg+xml" class="vis_04_01_06" data="img/vis_04_01_06_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_06" data="img/vis_04_01_06_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_06')"></object>
+</div>
 
 <span class="caption">Listing 4-2: Assigning the integer value of variable `x`
 to `y`</span>
@@ -271,9 +283,11 @@ Now let’s look at the `String` version:
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-03-string-move/src/main.rs:here}}
 ```
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_07.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="display: none;">
+  <object type="image/svg+xml" class="vis_04_01_07" data="img/vis_04_01_07_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_07" data="img/vis_04_01_07_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_07')"></object>
+</div>
 
 This looks very similar to the previous code, so we might assume that the way
 it works would be the same: that is, the second line would make a copy of the
@@ -372,9 +386,11 @@ Here’s an example of the `clone` method in action:
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-05-clone/src/main.rs:here}}
 ```
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_09.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="display: none;">
+  <object type="image/svg+xml" class="vis_04_01_09" data="img/vis_04_01_09_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_09" data="img/vis_04_01_09_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_09')"></object>
+</div>
 
 This works just fine and explicitly produces the behavior shown in Figure 4-3,
 where the heap data *does* get copied.
@@ -391,9 +407,11 @@ part of which was shown in Listing 4-2, works and is valid:
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-06-copy/src/main.rs:here}}
 ```
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_10.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="display: none;">
+  <object type="image/svg+xml" class="vis_04_01_10" data="img/vis_04_01_10_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_10" data="img/vis_04_01_10_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_10')"></object>
+</div>
 
 But this code seems to contradict what we just learned: we don’t have a call to
 `clone`, but `x` is still valid and wasn’t moved into `y`.
@@ -434,14 +452,14 @@ assigning a value to a variable. Passing a variable to a function will move or
 copy, just as assignment does. Listing 4-3 has an example with some annotations
 showing where variables go into and out of scope.
 
-<span class="filename">Filename: src/main.rs</span>
-
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-03/src/main.rs}}
 ```
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_11.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="position: relative; margin-left: -200px; margin-right: -200px; display: none;">
+  <object type="image/svg+xml" class="vis_04_01_11" data="img/vis_04_01_11_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_11" data="img/vis_04_01_11_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_11')"></object>
+</div>
 
 <span class="caption">Listing 4-3: Functions with ownership and scope
 annotated</span>
@@ -456,14 +474,13 @@ the ownership rules prevent you from doing so.
 Returning values can also transfer ownership. Listing 4-4 is an example with
 similar annotations to those in Listing 4-3.
 
-<span class="filename">Filename: src/main.rs</span>
-
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-04/src/main.rs}}
 ```
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_12.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="position: relative; margin-left: -200px; margin-right: -250px; display: none;">
+  <object type="image/svg+xml" class="vis_04_01_12" data="img/vis_04_01_12_code.svg"></object>
+  <object type="image/svg+xml" class="vis_04_01_12" data="img/vis_04_01_12_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_12')"></object>
+</div>
 
 <span class="caption">Listing 4-4: Transferring ownership of return
 values</span>
@@ -481,16 +498,15 @@ function that we might want to return as well.
 
 It’s possible to return multiple values using a tuple, as shown in Listing 4-5.
 
-<span class="filename">Filename: src/main.rs</span>
-
 ```rust,hidden
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-05/src/main.rs}}
 ```
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_13.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="position:relative; margin-left:-150px; margin-right:-150px; display: none;">
+  <object type="image/svg+xml" class="vis_04_01_13" data="img/vis_04_01_13_code.svg"></object>
+  <object type="image/svg+xml" class="vis_04_01_13" data="img/vis_04_01_13_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_13')"></object>
+</div>
 
-<span class="caption">Listing 4-5: Returning ownership of parameters</span>
+<span type="text/javascript" class="caption">Listing 4-5: Returning ownership of parameters</span>
 
 But this is too much ceremony and a lot of work for a concept that should be
 common. Luckily for us, Rust has a feature for this concept, called

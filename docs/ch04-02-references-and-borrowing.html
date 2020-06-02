@@ -159,7 +159,6 @@ call to <code>calculate_length</code>, because the <code>String</code> was moved
 <p>Here is how you would define and use a <code>calculate_length</code> function that has a
 reference to an object as a parameter instead of taking ownership of the
 value:</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playpen"><code class="language-rust hidden">fn main() {
     let s1 = String::from(&quot;hello&quot;);
 
@@ -172,9 +171,11 @@ fn calculate_length(s: &amp;String) -&gt; usize {
     s.len()
 }
 </code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_01.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="position:relative; margin-right:-100px; display: none;">
+  <object type="image/svg+xml" class="vis_04_02_01" data="img/vis_04_02_01_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_02_01" data="img/vis_04_02_01_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_01')"></object>
+</div>
 <p>First, notice that all the tuple code in the variable declaration and the
 function return value is gone. Second, note that we pass <code>&amp;s1</code> into
 <code>calculate_length</code> and, in its definition, we take <code>&amp;String</code> rather than
@@ -202,9 +203,11 @@ Chapter 15.</p>
 </span><span class="boring">    s.len()
 </span><span class="boring">}
 </span></code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_02.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="display: none;">
+  <object type="image/svg+xml" class="vis_04_02_02" data="img/vis_04_02_02_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_02_02" data="img/vis_04_02_02_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_02')"></object>
+</div>
 <p>The <code>&amp;s1</code> syntax lets us create a reference that <em>refers</em> to the value of <code>s1</code>
 but does not own it. Because it does not own it, the value it points to will
 not be dropped when the reference goes out of scope.</p>
@@ -223,9 +226,11 @@ the parameter <code>s</code> is a reference. Let’s add some explanatory annota
 } // Here, s goes out of scope. But because it does not have ownership of what
   // it refers to, nothing happens.
 </code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_03.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="position: relative; margin-left: -50px; margin-right: -100px; display: none;">
+  <object type="image/svg+xml" class="vis_04_02_03" data="img/vis_04_02_03_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_02_03" data="img/vis_04_02_03_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_03')"></object>
+</div>
 <p>The scope in which the variable <code>s</code> is valid is the same as any function
 parameter’s scope, but we don’t drop what the reference points to when it goes
 out of scope because we don’t have ownership. When functions have references as
@@ -236,7 +241,6 @@ if a person owns something, you can borrow it from them. When you’re done, you
 have to give it back.</p>
 <p>So what happens if we try to modify something we’re borrowing? Try the code in
 Listing 4-6. Spoiler alert: it doesn’t work!</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
 <pre><code class="language-rust ignore does_not_compile">fn main() {
     let s = String::from(&quot;hello&quot;);
 
@@ -270,7 +274,6 @@ To learn more, run the command again with --verbose.
 allowed to modify something we have a reference to.</p>
 <h3><a class="header" href="#mutable-references" id="mutable-references">Mutable References</a></h3>
 <p>We can fix the error in the code from Listing 4-6 with just a small tweak:</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playpen"><code class="language-rust hidden">fn main() {
     let mut s = String::from(&quot;hello&quot;);
 
@@ -281,15 +284,16 @@ fn change(some_string: &amp;mut String) {
     some_string.push_str(&quot;, world&quot;);
 }
 </code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_05.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="display: none;">
+  <object type="image/svg+xml" class="vis_04_02_05" data="img/vis_04_02_05_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_02_05" data="img/vis_04_02_05_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_05')"></object>
+</div>
 <p>First, we had to change <code>s</code> to be <code>mut</code>. Then we had to create a mutable
 reference with <code>&amp;mut s</code> and accept a mutable reference with <code>some_string: &amp;mut String</code>.</p>
 <p>But mutable references have one big restriction: you can have only one mutable
 reference to a particular piece of data in a particular scope. This code will
 fail:</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
 <pre><code class="language-rust ignore does_not_compile"><span class="boring">fn main() {
 </span>    let mut s = String::from(&quot;hello&quot;);
 
@@ -346,9 +350,11 @@ multiple mutable references, just not <em>simultaneous</em> ones:</p>
     let r2 = &amp;mut s;
 <span class="boring">}
 </span></code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_07.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="position: relative; margin-left: -150px; margin-right: -125px; display: none;">
+  <object type="image/svg+xml" class="vis_04_02_07" data="img/vis_04_02_07_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_02_07" data="img/vis_04_02_07_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_07')"></object>
+</div>
 <p>A similar rule exists for combining mutable and immutable references. This code
 results in an error:</p>
 <pre><code class="language-rust ignore does_not_compile"><span class="boring">fn main() {
@@ -404,9 +410,11 @@ mutable reference is introduced:</p>
     println!(&quot;{}&quot;, r3);
 <span class="boring">}
 </span></code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_09.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="position:relative; margin-right:-100px; display: none;">
+  <object type="image/svg+xml" class="vis_04_02_09" data="img/vis_04_02_09_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_02_09" data="img/vis_04_02_09_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_09')"></object>
+</div>
 <p>The scopes of the immutable references <code>r1</code> and <code>r2</code> end after the <code>println!</code>
 where they are last used, which is before the mutable reference <code>r3</code> is
 created. These scopes don’t overlap, so this code is allowed.</p>
@@ -424,7 +432,6 @@ compiler will ensure that the data will not go out of scope before the
 reference to the data does.</p>
 <p>Let’s try to create a dangling reference, which Rust will prevent with a
 compile-time error:</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
 <pre><code class="language-rust ignore does_not_compile">fn main() {
     let reference_to_nothing = dangle();
 }
@@ -461,7 +468,6 @@ for it to be borrowed from.
 </code></pre>
 <p>Let’s take a closer look at exactly what’s happening at each stage of our
 <code>dangle</code> code:</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
 <pre><code class="language-rust ignore does_not_compile"><span class="boring">fn main() {
 </span><span class="boring">    let reference_to_nothing = dangle();
 </span><span class="boring">}
@@ -489,9 +495,11 @@ won’t let us do this.</p>
     s
 }
 </code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_02_12.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="display: none;">
+  <object type="image/svg+xml" class="vis_04_02_12" data="img/vis_04_02_12_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_02_12" data="img/vis_04_02_12_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_12')"></object>
+</div>
 <p>This works without any problems. Ownership is moved out, and nothing is
 deallocated.</p>
 <h3><a class="header" href="#the-rules-of-references" id="the-rules-of-references">The Rules of References</a></h3>

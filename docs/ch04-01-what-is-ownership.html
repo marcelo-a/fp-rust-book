@@ -250,9 +250,11 @@ have a variable that looks like this:</p>
 </span>let s = &quot;hello&quot;;
 <span class="boring">}
 </span></code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_01.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="overflow:visible; display: none;">
+  <object type="image/svg+xml" class="vis_04_01_01" data="img/vis_04_01_01_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_01" data="img/vis_04_01_01_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_01')"></object>
+</div>
 <p>The variable <code>s</code> refers to a string literal, where the value of the string is
 hardcoded into the text of our program. The variable is valid from the point at
 which it’s declared until the end of the current <em>scope</em>. Listing 4-1 has
@@ -265,9 +267,11 @@ comments annotating where the variable <code>s</code> is valid.</p>
     }                      // this scope is now over, and s is no longer valid
 <span class="boring">}
 </span></code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_02.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="position: relative; margin-left: -75px; margin-right: -75px; overflow: visible; display: none;">
+  <object type="image/svg+xml" class="vis_04_01_02" data="img/vis_04_01_02_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_02" data="img/vis_04_01_02_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_02')"></object>
+</div>
 <p><span class="caption">Listing 4-1: A variable and the scope in which it is
 valid</span></p>
 <p>In other words, there are two important points in time here:</p>
@@ -304,9 +308,11 @@ using the <code>from</code> function, like so:</p>
 </span>let s = String::from(&quot;hello&quot;);
 <span class="boring">}
 </span></code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_03.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="display: none;">
+  <object type="image/svg+xml" class="vis_04_01_03" data="img/vis_04_01_03_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_03" data="img/vis_04_01_03_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_03')"></object>
+</div>
 <p>The double colon (<code>::</code>) is an operator that allows us to namespace this
 particular <code>from</code> function under the <code>String</code> type rather than using some sort
 of name like <code>string_from</code>. We’ll discuss this syntax more in the <a href="ch05-03-method-syntax.html#method-syntax">“Method
@@ -322,9 +328,11 @@ Module Tree”</a><!-- ignore --> in Chapter 7.</p>
     println!(&quot;{}&quot;, s); // This will print `hello, world!`
 <span class="boring">}
 </span></code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_04.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="position: relative; margin-left: -25px; margin-right: -50px; overflow: visible; display: none;">
+  <object type="image/svg+xml" class="vis_04_01_04" data="img/vis_04_01_04_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_04" data="img/vis_04_01_04_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_04')"></object>
+</div>
 <p>So, what’s the difference here? Why can <code>String</code> be mutated but literals
 cannot? The difference is how these two types deal with memory.</p>
 <h3><a class="header" href="#memory-and-allocation" id="memory-and-allocation">Memory and Allocation</a></h3>
@@ -365,9 +373,11 @@ from Listing 4-1 using a <code>String</code> instead of a string literal:</p>
                                        // longer valid
 <span class="boring">}
 </span></code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_05.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="position: relative; margin-left: -25px; margin-right: -100px; display: none;">
+  <object type="image/svg+xml" class="vis_04_01_05" data="img/vis_04_01_05_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_05" data="img/vis_04_01_05_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_05')"></object>
+</div>
 <p>There is a natural point at which we can return the memory our <code>String</code> needs
 to the operating system: when <code>s</code> goes out of scope. When a variable goes out
 of scope, Rust calls a special function for us. This function is called <code>drop</code>,
@@ -391,9 +401,11 @@ Let’s look at an example using an integer in Listing 4-2.</p>
     let y = x;
 <span class="boring">}
 </span></code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_06.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="display: none;">
+  <object type="image/svg+xml" class="vis_04_01_06" data="img/vis_04_01_06_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_06" data="img/vis_04_01_06_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_06')"></object>
+</div>
 <p><span class="caption">Listing 4-2: Assigning the integer value of variable <code>x</code>
 to <code>y</code></span></p>
 <p>We can probably guess what this is doing: “bind the value <code>5</code> to <code>x</code>; then make
@@ -407,9 +419,11 @@ onto the stack.</p>
     let s2 = s1;
 <span class="boring">}
 </span></code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_07.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="display: none;">
+  <object type="image/svg+xml" class="vis_04_01_07" data="img/vis_04_01_07_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_07" data="img/vis_04_01_07_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_07')"></object>
+</div>
 <p>This looks very similar to the previous code, so we might assume that the way
 it works would be the same: that is, the second line would make a copy of the
 value in <code>s1</code> and bind it to <code>s2</code>. But this isn’t quite what happens.</p>
@@ -508,9 +522,11 @@ programming languages, you’ve probably seen them before.</p>
     println!(&quot;s1 = {}, s2 = {}&quot;, s1, s2);
 <span class="boring">}
 </span></code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_09.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="display: none;">
+  <object type="image/svg+xml" class="vis_04_01_09" data="img/vis_04_01_09_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_09" data="img/vis_04_01_09_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_09')"></object>
+</div>
 <p>This works just fine and explicitly produces the behavior shown in Figure 4-3,
 where the heap data <em>does</em> get copied.</p>
 <p>When you see a call to <code>clone</code>, you know that some arbitrary code is being
@@ -526,9 +542,11 @@ part of which was shown in Listing 4-2, works and is valid:</p>
     println!(&quot;x = {}, y = {}&quot;, x, y);
 <span class="boring">}
 </span></code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_10.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="display: none;">
+  <object type="image/svg+xml" class="vis_04_01_10" data="img/vis_04_01_10_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_10" data="img/vis_04_01_10_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_10')"></object>
+</div>
 <p>But this code seems to contradict what we just learned: we don’t have a call to
 <code>clone</code>, but <code>x</code> is still valid and wasn’t moved into <code>y</code>.</p>
 <p>The reason is that types such as integers that have a known size at compile
@@ -563,7 +581,6 @@ be sure, but as a general rule, any group of simple scalar values can be
 assigning a value to a variable. Passing a variable to a function will move or
 copy, just as assignment does. Listing 4-3 has an example with some annotations
 showing where variables go into and out of scope.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playpen"><code class="language-rust hidden">fn main() {
     let s = String::from(&quot;hello&quot;);  // s comes into scope
 
@@ -588,9 +605,11 @@ fn makes_copy(some_integer: i32) { // some_integer comes into scope
     println!(&quot;{}&quot;, some_integer);
 } // Here, some_integer goes out of scope. Nothing special happens.
 </code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_11.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="position: relative; margin-left: -200px; margin-right: -200px; display: none;">
+  <object type="image/svg+xml" class="vis_04_01_11" data="img/vis_04_01_11_code.svg">
+  <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
+  <object type="image/svg+xml" class="vis_04_01_11" data="img/vis_04_01_11_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_11')"></object>
+</div>
 <p><span class="caption">Listing 4-3: Functions with ownership and scope
 annotated</span></p>
 <p>If we tried to use <code>s</code> after the call to <code>takes_ownership</code>, Rust would throw a
@@ -600,7 +619,6 @@ the ownership rules prevent you from doing so.</p>
 <h3><a class="header" href="#return-values-and-scope" id="return-values-and-scope">Return Values and Scope</a></h3>
 <p>Returning values can also transfer ownership. Listing 4-4 is an example with
 similar annotations to those in Listing 4-3.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playpen"><code class="language-rust hidden">fn main() {
     let s1 = gives_ownership();         // gives_ownership moves its return
                                         // value into s1
@@ -631,9 +649,10 @@ fn takes_and_gives_back(a_string: String) -&gt; String { // a_string comes into
     a_string  // a_string is returned and moves out to the calling function
 }
 </code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_12.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
+<div class="flex-container" style="position: relative; margin-left: -200px; margin-right: -250px; display: none;">
+  <object type="image/svg+xml" class="vis_04_01_12" data="img/vis_04_01_12_code.svg"></object>
+  <object type="image/svg+xml" class="vis_04_01_12" data="img/vis_04_01_12_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_12')"></object>
+</div>
 <p><span class="caption">Listing 4-4: Transferring ownership of return
 values</span></p>
 <p>The ownership of a variable follows the same pattern every time: assigning a
@@ -646,7 +665,6 @@ It’s quite annoying that anything we pass in also needs to be passed back if w
 want to use it again, in addition to any data resulting from the body of the
 function that we might want to return as well.</p>
 <p>It’s possible to return multiple values using a tuple, as shown in Listing 4-5.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playpen"><code class="language-rust hidden">fn main() {
     let s1 = String::from(&quot;hello&quot;);
 
@@ -661,10 +679,11 @@ fn calculate_length(s: String) -&gt; (String, usize) {
     (s, length)
 }
 </code></pre></pre>
-<div class="visualization"><object type="image/svg+xml" class="visualization" data="img/vis_04_01_13.svg" style="width: auto;" >
-!!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS -->
-</object></div>
-<p><span class="caption">Listing 4-5: Returning ownership of parameters</span></p>
+<div class="flex-container" style="position:relative; margin-left:-150px; margin-right:-150px; display: none;">
+  <object type="image/svg+xml" class="vis_04_01_13" data="img/vis_04_01_13_code.svg"></object>
+  <object type="image/svg+xml" class="vis_04_01_13" data="img/vis_04_01_13_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_01_13')"></object>
+</div>
+<p><span type="text/javascript" class="caption">Listing 4-5: Returning ownership of parameters</span></p>
 <p>But this is too much ceremony and a lot of work for a concept that should be
 common. Luckily for us, Rust has a feature for this concept, called
 <em>references</em>.</p>

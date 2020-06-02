@@ -22,78 +22,106 @@ pub trait Visualizable {
 
     // WARNING do not call this when making visualization!! 
     // use append_external_event instead
-    fn _append_event(&mut self, resource_owner: &ResourceOwner, event: Event, line_number: &usize);
+    fn _append_event(&mut self, resource_access_point: &ResourceAccessPoint, event: Event, line_number: &usize);
     
     // add an event to the Visualizable data structure
     fn append_external_event(&mut self, event: ExternalEvent, line_number: &usize) ;
     
-    // if resource_owner with hash is mutable
+    // if resource_access_point with hash is mutable
     fn is_mut(&self, hash: &u64 ) -> bool;
 
     fn calc_state(&self, previous_state: & State, event: & Event, event_line: usize, hash: &u64) -> State;
 }
 
-// A ResourceOwner is either a Variable or a Function that
+
+// Every object in Rust should belong in one of these catagories
+// A ResourceAccessPoint is either an Owner, a reference, or a Function that
 // have ownership to a memory object, during some stage of
 // a the program execution.
+#[derive(Clone, Hash, PartialEq, Eq)]
+pub enum ResourceAccessPoint {
+    Owner(Owner),
+    MutRef(MutRef),
+    StaticRef(StaticRef),
+    Function(Function),
+}
+
+// when something is not a reference
+#[derive(Clone, Hash, PartialEq, Eq)]
+pub struct Owner {
+    pub name: String,
+    pub hash: u64,
+    pub is_mut: bool,                     // let a = 42; vs let mut a = 42;
+    pub lifetime_trait: LifetimeTrait,
+}
+
+// a reference of type &mut T
+#[derive(Clone, Hash, PartialEq, Eq)]
+pub struct MutRef {         // let (mut) r1 = &mut a;
+    pub name: String,
+    pub hash: u64,
+    pub my_owner_hash: Option<u64>,
+    pub is_mut: bool,
+    pub lifetime_trait: LifetimeTrait,
+}
+
+// a reference of type & T
+#[derive(Clone, Hash, PartialEq, Eq)]
+pub struct StaticRef {                // let (mut) r1 = & a;
+    pub name: String,
+    pub hash: u64,
+    pub my_owner_hash: Option<u64>,
+    pub is_mut: bool,
+    pub lifetime_trait: LifetimeTrait,
+}
+
 #[derive(Clone, Hash, PartialEq, Eq)]
 pub struct Function {
     pub hash: u64,
     pub name: String,
 }
-#[derive(Clone, Hash, PartialEq, Eq)]
-pub struct Variable {
-    pub hash: u64,
-    pub name: String,
-    // whether the variable itself is mutable
-    pub is_mut: bool,
-    pub is_ref: bool,
-    pub lifetime_trait: LifetimeTrait,
-}
-#[derive(Clone, Hash, PartialEq, Eq)]
-pub enum ResourceOwner {
-    Variable(Variable),
-    Function(Function),
-}
 
-impl ResourceOwner {
+
+impl ResourceAccessPoint {
     // get the attribute hash
     pub fn hash(&self) -> &u64 {
         match self {
-            ResourceOwner::Variable(Variable{hash, ..}) => hash,
-            ResourceOwner::Function(Function{hash, ..}) => hash,
+            ResourceAccessPoint::Owner(Owner{hash, ..}) => hash,
+            ResourceAccessPoint::MutRef(MutRef{hash, ..}) => hash,
+            ResourceAccessPoint::StaticRef(StaticRef{hash, ..}) => hash,
+            ResourceAccessPoint::Function(Function{hash, ..}) => hash,
         }
     }
 
-    // get the name filed
+    // get the name field
     pub fn name(&self) -> &String {
         match self {
-            ResourceOwner::Variable(Variable{name, ..}) => name,
-            ResourceOwner::Function(Function{name, ..}) => name,
+            ResourceAccessPoint::Owner(Owner{name, ..}) => name,
+            ResourceAccessPoint::MutRef(MutRef{name, ..}) => name,
+            ResourceAccessPoint::StaticRef(StaticRef{name, ..}) => name,
+            ResourceAccessPoint::Function(Function{name, ..}) => name,
         }
     }
 
-    // get the is_mut filed, if any
+    // get the is_mut field, if any
     pub fn is_mut(&self) -> bool {
         match self {
-            ResourceOwner::Variable(Variable{is_mut, ..}) => is_mut.to_owned(),
-            ResourceOwner::Function(_) => false,
+            ResourceAccessPoint::Owner(Owner{is_mut, ..}) => is_mut.to_owned(),
+            ResourceAccessPoint::MutRef(MutRef{is_mut, ..}) => is_mut.to_owned(),
+            ResourceAccessPoint::StaticRef(StaticRef{is_mut, ..}) => is_mut.to_owned(),
+            ResourceAccessPoint::Function(_) => false,
         }
     }
 
     pub fn is_ref(&self) -> bool {
         match self {
-            ResourceOwner::Variable(Variable{is_ref, ..}) => is_ref.to_owned(),
-            ResourceOwner::Function(_) => false,
+            ResourceAccessPoint::Owner(_) => false,
+            ResourceAccessPoint::MutRef(_) => true,
+            ResourceAccessPoint::StaticRef(_) => true,
+            ResourceAccessPoint::Function(_) => false,
         }
     }
 }
-
-// impl std::string::ToString for ResourceOwner {
-//     fn to_string(&self) -> String {
-//         self.name.to_owned()
-//     }
-// }
 
 /* let binding is either Duplicate (let _ = 1;)
 or move (let a = String::from("");) */
@@ -101,44 +129,44 @@ or move (let a = String::from("");) */
 pub enum ExternalEvent{
     // copy / clone
     Duplicate {
-        from: Option<ResourceOwner>,
-        to: Option<ResourceOwner>,
+        from: Option<ResourceAccessPoint>,
+        to: Option<ResourceAccessPoint>,
     },
     Move {
-        from: Option<ResourceOwner>,
-        to: Option<ResourceOwner>,
+        from: Option<ResourceAccessPoint>,
+        to: Option<ResourceAccessPoint>,
     },
     StaticBorrow {
-        from: Option<ResourceOwner>,
-        to: Option<ResourceOwner>,
+        from: Option<ResourceAccessPoint>,
+        to: Option<ResourceAccessPoint>,
     },
     MutableBorrow {
-        from: Option<ResourceOwner>,
-        to: Option<ResourceOwner>,
+        from: Option<ResourceAccessPoint>,
+        to: Option<ResourceAccessPoint>,
     },
     StaticReturn {
         // return the resource to "to"
-        from: Option<ResourceOwner>,
-        to: Option<ResourceOwner>,
+        from: Option<ResourceAccessPoint>,
+        to: Option<ResourceAccessPoint>,
     },
     MutableReturn {
         // return the resource to "to"
-        from: Option<ResourceOwner>,
-        to: Option<ResourceOwner>,
+        from: Option<ResourceAccessPoint>,
+        to: Option<ResourceAccessPoint>,
     },
-    // a use of the variable, happens when var pass by reference
+    // a use of the Owner, happens when var pass by reference
     // its really borrow and return but happens on the same line,
     // use this event instead of borrow and return for more concise visualization 
     PassByStaticReference {
-        from: Option<ResourceOwner>,
-        to: Option<ResourceOwner>, // must be a function
+        from: Option<ResourceAccessPoint>,
+        to: Option<ResourceAccessPoint>, // must be a function
     },
     PassByMutableReference {
-        from: Option<ResourceOwner>,
-        to: Option<ResourceOwner>, // must be a function
+        from: Option<ResourceAccessPoint>,
+        to: Option<ResourceAccessPoint>, // must be a function
     },
     GoOutOfScope {
-        ro: ResourceOwner
+        ro: ResourceAccessPoint
     },
 }
 
@@ -146,7 +174,7 @@ pub enum ExternalEvent{
 // ASSUMPTION: a reference must return resource before borrow;
 //
 // An Event describes the acquisition or release of a
-// resource ownership by a variable on any given line.
+// resource ownership by a Owner on any given line.
 // There are six types of them.
 pub enum Event {
     // this happens when a variable is initiated, it should obtain
@@ -163,21 +191,21 @@ pub enum Event {
     // Event's "from" variable is x.
     // TODO do we need mut/static_acquire for get_state?
     Acquire {
-        from: Option<ResourceOwner>
+        from: Option<ResourceAccessPoint>
     },
-    // this happens when a ResourceOwner implements copy trait or
+    // this happens when a ResourceAccessPoint implements copy trait or
     // explicitly calls .clone() function
-    // to another ResourceOwner, or a function.
+    // to another ResourceAccessPoint, or a function.
     //
     // e.g.
     // 1. x: i32 = y + 15;              here y duplicate to + op, and x acquire from +
     //                                  at this point, we treat it as y duplicates to None
     // 2. x: MyStruct = y.clone();      here y duplicates to x.
     Duplicate {
-        to: Option<ResourceOwner>
+        to: Option<ResourceAccessPoint>
     },
-    // this happens when a ResourceOwner transfer the ownership of its resource
-    // to another ResourceOwner, or if it is no longer used after this line.
+    // this happens when a ResourceAccessPoint transfer the ownership of its resource
+    // to another ResourceAccessPoint, or if it is no longer used after this line.
     // Typically, this happens at one of the following two cases:
     //
     // 1. variable is not used after this line.
@@ -185,31 +213,31 @@ pub enum Event {
     //    its ownership on this line. This includes tranfering its
     //    ownership to a function as well.
     Move {
-        to: Option<ResourceOwner>
+        to: Option<ResourceAccessPoint>
     },
     MutableLend {
-        to: Option<ResourceOwner>
+        to: Option<ResourceAccessPoint>
     },
     MutableBorrow {
-        from: ResourceOwner
+        from: ResourceAccessPoint
     },
     MutableReturn {
-        to: Option<ResourceOwner>
+        to: Option<ResourceAccessPoint>
     },
     MutableReacquire {
-        from: Option<ResourceOwner>
+        from: Option<ResourceAccessPoint>
     },
     StaticLend {
-        to: Option<ResourceOwner>
+        to: Option<ResourceAccessPoint>
     },
     StaticBorrow {
-        from: ResourceOwner
+        from: ResourceAccessPoint
     },
     StaticReturn {
-        to: Option<ResourceOwner>
+        to: Option<ResourceAccessPoint>
     },
     StaticReacquire {
-        from: Option<ResourceOwner>
+        from: Option<ResourceAccessPoint>
     },
     // this happens when a owner is returned this line,
     // or if this owner's scope ends at this line. The data must be dropped. 
@@ -229,7 +257,7 @@ pub enum LifetimeTrait {
     None,
 }
 
-// A State is a description of a ResourceOwner IMMEDIATELY AFTER a specific line.
+// A State is a description of a ResourceAccessPoint IMMEDIATELY AFTER a specific line.
 // We think of this as what read/write access we have to its resource.
 #[derive(Clone)]
 pub enum State {
@@ -238,16 +266,16 @@ pub enum State {
     // The resource is transferred on this line or before this line,
     // thus it is impossible to access this variable anymore.
     ResourceMoved {
-        move_to: Option<ResourceOwner>,
+        move_to: Option<ResourceAccessPoint>,
         move_at_line: usize
     },
-    // This ResourceOwner is the unique object that holds the ownership to the underlying resource.
+    // This ResourceAccessPoint is the unique object that holds the ownership to the underlying resource.
     FullPrivilege,
-    // More than one ResourceOwner has access to the underlying resource
+    // More than one ResourceAccessPoint has access to the underlying resource
     // This means that it is not possible to create a mutable reference
     // on the next line.
     // About borrow_count: this value is at least one at any time.
-    //      When the first static reference of this ResourceOwner is created,
+    //      When the first static reference of this ResourceAccessPoint is created,
     //          this value is set to 1;
     //      When a new static reference is borrowed from this variable, increment by 1;
     //      When a static reference goes out of scope, decrement this value by 1;
@@ -255,13 +283,13 @@ pub enum State {
     //          FullPrivilege once again.
     PartialPrivilege {
         borrow_count: u32,
-        borrow_to: HashSet<ResourceOwner>
+        borrow_to: HashSet<ResourceAccessPoint>
     },
     // temporarily no read or write access right to the resource, but eventually
     // the privilege will come back. Occurs when mutably borrowed
     RevokedPrivilege {
-        to: Option<ResourceOwner>,
-        borrow_to: Option<ResourceOwner>,
+        to: Option<ResourceAccessPoint>,
+        borrow_to: Option<ResourceAccessPoint>,
     },
     // should not appear for visualization in a correct program
     Invalid,
@@ -284,7 +312,7 @@ impl std::fmt::Display for State {
 fn safe_message(
     message_functor: fn(&String, &String) -> String,
     my_name: &String,
-    some_target: &Option<ResourceOwner>
+    some_target: &Option<ResourceAccessPoint>
 ) -> String {
     if let Some(target) = some_target {
         message_functor(my_name, target.name())
@@ -405,7 +433,7 @@ impl Event {
 // a vector of ownership transfer history of a specific variable,
 // in a sorted order by line number.
 pub struct Timeline {
-    pub resource_owner: ResourceOwner,    // a reference of a Variable or a (TODO) Reference, 
+    pub resource_access_point: ResourceAccessPoint,    // a reference of an Owner or a (TODO) Reference, 
                                 // since Functions don't have a timeline 
     // line number in usize
     pub history: Vec<(usize, Event)>,
@@ -429,28 +457,26 @@ pub struct VisualizationData {
 impl Visualizable for VisualizationData {
     fn get_name_from_hash(&self, hash: &u64) -> Option<String> {
         match self.timelines.get(hash) {
-            Some(timeline) => Some(timeline.resource_owner.name().to_owned()),
+            Some(timeline) => Some(timeline.resource_access_point.name().to_owned()),
             _ => None
         }
     }
 
-    // if the ResourceOwner is declared mutable
+    // if the ResourceAccessPoint is declared mutable
     fn is_mut(&self, hash: &u64 ) -> bool {
-        self.timelines[hash].resource_owner.is_mut()
+        self.timelines[hash].resource_access_point.is_mut()
     }
 
-
-    
     // a Function does not have a State, so we assume previous_state is always for Variables
     fn calc_state(&self, previous_state: & State, event: & Event, event_line: usize, hash: &u64) -> State {
         /* a Variable cannot borrow or return resource from Functions, 
         but can 'lend' or 'reaquire' to Functions (pass itself by reference and take it back); */
         fn event_invalid(event: & Event) -> bool {
             match event {
-                Event::StaticBorrow{ from: ResourceOwner::Function(_) } => true,
-                Event::MutableBorrow{ from: ResourceOwner::Function(_) } => true,
-                Event::StaticReturn{ to: Some(ResourceOwner::Function(_)) } => true,
-                Event::MutableReturn{ to: Some(ResourceOwner::Function(_)) } => true,
+                Event::StaticBorrow{ from: ResourceAccessPoint::Function(_) } => true,
+                Event::MutableBorrow{ from: ResourceAccessPoint::Function(_) } => true,
+                Event::StaticReturn{ to: Some(ResourceAccessPoint::Function(_)) } => true,
+                Event::MutableReturn{ to: Some(ResourceAccessPoint::Function(_)) } => true,
                 _ => false,
             }
         }
@@ -467,7 +493,7 @@ impl Visualizable for VisualizationData {
                     borrow_to: [ro.to_owned()].iter().cloned().collect()
                 },
 
-            (State::OutOfScope, Event::MutableBorrow{ from: ro }) =>
+            (State::OutOfScope, Event::MutableBorrow{ from: _ }) =>
                 State::FullPrivilege,
 
             (State::FullPrivilege, Event::Move{to: to_ro}) => State::ResourceMoved{ move_to: to_ro.to_owned(), move_at_line: event_line },
@@ -476,9 +502,13 @@ impl Visualizable for VisualizationData {
                 if self.is_mut(hash) { State::RevokedPrivilege{ to: None, borrow_to: to_ro.to_owned() } } else { State::Invalid },
             
             // happends when a mutable reference returns, invalid otherwise
-            (State::FullPrivilege, Event::MutableReturn{ to: to_ro }) =>
+            (State::FullPrivilege, Event::MutableReturn{ to: _ }) =>
                 State::OutOfScope,
         
+            (State::FullPrivilege, Event::OwnerGoOutOfScope) => State::OutOfScope,
+
+            (State::FullPrivilege, Event::RefGoOutOfScope) => State::OutOfScope,
+
             // this looks impossible?
             // (State::FullPrivilege, Event::MutableReacquire{ from: ro }) =>
             //     State::ResourceReturned { to: ro.to_owned() },
@@ -492,9 +522,9 @@ impl Visualizable for VisualizationData {
                     borrow_to: [(to_ro.to_owned().unwrap())].iter().cloned().collect() // we assume there is no borrow_to:None
                 },
 
-            (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: to_ro }) => State::Invalid,
+            (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableLend{ to: _ }) => State::Invalid,
 
-            (State::PartialPrivilege{ borrow_count: current, borrow_to: borrow_to }, Event::StaticLend{ to: to_ro }) => {
+            (State::PartialPrivilege{ borrow_count: current, borrow_to }, Event::StaticLend{ to: to_ro }) => {
                 let mut new_borrow_to = borrow_to.clone();
                 // Assume can not lend to None
                 new_borrow_to.insert(to_ro.to_owned().unwrap());
@@ -506,7 +536,7 @@ impl Visualizable for VisualizationData {
                 
 
             // self statically borrowed resource, and it returns; TODO what about references to self?
-            (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: to_ro }) => State::OutOfScope,
+            (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: _ }) => State::OutOfScope,
 
             (State::PartialPrivilege{ borrow_count, borrow_to }, Event::StaticReacquire{ from: ro }) => {
                 let new_borrow_count = borrow_count - 1;
@@ -516,7 +546,7 @@ impl Visualizable for VisualizationData {
                     } else {
                         let mut new_borrow_to = borrow_to.clone();
                         // TODO ro.unwrap() should not panic, because Reacquire{from: None} is not possible
-                        // TODO change to Reaquire{from: ResourceOwner}
+                        // TODO change to Reaquire{from: ResourceAccessPoint}
                         assert_eq!(new_borrow_to.remove(&ro.to_owned().unwrap()), true); // borrow_to must contain ro
                         State::PartialPrivilege{
                             borrow_count: new_borrow_count,
@@ -529,9 +559,9 @@ impl Visualizable for VisualizationData {
 
             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::RefGoOutOfScope) => State::OutOfScope,
 
-            (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) => State::FullPrivilege,
+            (State::RevokedPrivilege{ to: _, borrow_to: _ }, Event::MutableReacquire{ from: _ }) => State::FullPrivilege,
 
-            (_, Event::Duplicate { to: ro }) =>
+            (_, Event::Duplicate { to: _ }) =>
                 (*previous_state).clone(),
 
              // State::FullPrivilege,
@@ -551,12 +581,16 @@ impl Visualizable for VisualizationData {
             prev_state = self.calc_state(&prev_state, &event, *line_number, hash);
             previous_line_number = *line_number;
         }
+        states.push(
+            (previous_line_number, previous_line_number, prev_state.clone())
+        );
         states
     }
 
-    fn get_state(&self, hash: &u64, line_number: &usize) -> Option<State> {
+    fn get_state(&self, hash: &u64, _line_number: &usize) -> Option<State> {
+        // TODO: the line_number variable should be used to determine state here
         match self.timelines.get(hash) {
-            Some(timeline) => {
+            Some(_timeline) => {
                 // example return value
                 Some(State::OutOfScope)
             },
@@ -567,14 +601,14 @@ impl Visualizable for VisualizationData {
 
     // WARNING do not call this when making visualization!! 
     // use append_external_event instead
-     fn _append_event(&mut self, resource_owner: &ResourceOwner, event: Event, line_number: &usize) {
-        let hash = &resource_owner.hash();
-        // if this event belongs to a new ResourceOwner hash,
-        // create a new Timeline first, thenResourceOwner bind it to the corresponding hash.
+     fn _append_event(&mut self, resource_access_point: &ResourceAccessPoint, event: Event, line_number: &usize) {
+        let hash = &resource_access_point.hash();
+        // if this event belongs to a new ResourceAccessPoint hash,
+        // create a new Timeline first, thenResourceAccessPoint bind it to the corresponding hash.
         match self.timelines.get(hash) {
             None => {
                 let timeline = Timeline {
-                    resource_owner: resource_owner.clone(),
+                    resource_access_point: resource_access_point.clone(),
                     history: Vec::new(),
                 };
                 self.timelines.insert(**hash, timeline);
@@ -601,9 +635,9 @@ impl Visualizable for VisualizationData {
     fn append_external_event(&mut self, event: ExternalEvent, line_number: &usize) {
         self.external_events.push((*line_number, event.clone()));
         
-        // append_event if resource_owner is not null
-        fn maybe_append_event(vd: &mut VisualizationData, resource_owner: &Option<ResourceOwner>, event: Event, line_number : &usize) {
-            if let Some(ro) = resource_owner {
+        // append_event if resource_access_point is not null
+        fn maybe_append_event(vd: &mut VisualizationData, resource_access_point: &Option<ResourceAccessPoint>, event: Event, line_number : &usize) {
+            if let Some(ro) = resource_access_point {
                 vd._append_event(&ro, event, line_number)
             };
         }
@@ -661,21 +695,34 @@ impl Visualizable for VisualizationData {
                 maybe_append_event(self, &to_ro, Event::MutableReturn{to : from_ro.to_owned()}, line_number);
             }
             ExternalEvent::GoOutOfScope{ro} => {
-                if ro.is_ref() {
-                    maybe_append_event(self, &Some(ro), Event::RefGoOutOfScope, line_number);
-                } else {
-                    maybe_append_event(self, &Some(ro), Event::OwnerGoOutOfScope, line_number);
+                match ro {
+                    ResourceAccessPoint::Owner(..) => {
+                        maybe_append_event(self, &Some(ro), Event::OwnerGoOutOfScope, line_number);
+                    },
+                    ResourceAccessPoint::MutRef(..) => {
+                        maybe_append_event(self, &Some(ro), Event::RefGoOutOfScope, line_number);
+                    },
+                    ResourceAccessPoint::StaticRef(..) => {
+                        maybe_append_event(self, &Some(ro), Event::RefGoOutOfScope, line_number);
+                    },
+                    ResourceAccessPoint::Function(func) => {
+                        println!(
+                            "Functions do not go out of scope! We do not expect to see \"{}\" here.",
+                            func.name
+                        );
+                        std::process::exit(1);
+                    }
                 }
             }
         }
     }
 }
 
-/* TODO use this function to create a single copy of resource owner in resource_owner_map,
+/* TODO use this function to create a single copy of resource owner in resource_access_point_map,
  and use hash to refer to it */ 
 // impl VisualizationData {
-//     fn create_resource_owner(&mut self, ro: ResourceOwner) -> &ResourceOwner {
-//         self.resource_owner_map.entry(ro.get_hash()).or_insert(ro);
-//         self.resource_owner_map.get(ro.get_hash())
+//     fn create_resource_access_point(&mut self, ro: ResourceAccessPoint) -> &ResourceAccessPoint {
+//         self.resource_access_point_map.entry(ro.get_hash()).or_insert(ro);
+//         self.resource_access_point_map.get(ro.get_hash())
 //     }
 // }

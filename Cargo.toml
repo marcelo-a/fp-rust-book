@@ -1,7 +1,7 @@
 [package]
 name = "rrt"
 version = "0.1.0"
-authors = ["Gabriel Luo <luogm@umich.edu>", "Ke Du <madoka@umich.edu>", "Yingying Zhu <zyy@umich.edu>", "Marcelo Almeida <mgba@umich.edu>"]
+authors = ["Gabriel Luo <luogm@umich.edu>", "Ke Du <madoka@umich.edu>", "Yingying Zhu <zyy@umich.edu>", "Marcelo Almeida <mgba@umich.edu>", "Haochen Zhang <haochenz@umich.edu>"]
 edition = "2018"
 
 [lib]

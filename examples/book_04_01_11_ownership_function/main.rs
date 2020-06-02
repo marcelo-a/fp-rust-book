@@ -1,51 +1,47 @@
-use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceOwner, Variable, Function, Visualizable, VisualizationData};
+use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceAccessPoint, Owner, Function, Visualizable, VisualizationData};
 use rrt_lib::svg_frontend::svg_generation;
 use std::collections::BTreeMap;
 
 fn main() {
     // Variables
-    let s = ResourceOwner::Variable(Variable {
+    let s = ResourceAccessPoint::Owner(Owner {
         hash: 1,
         name: String::from("s"),
         is_mut: false,
-        is_ref: false,
         lifetime_trait: LifetimeTrait::Move,
     });
-    let x = ResourceOwner::Variable(Variable {
+    let x = ResourceAccessPoint::Owner(Owner {
         hash: 2,
         name: String::from("x"),
         is_mut: false,
-        is_ref: false,
         lifetime_trait: LifetimeTrait::Copy,
     });
-    let some_string = ResourceOwner::Variable(Variable {
+    let some_string = ResourceAccessPoint::Owner(Owner {
         hash: 3,
         name: String::from("some_string"),
         is_mut: false,
-        is_ref: false,
         lifetime_trait: LifetimeTrait::Move,
     });
-    let some_integer = ResourceOwner::Variable(Variable {
+    let some_integer = ResourceAccessPoint::Owner(Owner {
         hash: 4,
         name: String::from("some_integer"),
         is_mut: false,
-        is_ref: false,
         lifetime_trait: LifetimeTrait::Copy,
     });
     // Functions
-    let from_func = ResourceOwner::Function(Function {
+    let from_func = ResourceAccessPoint::Function(Function {
         hash: 5,
         name: String::from("String::from()"),
     });
-    let takes_ownership = ResourceOwner::Function(Function {
+    let takes_ownership = ResourceAccessPoint::Function(Function {
         hash: 6,
         name: String::from("takes_ownership()"),
     });
-    let makes_copy = ResourceOwner::Function(Function {
+    let makes_copy = ResourceAccessPoint::Function(Function {
         hash: 7,
         name: String::from("makes_copy()"),
     });
-    let println_func = ResourceOwner::Function(Function {
+    let println_func = ResourceAccessPoint::Function(Function {
         hash: 8,
         name: String::from("println!()"),
     });

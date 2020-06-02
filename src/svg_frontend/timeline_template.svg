@@ -1,0 +1,74 @@
+<svg width="{{tl_width}}px" height="{{height}}px" 
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+        id="{{tl_id}}">
+
+    <desc>{{ visualization_name }}</desc>
+
+    <defs>
+        <style type="text/css">
+        <![CDATA[
+        {{ css }}
+        ]]>
+        </style>
+        <!-- Useful constructs -->
+        <circle id="eventDot" cx="0" cy="0" r="5"/>
+        <!-- used when pass to function by ref -->
+        <g id="functionDot">
+             <circle id="eventDot" cx="0" cy="0" r="5"/>
+             <text class="functionIcon" dx="-4" dy="0" fill="#6e6b5e">f</text>
+        </g>
+        <marker id="arrowHead" viewBox="0 0 10 10"
+            refX="1" refY="5" 
+            markerUnits="strokeWidth"
+            markerWidth="3px" markerHeight="3px"
+            orient="auto" fill="gray">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
+        </marker>
+    </defs>
+
+{{ diagram }}
+
+    <!-- tooltip styling -->
+    <g id="tooltip" dominant-baseline="hanging" visibility="hidden">
+		<rect x="0" y="0" width="25" height="25" fill="#464646" opacity="0.6" rx="2" ry="2"/>
+		<text x="5" y="5" fill="white" font-size="12px" font-family="'Open Sans', sans-serif" width="10px">Tooltip</text>
+    </g>
+
+    <!-- DISPLAY TOOLTIP SCRIPT -->
+    <script type="text/ecmascript"><![CDATA[
+		(function() {
+            var timeline_id = "{{tl_id}}";
+			var svg = document.getElementById(timeline_id);
+			var tooltip = svg.getElementById('tooltip');
+			var tooltipText = tooltip.getElementsByTagName('text')[0];
+            var tooltipRects = tooltip.getElementsByTagName('rect');
+			var triggers = svg.getElementsByClassName('tooltip-trigger');
+
+			for (var i = 0; i < triggers.length; i++) {
+				triggers[i].addEventListener('mousemove', showTooltip);
+				triggers[i].addEventListener('mouseout', hideTooltip);
+			}
+
+			function showTooltip(evt) {
+                <!-- track mouse movement -->
+				var CTM = svg.getScreenCTM();
+				var x = (evt.clientX - CTM.e + 15) / CTM.a;
+				var y = (evt.clientY - CTM.f + 5) / CTM.d;
+                tooltip.setAttributeNS(null, "transform", "translate(" + x + " " + y + ")");
+				tooltip.setAttributeNS(null, "visibility", "visible");
+				tooltipText.firstChild.data = evt.target.getAttributeNS(null, "data-tooltip-text");
+                
+                <!-- adjust box dimensions -->
+                var length = tooltipText.getComputedTextLength();
+				for (var i = 0; i < tooltipRects.length; i++) {
+					tooltipRects[i].setAttribute("width", length + 10);
+				}
+			}
+
+			function hideTooltip(evt) {
+				tooltip.setAttributeNS(null, "visibility", "hidden");
+			}
+		})()
+    ]]></script>
+
+</svg>

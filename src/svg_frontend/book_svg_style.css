@@ -9,7 +9,6 @@ svg {
 }
 
 text {
-    /* fill: var(--bg-color); */
     vertical-align: baseline;
     text-anchor: start;
 }

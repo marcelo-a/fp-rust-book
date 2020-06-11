@@ -77,8 +77,8 @@ pub struct StaticRef {                // let (mut) r1 = & a;
 
 #[derive(Clone, Hash, PartialEq, Eq)]
 pub struct Function {
-    pub hash: u64,
     pub name: String,
+    pub hash: u64,
 }
 
 

@@ -9,8 +9,7 @@ svg {
 }
 
 text {
-    /* fill: white; */
-    /* fill: var(--text-color); */
+    /* fill: var(--bg-color); */
     vertical-align: baseline;
     text-anchor: start;
 }

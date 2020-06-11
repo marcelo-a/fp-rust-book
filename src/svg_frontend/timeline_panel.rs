@@ -189,7 +189,7 @@ fn compute_column_layout<'a>(visualization_data: &'a VisualizationData) -> (Hash
                     Some(_name) => _name,
                     None => panic!("no matching resource owner for hash {}", hash),
                 };
-                let x_space = cmp::max(70, (&(name.len() as i64)-1)*10);
+                let x_space = cmp::max(70, (&(name.len() as i64)-1)*13);
                 x = x + x_space;
                 let title = match visualization_data.is_mut(hash) {
                     true => String::from("mutable"),
@@ -260,7 +260,7 @@ fn render_dots_string(
 
 // render events involving two RO using an arrow
 // NOTE currently using render_arrows_string_external_events_version instead of this one
-fn render_arrows_string(
+fn _render_arrows_string(
     visualization_data: &VisualizationData,
     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
     registry: &Handlebars
@@ -724,11 +724,9 @@ fn render_ref_line(
                 };
 
                 for (line_start, _line_end, state) in states.iter() {
-                    println!("{} {} {} {}", line_start, _line_end, &ro.name(), state);
                     match state { // consider removing .clone()
                         State::OutOfScope => {
                             if alive {
-                                println!("die {} {} {}", line_start, _line_end, &ro.name());
                                 // finish line template
                                 data.x2 = data.x1.clone();
                                 data.y2 = get_y_axis_pos(line_start);
@@ -741,19 +739,7 @@ fn render_ref_line(
                                         output.push_str(&registry.render("solid_ref_line_template", &data).unwrap());
                                     },
                                     ResourceAccessPoint::StaticRef(_) => {
-                                        // adjust line positions and render template
-                                        // data.y1 += 3;
-                                        // data.y2 -= 3;
                                         output.push_str(&registry.render("hollow_ref_line_template", &data).unwrap());
-
-                                        // let mut hollow_line_data = data.clone();
-                                        // hollow_line_data.y1 -= 3;
-                                        // hollow_line_data.y2 += 6;
-                                        // hollow_line_data.dx = 20;
-                                        // hollow_line_data.title = data.title.clone();
-                                        // // render template
-                                        // output.push_str(&registry.render("hollow_ref_line_template", &hollow_line_data).unwrap());
-
                                     },
                                     _ => (),
                                 }
@@ -763,7 +749,6 @@ fn render_ref_line(
                         },
                         State::FullPrivilege => {
                             if !alive {
-                                println!("alive! {} {} {}", line_start, _line_end, &ro.name());
                                 // set known vals
                                 data.hash = *hash;
                                 data.x1 = resource_owners_layout[hash].x_val;
@@ -776,8 +761,6 @@ fn render_ref_line(
                         },
                         State::PartialPrivilege{..} => {
                             if !alive {
-
-                                println!("alive! {} {} {}", line_start, _line_end, &ro.name());
                                 // set known vals
                                 data.hash = *hash;
                                 data.x1 = resource_owners_layout[hash].x_val;

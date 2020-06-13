@@ -4,7 +4,6 @@ use handlebars::Handlebars;
 use std::collections::BTreeMap;
 use std::fs::File;
 use std::io;
-use std::cmp;
 
 pub fn render_code_panel(lines: io::Lines<io::BufReader<File>>) -> (String, i32) {
     /* Template creation */

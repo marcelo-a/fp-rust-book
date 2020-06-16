@@ -174,7 +174,7 @@ fn calculate_length(s: &amp;String) -&gt; usize {
 <div class="flex-container" style="position:relative; margin-right:-100px; display: none;">
   <object type="image/svg+xml" class="vis_04_02_01" data="img/vis_04_02_01_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
-  <object type="image/svg+xml" class="vis_04_02_01" data="img/vis_04_02_01_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_01')"></object>
+  <object type="image/svg+xml" class="vis_04_02_01" data="img/vis_04_02_01_timeline.svg" style="width: auto;" onmouseover="helpers('vis_04_02_01')"></object>
 </div>
 <p>First, notice that all the tuple code in the variable declaration and the
 function return value is gone. Second, note that we pass <code>&amp;s1</code> into
@@ -206,7 +206,7 @@ Chapter 15.</p>
 <div class="flex-container" style="display: none;">
   <object type="image/svg+xml" class="vis_04_02_02" data="img/vis_04_02_02_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
-  <object type="image/svg+xml" class="vis_04_02_02" data="img/vis_04_02_02_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_02')"></object>
+  <object type="image/svg+xml" class="vis_04_02_02" data="img/vis_04_02_02_timeline.svg" style="width: auto;" onmouseover="helpers('vis_04_02_02')"></object>
 </div>
 <p>The <code>&amp;s1</code> syntax lets us create a reference that <em>refers</em> to the value of <code>s1</code>
 but does not own it. Because it does not own it, the value it points to will
@@ -229,7 +229,7 @@ the parameter <code>s</code> is a reference. Let’s add some explanatory annota
 <div class="flex-container" style="position: relative; margin-left: -50px; margin-right: -100px; display: none;">
   <object type="image/svg+xml" class="vis_04_02_03" data="img/vis_04_02_03_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
-  <object type="image/svg+xml" class="vis_04_02_03" data="img/vis_04_02_03_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_03')"></object>
+  <object type="image/svg+xml" class="vis_04_02_03" data="img/vis_04_02_03_timeline.svg" style="width: auto;" onmouseover="helpers('vis_04_02_03')"></object>
 </div>
 <p>The scope in which the variable <code>s</code> is valid is the same as any function
 parameter’s scope, but we don’t drop what the reference points to when it goes
@@ -287,7 +287,7 @@ fn change(some_string: &amp;mut String) {
 <div class="flex-container" style="display: none;">
   <object type="image/svg+xml" class="vis_04_02_05" data="img/vis_04_02_05_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
-  <object type="image/svg+xml" class="vis_04_02_05" data="img/vis_04_02_05_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_05')"></object>
+  <object type="image/svg+xml" class="vis_04_02_05" data="img/vis_04_02_05_timeline.svg" style="width: auto;" onmouseover="helpers('vis_04_02_05')"></object>
 </div>
 <p>First, we had to change <code>s</code> to be <code>mut</code>. Then we had to create a mutable
 reference with <code>&amp;mut s</code> and accept a mutable reference with <code>some_string: &amp;mut String</code>.</p>
@@ -353,7 +353,7 @@ multiple mutable references, just not <em>simultaneous</em> ones:</p>
 <div class="flex-container" style="position: relative; margin-left: -150px; margin-right: -125px; display: none;">
   <object type="image/svg+xml" class="vis_04_02_07" data="img/vis_04_02_07_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
-  <object type="image/svg+xml" class="vis_04_02_07" data="img/vis_04_02_07_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_07')"></object>
+  <object type="image/svg+xml" class="vis_04_02_07" data="img/vis_04_02_07_timeline.svg" style="width: auto;" onmouseover="helpers('vis_04_02_07')"></object>
 </div>
 <p>A similar rule exists for combining mutable and immutable references. This code
 results in an error:</p>
@@ -413,7 +413,7 @@ mutable reference is introduced:</p>
 <div class="flex-container" style="position:relative; margin-right:-100px; display: none;">
   <object type="image/svg+xml" class="vis_04_02_09" data="img/vis_04_02_09_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
-  <object type="image/svg+xml" class="vis_04_02_09" data="img/vis_04_02_09_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_09')"></object>
+  <object type="image/svg+xml" class="vis_04_02_09" data="img/vis_04_02_09_timeline.svg" style="width: auto;" onmouseover="helpers('vis_04_02_09')"></object>
 </div>
 <p>The scopes of the immutable references <code>r1</code> and <code>r2</code> end after the <code>println!</code>
 where they are last used, which is before the mutable reference <code>r3</code> is
@@ -498,7 +498,7 @@ won’t let us do this.</p>
 <div class="flex-container" style="display: none;">
   <object type="image/svg+xml" class="vis_04_02_12" data="img/vis_04_02_12_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
-  <object type="image/svg+xml" class="vis_04_02_12" data="img/vis_04_02_12_timeline.svg" style="width: auto;" onmouseover="displayFn(event,'vis_04_02_12')"></object>
+  <object type="image/svg+xml" class="vis_04_02_12" data="img/vis_04_02_12_timeline.svg" style="width: auto;" onmouseover="helpers('vis_04_02_12')"></object>
 </div>
 <p>This works without any problems. Ownership is moved out, and nothing is
 deallocated.</p>

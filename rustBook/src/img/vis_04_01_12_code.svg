@@ -17,8 +17,6 @@ svg {
 }
 
 text {
-    /* fill: white; */
-    /* fill: var(--text-color); */
     vertical-align: baseline;
     text-anchor: start;
 }

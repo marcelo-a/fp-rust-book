@@ -3,13 +3,8 @@
 // Fix back button cache problem
 window.onunload = function () { };
 
-// Link jQuery when window loads
+// Link *.js files when window loads
 window.onload = function () {
-    var script = document.createElement('script');
-    script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js';
-    script.type = 'text/javascript';
-    document.getElementsByTagName('head')[0].appendChild(script);
-
     var correct_page = (document.getElementsByClassName('active')[0].attributes.href.value == 'ch04-01-what-is-ownership.html'
                             || document.getElementsByClassName('active')[0].attributes.href.value == 'ch04-02-references-and-borrowing.html');
     if (correct_page) {
@@ -244,22 +239,26 @@ function playpen_text(playpen) {
             block.style.display = 'block'; // initialize display to original code
 
             // on button click, show visualization and hide code
+            var resize_done = false;
             pre_block.querySelector('.buttons').addEventListener('click', function (e) {
                 if (e.target.classList.contains('fa-toggle-on')) {
                     e.target.classList.remove('fa-toggle-on');
                     e.target.classList.add('fa-toggle-off');
 
                     pre_block.querySelector('.language-rust').style.display = 'block';
-                    $(pre_block).parent().next().hide();
+                    pre_block.parentElement.nextElementSibling.style.display = 'none';
                 } else if (e.target.classList.contains('fa-toggle-off')) {
                     e.target.classList.remove('fa-toggle-off');
                     e.target.classList.add('fa-toggle-on');
 
                     pre_block.querySelector('.language-rust').style.display = 'none';
-                    $(pre_block).parent().next().show();
+                    pre_block.parentElement.nextElementSibling.style.display = 'block';
 
-                    // resize code block
-                    sizeToFit($(pre_block).parent().next()[0].firstElementChild);
+                    // resize code block only once
+                    if (resize_done == false) {
+                        sizeToFit(pre_block.parentElement.nextElementSibling.firstElementChild);
+                        resize_done = true;
+                    }
                 }
             });
         }

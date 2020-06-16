@@ -59,12 +59,23 @@ function displayFn(classname) {
 /* --------------------- SVG CODE-RELATED FUNCTIONS --------------------- */
 
 // resize code block to fit comments
-function sizeToFit(svg_block) {
-    if (svg_block.contentDocument.readyState == "complete") {
-        var svg_doc = svg_block.contentDocument;
-        var code_width = svg_doc.getElementById('code').getBBox().width;
-        var new_width = Math.max(code_width + 30, 400);
-        svg_doc.firstChild.setAttribute('width', new_width + 'px');
+function sizeToFit(object) {
+    // Case for Chrome loading
+    if (navigator.userAgent.indexOf("Chrome") !== -1) {
+        object.addEventListener('load', function() {
+            var svg_doc = object.contentDocument;
+            var code_width = svg_doc.getElementById('code').getBBox().width;
+            var new_width = Math.max(code_width + 30, 400);
+            svg_doc.firstChild.setAttribute('width', new_width + 'px');
+        }, {once: true});
+    }
+    else {
+        if (object.contentDocument.readyState == "complete") {
+            var svg_doc = object.contentDocument;
+            var code_width = svg_doc.getElementById('code').getBBox().width;
+            var new_width = Math.max(code_width + 30, 400);
+            svg_doc.firstChild.setAttribute('width', new_width + 'px');
+        }
     }
 }
 

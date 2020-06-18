@@ -8,6 +8,15 @@ edition = "2018"
 name = "rrt_lib"
 path = "src/lib.rs"
 
+# The development profile, used for `cargo build`
+[profile.dev]
+opt-level = 0  # Controls the --opt-level the compiler builds with
+debug = true   # Controls whether the compiler passes `-g`
+# The release profile, used for `cargo build --release`
+[profile.release]
+opt-level = 3
+debug = false
+
 #compile with cargo run --example default
 [[example]]
 name = "shadowing"

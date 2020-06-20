@@ -3,18 +3,6 @@
 // Fix back button cache problem
 window.onunload = function () { };
 
-// Link *.js files when window loads
-window.onload = function () {
-    var correct_page = (document.getElementsByClassName('active')[0].attributes.href.value == 'ch04-01-what-is-ownership.html'
-                            || document.getElementsByClassName('active')[0].attributes.href.value == 'ch04-02-references-and-borrowing.html');
-    if (correct_page) {
-        var helper_script = document.createElement('script');
-        helper_script.src = '../src/svg_frontend/helpers.js';
-        helper_script.type = 'text/javascript';
-        document.getElementsByTagName('head')[0].appendChild(helper_script);
-    }
-};
-
 // Global variable, shared between modules
 function playpen_text(playpen) {
     let code_block = playpen.querySelector("code");
@@ -238,10 +226,10 @@ function playpen_text(playpen) {
             buttons.insertBefore(toggleButton, buttons.firstChild);
             block.style.display = 'block'; // initialize display to original code
 
-            // on button click, show visualization and hide code
             var resize_done = false;
             pre_block.querySelector('.buttons').addEventListener('click', function (e) {
                 if (e.target.classList.contains('fa-toggle-on')) {
+                    // on button click, show visualization and hide code
                     e.target.classList.remove('fa-toggle-on');
                     e.target.classList.add('fa-toggle-off');
 
@@ -254,6 +242,9 @@ function playpen_text(playpen) {
                     pre_block.querySelector('.language-rust').style.display = 'none';
                     pre_block.parentElement.nextElementSibling.style.display = 'block';
 
+                    // resize the dimension of the vis svg
+                    let nested_svgs = document.querySelectorAll("object[class^='vis_'] svg");
+                    console.table(nested_svgs)
                     // resize code block only once
                     if (resize_done == false) {
                         sizeToFit(pre_block.parentElement.nextElementSibling.firstElementChild);

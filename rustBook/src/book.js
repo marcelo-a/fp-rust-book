@@ -3,18 +3,6 @@
 // Fix back button cache problem
 window.onunload = function () { };
 
-// Link *.js files when window loads
-window.onload = function () {
-    var correct_page = (document.getElementsByClassName('active')[0].attributes.href.value == 'ch04-01-what-is-ownership.html'
-                            || document.getElementsByClassName('active')[0].attributes.href.value == 'ch04-02-references-and-borrowing.html');
-    if (correct_page) {
-        var helper_script = document.createElement('script');
-        helper_script.src = '../src/svg_frontend/helpers.js';
-        helper_script.type = 'text/javascript';
-        document.getElementsByTagName('head')[0].appendChild(helper_script);
-    }
-};
-
 // Global variable, shared between modules
 function playpen_text(playpen) {
     let code_block = playpen.querySelector("code");
@@ -24,6 +12,45 @@ function playpen_text(playpen) {
         return editor.getValue();
     } else {
         return code_block.textContent;
+    }
+}
+
+function adjust_visualization_size(flexbox) {
+    /* resize the dimension of the object tag to match the internal svg; this needs to be triggered everytime each panel resizes */
+    console.log("adjusting stuff");
+    // compute how wide the text sections should be
+    let text_width = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--content-max-width'));
+    let flex_border_size = parseInt('5px');                              // this parsing in intentional as a hint for the text_width
+    
+    let timeline_doc = flexbox.querySelector('object[class*="tl_panel"]').contentDocument.querySelector('svg');
+    let timeline_width = parseInt(timeline_doc.width.baseVal.value);
+    let desired_height = parseInt(timeline_doc.height.baseVal.value);
+    let code_panel_doc = flexbox.querySelector('object[class*="code_panel"]').contentDocument.querySelector('svg');
+    // console.table([
+    //     ["code_panel", flexbox.querySelector('object[class*="tl_panel"]').contentDocument.readyState, code_panel_doc],
+    //     ["timeline_panel", flexbox.querySelector('object[class*="code_panel"]').contentDocument.readyState, timeline_doc]
+    // ]);
+    let code_panel_width = parseInt(code_panel_doc.width.baseVal.value);
+    // update the div block that surround them with the new width
+    // Rule: if the two panels combined are narrower than the main text, simply set to the text width
+    // Otherwise, do a "center" effect.
+    // console.table([
+    //     ["text_width", text_width],
+    //     ["timeline_width", timeline_width],
+    //     ["code_panel_width", code_panel_width]
+    // ]);
+    if (text_width >= timeline_width + code_panel_width) {
+        // console.log("normal width!");
+        flexbox.style.marginLeft = "0px";
+        flexbox.style.marginRight = "0px";
+    } else {
+        // console.log("use gutter!");
+        let wiggle_room = parseInt("3px");                      // manually tweak this to prevent subpixel splitting
+        let margin_shrink = (timeline_width + code_panel_width + flex_border_size + wiggle_room - text_width) / 2;
+        flexbox.style.marginLeft = -margin_shrink + "px";
+        flexbox.style.marginRight = -margin_shrink + "px";
+        // console.log("shrink " + margin_shrink + " each side");
+        flexbox.style.height = desired_height + "px";
     }
 }
 
@@ -231,17 +258,17 @@ function playpen_text(playpen) {
             
             // create button element
             var toggleButton = document.createElement('button');
-                    toggleButton.className = 'fa fa-toggle-off toggle-button';
-                    toggleButton.title = 'Toggle visualization';
-                    toggleButton.setAttribute('aria-label', toggleButton.title);
+            toggleButton.className = 'fa fa-toggle-off toggle-button';
+            toggleButton.title = 'Toggle visualization';
+            toggleButton.setAttribute('aria-label', toggleButton.title);
     
             buttons.insertBefore(toggleButton, buttons.firstChild);
             block.style.display = 'block'; // initialize display to original code
 
-            // on button click, show visualization and hide code
             var resize_done = false;
             pre_block.querySelector('.buttons').addEventListener('click', function (e) {
                 if (e.target.classList.contains('fa-toggle-on')) {
+                    // on button click, show visualization and hide code
                     e.target.classList.remove('fa-toggle-on');
                     e.target.classList.add('fa-toggle-off');
 
@@ -252,12 +279,13 @@ function playpen_text(playpen) {
                     e.target.classList.add('fa-toggle-on');
 
                     pre_block.querySelector('.language-rust').style.display = 'none';
-                    pre_block.parentElement.nextElementSibling.style.display = 'block';
+                    pre_block.parentElement.nextElementSibling.style.display = 'flex';
 
                     // resize code block only once
                     if (resize_done == false) {
                         sizeToFit(pre_block.parentElement.nextElementSibling.firstElementChild);
                         resize_done = true;
+                        adjust_visualization_size(pre_block.parentElement.nextElementSibling);
                     }
                 }
             });

@@ -118,9 +118,9 @@ function mousePos(evt, obj) {
     var y_pos = evt.clientY + obj.getBoundingClientRect().y + window.scrollY + 45; // baseline hanging
 
     return {
-      //object
-      x: Math.round(x_pos),
-      y: Math.round(y_pos)
+        //object
+        x: Math.round(x_pos),
+        y: Math.round(y_pos)
     };
 }
 

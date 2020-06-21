@@ -2,6 +2,9 @@
 red=$'\e[1;31m'
 end=$'\e[0m'
 
+# we do not want to keep previous builds
+rm -fr ./docs
+
 printf "Running the following examples: \n" > buildBook.log
 declare -a targetExamples=(
     "one_var" # book_04_01_01_one_var
@@ -36,6 +39,9 @@ for target in ${targetExamples[@]}; do
 done
 
 ownership_page="ch04-00-understanding-ownership.html"
-
-mdbook build --dest-dir ../docs ./rustBook
+mdbook build --dest-dir ../docs ./rustBook      # this ../docs is odd but correct. It is not calculated
+                                                # based on the current working dir., 
+                                                # but relative to the source directory (./rustBook)
+                                                # I don't think this api will be changed
+                                                # to a more natual one anytime. Way to go mdbook
 firefox docs/${ownership_page} || open docs/${ownership_page}

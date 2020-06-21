@@ -26,30 +26,30 @@ function adjust_visualization_size(flexbox) {
     let timeline_width = parseInt(timeline_doc.width.baseVal.value);
     let desired_height = parseInt(timeline_doc.height.baseVal.value);
     let code_panel_doc = flexbox.querySelector('object[class*="code_panel"]').contentDocument.querySelector('svg');
-    console.table([
-        ["code_panel", flexbox.querySelector('object[class*="tl_panel"]').contentDocument.readyState, code_panel_doc],
-        ["timeline_panel", flexbox.querySelector('object[class*="code_panel"]').contentDocument.readyState, timeline_doc]
-    ]);
+    // console.table([
+    //     ["code_panel", flexbox.querySelector('object[class*="tl_panel"]').contentDocument.readyState, code_panel_doc],
+    //     ["timeline_panel", flexbox.querySelector('object[class*="code_panel"]').contentDocument.readyState, timeline_doc]
+    // ]);
     let code_panel_width = parseInt(code_panel_doc.width.baseVal.value);
     // update the div block that surround them with the new width
     // Rule: if the two panels combined are narrower than the main text, simply set to the text width
     // Otherwise, do a "center" effect.
-    console.table([
-        ["text_width", text_width],
-        ["timeline_width", timeline_width],
-        ["code_panel_width", code_panel_width]
-    ]);
+    // console.table([
+    //     ["text_width", text_width],
+    //     ["timeline_width", timeline_width],
+    //     ["code_panel_width", code_panel_width]
+    // ]);
     if (text_width >= timeline_width + code_panel_width) {
-        console.log("normal width!");
+        // console.log("normal width!");
         flexbox.style.marginLeft = "0px";
         flexbox.style.marginRight = "0px";
     } else {
-        console.log("use gutter!");
+        // console.log("use gutter!");
         let wiggle_room = parseInt("3px");                      // manually tweak this to prevent subpixel splitting
         let margin_shrink = (timeline_width + code_panel_width + flex_border_size + wiggle_room - text_width) / 2;
         flexbox.style.marginLeft = -margin_shrink + "px";
         flexbox.style.marginRight = -margin_shrink + "px";
-        console.log("shrink " + margin_shrink + " each side");
+        // console.log("shrink " + margin_shrink + " each side");
         flexbox.style.height = desired_height + "px";
     }
 }
@@ -237,21 +237,6 @@ function adjust_visualization_size(flexbox) {
             }
         });
     });
-
-    // Whenever visualization svg objects update size or get loaded, make sure the parent flex box looks nice
-    console.log(document.querySelectorAll("object.code_panel, object.tl_panel"));
-    // Array.from(document.querySelectorAll("object.code_panel, object.tl_panel"))
-    //     .forEach(function (obj) {
-    //         console.log("found an element;");
-    //         obj.addEventListener('load', function(e) {
-    //             console.log("loaded object;");
-    //             adjust_visualization_size(obj);
-    //         }, true);
-    //         obj.addEventListener('resize', function(e) {
-    //             console.log("something resized: ");
-    //             adjust_visualization_size(obj);
-    //         }, true);
-    //     });
 
     // Insert toggle visualization button, ADDED BY marcelo-a 
     Array.from(document.querySelectorAll("pre code")).forEach(function (block) {

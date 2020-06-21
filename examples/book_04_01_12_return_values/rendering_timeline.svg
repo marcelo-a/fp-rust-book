@@ -180,10 +180,10 @@ object.code_panel {
     </defs>
 
     <g id="labels">
-        <text x="210" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="s3, immutable">s3</text>
-        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
         <text x="431" y="90" style="text-anchor:middle" data-hash="5" class="code tooltip-trigger" data-tooltip-text="a_string, immutable">a_string</text>
         <text x="340" y="90" style="text-anchor:middle" data-hash="4" class="code tooltip-trigger" data-tooltip-text="some_string, immutable">some_string</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
+        <text x="210" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="s3, immutable">s3</text>
         <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="s2, immutable">s2</text>
     </g>
 

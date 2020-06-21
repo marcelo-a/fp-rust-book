@@ -50,8 +50,8 @@ function adjust_visualization_size(flexbox) {
         flexbox.style.marginLeft = -margin_shrink + "px";
         flexbox.style.marginRight = -margin_shrink + "px";
         // console.log("shrink " + margin_shrink + " each side");
-        flexbox.style.height = desired_height + "px";
     }
+    flexbox.style.height = desired_height + "px";
 }
 
 (function codeSnippets() {

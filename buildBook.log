@@ -5,7 +5,7 @@ successfully wrote to examples/book_04_01_01_one_var/rendering_code.svg
 successfully wrote to examples/book_04_01_01_one_var/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_01_code.svg
 successfully wrote to rustBook/src/img/vis_04_01_01_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
      Running `target/debug/examples/scope`
 successfully wrote to examples/book_04_01_02_scope/rendering_code.svg
 successfully wrote to examples/book_04_01_02_scope/rendering_timeline.svg
@@ -17,7 +17,7 @@ successfully wrote to examples/book_04_01_03_string_from/rendering_code.svg
 successfully wrote to examples/book_04_01_03_string_from/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_03_code.svg
 successfully wrote to rustBook/src/img/vis_04_01_03_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/reference`
 successfully wrote to examples/book_04_01_04_reference/rendering_code.svg
 successfully wrote to examples/book_04_01_04_reference/rendering_timeline.svg
@@ -41,7 +41,7 @@ successfully wrote to examples/book_04_01_07_string_move/rendering_code.svg
 successfully wrote to examples/book_04_01_07_string_move/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_07_code.svg
 successfully wrote to rustBook/src/img/vis_04_01_07_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
      Running `target/debug/examples/string_clone`
 successfully wrote to examples/book_04_01_09_string_clone/rendering_code.svg
 successfully wrote to examples/book_04_01_09_string_clone/rendering_timeline.svg
@@ -59,7 +59,7 @@ successfully wrote to examples/book_04_01_11_ownership_function/rendering_code.s
 successfully wrote to examples/book_04_01_11_ownership_function/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_11_code.svg
 successfully wrote to rustBook/src/img/vis_04_01_11_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
      Running `target/debug/examples/return_values`
 successfully wrote to examples/book_04_01_12_return_values/rendering_code.svg
 successfully wrote to examples/book_04_01_12_return_values/rendering_timeline.svg
@@ -83,13 +83,13 @@ successfully wrote to examples/book_04_02_02_acquire_from_function/rendering_cod
 successfully wrote to examples/book_04_02_02_acquire_from_function/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_02_02_code.svg
 successfully wrote to rustBook/src/img/vis_04_02_02_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
      Running `target/debug/examples/safely_out_of_scope`
 successfully wrote to examples/book_04_02_03_safely_out_of_scope/rendering_code.svg
 successfully wrote to examples/book_04_02_03_safely_out_of_scope/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_02_03_code.svg
 successfully wrote to rustBook/src/img/vis_04_02_03_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
      Running `target/debug/examples/mut_ref`
 successfully wrote to examples/book_04_02_05_mut_ref/rendering_code.svg
 successfully wrote to examples/book_04_02_05_mut_ref/rendering_timeline.svg
@@ -107,7 +107,7 @@ successfully wrote to examples/book_04_02_09_shared_and_unique_borrow/rendering_
 successfully wrote to examples/book_04_02_09_shared_and_unique_borrow/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_02_09_code.svg
 successfully wrote to rustBook/src/img/vis_04_02_09_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
      Running `target/debug/examples/no_dangle`
 successfully wrote to examples/book_04_02_12_no_dangle/rendering_code.svg
 successfully wrote to examples/book_04_02_12_no_dangle/rendering_timeline.svg

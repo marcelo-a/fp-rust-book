@@ -101,7 +101,15 @@ text.code {
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-shrink: 1;
+    flex-shrink: 0;
+}
+
+object.tl_panel {
+    flex-grow: 1;
+}
+
+object.code_panel {
+    flex-grow: 0;
 }
 
 /* hash based styling */
@@ -172,11 +180,11 @@ text.code {
     </defs>
 
     <g id="labels">
-        <text x="210" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="s2, immutable">s2</text>
-        <text x="280" y="90" style="text-anchor:middle" data-hash="4" class="code tooltip-trigger" data-tooltip-text="s, immutable">s</text>
-        <text x="350" y="90" style="text-anchor:middle" data-hash="5" class="code tooltip-trigger" data-tooltip-text="length, immutable">length</text>
         <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
+        <text x="280" y="90" style="text-anchor:middle" data-hash="4" class="code tooltip-trigger" data-tooltip-text="s, immutable">s</text>
         <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="len, immutable">len</text>
+        <text x="350" y="90" style="text-anchor:middle" data-hash="5" class="code tooltip-trigger" data-tooltip-text="length, immutable">length</text>
+        <text x="210" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="s2, immutable">s2</text>
     </g>
 
     <g id="timelines">

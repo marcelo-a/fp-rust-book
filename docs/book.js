@@ -15,6 +15,45 @@ function playpen_text(playpen) {
     }
 }
 
+function adjust_visualization_size(flexbox) {
+    /* resize the dimension of the object tag to match the internal svg; this needs to be triggered everytime each panel resizes */
+    console.log("adjusting stuff");
+    // compute how wide the text sections should be
+    let text_width = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--content-max-width'));
+    let flex_border_size = parseInt('5px');                              // this parsing in intentional as a hint for the text_width
+    
+    let timeline_doc = flexbox.querySelector('object[class*="tl_panel"]').contentDocument.querySelector('svg');
+    let timeline_width = parseInt(timeline_doc.width.baseVal.value);
+    let desired_height = parseInt(timeline_doc.height.baseVal.value);
+    let code_panel_doc = flexbox.querySelector('object[class*="code_panel"]').contentDocument.querySelector('svg');
+    console.table([
+        ["code_panel", flexbox.querySelector('object[class*="tl_panel"]').contentDocument.readyState, code_panel_doc],
+        ["timeline_panel", flexbox.querySelector('object[class*="code_panel"]').contentDocument.readyState, timeline_doc]
+    ]);
+    let code_panel_width = parseInt(code_panel_doc.width.baseVal.value);
+    // update the div block that surround them with the new width
+    // Rule: if the two panels combined are narrower than the main text, simply set to the text width
+    // Otherwise, do a "center" effect.
+    console.table([
+        ["text_width", text_width],
+        ["timeline_width", timeline_width],
+        ["code_panel_width", code_panel_width]
+    ]);
+    if (text_width >= timeline_width + code_panel_width) {
+        console.log("normal width!");
+        flexbox.style.marginLeft = "0px";
+        flexbox.style.marginRight = "0px";
+    } else {
+        console.log("use gutter!");
+        let wiggle_room = parseInt("3px");                      // manually tweak this to prevent subpixel splitting
+        let margin_shrink = (timeline_width + code_panel_width + flex_border_size + wiggle_room - text_width) / 2;
+        flexbox.style.marginLeft = -margin_shrink + "px";
+        flexbox.style.marginRight = -margin_shrink + "px";
+        console.log("shrink " + margin_shrink + " each side");
+        flexbox.style.height = desired_height + "px";
+    }
+}
+
 (function codeSnippets() {
     function fetch_with_timeout(url, options, timeout = 6000) {
         return Promise.race([
@@ -199,6 +238,21 @@ function playpen_text(playpen) {
         });
     });
 
+    // Whenever visualization svg objects update size or get loaded, make sure the parent flex box looks nice
+    console.log(document.querySelectorAll("object.code_panel, object.tl_panel"));
+    // Array.from(document.querySelectorAll("object.code_panel, object.tl_panel"))
+    //     .forEach(function (obj) {
+    //         console.log("found an element;");
+    //         obj.addEventListener('load', function(e) {
+    //             console.log("loaded object;");
+    //             adjust_visualization_size(obj);
+    //         }, true);
+    //         obj.addEventListener('resize', function(e) {
+    //             console.log("something resized: ");
+    //             adjust_visualization_size(obj);
+    //         }, true);
+    //     });
+
     // Insert toggle visualization button, ADDED BY marcelo-a 
     Array.from(document.querySelectorAll("pre code")).forEach(function (block) {
         // only add button if there is a visualization available
@@ -219,9 +273,9 @@ function playpen_text(playpen) {
             
             // create button element
             var toggleButton = document.createElement('button');
-                    toggleButton.className = 'fa fa-toggle-off toggle-button';
-                    toggleButton.title = 'Toggle visualization';
-                    toggleButton.setAttribute('aria-label', toggleButton.title);
+            toggleButton.className = 'fa fa-toggle-off toggle-button';
+            toggleButton.title = 'Toggle visualization';
+            toggleButton.setAttribute('aria-label', toggleButton.title);
     
             buttons.insertBefore(toggleButton, buttons.firstChild);
             block.style.display = 'block'; // initialize display to original code
@@ -240,15 +294,13 @@ function playpen_text(playpen) {
                     e.target.classList.add('fa-toggle-on');
 
                     pre_block.querySelector('.language-rust').style.display = 'none';
-                    pre_block.parentElement.nextElementSibling.style.display = 'block';
+                    pre_block.parentElement.nextElementSibling.style.display = 'flex';
 
-                    // resize the dimension of the vis svg
-                    let nested_svgs = document.querySelectorAll("object[class^='vis_'] svg");
-                    console.table(nested_svgs)
                     // resize code block only once
                     if (resize_done == false) {
                         sizeToFit(pre_block.parentElement.nextElementSibling.firstElementChild);
                         resize_done = true;
+                        adjust_visualization_size(pre_block.parentElement.nextElementSibling);
                     }
                 }
             });

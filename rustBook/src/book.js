@@ -15,6 +15,45 @@ function playpen_text(playpen) {
     }
 }
 
+function adjust_visualization_size(flexbox) {
+    /* resize the dimension of the object tag to match the internal svg; this needs to be triggered everytime each panel resizes */
+    console.log("adjusting stuff");
+    // compute how wide the text sections should be
+    let text_width = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--content-max-width'));
+    let flex_border_size = parseInt('5px');                              // this parsing in intentional as a hint for the text_width
+    
+    let timeline_doc = flexbox.querySelector('object[class*="tl_panel"]').contentDocument.querySelector('svg');
+    let timeline_width = parseInt(timeline_doc.width.baseVal.value);
+    let desired_height = parseInt(timeline_doc.height.baseVal.value);
+    let code_panel_doc = flexbox.querySelector('object[class*="code_panel"]').contentDocument.querySelector('svg');
+    // console.table([
+    //     ["code_panel", flexbox.querySelector('object[class*="tl_panel"]').contentDocument.readyState, code_panel_doc],
+    //     ["timeline_panel", flexbox.querySelector('object[class*="code_panel"]').contentDocument.readyState, timeline_doc]
+    // ]);
+    let code_panel_width = parseInt(code_panel_doc.width.baseVal.value);
+    // update the div block that surround them with the new width
+    // Rule: if the two panels combined are narrower than the main text, simply set to the text width
+    // Otherwise, do a "center" effect.
+    // console.table([
+    //     ["text_width", text_width],
+    //     ["timeline_width", timeline_width],
+    //     ["code_panel_width", code_panel_width]
+    // ]);
+    if (text_width >= timeline_width + code_panel_width) {
+        // console.log("normal width!");
+        flexbox.style.marginLeft = "0px";
+        flexbox.style.marginRight = "0px";
+    } else {
+        // console.log("use gutter!");
+        let wiggle_room = parseInt("3px");                      // manually tweak this to prevent subpixel splitting
+        let margin_shrink = (timeline_width + code_panel_width + flex_border_size + wiggle_room - text_width) / 2;
+        flexbox.style.marginLeft = -margin_shrink + "px";
+        flexbox.style.marginRight = -margin_shrink + "px";
+        // console.log("shrink " + margin_shrink + " each side");
+        flexbox.style.height = desired_height + "px";
+    }
+}
+
 (function codeSnippets() {
     function fetch_with_timeout(url, options, timeout = 6000) {
         return Promise.race([
@@ -240,12 +279,13 @@ function playpen_text(playpen) {
                     e.target.classList.add('fa-toggle-on');
 
                     pre_block.querySelector('.language-rust').style.display = 'none';
-                    pre_block.parentElement.nextElementSibling.style.display = 'block';
+                    pre_block.parentElement.nextElementSibling.style.display = 'flex';
 
                     // resize code block only once
                     if (resize_done == false) {
                         sizeToFit(pre_block.parentElement.nextElementSibling.firstElementChild);
                         resize_done = true;
+                        adjust_visualization_size(pre_block.parentElement.nextElementSibling);
                     }
                 }
             });

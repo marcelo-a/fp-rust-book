@@ -100,7 +100,15 @@ text.code {
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    flex-shrink: 1;
+    flex-shrink: 0;
+}
+
+object.tl_panel {
+    flex-grow: 1;
+}
+
+object.code_panel {
+    flex-grow: 0;
 }
 
 /* hash based styling */

@@ -11,6 +11,7 @@ struct TimelineColumnData {
     name: String,
     x_val: i64,
     title: String,
+    is_ref: bool,
 }
 
 #[derive(Serialize)]
@@ -126,7 +127,7 @@ fn prepare_registry(registry: &mut Handlebars) {
     let label_template =
         "        <text x=\"{{x_val}}\" y=\"90\" style=\"text-anchor:middle\" data-hash=\"{{hash}}\" class=\"code tooltip-trigger\" data-tooltip-text=\"{{title}}\">{{name}}</text>\n";
     let dot_template =
-        "        <use xlink:href=\"#eventDot\" data-hash=\"{{hash}}\" x=\"{{dot_x}}\" y=\"{{dot_y}}\" class=\"tooltip-trigger\" data-tooltip-text=\"{{title}}\"/>\n";
+        "        <circle cx=\"{{dot_x}}\" cy=\"{{dot_y}}\" r=\"5\" id=\"#eventDot\" data-hash=\"{{hash}}\" class=\"tooltip-trigger\" data-tooltip-text=\"{{title}}\"/>\n";
     let function_dot_template =    
         "        <use xlink:href=\"#functionDot\" data-hash=\"{{hash}}\" x=\"{{x}}\" y=\"{{y}}\" class=\"tooltip-trigger\" data-tooltip-text=\"{{title}}\"/>\n";
     let function_logo_template =
@@ -185,21 +186,32 @@ fn compute_column_layout<'a>(visualization_data: &'a VisualizationData) -> (Hash
             },
             ResourceAccessPoint::Owner(_) | ResourceAccessPoint::MutRef(_) | ResourceAccessPoint::StaticRef(_) =>
             {
-                let name = match visualization_data.get_name_from_hash(hash) {
+                let mut name = match visualization_data.get_name_from_hash(hash) {
                     Some(_name) => _name,
                     None => panic!("no matching resource owner for hash {}", hash),
                 };
-                let x_space = cmp::max(70, (&(name.len() as i64)-1)*13);
+                let mut x_space = cmp::max(70, (&(name.len() as i64)-1)*13);
                 x = x + x_space;
                 let title = match visualization_data.is_mut(hash) {
                     true => String::from("mutable"),
                     false => String::from("immutable"),
                 };
+                let mut ref_bool = false;
+
+                if timeline.resource_access_point.is_ref() {
+                    let temp_name = name.clone() + "|*" + &name; // used for calculating x_space
+                    x = x - x_space; // reset
+                    x_space = cmp::max(90, (&(temp_name.len() as i64)-1)*7); // new x_space
+                    x = x + x_space; // new x pos
+                    ref_bool = true; // hover msg displays only "s" rather than "s|*s"
+                }
+
                 resource_owners_layout.insert(hash, TimelineColumnData
                     { 
                         name: name.clone(), 
                         x_val: x, 
                         title: name.clone() + ", " + &title,
+                        is_ref: ref_bool,
                     });
             }
         }
@@ -213,12 +225,17 @@ fn render_labels_string(
 ) -> String {
     let mut output = String::new();
     for (hash, column_data) in resource_owners_layout.iter() {
-        let data = ResourceAccessPointLabelData {
+        let mut data = ResourceAccessPointLabelData {
             x_val: column_data.x_val,
             hash: hash.to_string(),
             name: column_data.name.clone(),
             title: column_data.title.clone(),
         };
+
+        if column_data.is_ref {
+            let new_name = column_data.name.clone() + "|*" + &column_data.name;
+            data.name = new_name;
+        }
         output.push_str(&registry.render("label_template", &data).unwrap());
     }
     output

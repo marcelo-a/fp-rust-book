@@ -103,6 +103,10 @@ object.code_panel {
     flex-grow: 0;
 }
 
+.tooltip-trigger {
+    cursor: help;
+}
+
 /* hash based styling */
 [data-hash="0"] {
     fill: #6e6b5e;

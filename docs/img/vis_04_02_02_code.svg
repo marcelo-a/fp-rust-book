@@ -51,8 +51,7 @@ text.label {
 }
 
 .hollow {
-    stroke-width: 5px;
-    fill: var(--bg-color);
+    stroke-width: 1.5;
 }
 
 .dotted {
@@ -63,11 +62,6 @@ text.label {
 .extend {
     stroke-width: 1px;
     stroke-dasharray: "2 1";
-}
-
-.colorless {
-    stroke: var(--bg-color);
-    fill: var(--bg-color);
 }
 
 .functionIcon {
@@ -106,7 +100,7 @@ object.code_panel {
     -o-transition: all 0.3s ease-in;
 }
 
-.tooltip-trigger:not(.colorless):hover{
+.tooltip-trigger:hover{
     filter: url(#glow);
 }
 

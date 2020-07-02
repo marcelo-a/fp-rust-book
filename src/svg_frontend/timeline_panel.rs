@@ -67,7 +67,7 @@ struct FunctionLogoData {
 struct VerticalLineData {
     line_class: String,
     hash: u64,
-    x1: i64,
+    x1: f64,
     x2: i64,
     y1: i64,
     y2: i64,
@@ -136,8 +136,8 @@ fn prepare_registry(registry: &mut Handlebars) {
         "        <polyline stroke-width=\"5px\" stroke=\"gray\" points=\"{{x2}},{{y2}} {{x1}},{{y1}} \" marker-end=\"url(#arrowHead)\" class=\"tooltip-trigger\" data-tooltip-text=\"{{title}}\"/>\n";
     let vertical_line_template =
         "        <line data-hash=\"{{hash}}\" class=\"{{line_class}} tooltip-trigger\" x1=\"{{x1}}\" x2=\"{{x2}}\" y1=\"{{y1}}\" y2=\"{{y2}}\" data-tooltip-text=\"{{title}}\"/>\n";
-    let hollow_line_internal_template =
-        "        <line class=\"colorless tooltip-trigger\" stroke-width=\"2px\" x1=\"{{x1}}\" x2=\"{{x2}}\" y1=\"{{y1}}\" y2=\"{{y2}}\" data-tooltip-text=\"{{title}}\"/>\n";
+    let hollow_line_template =
+        "        <path data-hash=\"{{hash}}\" class=\"hollow tooltip-trigger\" style=\"fill:transparent;\" d=\"M {{x1}},{{y1}} V {{y2}} h 3.5 V {{y1}} h -3.5\" data-tooltip-text=\"{{title}}\"/>\n";
     let solid_ref_line_template =
         "        <path data-hash=\"{{hash}}\" class=\"{{line_class}} tooltip-trigger\" style=\"fill:transparent;\" d=\"M {{x1}} {{y1}} l {{dx}} {{dy}} v {{v}} l -{{dx}} {{dy}}\" data-tooltip-text=\"{{title}}\"/>\n";
     let hollow_ref_line_template =
@@ -158,13 +158,13 @@ fn prepare_registry(registry: &mut Handlebars) {
         registry.register_template_string("vertical_line_template", vertical_line_template).is_ok()
     );
     assert!(
-        registry.register_template_string("hollow_line_internal_template", hollow_line_internal_template).is_ok()
-    );
-    assert!(
         registry.register_template_string("function_dot_template", function_dot_template).is_ok()
     );
     assert!(
         registry.register_template_string("function_logo_template", function_logo_template).is_ok()
+    );
+    assert!(
+        registry.register_template_string("hollow_line_template", hollow_line_template).is_ok()
     );
     assert!(
         registry.register_template_string("solid_ref_line_template", solid_ref_line_template).is_ok()
@@ -562,17 +562,10 @@ fn create_owner_line_string(
             registry.render("vertical_line_template", &data).unwrap()
         },
         (State::FullPrivilege, OwnerLine::Hollow) => {
-            // background for hollow line
-            data.line_class = String::from("hollow");
+            let mut hollow_line_data = data.clone();
+            hollow_line_data.x1 -= 1.8; // center middle of path to center of event dot
             
-            // overlap solid line with internal_line to create hollow effect
-            let mut hollow_internal_line_data = data.clone();
-            hollow_internal_line_data.y1 += 5;
-            hollow_internal_line_data.y2 -= 5;
-            hollow_internal_line_data.title = data.title.to_owned();
-            
-            let output = format!("{}\n{}", registry.render("vertical_line_template", &data).unwrap(),
-                                           registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
+            let output = registry.render("hollow_line_template", &hollow_line_data).unwrap();
             output
         },
         (State::FullPrivilege, OwnerLine::Dotted) => {
@@ -611,34 +604,29 @@ fn create_reference_line_string(
             registry.render("vertical_line_template", &data).unwrap()
         },
         (State::FullPrivilege, false) => {
-            data.line_class = String::from("hollow");
             if rap.is_ref() {
                 data.title += "; can read and write data; cannot point to another piece of data";
             } else {
                 data.title += "; can only read data";
             }
             
-            let mut hollow_internal_line_data = data.clone();
-            hollow_internal_line_data.y1 += 5;
-            hollow_internal_line_data.y2 -= 5;
-            hollow_internal_line_data.title = data.title.to_owned();
+            let mut hollow_line_data = data.clone();
+            hollow_line_data.x1 -= 1.8; // center middle of path to center of event dot
             
-            let output = format!("{}\n{}", registry.render("vertical_line_template", &data).unwrap(),
-                                           registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap());
+            let output = registry.render("hollow_line_template", &hollow_line_data).unwrap();
             output
         },
         (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, _) => {
             data.line_class = String::from("solid");
             data.title += "; can only read data";
-            // the background of the hollow line
-            let final_line = registry.render("vertical_line_template", &data).unwrap();
             
-            let mut hollow_internal_line_data = data.clone();
-            hollow_internal_line_data.y1 += 5;
-            hollow_internal_line_data.y2 -= 5;
-            hollow_internal_line_data.title = data.title.to_owned();
+            let mut hollow_line_data = data.clone();
+            hollow_line_data.x1 -= 1.8; // center middle of path to center of event dot
+            hollow_line_data.title = data.title.to_owned();
+            
+            let output = registry.render("hollow_line_template", &hollow_line_data).unwrap();
+            output
 
-            final_line + &registry.render("hollow_line_internal_template", &hollow_internal_line_data).unwrap()
         },
         (State::ResourceMoved{ move_to: _, move_at_line: _ }, true) => {
             data.line_class = String::from("extend");
@@ -673,7 +661,7 @@ fn render_timelines(
                         VerticalLineData {
                             line_class: String::new(),
                             hash: *hash,
-                            x1: resource_owners_layout[hash].x_val,
+                            x1: resource_owners_layout[hash].x_val as f64,
                             y1: get_y_axis_pos(line_start),
                             x2: resource_owners_layout[hash].x_val,
                             y2: get_y_axis_pos(line_end),

@@ -52,8 +52,7 @@ text.label {
 }
 
 .hollow {
-    stroke-width: 5px;
-    fill: var(--bg-color);
+    stroke-width: 1.5;
 }
 
 .dotted {
@@ -64,11 +63,6 @@ text.label {
 .extend {
     stroke-width: 1px;
     stroke-dasharray: "2 1";
-}
-
-.colorless {
-    stroke: var(--bg-color);
-    fill: var(--bg-color);
 }
 
 .functionIcon {
@@ -107,7 +101,7 @@ object.code_panel {
     -o-transition: all 0.3s ease-in;
 }
 
-.tooltip-trigger:not(.colorless):hover{
+.tooltip-trigger:hover{
     filter: url(#glow);
 }
 
@@ -172,7 +166,8 @@ object.code_panel {
             markerUnits="strokeWidth"
             markerWidth="3px" markerHeight="3px"
             orient="auto" fill="gray">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
+            <path d="M 0 0 L 8.5 4 L 0 8 z" transform="translate(1 1)" fill="inherit"/>
+
         </marker>
         <!-- glow highlight filter -->
         <filter id="glow" x="-5000%" y="-5000%" width="10000%" height="10000%" filterUnits="userSpaceOnUse">

@@ -131,7 +131,7 @@ fn prepare_registry(registry: &mut Handlebars) {
     let function_dot_template =    
         "        <use xlink:href=\"#functionDot\" data-hash=\"{{hash}}\" x=\"{{x}}\" y=\"{{y}}\" class=\"tooltip-trigger\" data-tooltip-text=\"{{title}}\"/>\n";
     let function_logo_template =
-        "        <text x=\"{{x}}\" y=\"{{y}}\" data-hash=\"{{hash}}\" font-size=\"20\" font-style=\"italic\" class=\"tooltip-trigger fn-trigger\" data-tooltip-text=\"{{title}}\">f</text>\n";
+        "        <text x=\"{{x}}\" y=\"{{y}}\" data-hash=\"{{hash}}\" class=\"functionLogo tooltip-trigger fn-trigger\" data-tooltip-text=\"{{title}}\">f</text>\n";
     let arrow_template =
         "        <polyline stroke-width=\"5px\" stroke=\"gray\" points=\"{{x2}},{{y2}} {{x1}},{{y1}} \" marker-end=\"url(#arrowHead)\" class=\"tooltip-trigger\" data-tooltip-text=\"{{title}}\"/>\n";
     let vertical_line_template =

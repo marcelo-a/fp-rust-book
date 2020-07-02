@@ -16,12 +16,11 @@
              <text class="functionIcon" dx="-3.5" dy="0" fill="#6e6b5e">f</text>
         </g>
         <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
+            refX="0" refY="4"
             markerUnits="strokeWidth"
             markerWidth="3px" markerHeight="3px"
             orient="auto" fill="gray">
-            <path d="M 0 0 L 8.5 4 L 0 8 z" transform="translate(1 1)" fill="inherit"/>
-
+            <path d="M 0 0 L 8.5 4 L 0 8 z" fill="inherit"/>
         </marker>
         <!-- glow highlight filter -->
         <filter id="glow" x="-5000%" y="-5000%" width="10000%" height="10000%" filterUnits="userSpaceOnUse">
@@ -33,6 +32,12 @@
                 <feMergeNode in="coloredBlur"></feMergeNode>
                 <feMergeNode in="SourceGraphic"></feMergeNode>
             </feMerge>
+            <!-- increase brightness -->
+            <feComponentTransfer>
+                <feFuncR type="linear" slope="2"/>
+                <feFuncG type="linear" slope="2"/>
+                <feFuncB type="linear" slope="2"/>
+            </feComponentTransfer>
         </filter>
     </defs>
 

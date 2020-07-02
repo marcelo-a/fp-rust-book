@@ -66,14 +66,23 @@ text.label {
 }
 
 .functionIcon {
-    stroke: gray;
-    fill: white;
+    paint-order: stroke;
+    stroke-width: 3px;
+    fill: var(--bg-color);
     font-size: 20px;
     font-family: times;
     font-weight: lighter;
     dominant-baseline: central;
     text-anchor: start;
     font-style: italic;
+}
+
+.functionLogo {
+    font-size: 20px;
+    font-style: italic;
+    paint-order: stroke;
+    stroke-width: 3px;
+    fill: var(--bg-color) !important;
 }
 
 /* flex related styling */
@@ -95,10 +104,6 @@ object.code_panel {
 
 .tooltip-trigger {
     cursor: help;
-    transition: all 0.3s ease-in;
-    -webkit-transition: all 0.3s ease-in;
-    -moz-transition: all 0.3s ease-in;
-    -o-transition: all 0.3s ease-in;
 }
 
 .tooltip-trigger:hover{
@@ -111,13 +116,13 @@ object.code_panel {
 }
 
 [data-hash="1"] {
-    fill: #3355ff;
-    stroke: #3355ff;
+    fill: #1893ff;
+    stroke: #1893ff;
 }
 
 [data-hash="2"] {
-    fill: #33cc33;
-    stroke: #33cc33;
+    fill: #ff7f50;
+    stroke: #ff7f50;
 }
 
 [data-hash="3"] {
@@ -126,13 +131,13 @@ object.code_panel {
 }
 
 [data-hash="4"] {
-    fill: #6600ff;
-    stroke: #6600ff;
+    fill: #8635ff;
+    stroke: #8635ff;
 }
 
 [data-hash="5"] {
-    fill: #ff33cc;
-    stroke: #ff33cc;
+    fill: #0a810a;
+    stroke: #0a810a;
 }
 
 [data-hash="6"] {
@@ -141,8 +146,8 @@ object.code_panel {
 }
 
 [data-hash="7"] {
-    fill: #ff9900;
-    stroke: #ff9900;
+    fill: #ff6cce;
+    stroke: #ff6cce;
 }
 
 [data-hash="8"] {
@@ -151,8 +156,8 @@ object.code_panel {
 }
 
 [data-hash="9"] {
-    fill: #9aeb58;
-    stroke: #9aeb58;
+    fill: #b99f35;
+    stroke: #b99f35;
 }
         ]]>
         </style>
@@ -162,12 +167,11 @@ object.code_panel {
              <text class="functionIcon" dx="-3.5" dy="0" fill="#6e6b5e">f</text>
         </g>
         <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
+            refX="0" refY="4"
             markerUnits="strokeWidth"
             markerWidth="3px" markerHeight="3px"
             orient="auto" fill="gray">
-            <path d="M 0 0 L 8.5 4 L 0 8 z" transform="translate(1 1)" fill="inherit"/>
-
+            <path d="M 0 0 L 8.5 4 L 0 8 z" fill="inherit"/>
         </marker>
         <!-- glow highlight filter -->
         <filter id="glow" x="-5000%" y="-5000%" width="10000%" height="10000%" filterUnits="userSpaceOnUse">
@@ -179,6 +183,12 @@ object.code_panel {
                 <feMergeNode in="coloredBlur"></feMergeNode>
                 <feMergeNode in="SourceGraphic"></feMergeNode>
             </feMerge>
+            <!-- increase brightness -->
+            <feComponentTransfer>
+                <feFuncR type="linear" slope="2"/>
+                <feFuncG type="linear" slope="2"/>
+                <feFuncB type="linear" slope="2"/>
+            </feComponentTransfer>
         </filter>
     </defs>
 
@@ -198,7 +208,7 @@ object.code_panel {
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" data-hash="2" font-size="20" font-style="italic" class="tooltip-trigger fn-trigger" data-tooltip-text="String::from()">f</text>
+        <text x="96" y="110" data-hash="2" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="String::from()">f</text>
         <polyline stroke-width="5px" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
     </g>
 

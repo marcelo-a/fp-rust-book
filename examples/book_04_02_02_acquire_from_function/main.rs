@@ -22,7 +22,7 @@ fn main() {
         name: String::from("calculate_length()"),
     }));
     let string_ctor = Some(ResourceAccessPoint::Function(Function {
-        hash: 4,
+        hash: 6,
         name: String::from("String::from()"),
     }));
     // Data

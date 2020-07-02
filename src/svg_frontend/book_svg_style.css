@@ -32,21 +32,9 @@ text.code {
     font-size: 0.875em;
 }
 
-/* event related styling */
-#eventDot:hover {
-    transform: scale(1.5);
-}
-
-#eventDot {
-    transition: all 0.3s;
-}
-
-#functionDot:hover {
-    transform: scale(1.5);
-}
-
-#functionDot {
-    transition: all 0.3s;
+text.label {
+    font-family: "Source Code Pro", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace !important;
+    font-size: 0.875em;
 }
 
 /* timeline/event interaction styling */
@@ -77,8 +65,7 @@ text.code {
 .functionIcon {
     stroke: gray;
     fill: white;
-    stroke-width: 1px;
-    font-size: 24px;
+    font-size: 20px;
     font-family: times;
     font-weight: lighter;
     dominant-baseline: central;
@@ -105,6 +92,14 @@ object.code_panel {
 
 .tooltip-trigger {
     cursor: help;
+    transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+}
+
+.tooltip-trigger:not(.colorless):hover{
+    filter: url(#glow);
 }
 
 /* hash based styling */

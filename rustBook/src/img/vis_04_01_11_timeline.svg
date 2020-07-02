@@ -41,21 +41,9 @@ text.code {
     font-size: 0.875em;
 }
 
-/* event related styling */
-#eventDot:hover {
-    transform: scale(1.5);
-}
-
-#eventDot {
-    transition: all 0.3s;
-}
-
-#functionDot:hover {
-    transform: scale(1.5);
-}
-
-#functionDot {
-    transition: all 0.3s;
+text.label {
+    font-family: "Source Code Pro", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace !important;
+    font-size: 0.875em;
 }
 
 /* timeline/event interaction styling */
@@ -86,8 +74,7 @@ text.code {
 .functionIcon {
     stroke: gray;
     fill: white;
-    stroke-width: 1px;
-    font-size: 24px;
+    font-size: 20px;
     font-family: times;
     font-weight: lighter;
     dominant-baseline: central;
@@ -110,6 +97,18 @@ object.tl_panel {
 
 object.code_panel {
     flex-grow: 0;
+}
+
+.tooltip-trigger {
+    cursor: help;
+    transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+}
+
+.tooltip-trigger:not(.colorless):hover{
+    filter: url(#glow);
 }
 
 /* hash based styling */
@@ -163,12 +162,10 @@ object.code_panel {
 }
         ]]>
         </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
         <!-- used when pass to function by ref -->
         <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="5"/>
-             <text class="functionIcon" dx="-4" dy="0" fill="#6e6b5e">f</text>
+             <circle cx="0" cy="0" r="5" fill="transparent"/>
+             <text class="functionIcon" dx="-3.5" dy="0" fill="#6e6b5e">f</text>
         </g>
         <marker id="arrowHead" viewBox="0 0 10 10"
             refX="1" refY="5" 
@@ -177,13 +174,24 @@ object.code_panel {
             orient="auto" fill="gray">
             <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
         </marker>
+        <!-- glow highlight filter -->
+        <filter id="glow" x="-5000%" y="-5000%" width="10000%" height="10000%" filterUnits="userSpaceOnUse">
+            <feComposite in="flood" result="mask" in2="SourceGraphic" operator="in"></feComposite>
+            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"></feMergeNode>
+                <feMergeNode in="coloredBlur"></feMergeNode>
+                <feMergeNode in="coloredBlur"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
     </defs>
 
     <g id="labels">
-        <text x="270" y="90" style="text-anchor:middle" data-hash="3" class="code tooltip-trigger" data-tooltip-text="some_string, immutable">some_string</text>
-        <text x="413" y="90" style="text-anchor:middle" data-hash="4" class="code tooltip-trigger" data-tooltip-text="some_integer, immutable">some_integer</text>
-        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="code tooltip-trigger" data-tooltip-text="x, immutable">x</text>
-        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s, immutable">s</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="label tooltip-trigger" data-tooltip-text="s, immutable">s</text>
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="label tooltip-trigger" data-tooltip-text="x, immutable">x</text>
+        <text x="270" y="90" style="text-anchor:middle" data-hash="3" class="label tooltip-trigger" data-tooltip-text="some_string, immutable">some_string</text>
+        <text x="413" y="90" style="text-anchor:middle" data-hash="4" class="label tooltip-trigger" data-tooltip-text="some_integer, immutable">some_integer</text>
     </g>
 
     <g id="timelines">
@@ -216,20 +224,20 @@ object.code_panel {
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="70" y="105" class="tooltip-trigger" data-tooltip-text="obtains data from String::from() (s's lifetime begins from here)"/>
-        <use xlink:href="#eventDot" data-hash="1" x="70" y="145" class="tooltip-trigger" data-tooltip-text="moves its value to takes_ownership() (s lost ownership)"/>
-        <use xlink:href="#eventDot" data-hash="1" x="70" y="325" class="tooltip-trigger" data-tooltip-text="s goes out of scope. The data is dropped."/>
-        <use xlink:href="#eventDot" data-hash="2" x="140" y="205" class="tooltip-trigger" data-tooltip-text="obtains data from another value (x's lifetime begins from here)"/>
-        <use xlink:href="#eventDot" data-hash="2" x="140" y="245" class="tooltip-trigger" data-tooltip-text="copies its value to makes_copy() (x keeps ownership)"/>
-        <use xlink:href="#eventDot" data-hash="2" x="140" y="325" class="tooltip-trigger" data-tooltip-text="x goes out of scope. The data is dropped."/>
-        <use xlink:href="#eventDot" data-hash="3" x="270" y="385" class="tooltip-trigger" data-tooltip-text="obtains data from another value (some_string's lifetime begins from here)"/>
-        <use xlink:href="#eventDot" data-hash="3" x="270" y="405" class="tooltip-trigger" data-tooltip-text="statically lends its data to println!() (some_string becomes read-only)"/>
-        <use xlink:href="#eventDot" data-hash="3" x="270" y="405" class="tooltip-trigger" data-tooltip-text="println!() no longer borrows from some_string"/>
-        <use xlink:href="#eventDot" data-hash="3" x="270" y="425" class="tooltip-trigger" data-tooltip-text="some_string goes out of scope. The data is dropped."/>
-        <use xlink:href="#eventDot" data-hash="4" x="413" y="485" class="tooltip-trigger" data-tooltip-text="obtains data from another value (some_integer's lifetime begins from here)"/>
-        <use xlink:href="#eventDot" data-hash="4" x="413" y="505" class="tooltip-trigger" data-tooltip-text="statically lends its data to println!() (some_integer becomes read-only)"/>
-        <use xlink:href="#eventDot" data-hash="4" x="413" y="505" class="tooltip-trigger" data-tooltip-text="println!() no longer borrows from some_integer"/>
-        <use xlink:href="#eventDot" data-hash="4" x="413" y="525" class="tooltip-trigger" data-tooltip-text="some_integer goes out of scope. The data is dropped."/>
+        <circle cx="70" cy="105" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="obtains data from String::from() (s's lifetime begins from here)"/>
+        <circle cx="70" cy="145" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="moves its value to takes_ownership() (s lost ownership)"/>
+        <circle cx="70" cy="325" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="s goes out of scope. The data is dropped."/>
+        <circle cx="140" cy="205" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="obtains data from another value (x's lifetime begins from here)"/>
+        <circle cx="140" cy="245" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="copies its value to makes_copy() (x keeps ownership)"/>
+        <circle cx="140" cy="325" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="x goes out of scope. The data is dropped."/>
+        <circle cx="270" cy="385" r="5" data-hash="3" class="tooltip-trigger" data-tooltip-text="obtains data from another value (some_string's lifetime begins from here)"/>
+        <circle cx="270" cy="405" r="5" data-hash="3" class="tooltip-trigger" data-tooltip-text="statically lends its data to println!() (some_string becomes read-only)"/>
+        <circle cx="270" cy="405" r="5" data-hash="3" class="tooltip-trigger" data-tooltip-text="println!() no longer borrows from some_string"/>
+        <circle cx="270" cy="425" r="5" data-hash="3" class="tooltip-trigger" data-tooltip-text="some_string goes out of scope. The data is dropped."/>
+        <circle cx="413" cy="485" r="5" data-hash="4" class="tooltip-trigger" data-tooltip-text="obtains data from another value (some_integer's lifetime begins from here)"/>
+        <circle cx="413" cy="505" r="5" data-hash="4" class="tooltip-trigger" data-tooltip-text="statically lends its data to println!() (some_integer becomes read-only)"/>
+        <circle cx="413" cy="505" r="5" data-hash="4" class="tooltip-trigger" data-tooltip-text="println!() no longer borrows from some_integer"/>
+        <circle cx="413" cy="525" r="5" data-hash="4" class="tooltip-trigger" data-tooltip-text="some_integer goes out of scope. The data is dropped."/>
     </g>
 
     <g id="arrows">

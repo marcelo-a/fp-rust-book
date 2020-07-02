@@ -29,11 +29,6 @@ function adjust_visualization_size(flexbox) {
     // update the div block that surround them with the new width
     // Rule: if the two panels combined are narrower than the main text, simply set to the text width
     // Otherwise, do a "center" effect.
-    // console.table([
-    //     ["text_width", text_width],
-    //     ["timeline_width", timeline_width],
-    //     ["code_panel_width", code_panel_width]
-    // ]);
     if (text_width >= timeline_width + code_panel_width) {
         flexbox.style.marginLeft = "0px";
         flexbox.style.marginRight = "0px";

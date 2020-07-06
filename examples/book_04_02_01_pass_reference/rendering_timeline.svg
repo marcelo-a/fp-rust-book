@@ -126,13 +126,13 @@ object.code_panel {
 }
 
 [data-hash="3"] {
-    fill: #dc143c;
-    stroke: #dc143c;
+    fill: #8635ff;
+    stroke: #8635ff;
 }
 
 [data-hash="4"] {
-    fill: #8635ff;
-    stroke: #8635ff;
+    fill: #dc143c;
+    stroke: #dc143c;
 }
 
 [data-hash="5"] {
@@ -194,8 +194,8 @@ object.code_panel {
 
     <g id="labels">
         <text x="230" y="90" style="text-anchor:middle" data-hash="3" class="label tooltip-trigger" data-tooltip-text="s, immutable">s<tspan stroke="none" data-tooltip-text="s, immutable">|</tspan>*s</text>
-        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="label tooltip-trigger" data-tooltip-text="len, immutable">len</text>
         <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="label tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="label tooltip-trigger" data-tooltip-text="len, immutable">len</text>
     </g>
 
     <g id="timelines">
@@ -223,15 +223,15 @@ object.code_panel {
         <circle cx="230" cy="265" r="5" data-hash="3" class="tooltip-trigger" data-tooltip-text="statically lends its data to len() (s becomes read-only)"/>
         <circle cx="230" cy="265" r="5" data-hash="3" class="tooltip-trigger" data-tooltip-text="len() no longer borrows from s"/>
         <circle cx="230" cy="285" r="5" data-hash="3" class="tooltip-trigger" data-tooltip-text="s goes out of scope. The data is not dropped because s is not the owner."/>
+        <text x="96" y="110" data-hash="5" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="String::from()">f</text>
+        <use xlink:href="#functionDot" data-hash="1" x="70" y="145" class="tooltip-trigger" data-tooltip-text="calculate_length() reads from s1"/>
+        <text x="166" y="150" data-hash="4" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="calculate_length()">f</text>
+        <use xlink:href="#functionDot" data-hash="3" x="230" y="265" class="tooltip-trigger" data-tooltip-text="len() reads from s"/>
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" data-hash="5" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="String::from()">f</text>
         <polyline stroke-width="5px" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s1"/>
-        <use xlink:href="#functionDot" data-hash="1" x="70" y="145" class="tooltip-trigger" data-tooltip-text="calculate_length() reads from s1"/>
-        <text x="166" y="150" data-hash="4" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="calculate_length()">f</text>
         <polyline stroke-width="5px" stroke="gray" points="163,145 153,145 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of calculate_length() to len"/>
-        <use xlink:href="#functionDot" data-hash="3" x="230" y="265" class="tooltip-trigger" data-tooltip-text="len() reads from s"/>
     </g>
 
 </svg>

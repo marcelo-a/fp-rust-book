@@ -126,13 +126,13 @@ object.code_panel {
 }
 
 [data-hash="3"] {
-    fill: #dc143c;
-    stroke: #dc143c;
+    fill: #8635ff;
+    stroke: #8635ff;
 }
 
 [data-hash="4"] {
-    fill: #8635ff;
-    stroke: #8635ff;
+    fill: #dc143c;
+    stroke: #dc143c;
 }
 
 [data-hash="5"] {
@@ -210,10 +210,10 @@ object.code_panel {
         <circle cx="70" cy="125" r="5" data-hash="5" class="tooltip-trigger" data-tooltip-text="statically lends its data to len() (s becomes read-only)"/>
         <circle cx="70" cy="125" r="5" data-hash="5" class="tooltip-trigger" data-tooltip-text="len() no longer borrows from s"/>
         <circle cx="70" cy="145" r="5" data-hash="5" class="tooltip-trigger" data-tooltip-text="s goes out of scope. The data is dropped."/>
+        <use xlink:href="#functionDot" data-hash="5" x="70" y="125" class="tooltip-trigger" data-tooltip-text="len() reads from s"/>
     </g>
 
     <g id="arrows">
-        <use xlink:href="#functionDot" data-hash="5" x="70" y="125" class="tooltip-trigger" data-tooltip-text="len() reads from s"/>
     </g>
 
 </svg>

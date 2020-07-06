@@ -126,13 +126,13 @@ object.code_panel {
 }
 
 [data-hash="3"] {
-    fill: #dc143c;
-    stroke: #dc143c;
+    fill: #8635ff;
+    stroke: #8635ff;
 }
 
 [data-hash="4"] {
-    fill: #8635ff;
-    stroke: #8635ff;
+    fill: #dc143c;
+    stroke: #dc143c;
 }
 
 [data-hash="5"] {
@@ -219,13 +219,13 @@ object.code_panel {
         <circle cx="231" cy="225" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="statically lends its data to push_str() (some_string becomes read-only)"/>
         <circle cx="231" cy="225" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="push_str() no longer borrows from some_string"/>
         <circle cx="231" cy="245" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="some_string goes out of scope. The data is not dropped because some_string is not the owner."/>
+        <text x="96" y="110" data-hash="4" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="String::from()">f</text>
+        <use xlink:href="#functionDot" data-hash="1" x="70" y="145" class="tooltip-trigger" data-tooltip-text="change() reads from s"/>
+        <use xlink:href="#functionDot" data-hash="2" x="231" y="225" class="tooltip-trigger" data-tooltip-text="push_str() reads from some_string"/>
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" data-hash="4" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="String::from()">f</text>
         <polyline stroke-width="5px" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of String::from() to s"/>
-        <use xlink:href="#functionDot" data-hash="1" x="70" y="145" class="tooltip-trigger" data-tooltip-text="change() reads from s"/>
-        <use xlink:href="#functionDot" data-hash="2" x="231" y="225" class="tooltip-trigger" data-tooltip-text="push_str() reads from some_string"/>
     </g>
 
 </svg>

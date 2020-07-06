@@ -126,13 +126,13 @@ object.code_panel {
 }
 
 [data-hash="3"] {
-    fill: #dc143c;
-    stroke: #dc143c;
+    fill: #8635ff;
+    stroke: #8635ff;
 }
 
 [data-hash="4"] {
-    fill: #8635ff;
-    stroke: #8635ff;
+    fill: #dc143c;
+    stroke: #dc143c;
 }
 
 [data-hash="5"] {
@@ -213,13 +213,13 @@ object.code_panel {
         <circle cx="70" cy="185" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="statically lends its data to println!() (s becomes read-only)"/>
         <circle cx="70" cy="185" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="println!() no longer borrows from s"/>
         <circle cx="70" cy="205" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="s goes out of scope. The data is dropped."/>
+        <text x="96" y="110" data-hash="2" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="String::from()">f</text>
+        <use xlink:href="#functionDot" data-hash="1" x="70" y="145" class="tooltip-trigger" data-tooltip-text="push_str() reads from/writes to s"/>
+        <use xlink:href="#functionDot" data-hash="1" x="70" y="185" class="tooltip-trigger" data-tooltip-text="println!() reads from s"/>
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" data-hash="2" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="String::from()">f</text>
         <polyline stroke-width="5px" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
-        <use xlink:href="#functionDot" data-hash="1" x="70" y="145" class="tooltip-trigger" data-tooltip-text="push_str() reads from/writes to s"/>
-        <use xlink:href="#functionDot" data-hash="1" x="70" y="185" class="tooltip-trigger" data-tooltip-text="println!() reads from s"/>
     </g>
 
 </svg>

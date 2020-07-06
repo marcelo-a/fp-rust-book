@@ -117,13 +117,13 @@ object.code_panel {
 }
 
 [data-hash="3"] {
-    fill: #dc143c;
-    stroke: #dc143c;
+    fill: #8635ff;
+    stroke: #8635ff;
 }
 
 [data-hash="4"] {
-    fill: #8635ff;
-    stroke: #8635ff;
+    fill: #dc143c;
+    stroke: #dc143c;
 }
 
 [data-hash="5"] {

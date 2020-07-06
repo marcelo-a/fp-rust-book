@@ -126,13 +126,13 @@ object.code_panel {
 }
 
 [data-hash="3"] {
-    fill: #dc143c;
-    stroke: #dc143c;
+    fill: #8635ff;
+    stroke: #8635ff;
 }
 
 [data-hash="4"] {
-    fill: #8635ff;
-    stroke: #8635ff;
+    fill: #dc143c;
+    stroke: #dc143c;
 }
 
 [data-hash="5"] {
@@ -193,11 +193,11 @@ object.code_panel {
     </defs>
 
     <g id="labels">
-        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="label tooltip-trigger" data-tooltip-text="s2, immutable">s2</text>
-        <text x="431" y="90" style="text-anchor:middle" data-hash="5" class="label tooltip-trigger" data-tooltip-text="a_string, immutable">a_string</text>
         <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="label tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
         <text x="340" y="90" style="text-anchor:middle" data-hash="4" class="label tooltip-trigger" data-tooltip-text="some_string, immutable">some_string</text>
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="label tooltip-trigger" data-tooltip-text="s2, immutable">s2</text>
         <text x="210" y="90" style="text-anchor:middle" data-hash="3" class="label tooltip-trigger" data-tooltip-text="s3, immutable">s3</text>
+        <text x="431" y="90" style="text-anchor:middle" data-hash="5" class="label tooltip-trigger" data-tooltip-text="a_string, immutable">a_string</text>
     </g>
 
     <g id="timelines">
@@ -225,18 +225,18 @@ object.code_panel {
         <circle cx="431" cy="565" r="5" data-hash="5" class="tooltip-trigger" data-tooltip-text="obtains data from another value (a_string's lifetime begins from here)"/>
         <circle cx="431" cy="625" r="5" data-hash="5" class="tooltip-trigger" data-tooltip-text="moves its value to another value (a_string lost ownership)"/>
         <circle cx="431" cy="645" r="5" data-hash="5" class="tooltip-trigger" data-tooltip-text="a_string goes out of scope. The data is dropped."/>
+        <text x="96" y="110" data-hash="6" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="gives_ownership()">f</text>
+        <text x="366" y="410" data-hash="8" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="String::from()">f</text>
+        <text x="166" y="170" data-hash="8" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="String::from()">f</text>
+        <text x="105" y="210" data-hash="7" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="takes_and_gives_back()">f</text>
+        <text x="236" y="210" data-hash="7" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="takes_and_gives_back()">f</text>
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" data-hash="6" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="gives_ownership()">f</text>
         <polyline stroke-width="5px" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of gives_ownership() to s1"/>
-        <text x="366" y="410" data-hash="8" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="String::from()">f</text>
         <polyline stroke-width="5px" stroke="gray" points="363,405 353,405 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to some_string"/>
-        <text x="166" y="170" data-hash="8" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="String::from()">f</text>
         <polyline stroke-width="5px" stroke="gray" points="163,165 153,165 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s2"/>
-        <text x="105" y="210" data-hash="7" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="takes_and_gives_back()">f</text>
         <polyline stroke-width="5px" stroke="gray" points="135,205 125,205 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from s2 to the parameter of takes_and_gives_back()"/>
-        <text x="236" y="210" data-hash="7" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="takes_and_gives_back()">f</text>
         <polyline stroke-width="5px" stroke="gray" points="233,205 223,205 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of takes_and_gives_back() to s3"/>
     </g>
 

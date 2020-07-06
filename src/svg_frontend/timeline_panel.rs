@@ -1,6 +1,6 @@
 extern crate handlebars;
 
-use crate::data::{VisualizationData, Visualizable, ExternalEvent, Event, State, ResourceAccessPoint};
+use crate::data::{VisualizationData, Visualizable, ExternalEvent, State, ResourceAccessPoint};
 use crate::svg_frontend::line_styles::{RefDataLine, RefValueLine, OwnerLine};
 use handlebars::Handlebars;
 use std::collections::HashMap;
@@ -101,10 +101,10 @@ pub fn render_timeline_panel(visualization_data : &VisualizationData) -> (String
     let dots_string = render_dots_string(visualization_data, &resource_owners_layout, &registry);
     let timelines_string = render_timelines(visualization_data, &resource_owners_layout, &registry);
     let ref_line_string = render_ref_line(visualization_data, &resource_owners_layout, &registry);
-    let arrows_string = render_arrows_string_external_events_version(visualization_data, &resource_owners_layout, &registry);
+    let (arrows_string, fn_string) = render_arrows_string_external_events_version(visualization_data, &resource_owners_layout, &registry);
     let timeline_panel_data = TimelinePanelData {
         labels: labels_string,
-        dots: dots_string,
+        dots: dots_string + &fn_string,
         timelines: timelines_string,
         ref_line: ref_line_string,
         arrows: arrows_string
@@ -275,79 +275,13 @@ fn render_dots_string(
     output
 }
 
-// render events involving two RO using an arrow
-// NOTE currently using render_arrows_string_external_events_version instead of this one
-fn _render_arrows_string(
-    visualization_data: &VisualizationData,
-    resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
-    registry: &Handlebars
-) -> String {
-    let timelines = &visualization_data.timelines;
-
-    let mut output = String::new();
-    for (hash, timeline) in timelines {
-        match timeline.resource_access_point {
-            ResourceAccessPoint::Function(_) => {
-                /* do nothing */
-            },
-            ResourceAccessPoint::Owner(_) | ResourceAccessPoint::MutRef(_) | ResourceAccessPoint::StaticRef(_) =>
-            {
-                let _ = timelines[hash].resource_access_point.to_owned();
-                
-                for (line_number, event) in timeline.history.iter() {
-                    let ro1_x_pos = resource_owners_layout[hash].x_val;
-                    let ro1_y_pos = get_y_axis_pos(line_number);
-    
-                    // render arrow only if ro2 give resource to ro1
-                    // i.e. ro2 points to ro1
-                    let some_ro2 : Option<ResourceAccessPoint> = match event {
-                        Event::Acquire { from : from_ro } => from_ro.to_owned(),
-                        Event::MutableBorrow { from : from_ro } => Some(from_ro.to_owned()),
-                        Event::StaticBorrow { from : from_ro } => Some(from_ro.to_owned()),
-                        Event::StaticReacquire { from : from_ro } => from_ro.to_owned(),
-                        Event::MutableReacquire { from: from_ro } => from_ro.to_owned(),
-                        _ => None,
-                        };
-                    let title: String = match event {
-                        Event::Acquire { from : Some(from_ro) } => format!("{}{}", String::from("acquire resource from: "), from_ro.name()),
-                        Event::MutableBorrow { from : from_ro } => format!("{}{}", String::from("dynamic borrow from: "), from_ro.name()),
-                        Event::StaticBorrow { from : from_ro } => format!("{}{}", String::from("static borrow from: "), from_ro.name()),
-                        Event::StaticReacquire { from : Some(from_ro) } => format!("{}{}", String::from("static return from: "), from_ro.name()),
-                        Event::MutableReacquire { from: Some(from_ro) } => format!("{}{}", String::from("dynamic return from: "), from_ro.name()),
-                        _ => String::from(""),
-                    };
-                    println!("{}", title);
-                    if let Some(ro2) = some_ro2 {
-                        let mut data = ArrowData {
-                            x1: ro1_x_pos,
-                            y1: ro1_y_pos,
-                            x2: resource_owners_layout[&ro2.hash()].x_val,
-                            y2: ro1_y_pos,
-                            title: title,
-                        };
-                        // adjust arrow head pos
-                        if data.x1 < data.x2 {
-                            data.x1 = data.x1 + 10;
-                        }
-                        else {
-                            data.x1 = data.x1 - 10;
-                        }
-                        output.push_str(&registry.render("arrow_template", &data).unwrap());
-                    }
-                }
-            },
-        }
-    }
-    output
-}
-
 // render arrows that support function
 fn render_arrows_string_external_events_version(
     visualization_data: &VisualizationData,
     resource_owners_layout: &HashMap<&u64, TimelineColumnData>,
     registry: &Handlebars
-) -> String {
-    let mut output = String::new();
+) -> (String, String) {
+    let (mut output, mut fn_timeline) = (String::new(), String::new());
     for (line_number, external_event) in &visualization_data.external_events {
         let mut title = String::from("");
         let (from, to) = match external_event {
@@ -430,7 +364,7 @@ fn render_arrows_string_external_events_version(
                     hash: from_function.hash.to_owned() as u64,
                     title: from_function.name.to_owned(),
                 };
-                output.push_str(&registry.render("function_logo_template", &function_data).unwrap());
+                fn_timeline.push_str(&registry.render("function_logo_template", &function_data).unwrap());
             },
             (Some(from_variable), Some(ResourceAccessPoint::Function(function)), 
              ExternalEvent::PassByStaticReference{..}) => { // (Some(variable), Some(function), PassByStatRef)
@@ -441,7 +375,7 @@ fn render_arrows_string_external_events_version(
                     title: function.name.to_owned() + " reads from " + from_variable.name(),
                     hash: from_variable.hash().to_owned() as u64,
                 };
-                output.push_str(&registry.render("function_dot_template", &function_dot_data).unwrap());
+                fn_timeline.push_str(&registry.render("function_dot_template", &function_dot_data).unwrap());
             },
             (Some(from_variable), Some(ResourceAccessPoint::Function(function)), 
              ExternalEvent::PassByMutableReference{..}) => {  // (Some(variable), Some(function), PassByMutRef)
@@ -452,7 +386,7 @@ fn render_arrows_string_external_events_version(
                 title: function.name.to_owned() + " reads from/writes to " + from_variable.name(),
                 hash: from_variable.hash().to_owned() as u64,
                 };
-                output.push_str(&registry.render("function_dot_template", &function_dot_data).unwrap());
+                fn_timeline.push_str(&registry.render("function_dot_template", &function_dot_data).unwrap());
             },
             (Some(from_variable), Some(ResourceAccessPoint::Function(to_function)), _) => { // (Some(variable), Some(function), _)
                 //  ro1 (to_function) <- ro2 (from_variable)
@@ -465,7 +399,7 @@ fn render_arrows_string_external_events_version(
                     hash: to_function.hash.to_owned() as u64,
                     title: to_function.name.to_owned(),
                 };
-                output.push_str(&registry.render("function_logo_template", &function_data).unwrap());
+                fn_timeline.push_str(&registry.render("function_logo_template", &function_data).unwrap());
             },
             (Some(from_variable), Some(to_variable), _) => {
                 data.x1 = resource_owners_layout[to_variable.hash()].x_val;
@@ -485,7 +419,7 @@ fn render_arrows_string_external_events_version(
             output.push_str(&registry.render("arrow_template", &data).unwrap()); 
         }
     }
-    output
+    (output, fn_timeline)
 }
 
 

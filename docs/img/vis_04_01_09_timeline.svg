@@ -126,13 +126,13 @@ object.code_panel {
 }
 
 [data-hash="3"] {
-    fill: #dc143c;
-    stroke: #dc143c;
+    fill: #8635ff;
+    stroke: #8635ff;
 }
 
 [data-hash="4"] {
-    fill: #8635ff;
-    stroke: #8635ff;
+    fill: #dc143c;
+    stroke: #dc143c;
 }
 
 [data-hash="5"] {
@@ -193,8 +193,8 @@ object.code_panel {
     </defs>
 
     <g id="labels">
-        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="label tooltip-trigger" data-tooltip-text="s2, immutable">s2</text>
         <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="label tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="label tooltip-trigger" data-tooltip-text="s2, immutable">s2</text>
     </g>
 
     <g id="timelines">
@@ -220,16 +220,16 @@ object.code_panel {
         <circle cx="140" cy="125" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="obtains data from clone() (s2's lifetime begins from here)"/>
         <circle cx="140" cy="165" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="statically lends its data to println!() (s2 becomes read-only)"/>
         <circle cx="140" cy="165" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="println!() no longer borrows from s2"/>
-    </g>
-
-    <g id="arrows">
         <text x="96" y="110" data-hash="3" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="String::from()">f</text>
-        <polyline stroke-width="5px" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of String::from() to s1"/>
         <text x="166" y="130" data-hash="4" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="clone()">f</text>
-        <polyline stroke-width="5px" stroke="gray" points="163,125 153,125 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of clone() to s2"/>
         <use xlink:href="#functionDot" data-hash="1" x="70" y="125" class="tooltip-trigger" data-tooltip-text="clone() reads from s1"/>
         <use xlink:href="#functionDot" data-hash="1" x="70" y="165" class="tooltip-trigger" data-tooltip-text="println!() reads from s1"/>
         <use xlink:href="#functionDot" data-hash="2" x="140" y="165" class="tooltip-trigger" data-tooltip-text="println!() reads from s2"/>
+    </g>
+
+    <g id="arrows">
+        <polyline stroke-width="5px" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of String::from() to s1"/>
+        <polyline stroke-width="5px" stroke="gray" points="163,125 153,125 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of clone() to s2"/>
     </g>
 
 </svg>

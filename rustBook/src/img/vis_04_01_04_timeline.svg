@@ -199,7 +199,7 @@ object.code_panel {
     <g id="timelines">
         <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="105" y2="145" data-tooltip-text="s is the unique value that can access the data in memory"/>
         <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="145" y2="185" data-tooltip-text="s is the unique value that can access the data in memory"/>
-        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="185" y2="185" data-tooltip-text="some values are statically referencing to s"/>
+        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="185" y2="185" data-tooltip-text="s's data is being shared by one or more variables"/>
         <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="185" y2="205" data-tooltip-text="s is the unique value that can access the data in memory"/>
     </g>
 

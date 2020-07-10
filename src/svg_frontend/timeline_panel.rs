@@ -186,7 +186,7 @@ fn compute_column_layout<'a>(visualization_data: &'a VisualizationData) -> (Hash
             },
             ResourceAccessPoint::Owner(_) | ResourceAccessPoint::MutRef(_) | ResourceAccessPoint::StaticRef(_) =>
             {
-                let mut name = match visualization_data.get_name_from_hash(hash) {
+                let name = match visualization_data.get_name_from_hash(hash) {
                     Some(_name) => _name,
                     None => panic!("no matching resource owner for hash {}", hash),
                 };

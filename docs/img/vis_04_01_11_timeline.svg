@@ -193,9 +193,9 @@ object.code_panel {
     </defs>
 
     <g id="labels">
+        <text x="413" y="90" style="text-anchor:middle" data-hash="4" class="label tooltip-trigger" data-tooltip-text="some_integer, immutable">some_integer</text>
         <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="label tooltip-trigger" data-tooltip-text="s, immutable">s</text>
         <text x="270" y="90" style="text-anchor:middle" data-hash="3" class="label tooltip-trigger" data-tooltip-text="some_string, immutable">some_string</text>
-        <text x="413" y="90" style="text-anchor:middle" data-hash="4" class="label tooltip-trigger" data-tooltip-text="some_integer, immutable">some_integer</text>
         <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="label tooltip-trigger" data-tooltip-text="x, immutable">x</text>
     </g>
 
@@ -204,10 +204,10 @@ object.code_panel {
         <path data-hash="2" class="hollow tooltip-trigger" style="fill:transparent;" d="M 138.2,205 V 245 h 3.5 V 205 h -3.5" data-tooltip-text="x is the unique value that can access the data in memory"/>
         <path data-hash="2" class="hollow tooltip-trigger" style="fill:transparent;" d="M 138.2,245 V 325 h 3.5 V 245 h -3.5" data-tooltip-text="x is the unique value that can access the data in memory"/>
         <path data-hash="3" class="hollow tooltip-trigger" style="fill:transparent;" d="M 268.2,385 V 405 h 3.5 V 385 h -3.5" data-tooltip-text="some_string is the unique value that can access the data in memory"/>
-        <line data-hash="3" class="solid tooltip-trigger" x1="270" x2="270" y1="405" y2="405" data-tooltip-text="some values are statically referencing to some_string"/>
+        <line data-hash="3" class="solid tooltip-trigger" x1="270" x2="270" y1="405" y2="405" data-tooltip-text="some_string's data is being shared by one or more variables"/>
         <path data-hash="3" class="hollow tooltip-trigger" style="fill:transparent;" d="M 268.2,405 V 425 h 3.5 V 405 h -3.5" data-tooltip-text="some_string is the unique value that can access the data in memory"/>
         <path data-hash="4" class="hollow tooltip-trigger" style="fill:transparent;" d="M 411.2,485 V 505 h 3.5 V 485 h -3.5" data-tooltip-text="some_integer is the unique value that can access the data in memory"/>
-        <line data-hash="4" class="solid tooltip-trigger" x1="413" x2="413" y1="505" y2="505" data-tooltip-text="some values are statically referencing to some_integer"/>
+        <line data-hash="4" class="solid tooltip-trigger" x1="413" x2="413" y1="505" y2="505" data-tooltip-text="some_integer's data is being shared by one or more variables"/>
         <path data-hash="4" class="hollow tooltip-trigger" style="fill:transparent;" d="M 411.2,505 V 525 h 3.5 V 505 h -3.5" data-tooltip-text="some_integer is the unique value that can access the data in memory"/>
     </g>
 

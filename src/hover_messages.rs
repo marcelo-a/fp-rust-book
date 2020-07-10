@@ -1,11 +1,11 @@
 /* Event Dot messages: shows up when someone hovers over a dot */
 
 
-/* The Event dot does not connect to any arrows, we typically follows the following format:
+/* The Event dot does not connect to any arrows, we typically follow the following format:
    ... happens
  */
 
-// 1   0 （0 is initiallized by let 0 = &1)
+// 1   0 （0 is initialized by let 0 = &1)
 //     |
 //     *   the star event
 // 
@@ -28,6 +28,20 @@ pub fn event_dot_ref_go_out_out_scope(my_name: &String) -> String {
 pub fn event_dot_owner_go_out_out_scope(my_name: &String) -> String {
     format!(
         "{0} goes out of scope. The data is dropped.",
+        my_name
+    )
+}
+
+//     0
+//     
+// f1  *   the star event
+// example: 
+// fn calculate_length(s: &String) -> usize { // here s is initialized to some value
+//    /* something happens */
+// }
+pub fn event_dot_init_param(my_name: &String) -> String {
+    format!(
+        "{0} takes some value passed as argument ({0}'s lifetime begins here)",
         my_name
     )
 }
@@ -348,7 +362,7 @@ pub fn state_resource_revoked(my_name: &String, to_name: &String) -> String {
 }
 
 // This ResourceOwner is the unique object that holds the ownership to the underlying resource.
-pub fn state_full_priviledge(my_name: &String) -> String {
+pub fn state_full_privilege(my_name: &String) -> String {
     format!(
         "{0} is the unique value that can access the data in memory",
         my_name
@@ -365,9 +379,9 @@ pub fn state_full_priviledge(my_name: &String) -> String {
 //      When a static reference goes out of scope, decrement this value by 1;
 //      When a decrement happens while the borrow_count is 1, the state becomes
 //          FullPrivilege once again.
-pub fn state_partial_priviledge(my_name: &String) -> String {
+pub fn state_partial_privilege(my_name: &String) -> String {
     format!(
-        "some values are statically referencing to {0}",
+        "{}'s data is being shared by one or more variables",
         my_name
     )
 }

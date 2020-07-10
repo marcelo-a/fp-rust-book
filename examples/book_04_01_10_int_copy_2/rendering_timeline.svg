@@ -193,17 +193,17 @@ object.code_panel {
     </defs>
 
     <g id="labels">
-        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="label tooltip-trigger" data-tooltip-text="x, immutable">x</text>
         <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="label tooltip-trigger" data-tooltip-text="y, immutable">y</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="label tooltip-trigger" data-tooltip-text="x, immutable">x</text>
     </g>
 
     <g id="timelines">
         <path data-hash="1" class="hollow tooltip-trigger" style="fill:transparent;" d="M 68.2,105 V 125 h 3.5 V 105 h -3.5" data-tooltip-text="x is the unique value that can access the data in memory"/>
         <path data-hash="1" class="hollow tooltip-trigger" style="fill:transparent;" d="M 68.2,125 V 165 h 3.5 V 125 h -3.5" data-tooltip-text="x is the unique value that can access the data in memory"/>
-        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="165" y2="165" data-tooltip-text="some values are statically referencing to x"/>
+        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="165" y2="165" data-tooltip-text="x's data is being shared by one or more variables"/>
         <path data-hash="1" class="hollow tooltip-trigger" style="fill:transparent;" d="M 68.2,165 V 185 h 3.5 V 165 h -3.5" data-tooltip-text="x is the unique value that can access the data in memory"/>
         <path data-hash="2" class="hollow tooltip-trigger" style="fill:transparent;" d="M 138.2,125 V 165 h 3.5 V 125 h -3.5" data-tooltip-text="y is the unique value that can access the data in memory"/>
-        <line data-hash="2" class="solid tooltip-trigger" x1="140" x2="140" y1="165" y2="165" data-tooltip-text="some values are statically referencing to y"/>
+        <line data-hash="2" class="solid tooltip-trigger" x1="140" x2="140" y1="165" y2="165" data-tooltip-text="y's data is being shared by one or more variables"/>
         <path data-hash="2" class="hollow tooltip-trigger" style="fill:transparent;" d="M 138.2,165 V 185 h 3.5 V 165 h -3.5" data-tooltip-text="y is the unique value that can access the data in memory"/>
     </g>
 

@@ -193,8 +193,8 @@ object.code_panel {
     </defs>
 
     <g id="labels">
-        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="label tooltip-trigger" data-tooltip-text="s2, immutable">s2</text>
         <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="label tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="label tooltip-trigger" data-tooltip-text="s2, immutable">s2</text>
     </g>
 
     <g id="timelines">

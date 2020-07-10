@@ -13,16 +13,6 @@ warning: use of deprecated item 'std::error::Error::description': use the Displa
 56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
    |                                                                     ^^^^^^^^^^^
 
-warning: variable does not need to be mutable
-   --> src/svg_frontend/timeline_panel.rs:189:21
-    |
-189 |                 let mut name = match visualization_data.get_name_from_hash(hash) {
-    |                     ----^^^^
-    |                     |
-    |                     help: remove this `mut`
-    |
-    = note: `#[warn(unused_mut)]` on by default
-
 warning: function is never used: `determine_stat_ref_line_styles`
    --> src/svg_frontend/timeline_panel.rs:439:4
     |
@@ -37,10 +27,9 @@ warning: function is never used: `determine_mut_ref_line_styles`
 465 | fn determine_mut_ref_line_styles(
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-warning: 5 warnings emitted
+warning: 4 warnings emitted
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 5.04s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.24s
      Running `target/debug/examples/one_var`
 successfully wrote to examples/book_04_01_01_one_var/rendering_code.svg
 successfully wrote to examples/book_04_01_01_one_var/rendering_timeline.svg
@@ -60,16 +49,6 @@ warning: use of deprecated item 'std::error::Error::description': use the Displa
 56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
    |                                                                     ^^^^^^^^^^^
 
-warning: variable does not need to be mutable
-   --> src/svg_frontend/timeline_panel.rs:189:21
-    |
-189 |                 let mut name = match visualization_data.get_name_from_hash(hash) {
-    |                     ----^^^^
-    |                     |
-    |                     help: remove this `mut`
-    |
-    = note: `#[warn(unused_mut)]` on by default
-
 warning: function is never used: `determine_stat_ref_line_styles`
    --> src/svg_frontend/timeline_panel.rs:439:4
     |
@@ -84,9 +63,8 @@ warning: function is never used: `determine_mut_ref_line_styles`
 465 | fn determine_mut_ref_line_styles(
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-warning: 5 warnings emitted
+warning: 4 warnings emitted
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
 warning: unused import: `Function`
  --> examples/book_04_01_02_scope/main.rs:1:79
   |
@@ -97,7 +75,7 @@ warning: unused import: `Function`
 
 warning: 1 warning emitted
 
-    Finished dev [unoptimized + debuginfo] target(s) in 4.69s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.24s
      Running `target/debug/examples/scope`
 successfully wrote to examples/book_04_01_02_scope/rendering_code.svg
 successfully wrote to examples/book_04_01_02_scope/rendering_timeline.svg
@@ -117,16 +95,6 @@ warning: use of deprecated item 'std::error::Error::description': use the Displa
 56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
    |                                                                     ^^^^^^^^^^^
 
-warning: variable does not need to be mutable
-   --> src/svg_frontend/timeline_panel.rs:189:21
-    |
-189 |                 let mut name = match visualization_data.get_name_from_hash(hash) {
-    |                     ----^^^^
-    |                     |
-    |                     help: remove this `mut`
-    |
-    = note: `#[warn(unused_mut)]` on by default
-
 warning: function is never used: `determine_stat_ref_line_styles`
    --> src/svg_frontend/timeline_panel.rs:439:4
     |
@@ -141,10 +109,9 @@ warning: function is never used: `determine_mut_ref_line_styles`
 465 | fn determine_mut_ref_line_styles(
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-warning: 5 warnings emitted
+warning: 4 warnings emitted
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.83s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.24s
      Running `target/debug/examples/string_from`
 successfully wrote to examples/book_04_01_03_string_from/rendering_code.svg
 successfully wrote to examples/book_04_01_03_string_from/rendering_timeline.svg
@@ -164,16 +131,6 @@ warning: use of deprecated item 'std::error::Error::description': use the Displa
 56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
    |                                                                     ^^^^^^^^^^^
 
-warning: variable does not need to be mutable
-   --> src/svg_frontend/timeline_panel.rs:189:21
-    |
-189 |                 let mut name = match visualization_data.get_name_from_hash(hash) {
-    |                     ----^^^^
-    |                     |
-    |                     help: remove this `mut`
-    |
-    = note: `#[warn(unused_mut)]` on by default
-
 warning: function is never used: `determine_stat_ref_line_styles`
    --> src/svg_frontend/timeline_panel.rs:439:4
     |
@@ -188,10 +145,9 @@ warning: function is never used: `determine_mut_ref_line_styles`
 465 | fn determine_mut_ref_line_styles(
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-warning: 5 warnings emitted
+warning: 4 warnings emitted
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.66s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.24s
      Running `target/debug/examples/reference`
 successfully wrote to examples/book_04_01_04_reference/rendering_code.svg
 successfully wrote to examples/book_04_01_04_reference/rendering_timeline.svg
@@ -211,16 +167,6 @@ warning: use of deprecated item 'std::error::Error::description': use the Displa
 56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
    |                                                                     ^^^^^^^^^^^
 
-warning: variable does not need to be mutable
-   --> src/svg_frontend/timeline_panel.rs:189:21
-    |
-189 |                 let mut name = match visualization_data.get_name_from_hash(hash) {
-    |                     ----^^^^
-    |                     |
-    |                     help: remove this `mut`
-    |
-    = note: `#[warn(unused_mut)]` on by default
-
 warning: function is never used: `determine_stat_ref_line_styles`
    --> src/svg_frontend/timeline_panel.rs:439:4
     |
@@ -235,10 +181,9 @@ warning: function is never used: `determine_mut_ref_line_styles`
 465 | fn determine_mut_ref_line_styles(
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-warning: 5 warnings emitted
+warning: 4 warnings emitted
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 5.33s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.25s
      Running `target/debug/examples/scope2`
 successfully wrote to examples/book_04_01_05_scope2/rendering_code.svg
 successfully wrote to examples/book_04_01_05_scope2/rendering_timeline.svg
@@ -258,16 +203,6 @@ warning: use of deprecated item 'std::error::Error::description': use the Displa
 56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
    |                                                                     ^^^^^^^^^^^
 
-warning: variable does not need to be mutable
-   --> src/svg_frontend/timeline_panel.rs:189:21
-    |
-189 |                 let mut name = match visualization_data.get_name_from_hash(hash) {
-    |                     ----^^^^
-    |                     |
-    |                     help: remove this `mut`
-    |
-    = note: `#[warn(unused_mut)]` on by default
-
 warning: function is never used: `determine_stat_ref_line_styles`
    --> src/svg_frontend/timeline_panel.rs:439:4
     |
@@ -282,9 +217,8 @@ warning: function is never used: `determine_mut_ref_line_styles`
 465 | fn determine_mut_ref_line_styles(
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-warning: 5 warnings emitted
+warning: 4 warnings emitted
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
 warning: unused import: `Function`
  --> examples/book_04_01_06_int_copy/main.rs:1:79
   |
@@ -295,7 +229,7 @@ warning: unused import: `Function`
 
 warning: 1 warning emitted
 
-    Finished dev [unoptimized + debuginfo] target(s) in 5.25s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.24s
      Running `target/debug/examples/int_copy`
 successfully wrote to examples/book_04_01_06_int_copy/rendering_code.svg
 successfully wrote to examples/book_04_01_06_int_copy/rendering_timeline.svg
@@ -315,16 +249,6 @@ warning: use of deprecated item 'std::error::Error::description': use the Displa
 56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
    |                                                                     ^^^^^^^^^^^
 
-warning: variable does not need to be mutable
-   --> src/svg_frontend/timeline_panel.rs:189:21
-    |
-189 |                 let mut name = match visualization_data.get_name_from_hash(hash) {
-    |                     ----^^^^
-    |                     |
-    |                     help: remove this `mut`
-    |
-    = note: `#[warn(unused_mut)]` on by default
-
 warning: function is never used: `determine_stat_ref_line_styles`
    --> src/svg_frontend/timeline_panel.rs:439:4
     |
@@ -339,10 +263,9 @@ warning: function is never used: `determine_mut_ref_line_styles`
 465 | fn determine_mut_ref_line_styles(
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-warning: 5 warnings emitted
+warning: 4 warnings emitted
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.81s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.25s
      Running `target/debug/examples/string_move`
 successfully wrote to examples/book_04_01_07_string_move/rendering_code.svg
 successfully wrote to examples/book_04_01_07_string_move/rendering_timeline.svg
@@ -362,16 +285,6 @@ warning: use of deprecated item 'std::error::Error::description': use the Displa
 56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
    |                                                                     ^^^^^^^^^^^
 
-warning: variable does not need to be mutable
-   --> src/svg_frontend/timeline_panel.rs:189:21
-    |
-189 |                 let mut name = match visualization_data.get_name_from_hash(hash) {
-    |                     ----^^^^
-    |                     |
-    |                     help: remove this `mut`
-    |
-    = note: `#[warn(unused_mut)]` on by default
-
 warning: function is never used: `determine_stat_ref_line_styles`
    --> src/svg_frontend/timeline_panel.rs:439:4
     |
@@ -386,10 +299,9 @@ warning: function is never used: `determine_mut_ref_line_styles`
 465 | fn determine_mut_ref_line_styles(
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-warning: 5 warnings emitted
+warning: 4 warnings emitted
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 5.10s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/string_clone`
 successfully wrote to examples/book_04_01_09_string_clone/rendering_code.svg
 successfully wrote to examples/book_04_01_09_string_clone/rendering_timeline.svg
@@ -409,16 +321,6 @@ warning: use of deprecated item 'std::error::Error::description': use the Displa
 56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
    |                                                                     ^^^^^^^^^^^
 
-warning: variable does not need to be mutable
-   --> src/svg_frontend/timeline_panel.rs:189:21
-    |
-189 |                 let mut name = match visualization_data.get_name_from_hash(hash) {
-    |                     ----^^^^
-    |                     |
-    |                     help: remove this `mut`
-    |
-    = note: `#[warn(unused_mut)]` on by default
-
 warning: function is never used: `determine_stat_ref_line_styles`
    --> src/svg_frontend/timeline_panel.rs:439:4
     |
@@ -433,10 +335,9 @@ warning: function is never used: `determine_mut_ref_line_styles`
 465 | fn determine_mut_ref_line_styles(
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-warning: 5 warnings emitted
+warning: 4 warnings emitted
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.91s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.24s
      Running `target/debug/examples/int_copy_2`
 successfully wrote to examples/book_04_01_10_int_copy_2/rendering_code.svg
 successfully wrote to examples/book_04_01_10_int_copy_2/rendering_timeline.svg
@@ -456,16 +357,6 @@ warning: use of deprecated item 'std::error::Error::description': use the Displa
 56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
    |                                                                     ^^^^^^^^^^^
 
-warning: variable does not need to be mutable
-   --> src/svg_frontend/timeline_panel.rs:189:21
-    |
-189 |                 let mut name = match visualization_data.get_name_from_hash(hash) {
-    |                     ----^^^^
-    |                     |
-    |                     help: remove this `mut`
-    |
-    = note: `#[warn(unused_mut)]` on by default
-
 warning: function is never used: `determine_stat_ref_line_styles`
    --> src/svg_frontend/timeline_panel.rs:439:4
     |
@@ -480,10 +371,9 @@ warning: function is never used: `determine_mut_ref_line_styles`
 465 | fn determine_mut_ref_line_styles(
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-warning: 5 warnings emitted
+warning: 4 warnings emitted
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.96s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/ownership_function`
 successfully wrote to examples/book_04_01_11_ownership_function/rendering_code.svg
 successfully wrote to examples/book_04_01_11_ownership_function/rendering_timeline.svg
@@ -503,16 +393,6 @@ warning: use of deprecated item 'std::error::Error::description': use the Displa
 56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
    |                                                                     ^^^^^^^^^^^
 
-warning: variable does not need to be mutable
-   --> src/svg_frontend/timeline_panel.rs:189:21
-    |
-189 |                 let mut name = match visualization_data.get_name_from_hash(hash) {
-    |                     ----^^^^
-    |                     |
-    |                     help: remove this `mut`
-    |
-    = note: `#[warn(unused_mut)]` on by default
-
 warning: function is never used: `determine_stat_ref_line_styles`
    --> src/svg_frontend/timeline_panel.rs:439:4
     |
@@ -527,10 +407,9 @@ warning: function is never used: `determine_mut_ref_line_styles`
 465 | fn determine_mut_ref_line_styles(
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-warning: 5 warnings emitted
+warning: 4 warnings emitted
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.91s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.28s
      Running `target/debug/examples/return_values`
 successfully wrote to examples/book_04_01_12_return_values/rendering_code.svg
 successfully wrote to examples/book_04_01_12_return_values/rendering_timeline.svg
@@ -550,16 +429,6 @@ warning: use of deprecated item 'std::error::Error::description': use the Displa
 56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
    |                                                                     ^^^^^^^^^^^
 
-warning: variable does not need to be mutable
-   --> src/svg_frontend/timeline_panel.rs:189:21
-    |
-189 |                 let mut name = match visualization_data.get_name_from_hash(hash) {
-    |                     ----^^^^
-    |                     |
-    |                     help: remove this `mut`
-    |
-    = note: `#[warn(unused_mut)]` on by default
-
 warning: function is never used: `determine_stat_ref_line_styles`
    --> src/svg_frontend/timeline_panel.rs:439:4
     |
@@ -574,10 +443,9 @@ warning: function is never used: `determine_mut_ref_line_styles`
 465 | fn determine_mut_ref_line_styles(
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-warning: 5 warnings emitted
+warning: 4 warnings emitted
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.70s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
      Running `target/debug/examples/return_tuple`
 successfully wrote to examples/book_04_01_13_return_tuple/rendering_code.svg
 successfully wrote to examples/book_04_01_13_return_tuple/rendering_timeline.svg
@@ -597,16 +465,6 @@ warning: use of deprecated item 'std::error::Error::description': use the Displa
 56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
    |                                                                     ^^^^^^^^^^^
 
-warning: variable does not need to be mutable
-   --> src/svg_frontend/timeline_panel.rs:189:21
-    |
-189 |                 let mut name = match visualization_data.get_name_from_hash(hash) {
-    |                     ----^^^^
-    |                     |
-    |                     help: remove this `mut`
-    |
-    = note: `#[warn(unused_mut)]` on by default
-
 warning: function is never used: `determine_stat_ref_line_styles`
    --> src/svg_frontend/timeline_panel.rs:439:4
     |
@@ -621,10 +479,9 @@ warning: function is never used: `determine_mut_ref_line_styles`
 465 | fn determine_mut_ref_line_styles(
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-warning: 5 warnings emitted
+warning: 4 warnings emitted
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.55s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.26s
      Running `target/debug/examples/pass_reference`
 successfully wrote to examples/book_04_02_01_pass_reference/rendering_code.svg
 successfully wrote to examples/book_04_02_01_pass_reference/rendering_timeline.svg
@@ -644,16 +501,6 @@ warning: use of deprecated item 'std::error::Error::description': use the Displa
 56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
    |                                                                     ^^^^^^^^^^^
 
-warning: variable does not need to be mutable
-   --> src/svg_frontend/timeline_panel.rs:189:21
-    |
-189 |                 let mut name = match visualization_data.get_name_from_hash(hash) {
-    |                     ----^^^^
-    |                     |
-    |                     help: remove this `mut`
-    |
-    = note: `#[warn(unused_mut)]` on by default
-
 warning: function is never used: `determine_stat_ref_line_styles`
    --> src/svg_frontend/timeline_panel.rs:439:4
     |
@@ -668,10 +515,9 @@ warning: function is never used: `determine_mut_ref_line_styles`
 465 | fn determine_mut_ref_line_styles(
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-warning: 5 warnings emitted
+warning: 4 warnings emitted
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.58s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.17s
      Running `target/debug/examples/acquire_from_function`
 successfully wrote to examples/book_04_02_02_acquire_from_function/rendering_code.svg
 successfully wrote to examples/book_04_02_02_acquire_from_function/rendering_timeline.svg
@@ -691,16 +537,6 @@ warning: use of deprecated item 'std::error::Error::description': use the Displa
 56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
    |                                                                     ^^^^^^^^^^^
 
-warning: variable does not need to be mutable
-   --> src/svg_frontend/timeline_panel.rs:189:21
-    |
-189 |                 let mut name = match visualization_data.get_name_from_hash(hash) {
-    |                     ----^^^^
-    |                     |
-    |                     help: remove this `mut`
-    |
-    = note: `#[warn(unused_mut)]` on by default
-
 warning: function is never used: `determine_stat_ref_line_styles`
    --> src/svg_frontend/timeline_panel.rs:439:4
     |
@@ -715,20 +551,9 @@ warning: function is never used: `determine_mut_ref_line_styles`
 465 | fn determine_mut_ref_line_styles(
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-warning: 5 warnings emitted
+warning: 4 warnings emitted
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-warning: unused variable: `calculate_length`
-  --> examples/book_04_02_03_safely_out_of_scope/main.rs:18:9
-   |
-18 |     let calculate_length = Some(ResourceAccessPoint::Function(Function {
-   |         ^^^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_calculate_length`
-   |
-   = note: `#[warn(unused_variables)]` on by default
-
-warning: 1 warning emitted
-
-    Finished dev [unoptimized + debuginfo] target(s) in 4.69s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.26s
      Running `target/debug/examples/safely_out_of_scope`
 successfully wrote to examples/book_04_02_03_safely_out_of_scope/rendering_code.svg
 successfully wrote to examples/book_04_02_03_safely_out_of_scope/rendering_timeline.svg
@@ -748,16 +573,6 @@ warning: use of deprecated item 'std::error::Error::description': use the Displa
 56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
    |                                                                     ^^^^^^^^^^^
 
-warning: variable does not need to be mutable
-   --> src/svg_frontend/timeline_panel.rs:189:21
-    |
-189 |                 let mut name = match visualization_data.get_name_from_hash(hash) {
-    |                     ----^^^^
-    |                     |
-    |                     help: remove this `mut`
-    |
-    = note: `#[warn(unused_mut)]` on by default
-
 warning: function is never used: `determine_stat_ref_line_styles`
    --> src/svg_frontend/timeline_panel.rs:439:4
     |
@@ -772,10 +587,9 @@ warning: function is never used: `determine_mut_ref_line_styles`
 465 | fn determine_mut_ref_line_styles(
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-warning: 5 warnings emitted
+warning: 4 warnings emitted
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.68s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
      Running `target/debug/examples/mut_ref`
 successfully wrote to examples/book_04_02_05_mut_ref/rendering_code.svg
 successfully wrote to examples/book_04_02_05_mut_ref/rendering_timeline.svg
@@ -795,16 +609,6 @@ warning: use of deprecated item 'std::error::Error::description': use the Displa
 56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
    |                                                                     ^^^^^^^^^^^
 
-warning: variable does not need to be mutable
-   --> src/svg_frontend/timeline_panel.rs:189:21
-    |
-189 |                 let mut name = match visualization_data.get_name_from_hash(hash) {
-    |                     ----^^^^
-    |                     |
-    |                     help: remove this `mut`
-    |
-    = note: `#[warn(unused_mut)]` on by default
-
 warning: function is never used: `determine_stat_ref_line_styles`
    --> src/svg_frontend/timeline_panel.rs:439:4
     |
@@ -819,10 +623,9 @@ warning: function is never used: `determine_mut_ref_line_styles`
 465 | fn determine_mut_ref_line_styles(
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-warning: 5 warnings emitted
+warning: 4 warnings emitted
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
-    Finished dev [unoptimized + debuginfo] target(s) in 4.68s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
      Running `target/debug/examples/scope_reference`
 successfully wrote to examples/book_04_02_07_scope_reference/rendering_code.svg
 successfully wrote to examples/book_04_02_07_scope_reference/rendering_timeline.svg
@@ -842,16 +645,6 @@ warning: use of deprecated item 'std::error::Error::description': use the Displa
 56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
    |                                                                     ^^^^^^^^^^^
 
-warning: variable does not need to be mutable
-   --> src/svg_frontend/timeline_panel.rs:189:21
-    |
-189 |                 let mut name = match visualization_data.get_name_from_hash(hash) {
-    |                     ----^^^^
-    |                     |
-    |                     help: remove this `mut`
-    |
-    = note: `#[warn(unused_mut)]` on by default
-
 warning: function is never used: `determine_stat_ref_line_styles`
    --> src/svg_frontend/timeline_panel.rs:439:4
     |
@@ -866,9 +659,9 @@ warning: function is never used: `determine_mut_ref_line_styles`
 465 | fn determine_mut_ref_line_styles(
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-warning: 5 warnings emitted
+warning: 4 warnings emitted
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.26s
      Running `target/debug/examples/shared_and_unique_borrow`
 successfully wrote to examples/book_04_02_09_shared_and_unique_borrow/rendering_code.svg
 successfully wrote to examples/book_04_02_09_shared_and_unique_borrow/rendering_timeline.svg
@@ -888,16 +681,6 @@ warning: use of deprecated item 'std::error::Error::description': use the Displa
 56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
    |                                                                     ^^^^^^^^^^^
 
-warning: variable does not need to be mutable
-   --> src/svg_frontend/timeline_panel.rs:189:21
-    |
-189 |                 let mut name = match visualization_data.get_name_from_hash(hash) {
-    |                     ----^^^^
-    |                     |
-    |                     help: remove this `mut`
-    |
-    = note: `#[warn(unused_mut)]` on by default
-
 warning: function is never used: `determine_stat_ref_line_styles`
    --> src/svg_frontend/timeline_panel.rs:439:4
     |
@@ -912,9 +695,8 @@ warning: function is never used: `determine_mut_ref_line_styles`
 465 | fn determine_mut_ref_line_styles(
     |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-warning: 5 warnings emitted
+warning: 4 warnings emitted
 
-   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
 warning: unused variable: `no_dangle`
   --> examples/book_04_02_12_no_dangle/main.rs:16:9
    |
@@ -925,7 +707,7 @@ warning: unused variable: `no_dangle`
 
 warning: 1 warning emitted
 
-    Finished dev [unoptimized + debuginfo] target(s) in 4.65s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
      Running `target/debug/examples/no_dangle`
 successfully wrote to examples/book_04_02_12_no_dangle/rendering_code.svg
 successfully wrote to examples/book_04_02_12_no_dangle/rendering_timeline.svg

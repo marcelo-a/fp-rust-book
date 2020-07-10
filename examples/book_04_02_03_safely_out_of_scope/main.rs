@@ -1,12 +1,13 @@
-use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceAccessPoint, Owner, Function, Visualizable, VisualizationData};
+use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceAccessPoint, StaticRef, Function, Visualizable, VisualizationData};
 use rrt_lib::svg_frontend::svg_generation;
 use std::collections::BTreeMap;
 
 fn main() {
     // Variables
-    let s = Some(ResourceAccessPoint::Owner(Owner {
+    let s = Some(ResourceAccessPoint::StaticRef(StaticRef {
         hash: 5,
         name: String::from("s"),
+        my_owner_hash: None,
         is_mut: false,
         lifetime_trait: LifetimeTrait::Move,
     }));
@@ -15,10 +16,10 @@ fn main() {
         hash: 2,
         name: String::from("len()"),
     }));
-    let calculate_length = Some(ResourceAccessPoint::Function(Function {
-        hash: 3,
-        name: String::from("calculate_length()"),
-    }));
+    // let calculate_length = Some(ResourceAccessPoint::Function(Function {
+    //     hash: 3,
+    //     name: String::from("calculate_length()"),
+    // }));
 
     // Data
     let mut vd = VisualizationData {
@@ -27,7 +28,7 @@ fn main() {
     };
     
     // s is a reference copied from god knows where
-    vd.append_external_event(ExternalEvent::Duplicate{ from: None, to: s.clone() }, &(2 as usize));
+    vd.append_external_event(ExternalEvent::InitializeParam{param: s.clone().unwrap()}, &(2 as usize));
     vd.append_external_event(ExternalEvent::PassByStaticReference{from: s.clone(), to: len_func.clone()}, &(3 as usize));
     vd.append_external_event(ExternalEvent::GoOutOfScope{ ro : s.unwrap().clone() },  &(4 as usize));
 

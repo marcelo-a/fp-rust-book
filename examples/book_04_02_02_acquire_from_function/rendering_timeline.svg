@@ -193,13 +193,13 @@ object.code_panel {
     </defs>
 
     <g id="labels">
-        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="label tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
         <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="label tooltip-trigger" data-tooltip-text="len, immutable">len</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="label tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
     </g>
 
     <g id="timelines">
         <path data-hash="1" class="hollow tooltip-trigger" style="fill:transparent;" d="M 68.2,105 V 145 h 3.5 V 105 h -3.5" data-tooltip-text="s1 is the unique value that can access the data in memory"/>
-        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="145" y2="145" data-tooltip-text="some values are statically referencing to s1"/>
+        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="145" y2="145" data-tooltip-text="s1's data is being shared by one or more variables"/>
         <path data-hash="1" class="hollow tooltip-trigger" style="fill:transparent;" d="M 68.2,145 V 145 h 3.5 V 145 h -3.5" data-tooltip-text="s1 is the unique value that can access the data in memory"/>
         <path data-hash="2" class="hollow tooltip-trigger" style="fill:transparent;" d="M 138.2,145 V 145 h 3.5 V 145 h -3.5" data-tooltip-text="len is the unique value that can access the data in memory"/>
     </g>

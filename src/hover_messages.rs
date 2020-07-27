@@ -27,7 +27,7 @@ pub fn event_dot_ref_go_out_out_scope(my_name: &String) -> String {
 //
 pub fn event_dot_owner_go_out_out_scope(my_name: &String) -> String {
     format!(
-        "{0} goes out of scope. The data is dropped.",
+        "{0} goes out of scope. The value is dropped.",
         my_name
     )
 }
@@ -41,7 +41,7 @@ pub fn event_dot_owner_go_out_out_scope(my_name: &String) -> String {
 // }
 pub fn event_dot_init_param(my_name: &String) -> String {
     format!(
-        "{0} takes some value passed as argument ({0}'s lifetime begins here)",
+        "{0} is initialized by some value passed as argument to the function",
         my_name
     )
 }
@@ -57,7 +57,7 @@ pub fn event_dot_init_param(my_name: &String) -> String {
 // |   |
 pub fn event_dot_copy_to(my_name: &String, target_name: &String) -> String {
     format!(
-        "copies its value to {1} ({0} keeps ownership)",
+        "a copy of the value in {0} is made and bound to {1} ({0} is unchanged)",
         my_name,
         target_name
     )
@@ -69,7 +69,7 @@ pub fn event_dot_copy_to(my_name: &String, target_name: &String) -> String {
 // |
 pub fn event_dot_move_to(my_name: &String, target_name: &String) -> String {
     format!(
-        "moves its value to {1} ({0} lost ownership)",
+        "{0} moves its value to {1} and loses ownership of the data",
         my_name,
         target_name
     )
@@ -81,7 +81,7 @@ pub fn event_dot_move_to(my_name: &String, target_name: &String) -> String {
 // |   |
 pub fn event_dot_static_lend(my_name: &String, target_name: &String) -> String {
     format!(
-        "statically lends its data to {1} ({0} becomes read-only)",
+        "{0} statically lends its data to {1} and becomes read-only",
         my_name,
         target_name
     )
@@ -135,7 +135,7 @@ pub fn event_dot_mut_return(my_name: &String, target_name: &String) -> String {
 // |   |            |
 pub fn event_dot_acquire(my_name: &String, target_name: &String) -> String {
     format!(
-        "obtains data from {1} ({0}'s lifetime begins from here)",
+        "{0} is initialized by move from {1}",
         my_name,
         target_name
     )
@@ -345,7 +345,7 @@ pub fn state_out_of_scope(my_name: &String) -> String {
 // thus it is impossible to access this variable anymore. This is an invisible line in the timeline.
 pub fn state_resource_moved(my_name: &String, to_name: &String) -> String {
     format!(
-        "{0}'s resource is moved to {1}, ownership is no longer with {0}",
+        "{0}'s value is moved to {1}, ownership is no longer with {0}",
         my_name,
         to_name
     )
@@ -355,7 +355,7 @@ pub fn state_resource_moved(my_name: &String, to_name: &String) -> String {
 // the privilege will come back. Occurs when mutably borrowed. This is an invisible line in the timeline.
 pub fn state_resource_revoked(my_name: &String, to_name: &String) -> String {
     format!(
-        "{0}'s resource is mutably borrowed by {1}, cannot access data until {1} returns",
+        "{0}'s value is mutably borrowed by {1}, cannot access data until {1} returns",
         my_name,
         to_name
     )
@@ -364,7 +364,7 @@ pub fn state_resource_revoked(my_name: &String, to_name: &String) -> String {
 // This ResourceOwner is the unique object that holds the ownership to the underlying resource.
 pub fn state_full_privilege(my_name: &String) -> String {
     format!(
-        "{0} is the unique value that can access the data in memory",
+        "{0} is the unique owner of the data with read and write privileges",
         my_name
     )
 }

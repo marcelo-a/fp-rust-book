@@ -693,7 +693,7 @@ fn render_ref_line(
                                 data.x1 = resource_owners_layout[hash].x_val;
                                 data.y1 = get_y_axis_pos(line_start);
 
-                                data.title = String::from("can mutate the resource it refers to");
+                                data.title = String::from("can mutate the data it refers to");
                                 data.line_class = String::from("solid");
                                 alive = true;
                             }
@@ -705,7 +705,7 @@ fn render_ref_line(
                                 data.x1 = resource_owners_layout[hash].x_val;
                                 data.y1 = get_y_axis_pos(line_start);
 
-                                data.title = String::from("cannot mutate the resource it refers to");
+                                data.title = String::from("cannot mutate the data it refers to");
                                 data.line_class = String::from("solid");
                                 alive = true;
                             }

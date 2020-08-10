@@ -126,7 +126,7 @@ impl ResourceAccessPoint {
 /* let binding is either Duplicate (let _ = 1;)
 or move (let a = String::from("");) */
 #[derive(Clone, Hash, PartialEq, Eq)]
-pub enum ExternalEvent{
+pub enum ExternalEvent {
     // copy / clone
     Duplicate {
         from: Option<ResourceAccessPoint>,
@@ -168,6 +168,10 @@ pub enum ExternalEvent{
     GoOutOfScope {
         ro: ResourceAccessPoint
     },
+    // only use this event to initialize fn parameters
+    InitializeParam {
+        param: ResourceAccessPoint,
+    }
 }
 
 
@@ -244,7 +248,12 @@ pub enum Event {
     OwnerGoOutOfScope,
     // this happens when a vairable that is not an owner goes out of scope. 
     // The data is not dropped in this case
-    RefGoOutOfScope
+    RefGoOutOfScope,
+    // SPECIAL CASE: use only to initialize a fn's paramter
+    // Requires param to be Owner, StaticRef, or MutRef (cannot be Function)
+    InitializeParam {
+        param: ResourceAccessPoint
+    }
 
 }
 
@@ -333,10 +342,10 @@ impl State {
                 safe_message(hover_messages::state_resource_moved, my_name, move_to)
             }
             State::FullPrivilege => {
-                hover_messages::state_full_priviledge(my_name)
+                hover_messages::state_full_privilege(my_name)
             }
             State::PartialPrivilege { borrow_count: _, borrow_to: _ } => {
-                hover_messages::state_partial_priviledge(my_name)
+                hover_messages::state_partial_privilege(my_name)
             }
             State::RevokedPrivilege { to: _, borrow_to } => {
                 safe_message(hover_messages::state_resource_revoked, my_name, borrow_to)
@@ -366,8 +375,9 @@ impl Display for Event {
             Event::StaticBorrow{ from } => { from_ro = Some(from.to_owned()); "Partially borrows resource" },
             Event::StaticReturn{ to } => { to_ro = to.to_owned(); "Partially returns resource"},
             Event::StaticReacquire{ from } => { from_ro = from.to_owned(); "Partially reacquires resource" },
+            Event::InitializeParam{ param: _ } => { "Function parameter is initialized" },
             Event::OwnerGoOutOfScope => { "Goes out of Scope as an owner of resource" },
-            Event::RefGoOutOfScope => { "Goes out of Scope as an reference to resource" },
+            Event::RefGoOutOfScope => { "Goes out of Scope as a reference to resource" }
         }.to_string();
 
         if let Some(from_ro) = from_ro {
@@ -390,6 +400,9 @@ impl Event {
             }
             RefGoOutOfScope => {
                 hover_messages::event_dot_ref_go_out_out_scope(my_name)
+            }
+            InitializeParam{ param: _ } => {
+                hover_messages::event_dot_init_param(my_name)
             }
             // arrow going out
             Duplicate{ to } => {
@@ -496,6 +509,27 @@ impl Visualizable for VisualizationData {
             (State::OutOfScope, Event::MutableBorrow{ from: _ }) =>
                 State::FullPrivilege,
 
+            (State::OutOfScope, Event::InitializeParam{ param: ro })  => {
+                match ro {
+                    ResourceAccessPoint::Function(..) => {
+                        panic!("Cannot initialize function as as valid parameter!")
+                    },
+                    ResourceAccessPoint::Owner(..) | ResourceAccessPoint::MutRef(..) => {
+                        State::FullPrivilege
+                    },
+                    ResourceAccessPoint::StaticRef(..) => {
+                        State::PartialPrivilege {
+                            borrow_count: 1,
+                            borrow_to: [ro.to_owned()].iter().cloned().collect()
+                            // borrow_to: ro
+                        }
+                    }
+                    // ResourceAccessPoint::MutRef(..) => {
+                    //     State::FullPrivilege
+                    // }
+                }
+            },
+
             (State::FullPrivilege, Event::Move{to: to_ro}) => State::ResourceMoved{ move_to: to_ro.to_owned(), move_at_line: event_line },
 
             (State::FullPrivilege, Event::MutableLend{ to: to_ro }) =>
@@ -508,13 +542,6 @@ impl Visualizable for VisualizationData {
             (State::FullPrivilege, Event::OwnerGoOutOfScope) => State::OutOfScope,
 
             (State::FullPrivilege, Event::RefGoOutOfScope) => State::OutOfScope,
-
-            // this looks impossible?
-            // (State::FullPrivilege, Event::MutableReacquire{ from: ro }) =>
-            //     State::ResourceReturned { to: ro.to_owned() },
-
-            // (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::MutableReacquire{ from: ro }) =>
-            //         State::ResourceReturned { to: ro.to_owned() },
 
             (State::FullPrivilege, Event::StaticLend{ to: to_ro }) =>
                 State::PartialPrivilege {
@@ -534,7 +561,6 @@ impl Visualizable for VisualizationData {
                 }
             }
                 
-
             // self statically borrowed resource, and it returns; TODO what about references to self?
             (State::PartialPrivilege{ borrow_count: _, borrow_to: _ }, Event::StaticReturn{ to: _ }) => State::OutOfScope,
 
@@ -647,32 +673,32 @@ impl Visualizable for VisualizationData {
             ExternalEvent::Move{from: from_ro, to: to_ro} => {
                 maybe_append_event(self, &to_ro, Event::Acquire{from : from_ro.to_owned()}, line_number);
                 maybe_append_event(self, &from_ro, Event::Move{to : to_ro.to_owned()}, line_number);
-            }
+            },
             // eg let ro_to = 5;
             ExternalEvent::Duplicate{from: from_ro, to: to_ro} => {
                 maybe_append_event(self, &to_ro, Event::Acquire{from : from_ro.to_owned()}, line_number);
                 maybe_append_event(self, &from_ro, Event::Duplicate{to : to_ro.to_owned()}, line_number);
-            }
+            },
             ExternalEvent::StaticBorrow{from: from_ro, to: to_ro} => {
                 maybe_append_event(self, &from_ro, Event::StaticLend{to : to_ro.to_owned()}, line_number);
                 if let Some(some_from_ro) = from_ro {
                     maybe_append_event(self, &to_ro, Event::StaticBorrow{from : some_from_ro.to_owned()}, line_number);
                 }
-            }
+            },
             ExternalEvent::StaticReturn{from: from_ro, to: to_ro} => {
                 maybe_append_event(self, &to_ro, Event::StaticReacquire{from : from_ro.to_owned()}, line_number);
                 maybe_append_event(self, &from_ro, Event::StaticReturn{to : to_ro.to_owned()}, line_number);
-            }
+            },
             ExternalEvent::MutableBorrow{from: from_ro, to: to_ro} => {
                 maybe_append_event(self, &from_ro, Event::MutableLend{to : to_ro.to_owned()}, line_number);
                 if let Some(some_from_ro) = from_ro {
                     maybe_append_event(self, &to_ro, Event::MutableBorrow{from : some_from_ro.to_owned()}, line_number);
                 }
-            }
+            },
             ExternalEvent::MutableReturn{from: from_ro, to: to_ro} => {
                 maybe_append_event(self, &to_ro, Event::MutableReacquire{from : from_ro.to_owned()}, line_number);
                 maybe_append_event(self, &from_ro, Event::MutableReturn{to : to_ro.to_owned()}, line_number);
-            }
+            },
             // TODO do we really need to add these events, since pass by ref does not change the state?
             ExternalEvent::PassByStaticReference{from: from_ro, to: to_ro} => {
                 maybe_append_event(self, &from_ro.to_owned(), Event::StaticLend{to : to_ro.to_owned()}, line_number);
@@ -683,7 +709,7 @@ impl Visualizable for VisualizationData {
                 }
                 maybe_append_event(self, &from_ro, Event::StaticReacquire{from : to_ro.to_owned()}, line_number);
                 maybe_append_event(self, &to_ro, Event::StaticReturn{to : from_ro.to_owned()}, line_number);
-            }
+            },
             ExternalEvent::PassByMutableReference{from: from_ro, to: to_ro} => {
                 maybe_append_event(self, &from_ro, Event::MutableLend{to : to_ro.to_owned()}, line_number);
                 if let Some(some_from_ro) = from_ro.to_owned() {
@@ -693,7 +719,10 @@ impl Visualizable for VisualizationData {
                 }
                 maybe_append_event(self, &from_ro, Event::MutableReacquire{from : to_ro.to_owned()}, line_number);
                 maybe_append_event(self, &to_ro, Event::MutableReturn{to : from_ro.to_owned()}, line_number);
-            }
+            },
+            ExternalEvent::InitializeParam{param: ro} => {
+                maybe_append_event(self, &Some(ro.clone()), Event::InitializeParam{param : ro.to_owned()}, line_number);
+            },
             ExternalEvent::GoOutOfScope{ro} => {
                 match ro {
                     ResourceAccessPoint::Owner(..) => {
@@ -713,7 +742,7 @@ impl Visualizable for VisualizationData {
                         std::process::exit(1);
                     }
                 }
-            }
+            },
         }
     }
 }

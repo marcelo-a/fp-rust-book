@@ -19,14 +19,6 @@ debug = false
 
 #compile with cargo run --example default
 [[example]]
-name = "shadowing"
-path = "examples/book_03_01_03_shadowing/main.rs"
-
-[[example]]
-name = "functions"
-path = "examples/book_03_03_09_functions/main.rs"
-
-[[example]]
 name = "one_var"
 path = "examples/book_04_01_01_one_var/main.rs"
 

@@ -9,13 +9,13 @@ fn main() {
         is_mut: false,
         lifetime_trait: LifetimeTrait::Move,
     });
-    let no_dangle = ResourceAccessPoint::Function(Function {
-        hash: 2,
-        name: String::from("no_dangle"),
-    });
     let string_ctor = ResourceAccessPoint::Function(Function {
-        hash: 3,
+        hash: 2,
         name: String::from("String::from()"),
+    });
+    let _no_dangle = ResourceAccessPoint::Function(Function {
+        hash: 3,
+        name: String::from("no_dangle"),
     });
     let mut vd = VisualizationData {
         timelines: BTreeMap::new(),

@@ -41,21 +41,9 @@ text.code {
     font-size: 0.875em;
 }
 
-/* event related styling */
-#eventDot:hover {
-    transform: scale(1.5);
-}
-
-#eventDot {
-    transition: all 0.3s;
-}
-
-#functionDot:hover {
-    transform: scale(1.5);
-}
-
-#functionDot {
-    transition: all 0.3s;
+text.label {
+    font-family: "Source Code Pro", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace !important;
+    font-size: 0.875em;
 }
 
 /* timeline/event interaction styling */
@@ -64,8 +52,7 @@ text.code {
 }
 
 .hollow {
-    stroke-width: 5px;
-    fill: var(--bg-color);
+    stroke-width: 1.5;
 }
 
 .dotted {
@@ -78,21 +65,24 @@ text.code {
     stroke-dasharray: "2 1";
 }
 
-.colorless {
-    stroke: var(--bg-color);
-    fill: var(--bg-color);
-}
-
 .functionIcon {
-    stroke: gray;
-    fill: white;
-    stroke-width: 1px;
-    font-size: 24px;
+    paint-order: stroke;
+    stroke-width: 3px;
+    fill: var(--bg-color);
+    font-size: 20px;
     font-family: times;
     font-weight: lighter;
     dominant-baseline: central;
     text-anchor: start;
     font-style: italic;
+}
+
+.functionLogo {
+    font-size: 20px;
+    font-style: italic;
+    paint-order: stroke;
+    stroke-width: 3px;
+    fill: var(--bg-color) !important;
 }
 
 /* flex related styling */
@@ -112,34 +102,42 @@ object.code_panel {
     flex-grow: 0;
 }
 
+.tooltip-trigger {
+    cursor: help;
+}
+
+.tooltip-trigger:hover{
+    filter: url(#glow);
+}
+
 /* hash based styling */
 [data-hash="0"] {
     fill: #6e6b5e;
 }
 
 [data-hash="1"] {
-    fill: #3355ff;
-    stroke: #3355ff;
+    fill: #1893ff;
+    stroke: #1893ff;
 }
 
 [data-hash="2"] {
-    fill: #33cc33;
-    stroke: #33cc33;
+    fill: #ff7f50;
+    stroke: #ff7f50;
 }
 
 [data-hash="3"] {
+    fill: #8635ff;
+    stroke: #8635ff;
+}
+
+[data-hash="4"] {
     fill: #dc143c;
     stroke: #dc143c;
 }
 
-[data-hash="4"] {
-    fill: #6600ff;
-    stroke: #6600ff;
-}
-
 [data-hash="5"] {
-    fill: #ff33cc;
-    stroke: #ff33cc;
+    fill: #0a810a;
+    stroke: #0a810a;
 }
 
 [data-hash="6"] {
@@ -148,8 +146,8 @@ object.code_panel {
 }
 
 [data-hash="7"] {
-    fill: #ff9900;
-    stroke: #ff9900;
+    fill: #ff6cce;
+    stroke: #ff6cce;
 }
 
 [data-hash="8"] {
@@ -158,48 +156,68 @@ object.code_panel {
 }
 
 [data-hash="9"] {
-    fill: #9aeb58;
-    stroke: #9aeb58;
+    fill: #b99f35;
+    stroke: #b99f35;
 }
+        
+        text {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
         ]]>
         </style>
-        <!-- Useful constructs -->
-        <circle id="eventDot" cx="0" cy="0" r="5"/>
         <!-- used when pass to function by ref -->
         <g id="functionDot">
-             <circle id="eventDot" cx="0" cy="0" r="5"/>
-             <text class="functionIcon" dx="-4" dy="0" fill="#6e6b5e">f</text>
+             <circle cx="0" cy="0" r="5" fill="transparent"/>
+             <text class="functionIcon" dx="-3.5" dy="0" fill="#6e6b5e">f</text>
         </g>
         <marker id="arrowHead" viewBox="0 0 10 10"
-            refX="1" refY="5" 
+            refX="0" refY="4"
             markerUnits="strokeWidth"
             markerWidth="3px" markerHeight="3px"
             orient="auto" fill="gray">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="inherit"/>
+            <path d="M 0 0 L 8.5 4 L 0 8 z" fill="inherit"/>
         </marker>
+        <!-- glow highlight filter -->
+        <filter id="glow" x="-5000%" y="-5000%" width="10000%" height="10000%" filterUnits="userSpaceOnUse">
+            <feComposite in="flood" result="mask" in2="SourceGraphic" operator="in"></feComposite>
+            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"></feMergeNode>
+                <feMergeNode in="coloredBlur"></feMergeNode>
+                <feMergeNode in="coloredBlur"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+            <!-- increase brightness -->
+            <feComponentTransfer>
+                <feFuncR type="linear" slope="2"/>
+                <feFuncG type="linear" slope="2"/>
+                <feFuncB type="linear" slope="2"/>
+            </feComponentTransfer>
+        </filter>
     </defs>
 
     <g id="labels">
-        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="code tooltip-trigger" data-tooltip-text="s, immutable">s</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="label tooltip-trigger" data-tooltip-text="s, immutable">s</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="hollow tooltip-trigger" x1="70" x2="70" y1="105" y2="125" data-tooltip-text="s is the unique value that can access the data in memory"/>
-
-        <line class="colorless tooltip-trigger" stroke-width="2px" x1="70" x2="70" y1="110" y2="120" data-tooltip-text="s is the unique value that can access the data in memory"/>
+        <path data-hash="1" class="hollow tooltip-trigger" style="fill:transparent;" d="M 68.2,105 V 125 h 3.5 V 105 h -3.5" data-tooltip-text="s is the unique owner of the data with read and write privileges"/>
     </g>
 
     <g id="ref_line">
     </g>
 
     <g id="events">
-        <use xlink:href="#eventDot" data-hash="1" x="70" y="105" class="tooltip-trigger" data-tooltip-text="obtains data from String::from() (s's lifetime begins from here)"/>
-        <use xlink:href="#eventDot" data-hash="1" x="70" y="125" class="tooltip-trigger" data-tooltip-text="s goes out of scope. The data is dropped."/>
+        <circle cx="70" cy="105" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="s is initialized by move from String::from()"/>
+        <circle cx="70" cy="125" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="s goes out of scope. The value is dropped."/>
+        <text x="96" y="110" data-hash="2" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="String::from()">f</text>
     </g>
 
     <g id="arrows">
-        <text x="96" y="110" data-hash="2" font-size="20" font-style="italic" class="tooltip-trigger fn-trigger" data-tooltip-text="String::from()">f</text>
-        <polyline stroke-width="5px" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
+        <polyline stroke-width="5px" stroke="gray" points="93 105 83 105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
     </g>
 
 </svg>

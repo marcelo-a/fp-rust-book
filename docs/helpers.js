@@ -90,8 +90,13 @@ function displayTooltip(tooltip, classname) {
     var triggers = tl_svg.getElementsByClassName('tooltip-trigger');
 
     for (var i = 0; i < triggers.length; i++) {
+        // prevent adding duplicate listeners
+        if (triggers[i].classList.contains('listener')) break;
+        else triggers[i].classList.add('listener');
+
         triggers[i].addEventListener('mousemove', showTooltip);
-        triggers[i].addEventListener('mouseout', hideTooltip);
+        triggers[i].addEventListener('mouseleave', hideTooltip);
+        triggers[i].addEventListener('mouseenter', insertCaret);
     }
     
     function showTooltip(e) {
@@ -106,9 +111,71 @@ function displayTooltip(tooltip, classname) {
         if (tooltip.getBoundingClientRect().right >= document.body.clientWidth) breakText(text, tooltip);
     }
 
-    function hideTooltip() {
+    function hideTooltip(e) {
         tooltip.style.display = "none";
         tooltip.innerHTML = '';
+
+        removeCaret(e, classname);
+    }
+
+    /* ---- SHOW RELEVANT LINES ---- */
+    function insertCaret(e) {
+        var doc = document.getElementsByClassName(classname + ' code_panel')[0].contentDocument; //code_panelcc
+        if (e.target.tagName == 'path') {
+            var arr = e.target.getAttribute('d').split(' ');
+            var begin, end;
+            if (e.target.parentNode.id == 'ref_line') {
+                begin = arr[2];
+                end = parseInt(begin) + 2*parseInt(arr[5]) + parseInt(arr[7]) + 5; // + 5 to include last line
+            }
+            else {
+                begin = arr[7];
+                end = arr[3];
+            }
+            for (var i=0; i < (end-begin)/20; ++i) {
+                var caret = doc.createElementNS('http://www.w3.org/2000/svg', 'text');
+                caret.setAttribute('class', 'code caret');
+                caret.setAttribute('x', '15');
+                caret.setAttribute('y', parseInt(begin) + 20*i + 5);
+                caret.innerHTML = '>';
+                doc.getElementById('code').appendChild(caret);
+            }
+        }
+        else if (e.target.tagName == 'line') {
+            var begin = e.target.getAttribute('y1');
+            var end = e.target.getAttribute('y2');
+            for (var i=0; i < (end-begin)/20; ++i) {
+                var caret = doc.createElementNS('http://www.w3.org/2000/svg', 'text');
+                caret.setAttribute('class', 'code caret');
+                caret.setAttribute('x', '15');
+                caret.setAttribute('y', parseInt(begin) + 20*i + 5);
+                caret.innerHTML = '>';
+                doc.getElementById('code').appendChild(caret);
+            }
+        }
+        else {
+            var pos;
+            if (e.target.tagName == 'circle') {
+                pos = parseInt(e.target.getAttribute('cy')) + 5;
+            }
+            else if (e.target.tagName == 'use') {
+                pos = parseInt(e.target.getAttribute('y')) + 5;
+            }
+            else if (e.target.tagName == 'polyline') {
+                var arr = e.target.getAttribute('points').split(' ');
+                pos = parseInt(arr[1]) + 5;
+            }
+            else { // e.target.tagName == 'text'
+                pos = parseInt(e.target.getAttribute('y'));
+            }
+
+            var caret = doc.createElementNS('http://www.w3.org/2000/svg', 'text');
+            caret.setAttribute('class', 'code caret');
+            caret.setAttribute('x', '15');
+            caret.setAttribute('y', pos);
+            caret.innerHTML = '>';
+            doc.getElementById('code').appendChild(caret);
+        }
     }
 }
 
@@ -122,6 +189,14 @@ function mousePos(evt, obj) {
         x: Math.round(x_pos),
         y: Math.round(y_pos)
     };
+}
+
+function removeCaret(e, classname) {
+    var doc = document.getElementsByClassName(classname + ' code_panel')[0].contentDocument; //code_panel
+    var arr = doc.getElementsByClassName('caret');
+    for (i = arr.length-1; i >= 0; --i) {
+        arr[i].remove();
+    }
 }
 
 // adjust text box
@@ -144,3 +219,57 @@ function breakText(text, tooltip) {
         }
     }
 }
+
+/* --------------- TOGGLE ALL SVGS --------------- */
+function toggleAll(turn_on) {
+    var evt = new MouseEvent("click", {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+
+    var arr = document.getElementsByClassName('toggle-button');
+    for (const obj of arr) {
+        if (turn_on && obj.classList.contains('fa-toggle-off')) {
+            obj.dispatchEvent(evt);
+        }
+        else if (!turn_on && obj.classList.contains('fa-toggle-on')) {
+            obj.dispatchEvent(evt);
+        }
+    }
+}
+
+window.onload = function () {
+    var correct_doc = (document.getElementsByClassName('active')[0].attributes.href.value == 'ch04-01-what-is-ownership.html'
+            || document.getElementsByClassName('active')[0].attributes.href.value == 'ch04-02-references-and-borrowing.html');
+
+    if (correct_doc) {
+        var top_btns = document.getElementsByClassName('left-buttons');
+
+        var eye = document.getElementById('viz-toggle');
+
+        if (!eye) {
+            eye = document.createElement('button');
+            eye.id = 'viz-toggle';
+            eye.className = 'icon-button fa fa-eye';
+            eye.title = 'Toggle all visualizations';
+            top_btns[0].insertBefore(eye, top_btns[0].lastElementChild);
+        }
+
+        eye.addEventListener('click', function (e) {
+            if (e.target.classList.contains('fa-eye')) {
+                // on button click, show all visualizations
+                e.target.classList.remove('fa-eye');
+                e.target.classList.add('fa-eye-slash');
+
+                toggleAll(true);
+            } else if (e.target.classList.contains('fa-eye-slash')) {
+                // on button click, hide all visualizations
+                e.target.classList.remove('fa-eye-slash');
+                e.target.classList.add('fa-eye');
+
+                toggleAll(false);
+            }
+        });
+    }
+};

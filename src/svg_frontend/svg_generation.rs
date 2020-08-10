@@ -70,7 +70,7 @@ pub fn render_svg(listing_id: &String, description: &String, visualization_data:
     let final_code_svg_content = handlebars.render("code_svg_template", &svg_data).unwrap();
     let final_timeline_svg_content = handlebars.render("timeline_svg_template", &svg_data).unwrap();
 
-    // print for debugging (?)
+    // print for debugging
     // println!("{}", final_code_svg_content);
     // println!("{}", final_timeline_svg_content);
 

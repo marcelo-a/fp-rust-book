@@ -1,113 +1,684 @@
 Running the following examples: 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:439:4
+    |
+439 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:465:4
+    |
+465 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: 4 warnings emitted
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
      Running `target/debug/examples/one_var`
 successfully wrote to examples/book_04_01_01_one_var/rendering_code.svg
 successfully wrote to examples/book_04_01_01_one_var/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_01_code.svg
 successfully wrote to rustBook/src/img/vis_04_01_01_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:439:4
+    |
+439 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:465:4
+    |
+465 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: 4 warnings emitted
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/scope`
 successfully wrote to examples/book_04_01_02_scope/rendering_code.svg
 successfully wrote to examples/book_04_01_02_scope/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_02_code.svg
 successfully wrote to rustBook/src/img/vis_04_01_02_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:439:4
+    |
+439 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:465:4
+    |
+465 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: 4 warnings emitted
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/string_from`
 successfully wrote to examples/book_04_01_03_string_from/rendering_code.svg
 successfully wrote to examples/book_04_01_03_string_from/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_03_code.svg
 successfully wrote to rustBook/src/img/vis_04_01_03_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:439:4
+    |
+439 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:465:4
+    |
+465 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: 4 warnings emitted
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.25s
      Running `target/debug/examples/reference`
 successfully wrote to examples/book_04_01_04_reference/rendering_code.svg
 successfully wrote to examples/book_04_01_04_reference/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_04_code.svg
 successfully wrote to rustBook/src/img/vis_04_01_04_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:439:4
+    |
+439 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:465:4
+    |
+465 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: 4 warnings emitted
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.25s
      Running `target/debug/examples/scope2`
 successfully wrote to examples/book_04_01_05_scope2/rendering_code.svg
 successfully wrote to examples/book_04_01_05_scope2/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_05_code.svg
 successfully wrote to rustBook/src/img/vis_04_01_05_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:439:4
+    |
+439 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:465:4
+    |
+465 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: 4 warnings emitted
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.29s
      Running `target/debug/examples/int_copy`
 successfully wrote to examples/book_04_01_06_int_copy/rendering_code.svg
 successfully wrote to examples/book_04_01_06_int_copy/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_06_code.svg
 successfully wrote to rustBook/src/img/vis_04_01_06_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:439:4
+    |
+439 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:465:4
+    |
+465 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: 4 warnings emitted
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.27s
      Running `target/debug/examples/string_move`
 successfully wrote to examples/book_04_01_07_string_move/rendering_code.svg
 successfully wrote to examples/book_04_01_07_string_move/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_07_code.svg
 successfully wrote to rustBook/src/img/vis_04_01_07_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:439:4
+    |
+439 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:465:4
+    |
+465 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: 4 warnings emitted
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.26s
      Running `target/debug/examples/string_clone`
 successfully wrote to examples/book_04_01_09_string_clone/rendering_code.svg
 successfully wrote to examples/book_04_01_09_string_clone/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_09_code.svg
 successfully wrote to rustBook/src/img/vis_04_01_09_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:439:4
+    |
+439 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:465:4
+    |
+465 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: 4 warnings emitted
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
      Running `target/debug/examples/int_copy_2`
 successfully wrote to examples/book_04_01_10_int_copy_2/rendering_code.svg
 successfully wrote to examples/book_04_01_10_int_copy_2/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_10_code.svg
 successfully wrote to rustBook/src/img/vis_04_01_10_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:439:4
+    |
+439 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:465:4
+    |
+465 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: 4 warnings emitted
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
      Running `target/debug/examples/ownership_function`
 successfully wrote to examples/book_04_01_11_ownership_function/rendering_code.svg
 successfully wrote to examples/book_04_01_11_ownership_function/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_11_code.svg
 successfully wrote to rustBook/src/img/vis_04_01_11_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:439:4
+    |
+439 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:465:4
+    |
+465 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: 4 warnings emitted
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
      Running `target/debug/examples/return_values`
 successfully wrote to examples/book_04_01_12_return_values/rendering_code.svg
 successfully wrote to examples/book_04_01_12_return_values/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_12_code.svg
 successfully wrote to rustBook/src/img/vis_04_01_12_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:439:4
+    |
+439 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:465:4
+    |
+465 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: 4 warnings emitted
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.30s
      Running `target/debug/examples/return_tuple`
 successfully wrote to examples/book_04_01_13_return_tuple/rendering_code.svg
 successfully wrote to examples/book_04_01_13_return_tuple/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_01_13_code.svg
 successfully wrote to rustBook/src/img/vis_04_01_13_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:439:4
+    |
+439 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:465:4
+    |
+465 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: 4 warnings emitted
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.23s
      Running `target/debug/examples/pass_reference`
 successfully wrote to examples/book_04_02_01_pass_reference/rendering_code.svg
 successfully wrote to examples/book_04_02_01_pass_reference/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_02_01_code.svg
 successfully wrote to rustBook/src/img/vis_04_02_01_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:439:4
+    |
+439 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:465:4
+    |
+465 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: 4 warnings emitted
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.33s
      Running `target/debug/examples/acquire_from_function`
 successfully wrote to examples/book_04_02_02_acquire_from_function/rendering_code.svg
 successfully wrote to examples/book_04_02_02_acquire_from_function/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_02_02_code.svg
 successfully wrote to rustBook/src/img/vis_04_02_02_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:439:4
+    |
+439 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:465:4
+    |
+465 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: 4 warnings emitted
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.35s
      Running `target/debug/examples/safely_out_of_scope`
 successfully wrote to examples/book_04_02_03_safely_out_of_scope/rendering_code.svg
 successfully wrote to examples/book_04_02_03_safely_out_of_scope/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_02_03_code.svg
 successfully wrote to rustBook/src/img/vis_04_02_03_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:439:4
+    |
+439 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:465:4
+    |
+465 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: 4 warnings emitted
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.36s
      Running `target/debug/examples/mut_ref`
 successfully wrote to examples/book_04_02_05_mut_ref/rendering_code.svg
 successfully wrote to examples/book_04_02_05_mut_ref/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_02_05_code.svg
 successfully wrote to rustBook/src/img/vis_04_02_05_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:439:4
+    |
+439 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:465:4
+    |
+465 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: 4 warnings emitted
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.27s
      Running `target/debug/examples/scope_reference`
 successfully wrote to examples/book_04_02_07_scope_reference/rendering_code.svg
 successfully wrote to examples/book_04_02_07_scope_reference/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_02_07_code.svg
 successfully wrote to rustBook/src/img/vis_04_02_07_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:439:4
+    |
+439 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:465:4
+    |
+465 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: 4 warnings emitted
+
+   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 6.93s
      Running `target/debug/examples/shared_and_unique_borrow`
 successfully wrote to examples/book_04_02_09_shared_and_unique_borrow/rendering_code.svg
 successfully wrote to examples/book_04_02_09_shared_and_unique_borrow/rendering_timeline.svg
 successfully wrote to rustBook/src/img/vis_04_02_09_code.svg
 successfully wrote to rustBook/src/img/vis_04_02_09_timeline.svg
-    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:50:67
+   |
+50 |         Err(why) => panic!("couldn't create {}: {}", display, why.description()),
+   |                                                                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated item 'std::error::Error::description': use the Display impl or to_string()
+  --> src/svg_frontend/utils.rs:56:69
+   |
+56 |         Err(why) => panic!("couldn't write to {}: {}", display, why.description()),
+   |                                                                     ^^^^^^^^^^^
+
+warning: function is never used: `determine_stat_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:439:4
+    |
+439 | fn determine_stat_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function is never used: `determine_mut_ref_line_styles`
+   --> src/svg_frontend/timeline_panel.rs:465:4
+    |
+465 | fn determine_mut_ref_line_styles(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: 4 warnings emitted
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.32s
      Running `target/debug/examples/no_dangle`
 successfully wrote to examples/book_04_02_12_no_dangle/rendering_code.svg
 successfully wrote to examples/book_04_02_12_no_dangle/rendering_timeline.svg

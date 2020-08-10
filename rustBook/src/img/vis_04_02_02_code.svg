@@ -40,21 +40,9 @@ text.code {
     font-size: 0.875em;
 }
 
-/* event related styling */
-#eventDot:hover {
-    transform: scale(1.5);
-}
-
-#eventDot {
-    transition: all 0.3s;
-}
-
-#functionDot:hover {
-    transform: scale(1.5);
-}
-
-#functionDot {
-    transition: all 0.3s;
+text.label {
+    font-family: "Source Code Pro", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace !important;
+    font-size: 0.875em;
 }
 
 /* timeline/event interaction styling */
@@ -63,8 +51,7 @@ text.code {
 }
 
 .hollow {
-    stroke-width: 5px;
-    fill: var(--bg-color);
+    stroke-width: 1.5;
 }
 
 .dotted {
@@ -77,21 +64,24 @@ text.code {
     stroke-dasharray: "2 1";
 }
 
-.colorless {
-    stroke: var(--bg-color);
-    fill: var(--bg-color);
-}
-
 .functionIcon {
-    stroke: gray;
-    fill: white;
-    stroke-width: 1px;
-    font-size: 24px;
+    paint-order: stroke;
+    stroke-width: 3px;
+    fill: var(--bg-color);
+    font-size: 20px;
     font-family: times;
     font-weight: lighter;
     dominant-baseline: central;
     text-anchor: start;
     font-style: italic;
+}
+
+.functionLogo {
+    font-size: 20px;
+    font-style: italic;
+    paint-order: stroke;
+    stroke-width: 3px;
+    fill: var(--bg-color) !important;
 }
 
 /* flex related styling */
@@ -111,34 +101,42 @@ object.code_panel {
     flex-grow: 0;
 }
 
+.tooltip-trigger {
+    cursor: help;
+}
+
+.tooltip-trigger:hover{
+    filter: url(#glow);
+}
+
 /* hash based styling */
 [data-hash="0"] {
     fill: #6e6b5e;
 }
 
 [data-hash="1"] {
-    fill: #3355ff;
-    stroke: #3355ff;
+    fill: #1893ff;
+    stroke: #1893ff;
 }
 
 [data-hash="2"] {
-    fill: #33cc33;
-    stroke: #33cc33;
+    fill: #ff7f50;
+    stroke: #ff7f50;
 }
 
 [data-hash="3"] {
+    fill: #8635ff;
+    stroke: #8635ff;
+}
+
+[data-hash="4"] {
     fill: #dc143c;
     stroke: #dc143c;
 }
 
-[data-hash="4"] {
-    fill: #6600ff;
-    stroke: #6600ff;
-}
-
 [data-hash="5"] {
-    fill: #ff33cc;
-    stroke: #ff33cc;
+    fill: #0a810a;
+    stroke: #0a810a;
 }
 
 [data-hash="6"] {
@@ -147,8 +145,8 @@ object.code_panel {
 }
 
 [data-hash="7"] {
-    fill: #ff9900;
-    stroke: #ff9900;
+    fill: #ff6cce;
+    stroke: #ff6cce;
 }
 
 [data-hash="8"] {
@@ -157,8 +155,8 @@ object.code_panel {
 }
 
 [data-hash="9"] {
-    fill: #9aeb58;
-    stroke: #9aeb58;
+    fill: #b99f35;
+    stroke: #b99f35;
 }
         ]]>
         </style>
@@ -171,7 +169,7 @@ object.code_panel {
 
     <g id="code">
         <text class="code" x="20" y="90">  </text>
-        <text class="code" x="20" y="110"> let <tspan data-hash="1">s1</tspan> = <tspan class="fn" data-hash="0" hash="4">String::from</tspan>("hello"); </text>
+        <text class="code" x="20" y="110"> let <tspan data-hash="1">s1</tspan> = <tspan class="fn" data-hash="0" hash="6">String::from</tspan>("hello"); </text>
         <text class="code" x="20" y="130">  </text>
         <text class="code" x="20" y="150"> let <tspan data-hash="2">len</tspan> = <tspan class="fn" data-hash="0" hash="3">calculate_length</tspan>(<tspan data-hash="1">&amp;s1</tspan>); </text>
     </g>

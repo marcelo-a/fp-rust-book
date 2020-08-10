@@ -159,6 +159,13 @@ object.code_panel {
     fill: #b99f35;
     stroke: #b99f35;
 }
+        
+        text {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
         ]]>
         </style>
         <!-- used when pass to function by ref -->
@@ -194,23 +201,23 @@ object.code_panel {
 
     <g id="labels">
         <text x="160" y="90" style="text-anchor:middle" data-hash="2" class="label tooltip-trigger" data-tooltip-text="r1, immutable">r1<tspan stroke="none" data-tooltip-text="r1, immutable">|</tspan>*r1</text>
-        <text x="250" y="90" style="text-anchor:middle" data-hash="3" class="label tooltip-trigger" data-tooltip-text="r2, immutable">r2<tspan stroke="none" data-tooltip-text="r2, immutable">|</tspan>*r2</text>
         <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="label tooltip-trigger" data-tooltip-text="s, mutable">s</text>
+        <text x="250" y="90" style="text-anchor:middle" data-hash="3" class="label tooltip-trigger" data-tooltip-text="r2, immutable">r2<tspan stroke="none" data-tooltip-text="r2, immutable">|</tspan>*r2</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="105" y2="165" data-tooltip-text="s is the unique value that can access the data in memory"/>
-        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="185" y2="245" data-tooltip-text="s is the unique value that can access the data in memory"/>
-        <path data-hash="2" class="hollow tooltip-trigger" style="fill:transparent;" d="M 158.2,165 V 185 h 3.5 V 165 h -3.5" data-tooltip-text="r1 is the unique value that can access the data in memory; can read and write data; cannot point to another piece of data"/>
-        <path data-hash="3" class="hollow tooltip-trigger" style="fill:transparent;" d="M 248.2,245 V 245 h 3.5 V 245 h -3.5" data-tooltip-text="r2 is the unique value that can access the data in memory; can read and write data; cannot point to another piece of data"/>
+        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="105" y2="165" data-tooltip-text="s is the unique owner of the data with read and write privileges"/>
+        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="185" y2="245" data-tooltip-text="s is the unique owner of the data with read and write privileges"/>
+        <path data-hash="2" class="hollow tooltip-trigger" style="fill:transparent;" d="M 158.2,165 V 185 h 3.5 V 165 h -3.5" data-tooltip-text="r1 is the unique owner of the data with read and write privileges; can read and write data; cannot point to another piece of data"/>
+        <path data-hash="3" class="hollow tooltip-trigger" style="fill:transparent;" d="M 248.2,245 V 245 h 3.5 V 245 h -3.5" data-tooltip-text="r2 is the unique owner of the data with read and write privileges; can read and write data; cannot point to another piece of data"/>
     </g>
 
     <g id="ref_line">
-        <path data-hash="2" class="solid tooltip-trigger" style="fill:transparent;" d="M 160 165 l 15 4 v 12 l -15 4" data-tooltip-text="can mutate the resource it refers to"/>
+        <path data-hash="2" class="solid tooltip-trigger" style="fill:transparent;" d="M 160 165 l 15 4 v 12 l -15 4" data-tooltip-text="can mutate the data it refers to"/>
     </g>
 
     <g id="events">
-        <circle cx="70" cy="105" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="obtains data from String::from() (s's lifetime begins from here)"/>
+        <circle cx="70" cy="105" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="s is initialized by move from String::from()"/>
         <circle cx="70" cy="165" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="mutably lends its data to r1 (s becomes un-readable until the end of r1's lifetime)"/>
         <circle cx="70" cy="185" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="r1 is no longer a mutable referece of s, so we may read and write the data"/>
         <circle cx="70" cy="245" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="mutably lends its data to r2 (s becomes un-readable until the end of r2's lifetime)"/>
@@ -222,10 +229,10 @@ object.code_panel {
     </g>
 
     <g id="arrows">
-        <polyline stroke-width="5px" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
-        <polyline stroke-width="5px" stroke="gray" points="70,165 150,165 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Mutable borrow from s to r1"/>
-        <polyline stroke-width="5px" stroke="gray" points="160,185 80,185 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Return mutably borrowed resource from r1 to s"/>
-        <polyline stroke-width="5px" stroke="gray" points="70,245 240,245 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Mutable borrow from s to r2"/>
+        <polyline stroke-width="5px" stroke="gray" points="93 105 83 105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of String::from() to s"/>
+        <polyline stroke-width="5px" stroke="gray" points="70 165 150 165 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Mutable borrow from s to r1"/>
+        <polyline stroke-width="5px" stroke="gray" points="160 185 80 185 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Return mutably borrowed resource from r1 to s"/>
+        <polyline stroke-width="5px" stroke="gray" points="70 245 240 245 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Mutable borrow from s to r2"/>
     </g>
 
 </svg>

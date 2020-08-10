@@ -159,6 +159,13 @@ object.code_panel {
     fill: #b99f35;
     stroke: #b99f35;
 }
+        
+        text {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
         ]]>
         </style>
         <!-- used when pass to function by ref -->
@@ -193,30 +200,30 @@ object.code_panel {
     </defs>
 
     <g id="labels">
-        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="label tooltip-trigger" data-tooltip-text="s, mutable">s</text>
         <text x="231" y="90" style="text-anchor:middle" data-hash="2" class="label tooltip-trigger" data-tooltip-text="some_string, mutable">some_string<tspan stroke="none" data-tooltip-text="some_string, mutable">|</tspan>*some_string</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="label tooltip-trigger" data-tooltip-text="s, mutable">s</text>
     </g>
 
     <g id="timelines">
-        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="105" y2="145" data-tooltip-text="s is the unique value that can access the data in memory"/>
+        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="105" y2="145" data-tooltip-text="s is the unique owner of the data with read and write privileges"/>
         <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="145" y2="145" data-tooltip-text="s's data is being shared by one or more variables"/>
-        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="145" y2="165" data-tooltip-text="s is the unique value that can access the data in memory"/>
-        <line data-hash="2" class="solid tooltip-trigger" x1="231" x2="231" y1="205" y2="225" data-tooltip-text="some_string is the unique value that can access the data in memory; can read and write data; can point to another piece of data"/>
+        <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="145" y2="165" data-tooltip-text="s is the unique owner of the data with read and write privileges"/>
+        <line data-hash="2" class="solid tooltip-trigger" x1="231" x2="231" y1="205" y2="225" data-tooltip-text="some_string is the unique owner of the data with read and write privileges; can read and write data; can point to another piece of data"/>
         <path data-hash="2" class="hollow tooltip-trigger" style="fill:transparent;" d="M 229.2,225 V 225 h 3.5 V 225 h -3.5" data-tooltip-text="some_string's data is being shared by one or more variables; can only read data"/>
-        <line data-hash="2" class="solid tooltip-trigger" x1="231" x2="231" y1="225" y2="245" data-tooltip-text="some_string is the unique value that can access the data in memory; can read and write data; can point to another piece of data"/>
+        <line data-hash="2" class="solid tooltip-trigger" x1="231" x2="231" y1="225" y2="245" data-tooltip-text="some_string is the unique owner of the data with read and write privileges; can read and write data; can point to another piece of data"/>
     </g>
 
     <g id="ref_line">
-        <path data-hash="2" class="solid tooltip-trigger" style="fill:transparent;" d="M 231 205 l 15 8 v 24 l -15 8" data-tooltip-text="can mutate the resource it refers to"/>
+        <path data-hash="2" class="solid tooltip-trigger" style="fill:transparent;" d="M 231 205 l 15 8 v 24 l -15 8" data-tooltip-text="can mutate the data it refers to"/>
     </g>
 
     <g id="events">
-        <circle cx="70" cy="105" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="obtains data from String::from() (s's lifetime begins from here)"/>
-        <circle cx="70" cy="145" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="statically lends its data to change() (s becomes read-only)"/>
+        <circle cx="70" cy="105" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="s is initialized by move from String::from()"/>
+        <circle cx="70" cy="145" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="s statically lends its data to change() and becomes read-only"/>
         <circle cx="70" cy="145" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="change() no longer borrows from s"/>
-        <circle cx="70" cy="165" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="s goes out of scope. The data is dropped."/>
-        <circle cx="231" cy="205" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="obtains data from another value (some_string's lifetime begins from here)"/>
-        <circle cx="231" cy="225" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="statically lends its data to push_str() (some_string becomes read-only)"/>
+        <circle cx="70" cy="165" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="s goes out of scope. The value is dropped."/>
+        <circle cx="231" cy="205" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="some_string is initialized by move from another value"/>
+        <circle cx="231" cy="225" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="some_string statically lends its data to push_str() and becomes read-only"/>
         <circle cx="231" cy="225" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="push_str() no longer borrows from some_string"/>
         <circle cx="231" cy="245" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="some_string goes out of scope. The data is not dropped because some_string is not the owner."/>
         <text x="96" y="110" data-hash="4" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="String::from()">f</text>
@@ -225,7 +232,7 @@ object.code_panel {
     </g>
 
     <g id="arrows">
-        <polyline stroke-width="5px" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of String::from() to s"/>
+        <polyline stroke-width="5px" stroke="gray" points="93 105 83 105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of String::from() to s"/>
     </g>
 
 </svg>

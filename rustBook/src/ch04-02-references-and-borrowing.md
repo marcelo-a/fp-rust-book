@@ -16,7 +16,7 @@ value:
 <div class="flex-container vis_block" style="position:relative; margin-right:-100px; display: none;">
   <object type="image/svg+xml" class="vis_04_02_01 code_panel" data="img/vis_04_02_01_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
-  <object type="image/svg+xml" class="vis_04_02_01 tl_panel" data="img/vis_04_02_01_timeline.svg" onmouseover="helpers('vis_04_02_01')"></object>
+  <object type="image/svg+xml" class="vis_04_02_01 tl_panel" data="img/vis_04_02_01_timeline.svg" onmouseenter="helpers('vis_04_02_01')"></object>
 </div>
 
 First, notice that all the tuple code in the variable declaration and the
@@ -46,7 +46,7 @@ Let’s take a closer look at the function call here:
 <div class="flex-container vis_block" style="display: none;">
   <object type="image/svg+xml" class="vis_04_02_02 code_panel" data="img/vis_04_02_02_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
-  <object type="image/svg+xml" class="vis_04_02_02 tl_panel" data="img/vis_04_02_02_timeline.svg" style="width: auto;" onmouseover="helpers('vis_04_02_02')"></object>
+  <object type="image/svg+xml" class="vis_04_02_02 tl_panel" data="img/vis_04_02_02_timeline.svg" style="width: auto;" onmouseenter="helpers('vis_04_02_02')"></object>
 </div>
 
 The `&s1` syntax lets us create a reference that *refers* to the value of `s1`
@@ -63,7 +63,7 @@ the parameter `s` is a reference. Let’s add some explanatory annotations:
 <div class="flex-container vis_block" style="position: relative; margin-left: -50px; margin-right: -100px; display: none;">
   <object type="image/svg+xml" class="vis_04_02_03 code_panel" data="img/vis_04_02_03_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
-  <object type="image/svg+xml" class="vis_04_02_03 tl_panel" data="img/vis_04_02_03_timeline.svg" style="width: auto;" onmouseover="helpers('vis_04_02_03')"></object>
+  <object type="image/svg+xml" class="vis_04_02_03 tl_panel" data="img/vis_04_02_03_timeline.svg" style="width: auto;" onmouseenter="helpers('vis_04_02_03')"></object>
 </div>
 
 The scope in which the variable `s` is valid is the same as any function
@@ -104,7 +104,7 @@ We can fix the error in the code from Listing 4-6 with just a small tweak:
 <div class="flex-container vis_block" style="display: none;">
   <object type="image/svg+xml" class="vis_04_02_05 code_panel" data="img/vis_04_02_05_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
-  <object type="image/svg+xml" class="vis_04_02_05 tl_panel" data="img/vis_04_02_05_timeline.svg" style="width: auto;" onmouseover="helpers('vis_04_02_05')"></object>
+  <object type="image/svg+xml" class="vis_04_02_05 tl_panel" data="img/vis_04_02_05_timeline.svg" style="width: auto;" onmouseenter="helpers('vis_04_02_05')"></object>
 </div>
 
 First, we had to change `s` to be `mut`. Then we had to create a mutable
@@ -150,7 +150,7 @@ multiple mutable references, just not *simultaneous* ones:
 <div class="flex-container vis_block" style="position: relative; margin-left: -150px; margin-right: -125px; display: none;">
   <object type="image/svg+xml" class="vis_04_02_07 code_panel" data="img/vis_04_02_07_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
-  <object type="image/svg+xml" class="vis_04_02_07 tl_panel" data="img/vis_04_02_07_timeline.svg" style="width: auto;" onmouseover="helpers('vis_04_02_07')"></object>
+  <object type="image/svg+xml" class="vis_04_02_07 tl_panel" data="img/vis_04_02_07_timeline.svg" style="width: auto;" onmouseenter="helpers('vis_04_02_07')"></object>
 </div>
 
 A similar rule exists for combining mutable and immutable references. This code
@@ -183,7 +183,7 @@ mutable reference is introduced:
 <div class="flex-container vis_block" style="position:relative; margin-right:-100px; display: none;">
   <object type="image/svg+xml" class="vis_04_02_09 code_panel" data="img/vis_04_02_09_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
-  <object type="image/svg+xml" class="vis_04_02_09 tl_panel" data="img/vis_04_02_09_timeline.svg" style="width: auto;" onmouseover="helpers('vis_04_02_09')"></object>
+  <object type="image/svg+xml" class="vis_04_02_09 tl_panel" data="img/vis_04_02_09_timeline.svg" style="width: auto;" onmouseenter="helpers('vis_04_02_09')"></object>
 </div>
 
 The scopes of the immutable references `r1` and `r2` end after the `println!`
@@ -247,7 +247,7 @@ The solution here is to return the `String` directly:
 <div class="flex-container vis_block" style="display: none;">
   <object type="image/svg+xml" class="vis_04_02_12 code_panel" data="img/vis_04_02_12_code.svg">
   <! !!!!!!!!!!!!!!!!!!!!!! svg file not found !!!!!!!!!!!!!!!!!!!!! <!-- fallback image in CSS --></object>
-  <object type="image/svg+xml" class="vis_04_02_12 tl_panel" data="img/vis_04_02_12_timeline.svg" style="width: auto;" onmouseover="helpers('vis_04_02_12')"></object>
+  <object type="image/svg+xml" class="vis_04_02_12 tl_panel" data="img/vis_04_02_12_timeline.svg" style="width: auto;" onmouseenter="helpers('vis_04_02_12')"></object>
 </div>
 
 This works without any problems. Ownership is moved out, and nothing is

@@ -159,6 +159,13 @@ object.code_panel {
     fill: #b99f35;
     stroke: #b99f35;
 }
+        
+        text {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
         ]]>
         </style>
         <!-- used when pass to function by ref -->
@@ -203,12 +210,12 @@ object.code_panel {
     </g>
 
     <g id="ref_line">
-        <path data-hash="5" class="tooltip-trigger" style="fill: transparent;" stroke-width="2px" stroke-dasharray="3" d="M 90 105 l 15 8 v 24 l -15 8" data-tooltip-text="cannot mutate the resource it refers to"/>
+        <path data-hash="5" class="tooltip-trigger" style="fill: transparent;" stroke-width="2px" stroke-dasharray="3" d="M 90 105 l 15 8 v 24 l -15 8" data-tooltip-text="cannot mutate the data it refers to"/>
     </g>
 
     <g id="events">
-        <circle cx="90" cy="105" r="5" data-hash="5" class="tooltip-trigger" data-tooltip-text="s takes some value passed as argument (s's lifetime begins here)"/>
-        <circle cx="90" cy="125" r="5" data-hash="5" class="tooltip-trigger" data-tooltip-text="statically lends its data to len() (s becomes read-only)"/>
+        <circle cx="90" cy="105" r="5" data-hash="5" class="tooltip-trigger" data-tooltip-text="s is initialized by some value passed as argument to the function"/>
+        <circle cx="90" cy="125" r="5" data-hash="5" class="tooltip-trigger" data-tooltip-text="s statically lends its data to len() and becomes read-only"/>
         <circle cx="90" cy="125" r="5" data-hash="5" class="tooltip-trigger" data-tooltip-text="len() no longer borrows from s"/>
         <circle cx="90" cy="145" r="5" data-hash="5" class="tooltip-trigger" data-tooltip-text="s goes out of scope. The data is not dropped because s is not the owner."/>
         <use xlink:href="#functionDot" data-hash="5" x="90" y="125" class="tooltip-trigger" data-tooltip-text="len() reads from s"/>

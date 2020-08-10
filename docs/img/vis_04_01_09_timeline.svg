@@ -159,6 +159,13 @@ object.code_panel {
     fill: #b99f35;
     stroke: #b99f35;
 }
+        
+        text {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
         ]]>
         </style>
         <!-- used when pass to function by ref -->
@@ -193,32 +200,32 @@ object.code_panel {
     </defs>
 
     <g id="labels">
-        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="label tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
         <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="label tooltip-trigger" data-tooltip-text="s2, immutable">s2</text>
+        <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="label tooltip-trigger" data-tooltip-text="s1, immutable">s1</text>
     </g>
 
     <g id="timelines">
-        <path data-hash="1" class="hollow tooltip-trigger" style="fill:transparent;" d="M 68.2,105 V 125 h 3.5 V 105 h -3.5" data-tooltip-text="s1 is the unique value that can access the data in memory"/>
+        <path data-hash="1" class="hollow tooltip-trigger" style="fill:transparent;" d="M 68.2,105 V 125 h 3.5 V 105 h -3.5" data-tooltip-text="s1 is the unique owner of the data with read and write privileges"/>
         <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="125" y2="125" data-tooltip-text="s1's data is being shared by one or more variables"/>
-        <path data-hash="1" class="hollow tooltip-trigger" style="fill:transparent;" d="M 68.2,125 V 165 h 3.5 V 125 h -3.5" data-tooltip-text="s1 is the unique value that can access the data in memory"/>
+        <path data-hash="1" class="hollow tooltip-trigger" style="fill:transparent;" d="M 68.2,125 V 165 h 3.5 V 125 h -3.5" data-tooltip-text="s1 is the unique owner of the data with read and write privileges"/>
         <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="165" y2="165" data-tooltip-text="s1's data is being shared by one or more variables"/>
-        <path data-hash="1" class="hollow tooltip-trigger" style="fill:transparent;" d="M 68.2,165 V 165 h 3.5 V 165 h -3.5" data-tooltip-text="s1 is the unique value that can access the data in memory"/>
-        <path data-hash="2" class="hollow tooltip-trigger" style="fill:transparent;" d="M 138.2,125 V 165 h 3.5 V 125 h -3.5" data-tooltip-text="s2 is the unique value that can access the data in memory"/>
+        <path data-hash="1" class="hollow tooltip-trigger" style="fill:transparent;" d="M 68.2,165 V 165 h 3.5 V 165 h -3.5" data-tooltip-text="s1 is the unique owner of the data with read and write privileges"/>
+        <path data-hash="2" class="hollow tooltip-trigger" style="fill:transparent;" d="M 138.2,125 V 165 h 3.5 V 125 h -3.5" data-tooltip-text="s2 is the unique owner of the data with read and write privileges"/>
         <line data-hash="2" class="solid tooltip-trigger" x1="140" x2="140" y1="165" y2="165" data-tooltip-text="s2's data is being shared by one or more variables"/>
-        <path data-hash="2" class="hollow tooltip-trigger" style="fill:transparent;" d="M 138.2,165 V 165 h 3.5 V 165 h -3.5" data-tooltip-text="s2 is the unique value that can access the data in memory"/>
+        <path data-hash="2" class="hollow tooltip-trigger" style="fill:transparent;" d="M 138.2,165 V 165 h 3.5 V 165 h -3.5" data-tooltip-text="s2 is the unique owner of the data with read and write privileges"/>
     </g>
 
     <g id="ref_line">
     </g>
 
     <g id="events">
-        <circle cx="70" cy="105" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="obtains data from String::from() (s1's lifetime begins from here)"/>
-        <circle cx="70" cy="125" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="statically lends its data to clone() (s1 becomes read-only)"/>
+        <circle cx="70" cy="105" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="s1 is initialized by move from String::from()"/>
+        <circle cx="70" cy="125" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="s1 statically lends its data to clone() and becomes read-only"/>
         <circle cx="70" cy="125" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="clone() no longer borrows from s1"/>
-        <circle cx="70" cy="165" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="statically lends its data to println!() (s1 becomes read-only)"/>
+        <circle cx="70" cy="165" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="s1 statically lends its data to println!() and becomes read-only"/>
         <circle cx="70" cy="165" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="println!() no longer borrows from s1"/>
-        <circle cx="140" cy="125" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="obtains data from clone() (s2's lifetime begins from here)"/>
-        <circle cx="140" cy="165" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="statically lends its data to println!() (s2 becomes read-only)"/>
+        <circle cx="140" cy="125" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="s2 is initialized by move from clone()"/>
+        <circle cx="140" cy="165" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="s2 statically lends its data to println!() and becomes read-only"/>
         <circle cx="140" cy="165" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="println!() no longer borrows from s2"/>
         <text x="96" y="110" data-hash="3" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="String::from()">f</text>
         <text x="166" y="130" data-hash="4" class="functionLogo tooltip-trigger fn-trigger" data-tooltip-text="clone()">f</text>
@@ -228,8 +235,8 @@ object.code_panel {
     </g>
 
     <g id="arrows">
-        <polyline stroke-width="5px" stroke="gray" points="93,105 83,105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of String::from() to s1"/>
-        <polyline stroke-width="5px" stroke="gray" points="163,125 153,125 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of clone() to s2"/>
+        <polyline stroke-width="5px" stroke="gray" points="93 105 83 105 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from the return value of String::from() to s1"/>
+        <polyline stroke-width="5px" stroke="gray" points="163 125 153 125 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Move from the return value of clone() to s2"/>
     </g>
 
 </svg>

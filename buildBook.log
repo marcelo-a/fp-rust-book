@@ -29,7 +29,7 @@ warning: function is never used: `determine_mut_ref_line_styles`
 
 warning: 4 warnings emitted
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.24s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
      Running `target/debug/examples/one_var`
 successfully wrote to examples/book_04_01_01_one_var/rendering_code.svg
 successfully wrote to examples/book_04_01_01_one_var/rendering_timeline.svg
@@ -65,17 +65,7 @@ warning: function is never used: `determine_mut_ref_line_styles`
 
 warning: 4 warnings emitted
 
-warning: unused import: `Function`
- --> examples/book_04_01_02_scope/main.rs:1:79
-  |
-1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceAccessPoint, Owner, Function, VisualizationData, Visualizable};
-  |                                                                               ^^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: 1 warning emitted
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.24s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/scope`
 successfully wrote to examples/book_04_01_02_scope/rendering_code.svg
 successfully wrote to examples/book_04_01_02_scope/rendering_timeline.svg
@@ -111,7 +101,7 @@ warning: function is never used: `determine_mut_ref_line_styles`
 
 warning: 4 warnings emitted
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.24s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running `target/debug/examples/string_from`
 successfully wrote to examples/book_04_01_03_string_from/rendering_code.svg
 successfully wrote to examples/book_04_01_03_string_from/rendering_timeline.svg
@@ -147,7 +137,7 @@ warning: function is never used: `determine_mut_ref_line_styles`
 
 warning: 4 warnings emitted
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.24s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.25s
      Running `target/debug/examples/reference`
 successfully wrote to examples/book_04_01_04_reference/rendering_code.svg
 successfully wrote to examples/book_04_01_04_reference/rendering_timeline.svg
@@ -219,17 +209,7 @@ warning: function is never used: `determine_mut_ref_line_styles`
 
 warning: 4 warnings emitted
 
-warning: unused import: `Function`
- --> examples/book_04_01_06_int_copy/main.rs:1:79
-  |
-1 | use rrt_lib::data::{ExternalEvent, LifetimeTrait, ResourceAccessPoint, Owner, Function, VisualizationData, Visualizable};
-  |                                                                               ^^^^^^^^
-  |
-  = note: `#[warn(unused_imports)]` on by default
-
-warning: 1 warning emitted
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.24s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.29s
      Running `target/debug/examples/int_copy`
 successfully wrote to examples/book_04_01_06_int_copy/rendering_code.svg
 successfully wrote to examples/book_04_01_06_int_copy/rendering_timeline.svg
@@ -265,7 +245,7 @@ warning: function is never used: `determine_mut_ref_line_styles`
 
 warning: 4 warnings emitted
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.25s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.27s
      Running `target/debug/examples/string_move`
 successfully wrote to examples/book_04_01_07_string_move/rendering_code.svg
 successfully wrote to examples/book_04_01_07_string_move/rendering_timeline.svg
@@ -301,7 +281,7 @@ warning: function is never used: `determine_mut_ref_line_styles`
 
 warning: 4 warnings emitted
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.26s
      Running `target/debug/examples/string_clone`
 successfully wrote to examples/book_04_01_09_string_clone/rendering_code.svg
 successfully wrote to examples/book_04_01_09_string_clone/rendering_timeline.svg
@@ -337,7 +317,7 @@ warning: function is never used: `determine_mut_ref_line_styles`
 
 warning: 4 warnings emitted
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.24s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
      Running `target/debug/examples/int_copy_2`
 successfully wrote to examples/book_04_01_10_int_copy_2/rendering_code.svg
 successfully wrote to examples/book_04_01_10_int_copy_2/rendering_timeline.svg
@@ -373,7 +353,7 @@ warning: function is never used: `determine_mut_ref_line_styles`
 
 warning: 4 warnings emitted
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.20s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
      Running `target/debug/examples/ownership_function`
 successfully wrote to examples/book_04_01_11_ownership_function/rendering_code.svg
 successfully wrote to examples/book_04_01_11_ownership_function/rendering_timeline.svg
@@ -409,7 +389,7 @@ warning: function is never used: `determine_mut_ref_line_styles`
 
 warning: 4 warnings emitted
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.28s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
      Running `target/debug/examples/return_values`
 successfully wrote to examples/book_04_01_12_return_values/rendering_code.svg
 successfully wrote to examples/book_04_01_12_return_values/rendering_timeline.svg
@@ -445,7 +425,7 @@ warning: function is never used: `determine_mut_ref_line_styles`
 
 warning: 4 warnings emitted
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.30s
      Running `target/debug/examples/return_tuple`
 successfully wrote to examples/book_04_01_13_return_tuple/rendering_code.svg
 successfully wrote to examples/book_04_01_13_return_tuple/rendering_timeline.svg
@@ -481,7 +461,7 @@ warning: function is never used: `determine_mut_ref_line_styles`
 
 warning: 4 warnings emitted
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.26s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.23s
      Running `target/debug/examples/pass_reference`
 successfully wrote to examples/book_04_02_01_pass_reference/rendering_code.svg
 successfully wrote to examples/book_04_02_01_pass_reference/rendering_timeline.svg
@@ -517,7 +497,7 @@ warning: function is never used: `determine_mut_ref_line_styles`
 
 warning: 4 warnings emitted
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.17s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.33s
      Running `target/debug/examples/acquire_from_function`
 successfully wrote to examples/book_04_02_02_acquire_from_function/rendering_code.svg
 successfully wrote to examples/book_04_02_02_acquire_from_function/rendering_timeline.svg
@@ -553,7 +533,7 @@ warning: function is never used: `determine_mut_ref_line_styles`
 
 warning: 4 warnings emitted
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.26s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.35s
      Running `target/debug/examples/safely_out_of_scope`
 successfully wrote to examples/book_04_02_03_safely_out_of_scope/rendering_code.svg
 successfully wrote to examples/book_04_02_03_safely_out_of_scope/rendering_timeline.svg
@@ -589,7 +569,7 @@ warning: function is never used: `determine_mut_ref_line_styles`
 
 warning: 4 warnings emitted
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.22s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.36s
      Running `target/debug/examples/mut_ref`
 successfully wrote to examples/book_04_02_05_mut_ref/rendering_code.svg
 successfully wrote to examples/book_04_02_05_mut_ref/rendering_timeline.svg
@@ -625,7 +605,7 @@ warning: function is never used: `determine_mut_ref_line_styles`
 
 warning: 4 warnings emitted
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.21s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.27s
      Running `target/debug/examples/scope_reference`
 successfully wrote to examples/book_04_02_07_scope_reference/rendering_code.svg
 successfully wrote to examples/book_04_02_07_scope_reference/rendering_timeline.svg
@@ -661,7 +641,8 @@ warning: function is never used: `determine_mut_ref_line_styles`
 
 warning: 4 warnings emitted
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.26s
+   Compiling rrt v0.1.0 (/mnt/c/Users/16167/Desktop/repos/rust-resource-timeline)
+    Finished dev [unoptimized + debuginfo] target(s) in 6.93s
      Running `target/debug/examples/shared_and_unique_borrow`
 successfully wrote to examples/book_04_02_09_shared_and_unique_borrow/rendering_code.svg
 successfully wrote to examples/book_04_02_09_shared_and_unique_borrow/rendering_timeline.svg
@@ -697,17 +678,7 @@ warning: function is never used: `determine_mut_ref_line_styles`
 
 warning: 4 warnings emitted
 
-warning: unused variable: `no_dangle`
-  --> examples/book_04_02_12_no_dangle/main.rs:16:9
-   |
-16 |     let no_dangle = ResourceAccessPoint::Function(Function {
-   |         ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_no_dangle`
-   |
-   = note: `#[warn(unused_variables)]` on by default
-
-warning: 1 warning emitted
-
-    Finished dev [unoptimized + debuginfo] target(s) in 0.19s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.32s
      Running `target/debug/examples/no_dangle`
 successfully wrote to examples/book_04_02_12_no_dangle/rendering_code.svg
 successfully wrote to examples/book_04_02_12_no_dangle/rendering_timeline.svg

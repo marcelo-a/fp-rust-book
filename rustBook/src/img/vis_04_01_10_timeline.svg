@@ -159,6 +159,13 @@ object.code_panel {
     fill: #b99f35;
     stroke: #b99f35;
 }
+        
+        text {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
         ]]>
         </style>
         <!-- used when pass to function by ref -->
@@ -193,39 +200,39 @@ object.code_panel {
     </defs>
 
     <g id="labels">
-        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="label tooltip-trigger" data-tooltip-text="y, immutable">y</text>
         <text x="70" y="90" style="text-anchor:middle" data-hash="1" class="label tooltip-trigger" data-tooltip-text="x, immutable">x</text>
+        <text x="140" y="90" style="text-anchor:middle" data-hash="2" class="label tooltip-trigger" data-tooltip-text="y, immutable">y</text>
     </g>
 
     <g id="timelines">
-        <path data-hash="1" class="hollow tooltip-trigger" style="fill:transparent;" d="M 68.2,105 V 125 h 3.5 V 105 h -3.5" data-tooltip-text="x is the unique value that can access the data in memory"/>
-        <path data-hash="1" class="hollow tooltip-trigger" style="fill:transparent;" d="M 68.2,125 V 165 h 3.5 V 125 h -3.5" data-tooltip-text="x is the unique value that can access the data in memory"/>
+        <path data-hash="1" class="hollow tooltip-trigger" style="fill:transparent;" d="M 68.2,105 V 125 h 3.5 V 105 h -3.5" data-tooltip-text="x is the unique owner of the data with read and write privileges"/>
+        <path data-hash="1" class="hollow tooltip-trigger" style="fill:transparent;" d="M 68.2,125 V 165 h 3.5 V 125 h -3.5" data-tooltip-text="x is the unique owner of the data with read and write privileges"/>
         <line data-hash="1" class="solid tooltip-trigger" x1="70" x2="70" y1="165" y2="165" data-tooltip-text="x's data is being shared by one or more variables"/>
-        <path data-hash="1" class="hollow tooltip-trigger" style="fill:transparent;" d="M 68.2,165 V 185 h 3.5 V 165 h -3.5" data-tooltip-text="x is the unique value that can access the data in memory"/>
-        <path data-hash="2" class="hollow tooltip-trigger" style="fill:transparent;" d="M 138.2,125 V 165 h 3.5 V 125 h -3.5" data-tooltip-text="y is the unique value that can access the data in memory"/>
+        <path data-hash="1" class="hollow tooltip-trigger" style="fill:transparent;" d="M 68.2,165 V 185 h 3.5 V 165 h -3.5" data-tooltip-text="x is the unique owner of the data with read and write privileges"/>
+        <path data-hash="2" class="hollow tooltip-trigger" style="fill:transparent;" d="M 138.2,125 V 165 h 3.5 V 125 h -3.5" data-tooltip-text="y is the unique owner of the data with read and write privileges"/>
         <line data-hash="2" class="solid tooltip-trigger" x1="140" x2="140" y1="165" y2="165" data-tooltip-text="y's data is being shared by one or more variables"/>
-        <path data-hash="2" class="hollow tooltip-trigger" style="fill:transparent;" d="M 138.2,165 V 185 h 3.5 V 165 h -3.5" data-tooltip-text="y is the unique value that can access the data in memory"/>
+        <path data-hash="2" class="hollow tooltip-trigger" style="fill:transparent;" d="M 138.2,165 V 185 h 3.5 V 165 h -3.5" data-tooltip-text="y is the unique owner of the data with read and write privileges"/>
     </g>
 
     <g id="ref_line">
     </g>
 
     <g id="events">
-        <circle cx="70" cy="105" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="obtains data from another value (x's lifetime begins from here)"/>
-        <circle cx="70" cy="125" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="copies its value to y (x keeps ownership)"/>
-        <circle cx="70" cy="165" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="statically lends its data to println!() (x becomes read-only)"/>
+        <circle cx="70" cy="105" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="x is initialized by move from another value"/>
+        <circle cx="70" cy="125" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="a copy of the value in x is made and bound to y (x is unchanged)"/>
+        <circle cx="70" cy="165" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="x statically lends its data to println!() and becomes read-only"/>
         <circle cx="70" cy="165" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="println!() no longer borrows from x"/>
-        <circle cx="70" cy="185" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="x goes out of scope. The data is dropped."/>
-        <circle cx="140" cy="125" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="obtains data from x (y's lifetime begins from here)"/>
-        <circle cx="140" cy="165" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="statically lends its data to println!() (y becomes read-only)"/>
+        <circle cx="70" cy="185" r="5" data-hash="1" class="tooltip-trigger" data-tooltip-text="x goes out of scope. The value is dropped."/>
+        <circle cx="140" cy="125" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="y is initialized by move from x"/>
+        <circle cx="140" cy="165" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="y statically lends its data to println!() and becomes read-only"/>
         <circle cx="140" cy="165" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="println!() no longer borrows from y"/>
-        <circle cx="140" cy="185" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="y goes out of scope. The data is dropped."/>
+        <circle cx="140" cy="185" r="5" data-hash="2" class="tooltip-trigger" data-tooltip-text="y goes out of scope. The value is dropped."/>
         <use xlink:href="#functionDot" data-hash="1" x="70" y="165" class="tooltip-trigger" data-tooltip-text="println!() reads from x"/>
         <use xlink:href="#functionDot" data-hash="2" x="140" y="165" class="tooltip-trigger" data-tooltip-text="println!() reads from y"/>
     </g>
 
     <g id="arrows">
-        <polyline stroke-width="5px" stroke="gray" points="70,125 130,125 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from x to y"/>
+        <polyline stroke-width="5px" stroke="gray" points="70 125 130 125 " marker-end="url(#arrowHead)" class="tooltip-trigger" data-tooltip-text="Duplicate from x to y"/>
     </g>
 
 </svg>

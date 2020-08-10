@@ -8,6 +8,13 @@
         <style type="text/css">
         <![CDATA[
         {{ css }}
+        
+        text {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
         ]]>
         </style>
         <!-- used when pass to function by ref -->
